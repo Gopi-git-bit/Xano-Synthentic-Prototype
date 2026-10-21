@@ -1,0 +1,921 @@
+[
+  {
+    "fn": "validate_order",
+    "name": "canonical order accepted",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject cargo_weight_kg 0",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "0",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject distance_km NaN",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "NaN",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject cargo_weight_kg 1.0001",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "1.0001",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject requested_pickup_at 2030-01-02T10:00:00",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject hazardous cargo",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": true,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "HAZARDOUS_CARGO_UNSUPPORTED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject unapproved return pricing",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": true
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "RETURN_TRIP_POLICY_UNAPPROVED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject identical coordinates",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "IDENTICAL_STOPS"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject unknown booking fields",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30",
+      "admin": true
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject null latitude",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": null,
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "full 100 of 100",
+    "input": {
+      "mode": "full",
+      "total": "100",
+      "advance": "100"
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "full 50 of 100",
+    "input": {
+      "mode": "full",
+      "total": "100",
+      "advance": "50"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "partial 50 of 100",
+    "input": {
+      "mode": "partial",
+      "total": "100",
+      "advance": "50"
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "partial 49.99 of 100",
+    "input": {
+      "mode": "partial",
+      "total": "100",
+      "advance": "49.99"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "to_pay 0 of 100",
+    "input": {
+      "mode": "to_pay",
+      "total": "100",
+      "advance": "0"
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "to_pay 1 of 100",
+    "input": {
+      "mode": "to_pay",
+      "total": "100",
+      "advance": "1"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "fake 100 of 100",
+    "input": {
+      "mode": "fake",
+      "total": "100",
+      "advance": "100"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "full -1 of -1",
+    "input": {
+      "mode": "full",
+      "total": "-1",
+      "advance": "-1"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_transition",
+    "name": "legal pending to quoted",
+    "input": {
+      "account_status": "active",
+      "authorized": true,
+      "status": "pending",
+      "expected_status": "pending",
+      "version": 1,
+      "expected_version": 1,
+      "next_status": "quoted",
+      "reason": "Quote created"
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "fn": "validate_transition",
+    "name": "illegal skipped lifecycle",
+    "input": {
+      "account_status": "active",
+      "authorized": true,
+      "status": "pending",
+      "expected_status": "pending",
+      "version": 1,
+      "expected_version": 1,
+      "next_status": "delivered",
+      "reason": "Quote created"
+    },
+    "expected": {
+      "valid": false,
+      "code": "ILLEGAL_TRANSITION"
+    }
+  },
+  {
+    "fn": "validate_transition",
+    "name": "stale version",
+    "input": {
+      "account_status": "active",
+      "authorized": true,
+      "status": "pending",
+      "expected_status": "pending",
+      "version": 1,
+      "expected_version": 2,
+      "next_status": "quoted",
+      "reason": "Quote created"
+    },
+    "expected": {
+      "valid": false,
+      "code": "STATE_CONFLICT"
+    }
+  },
+  {
+    "fn": "validate_transition",
+    "name": "blocked account",
+    "input": {
+      "account_status": "blocked",
+      "authorized": true,
+      "status": "pending",
+      "expected_status": "pending",
+      "version": 1,
+      "expected_version": 1,
+      "next_status": "quoted",
+      "reason": "Quote created"
+    },
+    "expected": {
+      "valid": false,
+      "code": "FORBIDDEN"
+    }
+  },
+  {
+    "fn": "validate_transition",
+    "name": "unauthorized actor",
+    "input": {
+      "account_status": "active",
+      "authorized": false,
+      "status": "pending",
+      "expected_status": "pending",
+      "version": 1,
+      "expected_version": 1,
+      "next_status": "quoted",
+      "reason": "Quote created"
+    },
+    "expected": {
+      "valid": false,
+      "code": "FORBIDDEN"
+    }
+  },
+  {
+    "fn": "calculate_test_quote",
+    "name": "canonical repository price 240",
+    "input": {
+      "policy_version": "test-m3-v1",
+      "base_amount": "100.00",
+      "per_km": "12.50",
+      "per_kg": "0.75",
+      "distance_km": "10.000",
+      "cargo_weight_kg": "20.000",
+      "currency": "INR"
+    },
+    "expected": {
+      "valid": true,
+      "amount": "240.00",
+      "amount_minor": "24000"
+    }
+  },
+  {
+    "fn": "calculate_test_quote",
+    "name": "half up paise",
+    "input": {
+      "policy_version": "test-m3-v1",
+      "base_amount": "0",
+      "per_km": "0.01",
+      "per_kg": "0",
+      "distance_km": "0.500",
+      "cargo_weight_kg": "20.000",
+      "currency": "INR"
+    },
+    "expected": {
+      "valid": true,
+      "amount": "0.01"
+    }
+  },
+  {
+    "fn": "calculate_test_quote",
+    "name": "production policy fails closed",
+    "input": {
+      "policy_version": "production-v1",
+      "base_amount": "100.00",
+      "per_km": "12.50",
+      "per_kg": "0.75",
+      "distance_km": "10.000",
+      "cargo_weight_kg": "20.000",
+      "currency": "INR"
+    },
+    "expected": {
+      "valid": false,
+      "code": "PRICING_POLICY_UNAPPROVED"
+    }
+  },
+  {
+    "fn": "evaluate_dispatch",
+    "name": "compliant capacity boundary",
+    "input": {
+      "vendor_status": "approved",
+      "driver_status": "approved",
+      "vehicle_status": "approved",
+      "account_status": "active",
+      "same_platform": true,
+      "association_valid": true,
+      "actor_authorized": true,
+      "vehicle_busy": false,
+      "driver_busy": false,
+      "cargo_weight_kg": "500",
+      "capacity_kg": "500",
+      "required_body_type": "Closed",
+      "vehicle_body_type": "closed",
+      "checked_at": "2030-01-01T10:00:00Z",
+      "insurance": {
+        "status": "verified",
+        "valid_until": "2030-01-02"
+      },
+      "fitness": {
+        "status": "verified",
+        "valid_until": "2030-01-01"
+      }
+    },
+    "expected": {
+      "valid": true
+    }
+  },
+  {
+    "fn": "evaluate_dispatch",
+    "name": "overweight exclusion",
+    "input": {
+      "vendor_status": "approved",
+      "driver_status": "approved",
+      "vehicle_status": "approved",
+      "account_status": "active",
+      "same_platform": true,
+      "association_valid": true,
+      "actor_authorized": true,
+      "vehicle_busy": false,
+      "driver_busy": false,
+      "cargo_weight_kg": "500.001",
+      "capacity_kg": "500",
+      "required_body_type": "Closed",
+      "vehicle_body_type": "closed",
+      "checked_at": "2030-01-01T10:00:00Z",
+      "insurance": {
+        "status": "verified",
+        "valid_until": "2030-01-02"
+      },
+      "fitness": {
+        "status": "verified",
+        "valid_until": "2030-01-01"
+      }
+    },
+    "expected": {
+      "valid": false,
+      "code": "CAPACITY_EXCEEDED"
+    }
+  },
+  {
+    "fn": "evaluate_dispatch",
+    "name": "expired insurance",
+    "input": {
+      "vendor_status": "approved",
+      "driver_status": "approved",
+      "vehicle_status": "approved",
+      "account_status": "active",
+      "same_platform": true,
+      "association_valid": true,
+      "actor_authorized": true,
+      "vehicle_busy": false,
+      "driver_busy": false,
+      "cargo_weight_kg": "500",
+      "capacity_kg": "500",
+      "required_body_type": "Closed",
+      "vehicle_body_type": "closed",
+      "checked_at": "2030-01-01T10:00:00Z",
+      "insurance": {
+        "status": "verified",
+        "valid_until": "2029-12-31"
+      },
+      "fitness": {
+        "status": "verified",
+        "valid_until": "2030-01-01"
+      }
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "evaluate_dispatch",
+    "name": "busy driver excluded",
+    "input": {
+      "vendor_status": "approved",
+      "driver_status": "approved",
+      "vehicle_status": "approved",
+      "account_status": "active",
+      "same_platform": true,
+      "association_valid": true,
+      "actor_authorized": true,
+      "vehicle_busy": false,
+      "driver_busy": true,
+      "cargo_weight_kg": "500",
+      "capacity_kg": "500",
+      "required_body_type": "Closed",
+      "vehicle_body_type": "closed",
+      "checked_at": "2030-01-01T10:00:00Z",
+      "insurance": {
+        "status": "verified",
+        "valid_until": "2030-01-02"
+      },
+      "fitness": {
+        "status": "verified",
+        "valid_until": "2030-01-01"
+      }
+    },
+    "expected": {
+      "valid": false,
+      "code": "RESOURCE_BUSY"
+    }
+  },
+  {
+    "fn": "evaluate_dispatch",
+    "name": "body compatibility enforced",
+    "input": {
+      "vendor_status": "approved",
+      "driver_status": "approved",
+      "vehicle_status": "approved",
+      "account_status": "active",
+      "same_platform": true,
+      "association_valid": true,
+      "actor_authorized": true,
+      "vehicle_busy": false,
+      "driver_busy": false,
+      "cargo_weight_kg": "500",
+      "capacity_kg": "500",
+      "required_body_type": "Closed",
+      "vehicle_body_type": "open",
+      "checked_at": "2030-01-01T10:00:00Z",
+      "insurance": {
+        "status": "verified",
+        "valid_until": "2030-01-02"
+      },
+      "fitness": {
+        "status": "verified",
+        "valid_until": "2030-01-01"
+      }
+    },
+    "expected": {
+      "valid": false,
+      "code": "BODY_TYPE_MISMATCH"
+    }
+  },
+  {
+    "fn": "evaluate_dispatch",
+    "name": "cross platform denied",
+    "input": {
+      "vendor_status": "approved",
+      "driver_status": "approved",
+      "vehicle_status": "approved",
+      "account_status": "active",
+      "same_platform": false,
+      "association_valid": true,
+      "actor_authorized": true,
+      "vehicle_busy": false,
+      "driver_busy": false,
+      "cargo_weight_kg": "500",
+      "capacity_kg": "500",
+      "required_body_type": "Closed",
+      "vehicle_body_type": "closed",
+      "checked_at": "2030-01-01T10:00:00Z",
+      "insurance": {
+        "status": "verified",
+        "valid_until": "2030-01-02"
+      },
+      "fitness": {
+        "status": "verified",
+        "valid_until": "2030-01-01"
+      }
+    },
+    "expected": {
+      "valid": false,
+      "code": "FORBIDDEN"
+    }
+  },
+  {
+    "fn": "evaluate_refund",
+    "name": "separate human review allowed",
+    "input": {
+      "account_status": "active",
+      "is_human": true,
+      "is_admin": true,
+      "same_platform": true,
+      "requester_account_id": "requester",
+      "approver_account_id": "reviewer",
+      "request_status": "requested",
+      "decision": "approved",
+      "reason": "Reviewed refund evidence"
+    },
+    "expected": {
+      "valid": true,
+      "execution_authorized": false
+    }
+  },
+  {
+    "fn": "evaluate_refund",
+    "name": "self approval denied",
+    "input": {
+      "account_status": "active",
+      "is_human": true,
+      "is_admin": true,
+      "same_platform": true,
+      "requester_account_id": "requester",
+      "approver_account_id": "requester",
+      "request_status": "requested",
+      "decision": "approved",
+      "reason": "Reviewed refund evidence"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "evaluate_refund",
+    "name": "agent approval denied",
+    "input": {
+      "account_status": "active",
+      "is_human": false,
+      "is_admin": true,
+      "same_platform": true,
+      "requester_account_id": "requester",
+      "approver_account_id": "reviewer",
+      "request_status": "requested",
+      "decision": "approved",
+      "reason": "Reviewed refund evidence"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "evaluate_settlement",
+    "name": "verified POD operational eligibility",
+    "input": {
+      "same_platform": true,
+      "actor_authorized": true,
+      "order_status": "delivered",
+      "pod_status": "accepted",
+      "pod_verified_by": "reviewer"
+    },
+    "expected": {
+      "valid": true,
+      "execution_authorized": false
+    }
+  },
+  {
+    "fn": "evaluate_settlement",
+    "name": "unverified POD blocks settlement",
+    "input": {
+      "same_platform": true,
+      "actor_authorized": true,
+      "order_status": "delivered",
+      "pod_status": "pending",
+      "pod_verified_by": "reviewer"
+    },
+    "expected": {
+      "valid": false,
+      "code": "POD_REQUIRED"
+    }
+  },
+  {
+    "fn": "retry_delay",
+    "name": "bounded retry backoff",
+    "input": {
+      "attempt": 20,
+      "max_attempts": 25,
+      "base_seconds": 5,
+      "max_seconds": 300
+    },
+    "expected": {
+      "valid": true,
+      "retryable": true,
+      "delay_seconds": 300
+    }
+  },
+  {
+    "fn": "retry_delay",
+    "name": "terminal attempts become dead letter",
+    "input": {
+      "attempt": 5,
+      "max_attempts": 5,
+      "base_seconds": 5,
+      "max_seconds": 300
+    },
+    "expected": {
+      "valid": true,
+      "retryable": false,
+      "code": "DEAD_LETTER"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject numeric precision overflow",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "1000000000.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "reject impossible calendar date",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-02-31T10:00:00Z"
+    },
+    "expected": {
+      "valid": false
+    }
+  }
+]

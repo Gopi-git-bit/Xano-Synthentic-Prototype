@@ -1,0 +1,83 @@
+{
+  "repository": "https://github.com/Gopi-git-bit/New-logistic-",
+  "source_commit": "52ca43d8a2fb4f3d5d105dc6bb9f7420e5cfca26",
+  "specifications": [
+    "docs/ZIPPY_PRODUCTION_EXECUTION_PRD.md",
+    "docs/DECISIONS.md",
+    "docs/PRD-backend.md",
+    "docs/PRD-database.md",
+    "docs/reports/M2_DATABASE_IMPLEMENTATION_REPORT.md",
+    "docs/reports/M3_CORE_IMPLEMENTATION_REPORT.md"
+  ],
+  "workspace_id": 1,
+  "branch": "v1",
+  "cli_profile": "default",
+  "sandbox": "sn9m-aat6-200c",
+  "deployment": "sandbox only; not promoted",
+  "phase": "operational schema, domain predicates and authenticated read adapters",
+  "operational_tables": 49,
+  "canonical_fields": 476,
+  "additional_starter_tables": 2,
+  "logistics_functions": 9,
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "api/v1/health"
+    },
+    {
+      "method": "GET",
+      "path": "api/v1/accounts/me",
+      "auth": "user"
+    },
+    {
+      "method": "GET",
+      "path": "api/v1/orders",
+      "auth": "user",
+      "scope": "resolved platform + booking customer"
+    }
+  ],
+  "schema_verification": {
+    "tables": 49,
+    "columns": 476,
+    "passed": true,
+    "scope": "Server-export field/type presence. SQL row security, triggers, foreign keys and concurrency are NOT verified."
+  },
+  "local_domain_tests": {
+    "passed": 41,
+    "total": 41,
+    "scope": "Domain predicates only; no DB/concurrency/provider proof"
+  },
+  "first_xano_run": {
+    "passed": 39,
+    "failed": 0,
+    "file": "xano-unit-results.json"
+  },
+  "final_xano_run": {
+    "passed": 41,
+    "failed": 0,
+    "file": "xano-unit-results-final.json"
+  },
+  "transition_matrix_local": {
+    "pairs": 49,
+    "result": "pass against canonical SQL"
+  },
+  "identity_adapter": {
+    "subject_format": "xano:<authenticated user id>",
+    "status": "syntax checked; authenticated runtime/isolation proofs pending",
+    "client_roles_trusted": false
+  },
+  "limitations": [
+    "Table-definition parity does not implement SQL RLS, FK/CHECK constraints, partial indexes, append-only triggers or least-privilege roles.",
+    "The domain functions are internal predicates, not transactional command services or authorization grants.",
+    "Booking, controlled state mutations, dispatch assignment, payment/webhook processing, durable workers and provider integrations are incomplete.",
+    "No DB concurrency, rollback, cross-tenant or end-to-end HTTP proof is claimed.",
+    "Production identity/rates and live provider activation remain unavailable."
+  ],
+  "next": [
+    "Transactional order intake + idempotency + immutable evidence + task/outbox",
+    "Concurrency-safe transitions and dispatch",
+    "POD, signed payment evidence and manual refunds",
+    "Separate governance/integration adapters",
+    "Tenant-isolation, replay, rollback and concurrency proofs before promotion"
+  ]
+}

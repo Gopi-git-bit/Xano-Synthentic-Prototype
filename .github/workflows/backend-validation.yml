@@ -1,0 +1,29 @@
+name: Xano backend offline validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: xano-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contracts-and-schema:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate offline contracts and exported schema
+        run: node scripts/validate-backend.cjs
