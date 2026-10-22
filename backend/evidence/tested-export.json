@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-22T04:51:17.320Z",
+  "captured_at": "2026-10-22T09:26:20.199Z",
   "workspace": 1,
   "sandbox": "sn9m-aat6-200c",
   "records_exported": false,
@@ -247,7 +247,7 @@
     },
     {
       "path": "function/logistics/validate_order.xs",
-      "sha256": "b99183c4afb15463956d4171e154ea709b0e5f7fdb0cfa80a8c7db7d335b4cf1"
+      "sha256": "1be7ee2b408e116d247d835787d3e298fce53e9c786b3d99dfe34164eb785b54"
     },
     {
       "path": "function/logistics/validate_payment_plan.xs",
@@ -421,5 +421,12 @@
       "path": "workflow_test/slice_1_discarded_response_retry.xs",
       "sha256": "0d5cd1da69781589d7949d7cace66246991cd63dd6af7adcc35adde06e9e56db"
     }
-  ]
+  ],
+  "source_multidoc_sha256": "43bf8d2a7f5975b4c0fe662d0948d5fb45cc78d5c38225daaa3d7d06a556a5bb",
+  "validation": {
+    "method": "Metadata function/run; pure predicates only; NOT public application HTTP",
+    "evidence": "backend/evidence/coordinate-native-results.json",
+    "passed": 133,
+    "failed": 0
+  }
 }

@@ -1,3 +1,5 @@
+> Current update: coordinate P2 corrected in sandbox and tested with 84 regression cases; historical payment gap below was previously corrected. All remaining release blockers still apply. See [AUDIT_RESUMPTION.md](AUDIT_RESUMPTION.md).
+
 > Update 2026-10-22: overpayment predicate corrected with eight regression cases; all runtime and integrity blockers remain. See [STAGING_STATUS.md](STAGING_STATUS.md).
 
 # Backend review — 2026-10-21

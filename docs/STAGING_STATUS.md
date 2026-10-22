@@ -1,3 +1,5 @@
+> Current update: owner-review pause cleared; coordinate validation corrected; 133 native predicate checks pass. Physical inventory is now 53 versus 51 expected, and trigger/HTTP/security gates remain blocked. See [AUDIT_RESUMPTION.md](AUDIT_RESUMPTION.md), which supersedes conflicting historical diagnostics below.
+
 # Staging implementation status
 
 Staging is BLOCKED at the database-guarantee gate. No dependent public booking, dispatch or payment implementation is accepted, and no production activation is authorized.

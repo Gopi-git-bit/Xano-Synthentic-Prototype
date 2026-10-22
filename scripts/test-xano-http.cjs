@@ -24,6 +24,10 @@ async function execute({app='',override}={}){
  const base=await execute();assert.equal(base.report.status,'PASS_METADATA_ONLY');assert.equal(base.report.ready,false);assert.equal(base.report.checks.at(-1).status,'NOT_VERIFIED');assert.ok(!JSON.stringify(base.report).includes(credential));assert.equal(base.calls.filter(c=>c.options.method==='POST').length,4);
  const app=await execute({app:'https://synthetic-test.xano.io/api:proof'});assert.equal(app.report.status,'PASS_METADATA_ONLY');assert.ok(app.calls.filter(c=>c.url.includes('synthetic-test.xano.io')).every(c=>!c.options.headers.Authorization));
  const wrong=await execute({override:url=>url.endsWith('/function/run')?Response.json({result:{status:'ok',result:{database:'live',physical_table_count:51}}}):null});assert.equal(wrong.report.checks.at(-1).code,'DATABASE_IDENTITY_NOT_PROVED');
+ const residue=await execute({override:url=>url.endsWith('/function/run')?Response.json({result:{status:'ok',result:{database:'sn9m-aat6-200c',physical_table_count:53}}}):null});
+ assert.equal(residue.report.ready,false);assert.equal(residue.report.checks.find(c=>c.name==='sandbox_database_identity').status,'PASS');
+ assert.deepEqual(residue.report.checks.at(-1),{name:'sandbox_physical_inventory',status:'FAIL',code:'UNEXPECTED_PHYSICAL_TABLE_COUNT',expected_physical_tables:51,observed_physical_tables:53});
+ assert.ok(!residue.calls.some(c=>c.url.includes('/mcp/stream')));
  const drift=await execute({override:url=>url.includes('/sandbox/multidoc')?new Response(doc+'\n// unreviewed change'):null});assert.equal(drift.report.checks.at(-1).code,'SOURCE_DRIFT');assert.equal(drift.calls.filter(c=>c.options.method==='POST').length,0);
  const publicMetadata=await execute({override:(url,o)=>!o.headers.Authorization?Response.json({password:credential}):null});assert.equal(publicMetadata.report.checks[0].status,'FAIL');assert.equal(publicMetadata.calls.length,1);
  console.log('PASS: missing credential, safe connection, redaction, admin-token separation, database mismatch, source drift, and unauthenticated denial checks.');

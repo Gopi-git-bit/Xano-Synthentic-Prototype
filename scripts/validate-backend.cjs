@@ -69,3 +69,5 @@ assert.equal(payment.passed,16); assert.equal(payment.failed,0);
 assert.equal(payment.results.length,16);
 assert.ok(payment.results.every(r=>r.status==='pass'));
 console.log('PASS: tested export hashes and 16 recorded Xano payment results.');
+
+require('./validate-coordinate-regressions.cjs');

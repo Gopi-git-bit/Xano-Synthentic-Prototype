@@ -2,6 +2,10 @@
 
 This repository contains the Xano sandbox implementation of Zippy Logistics. **It is not production-ready and has not been promoted to the live branch.**
 
+## Resumed sandbox work
+
+The owner-review pause is cleared. The coordinate validator is fixed and 133 fresh native predicate checks pass; staging remains blocked by database, HTTP, security and recovery requirements. See [audit resumption and retained evidence](docs/AUDIT_RESUMPTION.md). No live promotion occurred.
+
 ## Current implementation
 
 | Component | Reviewed snapshot |
@@ -41,7 +45,7 @@ No npm dependencies, Xano credentials, or database access are needed. This execu
 
 Use a locally authenticated Xano CLI profile targeting workspace 1 and the intended development branch. Keep tokens in local credential storage/environment variables, never GitHub files. Codex MCP uses the saved `XANO_MCP_TOKEN` environment variable; the token is not part of this repository.
 
-Before any import, inspect the current remote workspace and compare it with this historical snapshot. Follow the sandbox workflow: preview the proposed diff, push to an isolated sandbox, run Xano validation and unit tests, review the actual changes, and promote only after the release blockers are addressed and the owner authorizes promotion. CLI syntax depends on the installed version; check `xano sandbox --help`. CI never imports, promotes, or calls Xano.
+Before any import, inspect the current remote workspace and compare it with this historical snapshot. Follow the sandbox workflow: preview the proposed diff, push to an isolated sandbox, run Xano validation and unit tests, review the actual changes, and promote only after the release blockers are addressed and the owner authorizes promotion. CLI syntax depends on the installed version; check `xano sandbox --help`. Automatic CI never imports or promotes. A separately authorized manual workflow performs bounded read-only Xano metadata checks.
 
 Operational identities require an authorized provisioning process that binds `accounts.external_subject` to `xano:<authenticated user id>`, an active account, and valid role memberships. Starter-user role fields must not grant operational access.
 

@@ -54,8 +54,10 @@ async function checkConnection({token,sourceHash,fetchImpl=fetch,applicationBase
     r=await request('/api:meta/workspace/1/function/run',{method:'POST',body:{name:'Slice1/isolation_probe',branch:'v1',input:{}}});
     if(r.status!==200){add('sandbox_database_identity','FAIL',{http_status:r.status});return report;}
     const response=await r.json();const probe=response.result?.result;
-    if(response.result?.status!=='ok'||probe?.database!==tenant||probe.physical_table_count!==51){add('sandbox_database_identity','FAIL',{code:'DATABASE_IDENTITY_NOT_PROVED'});return report;}
-    add('sandbox_database_identity','PASS',{database:tenant,physical_tables:51});
+    if(response.result?.status!=='ok'||probe?.database!==tenant){add('sandbox_database_identity','FAIL',{code:'DATABASE_IDENTITY_NOT_PROVED'});return report;}
+    add('sandbox_database_identity','PASS',{database:tenant});
+    if(probe.physical_table_count!==51){add('sandbox_physical_inventory','FAIL',{code:'UNEXPECTED_PHYSICAL_TABLE_COUNT',expected_physical_tables:51,observed_physical_tables:Number.isSafeInteger(probe.physical_table_count)?probe.physical_table_count:null});return report;}
+    add('sandbox_physical_inventory','PASS',{physical_tables:51});
     r=await request(mcpPath,{method:'POST',body:{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:'2024-11-05',capabilities:{},clientInfo:{name:'zippy-readonly-preflight',version:'1.0'}}}});
     if(r.status!==200){add('metadata_mcp_initialize','FAIL',{http_status:r.status});return report;}
     sessionId=r.headers.get('mcp-session-id')||undefined;

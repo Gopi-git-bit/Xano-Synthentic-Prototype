@@ -29,7 +29,7 @@ function "Logistics/validate_order" {
           for(const stop of [p.pickup,p.delivery]){
             if(!exactKeys(stop,["address","latitude","longitude","accuracy_meters"]) || !text(stop.address,500))return verdict(false,"VALIDATION_FAILED");
             const lat=Number(stop.latitude), lng=Number(stop.longitude);
-            if(stop.latitude===null || stop.longitude===null || stop.latitude==="" || stop.longitude==="" || !["number","string"].includes(typeof stop.latitude) || !["number","string"].includes(typeof stop.longitude) || !Number.isFinite(lat) || !Number.isFinite(lng) || lat < -90 || lat > 90 || lng < -180 || lng > 180)return verdict(false,"VALIDATION_FAILED");
+            if(![stop.latitude,stop.longitude].every(value=>typeof value === "number" ? Number.isFinite(value) : typeof value === "string" && /^-?\d+(?:\.\d+)?$/.test(value)) || !Number.isFinite(lat) || !Number.isFinite(lng) || lat < -90 || lat > 90 || lng < -180 || lng > 180)return verdict(false,"VALIDATION_FAILED");
             if(stop.accuracy_meters!==undefined && stop.accuracy_meters!==null && (decimal(stop.accuracy_meters,3)===null || Number(stop.accuracy_meters)<0))return verdict(false,"VALIDATION_FAILED");
           }
           if(Number(p.pickup.latitude)===Number(p.delivery.latitude) && Number(p.pickup.longitude)===Number(p.delivery.longitude))return verdict(false,"IDENTICAL_STOPS");
