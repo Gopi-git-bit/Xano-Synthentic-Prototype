@@ -1,3 +1,5 @@
+> Update 2026-10-22: overpayment predicate corrected with eight regression cases; all runtime and integrity blockers remain. See [STAGING_STATUS.md](STAGING_STATUS.md).
+
 # Backend review — 2026-10-21
 
 ## Outcome

@@ -8,7 +8,7 @@ const read = p => fs.readFileSync(path.join(root, p), 'utf8').replace(/^\uFEFF/,
 const json = p => JSON.parse(read(p));
 const domain = require('../backend/contracts/domain.cjs');
 const cases = json('backend/contracts/domain-cases.json');
-assert.equal(cases.length, 41, 'Update the documented case count deliberately');
+assert.equal(cases.length, 49, 'Update the documented case count deliberately');
 const tested = new Set();
 for (const test of cases) {
   assert.equal(typeof domain[test.fn], 'function', test.fn);
@@ -57,3 +57,15 @@ assert.equal(evidence.passed, 41);
 assert.equal(evidence.results.filter(r => r.status === 'pass').length, 41);
 console.log('PASS: ' + cases.length + ' shared cases; ' + exportedCases + ' exported cases; ' + map.tables.length + ' tables; ' + fields + ' fields.');
 console.log('Scope: offline snapshot checks only; no Xano deployment, HTTP, isolation, or transaction proof.');
+
+const crypto = require('node:crypto');
+const exportManifest = json('backend/evidence/tested-export.json');
+for (const entry of exportManifest.files) {
+  const actual = crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'backend/xano',entry.path))).digest('hex');
+  assert.equal(actual, entry.sha256, 'Export drift: '+entry.path);
+}
+const payment = json('backend/evidence/payment-unit-results.json');
+assert.equal(payment.passed,16); assert.equal(payment.failed,0);
+assert.equal(payment.results.length,16);
+assert.ok(payment.results.every(r=>r.status==='pass'));
+console.log('PASS: tested export hashes and 16 recorded Xano payment results.');

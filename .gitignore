@@ -6,3 +6,4 @@ node_modules/
 auth.json
 .credentials*
 .xano/
+reports/

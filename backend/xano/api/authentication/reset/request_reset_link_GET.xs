@@ -7,6 +7,19 @@ query "reset/request-reset-link" verb=GET {
   }
 
   stack {
+    function.run "Auth/reset_link" {
+      input = {
+        base_url: $env.auth_password_reset_url
+        email   : $input.email
+        token   : "configuration-check"
+      }
+    } as $configuration
+  
+    precondition ($configuration.valid) {
+      error_type = "inputerror"
+      error = "Password reset frontend URL is not configured"
+    }
+  
     // Generate a one-time magic link
     function.run "Quick Start/generate_magic_link" {
       input = {email: $input.email}
@@ -17,17 +30,16 @@ query "reset/request-reset-link" verb=GET {
       error = "Magic link could not be created. Try again."
     }
   
-    // Create a variable with the API base URL
-    var $api_base_url {
-      value = $env.$api_baseurl
-    }
+    function.run "Auth/reset_link" {
+      input = {
+        base_url: $env.auth_password_reset_url
+        email   : $token_and_email.email
+        token   : $token_and_email.token
+      }
+    } as $link
   
-    // Create magic link
     var $magic_link {
-      value = $api_base_url
-        |concat:"1_start_here_demo_page#/update-password":"/"
-        |concat:$token_and_email.token:"?magic_token="
-        |concat:$token_and_email.email:""
+      value = $link.url
     }
   
     // Create HTML message to include magic reset password link
@@ -67,7 +79,13 @@ query "reset/request-reset-link" verb=GET {
   }
 
   response = {
-    message: {}|set:"success":true|set:"message":"magic link sent"
+    message: ```
+      {
+      
+      
+      
+      }|set:"success":true|set:"message":"magic link sent"
+      ```
   }
 
   tags = ["xano:quick-start"]

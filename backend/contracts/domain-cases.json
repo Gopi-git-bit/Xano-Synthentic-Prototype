@@ -917,5 +917,109 @@
     "expected": {
       "valid": false
     }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "partial upper boundary",
+    "input": {
+      "total": "100.00",
+      "advance": "100.00",
+      "mode": "partial"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "partial one cent over",
+    "input": {
+      "total": "100.00",
+      "advance": "100.01",
+      "mode": "partial"
+    },
+    "expected": {
+      "valid": false,
+      "code": "INVALID_PAYMENT_PLAN"
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "partial 150 percent",
+    "input": {
+      "total": "100.00",
+      "advance": "150.00",
+      "mode": "partial"
+    },
+    "expected": {
+      "valid": false,
+      "code": "INVALID_PAYMENT_PLAN"
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "partial odd cent below half",
+    "input": {
+      "total": "0.03",
+      "advance": "0.01",
+      "mode": "partial"
+    },
+    "expected": {
+      "valid": false,
+      "code": "INVALID_PAYMENT_PLAN"
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "partial odd cent above half",
+    "input": {
+      "total": "0.03",
+      "advance": "0.02",
+      "mode": "partial"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "full overpayment",
+    "input": {
+      "total": "100.00",
+      "advance": "100.01",
+      "mode": "full"
+    },
+    "expected": {
+      "valid": false,
+      "code": "INVALID_PAYMENT_PLAN"
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "to pay nonzero",
+    "input": {
+      "total": "100.00",
+      "advance": "0.01",
+      "mode": "to_pay"
+    },
+    "expected": {
+      "valid": false,
+      "code": "INVALID_PAYMENT_PLAN"
+    }
+  },
+  {
+    "fn": "validate_payment_plan",
+    "name": "large exact partial overpayment",
+    "input": {
+      "total": "90071992547409.91",
+      "advance": "90071992547409.92",
+      "mode": "partial"
+    },
+    "expected": {
+      "valid": false,
+      "code": "INVALID_PAYMENT_PLAN"
+    }
   }
 ]

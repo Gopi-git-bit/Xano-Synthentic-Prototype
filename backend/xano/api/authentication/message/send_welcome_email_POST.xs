@@ -1,6 +1,7 @@
 // Use this endpoint to send a welcome email to a user
 query "message/send_welcome_email" verb=POST {
   api_group = "Authentication"
+  auth = "user"
 
   input {
     // The ID of the user to send the welcome email to.
@@ -8,6 +9,15 @@ query "message/send_welcome_email" verb=POST {
   }
 
   stack {
+    function.run "Auth/welcome_authorized" {
+      input = {requester_id: $auth.id, target_id: $input.user_id}
+    } as $authorized
+  
+    precondition ($authorized) {
+      error_type = "accessdenied"
+      error = "Welcome email is restricted to the authenticated user"
+    }
+  
     // Retrieve the user record for the given user ID.
     db.get user {
       field_name = "id"

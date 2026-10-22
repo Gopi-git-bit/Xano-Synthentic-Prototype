@@ -1,3 +1,5 @@
+> Historical build report. Current status: [STAGING_STATUS.md](STAGING_STATUS.md).
+
 # Xano implementation status
 
 Repository: https://github.com/Gopi-git-bit/New-logistic-

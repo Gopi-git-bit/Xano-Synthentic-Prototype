@@ -7,11 +7,11 @@ This repository contains the Xano sandbox implementation of Zippy Logistics. **I
 | Component | Reviewed snapshot |
 | --- | --- |
 | Target | Workspace 1, Zippy Synthetic Prototype; branch v1 |
-| Deployment | Sandbox only; historical build evidence dated 2026-10-21 |
+| Deployment | Sandbox only; refreshed export and payment tests dated 2026-10-22 |
 | Operational database | 49 tables, 476 mapped fields, plus two starter tables |
-| Logistics functions | Eight domain predicates and one identity adapter |
+| Logistics functions | Eight domain predicates, identity adapter, auth helpers and internal Slice1 prototypes |
 | Logistics APIs | GET api/v1/health, GET api/v1/accounts/me, GET api/v1/orders |
-| Domain checks | 41 local cases; retained Xano report records 41 passed, zero failed |
+| Domain checks | 49 local cases; 16 fresh Xano payment tests pass; original 41-pass report retained as historical |
 
 The authenticated routes are syntax-checked implementations. Their runtime authorization and tenant-isolation behavior still need proof. The health response is static and does not establish database readiness.
 
@@ -35,7 +35,7 @@ Install Node.js 22 or newer, then run from the repository root:
 node scripts/validate-backend.cjs
 ```
 
-No npm dependencies, Xano credentials, or database access are needed. This executes the supplied 41 cases against both the shared predicates and JavaScript embedded in the exported Xano functions, and checks 49 tables/476 field names and types. It does not validate the complete XanoScript grammar or prove database constraints, transactions, authentication, HTTP behavior, or deployment.
+No npm dependencies, Xano credentials, or database access are needed. This executes the supplied 49 cases against both the shared predicates and JavaScript embedded in the exported Xano functions, and checks 49 tables/476 field names and types. It does not validate the complete XanoScript grammar or prove database constraints, transactions, authentication, HTTP behavior, or deployment.
 
 ## Work with Xano
 
@@ -49,8 +49,12 @@ Operational identities require an authorized provisioning process that binds `ac
 
 Booking transactions, idempotency/replay, controlled order transitions, atomic dispatch, signed payment webhooks, durable workers, and provider integration are incomplete. SQL foreign keys, CHECK constraints, RLS, partial indexes, append-only rules, and concurrency guarantees require explicit Xano equivalents and tests. Field parity alone does not implement these controls.
 
-See [review findings](docs/REVIEW.md) before extending or deploying the build. In particular, the current payment-plan predicate accepts partial advances above the order total.
+See [review findings](docs/REVIEW.md) before extending or deploying the build. The overpayment predicate is now corrected; provider integration remains incomplete.
 
 ## Specification provenance
 
 Business rules were adapted from [New-logistic-](https://github.com/Gopi-git-bit/New-logistic-/tree/52ca43d8a2fb4f3d5d105dc6bb9f7420e5cfca26), revision `52ca43d8a2fb4f3d5d105dc6bb9f7420e5cfca26`. Its canonical operational SQL is `db/zippy/migrations/`. This repository records the Xano adaptation rather than claiming that PostgreSQL protections transferred automatically.
+
+## Staging continuation (22 October 2026)
+
+**BLOCKED at the database-guarantee gate.** The latest sandbox source and authentication/Slice1 work have been preserved. See [staging status](docs/STAGING_STATUS.md), [required API contract](docs/API_CONTRACT.md), and the per-control database inventory. The manual staging workflow deliberately fails while critical evidence or executable integration tests are missing. It is not an acceptance suite.

@@ -37,13 +37,19 @@ query "reset/update_password" verb=POST {
       input = {
         user_id : $user.id
         action  : "reset_password"
-        metadata: $user
+        metadata: {user_id: $user.id}
       }
     } as $event_log
   }
 
   response = {
-    message: {"success":"true","message":"Password updated"}
+    message: ```
+      {
+      
+      "success":"true","message":"Password updated"
+      
+      }
+      ```
   }
 
   tags = ["xano:quick-start"]

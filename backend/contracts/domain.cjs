@@ -38,7 +38,7 @@ function validate_order(p) {
 function validate_payment_plan(p) {
   const total=money(p.total), advance=money(p.advance);
   if(total===null || advance===null || total<=0n || advance<0n)return verdict(false,"INVALID_PAYMENT_AMOUNT");
-  const valid=(p.mode==="full" && advance===total) || (p.mode==="partial" && advance*2n>=total) || (p.mode==="to_pay" && advance===0n);
+  const valid=(p.mode==="full" && advance===total) || (p.mode==="partial" && advance*2n>=total && advance<=total) || (p.mode==="to_pay" && advance===0n);
   return verdict(valid, valid?"VALID":"INVALID_PAYMENT_PLAN");
 }
 function validate_transition(p) {

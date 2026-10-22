@@ -47,7 +47,7 @@ function "Logistics/validate_payment_plan" {
         function validate_payment_plan(p) {
           const total=money(p.total), advance=money(p.advance);
           if(total===null || advance===null || total<=0n || advance<0n)return verdict(false,"INVALID_PAYMENT_AMOUNT");
-          const valid=(p.mode==="full" && advance===total) || (p.mode==="partial" && advance*2n>=total) || (p.mode==="to_pay" && advance===0n);
+          const valid=(p.mode==="full" && advance===total) || (p.mode==="partial" && advance*2n>=total && advance<=total) || (p.mode==="to_pay" && advance===0n);
           return verdict(valid, valid?"VALID":"INVALID_PAYMENT_PLAN");
         }
         function validate_transition(p) {
@@ -188,6 +188,118 @@ function "Logistics/validate_payment_plan" {
   
     expect.to_equal ($response.valid) {
       value = false
+    }
+  }
+
+  test "partial upper boundary" {
+    input = {
+      payload: {"total":"100.00","advance":"100.00","mode":"partial"}
+    }
+  
+    expect.to_equal ($response.valid) {
+      value = true
+    }
+  
+    expect.to_equal ($response.code) {
+      value = "VALID"
+    }
+  }
+
+  test "partial one cent over" {
+    input = {
+      payload: {"total":"100.00","advance":"100.01","mode":"partial"}
+    }
+  
+    expect.to_equal ($response.valid) {
+      value = false
+    }
+  
+    expect.to_equal ($response.code) {
+      value = "INVALID_PAYMENT_PLAN"
+    }
+  }
+
+  test "partial 150 percent" {
+    input = {
+      payload: {"total":"100.00","advance":"150.00","mode":"partial"}
+    }
+  
+    expect.to_equal ($response.valid) {
+      value = false
+    }
+  
+    expect.to_equal ($response.code) {
+      value = "INVALID_PAYMENT_PLAN"
+    }
+  }
+
+  test "partial odd cent below half" {
+    input = {
+      payload: {"total":"0.03","advance":"0.01","mode":"partial"}
+    }
+  
+    expect.to_equal ($response.valid) {
+      value = false
+    }
+  
+    expect.to_equal ($response.code) {
+      value = "INVALID_PAYMENT_PLAN"
+    }
+  }
+
+  test "partial odd cent above half" {
+    input = {
+      payload: {"total":"0.03","advance":"0.02","mode":"partial"}
+    }
+  
+    expect.to_equal ($response.valid) {
+      value = true
+    }
+  
+    expect.to_equal ($response.code) {
+      value = "VALID"
+    }
+  }
+
+  test "full overpayment" {
+    input = {
+      payload: {"total":"100.00","advance":"100.01","mode":"full"}
+    }
+  
+    expect.to_equal ($response.valid) {
+      value = false
+    }
+  
+    expect.to_equal ($response.code) {
+      value = "INVALID_PAYMENT_PLAN"
+    }
+  }
+
+  test "to pay nonzero" {
+    input = {
+      payload: {"total":"100.00","advance":"0.01","mode":"to_pay"}
+    }
+  
+    expect.to_equal ($response.valid) {
+      value = false
+    }
+  
+    expect.to_equal ($response.code) {
+      value = "INVALID_PAYMENT_PLAN"
+    }
+  }
+
+  test "large exact partial overpayment" {
+    input = {
+      payload: {"total":"90071992547409.91","advance":"90071992547409.92","mode":"partial"}
+    }
+  
+    expect.to_equal ($response.valid) {
+      value = false
+    }
+  
+    expect.to_equal ($response.code) {
+      value = "INVALID_PAYMENT_PLAN"
     }
   }
 
