@@ -8,7 +8,7 @@
     "Deferred schema controls lack demonstrated enforcement and executable integration tests.",
     "Booking HTTP API, provider payment/webhook handling and durable workers incomplete.",
     "Recovery, restoration, end-to-end journeys and alerts not demonstrated.",
-    "Bounded Metadata API concurrency passes; public application HTTP/JWT, independent driver/worker claims, native 72-case adapters and restricted credentials remain unverified."
+    "Bounded Metadata API concurrency passes; public application HTTP/JWT, independent driver/worker claims, restricted credentials remain unverified."
   ],
   "ephemeral": {
     "name": "e9aa-vgbb-7f5c",

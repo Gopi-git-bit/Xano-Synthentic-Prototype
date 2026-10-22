@@ -22,7 +22,7 @@ The generic tenant command supports ingress and RBAC settings even though epheme
 
 ## All 72 source cases mapped, not accepted
 
-backend/contracts/postgres-case-map.json records each original function/parameter case, exact source commit 19f828b6f7be56ae5db7930ce99368bdffa3c471, verified Git blob hash, original executable selector, required assertions, missing native adapter and evidence status. Counts: core 2, dispatch 31, finance 23, payment privileges 4, governance 12. All remain NOT_VERIFIED for complete Xano acceptance. They cannot be run unchanged against Xano: the original tests require PostgreSQL roles/RLS/RPC plus the old Python service. Port each invariant to a supported Xano test rather than introducing another database or relabeling these bounded proofs.
+backend/contracts/postgres-case-map.json records each original function/parameter case, exact source commit 19f828b6f7be56ae5db7930ce99368bdffa3c471, verified Git blob hash, original executable selector, required assertions, missing native adapter and evidence status. Counts: core 2, dispatch 31, finance 23, payment privileges 4, governance 12. All retain their historical NOT_VERIFIED status in New-logistic-. They are reference material, not a mandatory 72-case Xano release gate. They cannot be run unchanged against Xano: the original tests require PostgreSQL roles/RLS/RPC plus the old Python service. Port each invariant to a supported Xano test rather than introducing another database or relabeling these bounded proofs.
 
 ## Reproduce the bounded concurrency proof
 
@@ -30,4 +30,4 @@ Node 22 or newer, XANO_METADATA_TOKEN supplied locally (never in Git), ZIPPY_SYN
 
 ## Remaining blockers
 
-Restricted expiring admin scope, a supported durable isolated HTTP hostname, application-token permissions across roles and tenants, independently competing driver assignments, worker fencing/claims, complete non-database failure coverage, immutable/relationship controls, concrete native adapters for all 72 cases, provider test flows, and recovery/restoration remain unresolved. Staging gate stays blocked.
+Restricted expiring admin scope, a supported durable isolated HTTP hostname, application-token permissions across roles and tenants, independently competing driver assignments, worker fencing/claims, complete non-database failure coverage, immutable/relationship controls, provider test flows, and recovery/restoration remain unresolved. Staging gate stays blocked.

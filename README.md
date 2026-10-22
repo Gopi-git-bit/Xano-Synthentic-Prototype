@@ -62,3 +62,5 @@ Business rules were adapted from [New-logistic-](https://github.com/Gopi-git-bit
 ## Xano-native safeguards and current proof evidence
 
 Use Xano’s managed database. The previous New-logistic repository supplies pinned reference invariants only. [Current safeguards and evidence](docs/XANO_NATIVE_CONTINUATION.md) include explicit profile binding, signup denial, removed MCP tool bindings, shared-state Metadata API races and independent rollback probes. All 72 original cases are now individually mapped, but remain unaccepted until native equivalents pass. Staging remains blocked.
+
+The owner clarified that the 72 unverified PostgreSQL cases belong to the previous New-logistic project. Their inventory is retained as historical reference; it is not an automatic Xano staging requirement. Xano acceptance follows the current implementation and its applicable business invariants. See [HTTP connection checks](docs/HTTP_CONNECTION_CHECK.md).
