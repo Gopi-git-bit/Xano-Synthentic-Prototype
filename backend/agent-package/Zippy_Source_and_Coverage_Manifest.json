@@ -1,0 +1,1063 @@
+{
+  "repository": "Gopi-git-bit/obsidian",
+  "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5",
+  "date": "2026-10-22",
+  "tree_complete": true,
+  "inventory_markdown_files": 449,
+  "inventory_blobs": 521,
+  "selected_source_count": 92,
+  "review_scope": "Selected source contents and relevant sections reviewed; not all lines of every file or all repository files. Static source analysis only.",
+  "sources": [
+    {
+      "path": "00_System/API and Event Contract for Current Project.md",
+      "blob_sha": "534fa0c9f081a17da5818ef38cad9f1c8f23fe33",
+      "size_bytes": 15571,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Async Event and Worker Orchestration for Current Project.md",
+      "blob_sha": "47319f0c5e7cdd1a3dd1a699f66064f5779975e4",
+      "size_bytes": 7338,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Async%20Event%20and%20Worker%20Orchestration%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Current Architecture Source of Truth.md",
+      "blob_sha": "4a701a40404e465cfc4b040a60ade0745cb424a3",
+      "size_bytes": 8262,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Current%20Architecture%20Source%20of%20Truth.md"
+    },
+    {
+      "path": "00_System/Customer Frontend for Current Project.md",
+      "blob_sha": "f48b828e880b5d1c01c6f4d75b478d75e7d1baaf",
+      "size_bytes": 18666,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Driver Frontend for Current Project.md",
+      "blob_sha": "a1e7b341a21831bc261e5b16f9c2037d7d72fceb",
+      "size_bytes": 14429,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/MVP Build Contract for Current Project.md",
+      "blob_sha": "254a7f94c499d4dfc8a34ee74c69cf1c83163315",
+      "size_bytes": 4920,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/MVP%20Build%20Contract%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Master PRD Distillation for Current Project.md",
+      "blob_sha": "54e12d28a70ccadaac05dcc546d52d403ee99668",
+      "size_bytes": 4506,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Master%20PRD%20Distillation%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Note Status Policy for Current Project.md",
+      "blob_sha": "e5022aef1acd211b6d211393652365f43cd4e13c",
+      "size_bytes": 3928,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Note%20Status%20Policy%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Role and Permission Matrix for Current Project.md",
+      "blob_sha": "a7c01457e1a45760353723ef19e98abec9963834",
+      "size_bytes": 5864,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Role%20and%20Permission%20Matrix%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Testing and Verification Strategy for Current Project.md",
+      "blob_sha": "b3648aae8df6679080b1a9736ae79f58d3a96ea7",
+      "size_bytes": 4547,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Testing%20and%20Verification%20Strategy%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Topic Collision Register for Current Project.md",
+      "blob_sha": "565475c7f29342e7a940051389703336b46717f0",
+      "size_bytes": 3667,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Topic%20Collision%20Register%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Transport Company Frontend for Current Project.md",
+      "blob_sha": "499fa18b0b2c0e949b6dc8b6fb8f8be0569a26cc",
+      "size_bytes": 12623,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Transport%20Company%20Frontend%20for%20Current%20Project.md"
+    },
+    {
+      "path": "00_System/Zippy Logistics SOP Operating System.md",
+      "blob_sha": "21f2ded7ce1f3f2baa1291ff0d4271c0637879ac",
+      "size_bytes": 145080,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+    },
+    {
+      "path": "02_Sources/driver_app_verification_harness_alignment_source.md",
+      "blob_sha": "8b7d656fd862567aacee98515eacf29289568cd1",
+      "size_bytes": 14045,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/02_Sources/driver_app_verification_harness_alignment_source.md"
+    },
+    {
+      "path": "02_Sources/transport_app_harness_engineering_alignment_source.md",
+      "blob_sha": "f4e0b089f643e7e902c4e5e84137286c662049c2",
+      "size_bytes": 19292,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/02_Sources/transport_app_harness_engineering_alignment_source.md"
+    },
+    {
+      "path": "03_Hubs/AI Agents Hub.md",
+      "blob_sha": "16ddc1e840a733319382328d5bf05a892bda260b",
+      "size_bytes": 2529,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/03_Hubs/AI%20Agents%20Hub.md"
+    },
+    {
+      "path": "04_AI_Agents/02_Agentic_AI_Application.md",
+      "blob_sha": "9cdaec3048fd97243153e18f6bdc6ad381313724",
+      "size_bytes": 20032,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/02_Agentic_AI_Application.md"
+    },
+    {
+      "path": "04_AI_Agents/07_State_Machine.md",
+      "blob_sha": "b627459ab61928d84d2ba0811a243abe46a953eb",
+      "size_bytes": 8046,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/07_State_Machine.md"
+    },
+    {
+      "path": "04_AI_Agents/Accounting Policy Engine for Broker Model.md",
+      "blob_sha": "60fe991f178150d39d394eadb13b0a471822a8d8",
+      "size_bytes": 11710,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Accounting%20Policy%20Engine%20for%20Broker%20Model.md"
+    },
+    {
+      "path": "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+      "blob_sha": "7d2f3f17f8533ab45a7b45be5cb998590bc5dfa1",
+      "size_bytes": 13480,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md"
+    },
+    {
+      "path": "04_AI_Agents/Autonomous Agent Integration Blueprint.md",
+      "blob_sha": "945082ded00840164638a56d3aad6199231a21b2",
+      "size_bytes": 11346,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md"
+    },
+    {
+      "path": "04_AI_Agents/Communication Agent.md",
+      "blob_sha": "aff1ea12b47228430c50578c35ee3497fe64415e",
+      "size_bytes": 3218,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Communication%20Agent.md"
+    },
+    {
+      "path": "04_AI_Agents/Corridor Matching Agent with PydanticAI.md",
+      "blob_sha": "72a0fc55da00249dd682e0ab5e6a86f86ef55ec2",
+      "size_bytes": 7941,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Corridor%20Matching%20Agent%20with%20PydanticAI.md"
+    },
+    {
+      "path": "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md",
+      "blob_sha": "535fd6ec3048f64f27438e2a17db734f0322b0d0",
+      "size_bytes": 47119,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md"
+    },
+    {
+      "path": "04_AI_Agents/Payment Invoice and Accounting Agent Architecture for Logistics Platform.md",
+      "blob_sha": "cafb87705dd8e54164b3e3f1677b2ac3ecbdc4b3",
+      "size_bytes": 32835,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Payment%20Invoice%20and%20Accounting%20Agent%20Architecture%20for%20Logistics%20Platform.md"
+    },
+    {
+      "path": "04_AI_Agents/Payment Settlement Agent.md",
+      "blob_sha": "0e8282cee7b69af38792d50ff6fe17eb73f62b88",
+      "size_bytes": 5744,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Payment%20Settlement%20Agent.md"
+    },
+    {
+      "path": "04_AI_Agents/Platform Administration Agent.md",
+      "blob_sha": "44cae19ced108ea7f6a36cf5e69c0f34322cd815",
+      "size_bytes": 3058,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Platform%20Administration%20Agent.md"
+    },
+    {
+      "path": "04_AI_Agents/Resource Management Agent.md",
+      "blob_sha": "a09d456db87f22e1f3dbfad7000134b1d01695c7",
+      "size_bytes": 3040,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Resource%20Management%20Agent.md"
+    },
+    {
+      "path": "04_AI_Agents/Transportation Agent.md",
+      "blob_sha": "56daecaa56708f8174e49b9d5a305286197c7007",
+      "size_bytes": 3383,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Transportation%20Agent.md"
+    },
+    {
+      "path": "04_Concepts/Operations/Delivery Attempt Management.md",
+      "blob_sha": "210dc430607960bd8080cfd4d981949d5d3773a4",
+      "size_bytes": 3259,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Delivery%20Attempt%20Management.md"
+    },
+    {
+      "path": "04_Concepts/Operations/Failed Delivery Handling.md",
+      "blob_sha": "2c51d418a735bc416170ef256a136e55d11c6b5f",
+      "size_bytes": 3125,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Failed%20Delivery%20Handling.md"
+    },
+    {
+      "path": "04_Concepts/Operations/Fallback & Resilience Architecture.md",
+      "blob_sha": "b50cdb0962e5f40b3465996cebb1794cb8489800",
+      "size_bytes": 4342,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Fallback%20%26%20Resilience%20Architecture.md"
+    },
+    {
+      "path": "04_Concepts/Operations/Logistics SLA.md",
+      "blob_sha": "3f2c6aaf3ef5185711f0db1dbab91bf53a0c2756",
+      "size_bytes": 3723,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Logistics%20SLA.md"
+    },
+    {
+      "path": "04_Concepts/Operations/Notification Taxonomy & Escalation Matrix.md",
+      "blob_sha": "6b2353008d52330743468c4ad36a423a096cd8e7",
+      "size_bytes": 5810,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Notification%20Taxonomy%20%26%20Escalation%20Matrix.md"
+    },
+    {
+      "path": "04_Concepts/Operations/Order Lifecycle.md",
+      "blob_sha": "ad231b90ec7415ff383fac26fb78279879915b2b",
+      "size_bytes": 11902,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Order%20Lifecycle.md"
+    },
+    {
+      "path": "04_Concepts/Operations/Reverse Logistics and Return Policy Framework.md",
+      "blob_sha": "93f9193057937ed8be46ac4692244dc9411a66a9",
+      "size_bytes": 7314,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Reverse%20Logistics%20and%20Return%20Policy%20Framework.md"
+    },
+    {
+      "path": "04_Concepts/Technology/TMS Execution Architecture.md",
+      "blob_sha": "ef01c18016ac526c494cf8359955452aadb10676",
+      "size_bytes": 4247,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Technology/TMS%20Execution%20Architecture.md"
+    },
+    {
+      "path": "05_Algorithms/Allocation/Carrier Selection Algorithm.md",
+      "blob_sha": "dfee5485dcf41a59cefd494af93dd0703ceb64a0",
+      "size_bytes": 3102,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Allocation/Carrier%20Selection%20Algorithm.md"
+    },
+    {
+      "path": "05_Algorithms/Allocation/Driver Assignment Logic.md",
+      "blob_sha": "13e4a9072e8bff96740af3a453ed343921095ec6",
+      "size_bytes": 2320,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Allocation/Driver%20Assignment%20Logic.md"
+    },
+    {
+      "path": "05_Algorithms/Allocation/Vehicle Assignment Logic.md",
+      "blob_sha": "d6d6dc9a5d9ef576655c5a18427114dde4c9105a",
+      "size_bytes": 2611,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Allocation/Vehicle%20Assignment%20Logic.md"
+    },
+    {
+      "path": "05_Algorithms/Matching/IMS Matching Engine.md",
+      "blob_sha": "d9ab796978d6212e780bb64141444ec472fd988d",
+      "size_bytes": 10004,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Matching/IMS%20Matching%20Engine.md"
+    },
+    {
+      "path": "05_Algorithms/Pricing/Distance Based Pricing.md",
+      "blob_sha": "ddc9e0b9068435585dbe740cb4da5d6384b08e2a",
+      "size_bytes": 4742,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Pricing/Distance%20Based%20Pricing.md"
+    },
+    {
+      "path": "05_Algorithms/Pricing/Dynamic Pricing Logic.md",
+      "blob_sha": "13b94d3efef3df318697bb11e87b20be40262c30",
+      "size_bytes": 7459,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Pricing/Dynamic%20Pricing%20Logic.md"
+    },
+    {
+      "path": "05_Algorithms/Pricing/Strategic Profit Sharing Framework.md",
+      "blob_sha": "d54477128a13db80597f5dea2fa73b6a5955294f",
+      "size_bytes": 5275,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Pricing/Strategic%20Profit%20Sharing%20Framework.md"
+    },
+    {
+      "path": "06_Scenarios/05_Marketing_Applications.md",
+      "blob_sha": "800b37f06f68fdf345c1689164c4f86122ddd0ae",
+      "size_bytes": 1564,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/05_Marketing_Applications.md"
+    },
+    {
+      "path": "06_Scenarios/Admin Escalations/Scenario - Customer Escalation.md",
+      "blob_sha": "c632dbd5eeeb2b554d5ca19d2542541fbe30a967",
+      "size_bytes": 1282,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Customer%20Escalation.md"
+    },
+    {
+      "path": "06_Scenarios/Admin Escalations/Scenario - Delayed POD Submission.md",
+      "blob_sha": "789eed6939b124059970be3bba6e05c6e836c56e",
+      "size_bytes": 1429,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Delayed%20POD%20Submission.md"
+    },
+    {
+      "path": "06_Scenarios/Admin Escalations/Scenario - Payment Dispute.md",
+      "blob_sha": "6385db8e0e290b184771d137d26f58120b7f3100",
+      "size_bytes": 1253,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Payment%20Dispute.md"
+    },
+    {
+      "path": "06_Scenarios/Compliance/Scenario - E-way Bill Expiry During Transit.md",
+      "blob_sha": "2e211eca4217c11b3115b1ed3c9490b9765fb5bc",
+      "size_bytes": 1531,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Compliance/Scenario%20-%20E-way%20Bill%20Expiry%20During%20Transit.md"
+    },
+    {
+      "path": "06_Scenarios/Customer Requests/Scenario - Customer Cancels Order.md",
+      "blob_sha": "4c44960a3e5660945270a8d0d6fd0db7c400cd1b",
+      "size_bytes": 1335,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Customer%20Cancels%20Order.md"
+    },
+    {
+      "path": "06_Scenarios/Customer Requests/Scenario - Electronics Need Closed Body Vehicle.md",
+      "blob_sha": "0446c396cebd8ce09aa87c07030574709eb2df48",
+      "size_bytes": 1207,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Electronics%20Need%20Closed%20Body%20Vehicle.md"
+    },
+    {
+      "path": "06_Scenarios/Customer Requests/Scenario - Fragile Cargo Handling Required.md",
+      "blob_sha": "034d0d7c312aaa51a5194c93379551008321897c",
+      "size_bytes": 1689,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Fragile%20Cargo%20Handling%20Required.md"
+    },
+    {
+      "path": "06_Scenarios/Customer Requests/Scenario - Hazardous Material Transport.md",
+      "blob_sha": "582ee8629ecc0e676631944e8ef402e049268ba0",
+      "size_bytes": 1266,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Hazardous%20Material%20Transport.md"
+    },
+    {
+      "path": "06_Scenarios/Customer Requests/Scenario - Multiple Pickup Points.md",
+      "blob_sha": "cc378af94b23afb61e0c14434ddfe736ac0ee1d9",
+      "size_bytes": 1530,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Multiple%20Pickup%20Points.md"
+    },
+    {
+      "path": "06_Scenarios/Customer Requests/Scenario - Need 20 ft Truck Chennai to Trichy.md",
+      "blob_sha": "92f3bc506adea405bedda2fbce867aa86bb3d311",
+      "size_bytes": 2030,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Need%2020%20ft%20Truck%20Chennai%20to%20Trichy.md"
+    },
+    {
+      "path": "06_Scenarios/Customer Requests/Scenario - Same Day Delivery.md",
+      "blob_sha": "e482557a753b7bb969be9c08ee4b7779c4914f6d",
+      "size_bytes": 1668,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Same%20Day%20Delivery.md"
+    },
+    {
+      "path": "06_Scenarios/Customer Requests/Scenario - Temperature Sensitive Goods.md",
+      "blob_sha": "ac13a66fbbfe49a4546ea4440f30d7af03c80ea2",
+      "size_bytes": 1278,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Temperature%20Sensitive%20Goods.md"
+    },
+    {
+      "path": "06_Scenarios/Disruptions/Scenario - Driver Strike.md",
+      "blob_sha": "404de8fdc628a67aa23ba013a3501f95630a4ffe",
+      "size_bytes": 1647,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Driver%20Strike.md"
+    },
+    {
+      "path": "06_Scenarios/Disruptions/Scenario - Fuel Shortage Crisis.md",
+      "blob_sha": "0ff1395dd61d1f34d1a1be3c28ad9da2671cf3e4",
+      "size_bytes": 1744,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Fuel%20Shortage%20Crisis.md"
+    },
+    {
+      "path": "06_Scenarios/Disruptions/Scenario - Natural Disaster Impact.md",
+      "blob_sha": "d7584ce504195144a816be3873280c3689f4d61d",
+      "size_bytes": 1618,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Natural%20Disaster%20Impact.md"
+    },
+    {
+      "path": "06_Scenarios/Disruptions/Scenario - Route Blocked Due to Protests.md",
+      "blob_sha": "b75b7ec091560178669f6acdd4847765fb64a2ad",
+      "size_bytes": 1791,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Route%20Blocked%20Due%20to%20Protests.md"
+    },
+    {
+      "path": "06_Scenarios/Fleet Shortage/Scenario - Driver Unavailable.md",
+      "blob_sha": "6955cec64973439e04644c5699763600ca0bc4c2",
+      "size_bytes": 1803,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20Driver%20Unavailable.md"
+    },
+    {
+      "path": "06_Scenarios/Fleet Shortage/Scenario - Excess Capacity from Partner.md",
+      "blob_sha": "953c65a560c1a2e2952844fe83cd1c06758e5739",
+      "size_bytes": 1781,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20Excess%20Capacity%20from%20Partner.md"
+    },
+    {
+      "path": "06_Scenarios/Fleet Shortage/Scenario - No Own Fleet Available.md",
+      "blob_sha": "112655eab01c806d1edf6764986c47a2dc188168",
+      "size_bytes": 2225,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20No%20Own%20Fleet%20Available.md"
+    },
+    {
+      "path": "06_Scenarios/Fleet Shortage/Scenario - Vehicle Breakdown Mid-Route.md",
+      "blob_sha": "7c641e8047d31c489b9d2675bf0201adeaf29763",
+      "size_bytes": 1888,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20Vehicle%20Breakdown%20Mid-Route.md"
+    },
+    {
+      "path": "06_Scenarios/High Value Cargo/Scenario - High Value Electronics Transit.md",
+      "blob_sha": "118d7e692e5dba0f90242950b8eb29f4e629ac5b",
+      "size_bytes": 2344,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/High%20Value%20Cargo/Scenario%20-%20High%20Value%20Electronics%20Transit.md"
+    },
+    {
+      "path": "06_Scenarios/Partner Network/Scenario - Partner Network Utilization.md",
+      "blob_sha": "c921c25312492391328144ef759d775ec5a709f0",
+      "size_bytes": 1321,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Partner%20Network/Scenario%20-%20Partner%20Network%20Utilization.md"
+    },
+    {
+      "path": "06_Scenarios/Partner Network/Scenario - Partner Transporter Failure.md",
+      "blob_sha": "1b5671f3714ee461952416438f3fef1570abb0c4",
+      "size_bytes": 1580,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Partner%20Network/Scenario%20-%20Partner%20Transporter%20Failure.md"
+    },
+    {
+      "path": "08_Business_Models/01_Business_Model.md",
+      "blob_sha": "88b59a74b3a57a7e63d66dd75fb0b6d7668923a3",
+      "size_bytes": 1195,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/08_Business_Models/01_Business_Model.md"
+    },
+    {
+      "path": "08_Business_Models/Commission vs Flat Fee.md",
+      "blob_sha": "072c0df2207e7146e050e7d34c2f5c857124ad00",
+      "size_bytes": 2914,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/08_Business_Models/Commission%20vs%20Flat%20Fee.md"
+    },
+    {
+      "path": "08_Business_Models/Revenue Model Decision Framework.md",
+      "blob_sha": "a903939788d5f1f0b0653237e836777e2f099b5a",
+      "size_bytes": 4786,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/08_Business_Models/Revenue%20Model%20Decision%20Framework.md"
+    },
+    {
+      "path": "08_Business_Models/Transport Company Network Model.md",
+      "blob_sha": "5ec23c6afc0cc0df4841c70768ccafc617b3930b",
+      "size_bytes": 3943,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/08_Business_Models/Transport%20Company%20Network%20Model.md"
+    },
+    {
+      "path": "09_Market_Intelligence/11_BI_Insights/BI_Agent_System_Architecture.md",
+      "blob_sha": "8114d2472812cb57dd72c0cfecf7b4afcf5dd599",
+      "size_bytes": 31138,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/09_Market_Intelligence/11_BI_Insights/BI_Agent_System_Architecture.md"
+    },
+    {
+      "path": "09_Market_Intelligence/11_BI_Insights/BI_Autonomous_OMS_Agent_Business_Logic.md",
+      "blob_sha": "e3eae583e915cc073be40dd68974d920203a39d6",
+      "size_bytes": 31180,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/09_Market_Intelligence/11_BI_Insights/BI_Autonomous_OMS_Agent_Business_Logic.md"
+    },
+    {
+      "path": "99_Archive/Legacy_AI_Agents_2026-04-30/README.md",
+      "blob_sha": "91c262c99f2cd25fa6ba7bf43d9d99d6b06e4d96",
+      "size_bytes": 543,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/99_Archive/Legacy_AI_Agents_2026-04-30/README.md"
+    },
+    {
+      "path": "DECISIONS.md",
+      "blob_sha": "63f0596e51e99d99530052fb0bd64e5e205a2304",
+      "size_bytes": 2326,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/DECISIONS.md"
+    },
+    {
+      "path": "PROJECT.md",
+      "blob_sha": "817c0174341e7f6f990b2cbfb6ede274dfa65117",
+      "size_bytes": 2860,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/PROJECT.md"
+    },
+    {
+      "path": "PROJECT_STATUS.md",
+      "blob_sha": "565d3ce590be09a7316357f08314cfa8983d7afd",
+      "size_bytes": 4926,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/PROJECT_STATUS.md"
+    },
+    {
+      "path": "README.md",
+      "blob_sha": "a70f3df91ca6f72c55c22f40ac420b56cdae8683",
+      "size_bytes": 4792,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/README.md"
+    },
+    {
+      "path": "agent.md",
+      "blob_sha": "61d92308a1deb537b8014a739511e60ac43146d2",
+      "size_bytes": 49584,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/agent.md"
+    },
+    {
+      "path": "business-model-blueprint.md",
+      "blob_sha": "14d4386a17e1386d96337b5940ec32e8f4107528",
+      "size_bytes": 18666,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/business-model-blueprint.md"
+    },
+    {
+      "path": "dsh/README.md",
+      "blob_sha": "cfba70603bf0b4969c5bbc5a8b2a96064501bbfb",
+      "size_bytes": 6181,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/README.md"
+    },
+    {
+      "path": "dsh/config/dsh.config.yml",
+      "blob_sha": "41e6d26f3a04af5524bc06c5dbb9ba737871c010",
+      "size_bytes": 6223,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/config/dsh.config.yml"
+    },
+    {
+      "path": "dsh/config/permissions.yml",
+      "blob_sha": "4f7f856be360c54b101d14c0c60fbcb45f002d7f",
+      "size_bytes": 3249,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/config/permissions.yml"
+    },
+    {
+      "path": "dsh/core/config.ts",
+      "blob_sha": "dbb6fed19b515ca8903f7edb2fee6c6d7a279940",
+      "size_bytes": 1746,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/core/config.ts"
+    },
+    {
+      "path": "dsh/core/orchestrator.ts",
+      "blob_sha": "ded45200909271421414482f8b92a5fcddbfc299",
+      "size_bytes": 10568,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/core/orchestrator.ts"
+    },
+    {
+      "path": "dsh/core/trajectory.ts",
+      "blob_sha": "7fd0d93c9b85dde5201706b441ac26e1d6e1e95a",
+      "size_bytes": 2800,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/core/trajectory.ts"
+    },
+    {
+      "path": "dsh/core/types.ts",
+      "blob_sha": "e3066b996e33e03b9d78a76294be5bd7ba1a0483",
+      "size_bytes": 3205,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/core/types.ts"
+    },
+    {
+      "path": "dsh/plugins/plugin-odoo-composio/index.ts",
+      "blob_sha": "9e93cafd64c2bc728e11354f44bb9a2860c2e657",
+      "size_bytes": 4761,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/plugins/plugin-odoo-composio/index.ts"
+    },
+    {
+      "path": "dsh/plugins/plugin-supabase-audit/index.ts",
+      "blob_sha": "5811bb01cc40453af0c187ef0079d927527ae030",
+      "size_bytes": 4206,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/plugins/plugin-supabase-audit/index.ts"
+    },
+    {
+      "path": "supabase/README.md",
+      "blob_sha": "820aa1b24b6cb5fdb08550cda6c29467c0013ef2",
+      "size_bytes": 5952,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/supabase/README.md"
+    },
+    {
+      "path": "supabase/migrations/20260101000001_rls_policies.sql",
+      "blob_sha": "6e661fb2951759caf2717bd54a2bc5934f0776c4",
+      "size_bytes": 19589,
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/supabase/migrations/20260101000001_rls_policies.sql"
+    }
+  ],
+  "scenario_coverage": [
+    {
+      "source_path": "06_Scenarios/05_Marketing_Applications.md",
+      "test_ids": [],
+      "coverage_status": "excluded",
+      "rationale": "Marketing campaign examples are outside operational acceptance scope. Guaranteed return loads and automatic SLA credits are not adopted as contractual policy; promise/non-override coverage remains in ZSC-23 and ZSC-50."
+    },
+    {
+      "source_path": "06_Scenarios/Admin Escalations/Scenario - Customer Escalation.md",
+      "test_ids": [
+        "ZSC-51"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Admin Escalations/Scenario - Delayed POD Submission.md",
+      "test_ids": [
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-33"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Admin Escalations/Scenario - Payment Dispute.md",
+      "test_ids": [
+        "ZSC-35",
+        "ZSC-62"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Compliance/Scenario - E-way Bill Expiry During Transit.md",
+      "test_ids": [
+        "ZSC-24",
+        "ZSC-63"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Customer Requests/Scenario - Customer Cancels Order.md",
+      "test_ids": [
+        "ZSC-21",
+        "ZSC-22",
+        "ZSC-36"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Customer Requests/Scenario - Electronics Need Closed Body Vehicle.md",
+      "test_ids": [
+        "ZSC-05",
+        "ZSC-61"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Customer Requests/Scenario - Fragile Cargo Handling Required.md",
+      "test_ids": [
+        "ZSC-25",
+        "ZSC-59"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Customer Requests/Scenario - Hazardous Material Transport.md",
+      "test_ids": [
+        "ZSC-05",
+        "ZSC-60"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Customer Requests/Scenario - Multiple Pickup Points.md",
+      "test_ids": [
+        "ZSC-29"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Customer Requests/Scenario - Need 20 ft Truck Chennai to Trichy.md",
+      "test_ids": [
+        "ZSC-52"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Customer Requests/Scenario - Same Day Delivery.md",
+      "test_ids": [
+        "ZSC-23"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Customer Requests/Scenario - Temperature Sensitive Goods.md",
+      "test_ids": [
+        "ZSC-57"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Disruptions/Scenario - Driver Strike.md",
+      "test_ids": [
+        "ZSC-54"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Disruptions/Scenario - Fuel Shortage Crisis.md",
+      "test_ids": [
+        "ZSC-53"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Disruptions/Scenario - Natural Disaster Impact.md",
+      "test_ids": [
+        "ZSC-27"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Disruptions/Scenario - Route Blocked Due to Protests.md",
+      "test_ids": [
+        "ZSC-27",
+        "ZSC-50"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Fleet Shortage/Scenario - Driver Unavailable.md",
+      "test_ids": [
+        "ZSC-18",
+        "ZSC-20"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Fleet Shortage/Scenario - Excess Capacity from Partner.md",
+      "test_ids": [
+        "ZSC-55"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Fleet Shortage/Scenario - No Own Fleet Available.md",
+      "test_ids": [
+        "ZSC-15"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Fleet Shortage/Scenario - Vehicle Breakdown Mid-Route.md",
+      "test_ids": [
+        "ZSC-20",
+        "ZSC-28"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/High Value Cargo/Scenario - High Value Electronics Transit.md",
+      "test_ids": [
+        "ZSC-58"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Partner Network/Scenario - Partner Network Utilization.md",
+      "test_ids": [
+        "ZSC-15",
+        "ZSC-45",
+        "ZSC-55"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    },
+    {
+      "source_path": "06_Scenarios/Partner Network/Scenario - Partner Transporter Failure.md",
+      "test_ids": [
+        "ZSC-56"
+      ],
+      "coverage_status": "covered",
+      "rationale": "Mapped to proposed workflow tests; no claim of passing execution."
+    }
+  ],
+  "requirements_to_tests": {
+    "PRD-01": [
+      "ZSC-52",
+      "ZSC-64"
+    ],
+    "PRD-02": [
+      "ZSC-01",
+      "ZSC-02",
+      "ZSC-03",
+      "ZSC-04",
+      "ZSC-05",
+      "ZSC-06",
+      "ZSC-08",
+      "ZSC-23",
+      "ZSC-29",
+      "ZSC-52",
+      "ZSC-53",
+      "ZSC-57",
+      "ZSC-58",
+      "ZSC-59",
+      "ZSC-60",
+      "ZSC-61",
+      "ZSC-64"
+    ],
+    "PRD-03": [
+      "ZSC-01",
+      "ZSC-02",
+      "ZSC-03",
+      "ZSC-04",
+      "ZSC-16",
+      "ZSC-17",
+      "ZSC-21",
+      "ZSC-22",
+      "ZSC-47",
+      "ZSC-52",
+      "ZSC-60",
+      "ZSC-63",
+      "ZSC-64"
+    ],
+    "PRD-04": [
+      "ZSC-07",
+      "ZSC-15",
+      "ZSC-16",
+      "ZSC-17",
+      "ZSC-22",
+      "ZSC-29",
+      "ZSC-42",
+      "ZSC-52",
+      "ZSC-54",
+      "ZSC-55",
+      "ZSC-57",
+      "ZSC-61",
+      "ZSC-64",
+      "ZSC-66"
+    ],
+    "PRD-05": [
+      "ZSC-16",
+      "ZSC-17",
+      "ZSC-19",
+      "ZSC-22",
+      "ZSC-33",
+      "ZSC-43",
+      "ZSC-65",
+      "ZSC-66"
+    ],
+    "PRD-06": [
+      "ZSC-19",
+      "ZSC-33",
+      "ZSC-42",
+      "ZSC-43",
+      "ZSC-50",
+      "ZSC-66",
+      "ZSC-69"
+    ],
+    "PRD-07": [
+      "ZSC-05",
+      "ZSC-06",
+      "ZSC-24",
+      "ZSC-25",
+      "ZSC-30",
+      "ZSC-31",
+      "ZSC-32",
+      "ZSC-49",
+      "ZSC-52",
+      "ZSC-57",
+      "ZSC-58",
+      "ZSC-59",
+      "ZSC-60",
+      "ZSC-61",
+      "ZSC-63",
+      "ZSC-69"
+    ],
+    "PRD-08": [
+      "ZSC-09",
+      "ZSC-10",
+      "ZSC-30",
+      "ZSC-31",
+      "ZSC-32",
+      "ZSC-34",
+      "ZSC-35",
+      "ZSC-36",
+      "ZSC-38",
+      "ZSC-39",
+      "ZSC-41",
+      "ZSC-42",
+      "ZSC-56",
+      "ZSC-62",
+      "ZSC-64",
+      "ZSC-66"
+    ],
+    "PRD-09": [
+      "ZSC-09",
+      "ZSC-10",
+      "ZSC-11",
+      "ZSC-12",
+      "ZSC-13",
+      "ZSC-14",
+      "ZSC-35"
+    ],
+    "PRD-10": [
+      "ZSC-08",
+      "ZSC-09",
+      "ZSC-10",
+      "ZSC-14",
+      "ZSC-35",
+      "ZSC-36",
+      "ZSC-39",
+      "ZSC-40",
+      "ZSC-56",
+      "ZSC-64"
+    ],
+    "PRD-11": [
+      "ZSC-11",
+      "ZSC-12",
+      "ZSC-13",
+      "ZSC-18",
+      "ZSC-20",
+      "ZSC-21",
+      "ZSC-24",
+      "ZSC-27",
+      "ZSC-28",
+      "ZSC-30",
+      "ZSC-31",
+      "ZSC-32",
+      "ZSC-34",
+      "ZSC-36",
+      "ZSC-37",
+      "ZSC-38",
+      "ZSC-41",
+      "ZSC-46",
+      "ZSC-47",
+      "ZSC-51",
+      "ZSC-53",
+      "ZSC-54",
+      "ZSC-56",
+      "ZSC-60",
+      "ZSC-62",
+      "ZSC-63",
+      "ZSC-70"
+    ],
+    "PRD-12": [
+      "ZSC-19",
+      "ZSC-23",
+      "ZSC-25",
+      "ZSC-26",
+      "ZSC-27",
+      "ZSC-33",
+      "ZSC-50",
+      "ZSC-53",
+      "ZSC-59",
+      "ZSC-63"
+    ],
+    "PRD-13": [
+      "ZSC-64"
+    ],
+    "PRD-14": [
+      "ZSC-44",
+      "ZSC-45",
+      "ZSC-46",
+      "ZSC-55",
+      "ZSC-58",
+      "ZSC-67",
+      "ZSC-68",
+      "ZSC-69"
+    ],
+    "PRD-15": [
+      "ZSC-07",
+      "ZSC-15",
+      "ZSC-18",
+      "ZSC-20",
+      "ZSC-28",
+      "ZSC-48",
+      "ZSC-54",
+      "ZSC-56",
+      "ZSC-70"
+    ],
+    "PRD-16": [
+      "ZSC-49",
+      "ZSC-67",
+      "ZSC-68"
+    ],
+    "PRD-17": [
+      "ZSC-48",
+      "ZSC-70"
+    ],
+    "PRD-18": [
+      "ZSC-27",
+      "ZSC-51",
+      "ZSC-70"
+    ],
+    "PRD-19": [
+      "ZSC-20",
+      "ZSC-21",
+      "ZSC-28",
+      "ZSC-29",
+      "ZSC-50",
+      "ZSC-56",
+      "ZSC-70"
+    ],
+    "PRD-20": [
+      "ZSC-01",
+      "ZSC-02",
+      "ZSC-03",
+      "ZSC-04",
+      "ZSC-05",
+      "ZSC-06",
+      "ZSC-07",
+      "ZSC-08",
+      "ZSC-09",
+      "ZSC-10",
+      "ZSC-11",
+      "ZSC-12",
+      "ZSC-13",
+      "ZSC-14",
+      "ZSC-15",
+      "ZSC-16",
+      "ZSC-17",
+      "ZSC-18",
+      "ZSC-19",
+      "ZSC-20",
+      "ZSC-21",
+      "ZSC-22",
+      "ZSC-23",
+      "ZSC-24",
+      "ZSC-25",
+      "ZSC-26",
+      "ZSC-27",
+      "ZSC-28",
+      "ZSC-29",
+      "ZSC-30",
+      "ZSC-31",
+      "ZSC-32",
+      "ZSC-33",
+      "ZSC-34",
+      "ZSC-35",
+      "ZSC-36",
+      "ZSC-37",
+      "ZSC-38",
+      "ZSC-39",
+      "ZSC-40",
+      "ZSC-41",
+      "ZSC-42",
+      "ZSC-43",
+      "ZSC-44",
+      "ZSC-45",
+      "ZSC-46",
+      "ZSC-47",
+      "ZSC-48",
+      "ZSC-49",
+      "ZSC-50",
+      "ZSC-51",
+      "ZSC-52",
+      "ZSC-53",
+      "ZSC-54",
+      "ZSC-55",
+      "ZSC-56",
+      "ZSC-57",
+      "ZSC-58",
+      "ZSC-59",
+      "ZSC-60",
+      "ZSC-61",
+      "ZSC-62",
+      "ZSC-63",
+      "ZSC-64",
+      "ZSC-65",
+      "ZSC-66",
+      "ZSC-67",
+      "ZSC-68",
+      "ZSC-69",
+      "ZSC-70"
+    ]
+  }
+}

@@ -6,6 +6,10 @@ This repository contains the Xano sandbox implementation of Zippy Logistics. **I
 
 The owner-review pause is cleared. The coordinate validator is fixed and 133 fresh native predicate checks pass; staging remains blocked by database, HTTP, security and recovery requirements. See [audit resumption and retained evidence](docs/AUDIT_RESUMPTION.md). No live promotion occurred.
 
+## Five-agent sandbox drafts
+
+OMS, IMS, TMS, Verification and Finance/Compliance are saved as unconnected sandbox configurations. No model runs or operational tools are enabled by this work. See [configuration, tests and unresolved decisions](docs/FIVE_AGENT_CONFIGURATION.md). The supplied 70 acceptance scenarios remain unrun.
+
 ## Current implementation
 
 | Component | Reviewed snapshot |

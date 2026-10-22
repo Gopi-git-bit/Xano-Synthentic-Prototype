@@ -1,0 +1,602 @@
+{
+  "date": "2026-10-22T11:52:47.577Z",
+  "implementation_repository": "Gopi-git-bit/Xano-Synthentic-Prototype",
+  "base_git_commit": "75a3ce0359d96472341ebdac056ef18ce4bd214c",
+  "source_repository": "Gopi-git-bit/obsidian",
+  "source_commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5",
+  "approval_scope": "Five unbound sandbox drafts only; no live or operational activation",
+  "target": {
+    "workspace": 1,
+    "branch": "v1",
+    "sandbox": "sn9m-aat6-200c",
+    "datasource_label": "live",
+    "database_identity_verified": true,
+    "physical_tables": 53
+  },
+  "existing_implementation_states": [
+    "pending",
+    "quoted",
+    "confirmed",
+    "assigned",
+    "in_transit",
+    "delivered",
+    "cancelled"
+  ],
+  "proposed_states": [
+    "DRAFT",
+    "PAYMENT_PENDING",
+    "CONFIRMED",
+    "VEHICLE_SEARCH",
+    "DRIVER_ASSIGNED",
+    "ARRIVED_PICKUP",
+    "LOADING",
+    "ENROUTE",
+    "ARRIVED_DELIVERY",
+    "POD_UPLOADED",
+    "DELIVERY_COMPLETED",
+    "SETTLEMENT_PREPROCESS",
+    "SETTLEMENT_READY",
+    "SETTLEMENT_RELEASED",
+    "CLOSED",
+    "CANCELLED",
+    "FAILED"
+  ],
+  "proposed_graph_adopted": false,
+  "open_decisions": [
+    {
+      "id": "DEC-01",
+      "title": "Order state vocabulary",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-02",
+      "title": "Commercial and launch scope",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-03",
+      "title": "Full/advance/ToPay/credit gates",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-04",
+      "title": "Payout and refund authority",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-05",
+      "title": "Pricing, cancellation, detention and tax basis",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-06",
+      "title": "Mandatory document outage handling",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-07",
+      "title": "Recovery and cancellation edges",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-08",
+      "title": "Operational thresholds",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-09",
+      "title": "Xano target and isolation",
+      "approved_value": null,
+      "status": "OPEN",
+      "note": "Physical target identity proven; recovery and restricted-access gates remain unresolved"
+    },
+    {
+      "id": "DEC-10",
+      "title": "Production accountability and privacy",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-11",
+      "title": "POD/OTP exception and evidence independence",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-12",
+      "title": "Funds custody, credit and payout cycle",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-13",
+      "title": "Transport-company launch and role switching",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-14",
+      "title": "Risk policy and maker-checker coverage",
+      "approved_value": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "DEC-15",
+      "title": "Failed-delivery, SLA and cost schedule",
+      "approved_value": null,
+      "status": "OPEN"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "PRD-01",
+      "status": "Draft ownership configured; no operational invocation",
+      "existing_files": [
+        "backend/xano/ai/agent"
+      ],
+      "remaining_gap": "Model/runtime and tool authorization acceptance pending",
+      "acceptance_test_ids": [
+        "ZSC-52",
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-02",
+      "status": "Partial deterministic booking validation",
+      "existing_files": [
+        "backend/contracts/domain.cjs",
+        "backend/xano/function/logistics/validate_order.xs"
+      ],
+      "remaining_gap": "Contacts, measurements, time windows, immutable quote and trusted HTTP intake incomplete",
+      "acceptance_test_ids": [
+        "ZSC-01",
+        "ZSC-02",
+        "ZSC-03",
+        "ZSC-04",
+        "ZSC-05",
+        "ZSC-06",
+        "ZSC-08",
+        "ZSC-23",
+        "ZSC-29",
+        "ZSC-52",
+        "ZSC-53",
+        "ZSC-57",
+        "ZSC-58",
+        "ZSC-59",
+        "ZSC-60",
+        "ZSC-61",
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-03",
+      "status": "Pure seven-state transition predicate; public command authority absent",
+      "existing_files": [
+        "backend/xano/function/logistics/validate_transition.xs"
+      ],
+      "remaining_gap": "DEC-01 proposed 17-state graph conflicts; no migration or new edges applied",
+      "acceptance_test_ids": [
+        "ZSC-01",
+        "ZSC-02",
+        "ZSC-03",
+        "ZSC-04",
+        "ZSC-16",
+        "ZSC-17",
+        "ZSC-21",
+        "ZSC-22",
+        "ZSC-47",
+        "ZSC-52",
+        "ZSC-60",
+        "ZSC-63",
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-04",
+      "status": "Bounded internal assignment prototype only",
+      "existing_files": [
+        "backend/xano/function/slice_1/create_and_assign.xs",
+        "backend/evidence/concurrency-result.json"
+      ],
+      "remaining_gap": "All resource overlap, driver exclusivity, lease fencing and commit guarantees not proven",
+      "acceptance_test_ids": [
+        "ZSC-07",
+        "ZSC-15",
+        "ZSC-16",
+        "ZSC-17",
+        "ZSC-22",
+        "ZSC-29",
+        "ZSC-42",
+        "ZSC-52",
+        "ZSC-54",
+        "ZSC-55",
+        "ZSC-57",
+        "ZSC-61",
+        "ZSC-64",
+        "ZSC-66"
+      ]
+    },
+    {
+      "id": "PRD-05",
+      "status": "Internal booking replay evidence only",
+      "existing_files": [
+        "backend/evidence/concurrency-result.json"
+      ],
+      "remaining_gap": "Resolve tenant+operation versus proposed tenant+actor+command+entity key scope; HTTP commands pending",
+      "acceptance_test_ids": [
+        "ZSC-16",
+        "ZSC-17",
+        "ZSC-19",
+        "ZSC-22",
+        "ZSC-33",
+        "ZSC-43",
+        "ZSC-65",
+        "ZSC-66"
+      ]
+    },
+    {
+      "id": "PRD-06",
+      "status": "Task/outbox schema and bounded internal booking evidence",
+      "existing_files": [
+        "backend/xano/table"
+      ],
+      "remaining_gap": "Durable workers, leases, poison events and crash recovery incomplete",
+      "acceptance_test_ids": [
+        "ZSC-19",
+        "ZSC-33",
+        "ZSC-42",
+        "ZSC-43",
+        "ZSC-50",
+        "ZSC-66",
+        "ZSC-69"
+      ]
+    },
+    {
+      "id": "PRD-07",
+      "status": "Evidence schema and draft prompt restrictions",
+      "existing_files": [
+        "backend/xano/table",
+        "backend/agent-package/Zippy_Agent_Output.schema.json"
+      ],
+      "remaining_gap": "No immutable-storage, quarantine, verifier or runtime evidence-security acceptance",
+      "acceptance_test_ids": [
+        "ZSC-05",
+        "ZSC-06",
+        "ZSC-24",
+        "ZSC-25",
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-49",
+        "ZSC-52",
+        "ZSC-57",
+        "ZSC-58",
+        "ZSC-59",
+        "ZSC-60",
+        "ZSC-61",
+        "ZSC-63",
+        "ZSC-69"
+      ]
+    },
+    {
+      "id": "PRD-08",
+      "status": "Exact payment-plan predicate, no financial execution",
+      "existing_files": [
+        "backend/xano/function/logistics/validate_payment_plan.xs"
+      ],
+      "remaining_gap": "Signed provider events, custody path, reconciliation and approvals not implemented end to end",
+      "acceptance_test_ids": [
+        "ZSC-09",
+        "ZSC-10",
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-34",
+        "ZSC-35",
+        "ZSC-36",
+        "ZSC-38",
+        "ZSC-39",
+        "ZSC-41",
+        "ZSC-42",
+        "ZSC-56",
+        "ZSC-62",
+        "ZSC-64",
+        "ZSC-66"
+      ]
+    },
+    {
+      "id": "PRD-09",
+      "status": "Existing amount rules preserved",
+      "existing_files": [
+        "backend/contracts/domain.cjs"
+      ],
+      "remaining_gap": "Full=total; partial50-100%; to_pay advance0. Timing/consent/credit matrix remains DEC-03",
+      "acceptance_test_ids": [
+        "ZSC-09",
+        "ZSC-10",
+        "ZSC-11",
+        "ZSC-12",
+        "ZSC-13",
+        "ZSC-14",
+        "ZSC-35"
+      ]
+    },
+    {
+      "id": "PRD-10",
+      "status": "Existing operational financial tables; exact arithmetic",
+      "existing_files": [
+        "backend/xano/table",
+        "backend/contracts/domain.cjs"
+      ],
+      "remaining_gap": "Do not migrate money representation or approve tax/tariffs from package examples",
+      "acceptance_test_ids": [
+        "ZSC-08",
+        "ZSC-09",
+        "ZSC-10",
+        "ZSC-14",
+        "ZSC-35",
+        "ZSC-36",
+        "ZSC-39",
+        "ZSC-40",
+        "ZSC-56",
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-11",
+      "status": "Pure refund eligibility helper only",
+      "existing_files": [
+        "backend/xano/function/logistics/evaluate_refund.xs"
+      ],
+      "remaining_gap": "Durable holds, approval artifacts, expiration and changed-input rejection not verified",
+      "acceptance_test_ids": [
+        "ZSC-11",
+        "ZSC-12",
+        "ZSC-13",
+        "ZSC-18",
+        "ZSC-20",
+        "ZSC-21",
+        "ZSC-24",
+        "ZSC-27",
+        "ZSC-28",
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-34",
+        "ZSC-36",
+        "ZSC-37",
+        "ZSC-38",
+        "ZSC-41",
+        "ZSC-46",
+        "ZSC-47",
+        "ZSC-51",
+        "ZSC-53",
+        "ZSC-54",
+        "ZSC-56",
+        "ZSC-60",
+        "ZSC-62",
+        "ZSC-63",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-12",
+      "status": "Trip/location schema only",
+      "existing_files": [
+        "backend/xano/table"
+      ],
+      "remaining_gap": "Trusted telemetry, freshness, incidents and original-promise runtime controls pending",
+      "acceptance_test_ids": [
+        "ZSC-19",
+        "ZSC-23",
+        "ZSC-25",
+        "ZSC-26",
+        "ZSC-27",
+        "ZSC-33",
+        "ZSC-50",
+        "ZSC-53",
+        "ZSC-59",
+        "ZSC-63"
+      ]
+    },
+    {
+      "id": "PRD-13",
+      "status": "Outbox schema and starter email helper",
+      "existing_files": [
+        "backend/xano/table",
+        "backend/xano/function/auth/welcome_authorized.xs"
+      ],
+      "remaining_gap": "No operational notification routing, approved recipients or critical human acknowledgement",
+      "acceptance_test_ids": [
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-14",
+      "status": "Identity helper and authenticated read definitions",
+      "existing_files": [
+        "backend/xano/function/logistics/resolve_identity.xs",
+        "backend/xano/api/logistics"
+      ],
+      "remaining_gap": "Ambiguous profiles and complete two-tenant/role HTTP tests remain blockers",
+      "acceptance_test_ids": [
+        "ZSC-44",
+        "ZSC-45",
+        "ZSC-46",
+        "ZSC-55",
+        "ZSC-58",
+        "ZSC-67",
+        "ZSC-68",
+        "ZSC-69"
+      ]
+    },
+    {
+      "id": "PRD-15",
+      "status": "Pure retry-delay helper",
+      "existing_files": [
+        "backend/xano/function/logistics/retry_delay.xs"
+      ],
+      "remaining_gap": "Durable bounded attempts, outages and unknown provider outcomes pending",
+      "acceptance_test_ids": [
+        "ZSC-07",
+        "ZSC-15",
+        "ZSC-18",
+        "ZSC-20",
+        "ZSC-28",
+        "ZSC-48",
+        "ZSC-54",
+        "ZSC-56",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-16",
+      "status": "Schema + five draft prompts; offline schema checks pass",
+      "existing_files": [
+        "backend/agent-package/Zippy_Agent_Output.schema.json",
+        "backend/evidence/five-agent-schema-validation.json"
+      ],
+      "remaining_gap": "No model output or deployed trusted-context/role gateway verification; prompts are not controls",
+      "acceptance_test_ids": [
+        "ZSC-49",
+        "ZSC-67",
+        "ZSC-68"
+      ]
+    },
+    {
+      "id": "PRD-17",
+      "status": "Sandbox configuration import and live-preservation evidence",
+      "existing_files": [
+        "backend/evidence/five-agent-configuration.json"
+      ],
+      "remaining_gap": "No canary, model activation, kill-switch or recovery execution accepted",
+      "acceptance_test_ids": [
+        "ZSC-48",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-18",
+      "status": "Responsibilities specified in agent package",
+      "existing_files": [
+        "backend/agent-package/Zippy_Agent_Contracts.json"
+      ],
+      "remaining_gap": "Named operators, queues, alert deadlines and runbooks require configuration and execution evidence",
+      "acceptance_test_ids": [
+        "ZSC-27",
+        "ZSC-51",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-19",
+      "status": "Reference designs only",
+      "existing_files": [
+        "backend/agent-package/Zippy_Five_Agent_Xano_PRD.md"
+      ],
+      "remaining_gap": "Linked returns, assignment-attempt recovery and custody/financial cleanup not implemented",
+      "acceptance_test_ids": [
+        "ZSC-20",
+        "ZSC-21",
+        "ZSC-28",
+        "ZSC-29",
+        "ZSC-50",
+        "ZSC-56",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-20",
+      "status": "Source hashes, target identity and configuration/schema evidence retained",
+      "existing_files": [
+        "backend/evidence/five-agent-configuration.json",
+        "backend/agent-package/Zippy_Acceptance_Tests.json"
+      ],
+      "remaining_gap": "All70 package acceptance cases not_run; historical72 PostgreSQL cases separate and NOT VERIFIED",
+      "acceptance_test_ids": [
+        "ZSC-01",
+        "ZSC-02",
+        "ZSC-03",
+        "ZSC-04",
+        "ZSC-05",
+        "ZSC-06",
+        "ZSC-07",
+        "ZSC-08",
+        "ZSC-09",
+        "ZSC-10",
+        "ZSC-11",
+        "ZSC-12",
+        "ZSC-13",
+        "ZSC-14",
+        "ZSC-15",
+        "ZSC-16",
+        "ZSC-17",
+        "ZSC-18",
+        "ZSC-19",
+        "ZSC-20",
+        "ZSC-21",
+        "ZSC-22",
+        "ZSC-23",
+        "ZSC-24",
+        "ZSC-25",
+        "ZSC-26",
+        "ZSC-27",
+        "ZSC-28",
+        "ZSC-29",
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-33",
+        "ZSC-34",
+        "ZSC-35",
+        "ZSC-36",
+        "ZSC-37",
+        "ZSC-38",
+        "ZSC-39",
+        "ZSC-40",
+        "ZSC-41",
+        "ZSC-42",
+        "ZSC-43",
+        "ZSC-44",
+        "ZSC-45",
+        "ZSC-46",
+        "ZSC-47",
+        "ZSC-48",
+        "ZSC-49",
+        "ZSC-50",
+        "ZSC-51",
+        "ZSC-52",
+        "ZSC-53",
+        "ZSC-54",
+        "ZSC-55",
+        "ZSC-56",
+        "ZSC-57",
+        "ZSC-58",
+        "ZSC-59",
+        "ZSC-60",
+        "ZSC-61",
+        "ZSC-62",
+        "ZSC-63",
+        "ZSC-64",
+        "ZSC-65",
+        "ZSC-66",
+        "ZSC-67",
+        "ZSC-68",
+        "ZSC-69",
+        "ZSC-70"
+      ]
+    }
+  ],
+  "first_synthetic_slice": "Offline complete booking context -> OMS assessment only -> trusted-context/schema gate -> hold/review result. No state change, reservation, provider call or external notification. Actual model execution and deployment of the gate are pending.",
+  "native_operational_acceptance": "NOT_RUN",
+  "source_histories_combined": false,
+  "live_changed": false
+}

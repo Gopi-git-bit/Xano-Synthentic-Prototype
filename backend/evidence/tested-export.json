@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-22T09:26:20.199Z",
+  "captured_at": "2026-10-22T11:48:50.832Z",
   "workspace": 1,
   "sandbox": "sn9m-aat6-200c",
   "records_exported": false,
@@ -420,13 +420,40 @@
     {
       "path": "workflow_test/slice_1_discarded_response_retry.xs",
       "sha256": "0d5cd1da69781589d7949d7cace66246991cd63dd6af7adcc35adde06e9e56db"
+    },
+    {
+      "path": "ai/agent/zippy_oms_sandbox_draft.xs",
+      "sha256": "f47f96aa61406b9b9186c5fa33418a5a906dfd645fe58c0e0ab4bcc5db368afe"
+    },
+    {
+      "path": "ai/agent/zippy_ims_sandbox_draft.xs",
+      "sha256": "d0a2bb5ae841a9c3d1fb9218497c60a04daf5d944edb9f0debebb272766ce771"
+    },
+    {
+      "path": "ai/agent/zippy_tms_sandbox_draft.xs",
+      "sha256": "53318ad7607ad32d5e48e4454fe55910031dd171c89495db2b3d1631ad57a456"
+    },
+    {
+      "path": "ai/agent/zippy_verification_sandbox_draft.xs",
+      "sha256": "ab9ce7ec50996c16643bec420ce34bfc7c6f28a96b5b81121559c563c7933399"
+    },
+    {
+      "path": "ai/agent/zippy_finance_compliance_sandbox_draft.xs",
+      "sha256": "425328349485a7d69ae689d4ed86987198b57f1fdc9575eec8e549430fc867dc"
     }
   ],
-  "source_multidoc_sha256": "43bf8d2a7f5975b4c0fe662d0948d5fb45cc78d5c38225daaa3d7d06a556a5bb",
+  "source_multidoc_sha256": "4ffe343c426fa1e09773f1c54e71f65d37509f671eca98fdaff3250da67526c4",
   "validation": {
     "method": "Metadata function/run; pure predicates only; NOT public application HTTP",
     "evidence": "backend/evidence/coordinate-native-results.json",
     "passed": 133,
     "failed": 0
+  },
+  "configuration_only_additions": {
+    "agents": 5,
+    "evidence": "backend/evidence/five-agent-configuration.json",
+    "model_calls": 0,
+    "acceptance_cases_executed": 0,
+    "prior_predicate_sources_unchanged": true
   }
 }

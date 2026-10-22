@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Zippy agent assessment contract v1 review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "agent_id",
+    "tenant_id",
+    "entity_type",
+    "entity_id",
+    "expected_entity_version",
+    "request_id",
+    "trace_id",
+    "idempotency_key",
+    "policy_version",
+    "evidence_refs",
+    "outcome",
+    "reason_code",
+    "reason",
+    "proposed_action",
+    "unknowns",
+    "model_version",
+    "prompt_version"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0-review"
+    },
+    "agent_id": {
+      "enum": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ]
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entity_type": {
+      "enum": [
+        "order",
+        "trip",
+        "assignment",
+        "payment",
+        "settlement",
+        "document",
+        "incident",
+        "verification_case",
+        "refund"
+      ]
+    },
+    "entity_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expected_entity_version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "outcome": {
+      "enum": [
+        "recommend",
+        "hold",
+        "reject",
+        "request_information",
+        "manual_review"
+      ]
+    },
+    "reason_code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "model_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposed_action": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command",
+            "arguments_ref"
+          ],
+          "properties": {
+            "command": {
+              "enum": [
+                "check_approved_reference_rules",
+                "extract_document_fields",
+                "open_finance_review",
+                "open_review_case",
+                "prepare_invoice",
+                "raise_incident",
+                "rank_eligible_candidates",
+                "request_guarded_assignment_commit",
+                "request_guarded_finance_action",
+                "request_guarded_transition",
+                "request_guarded_trip_action",
+                "request_matching",
+                "request_notification",
+                "request_offer",
+                "request_payment_intent",
+                "request_quote",
+                "request_reconciliation",
+                "request_reservation",
+                "request_reupload",
+                "request_route_calculation",
+                "submit_milestone_evidence",
+                "submit_order_recommendation",
+                "submit_settlement_precheck",
+                "submit_verification_assessment"
+              ]
+            },
+            "arguments_ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    }
+  }
+}
