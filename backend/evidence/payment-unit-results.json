@@ -3,7 +3,7 @@
   "scope": "Xano sandbox payment unit tests only",
   "passed": 16,
   "failed": 0,
-  "export_manifest": "tested-export.json",
+  "export_manifest": "payment-tested-export.json",
   "results": [
     {
       "id": "f033e556a80690020799da98d6e06ed3",

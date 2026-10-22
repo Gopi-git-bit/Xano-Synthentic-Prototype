@@ -4,6 +4,6 @@
 mcp_server "Xano-Synthetic-prototype" {
   canonical = "8t_kJl7m"
   tags = ["rder booking", "route optimization", "email & sms"]
-  tools = [{name: "create_Route_opimization_to_vehicles_"}]
+  tools = []
   guid = "Nms0t7xjBSPuR_6zyxCSNUQIQWk"
 }

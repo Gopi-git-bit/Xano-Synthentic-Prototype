@@ -7,6 +7,6 @@ mcp_server "Xano-Synthetic-Prototype" {
     Workflows: Manages driver invoice uploads during the loading phase and handles Proof of Delivery (POD) submissions once a shipment is completed."
     """
   tags = ["route optimization", "razor pay gateway", "email & sms "]
-  tools = [{name: "search_xano_docs"}]
+  tools = []
   guid = "O4-EdEahkSCI6RkO5jhYjXNt3vI"
 }

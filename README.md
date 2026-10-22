@@ -58,3 +58,7 @@ Business rules were adapted from [New-logistic-](https://github.com/Gopi-git-bit
 ## Staging continuation (22 October 2026)
 
 **BLOCKED at the database-guarantee gate.** The latest sandbox source and authentication/Slice1 work have been preserved. See [staging status](docs/STAGING_STATUS.md), [required API contract](docs/API_CONTRACT.md), and the per-control database inventory. The manual staging workflow deliberately fails while critical evidence or executable integration tests are missing. It is not an acceptance suite.
+
+## Xano-native safeguards and current proof evidence
+
+Use Xano’s managed database. The previous New-logistic repository supplies pinned reference invariants only. [Current safeguards and evidence](docs/XANO_NATIVE_CONTINUATION.md) include explicit profile binding, signup denial, removed MCP tool bindings, shared-state Metadata API races and independent rollback probes. All 72 original cases are now individually mapped, but remain unaccepted until native equivalents pass. Staging remains blocked.

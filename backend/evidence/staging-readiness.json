@@ -3,16 +3,18 @@
   "status": "blocked",
   "ready": false,
   "blockers": [
-    "Shared-state concurrent HTTP execution unavailable: sandbox and isolated ephemeral tenant ingress=false.",
     "Atomic conditional updates, duplicate exclusion, vehicle/driver exclusivity and worker claims unproven.",
     "Non-database failure rollback not demonstrated.",
     "Deferred schema controls lack demonstrated enforcement and executable integration tests.",
     "Booking HTTP API, provider payment/webhook handling and durable workers incomplete.",
-    "Recovery, restoration, end-to-end journeys and alerts not demonstrated."
+    "Recovery, restoration, end-to-end journeys and alerts not demonstrated.",
+    "Bounded Metadata API concurrency passes; public application HTTP/JWT, independent driver/worker claims, native 72-case adapters and restricted credentials remain unverified."
   ],
   "ephemeral": {
     "name": "e9aa-vgbb-7f5c",
-    "ingress": false,
+    "ingress": true,
+    "rbac": true,
+    "hostname": null,
     "expires_at": "2026-10-22T05:37:12Z"
   },
   "historical_evidence": "See docs/SLICE1_RESULTS.md. Previous tests are not current HTTP evidence."

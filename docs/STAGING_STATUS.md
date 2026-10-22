@@ -36,3 +36,7 @@ All 16 payment unit tests passed in Xano after sandbox-only import. The final 10
 The workflow names the synthetic-staging GitHub environment but does not configure environment protection rules. Before enabling any network suite, an administrator must configure required reviewers, restricted branches and environment-scoped provider test credentials; pass credentials only to the validated test runner, never pull-request code. Currently the gate accepts no credentials, makes no network calls and always exits unsuccessfully because the critical suite is absent.
 
 Official platform references: [database transactions](https://docs.xano.com/the-function-stack/functions/database-requests/database-transaction) and [direct database queries](https://docs.xano.com/the-function-stack/functions/database-requests/direct-database-query). The transaction documentation limits rollback to database failures; direct queries require explicit data-source targeting. Neither proves concurrent safety in this workspace.
+
+## Subsequent Xano-native safeguards and proofs
+
+See [XANO_NATIVE_CONTINUATION.md](XANO_NATIVE_CONTINUATION.md). The earlier shared-state function-run blocker was partly caused by incorrect response parsing and is superseded by fresh authenticated Metadata API persistence/concurrency evidence. Public application HTTP acceptance and the remaining integrity gates stay blocked.

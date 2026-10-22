@@ -1,0 +1,2076 @@
+{
+  "schema_version": 1,
+  "target_database": "Xano managed database, isolated synthetic sandbox",
+  "external_postgres_required": false,
+  "source_role": "historical invariant reference, not current implementation",
+  "cases": [
+    {
+      "case_id": "api/tests/test_postgres_integration.py::test_order_transition_and_worker_flow",
+      "group": "core",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests/test_postgres_integration.py",
+      "source_line": 80,
+      "source_blob_sha": "3ee661a8b4a96798431d130ff91c647dee3d4c19",
+      "source_test_selector": "api/tests/test_postgres_integration.py::test_order_transition_and_worker_flow",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "rows == {'orders': 1, 'stops': 2, 'commitments': 1, 'tasks': 1, 'events': 2, 'outbox': 2, 'idempotency': 2}",
+        "first.status_code == 202",
+        "accepted['status'] == 'pending'",
+        "accepted['idempotency_replay'] is False",
+        "replay.status_code == 202",
+        "replay.json()['order_id'] == accepted['order_id']",
+        "replay.json()['workflow_id'] == accepted['workflow_id']",
+        "replay.json()['idempotency_replay'] is True",
+        "(conflict.status_code, conflict.json()['error']['code']) == (409, 'IDEMPOTENCY_CONFLICT')",
+        "(blocked.status_code, blocked.json()['error']['code']) == (403, 'FORBIDDEN')",
+        "transitioned.status_code == 200",
+        "(transitioned.json()['status'], transitioned.json()['version']) == ('quoted', 2)",
+        "transition_replay.status_code == 200",
+        "(transition_replay.json()['status'], transition_replay.json()['version']) == ('quoted', 2)",
+        "(denied.status_code, denied.json()['error']['code']) == (403, 'FORBIDDEN')",
+        "(illegal.status_code, illegal.json()['error']['code']) == (409, 'TRANSITION_CONFLICT')",
+        "worker.run_tasks('m3-success-worker', lambda task: None) == 1",
+        "worker.publish_outbox('m3-outbox-worker', transport) == 2",
+        "worker.publish_outbox('m3-outbox-worker', transport) == 0",
+        "len(transport.delivered) == 2"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "booking creation and expected-version state transition",
+        "durable task/outbox recovery and terminal evidence"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests/test_postgres_integration.py::test_task_and_outbox_terminal_failures_create_evidence",
+      "group": "core",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests/test_postgres_integration.py",
+      "source_line": 231,
+      "source_blob_sha": "3ee661a8b4a96798431d130ff91c647dee3d4c19",
+      "source_test_selector": "api/tests/test_postgres_integration.py::test_task_and_outbox_terminal_failures_create_evidence",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "terminal == {'task_status': 'dead_lettered', 'task_attempts': 3, 'outbox_status': 'dead_lettered', 'outbox_attempts': 3, 'dead_letters': 2, 'exceptions': 2}",
+        "reasons['letter_reasons'] is not None",
+        "reasons['exception_reasons'] is not None",
+        "'synthetic failure details must not escape' not in persisted_reasons",
+        "set(persisted_reasons.split(',')) == {'RuntimeError', 'TypeError'}",
+        "worker.run_tasks('m3-failure-worker', fail) == 1",
+        "worker.publish_outbox('m3-failure-worker', type('FailingTransport', (), {'deliver': staticmethod(fail)})()) == 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "booking creation and expected-version state transition",
+        "durable task/outbox recovery and terminal evidence"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_eligible_offer_creation_and_accept_creates_atomic_assignment",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 183,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_eligible_offer_creation_and_accept_creates_atomic_assignment",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'created'",
+        "outcome.status == 'pending'",
+        "assignment.duplicate is False",
+        "assignment.order_status == 'assigned'",
+        "order['status'] == 'assigned'",
+        "trip['status'] == 'assigned'",
+        "any((e['event_type'] == 'dispatch.assignment_created' for e in events))",
+        "outbox['n'] == 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_idempotent_offer_replay_returns_original_result",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 221,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_idempotent_offer_replay_returns_original_result",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "second.outcome == 'duplicate'",
+        "second.dispatch_offer_id == first.dispatch_offer_id",
+        "second.duplicate is True",
+        "receipts['n'] == 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_idempotency_key_reused_with_different_request_conflicts",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 236,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_idempotency_key_reused_with_different_request_conflicts",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "raises: pytest.raises(ConflictError)"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_insufficient_capacity_produces_manual_review",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 244,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_insufficient_capacity_produces_manual_review",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'VEHICLE_CAPACITY_INSUFFICIENT'",
+        "exception['n'] >= 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_expired_vehicle_document_produces_manual_review::parameter-0",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 292,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_expired_vehicle_document_produces_manual_review",
+      "parameter_names": "document_type",
+      "parameter_expression": "'fitness'",
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == expected_code"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_expired_vehicle_document_produces_manual_review::parameter-1",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 292,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_expired_vehicle_document_produces_manual_review",
+      "parameter_names": "document_type",
+      "parameter_expression": "'insurance'",
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == expected_code"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_unapproved_driver_produces_manual_review",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 324,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_unapproved_driver_produces_manual_review",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'DRIVER_NOT_APPROVED'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_unavailable_vehicle_and_driver_produce_manual_review",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 350,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_unavailable_vehicle_and_driver_produce_manual_review",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "first.outcome == 'created'",
+        "busy_outcome_vehicle.outcome == 'manual_review'",
+        "busy_outcome_vehicle.reason_code == 'VEHICLE_UNAVAILABLE'",
+        "busy_outcome_driver.outcome == 'manual_review'",
+        "busy_outcome_driver.reason_code == 'DRIVER_UNAVAILABLE'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_hazardous_and_ambiguous_cargo_fail_closed_to_manual_review::parameter-0",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 439,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_hazardous_and_ambiguous_cargo_fail_closed_to_manual_review",
+      "parameter_names": "special_handling,expected_code",
+      "parameter_expression": "('hazardous', 'HAZARDOUS_CARGO_NO_WORKFLOW')",
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == expected_code"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_hazardous_and_ambiguous_cargo_fail_closed_to_manual_review::parameter-1",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 439,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_hazardous_and_ambiguous_cargo_fail_closed_to_manual_review",
+      "parameter_names": "special_handling,expected_code",
+      "parameter_expression": "('unclassified-mystery', 'AMBIGUOUS_SPECIAL_HANDLING')",
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == expected_code"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_order_not_dispatch_eligible_produces_manual_review",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 455,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_order_not_dispatch_eligible_produces_manual_review",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'ORDER_NOT_DISPATCH_ELIGIBLE'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_cross_tenant_order_reference_is_rejected",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 465,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_cross_tenant_order_reference_is_rejected",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "raises: pytest.raises(ConflictError)"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_only_admin_may_create_dispatch_offers",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 473,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_only_admin_may_create_dispatch_offers",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "raises: pytest.raises(ForbiddenError)"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_matching_body_type_permits_eligibility",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 509,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_matching_body_type_permits_eligibility",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'created'",
+        "outcome.reason_code is None"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_mismatching_body_type_rejects_eligibility",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 520,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_mismatching_body_type_rejects_eligibility",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'VEHICLE_BODY_TYPE_MISMATCH'",
+        "offers['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_missing_requirement_produces_manual_fallback",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 537,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_missing_requirement_produces_manual_fallback",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'DISPATCH_BODY_TYPE_REQUIREMENT_MISSING'",
+        "offers['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_unknown_requirement_produces_manual_fallback",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 551,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_unknown_requirement_produces_manual_fallback",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'DISPATCH_BODY_TYPE_UNKNOWN'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_cross_tenant_requirement_is_invisible",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 563,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_cross_tenant_requirement_is_invisible",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'DISPATCH_BODY_TYPE_REQUIREMENT_MISSING'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_requirement_is_immutable_after_offer_and_assignment",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 593,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_requirement_is_immutable_after_offer_and_assignment",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "offer.outcome == 'created'",
+        "assignment.order_status == 'assigned'",
+        "stored['required_body_type'] == 'flatbed'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_acceptance_cannot_override_stored_requirement",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 630,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_acceptance_cannot_override_stored_requirement",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "rejected.outcome == 'manual_review'",
+        "rejected.reason_code == 'VEHICLE_BODY_TYPE_MISMATCH'",
+        "again.outcome == 'manual_review'",
+        "again.reason_code == 'VEHICLE_BODY_TYPE_MISMATCH'",
+        "stored['required_body_type'] == 'closed'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_capacity_and_body_compatibility_both_required",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 658,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_capacity_and_body_compatibility_both_required",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'VEHICLE_CAPACITY_INSUFFICIENT'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_failed_compatibility_creates_no_assignment_or_transition",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 700,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_failed_compatibility_creates_no_assignment_or_transition",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome == 'manual_review'",
+        "outcome.reason_code == 'VEHICLE_BODY_TYPE_MISMATCH'",
+        "order['status'] == 'confirmed'",
+        "assignments['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_unauthorized_actor_cannot_accept_offer",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 725,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_unauthorized_actor_cannot_accept_offer",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "raises: pytest.raises(ForbiddenError)"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_expired_offer_cannot_be_accepted",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 735,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_expired_offer_cannot_be_accepted",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "expired['status'] == 'expired'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_declined_offer_cannot_be_accepted",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 754,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_declined_offer_cannot_be_accepted",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "status == 'declined'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_cancelled_offer_cannot_be_accepted",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 775,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_cancelled_offer_cannot_be_accepted",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "status == 'cancelled'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_only_admin_may_cancel_dispatch_offers",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 796,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_only_admin_may_cancel_dispatch_offers",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "raises: pytest.raises(ForbiddenError)"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_concurrent_competing_acceptance_yields_exactly_one_assignment",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 817,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_concurrent_competing_acceptance_yields_exactly_one_assignment",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "offer_a.outcome == 'created'",
+        "offer_b.outcome == 'created'",
+        "len(successes) == 1",
+        "len(failures) == 1",
+        "active_assignments['n'] == 1",
+        "accepted_offers['n'] == 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false,
+      "related_partial_evidence": [
+        "backend/evidence/concurrency-result.json"
+      ]
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_rollback_on_injected_order_conflict_leaves_no_partial_assignment",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 874,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_rollback_on_injected_order_conflict_leaves_no_partial_assignment",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "offer.outcome == 'created'",
+        "offer_after['status'] == 'pending'",
+        "assignment_count['n'] == 0",
+        "order_scoped_events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_dispatch_flow_makes_no_raw_socket_connections",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 927,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_dispatch_flow_makes_no_raw_socket_connections",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outcome.outcome in ('created', 'duplicate')"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_dispatch_integration.py::test_dispatch_conflict_errors_contain_no_secrets",
+      "group": "dispatch",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_dispatch_integration.py",
+      "source_line": 951,
+      "source_blob_sha": "34c4631a5b29ffff87cad9288db364c9c84c6b3f",
+      "source_test_selector": "api/tests_m4/test_dispatch_integration.py::test_dispatch_conflict_errors_contain_no_secrets",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "messages",
+        "merged.database_url not in combined",
+        "settings.auth_jwt_secret not in combined",
+        "settings.razorpay_webhook_secret not in combined"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "eligibility and immutable requirement checks",
+        "offer creation, expiry, authenticated acceptance and cancellation",
+        "atomic order/vehicle/driver exclusivity and rollback"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_captured_webhook_preserves_request_without_odoo_task",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 197,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_captured_webhook_preserves_request_without_odoo_task",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "response.status_code == 200",
+        "body['outcome'] == 'projected'",
+        "body['duplicate'] is False",
+        "receipt == {'signature_verified': True, 'processing_status': 'succeeded'}",
+        "counts['events'] == 1",
+        "counts['projections'] == 1",
+        "counts['requests'] == 1",
+        "counts['odoo_tasks'] == 0",
+        "request['status'] == 'requested'",
+        "_query('SELECT count(*) AS n FROM zippy.external_references WHERE local_entity_id = %s', (request['financial_request_id'],))[0]['n'] == 0",
+        "duplicate.json()['duplicate'] is True",
+        "_counts(ORDER_A) == counts",
+        "projection == {'operational_status': 'evidence_verified', 'amount': 100.0, 'currency_code': 'INR'}",
+        "outbox['n'] >= 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_duplicate_webhook_is_stable_noop",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 251,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_duplicate_webhook_is_stable_noop",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "first.json()['outcome'] == 'projected'",
+        "first.json()['duplicate'] is False",
+        "second.status_code == 200",
+        "second.json()['duplicate'] is True",
+        "second.json()['receipt_id'] == first.json()['receipt_id']",
+        "projection['n'] == 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_invalid_signature_rejected_without_evidence",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 271,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_invalid_signature_rejected_without_evidence",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "response.status_code == 401",
+        "response.json()['error']['code'] == 'INVALID_SIGNATURE'",
+        "WEBHOOK_SECRET not in response.text",
+        "tampered_signature not in response.text",
+        "receipts['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_missing_secret_signature_and_event_id_fail_closed",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 289,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_missing_secret_signature_and_event_id_fail_closed",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "no_secret.status_code == 503",
+        "no_secret.json()['error']['code'] == 'WEBHOOK_NOT_CONFIGURED'",
+        "unsigned.status_code == 401",
+        "no_id.status_code == 400",
+        "no_id.json()['error']['code'] == 'MALFORMED_EVENT'",
+        "receipts['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_authorized_failed_and_unsupported_mappings",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 313,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_authorized_failed_and_unsupported_mappings",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "authorized.json()['outcome'] == 'projected'",
+        "failed.json()['outcome'] == 'projected'",
+        "unsupported.json()['outcome'] == 'unsupported'",
+        "{'pending', 'failed'} <= statuses",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_missing_payment_mapping_recorded_only_with_exception",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 344,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_missing_payment_mapping_recorded_only_with_exception",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "exception['n'] >= 1",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_notes_only_does_not_link_an_order",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 363,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_notes_only_does_not_link_an_order",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_amount_and_currency_mismatch_do_not_update_trusted_projection",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 381,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_amount_and_currency_mismatch_do_not_update_trusted_projection",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "amount_response.json()['outcome'] == 'recorded_only'",
+        "currency_response.json()['outcome'] == 'recorded_only'",
+        "exception['n'] >= 2",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection::parameter-0",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 413,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection",
+      "parameter_names": "unsafe_amount",
+      "parameter_expression": "True",
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection::parameter-1",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 413,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection",
+      "parameter_names": "unsafe_amount",
+      "parameter_expression": "False",
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection::parameter-2",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 413,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection",
+      "parameter_names": "unsafe_amount",
+      "parameter_expression": "10000.5",
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection::parameter-3",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 413,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection",
+      "parameter_names": "unsafe_amount",
+      "parameter_expression": "'10000'",
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection::parameter-4",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 413,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection",
+      "parameter_names": "unsafe_amount",
+      "parameter_expression": "-1",
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection::parameter-5",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 413,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection",
+      "parameter_names": "unsafe_amount",
+      "parameter_expression": "0",
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection::parameter-6",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 413,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_unsafe_amount_values_do_not_create_trusted_projection",
+      "parameter_names": "unsafe_amount",
+      "parameter_expression": "10 ** 13",
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "events['n'] == 0"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_conflicting_and_cross_tenant_mappings_are_rejected",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 431,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_conflicting_and_cross_tenant_mappings_are_rejected",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "response.json()['outcome'] == 'recorded_only'",
+        "mapping is None"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_refund_event_cannot_create_or_approve_refund",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 484,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_refund_event_cannot_create_or_approve_refund",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "response.status_code == 200",
+        "response.json()['outcome'] == 'recorded_only'",
+        "counts == {'requests': 0, 'decisions': 0, 'executions': 0}",
+        "exception['n'] >= 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_manual_refund_lifecycle_and_reconciliation",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 506,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_manual_refund_lifecycle_and_reconciliation",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "reversed_projection['n'] == 1",
+        "reference['sync_status'] == 'synchronized'",
+        "created.status_code == 200",
+        "created.json()['status'] == 'requested'",
+        "replay.json()['duplicate'] is True",
+        "replay.json()['refund_request_id'] == refund_id",
+        "conflict.status_code == 409",
+        "admin_request.status_code == 200",
+        "self_approval.status_code == 403",
+        "no_decision.status_code == 409",
+        "decision.status_code == 200",
+        "decision.json()['status'] == 'approved'",
+        "execution.status_code == 200",
+        "execution.json()['status'] == 'executed'",
+        "replay_execution.status_code == 200",
+        "replay_execution.json()['refund_execution_id'] == execution_id",
+        "reconciled.json()['outcome'] == 'reconciled'",
+        "replayed_webhook.json()['duplicate'] is True",
+        "replayed_webhook.json()['receipt_id'] == reconciled.json()['receipt_id']"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_refund_amount_mismatch_stays_evidence_only",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 619,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_refund_amount_mismatch_stays_evidence_only",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "mismatched.json()['outcome'] == 'recorded_only'",
+        "exception['n'] >= 1",
+        "reversed_projection['n'] == 0",
+        "created.status_code == 200",
+        "decision.status_code == 200",
+        "execution.status_code == 200"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_pod_gate_blocks_then_permits_settlement_eligibility",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 677,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_pod_gate_blocks_then_permits_settlement_eligibility",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "excinfo.value.sqlstate == '23514'",
+        "blocked.status_code == 200",
+        "blocked.json()['eligible'] is False",
+        "blocked.json()['reason'] == 'pod_not_accepted'",
+        "pod.status_code == 200",
+        "pod.json()['verification_status'] == 'pending'",
+        "duplicate.json()['duplicate'] is True",
+        "denied.status_code == 403",
+        "accepted.status_code == 200",
+        "accepted.json()['verification_status'] == 'accepted'",
+        "accepted.json()['settlement_projection_id'] is not None",
+        "eligible.json()['eligible'] is True",
+        "eligible.json()['reason'] == 'already_evaluated'",
+        "projection['operational_status'] == 'not_requested'",
+        "projection['financial_request_id'] is None",
+        "projection['external_reference_id'] is None"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_authorization_boundaries",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 761,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_authorization_boundaries",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "outsider_pod.status_code == 403",
+        "vendor_refund.status_code == 403",
+        "blocked_actor.status_code == 403"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_existing_odoo_task_retries_and_dead_letters_without_execution",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 798,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_existing_odoo_task_retries_and_dead_letters_without_execution",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "response.json()['outcome'] == 'projected'",
+        "not transport.calls",
+        "worker.run_tasks('m4-odoo-worker', 'odoo_draft_sync', odoo_draft_sync_handler(worker_database, merged)) == 0",
+        "task == {'status': 'dead_lettered', 'attempt_count': 3}",
+        "dead['n'] >= 1",
+        "failed_request['status'] == 'requested'",
+        "refs['n'] == 0",
+        "worker.run_tasks('m4-odoo-worker', 'odoo_draft_sync', odoo_draft_sync_handler(worker_database, merged, transport)) == 1",
+        "task['attempt_count'] == attempt",
+        "task['status'] != 'succeeded'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_finance_integration.py::test_stale_receipt_sweep_and_pod_gate_task",
+      "group": "finance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_finance_integration.py",
+      "source_line": 880,
+      "source_blob_sha": "053ee6b3cea179214579505dd33ccb979cbe2a5a",
+      "source_test_selector": "api/tests_m4/test_finance_integration.py::test_stale_receipt_sweep_and_pod_gate_task",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "enqueued >= 1",
+        "first >= 1",
+        "second == 0",
+        "projection['n'] == 1",
+        "handled == 1",
+        "task['status'] == 'succeeded'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "provider signature verification before financial evidence",
+        "tenant/order/currency/exact-amount binding and replay handling",
+        "human-approved refunds, verified POD and Odoo reconciliation"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m4/test_payment_intent_privileges.py::test_restricted_login_privilege_catalog_for_payment_intents",
+      "group": "payment_privileges",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_payment_intent_privileges.py",
+      "source_line": 33,
+      "source_blob_sha": "e620d45de7b80b2c9934b47f889414175ec900e4",
+      "source_test_selector": "api/tests_m4/test_payment_intent_privileges.py::test_restricted_login_privilege_catalog_for_payment_intents",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "row == {'can_select': True, 'can_insert': True, 'can_update': False, 'can_delete': False, 'can_truncate': False}"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "protected financial-intent creation/read permissions",
+        "denied update/delete/destructive administration through restricted runtime authority",
+        "reviewed managed-database equivalent to SQL owner/login separation"
+      ],
+      "equivalence_review_required": true
+    },
+    {
+      "case_id": "api/tests_m4/test_payment_intent_privileges.py::test_restricted_login_cannot_update_payment_intents",
+      "group": "payment_privileges",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_payment_intent_privileges.py",
+      "source_line": 54,
+      "source_blob_sha": "e620d45de7b80b2c9934b47f889414175ec900e4",
+      "source_test_selector": "api/tests_m4/test_payment_intent_privileges.py::test_restricted_login_cannot_update_payment_intents",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "excinfo.value.sqlstate == '42501'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "protected financial-intent creation/read permissions",
+        "denied update/delete/destructive administration through restricted runtime authority",
+        "reviewed managed-database equivalent to SQL owner/login separation"
+      ],
+      "equivalence_review_required": true
+    },
+    {
+      "case_id": "api/tests_m4/test_payment_intent_privileges.py::test_restricted_login_cannot_delete_payment_intents",
+      "group": "payment_privileges",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_payment_intent_privileges.py",
+      "source_line": 64,
+      "source_blob_sha": "e620d45de7b80b2c9934b47f889414175ec900e4",
+      "source_test_selector": "api/tests_m4/test_payment_intent_privileges.py::test_restricted_login_cannot_delete_payment_intents",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "excinfo.value.sqlstate == '42501'"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "protected financial-intent creation/read permissions",
+        "denied update/delete/destructive administration through restricted runtime authority",
+        "reviewed managed-database equivalent to SQL owner/login separation"
+      ],
+      "equivalence_review_required": true
+    },
+    {
+      "case_id": "api/tests_m4/test_payment_intent_privileges.py::test_migration_owner_role_is_not_the_runtime_login",
+      "group": "payment_privileges",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m4/test_payment_intent_privileges.py",
+      "source_line": 73,
+      "source_blob_sha": "e620d45de7b80b2c9934b47f889414175ec900e4",
+      "source_test_selector": "api/tests_m4/test_payment_intent_privileges.py::test_migration_owner_role_is_not_the_runtime_login",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "row is not None",
+        "row['tableowner'] == 'zippy_migrator'",
+        "row['owner_is_not_session_user'] is True"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "protected financial-intent creation/read permissions",
+        "denied update/delete/destructive administration through restricted runtime authority",
+        "reviewed managed-database equivalent to SQL owner/login separation"
+      ],
+      "equivalence_review_required": true
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_create_proposal_flow",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 86,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_create_proposal_flow",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "result.allowed and result.reason_code == 'PROPOSAL_CREATED'",
+        "result.governance_id is not None"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_synthetic_execution_and_replay",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 92,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_synthetic_execution_and_replay",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "service.consume_grant(subject, envelope.to_string(), grant.governance_id).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_concurrent_consumption_exactly_one",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 101,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_concurrent_consumption_exactly_one",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "results.count(True) == 1 and results.count(False) == 1"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_database_grant_binding_denial::parameter-0",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 125,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_database_grant_binding_denial",
+      "parameter_names": "field,value",
+      "parameter_expression": "('agent_id', UUID('11111111-1111-1111-1111-111111111114'))",
+      "required_assertions": [
+        "not repo.consume_grant(**args).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_database_grant_binding_denial::parameter-1",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 125,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_database_grant_binding_denial",
+      "parameter_names": "field,value",
+      "parameter_expression": "('action_key', 'OTHER_ACTION')",
+      "required_assertions": [
+        "not repo.consume_grant(**args).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_database_grant_binding_denial::parameter-2",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 125,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_database_grant_binding_denial",
+      "parameter_names": "field,value",
+      "parameter_expression": "('target_system', 'ODOO')",
+      "required_assertions": [
+        "not repo.consume_grant(**args).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_database_grant_binding_denial::parameter-3",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 125,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_database_grant_binding_denial",
+      "parameter_names": "field,value",
+      "parameter_expression": "('entity_id', 'different')",
+      "required_assertions": [
+        "not repo.consume_grant(**args).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_database_grant_binding_denial::parameter-4",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 125,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_database_grant_binding_denial",
+      "parameter_names": "field,value",
+      "parameter_expression": "('payload_hash', '0' * 64)",
+      "required_assertions": [
+        "not repo.consume_grant(**args).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_database_grant_binding_denial::parameter-5",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 125,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_database_grant_binding_denial",
+      "parameter_names": "field,value",
+      "parameter_expression": "('tenant_id', UUID('22222222-2222-2222-2222-222222222222'))",
+      "required_assertions": [
+        "not repo.consume_grant(**args).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_missing_approval_rejection_lock_invariant_and_revocation",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 135,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_missing_approval_rejection_lock_invariant_and_revocation",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "not repo.issue_grant(TENANT, pid).allowed",
+        "repo.acquire_decision_lock(TENANT, pid, cfg.paperclip_owner_subject, 'synthetic review').allowed",
+        "not repo.issue_grant(TENANT, pid).allowed",
+        "repo.release_decision_lock(TENANT, pid, cfg.paperclip_owner_subject).allowed",
+        "repo.decide(TENANT, pid, cfg.paperclip_owner_subject, True, datetime.now(UTC) + timedelta(minutes=5)).allowed",
+        "not repo.issue_grant(TENANT, pid).allowed",
+        "repo.revoke_grant(TENANT, grant.governance_id, cfg.paperclip_owner_subject, 'synthetic revoke').allowed",
+        "not repo.consume_grant(TENANT, grant.governance_id, AGENT, env.action, env.target_system, env.entity_type, env.entity_id, env.payload_hash).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_loop_budget_heartbeat_and_inactive_policy",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 151,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_loop_budget_heartbeat_and_inactive_policy",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "rows[0].allowed and rows[1].allowed and (not rows[2].allowed)",
+        "not repo.evaluate_loop_guard(TENANT, rows[2].governance_id).allowed",
+        "heartbeat.allowed",
+        "repo.record_token_cost(TENANT, AGENT, heartbeat.governance_id, Decimal(0)).allowed",
+        "not repo.record_token_cost(TENANT, zero, None, Decimal(1)).allowed",
+        "not repo.create_proposal(TENANT, AGENT, UUID('11111111-1111-1111-1111-111111111115'), 'REFUND', 'ZIPPY', 'order', str(uuid4()), {}, str(uuid4()), datetime.now(UTC) + timedelta(minutes=5)).allowed"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    },
+    {
+      "case_id": "api/tests_m5/test_integration.py::test_authenticated_http_lifecycle",
+      "group": "governance",
+      "source_repository": "Gopi-git-bit/New-logistic-",
+      "source_commit": "19f828b6f7be56ae5db7930ce99368bdffa3c471",
+      "source_path": "api/tests_m5/test_integration.py",
+      "source_line": 165,
+      "source_blob_sha": "bfcce419e3ab0024ae2b68ee33cf8d4f95100c9e",
+      "source_test_selector": "api/tests_m5/test_integration.py::test_authenticated_http_lifecycle",
+      "parameter_names": null,
+      "parameter_expression": null,
+      "required_assertions": [
+        "result.status_code == 200",
+        "decision.status_code == 200 and decision.json()['allowed']",
+        "grant.status_code == 200 and grant.json()['allowed']",
+        "consumed.status_code == 200 and consumed.json()['consumed']"
+      ],
+      "xano_enforcement": "Must demonstrate equivalent invariant in Xano-managed database; original PostgreSQL roles/RLS/RPC cannot be assumed portable.",
+      "xano_executable_test": null,
+      "evidence": [],
+      "status": "NOT_VERIFIED",
+      "blocker": "Native Xano equivalent not implemented or not demonstrated; source PostgreSQL test is a reference only.",
+      "required_xano_operations": [
+        "trusted human decision and proposal binding",
+        "single-use grant consumption, revocation and concurrency",
+        "server-managed budget, heartbeat and inactive-policy checks"
+      ],
+      "equivalence_review_required": false
+    }
+  ]
+}

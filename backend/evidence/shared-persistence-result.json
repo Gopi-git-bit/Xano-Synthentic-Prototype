@@ -1,0 +1,53 @@
+{
+  "captured_at": "2026-10-22T04:44:14.431Z",
+  "target": "sn9m-aat6-200c",
+  "transport": "authenticated Metadata API function/run with X-Tenant; not application JWT HTTP acceptance",
+  "events": [
+    {
+      "name": "Slice1/isolation_probe",
+      "elapsed_ms": 1666,
+      "status": "ok",
+      "response": {
+        "database": "sn9m-aat6-200c",
+        "physical_table_count": 51,
+        "advisory_lock_available": true
+      }
+    },
+    {
+      "name": "Slice1/fixture_probe",
+      "elapsed_ms": 390,
+      "status": "ok",
+      "response": {
+        "users": 0,
+        "platforms": 0
+      }
+    },
+    {
+      "name": "Slice1/setup",
+      "elapsed_ms": 1691,
+      "status": "ok",
+      "response": {
+        "seeded": true,
+        "run": "61aa324d"
+      }
+    },
+    {
+      "name": "Slice1/fixture_probe",
+      "elapsed_ms": 308,
+      "status": "ok",
+      "response": {
+        "users": 1,
+        "platforms": 1
+      }
+    },
+    {
+      "name": "Slice1/fixture_probe",
+      "elapsed_ms": 293,
+      "status": "ok",
+      "response": {
+        "users": 1,
+        "platforms": 1
+      }
+    }
+  ]
+}

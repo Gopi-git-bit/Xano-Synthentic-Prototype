@@ -27,3 +27,6 @@ jobs:
           node-version: "22"
       - name: Validate offline contracts and exported schema
         run: node scripts/validate-backend.cjs
+
+      - name: Validate synthetic safeguards and reference-case inventory
+        run: node scripts/validate-xano-safeguards.cjs

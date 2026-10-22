@@ -9,6 +9,12 @@ query "auth/signup" verb=POST {
   }
 
   stack {
+    // Synthetic identities are provisioned through reviewed fixture workflows only.
+    precondition (false) {
+      error_type = "accessdenied"
+      error = "SYNTHETIC_PROVISIONING_REQUIRED"
+    }
+  
     // Check if a user record with that email exists
     db.get user {
       field_name = "email"
