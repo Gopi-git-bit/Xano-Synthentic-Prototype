@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "attempted_at": "2026-10-23T13:49:19.427Z",
+  "recorded_at": "2026-10-23T14:40:51.629376+00:00",
+  "base_commit": "1ca3b4ea6860e4ad310de29fb1f3a9e9704928e8",
+  "status": "BLOCKED_DIRECT_AUTHENTICATION_REQUIRED",
+  "ready": false,
+  "connection": {
+    "account": "custom_ccat_goat-ens",
+    "reported_status": "ACTIVE",
+    "tool_log_id": "log_h98Xu2kF3mX0",
+    "route": "previously_attempted_composio",
+    "preferred_for_next_attempt": "existing_direct_xano_connection"
+  },
+  "authenticated_reads": [
+    {
+      "tool": "CUSTOM_CCAT_LIST_WORKSPACES",
+      "status": "FAILED_AUTHENTICATION",
+      "error": "MCP tool error: Invalid token.",
+      "http_status": null
+    },
+    {
+      "tool": "CUSTOM_CCAT_DOCUMENTATION",
+      "status": "FAILED_AUTHENTICATION",
+      "error": "MCP tool error: Invalid token.",
+      "http_status": null
+    }
+  ],
+  "current_workspace_confirmed": false,
+  "current_isolation_confirmed": false,
+  "checks": [
+    {
+      "command": "node scripts/validate-backend.cjs",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS: 49 shared cases; 49 exported cases; 49 tables; 476 fields.\nScope: offline snapshot checks only; no Xano deployment, HTTP, isolation, or transaction proof.\nPASS: tested export hashes and 16 recorded Xano payment results.\nPASS: 84 coordinate regressions against shared and exported code.\nPASS: five unbound agent exports, supplied package hashes and references, preserved source, 20 readiness mappings. Scope: offline configuration only; 70 acceptance scenarios remain NOT_RUN.\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/validate-xano-safeguards.cjs",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS: offline safeguard checks and complete 72-case reference inventory. Native 72-case acceptance remains NOT_VERIFIED.\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/test-xano-http.cjs",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS: missing credential, safe connection, redaction, admin-token separation, database mismatch, source drift, and unauthenticated denial checks.\n",
+      "stderr": ""
+    },
+    {
+      "command": "python scripts/validate-five-agent-schema.py",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"schema_meta_validation\": \"PASS\", \"schema_cases_passed\": 37, \"binding_preparation_cases_passed\": 13, \"acceptance_cases_executed\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/test-milestone1.cjs",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "\u2714 source predicate: valid customer (6.128793ms)\n\u2714 source predicate: missing account (0.664766ms)\n\u2714 source predicate: duplicate authenticated subject (1.715906ms)\n\u2714 source predicate: unrelated subject (1.212459ms)\n\u2714 source predicate: blocked account (1.236615ms)\n\u2714 source predicate: suspended account (1.324646ms)\n\u2714 source predicate: no memberships (1.431153ms)\n\u2714 source predicate: expiry at now (2.486469ms)\n\u2714 source predicate: future memberships (2.958118ms)\n\u2714 source predicate: cross tenant memberships (2.776088ms)\n\u2714 source predicate: other account memberships (2.213314ms)\n\u2714 source predicate: missing customer profile (2.187476ms)\n\u2714 source predicate: ambiguous customer profiles (3.626251ms)\n\u2714 source predicate: foreign profile (3.427295ms)\n\u2714 source predicate: same tenant other owner profile (3.543347ms)\n\u2714 source predicate: starter admin is not an operational membership (1.938296ms)\n\u2714 source predicate: non-customer membership needs no customer profile (2.665776ms)\n\u2714 source predicate: future membership ignored alongside valid memberships (4.442291ms)\n\u2714 baseline reproduces missing and ambiguous profile acceptance; candidate rejects both (12.992107ms)\n\u2714 complete evidence includes all 15 persisted tables and stable IDs (1.197616ms)\n\u2714 missing success record rejected: audit_events (1.379146ms)\n\u2714 rollback residue rejected: audit_events (0.444169ms)\n\u2714 missing success record rejected: dispatch_offers (0.322749ms)\n\u2714 rollback residue rejected: dispatch_offers (0.265223ms)\n\u2714 missing success record rejected: dispatch_requirements (0.403288ms)\n\u2714 rollback residue rejected: dispatch_requirements (0.131836ms)\n\u2714 missing success record rejected: durable_tasks (0.275609ms)\n\u2714 rollback residue rejected: durable_tasks (0.11452ms)\n\u2714 missing success record rejected: event_outbox (0.229661ms)\n\u2714 rollback residue rejected: event_outbox (0.130824ms)\n\u2714 missing success record rejected: idempotency_records (0.160438ms)\n\u2714 rollback residue rejected: idempotency_records (0.150112ms)\n\u2714 missing success record rejected: operational_events (0.355747ms)\n\u2714 rollback residue rejected: operational_events (0.358211ms)\n\u2714 missing success record rejected: order_state_transitions (0.514533ms)\n\u2714 rollback residue rejected: order_state_transitions (0.121991ms)\n\u2714 missing success record rejected: order_stops (0.151695ms)\n\u2714 rollback residue rejected: order_stops (0.160668ms)\n\u2714 missing success record rejected: orders (0.20195ms)\n\u2714 rollback residue rejected: orders (0.104535ms)\n\u2714 missing success record rejected: quotes (0.139367ms)\n\u2714 rollback residue rejected: quotes (0.090895ms)\n\u2714 missing success record rejected: service_commitments (0.223842ms)\n\u2714 rollback residue rejected: service_commitments (0.102322ms)\n\u2714 missing success record rejected: transaction_participants (0.285664ms)\n\u2714 rollback residue rejected: transaction_participants (0.131244ms)\n\u2714 missing success record rejected: trip_assignments (0.147209ms)\n\u2714 rollback residue rejected: trip_assignments (0.089984ms)\n\u2714 missing success record rejected: trips (0.124115ms)\n\u2714 rollback residue rejected: trips (0.0811ms)\n\u2714 complete flag cannot replace full table inventory (3.111347ms)\n\u2714 missing count key rejected rather than treated as zero (0.308878ms)\n\u2714 conflict must be 409 and preserve every table (0.133758ms)\n\u2714 conflict with 202 rejected (0.165826ms)\n\u2714 stable replay accepted (0.154088ms)\n\u2714 changed replay order_id rejected (0.270471ms)\n\u2714 changed replay trip_id rejected (0.173347ms)\n\u2714 changed replay workflow_id rejected (0.131575ms)\n\u2714 changed replay correlation_id rejected (0.12106ms)\n\u2714 overlapping same_key evidence accepted (0.722702ms)\n\u2714 overlapping same_vehicle evidence accepted (0.272864ms)\n\u2714 overlapping same_driver evidence accepted (0.208209ms)\n\u2714 driver-only race cannot reuse the same vehicle (0.241148ms)\n\u2714 driver-only race cannot use different drivers (0.272965ms)\n\u2714 two active driver assignments rejected (0.18892ms)\n\u2714 sequential requests cannot pass as contention (0.168089ms)\n\u2714 single database session rejected (0.196351ms)\n\u2714 losing request cannot leave a quote (0.32397ms)\n\u2714 same-key race must return stable inspected workflow IDs (0.349047ms)\n\u2714 fault evidence database after_order (0.290291ms)\n\u2714 fault evidence database after_assignment (0.179917ms)\n\u2714 fault evidence application after_order (0.264463ms)\n\u2714 fault evidence application after_assignment (0.170473ms)\n\u2714 early access denial cannot count as application rollback (0.184935ms)\n\u2714 wrong application fault location rejected (0.2492ms)\n\u2714 unverified native source cannot claim rollback proof (0.149853ms)\n\u2714 offline fixtures are never promoted to hosted evidence (0.153688ms)\n\u2714 unexecuted case remains NOT_RUN (0.08773ms)\n\u2714 candidate snapshots and rollback workflows enumerate every write table (0.721841ms)\n\u2714 strict candidate fixes the old helper omission without changing baseline export (0.317471ms)\n\u2714 source command guard: dual-role trusted identity (1.084629ms)\n\u2714 source command guard: customer alone cannot coordinate (0.798114ms)\n\u2714 source command guard: admin alone cannot coordinate (0.818253ms)\n\u2714 source command guard: vendor alone cannot coordinate (0.718466ms)\n\u2714 source command guard: driver alone cannot coordinate (0.771475ms)\n\u2714 source command guard: body tenant claim cannot override trusted identity (0.596986ms)\n\u2714 runner starts driver-only commands concurrently and retains loser inspection (11.398623ms)\n\u2714 runner refuses writes before 53 physical tables (0.417689ms)\n\u2714 runner refuses writes before unrestricted credential (0.267837ms)\n\u2714 runner refuses writes before unverified physical indexes (0.212586ms)\n\u2714 runner refuses writes before unverified table mapping (0.261038ms)\n\u2714 runner refuses writes before unverified isolation (0.30961ms)\n\u2714 runner refuses writes before wrong database (0.259665ms)\n\u2714 runner refuses writes before missing source hashes (0.252985ms)\n\u2714 runner refuses writes before unauthenticated access (0.340185ms)\n\u2714 occupied driver stops runner before any command (0.534663ms)\n\u2714 nested function/run errors cannot be parsed as empty success (0.177383ms)\n\u2714 runner caps same_key cohort at four concurrent commands (10.162418ms)\n\u2714 runner caps same_vehicle cohort at four concurrent commands (10.974322ms)\n\u2714 caller labels cannot fake independent driver selection (1.025321ms)\n\u2714 candidate hashes and preserved replacement GUIDs match manifest (4.707044ms)\n\u2714 command policy and business logic are identical after removing explicit fault additions (1.335442ms)\n\u2714 an omitted rejection code cannot pass an empty response (0.172456ms)\n\u2714 race requires a concrete shared driver identity (0.249951ms)\n\u2714 same-key race requires recorded hashes (0.27006ms)\n\u2714 fault marker without a native error code is insufficient (0.223661ms)\n\u2139 tests 106\n\u2139 suites 0\n\u2139 pass 106\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 143.09708\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/evaluate-milestone1.cjs",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"scope\":\"Evidence evaluation only; does not authenticate or execute Xano\",\"ready\":false,\"totals\":{\"NOT_RUN\":31}}\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/evaluate-historical-slice1.cjs",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"scope\":\"Retained historical evidence evaluation; no fresh Xano execution\",\"recorded_cases_reevaluated\":4,\"bounded_claims\":\"PASS_REEVALUATED\",\"M1_native_acceptance\":\"INSUFFICIENT_EVIDENCE\",\"ready\":false}\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/staging-gate.cjs",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "BLOCKED: executable staging suite and required integrity evidence are incomplete.\n"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "preservation": {
+    "base_files_compared": 227,
+    "changed_before_work": [],
+    "backend_export_documents": 109,
+    "business_agent_drafts": 5,
+    "agent_operational_cases_unchanged_unrun": 70,
+    "unchanged_original_files": 224,
+    "changed_original_files": [
+      "backend/evidence/backend-audit-2026-10-23.json",
+      "backend/evidence/staging-readiness.json",
+      "docs/STAGING_STATUS.md"
+    ],
+    "added_files": [
+      "backend/evidence/milestone1-hosted-attempt-2026-10-23.json"
+    ],
+    "backend_export_documents_unchanged": 109,
+    "frontend_files_in_base": 0,
+    "policy_conflicts_preserved": true
+  },
+  "hosted_cases": {
+    "total": 31,
+    "executed": 0,
+    "status": "ALL_NOT_RUN"
+  },
+  "native_syntax_import": {
+    "status": "NOT_RUN",
+    "reason": "Direct MCP initialization and tool discovery succeed, but listWorkspaces and documentation both return Unauthorized - Authentication Required (MCP isError true, HTTP 200). No current workspace/isolation or native documentation verification."
+  },
+  "criteria": [
+    {
+      "id": "M1-AC-01",
+      "status": "BLOCKED",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-02",
+      "status": "BLOCKED",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-03",
+      "status": "BLOCKED",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-04",
+      "status": "NOT_RUN",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-05",
+      "status": "NOT_RUN",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-06",
+      "status": "NOT_RUN",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-07",
+      "status": "NOT_RUN",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-08",
+      "status": "NOT_RUN",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-09",
+      "status": "PARTIAL_SOURCE_ONLY",
+      "native_pass": false
+    },
+    {
+      "id": "M1-AC-10",
+      "status": "PARTIAL_SOURCE_ONLY",
+      "native_pass": false
+    }
+  ],
+  "blocked_steps": [
+    "Confirm workspace 1 identity and separate synthetic database.",
+    "Reconcile last retained 53 physical tables against 51 declarations.",
+    "Verify expiring restricted access and physical index enforcement.",
+    "Read supported native documentation, validate/import candidates and read back sources.",
+    "Wire the verified native adapter and execute 31 reviewed hosted cases."
+  ],
+  "required_prerequisite": {
+    "action": "Complete the Xano CLI login in the environment that opened the localhost callback link, then resume this task in that authenticated Codex environment or expose its existing authenticated direct Xano MCP connection to this session. The endpoint URL alone carries no authentication.",
+    "metadata_mcp_target": "https://xynd-fnea-khtp.n7e.xano.io/x2/mcp/meta/mcp/stream",
+    "composio_reconnection_required": false,
+    "credential_values_requested_in_chat": false,
+    "connection_changes_by_codex": 0,
+    "then": "Perform successful authenticated workspace listing and native documentation reads; verify workspace 1, source v1/live distinction and separate sandbox sn9m-aat6-200c, then establish AC-01\u201303 before import or hosted execution."
+  },
+  "safety": {
+    "xano_writes": 0,
+    "imports": 0,
+    "payments": 0,
+    "agent_runs": 0,
+    "publication": 0,
+    "migrations": 0,
+    "merges": 0,
+    "deployments": 0
+  },
+  "direct_connection_discovery": {
+    "user_direction": "Use the existing direct Codex-to-Xano connection; Composio reconnection is not required.",
+    "status": "REACHABLE_UNAUTHENTICATED",
+    "cli_check": {
+      "command": "codex mcp list --json",
+      "exit_code": 0,
+      "stdout": "[]\n",
+      "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Read-only file system (os error 30)\n"
+    },
+    "cloud_codex_config": {
+      "path": "/home/agent/.codex/config.toml",
+      "configured_mcp_servers": [],
+      "credential_values_read_or_recorded": false
+    },
+    "xano_cli_installed": false,
+    "desktop_device": {
+      "name": "DESKTOP-RRI5NH9",
+      "id": "2d4017e4-b823-4af0-a890-4f6cc6c79f44",
+      "status": "OFFLINE",
+      "last_seen_as_reported": "52h ago",
+      "app_version": "0.3.0",
+      "providers_checked": [
+        "remote_desktop_commander_list_devices",
+        "wonder_why_list_devices"
+      ]
+    },
+    "scope": "These observations concern this cloud session and its linked device; they do not disprove an existing direct connection in another Codex environment.",
+    "direct_authenticated_reads_executed": 0,
+    "exposed_to_assistant_catalog": 0,
+    "native_tool_discovery": {
+      "http_status": 200,
+      "tools_count": 243,
+      "authentication_proven": false
+    },
+    "initialize": {
+      "http_status": 200,
+      "server_name": "Xano Metadata API",
+      "server_version": "1.0.0",
+      "protocol_version": "2025-03-26",
+      "authorization_header_supplied": false,
+      "authentication_proven": false
+    },
+    "direct_reads": [
+      {
+        "tool": "listWorkspaces",
+        "arguments": {},
+        "authorization_header_supplied": false,
+        "response": {
+          "http_status": 200,
+          "events": [
+            {
+              "jsonrpc": "2.0",
+              "id": 1,
+              "result": {
+                "isError": true,
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Unauthorized - Authentication Required"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "tool": "documentation",
+        "arguments": {
+          "type": "start"
+        },
+        "authorization_header_supplied": false,
+        "response": {
+          "http_status": 200,
+          "events": [
+            {
+              "jsonrpc": "2.0",
+              "id": 1,
+              "result": {
+                "isError": true,
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Unauthorized - Authentication Required"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "direct_unauthenticated_tool_reads_attempted": 2,
+    "transport": {
+      "first_default_sandbox_attempt": "URLError: <urlopen error [Errno 1] Operation not permitted>",
+      "network_enabled_attempt": "HTTP 200; MCP tool-level authentication denied",
+      "sandbox_network_permission_requested": true
+    },
+    "cli_login_link": {
+      "provided_by_user": true,
+      "destination": "cli",
+      "callback_origin": "http://127.0.0.1:57514",
+      "scope": "Callback belongs to the machine running that login process, not automatically this cloud session.",
+      "opened_by_codex": false,
+      "login_completion_verified": false
+    }
+  },
+  "checks_run_at": "2026-10-23T13:59:26.441636+00:00"
+}

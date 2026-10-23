@@ -1,4 +1,29 @@
-> Current continuation: from `6bcb1391e3a275f6063e72fcce038fe50aee3509`. **M1 offline preparation passes; hosted acceptance remains BLOCKED.** Fresh workspace-list and documentation reads still return **Invalid token**. No Xano import or execution occurred.
+> Latest hosted attempt: from `1ca3b4ea6860e4ad310de29fb1f3a9e9704928e8`. **BLOCKED: direct Xano authentication required.** Direct MCP initialization/tool discovery succeed, but workspace and documentation reads return **Unauthorized - Authentication Required**. Prior Composio reads returned **Invalid token**. Dependent isolation, inventory/index inspection, native import and hosted execution were stopped.
+
+## Latest hosted attempt
+
+The local checkout was clean at `1ca3b4e`; the remote review branch matched. All 227 tracked file hashes matched that revision before this attempt. No repository instruction or frontend files were added by unrelated work.
+
+The existing default Composio connection `custom_ccat_goat-ens` is reported ACTIVE, but both `CUSTOM_CCAT_LIST_WORKSPACES` and `CUSTOM_CCAT_DOCUMENTATION` with `type=start` returned `MCP tool error: Invalid token.` Tool log: `log_h98Xu2kF3mX0`. This is a failed authenticated read, not a successful workspace/permission check; no HTTP status was supplied by the tool. Current workspace identity, isolation, physical tables/indexes and restricted access remain unverified.
+
+Following the user's direct-connection instruction, called the supplied metadata MCP endpoint without Composio. After enabling sandbox network access, `initialize` identified **Xano Metadata API 1.0.0** and `tools/list` exposed 243 schemas (HTTP 200). Both `listWorkspaces` and `documentation` (`type=start`) returned HTTP 200 with **`isError: true` / `Unauthorized - Authentication Required`**. Initialization and public schema discovery are reachability evidence only. No authenticated direct read succeeded. The first default-sandbox request was denied locally with `Operation not permitted`; that was not a Xano response.
+
+Independent verification completed: all 106 M1 offline checks and existing validators pass; Python fixtures pass 37 + 13; four retained bounded claims re-evaluate successfully. The staging gate exits 1 as expected. Exact stdout, exit codes, failed reads and preservation counts are in [hosted-attempt evidence](../backend/evidence/milestone1-hosted-attempt-2026-10-23.json).
+
+| Outcome | Status |
+| --- | --- |
+| Workspace listing / documentation reads | Direct: 2 MCP authentication denials, HTTP 200 / isError true. Prior Composio: 2 Invalid token errors |
+| AC-01–03: identity/isolation, 53-vs-51 reconciliation, restricted access/indexes | BLOCKED |
+| AC-04–08 / 31 reviewed hosted slice cases | NOT_RUN; dependent execution stopped |
+| AC-09–10 | PARTIAL_SOURCE_ONLY; no fresh native pass |
+| 70 operational agent cases | NOT_RUN; unchanged |
+| Native syntax validation/import | NOT_RUN; supported documentation and target verification unavailable |
+
+**Only requested prerequisite:** complete the Xano CLI login in the environment that opened the supplied localhost callback link, then resume this task in that authenticated Codex environment or expose its existing authenticated direct Xano MCP connection to this session. The callback `http://127.0.0.1:57514` returns to that machine's CLI process; login completion is unverified here. `codex mcp list --json` returns `[]` in this cloud environment, and the linked desktop is offline. The endpoint URL alone carries no authentication. No Composio reconnection is required. Keep credentials out of chat and GitHub. Target: `https://xynd-fnea-khtp.n7e.xano.io/x2/mcp/meta/mcp/stream`. Authenticate workspace/documentation reads and establish AC-01–03 before dependent execution.
+
+The backend export, five agent drafts, historical evidence and unresolved policies remain preserved. No hosted write, payment, agent run, publication, migration, merge or deployment occurred.
+
+## Previous offline continuation
 
 ## M1 executable work and current acceptance
 
@@ -27,7 +52,7 @@ Exact local outcomes are retained in [M1 offline evidence](../backend/evidence/m
 | M1-AC-09: all scoped controls accounted for | PARTIAL, source only | All 72 explicitly deferred in manifest; native enforcement remains unverified. All 194 controls stay blocked. |
 | M1-AC-10: preservation and verification | PARTIAL, source only | Repository preservation/offline checks pass; fresh native before/after hashes and hosted results unavailable. |
 
-**Next blocker:** refresh the permitted Xano Metadata API development credential through Xano's supported access/token administration, then update/reconnect the existing Composio `custom_ccat` connection `custom_ccat_goat-ens` in secure connection settings. It targets `https://xynd-fnea-khtp.n7e.xano.io/x2/mcp/meta/mcp/stream`. Keep credentials out of chat, files and PR text. The connection tool has no existing-account credential-edit operation; no credential was extracted or deleted. Resume with an authenticated workspace listing, confirm workspace 1 / Zippy Synthetic Prototype / source v1 and separate sandbox `sn9m-aat6-200c`, then re-read code, reconcile inventory and verify restricted access/indexes before native execution.
+**Historical blocker at the previous continuation (superseded by the direct-connection prerequisite above):** refresh the permitted Xano Metadata API development credential through Xano's supported access/token administration, then update/reconnect the existing Composio `custom_ccat` connection `custom_ccat_goat-ens` in secure connection settings. It targets `https://xynd-fnea-khtp.n7e.xano.io/x2/mcp/meta/mcp/stream`. Keep credentials out of chat, files and PR text. The connection tool has no existing-account credential-edit operation; no credential was extracted or deleted. Resume with an authenticated workspace listing, confirm workspace 1 / Zippy Synthetic Prototype / source v1 and separate sandbox `sn9m-aat6-200c`, then re-read code, reconcile inventory and verify restricted access/indexes before native execution.
 
 All 70 operational agent cases remain unrun. The separate 31 M1 hosted cases also remain unrun. No merge, publication, migration, deployment, provider/payment call or model/agent execution occurred.
 
@@ -56,7 +81,7 @@ Reuse `Slice1/create_and_assign`: trusted synthetic identity -> create -> eligib
 | Task | Owner | Dependencies | Status / exact deliverable |
 | --- | --- | --- | --- |
 | CX-01 | Codex | None | Complete: pinned audit, source hash verification, offline execution, machine report and tracker update. |
-| XN-01 | Xano-native / account owner | None | BLOCKED: refresh existing secure credentials; successfully list workspaces and verify workspace 1, source v1 and separate sandbox identity before any write. |
+| XN-01 | Xano-native / account owner | None | BLOCKED: complete the CLI login in its originating environment and expose authenticated direct Xano access here or resume there; successfully list workspaces and verify workspace 1, source v1/live distinction and separate sandbox identity before any write. |
 | XN-02 | Xano-native / support | XN-01 | BLOCKED: map 51 declarations to physical tables and resolve the two diagnostics through supported administration, preserving definitions/dependencies/evidence. No raw DROP/reset or cleanup by this audit. |
 | XN-03 | Xano-native administrator | XN-01 | BLOCKED: supported expiring development scope and durable isolated shared execution target; retain safe sandbox-allow/live-denial proof. |
 | CX-02 | Codex | XN-01 | Compare fresh code-only export with all 109 pinned documents; report drift and retain before hashes. |

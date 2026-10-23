@@ -8736,7 +8736,7 @@
           "PRD-10",
           "PRD-20"
         ],
-        "policy_decision_needed": "Resolve direct CREATED→CONFIRMED SOP wording versus payment-evidenced canonical flow.",
+        "policy_decision_needed": "Resolve direct CREATED\u2192CONFIRMED SOP wording versus payment-evidenced canonical flow.",
         "definition_source": "backend/agent-package/Zippy_Acceptance_Tests.json"
       },
       {
@@ -9211,7 +9211,7 @@
           "PRD-11",
           "PRD-20"
         ],
-        "policy_decision_needed": "Refund formula, approval tiers, partial payout and who bears loss; ₹5,000 threshold not adopted by this audit.",
+        "policy_decision_needed": "Refund formula, approval tiers, partial payout and who bears loss; \u20b95,000 threshold not adopted by this audit.",
         "definition_source": "backend/agent-package/Zippy_Acceptance_Tests.json"
       },
       {
@@ -10448,7 +10448,7 @@
   "recommended_next_milestone": {
     "id": "M1",
     "name": "Complete the preserved internal synthetic booking-to-assignment proof",
-    "status": "OFFLINE_PREPARED_HOSTED_ACCEPTANCE_BLOCKED",
+    "status": "BLOCKED_DIRECT_AUTHENTICATION_REQUIRED",
     "scope": "Reuse Slice1/create_and_assign and its existing dual-role/two-tenant synthetic fixture, test pricing and fixed four-state progression. Create -> trusted eligibility -> assign -> audit/task/outbox; no providers or models.",
     "write_tables": [
       "audit_events",
@@ -10481,7 +10481,7 @@
           "id": "M1-AC-01",
           "status": "BLOCKED",
           "fresh_native_pass": false,
-          "explanation": "Authenticated workspace listing and documentation both return Invalid token; no fresh target/source/physical isolation confirmation.",
+          "explanation": "Direct Xano MCP initialization/tools-list succeed (HTTP 200), but listWorkspaces and documentation each return MCP isError true: Unauthorized - Authentication Required. No authenticated Xano profile/server is configured here; the CLI login callback belongs to its originating machine. Prior Composio reads returned Invalid token. Current workspace/source/isolation unverified.",
           "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
         }
       },
@@ -10639,9 +10639,9 @@
       {
         "id": "XN-01",
         "owner": "Xano-native / account owner",
-        "status": "BLOCKED_AUTHENTICATION",
+        "status": "BLOCKED_DIRECT_AUTHENTICATION_REQUIRED",
         "depends_on": [],
-        "task": "Refresh the existing secure Composio credentials; authenticated workspace listing must confirm workspace 1 is Zippy Synthetic Prototype on the expected origin. Read branch/sandbox identity and code-only exports before any mutation."
+        "task": "Complete the Xano CLI login in the environment that opened the localhost callback link, then resume this task in that authenticated Codex environment or expose its existing authenticated direct Xano MCP connection to this session. The endpoint URL alone carries no authentication. Then authenticate workspace/documentation reads and establish AC-01\u201303 before any write. No Composio reconnection is required."
       },
       {
         "id": "XN-02",
@@ -10954,5 +10954,427 @@
       "new_hosted_cases_unrun": 31,
       "scoped_controls_native_unverified": 72
     }
+  },
+  "hosted_execution_attempts": [
+    {
+      "base_commit": "1ca3b4ea6860e4ad310de29fb1f3a9e9704928e8",
+      "attempted_at": "2026-10-23T13:49:19.427Z",
+      "status": "BLOCKED_DIRECT_AUTHENTICATION_REQUIRED",
+      "authenticated_reads": [
+        {
+          "tool": "CUSTOM_CCAT_LIST_WORKSPACES",
+          "status": "FAILED_AUTHENTICATION",
+          "error": "MCP tool error: Invalid token.",
+          "http_status": null
+        },
+        {
+          "tool": "CUSTOM_CCAT_DOCUMENTATION",
+          "status": "FAILED_AUTHENTICATION",
+          "error": "MCP tool error: Invalid token.",
+          "http_status": null
+        }
+      ],
+      "direct_connection_discovery": {
+        "user_direction": "Use the existing direct Codex-to-Xano connection; Composio reconnection is not required.",
+        "status": "REACHABLE_UNAUTHENTICATED",
+        "cli_check": {
+          "command": "codex mcp list --json",
+          "exit_code": 0,
+          "stdout": "[]\n",
+          "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Read-only file system (os error 30)\n"
+        },
+        "cloud_codex_config": {
+          "path": "/home/agent/.codex/config.toml",
+          "configured_mcp_servers": [],
+          "credential_values_read_or_recorded": false
+        },
+        "xano_cli_installed": false,
+        "desktop_device": {
+          "name": "DESKTOP-RRI5NH9",
+          "id": "2d4017e4-b823-4af0-a890-4f6cc6c79f44",
+          "status": "OFFLINE",
+          "last_seen_as_reported": "52h ago",
+          "app_version": "0.3.0",
+          "providers_checked": [
+            "remote_desktop_commander_list_devices",
+            "wonder_why_list_devices"
+          ]
+        },
+        "scope": "These observations concern this cloud session and its linked device; they do not disprove an existing direct connection in another Codex environment.",
+        "direct_authenticated_reads_executed": 0,
+        "exposed_to_assistant_catalog": 0,
+        "native_tool_discovery": {
+          "http_status": 200,
+          "tools_count": 243,
+          "authentication_proven": false
+        },
+        "initialize": {
+          "http_status": 200,
+          "server_name": "Xano Metadata API",
+          "server_version": "1.0.0",
+          "protocol_version": "2025-03-26",
+          "authorization_header_supplied": false,
+          "authentication_proven": false
+        },
+        "direct_reads": [
+          {
+            "tool": "listWorkspaces",
+            "arguments": {},
+            "authorization_header_supplied": false,
+            "response": {
+              "http_status": 200,
+              "events": [
+                {
+                  "jsonrpc": "2.0",
+                  "id": 1,
+                  "result": {
+                    "isError": true,
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Unauthorized - Authentication Required"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tool": "documentation",
+            "arguments": {
+              "type": "start"
+            },
+            "authorization_header_supplied": false,
+            "response": {
+              "http_status": 200,
+              "events": [
+                {
+                  "jsonrpc": "2.0",
+                  "id": 1,
+                  "result": {
+                    "isError": true,
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Unauthorized - Authentication Required"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "direct_unauthenticated_tool_reads_attempted": 2,
+        "transport": {
+          "first_default_sandbox_attempt": "URLError: <urlopen error [Errno 1] Operation not permitted>",
+          "network_enabled_attempt": "HTTP 200; MCP tool-level authentication denied",
+          "sandbox_network_permission_requested": true
+        },
+        "cli_login_link": {
+          "provided_by_user": true,
+          "destination": "cli",
+          "callback_origin": "http://127.0.0.1:57514",
+          "scope": "Callback belongs to the machine running that login process, not automatically this cloud session.",
+          "opened_by_codex": false,
+          "login_completion_verified": false
+        }
+      },
+      "criteria": [
+        {
+          "id": "M1-AC-01",
+          "status": "BLOCKED",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-02",
+          "status": "BLOCKED",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-03",
+          "status": "BLOCKED",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-04",
+          "status": "NOT_RUN",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-05",
+          "status": "NOT_RUN",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-06",
+          "status": "NOT_RUN",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-07",
+          "status": "NOT_RUN",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-08",
+          "status": "NOT_RUN",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-09",
+          "status": "PARTIAL_SOURCE_ONLY",
+          "native_pass": false
+        },
+        {
+          "id": "M1-AC-10",
+          "status": "PARTIAL_SOURCE_ONLY",
+          "native_pass": false
+        }
+      ],
+      "required_prerequisite": {
+        "action": "Complete the Xano CLI login in the environment that opened the localhost callback link, then resume this task in that authenticated Codex environment or expose its existing authenticated direct Xano MCP connection to this session. The endpoint URL alone carries no authentication.",
+        "metadata_mcp_target": "https://xynd-fnea-khtp.n7e.xano.io/x2/mcp/meta/mcp/stream",
+        "composio_reconnection_required": false,
+        "credential_values_requested_in_chat": false,
+        "connection_changes_by_codex": 0,
+        "then": "Perform successful authenticated workspace listing and native documentation reads; verify workspace 1, source v1/live distinction and separate sandbox sn9m-aat6-200c, then establish AC-01\u201303 before import or hosted execution."
+      },
+      "preservation": {
+        "base_files_compared": 227,
+        "changed_before_work": [],
+        "backend_export_documents": 109,
+        "business_agent_drafts": 5,
+        "agent_operational_cases_unchanged_unrun": 70,
+        "unchanged_original_files": 224,
+        "changed_original_files": [
+          "backend/evidence/backend-audit-2026-10-23.json",
+          "backend/evidence/staging-readiness.json",
+          "docs/STAGING_STATUS.md"
+        ],
+        "added_files": [
+          "backend/evidence/milestone1-hosted-attempt-2026-10-23.json"
+        ],
+        "backend_export_documents_unchanged": 109,
+        "frontend_files_in_base": 0,
+        "policy_conflicts_preserved": true
+      },
+      "path": "backend/evidence/milestone1-hosted-attempt-2026-10-23.json",
+      "sha256": "16bab3ee1fbf2046510bd8b2feadfc7cdcec6ee001f9448548889dcd8432759f",
+      "tool_log_id": "log_h98Xu2kF3mX0",
+      "native_cases_executed": 0,
+      "agent_cases_executed": 0
+    }
+  ],
+  "latest_hosted_attempt": {
+    "base_commit": "1ca3b4ea6860e4ad310de29fb1f3a9e9704928e8",
+    "attempted_at": "2026-10-23T13:49:19.427Z",
+    "status": "BLOCKED_DIRECT_AUTHENTICATION_REQUIRED",
+    "authenticated_reads": [
+      {
+        "tool": "CUSTOM_CCAT_LIST_WORKSPACES",
+        "status": "FAILED_AUTHENTICATION",
+        "error": "MCP tool error: Invalid token.",
+        "http_status": null
+      },
+      {
+        "tool": "CUSTOM_CCAT_DOCUMENTATION",
+        "status": "FAILED_AUTHENTICATION",
+        "error": "MCP tool error: Invalid token.",
+        "http_status": null
+      }
+    ],
+    "direct_connection_discovery": {
+      "user_direction": "Use the existing direct Codex-to-Xano connection; Composio reconnection is not required.",
+      "status": "REACHABLE_UNAUTHENTICATED",
+      "cli_check": {
+        "command": "codex mcp list --json",
+        "exit_code": 0,
+        "stdout": "[]\n",
+        "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Read-only file system (os error 30)\n"
+      },
+      "cloud_codex_config": {
+        "path": "/home/agent/.codex/config.toml",
+        "configured_mcp_servers": [],
+        "credential_values_read_or_recorded": false
+      },
+      "xano_cli_installed": false,
+      "desktop_device": {
+        "name": "DESKTOP-RRI5NH9",
+        "id": "2d4017e4-b823-4af0-a890-4f6cc6c79f44",
+        "status": "OFFLINE",
+        "last_seen_as_reported": "52h ago",
+        "app_version": "0.3.0",
+        "providers_checked": [
+          "remote_desktop_commander_list_devices",
+          "wonder_why_list_devices"
+        ]
+      },
+      "scope": "These observations concern this cloud session and its linked device; they do not disprove an existing direct connection in another Codex environment.",
+      "direct_authenticated_reads_executed": 0,
+      "exposed_to_assistant_catalog": 0,
+      "native_tool_discovery": {
+        "http_status": 200,
+        "tools_count": 243,
+        "authentication_proven": false
+      },
+      "initialize": {
+        "http_status": 200,
+        "server_name": "Xano Metadata API",
+        "server_version": "1.0.0",
+        "protocol_version": "2025-03-26",
+        "authorization_header_supplied": false,
+        "authentication_proven": false
+      },
+      "direct_reads": [
+        {
+          "tool": "listWorkspaces",
+          "arguments": {},
+          "authorization_header_supplied": false,
+          "response": {
+            "http_status": 200,
+            "events": [
+              {
+                "jsonrpc": "2.0",
+                "id": 1,
+                "result": {
+                  "isError": true,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Unauthorized - Authentication Required"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "tool": "documentation",
+          "arguments": {
+            "type": "start"
+          },
+          "authorization_header_supplied": false,
+          "response": {
+            "http_status": 200,
+            "events": [
+              {
+                "jsonrpc": "2.0",
+                "id": 1,
+                "result": {
+                  "isError": true,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Unauthorized - Authentication Required"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "direct_unauthenticated_tool_reads_attempted": 2,
+      "transport": {
+        "first_default_sandbox_attempt": "URLError: <urlopen error [Errno 1] Operation not permitted>",
+        "network_enabled_attempt": "HTTP 200; MCP tool-level authentication denied",
+        "sandbox_network_permission_requested": true
+      },
+      "cli_login_link": {
+        "provided_by_user": true,
+        "destination": "cli",
+        "callback_origin": "http://127.0.0.1:57514",
+        "scope": "Callback belongs to the machine running that login process, not automatically this cloud session.",
+        "opened_by_codex": false,
+        "login_completion_verified": false
+      }
+    },
+    "criteria": [
+      {
+        "id": "M1-AC-01",
+        "status": "BLOCKED",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-02",
+        "status": "BLOCKED",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-03",
+        "status": "BLOCKED",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-04",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-05",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-06",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-07",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-08",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-09",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-10",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "native_pass": false
+      }
+    ],
+    "required_prerequisite": {
+      "action": "Complete the Xano CLI login in the environment that opened the localhost callback link, then resume this task in that authenticated Codex environment or expose its existing authenticated direct Xano MCP connection to this session. The endpoint URL alone carries no authentication.",
+      "metadata_mcp_target": "https://xynd-fnea-khtp.n7e.xano.io/x2/mcp/meta/mcp/stream",
+      "composio_reconnection_required": false,
+      "credential_values_requested_in_chat": false,
+      "connection_changes_by_codex": 0,
+      "then": "Perform successful authenticated workspace listing and native documentation reads; verify workspace 1, source v1/live distinction and separate sandbox sn9m-aat6-200c, then establish AC-01\u201303 before import or hosted execution."
+    },
+    "preservation": {
+      "base_files_compared": 227,
+      "changed_before_work": [],
+      "backend_export_documents": 109,
+      "business_agent_drafts": 5,
+      "agent_operational_cases_unchanged_unrun": 70,
+      "unchanged_original_files": 224,
+      "changed_original_files": [
+        "backend/evidence/backend-audit-2026-10-23.json",
+        "backend/evidence/staging-readiness.json",
+        "docs/STAGING_STATUS.md"
+      ],
+      "added_files": [
+        "backend/evidence/milestone1-hosted-attempt-2026-10-23.json"
+      ],
+      "backend_export_documents_unchanged": 109,
+      "frontend_files_in_base": 0,
+      "policy_conflicts_preserved": true
+    },
+    "path": "backend/evidence/milestone1-hosted-attempt-2026-10-23.json",
+    "sha256": "16bab3ee1fbf2046510bd8b2feadfc7cdcec6ee001f9448548889dcd8432759f",
+    "tool_log_id": "log_h98Xu2kF3mX0",
+    "native_cases_executed": 0,
+    "agent_cases_executed": 0
   }
 }
