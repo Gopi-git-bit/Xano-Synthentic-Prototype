@@ -1,0 +1,72 @@
+{
+  "auth": {
+    "http_status": 200,
+    "expires_at": "2026-10-30 15:34:43+0000",
+    "scope": {
+      "tenant_center:backup": 15,
+      "tenant_center:deploy": 16,
+      "tenant_center:impersonate": 16,
+      "tenant_center:impersonate:edit": 16,
+      "tenant_center:metadata:api": 0,
+      "tenant_center:log": 16,
+      "tenant_center:rbac": 16,
+      "tenant_center:secrets": 15,
+      "tenant_cluster": 15,
+      "tenant_cluster:secrets": 15,
+      "tenant_center": 15,
+      "release": 15,
+      "workspace:addon": 15,
+      "workspace:api": 15,
+      "workspace:content": 15,
+      "workspace:database": 15,
+      "workspace:datasource:live": 15,
+      "workspace:file": 15,
+      "workspace:function": 15,
+      "workspace:service": 15,
+      "workspace:log": 15,
+      "workspace:middleware": 15,
+      "workspace:requesthistory": 15,
+      "workspace:task": 15,
+      "workspace:tool": 15,
+      "workspace:realtime": 15,
+      "workspace:mesh0": 0,
+      "workspace:workflow_test": 15,
+      "workspace:knowledge": 15,
+      "workspace:knowledge:enforce": 16
+    },
+    "new_credential": false
+  },
+  "live_source": {
+    "http_status": 200,
+    "sha256": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb"
+  },
+  "sandbox_source": {
+    "http_status": 200,
+    "sha256": "1ce5a11d7970b1e549212ab3bba2b1e46ec13dd1a7e0e8ba2d099395ee17c4e2"
+  },
+  "assignments": {
+    "http_status": 200,
+    "shape": [
+      "items",
+      "itemsReceived",
+      "curPage",
+      "nextPage",
+      "prevPage",
+      "offset",
+      "perPage",
+      "itemsTotal",
+      "pageTotal"
+    ]
+  },
+  "tables": {
+    "http_status": 200,
+    "shape": [
+      "curPage",
+      "nextPage",
+      "prevPage",
+      "items"
+    ]
+  },
+  "checked_at": "2026-10-23T17:46:48.029943+00:00",
+  "scope": "Read-only refresh using existing token; no permission or schema mutation"
+}

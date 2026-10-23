@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-10-23T18:09:05.817285+00:00",
+  "endpoint": "/api:meta/sandbox/multidoc/dry-run",
+  "target_database": "sn9m-aat6-200c",
+  "parameters": {
+    "delete": "false",
+    "env": "false",
+    "records": "false",
+    "transaction": "true",
+    "truncate": "false",
+    "partial": "true",
+    "source_workspace_id": 1
+  },
+  "payload_sha256": "56782e2ae9898c2084326083a9a4eaff26dfdfbfc1c13d49cf03f7678142e518",
+  "candidate_hashes": {
+    "backend/milestone1/reservation-v2/xano/function/logistics/resolve_identity.xs": "72b74f1e37a5052ef8a9ac604fe0b10e0bcf21a5dc82f16797633b50164a0820",
+    "backend/milestone1/reservation-v2/xano/function/milestone1/snapshot.xs": "3569f0b81606137f720caee8beefb2d3e6b0ffbc2b440f57b49e573a4362fc9c",
+    "backend/milestone1/reservation-v2/xano/function/slice_1/acceptance.xs": "d1087eb6e5c2f65bd720ad42e3b93638e151e0307ac16272e31afac64cea9002",
+    "backend/milestone1/reservation-v2/xano/function/slice_1/create_and_assign.xs": "97972dac207c445768ab56884816efb0b6cf850d2eafbb945cd4cc12d1fb2ca2",
+    "backend/milestone1/reservation-v2/xano/workflow_test/m1_application_after_assignment.xs": "e8dcf308fed31d07500dbb0ee6a5d6a5dbcdbe08e99220a08053de8da05b984a",
+    "backend/milestone1/reservation-v2/xano/workflow_test/m1_application_after_order.xs": "efd1e7aaa5be5736a88c03a800fe7cfcc351ed334ad27adbdd89cc8143f58f7c",
+    "backend/milestone1/reservation-v2/xano/workflow_test/m1_database_after_assignment.xs": "63f55d5ce871eeb845864ac4277abdba20697c8f0edc8d7fb3da84137450f970",
+    "backend/milestone1/reservation-v2/xano/workflow_test/m1_database_after_order.xs": "b531b47574c528b3f83a146363d1d6539f477e34ca7da6506283174d309ef4b5"
+  },
+  "schema_sha256": "ce19a67839e2b4e9ed0ec8579e045432a73d274b0c694a3eabcf1cfc0a9d6449",
+  "http_status": 500,
+  "response": {
+    "code": "ERROR_FATAL",
+    "message": "SQL Error: 42501, INSUFFICIENT PRIVILEGE"
+  },
+  "imported": false,
+  "hosted_cases_executed": 0,
+  "original_preview_reused": false
+}

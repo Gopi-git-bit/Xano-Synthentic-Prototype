@@ -51,6 +51,8 @@ jobs:
       - name: Validate M1 source candidates and evidence assertions offline
         run: |
           node scripts/test-milestone1.cjs
+          node scripts/test-milestone1-native.cjs
+          node --test scripts/test-milestone1-reservations.cjs
           node scripts/evaluate-milestone1.cjs
           node scripts/evaluate-historical-slice1.cjs
 

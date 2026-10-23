@@ -1,3 +1,9 @@
+## Approved reservation preparation — 23 October 2026
+
+The [separately hashed reservation revision](XANO_RESERVATION_REVISION.md) passed native preview for eight candidates plus the proposed table. All 161 current M1 offline checks pass (121 original, five prior follow-up, 35 new); these are separate from native behavior. Original sources and historical evidence are preserved. Both diagnostic tables and existing assignments remain unchanged.
+
+**0/31 hosted M1 cases executed.** The new credential could not be issued through available tools, supported inventory reconciliation has not been supplied, and writer-bypass/concurrency proof remains unverified. The approved schema and four-row backfill were not applied. The revised snapshot intentionally refuses execution pending supported inventory reconciliation; the adapter/runner gates were not relaxed. No release/reuse support is claimed.
+
 ## Administrator remediation follow-up — 23 October 2026
 
 The verified review bundle is preserved on the review branch at 9931cfba0d559661c73fc0420e602d8cfe1f5aeb. All 228 base Git blobs, ten bundled file hashes, the original patch hash and published ZIP bytes were checked. [Bundle verification](../backend/review-bundles/m1-native-2026-10-23/verification.json) separates **121 offline passes**, **eight native dry-run candidate acceptances**, and **31 hosted cases NOT_RUN**.

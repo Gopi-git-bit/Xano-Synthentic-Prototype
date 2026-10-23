@@ -1,3 +1,5 @@
+> Follow-up: the owner approved the new seven-day restricted credential and the conditional sandbox table/index/four-row backfill. Approval has not cleared access or inventory verification. See [reservation revision and exact outcomes](XANO_RESERVATION_REVISION.md). No schema, backfill, candidate import, account/role change or hosted M1 behavior execution occurred.
+
 # M1 administrator remediation and execution plan
 
 Status: BLOCKED pending administrator actions and verified prerequisites. Target: workspace 1, Zippy Synthetic Prototype, source v1, isolated sandbox sn9m-aat6-200c. The source branch v1 is live; it is not the execution database. Direct workspace push remains disabled. No live changes, payments, agent runs, merge or deployment are in scope.
@@ -175,8 +177,8 @@ One case needs explicit coverage qualification: customer_profiles declares UNIQU
 | Preserve bundle/patch/adapter/evidence on review branch and update PR | Authorized; bundle committed |
 | Read-only sandbox diagnostic preparation | Authorized; imported/read back/executed |
 | Retain both diagnostics and gather evidence | Done; supported metadata reconciliation still required |
-| Change permissions / issue restricted credential | Proposed; specific administrator approval/action required |
-| Add reservation table/indexes and four backfill rows | Proposed; native preview accepted; schema approval required |
+| Change permissions / issue restricted credential | Approved for a new token only; creation/effective permissions/live-denial verification pending; account/role changes need separate approval |
+| Add reservation table/indexes and four backfill rows | Conditionally approved; restricted access and supported inventory reconciliation still required; not applied |
 | Raw partial-index DDL | Not proposed for execution without confirmed Xano support |
 | Delete diagnostics / reset sandbox / ordinary-index substitution | Not proposed |
 | Import M1 candidates / run 31 cases | Authorized conditionally; prerequisites remain unverified |

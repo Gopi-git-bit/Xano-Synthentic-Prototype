@@ -1,5 +1,7 @@
 # Zippy Synthetic Prototype — Xano backend
 
+Current M1 follow-up: [approved reservation revision, native preview and remaining gates](docs/XANO_RESERVATION_REVISION.md). Eight revised-set candidates plus the proposed table passed preview; 161 M1 offline checks pass. Hosted M1 remains **0/31 executed**. No schema/backfill was applied and no release/reuse support is claimed.
+
 This repository contains the Xano sandbox implementation of Zippy Logistics. **It is not production-ready and has not been promoted to the live branch.**
 
 ## Resumed sandbox work
