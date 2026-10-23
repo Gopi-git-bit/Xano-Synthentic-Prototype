@@ -1,3 +1,9 @@
+## Execution preparation and support submission — 24 October 2026
+
+The [full execution preparation](XANO_EXECUTION_PREPARATION_V3.md) now implements fixtures and paths for all 31 cases, full 16-table rollback and separate contention without advisory serialization. All 23 new offline tests pass (184 current M1 offline checks total). These are not hosted results. The new helper revision is NOT_PREVIEWED, NOT_IMPORTED and NOT_RUN. Activation remains disabled.
+
+The Xano support request was submitted and acknowledged; no ticket ID was displayed. Supported inventory treatment remains pending. Restricted administration login, effective permissions/live denial, physical reservation indexes/backfill and writer enforcement are still unverified. **0/31 hosted M1 cases executed; native uniqueness contention NOT_RUN.** No additional Xano writes or previews occurred in this preparation turn.
+
 ## Approved reservation preparation — 23 October 2026
 
 The [separately hashed reservation revision](XANO_RESERVATION_REVISION.md) passed native preview for eight candidates plus the proposed table. All 161 current M1 offline checks pass (121 original, five prior follow-up, 35 new); these are separate from native behavior. Original sources and historical evidence are preserved. Both diagnostic tables and existing assignments remain unchanged.

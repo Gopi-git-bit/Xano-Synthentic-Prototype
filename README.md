@@ -1,3 +1,5 @@
+> Current M1 status (24 October 2026): [full gated execution preparation](docs/XANO_EXECUTION_PREPARATION_V3.md) and [submitted support request](docs/XANO_ADMIN_SUPPORT_REQUEST.md). 184 offline checks; hosted execution remains 0/31. Restricted access and supported inventory/writer enforcement remain prerequisites.
+
 # Zippy Synthetic Prototype — Xano backend
 
 Current M1 follow-up: [approved reservation revision, native preview and remaining gates](docs/XANO_RESERVATION_REVISION.md). Eight revised-set candidates plus the proposed table passed preview; 161 M1 offline checks pass. Hosted M1 remains **0/31 executed**. No schema/backfill was applied and no release/reuse support is claimed.

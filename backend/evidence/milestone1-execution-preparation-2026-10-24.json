@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-23T20:01:20.961260+00:00",
+  "review_base_commit": "5cc444a847b9e5c5f6978aa32cdc9a9b0a948355",
+  "original_pin": "31fac05763a762680324d014f0b1dcb32955ea84",
+  "preservation": {
+    "base_git_blobs_checked": 276,
+    "unchanged": 272,
+    "intentional_updates": [
+      ".github/workflows/backend-validation.yml",
+      "README.md",
+      "docs/STAGING_STATUS.md",
+      "docs/XANO_ADMIN_SUPPORT_REQUEST.md"
+    ],
+    "backend_exports": 109,
+    "agent_drafts": 5,
+    "original_bundle_patch_candidates_history_unchanged": true,
+    "reservation_v2_unchanged": true,
+    "local_manifest_files_verified": 21
+  },
+  "support": {
+    "submitted": true,
+    "receipt": "backend/evidence/xano-support-submission-2026-10-24.json",
+    "vendor_inventory_decision_received": false
+  },
+  "restricted_access": {
+    "credential_created": false,
+    "existing_token_or_account_changed": false,
+    "local_browser_error": "Windows sandbox helper setup refresh failed",
+    "available_profile_signed_into_xano": false,
+    "secure_login_setup_response": "PENDING",
+    "effective_permissions_verified": false,
+    "actual_live_read_denial_verified": false
+  },
+  "preparation": {
+    "full_31_case_executor_implemented": true,
+    "native_helpers": 10,
+    "separate_contention_cohorts": 2,
+    "advisory_serialization_in_uniqueness_proof": false,
+    "requires_native_lock_wait_observation": true,
+    "business_rollback_tables": 16,
+    "fixture_preservation_tables": 10,
+    "bundle_sha256": "575b44d8fa4ecd4a7b0d77677246946f6c499a41b769eafc427981a8423cd5e5",
+    "native_validation": "NOT_RUN_THIS_REVISION",
+    "import": "NOT_IMPORTED",
+    "execution_enabled": false
+  },
+  "validation": {
+    "original_offline_passes": 121,
+    "prior_followup_offline_passes": 5,
+    "reservation_v2_offline_passes": 35,
+    "execution_v3_offline_passes": 23,
+    "current_M1_offline_passes": 184,
+    "original_native_dry_run_candidates": 8,
+    "reservation_v2_native_preview": "Separate prior pass of eight candidates plus schema; does not validate v3",
+    "execution_v3_native_preview_passes": 0,
+    "hosted_M1_cases_executed": 0,
+    "hosted_M1_cases_total": 31,
+    "native_uniqueness_contention": "NOT_RUN",
+    "native_16_table_rollback": "NOT_RUN",
+    "new_offline_simulation_hosted_passes": 0,
+    "offline_command_results": "backend/evidence/m1-execution-offline-2026-10-24/results.json"
+  },
+  "remaining_blockers": [
+    "Restricted Xano UI authentication/credential and actual effective permission/live denial verification",
+    "Supported reconciliation/retention decision for both diagnostic tables",
+    "Actual approved reservation schema/backfill/indexes and enforced writer restrictions; then exact revision native validation/import/readback/contention"
+  ],
+  "approvals": {
+    "restricted_credential": "ALREADY_APPROVED_NO_DUPLICATE_REQUEST",
+    "unchanged_schema_three_indexes_four_rows": "ALREADY_APPROVED_CONDITIONAL_NO_DUPLICATE_REQUEST",
+    "account_or_role_change": "NOT_AUTHORIZED_SEPARATE_APPROVAL_REQUIRED_IF_NECESSARY"
+  },
+  "xano_mutations_this_turn": 0,
+  "no_live_change_deletion_release_payment_agent_merge_deployment": true,
+  "lifecycle": "Reservation release/reuse remains unimplemented and unproven"
+}

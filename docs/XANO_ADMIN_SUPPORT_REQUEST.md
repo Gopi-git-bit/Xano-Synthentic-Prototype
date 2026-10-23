@@ -1,4 +1,4 @@
-# Draft Xano administrator/support request — not sent
+# Xano administrator/support request — submitted
 
 Target: instance xynd-fnea-khtp.n7e.xano.io, workspace 1, source v1, isolated sandbox sn9m-aat6-200c. Please do not change the live workspace.
 
@@ -10,4 +10,4 @@ Evidence: backend/evidence/milestone1-admin-inventory-2026-10-23.json, milestone
 
 4. For the approved active_assignment_reservations alternative, identify supported restrictions for the intended M1 execution principal that deny direct assignment CRUD or arbitrary writer authoring while permitting reviewed sandbox command execution. The existing owner token/account must remain unchanged. Scope the guarantee explicitly; no database-wide enforcement claim is made for a reservation protocol while bypass writers remain possible. If a role/account change is necessary, provide its exact delta before any action.
 
-Follow-up: the new credential and conditional reservation schema/four-row backfill are owner-approved, but not applied. See XANO_RESERVATION_REVISION.md. This request remains unsent.
+Follow-up: the new credential and conditional reservation schema/four-row backfill are owner-approved, but not applied. See XANO_RESERVATION_REVISION.md. Submitted on 24 October 2026 IST. The form acknowledged receipt, without a ticket number; support response and inventory decision remain pending. See backend/evidence/xano-support-submission-2026-10-24.json.

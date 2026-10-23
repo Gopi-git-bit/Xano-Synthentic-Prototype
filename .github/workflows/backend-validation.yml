@@ -53,6 +53,7 @@ jobs:
           node scripts/test-milestone1.cjs
           node scripts/test-milestone1-native.cjs
           node --test scripts/test-milestone1-reservations.cjs
+          node --test scripts/test-m1-execution.cjs
           node scripts/evaluate-milestone1.cjs
           node scripts/evaluate-historical-slice1.cjs
 
