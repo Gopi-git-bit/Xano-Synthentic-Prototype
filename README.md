@@ -1,3 +1,5 @@
+> Access follow-up: [CLI verified; new credential failed scope readback](docs/XANO_ACCESS_CLI_FOLLOWUP.md). Targeted revocation remains unconfirmed. Restricted execution stays disabled; hosted M1 remains 0/31.
+
 > Current M1 status (24 October 2026): [full gated execution preparation](docs/XANO_EXECUTION_PREPARATION_V3.md) and [submitted support request](docs/XANO_ADMIN_SUPPORT_REQUEST.md). 184 offline checks; hosted execution remains 0/31. Restricted access and supported inventory/writer enforcement remain prerequisites.
 
 # Zippy Synthetic Prototype — Xano backend

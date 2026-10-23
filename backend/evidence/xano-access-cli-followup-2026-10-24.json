@@ -1,0 +1,106 @@
+{
+  "report_date_local": "2026-10-24",
+  "timezone": "Asia/Calcutta",
+  "recorded_at_utc": "2026-10-23 21:19:59 UTC",
+  "review_base_commit": "874bfb2f0af892ee1f839072f3ef27c0529c3ab7",
+  "target": {
+    "instance": "https://xynd-fnea-khtp.n7e.xano.io",
+    "workspace": 1,
+    "source_branch": "v1",
+    "previously_confirmed_sandbox": "sn9m-aat6-200c",
+    "sandbox_identity_reverified_this_followup": false
+  },
+  "administration_signin": {
+    "browser_reported_success": true,
+    "expected_instance_visible": true,
+    "credential_values_retained_in_repository": false
+  },
+  "new_token": {
+    "name": "zippy-m1-sandbox",
+    "keyid": "0e6a46f9-9ec3-45d6-a7a9-b9240dd584c8",
+    "creation_reported": true,
+    "expiry_reported": "2026-10-30T20:47:00Z (UI minute precision)",
+    "requested_expiry_days": 7,
+    "requested_initial_scopes": "Read only: Workspace Database, Workspace Content, Workspace API Groups, Workspace Functions, Workspace Workflow Test Features; all other scope cells and features disabled.",
+    "creation_report_claimed_compliance": true,
+    "subsequent_matching_keyid_inspection_contradicted_creation_report": true,
+    "saved_scope_details_from_browser": "Workspace Database: Create, Update, Delete\nWorkspace Content: Full\nWorkspace Live Data Source: Full\nWorkspace API Groups: Full\nWorkspace AI Tools: Full\nWorkspace Knowledge: Full\nKnowledge Lock: Enabled\nWorkspace Realtime Features: Full\nWorkspace Workflow Test Features: Full\nWorkspace Policies: Full\nWorkspace Task: Full\nWorkspace Functions: Full\nWorkspace Services: Full\nWorkspace Addons: Full\nWorkspace Middleware: Full\nMicroservices: Full\nWorkspace Files: Full\nWorkspace Request History: Full\nWorkspace Logs: Full\nWorkspace Debug From Request History: Disabled\nTenant Releases: Full\nTenant Center: Full\nTenant Center RBAC: Enabled\nTenant Center Logs: Enabled\nTenant Center Backup: Full\nTenant Center Deploy: Enabled\nTenant Center Impersonate: Enabled\nTenant Center Impersonate Edit: Enabled\nTenant Center Secrets: Full\nTenant Cluster: Full\nTenant Cluster Secrets: Full",
+    "scope_compliance": "FAILED_UI_READBACK",
+    "actual_bearer_credential_captured": false,
+    "github_secret_configured": false,
+    "effective_api_permissions_verified": false,
+    "actual_live_read_denial_verified": false,
+    "api_probe": {
+      "auth_status": 401,
+      "input_was_browser_placeholder": true,
+      "live_read_attempted": false,
+      "permission_denial_evidence": false
+    },
+    "existing_token_edit_supported_by_inspected_ui": false,
+    "individual_revoke_control_found_by_browser": false,
+    "revocation_status": "UNCONFIRMED; owner notified",
+    "other_tokens_or_account_roles_changed": false
+  },
+  "required_recovery": "Individually revoke only the failed new token through a supported Xano mechanism; preserve all pre-existing tokens. Do not use Revoke All. Do not create another token until the incident is resolved. Then create and capture the approved restricted credential, verify auth/me and actual live denial before writes.",
+  "cli": {
+    "package": "@xano/cli",
+    "version": "1.3.4",
+    "registry_version_checked": "1.3.4",
+    "environment": "remote Linux tool environment, not the user's Windows shell",
+    "node_version": "20.20.2",
+    "install_directory": "/tmp/zippy-cli-runtime",
+    "initial_extracted_package_missing_dependency": "@oclif/core",
+    "isolated_install_completed": true,
+    "version_and_help_commands_successful": [
+      "--version",
+      "auth --help",
+      "workspace pull --help",
+      "ephemeral create --help",
+      "ephemeral push --help"
+    ],
+    "profile_token_exit": 2,
+    "profile_token_output_suppressed": true,
+    "authenticated_profile_verified": false,
+    "authenticated_xano_commands_run": [],
+    "ephemeral_created": false,
+    "signup_called": false
+  },
+  "evidence_categories": {
+    "original_offline_passes": 121,
+    "followup_offline_passes": 5,
+    "reservation_v2_offline_passes": 35,
+    "execution_v3_offline_passes": 23,
+    "current_offline_total": 184,
+    "new_offline_tests_this_followup": 0,
+    "original_native_preview_candidates": 8,
+    "reservation_v2_native_preview": "8 revised candidates plus schema; separate earlier evidence",
+    "execution_v3_native_preview": "NOT_RUN",
+    "hosted_cases_executed": 0,
+    "hosted_cases_total": 31,
+    "native_contention": "NOT_RUN",
+    "native_16_table_rollback": "NOT_RUN"
+  },
+  "gates": {
+    "execution_enabled": false,
+    "restricted_access": "FAILED/UNVERIFIED",
+    "supported_inventory": "PENDING_VENDOR_DECISION",
+    "reservation_schema_and_backfill": "NOT_APPLIED",
+    "writer_bypass_prevention": "UNVERIFIED",
+    "release_reuse": "NOT_IMPLEMENTED_OR_PROVEN"
+  },
+  "preservation": {
+    "backend_exports": 109,
+    "agent_drafts": 5,
+    "diagnostics_retained": true,
+    "historical_evidence_unchanged": true,
+    "no_live_database_change": true,
+    "no_payment_execution": true,
+    "no_xano_agent_run": true,
+    "no_merge_or_deployment": true
+  },
+  "sources": [
+    "https://github.com/xano-inc/cli",
+    "https://docs.xano.com/xano-features/metadata-api",
+    "https://www.xano.com/learn/all-about-authentication-in-xano/"
+  ]
+}
