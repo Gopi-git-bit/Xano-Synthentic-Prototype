@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "base_commit": "6bcb1391e3a275f6063e72fcce038fe50aee3509",
-  "status": "OFFLINE_CANDIDATES_NOT_IMPORTED",
-  "native_syntax_validation": "NOT_RUN",
+  "status": "NATIVE_PREVIEW_PASSED_NOT_IMPORTED",
+  "native_syntax_validation": "PASS_NATIVE_DRY_RUN_ONLY",
   "native_execution": "NOT_RUN",
   "source_export_preserved": true,
   "live_publication": false,
@@ -104,7 +104,7 @@
       "table": "quotes",
       "source": "UNIQUE (platform_id, quote_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -113,7 +113,7 @@
       "table": "quotes",
       "source": "UNIQUE (platform_id, customer_profile_id, policy_version, input_hash_sha256)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -122,7 +122,7 @@
       "table": "quotes",
       "source": "FOREIGN KEY (platform_id, customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -131,7 +131,7 @@
       "table": "quotes",
       "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -140,7 +140,7 @@
       "table": "quotes",
       "source": "CHECK (jsonb_typeof(input_evidence) = 'object')",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -149,7 +149,7 @@
       "table": "quotes",
       "source": "CHECK (expires_at > created_at)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -158,7 +158,7 @@
       "table": "orders",
       "source": "UNIQUE (platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -167,7 +167,7 @@
       "table": "orders",
       "source": "FOREIGN KEY (platform_id, booking_customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -176,7 +176,7 @@
       "table": "orders",
       "source": "FOREIGN KEY (platform_id, quote_id) REFERENCES zippy.quotes(platform_id, quote_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -185,7 +185,7 @@
       "table": "orders",
       "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -194,7 +194,7 @@
       "table": "order_stops",
       "source": "UNIQUE (platform_id, order_id, stop_sequence)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -203,7 +203,7 @@
       "table": "order_stops",
       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -212,7 +212,7 @@
       "table": "order_stops",
       "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -221,7 +221,7 @@
       "table": "order_stops",
       "source": "CHECK (latitude IS NULL OR latitude BETWEEN -90 AND 90)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -230,7 +230,7 @@
       "table": "order_stops",
       "source": "CHECK (longitude IS NULL OR longitude BETWEEN -180 AND 180)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -239,7 +239,7 @@
       "table": "transaction_participants",
       "source": "UNIQUE (platform_id, order_id, participant_role)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -248,7 +248,7 @@
       "table": "transaction_participants",
       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -257,7 +257,7 @@
       "table": "transaction_participants",
       "source": "FOREIGN KEY (platform_id, customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -266,7 +266,7 @@
       "table": "transaction_participants",
       "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -275,7 +275,7 @@
       "table": "transaction_participants",
       "source": "CHECK (\n        (participant_role = 'customer' AND customer_profile_id IS NOT NULL AND vendor_profile_id IS NULL) OR\n        (participant_role = 'vendor' AND vendor_profile_id IS NOT NULL AND customer_profile_id IS NULL)\n    )",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -284,7 +284,7 @@
       "table": "dispatch_offers",
       "source": "UNIQUE (platform_id, dispatch_offer_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -293,7 +293,7 @@
       "table": "dispatch_offers",
       "source": "UNIQUE (platform_id, idempotency_key)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -302,7 +302,7 @@
       "table": "dispatch_offers",
       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -311,7 +311,7 @@
       "table": "dispatch_offers",
       "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -320,7 +320,7 @@
       "table": "dispatch_offers",
       "source": "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -329,7 +329,7 @@
       "table": "dispatch_offers",
       "source": "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -338,7 +338,7 @@
       "table": "dispatch_offers",
       "source": "CHECK (expires_at > created_at)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -347,7 +347,7 @@
       "table": "dispatch_offers",
       "source": "CHECK ((status IN ('accepted', 'declined') AND responded_at IS NOT NULL) OR status NOT IN ('accepted', 'declined'))",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -356,7 +356,7 @@
       "table": "dispatch_offers",
       "source": "PARTIAL INDEX CREATE UNIQUE INDEX dispatch_one_accepted_offer_idx\n    ON zippy.dispatch_offers (platform_id, order_id)\n    WHERE status = 'accepted';",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -365,7 +365,7 @@
       "table": "trips",
       "source": "UNIQUE (platform_id, trip_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -374,7 +374,7 @@
       "table": "trips",
       "source": "UNIQUE (platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -383,7 +383,7 @@
       "table": "trips",
       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -392,7 +392,7 @@
       "table": "trip_assignments",
       "source": "UNIQUE (platform_id, trip_id, assigned_at)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -401,7 +401,7 @@
       "table": "trip_assignments",
       "source": "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -410,7 +410,7 @@
       "table": "trip_assignments",
       "source": "FOREIGN KEY (platform_id, dispatch_offer_id) REFERENCES zippy.dispatch_offers(platform_id, dispatch_offer_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -419,7 +419,7 @@
       "table": "trip_assignments",
       "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -428,7 +428,7 @@
       "table": "trip_assignments",
       "source": "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -437,7 +437,7 @@
       "table": "trip_assignments",
       "source": "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -446,7 +446,7 @@
       "table": "trip_assignments",
       "source": "FOREIGN KEY (platform_id, assigned_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -455,7 +455,7 @@
       "table": "trip_assignments",
       "source": "CHECK (released_at IS NULL OR released_at >= assigned_at)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -464,7 +464,7 @@
       "table": "trip_assignments",
       "source": "PARTIAL INDEX CREATE UNIQUE INDEX trip_active_vehicle_idx\n    ON zippy.trip_assignments (platform_id, vehicle_id)\n    WHERE released_at IS NULL;",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -473,7 +473,7 @@
       "table": "trip_assignments",
       "source": "PARTIAL INDEX CREATE UNIQUE INDEX trip_active_driver_idx\n    ON zippy.trip_assignments (platform_id, driver_profile_id)\n    WHERE released_at IS NULL;",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -482,7 +482,7 @@
       "table": "idempotency_records",
       "source": "UNIQUE (platform_id, operation_scope, idempotency_key)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -491,7 +491,7 @@
       "table": "idempotency_records",
       "source": "CHECK ((lease_owner IS NULL) = (lease_expires_at IS NULL))",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -500,7 +500,7 @@
       "table": "durable_tasks",
       "source": "UNIQUE (platform_id, durable_task_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -509,7 +509,7 @@
       "table": "durable_tasks",
       "source": "UNIQUE (platform_id, task_type, idempotency_key)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -518,7 +518,7 @@
       "table": "durable_tasks",
       "source": "CHECK ((lease_owner IS NULL) = (lease_expires_at IS NULL))",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -527,7 +527,7 @@
       "table": "durable_tasks",
       "source": "CHECK (attempt_count <= max_attempts)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -536,7 +536,7 @@
       "table": "durable_tasks",
       "source": "CHECK (status <> 'dead_lettered' OR attempt_count = max_attempts)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -545,7 +545,7 @@
       "table": "durable_tasks",
       "source": "PARTIAL INDEX CREATE INDEX durable_tasks_claim_idx ON zippy.durable_tasks (platform_id, status, next_attempt_at, created_at) WHERE status IN ('pending', 'failed');",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -554,7 +554,7 @@
       "table": "event_outbox",
       "source": "UNIQUE (platform_id, outbox_event_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -563,7 +563,7 @@
       "table": "event_outbox",
       "source": "UNIQUE (platform_id, destination, idempotency_key)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -572,7 +572,7 @@
       "table": "event_outbox",
       "source": "UNIQUE (platform_id, aggregate_type, aggregate_id, aggregate_version, event_type)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -581,7 +581,7 @@
       "table": "event_outbox",
       "source": "CHECK (jsonb_typeof(payload) = 'object')",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -590,7 +590,7 @@
       "table": "event_outbox",
       "source": "PARTIAL INDEX CREATE INDEX outbox_claim_idx ON zippy.event_outbox (platform_id, status, next_attempt_at, created_at) WHERE status IN ('pending', 'failed');",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -599,7 +599,7 @@
       "table": "audit_events",
       "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -608,7 +608,7 @@
       "table": "service_commitments",
       "source": "UNIQUE (platform_id, service_commitment_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -617,7 +617,7 @@
       "table": "service_commitments",
       "source": "UNIQUE (platform_id, order_id, commitment_type)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -626,7 +626,7 @@
       "table": "service_commitments",
       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -635,7 +635,7 @@
       "table": "order_state_transitions",
       "source": "UNIQUE (platform_id, order_state_transition_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -644,7 +644,7 @@
       "table": "order_state_transitions",
       "source": "UNIQUE (platform_id, order_id, idempotency_key)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -653,7 +653,7 @@
       "table": "order_state_transitions",
       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -662,7 +662,7 @@
       "table": "order_state_transitions",
       "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -671,7 +671,7 @@
       "table": "order_state_transitions",
       "source": "FOREIGN KEY (from_status, to_status) REFERENCES zippy.order_transition_rules(from_status, to_status)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -680,7 +680,7 @@
       "table": "operational_events",
       "source": "UNIQUE (platform_id, operational_event_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -689,7 +689,7 @@
       "table": "operational_events",
       "source": "UNIQUE (platform_id, aggregate_type, aggregate_id, aggregate_version, event_type)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -698,7 +698,7 @@
       "table": "operational_events",
       "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -707,7 +707,7 @@
       "table": "operational_events",
       "source": "CHECK (jsonb_typeof(event_data) = 'object')",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -716,7 +716,7 @@
       "table": "dispatch_requirements",
       "source": "UNIQUE (platform_id, dispatch_requirement_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -725,7 +725,7 @@
       "table": "dispatch_requirements",
       "source": "UNIQUE (platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -734,7 +734,7 @@
       "table": "dispatch_requirements",
       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     },
@@ -743,7 +743,7 @@
       "table": "dispatch_requirements",
       "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
+      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
       "candidate_assertion": "backend/milestone1/assertions.cjs",
       "native_test": null
     }
@@ -753,5 +753,6 @@
     "Network adapter intentionally unwired until authenticated identity, isolation, inventory, scope and physical indexes are verified.",
     "Identity/eligibility rejection cases and key expiry still need native fixture execution; no hosted result is supplied.",
     "Snapshot counts cover both fixture tenants; they do not establish universal database protections or process/network recovery."
-  ]
+  ],
+  "native_preview_evidence": "backend/evidence/milestone1-native-preview-2026-10-23.json"
 }

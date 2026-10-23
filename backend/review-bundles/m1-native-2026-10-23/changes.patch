@@ -1,0 +1,1530 @@
+--- /dev/null
++++ b/backend/evidence/milestone1-native-preflight-2026-10-23.json
+@@ -0,0 +1,132 @@
++{
++  "execution_scope": "xano_native",
++  "checked_at": "2026-10-23T16:45:22.623Z",
++  "authenticated": true,
++  "workspace_id": 1,
++  "workspace_name": "Zippy Synthetic Prototype",
++  "branch": "v1",
++  "database": "sn9m-aat6-200c",
++  "isolation_verified": true,
++  "physical_table_count": 53,
++  "physical_table_mapping_verified": false,
++  "physical_indexes_verified": false,
++  "restricted_access_verified": false,
++  "live_source_hash_before": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
++  "live_source_hash_after": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
++  "sandbox_source_hash_before": "4ffe343c426fa1e09773f1c54e71f65d37509f671eca98fdaff3250da67526c4",
++  "sandbox_source_hash_after": "4ffe343c426fa1e09773f1c54e71f65d37509f671eca98fdaff3250da67526c4",
++  "source_preserved": true,
++  "source_hashes": {},
++  "candidates": [
++    {
++      "path": "function/logistics/resolve_identity.xs",
++      "canonical_source_match": false
++    },
++    {
++      "path": "function/milestone1/snapshot.xs",
++      "canonical_source_match": false
++    },
++    {
++      "path": "function/slice_1/acceptance.xs",
++      "canonical_source_match": false
++    },
++    {
++      "path": "function/slice_1/create_and_assign.xs",
++      "canonical_source_match": false
++    },
++    {
++      "path": "workflow_test/m1_application_after_assignment.xs",
++      "canonical_source_match": false
++    },
++    {
++      "path": "workflow_test/m1_application_after_order.xs",
++      "canonical_source_match": false
++    },
++    {
++      "path": "workflow_test/m1_database_after_assignment.xs",
++      "canonical_source_match": false
++    },
++    {
++      "path": "workflow_test/m1_database_after_order.xs",
++      "canonical_source_match": false
++    }
++  ],
++  "missing_baseline_resources": [],
++  "unexpected_documents": [],
++  "inventory": {
++    "declared_table_count": 51,
++    "physical_table_count": 53,
++    "unmapped_tables": [
++      "mvpw1_56",
++      "mvpw1_57"
++    ],
++    "issues": [],
++    "verified": false
++  },
++  "index_definitions": [
++    {
++      "table": "idempotency_records",
++      "physical_table": "mvpw1_25",
++      "columns": [
++        "platform_id",
++        "operation_scope",
++        "idempotency_key"
++      ],
++      "predicate": null,
++      "catalog_definition_observed": true,
++      "index_name": "mvpw1_25_af56fa07f585cd4b93b1"
++    },
++    {
++      "table": "trip_assignments",
++      "physical_table": "mvpw1_44",
++      "columns": [
++        "platform_id",
++        "vehicle_id"
++      ],
++      "predicate": "released_at IS NULL",
++      "catalog_definition_observed": false,
++      "index_name": null
++    },
++    {
++      "table": "trip_assignments",
++      "physical_table": "mvpw1_44",
++      "columns": [
++        "platform_id",
++        "driver_profile_id"
++      ],
++      "predicate": "released_at IS NULL",
++      "catalog_definition_observed": false,
++      "index_name": null
++    }
++  ],
++  "access": {
++    "live_data_scope_mask": 15,
++    "expiry_verified": true,
++    "expires_at": "2026-10-30T15:34:43.000Z",
++    "prohibited_admin_scopes": [
++      "tenant_center:backup",
++      "tenant_center:deploy",
++      "tenant_center:impersonate",
++      "tenant_center:impersonate:edit",
++      "tenant_center:log",
++      "tenant_center:rbac",
++      "tenant_center:secrets",
++      "tenant_cluster",
++      "tenant_cluster:secrets",
++      "tenant_center",
++      "release"
++    ],
++    "live_denial_probe": {
++      "denied": false,
++      "http_status": null,
++      "attempted": false
++    }
++  },
++  "blockers": [
++    "PHYSICAL_INVENTORY_UNRECONCILED",
++    "REQUIRED_INDEX_DEFINITIONS_MISSING",
++    "RESTRICTED_ACCESS_UNVERIFIED",
++    "CANDIDATES_NOT_IMPORTED_OR_SOURCE_DRIFT"
++  ],
++  "ready": false
++}
+--- /dev/null
++++ b/backend/evidence/milestone1-native-preview-2026-10-23.json
+@@ -0,0 +1,135 @@
++{
++  "time_utc": "2026-10-23T16:31:12.174075+00:00",
++  "http_status": 200,
++  "candidate_count": 8,
++  "response": {
++    "workspace_name": "Zippy Synthetic Prototype",
++    "source_workspace_mismatch": false,
++    "summary": {
++      "table": {
++        "created": 0,
++        "updated": 0,
++        "deleted": 0,
++        "truncated": 0,
++        "unchanged": 0
++      },
++      "function": {
++        "created": 1,
++        "updated": 3,
++        "deleted": 0,
++        "truncated": 0,
++        "unchanged": 0
++      },
++      "query": {
++        "created": 0,
++        "updated": 0,
++        "deleted": 0,
++        "truncated": 0,
++        "unchanged": 0
++      },
++      "message": {
++        "created": 0,
++        "updated": 0,
++        "deleted": 0,
++        "truncated": 0,
++        "unchanged": 0
++      },
++      "workflow_test": {
++        "created": 4,
++        "updated": 0,
++        "deleted": 0,
++        "truncated": 0,
++        "unchanged": 0
++      }
++    },
++    "operations": [
++      {
++        "type": "function",
++        "name": "Logistics/resolve_identity",
++        "action": "update",
++        "details": "Function will be updated [XS content differs]",
++        "reason": "XS content differs"
++      },
++      {
++        "type": "function",
++        "name": "Milestone1/snapshot",
++        "action": "create",
++        "details": "Function will be created"
++      },
++      {
++        "type": "function",
++        "name": "Slice1/acceptance",
++        "action": "update",
++        "details": "Function will be updated [XS content differs]",
++        "reason": "XS content differs"
++      },
++      {
++        "type": "function",
++        "name": "Slice1/create_and_assign",
++        "action": "update",
++        "details": "Function will be updated [XS content differs]",
++        "reason": "XS content differs"
++      },
++      {
++        "type": "workflow_test",
++        "name": "Milestone1 application after_assignment",
++        "action": "create",
++        "details": "Workflow test will be created"
++      },
++      {
++        "type": "workflow_test",
++        "name": "Milestone1 application after_order",
++        "action": "create",
++        "details": "Workflow test will be created"
++      },
++      {
++        "type": "workflow_test",
++        "name": "Milestone1 database after_assignment",
++        "action": "create",
++        "details": "Workflow test will be created"
++      },
++      {
++        "type": "workflow_test",
++        "name": "Milestone1 database after_order",
++        "action": "create",
++        "details": "Workflow test will be created"
++      }
++    ]
++  },
++  "source_preservation": {
++    "live": {
++      "before": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
++      "after": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
++      "unchanged": true
++    },
++    "sandbox": {
++      "before": "4ffe343c426fa1e09773f1c54e71f65d37509f671eca98fdaff3250da67526c4",
++      "after": "4ffe343c426fa1e09773f1c54e71f65d37509f671eca98fdaff3250da67526c4",
++      "unchanged": true
++    }
++  },
++  "import_performed": false,
++  "source_commit": "31fac05763a762680324d014f0b1dcb32955ea84",
++  "endpoint": "/api:meta/sandbox/multidoc/dry-run",
++  "method": "POST",
++  "parameters": {
++    "delete": false,
++    "env": false,
++    "records": false,
++    "transaction": true,
++    "truncate": false,
++    "partial": true,
++    "source_workspace_id": 1
++  },
++  "candidate_hashes": {
++    "backend/milestone1/xano/function/logistics/resolve_identity.xs": "72b74f1e37a5052ef8a9ac604fe0b10e0bcf21a5dc82f16797633b50164a0820",
++    "backend/milestone1/xano/function/milestone1/snapshot.xs": "0ff534849864225fbf1cdc57fdaf96aff18e0f353f041e780225894ada524897",
++    "backend/milestone1/xano/function/slice_1/acceptance.xs": "5efc71399b42e0af78cb5af82580f9ef59b60c088827cdf05620d22b1952408a",
++    "backend/milestone1/xano/function/slice_1/create_and_assign.xs": "7afec4b7c36d377a2fa02c132d1435915105c9bc47d6dbb1d184f5f3a116533c",
++    "backend/milestone1/xano/workflow_test/m1_application_after_assignment.xs": "b2f953114ebf6f51fc111e2b18d3c0f46e4e1838cd04a809aa26d2e9202b2978",
++    "backend/milestone1/xano/workflow_test/m1_application_after_order.xs": "1d4f7f5ef3d2bbbab77c57c3434fce402e11b0a87123cb889769bc14026ddaf4",
++    "backend/milestone1/xano/workflow_test/m1_database_after_assignment.xs": "befaa3da515fcae1e3b8034d02b7be28be7ecef7e70633f45660599db7927f63",
++    "backend/milestone1/xano/workflow_test/m1_database_after_order.xs": "c7cf94b9f2adb03534d7e7398a68ffa234ec24f1ed5dbb07a31223ff96ccfec2"
++  },
++  "scope": "Native dry-run preview only; no import or hosted behavior execution"
++}
+--- /dev/null
++++ b/backend/evidence/milestone1-native-review-validation-2026-10-23.json
+@@ -0,0 +1,60 @@
++{
++  "checked_at": "2026-10-23T16:45:00.742350+00:00",
++  "source_commit": "31fac05763a762680324d014f0b1dcb32955ea84",
++  "scope": "Offline validation and preservation; hosted M1 behavior cases remain NOT_RUN",
++  "checks": [
++    {
++      "command": "node scripts/test-milestone1-native.cjs",
++      "exit_code": 0,
++      "expected_exit": 0,
++      "as_expected": true,
++      "stdout": "TAP version 13\n# Subtest: required credential and no arbitrary function/tenant inputs\nok 1 - required credential and no arbitrary function/tenant inputs\n  ---\n  duration_ms: 1.245238\n  ...\n# Subtest: nested native JSON result accepted; errors and malformed payloads rejected\nok 2 - nested native JSON result accepted; errors and malformed payloads rejected\n  ---\n  duration_ms: 0.608152\n  ...\n# Subtest: index check rejects wrong table, non-unique and wrong predicate\nok 3 - index check rejects wrong table, non-unique and wrong predicate\n  ---\n  duration_ms: 1.730325\n  ...\n# Subtest: table mapping requires GUIDs and observed columns, not just count\nok 4 - table mapping requires GUIDs and observed columns, not just count\n  ---\n  duration_ms: 17.743989\n  ...\n# Subtest: unimported candidates, broad access, orphans and missing indexes block all invocations\nok 5 - unimported candidates, broad access, orphans and missing indexes block all invocations\n  ---\n  duration_ms: 38.321394\n  ...\n# Subtest: passing mocked preflight pins target headers, does not retry and allows bounded runner reads\nok 6 - passing mocked preflight pins target headers, does not retry and allows bounded runner reads\n  ---\n  duration_ms: 25.529588\n  ...\n# Subtest: source drift during preflight leaves execution locked\nok 7 - source drift during preflight leaves execution locked\n  ---\n  duration_ms: 16.600856\n  ...\n# Subtest: missing dependent function leaves execution locked\nok 8 - missing dependent function leaves execution locked\n  ---\n  duration_ms: 31.741592\n  ...\n# Subtest: scope claims deny but live request succeeds leaves execution locked\nok 9 - scope claims deny but live request succeeds leaves execution locked\n  ---\n  duration_ms: 18.014074\n  ...\n# Subtest: modified read-only probe stops before any function execution\nok 10 - modified read-only probe stops before any function execution\n  ---\n  duration_ms: 6.997052\n  ...\n# Subtest: wrong database stops before physical inspection\nok 11 - wrong database stops before physical inspection\n  ---\n  duration_ms: 16.984829\n  ...\n# Subtest: pagination loops fail closed\nok 12 - pagination loops fail closed\n  ---\n  duration_ms: 7.502716\n  ...\n# Subtest: transport failures redact remote messages and never retry\nok 13 - transport failures redact remote messages and never retry\n  ---\n  duration_ms: 1.416279\n  ...\n# Subtest: redirect responses cannot count as authentication\nok 14 - redirect responses cannot count as authentication\n  ---\n  duration_ms: 1.378552\n  ...\n# Subtest: request body byte ceiling stops oversized exports\nok 15 - request body byte ceiling stops oversized exports\n  ---\n  duration_ms: 2.667953\n  ...\n1..15\n# tests 15\n# suites 0\n# pass 15\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 209.159965\n",
++      "stderr": ""
++    },
++    {
++      "command": "node scripts/test-milestone1.cjs",
++      "exit_code": 0,
++      "expected_exit": 0,
++      "as_expected": true,
++      "stdout": "TAP version 13\n# Subtest: source predicate: valid customer\nok 1 - source predicate: valid customer\n  ---\n  duration_ms: 3.850505\n  ...\n# Subtest: source predicate: missing account\nok 2 - source predicate: missing account\n  ---\n  duration_ms: 0.615733\n  ...\n# Subtest: source predicate: duplicate authenticated subject\nok 3 - source predicate: duplicate authenticated subject\n  ---\n  duration_ms: 1.297151\n  ...\n# Subtest: source predicate: unrelated subject\nok 4 - source predicate: unrelated subject\n  ---\n  duration_ms: 0.950955\n  ...\n# Subtest: source predicate: blocked account\nok 5 - source predicate: blocked account\n  ---\n  duration_ms: 1.728365\n  ...\n# Subtest: source predicate: suspended account\nok 6 - source predicate: suspended account\n  ---\n  duration_ms: 0.932595\n  ...\n# Subtest: source predicate: no memberships\nok 7 - source predicate: no memberships\n  ---\n  duration_ms: 1.084215\n  ...\n# Subtest: source predicate: expiry at now\nok 8 - source predicate: expiry at now\n  ---\n  duration_ms: 1.534864\n  ...\n# Subtest: source predicate: future memberships\nok 9 - source predicate: future memberships\n  ---\n  duration_ms: 1.608184\n  ...\n# Subtest: source predicate: cross tenant memberships\nok 10 - source predicate: cross tenant memberships\n  ---\n  duration_ms: 1.68164\n  ...\n# Subtest: source predicate: other account memberships\nok 11 - source predicate: other account memberships\n  ---\n  duration_ms: 1.57163\n  ...\n# Subtest: source predicate: missing customer profile\nok 12 - source predicate: missing customer profile\n  ---\n  duration_ms: 1.680069\n  ...\n# Subtest: source predicate: ambiguous customer profiles\nok 13 - source predicate: ambiguous customer profiles\n  ---\n  duration_ms: 2.204582\n  ...\n# Subtest: source predicate: foreign profile\nok 14 - source predicate: foreign profile\n  ---\n  duration_ms: 2.173956\n  ...\n# Subtest: source predicate: same tenant other owner profile\nok 15 - source predicate: same tenant other owner profile\n  ---\n  duration_ms: 1.947734\n  ...\n# Subtest: source predicate: starter admin is not an operational membership\nok 16 - source predicate: starter admin is not an operational membership\n  ---\n  duration_ms: 1.055387\n  ...\n# Subtest: source predicate: non-customer membership needs no customer profile\nok 17 - source predicate: non-customer membership needs no customer profile\n  ---\n  duration_ms: 2.630452\n  ...\n# Subtest: source predicate: future membership ignored alongside valid memberships\nok 18 - source predicate: future membership ignored alongside valid memberships\n  ---\n  duration_ms: 2.52895\n  ...\n# Subtest: baseline reproduces missing and ambiguous profile acceptance; candidate rejects both\nok 19 - baseline reproduces missing and ambiguous profile acceptance; candidate rejects both\n  ---\n  duration_ms: 7.116806\n  ...\n# Subtest: complete evidence includes all 15 persisted tables and stable IDs\nok 20 - complete evidence includes all 15 persisted tables and stable IDs\n  ---\n  duration_ms: 2.493869\n  ...\n# Subtest: missing success record rejected: audit_events\nok 21 - missing success record rejected: audit_events\n  ---\n  duration_ms: 1.964893\n  ...\n# Subtest: rollback residue rejected: audit_events\nok 22 - rollback residue rejected: audit_events\n  ---\n  duration_ms: 0.264311\n  ...\n# Subtest: missing success record rejected: dispatch_offers\nok 23 - missing success record rejected: dispatch_offers\n  ---\n  duration_ms: 0.313035\n  ...\n# Subtest: rollback residue rejected: dispatch_offers\nok 24 - rollback residue rejected: dispatch_offers\n  ---\n  duration_ms: 0.120204\n  ...\n# Subtest: missing success record rejected: dispatch_requirements\nok 25 - missing success record rejected: dispatch_requirements\n  ---\n  duration_ms: 0.272395\n  ...\n# Subtest: rollback residue rejected: dispatch_requirements\nok 26 - rollback residue rejected: dispatch_requirements\n  ---\n  duration_ms: 0.114393\n  ...\n# Subtest: missing success record rejected: durable_tasks\nok 27 - missing success record rejected: durable_tasks\n  ---\n  duration_ms: 0.157476\n  ...\n# Subtest: rollback residue rejected: durable_tasks\nok 28 - rollback residue rejected: durable_tasks\n  ---\n  duration_ms: 0.102864\n  ...\n# Subtest: missing success record rejected: event_outbox\nok 29 - missing success record rejected: event_outbox\n  ---\n  duration_ms: 0.19519\n  ...\n# Subtest: rollback residue rejected: event_outbox\nok 30 - rollback residue rejected: event_outbox\n  ---\n  duration_ms: 0.107809\n  ...\n# Subtest: missing success record rejected: idempotency_records\nok 31 - missing success record rejected: idempotency_records\n  ---\n  duration_ms: 2.597903\n  ...\n# Subtest: rollback residue rejected: idempotency_records\nok 32 - rollback residue rejected: idempotency_records\n  ---\n  duration_ms: 0.160771\n  ...\n# Subtest: missing success record rejected: operational_events\nok 33 - missing success record rejected: operational_events\n  ---\n  duration_ms: 0.370603\n  ...\n# Subtest: rollback residue rejected: operational_events\nok 34 - rollback residue rejected: operational_events\n  ---\n  duration_ms: 0.198385\n  ...\n# Subtest: missing success record rejected: order_state_transitions\nok 35 - missing success record rejected: order_state_transitions\n  ---\n  duration_ms: 0.260218\n  ...\n# Subtest: rollback residue rejected: order_state_transitions\nok 36 - rollback residue rejected: order_state_transitions\n  ---\n  duration_ms: 0.107993\n  ...\n# Subtest: missing success record rejected: order_stops\nok 37 - missing success record rejected: order_stops\n  ---\n  duration_ms: 0.166006\n  ...\n# Subtest: rollback residue rejected: order_stops\nok 38 - rollback residue rejected: order_stops\n  ---\n  duration_ms: 0.913709\n  ...\n# Subtest: missing success record rejected: orders\nok 39 - missing success record rejected: orders\n  ---\n  duration_ms: 0.245917\n  ...\n# Subtest: rollback residue rejected: orders\nok 40 - rollback residue rejected: orders\n  ---\n  duration_ms: 0.253776\n  ...\n# Subtest: missing success record rejected: quotes\nok 41 - missing success record rejected: quotes\n  ---\n  duration_ms: 0.179595\n  ...\n# Subtest: rollback residue rejected: quotes\nok 42 - rollback residue rejected: quotes\n  ---\n  duration_ms: 0.103181\n  ...\n# Subtest: missing success record rejected: service_commitments\nok 43 - missing success record rejected: service_commitments\n  ---\n  duration_ms: 0.135226\n  ...\n# Subtest: rollback residue rejected: service_commitments\nok 44 - rollback residue rejected: service_commitments\n  ---\n  duration_ms: 0.094061\n  ...\n# Subtest: missing success record rejected: transaction_participants\nok 45 - missing success record rejected: transaction_participants\n  ---\n  duration_ms: 0.187353\n  ...\n# Subtest: rollback residue rejected: transaction_participants\nok 46 - rollback residue rejected: transaction_participants\n  ---\n  duration_ms: 0.142859\n  ...\n# Subtest: missing success record rejected: trip_assignments\nok 47 - missing success record rejected: trip_assignments\n  ---\n  duration_ms: 0.131078\n  ...\n# Subtest: rollback residue rejected: trip_assignments\nok 48 - rollback residue rejected: trip_assignments\n  ---\n  duration_ms: 0.08711\n  ...\n# Subtest: missing success record rejected: trips\nok 49 - missing success record rejected: trips\n  ---\n  duration_ms: 0.117166\n  ...\n# Subtest: rollback residue rejected: trips\nok 50 - rollback residue rejected: trips\n  ---\n  duration_ms: 1.375508\n  ...\n# Subtest: complete flag cannot replace full table inventory\nok 51 - complete flag cannot replace full table inventory\n  ---\n  duration_ms: 10.533526\n  ...\n# Subtest: missing count key rejected rather than treated as zero\nok 52 - missing count key rejected rather than treated as zero\n  ---\n  duration_ms: 0.487565\n  ...\n# Subtest: conflict must be 409 and preserve every table\nok 53 - conflict must be 409 and preserve every table\n  ---\n  duration_ms: 0.193205\n  ...\n# Subtest: conflict with 202 rejected\nok 54 - conflict with 202 rejected\n  ---\n  duration_ms: 0.163765\n  ...\n# Subtest: stable replay accepted\nok 55 - stable replay accepted\n  ---\n  duration_ms: 0.149464\n  ...\n# Subtest: changed replay order_id rejected\nok 56 - changed replay order_id rejected\n  ---\n  duration_ms: 3.388531\n  ...\n# Subtest: changed replay trip_id rejected\nok 57 - changed replay trip_id rejected\n  ---\n  duration_ms: 0.182223\n  ...\n# Subtest: changed replay workflow_id rejected\nok 58 - changed replay workflow_id rejected\n  ---\n  duration_ms: 0.119544\n  ...\n# Subtest: changed replay correlation_id rejected\nok 59 - changed replay correlation_id rejected\n  ---\n  duration_ms: 0.105685\n  ...\n# Subtest: overlapping same_key evidence accepted\nok 60 - overlapping same_key evidence accepted\n  ---\n  duration_ms: 0.597203\n  ...\n# Subtest: overlapping same_vehicle evidence accepted\nok 61 - overlapping same_vehicle evidence accepted\n  ---\n  duration_ms: 2.922471\n  ...\n# Subtest: overlapping same_driver evidence accepted\nok 62 - overlapping same_driver evidence accepted\n  ---\n  duration_ms: 0.259127\n  ...\n# Subtest: driver-only race cannot reuse the same vehicle\nok 63 - driver-only race cannot reuse the same vehicle\n  ---\n  duration_ms: 0.199372\n  ...\n# Subtest: driver-only race cannot use different drivers\nok 64 - driver-only race cannot use different drivers\n  ---\n  duration_ms: 0.243194\n  ...\n# Subtest: two active driver assignments rejected\nok 65 - two active driver assignments rejected\n  ---\n  duration_ms: 0.213773\n  ...\n# Subtest: sequential requests cannot pass as contention\nok 66 - sequential requests cannot pass as contention\n  ---\n  duration_ms: 0.218846\n  ...\n# Subtest: single database session rejected\nok 67 - single database session rejected\n  ---\n  duration_ms: 0.549781\n  ...\n# Subtest: losing request cannot leave a quote\nok 68 - losing request cannot leave a quote\n  ---\n  duration_ms: 0.515073\n  ...\n# Subtest: same-key race must return stable inspected workflow IDs\nok 69 - same-key race must return stable inspected workflow IDs\n  ---\n  duration_ms: 0.308603\n  ...\n# Subtest: fault evidence database after_order\nok 70 - fault evidence database after_order\n  ---\n  duration_ms: 0.236785\n  ...\n# Subtest: fault evidence database after_assignment\nok 71 - fault evidence database after_assignment\n  ---\n  duration_ms: 0.187535\n  ...\n# Subtest: fault evidence application after_order\nok 72 - fault evidence application after_order\n  ---\n  duration_ms: 0.115673\n  ...\n# Subtest: fault evidence application after_assignment\nok 73 - fault evidence application after_assignment\n  ---\n  duration_ms: 0.10743\n  ...\n# Subtest: early access denial cannot count as application rollback\nok 74 - early access denial cannot count as application rollback\n  ---\n  duration_ms: 0.19064\n  ...\n# Subtest: wrong application fault location rejected\nok 75 - wrong application fault location rejected\n  ---\n  duration_ms: 0.192742\n  ...\n# Subtest: unverified native source cannot claim rollback proof\nok 76 - unverified native source cannot claim rollback proof\n  ---\n  duration_ms: 0.323716\n  ...\n# Subtest: offline fixtures are never promoted to hosted evidence\nok 77 - offline fixtures are never promoted to hosted evidence\n  ---\n  duration_ms: 0.152442\n  ...\n# Subtest: unexecuted case remains NOT_RUN\nok 78 - unexecuted case remains NOT_RUN\n  ---\n  duration_ms: 0.072108\n  ...\n# Subtest: candidate snapshots and rollback workflows enumerate every write table\nok 79 - candidate snapshots and rollback workflows enumerate every write table\n  ---\n  duration_ms: 0.573942\n  ...\n# Subtest: strict candidate fixes the old helper omission without changing baseline export\nok 80 - strict candidate fixes the old helper omission without changing baseline export\n  ---\n  duration_ms: 0.611696\n  ...\n# Subtest: source command guard: dual-role trusted identity\nok 81 - source command guard: dual-role trusted identity\n  ---\n  duration_ms: 0.895687\n  ...\n# Subtest: source command guard: customer alone cannot coordinate\nok 82 - source command guard: customer alone cannot coordinate\n  ---\n  duration_ms: 0.601982\n  ...\n# Subtest: source command guard: admin alone cannot coordinate\nok 83 - source command guard: admin alone cannot coordinate\n  ---\n  duration_ms: 0.642446\n  ...\n# Subtest: source command guard: vendor alone cannot coordinate\nok 84 - source command guard: vendor alone cannot coordinate\n  ---\n  duration_ms: 0.633059\n  ...\n# Subtest: source command guard: driver alone cannot coordinate\nok 85 - source command guard: driver alone cannot coordinate\n  ---\n  duration_ms: 0.738953\n  ...\n# Subtest: source command guard: body tenant claim cannot override trusted identity\nok 86 - source command guard: body tenant claim cannot override trusted identity\n  ---\n  duration_ms: 0.555574\n  ...\n# Subtest: runner starts driver-only commands concurrently and retains loser inspection\nok 87 - runner starts driver-only commands concurrently and retains loser inspection\n  ---\n  duration_ms: 42.620253\n  ...\n# Subtest: runner refuses writes before 53 physical tables\nok 88 - runner refuses writes before 53 physical tables\n  ---\n  duration_ms: 0.391913\n  ...\n# Subtest: runner refuses writes before unrestricted credential\nok 89 - runner refuses writes before unrestricted credential\n  ---\n  duration_ms: 0.25538\n  ...\n# Subtest: runner refuses writes before unverified physical indexes\nok 90 - runner refuses writes before unverified physical indexes\n  ---\n  duration_ms: 0.170615\n  ...\n# Subtest: runner refuses writes before unverified table mapping\nok 91 - runner refuses writes before unverified table mapping\n  ---\n  duration_ms: 0.150953\n  ...\n# Subtest: runner refuses writes before unverified isolation\nok 92 - runner refuses writes before unverified isolation\n  ---\n  duration_ms: 0.16727\n  ...\n# Subtest: runner refuses writes before wrong database\nok 93 - runner refuses writes before wrong database\n  ---\n  duration_ms: 0.176125\n  ...\n# Subtest: runner refuses writes before missing source hashes\nok 94 - runner refuses writes before missing source hashes\n  ---\n  duration_ms: 0.384758\n  ...\n# Subtest: runner refuses writes before unauthenticated access\nok 95 - runner refuses writes before unauthenticated access\n  ---\n  duration_ms: 0.216787\n  ...\n# Subtest: occupied driver stops runner before any command\nok 96 - occupied driver stops runner before any command\n  ---\n  duration_ms: 0.388968\n  ...\n# Subtest: nested function/run errors cannot be parsed as empty success\nok 97 - nested function/run errors cannot be parsed as empty success\n  ---\n  duration_ms: 0.275629\n  ...\n# Subtest: runner caps same_key cohort at four concurrent commands\nok 98 - runner caps same_key cohort at four concurrent commands\n  ---\n  duration_ms: 10.829891\n  ...\n# Subtest: runner caps same_vehicle cohort at four concurrent commands\nok 99 - runner caps same_vehicle cohort at four concurrent commands\n  ---\n  duration_ms: 11.187304\n  ...\n# Subtest: caller labels cannot fake independent driver selection\nok 100 - caller labels cannot fake independent driver selection\n  ---\n  duration_ms: 0.53294\n  ...\n# Subtest: candidate hashes and preserved replacement GUIDs match manifest\nok 101 - candidate hashes and preserved replacement GUIDs match manifest\n  ---\n  duration_ms: 6.042333\n  ...\n# Subtest: command policy and business logic are identical after removing explicit fault additions\nok 102 - command policy and business logic are identical after removing explicit fault additions\n  ---\n  duration_ms: 3.622208\n  ...\n# Subtest: an omitted rejection code cannot pass an empty response\nok 103 - an omitted rejection code cannot pass an empty response\n  ---\n  duration_ms: 0.174833\n  ...\n# Subtest: race requires a concrete shared driver identity\nok 104 - race requires a concrete shared driver identity\n  ---\n  duration_ms: 0.209502\n  ...\n# Subtest: same-key race requires recorded hashes\nok 105 - same-key race requires recorded hashes\n  ---\n  duration_ms: 0.198089\n  ...\n# Subtest: fault marker without a native error code is insufficient\nok 106 - fault marker without a native error code is insufficient\n  ---\n  duration_ms: 0.119722\n  ...\n1..106\n# tests 106\n# suites 0\n# pass 106\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 178.274473\n",
++      "stderr": ""
++    },
++    {
++      "command": "node scripts/validate-backend.cjs",
++      "exit_code": 0,
++      "expected_exit": 0,
++      "as_expected": true,
++      "stdout": "PASS: 49 shared cases; 49 exported cases; 49 tables; 476 fields.\nScope: offline snapshot checks only; no Xano deployment, HTTP, isolation, or transaction proof.\nPASS: tested export hashes and 16 recorded Xano payment results.\nPASS: 84 coordinate regressions against shared and exported code.\nPASS: five unbound agent exports, supplied package hashes and references, preserved source, 20 readiness mappings. Scope: offline configuration only; 70 acceptance scenarios remain NOT_RUN.\n",
++      "stderr": ""
++    },
++    {
++      "command": "node scripts/validate-xano-safeguards.cjs",
++      "exit_code": 0,
++      "expected_exit": 0,
++      "as_expected": true,
++      "stdout": "PASS: offline safeguard checks and complete 72-case reference inventory. Native 72-case acceptance remains NOT_VERIFIED.\n",
++      "stderr": ""
++    },
++    {
++      "command": "node scripts/evaluate-milestone1.cjs",
++      "exit_code": 0,
++      "expected_exit": 0,
++      "as_expected": true,
++      "stdout": "{\"scope\":\"Evidence evaluation only; does not authenticate or execute Xano\",\"ready\":false,\"totals\":{\"NOT_RUN\":31}}\n",
++      "stderr": ""
++    },
++    {
++      "command": "node scripts/staging-gate.cjs",
++      "exit_code": 1,
++      "expected_exit": 1,
++      "as_expected": true,
++      "stdout": "",
++      "stderr": "BLOCKED: executable staging suite and required integrity evidence are incomplete.\n"
++    }
++  ],
++  "preservation": {
++    "files_checked": 163,
++    "drift": []
++  },
++  "ready": false
++}
+--- a/backend/milestone1/README.md
++++ b/backend/milestone1/README.md
+@@ -1,13 +1,42 @@
+ # M1 candidates and evidence checks
+ 
+-These files are prepared repository changes. **Nothing in `xano/` has been imported, syntax-validated by Xano, or executed there.** `backend/xano/` and its historical manifest remain unchanged.
++All eight candidates passed the native Xano sandbox dry-run on 23 October 2026. The preview lists three function updates, one new function and four new workflow tests, with no table changes, deletions or truncations. **The candidates have not been imported or executed.** Native preview acceptance does not prove runtime behavior. See [dry-run evidence](../evidence/milestone1-native-preview-2026-10-23.json).
+ 
+-The manifest binds three replacement candidates to their original hashes/GUIDs and lists five new internal snapshot/workflow resources. Inspect a fresh native export before applying any candidate. The four fault workflows refuse occupied assets 6–9, never seed/delete fixtures, assert error provenance, compare all 15 tables across both fixture tenants, then require create/replay with stable IDs and exact record deltas. Run them sequentially against verified unused fixtures; a missing/occupied fixture must stop the run.
++The manifest binds three replacements to their original hashes/GUIDs and lists five new internal resources. All 109 definitions in backend/xano/, the eight candidate source files, five agent drafts and historical evidence remain unchanged. The identity candidate rejects missing or ambiguous customer profiles. The command adds application-failure injection points. The helper adds independent driver selection, all 15 record counts, linkage checks and actual conflict status. Existing lifecycle, payment and idempotency policies remain in place.
+ 
+-The identity candidate rejects missing customer profiles and ambiguous profiles. The command candidate adds only application-failure injection points. The acceptance helper adds independent driver selection, all 15 record counts, linkage checks, result IDs and actual conflict status. Existing lifecycle, payment and idempotency behavior is preserved.
++The four rollback workflows use assets 6–9, refuse occupied fixtures, never seed/delete fixtures, verify error provenance and compare all 15 tables across both fixture tenants. They require a successful retry and stable replay. Run them sequentially only after the prerequisites pass.
+ 
+-Run `node scripts/test-milestone1.cjs` for source-fragment, evidence-rejection and adapter-orchestration tests. These do not emulate Xano transactions or prove database behavior. Run `node scripts/evaluate-milestone1.cjs` to inventory the 31 unexecuted hosted cases. Offline fixtures never become native evidence.
++## Native adapter
+ 
+-`runner.cjs` provides bounded race orchestration through an injected adapter; it supplies no credentials or network adapter. Before a real adapter is wired, obtain fresh authenticated target/source reads, restricted access and physical-index evidence, and resolve 53 physical tables versus 51 declarations. The runner refuses unverified preflight facts and occupied fixtures. Its tests use a visibly labeled offline adapter.
++native-adapter.cjs implements the existing race runner interface using Xano's Metadata API. Its fixed target is workspace 1 / branch v1 / sandbox sn9m-aat6-200c. Supply XANO_METADATA_TOKEN through the execution environment's secret facility. Do not put it in source, command-line arguments or evidence files.
+ 
+-All 72 scoped integrity controls remain explicitly deferred in the manifest. All 70 operational agent cases remain unrun. The historical native evidence and the new offline evidence have separate scopes; neither establishes deployment readiness.
++Read-only preflight:
++
++~~~sh
++node scripts/preflight-milestone1-native.cjs reports/m1-native-preflight.json
++~~~
++
++Exit 0 means the implemented preflight checks passed, 2 means prerequisites are blocked, and 1 means a request or validation failed. The output directory must already exist. The CLI has no import or case-execution option. Current [native preflight evidence](../evidence/milestone1-native-preflight-2026-10-23.json) exits 2:
++
++- 51 metadata tables map successfully, but two additional physical tables remain: mvpw1_56 and mvpw1_57. Resolve them through supported Xano administration; do not raw-drop, reset or whitelist 53.
++- The idempotency unique index is present. Partial unique indexes for active vehicle and driver assignments were not found in the physical catalog.
++- The authenticated token has live-data scope 15; a restricted development connection and live-denial proof are still required.
++- The eight candidates remain unimported. Native source readback must match before execution.
++
++Preflight checks authenticated identity, token expiry, live-data/admin scopes, stable source exports, known read-only probe source, sandbox database identity, metadata GUIDs/columns, full table mapping, scoped index definitions and candidate source hashes. The source_hashes field contains manifest byte hashes only when native source equals the candidate after LF normalization and trimming; separate export hashes describe the actual native response bytes.
++
++The restricted-access check currently understands explicit zero scope values only. Other permission models require review; unrecognized values are never assumed safe. It probes live record access only after the scope and expiry checks pass, discards the response body, and requires a 401/403 denial. Catalog index definitions are a prerequisite, not evidence of valid indexes under load or proof of all 72 deferred controls.
++
++All native execution requests force X-Tenant, disable redirects, use a 30-second timeout and a 2 MB response ceiling, and have no automatic retry. Each adapter is limited to 96 requests and four concurrent requests. A passing preflight grants a two-minute execution window, bounded by token expiry; request failures invalidate it. Use a fresh adapter per cohort.
++
++After a future passing preflight, runner.cjs can use createNativeAdapter() for its three bounded race kinds. Only its exact Slice1/acceptance race inputs and Milestone1/snapshot are callable. The runner checks unused vehicles/drivers and zero key counts before commands. This adapter does **not** provision the missing negative fixtures, execute four workflow tests, or implement the entire 31-case suite.
++
++## Verification and scope
++
++~~~sh
++node scripts/test-milestone1-native.cjs
++node scripts/test-milestone1.cjs
++node scripts/evaluate-milestone1.cjs
++~~~
++
++The 15 adapter tests use mocked HTTP responses. The existing 106 checks test source fragments, evidence assertions and orchestration. Neither suite emulates Xano transactions. The read-only native preflight is real hosted evidence; the 31 M1 behavior cases and 70 operational agent cases remain NOT_RUN. All 72 scoped integrity controls retain explicit deferrals. Global staging remains blocked.
+--- a/backend/milestone1/manifest.json
++++ b/backend/milestone1/manifest.json
+@@ -1,8 +1,8 @@
+ {
+   "schema_version": 1,
+   "base_commit": "6bcb1391e3a275f6063e72fcce038fe50aee3509",
+-  "status": "OFFLINE_CANDIDATES_NOT_IMPORTED",
+-  "native_syntax_validation": "NOT_RUN",
++  "status": "NATIVE_PREVIEW_PASSED_NOT_IMPORTED",
++  "native_syntax_validation": "PASS_NATIVE_DRY_RUN_ONLY",
+   "native_execution": "NOT_RUN",
+   "source_export_preserved": true,
+   "live_publication": false,
+@@ -104,7 +104,7 @@
+       "table": "quotes",
+       "source": "UNIQUE (platform_id, quote_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -113,7 +113,7 @@
+       "table": "quotes",
+       "source": "UNIQUE (platform_id, customer_profile_id, policy_version, input_hash_sha256)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -122,7 +122,7 @@
+       "table": "quotes",
+       "source": "FOREIGN KEY (platform_id, customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -131,7 +131,7 @@
+       "table": "quotes",
+       "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -140,7 +140,7 @@
+       "table": "quotes",
+       "source": "CHECK (jsonb_typeof(input_evidence) = 'object')",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -149,7 +149,7 @@
+       "table": "quotes",
+       "source": "CHECK (expires_at > created_at)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -158,7 +158,7 @@
+       "table": "orders",
+       "source": "UNIQUE (platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -167,7 +167,7 @@
+       "table": "orders",
+       "source": "FOREIGN KEY (platform_id, booking_customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -176,7 +176,7 @@
+       "table": "orders",
+       "source": "FOREIGN KEY (platform_id, quote_id) REFERENCES zippy.quotes(platform_id, quote_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -185,7 +185,7 @@
+       "table": "orders",
+       "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -194,7 +194,7 @@
+       "table": "order_stops",
+       "source": "UNIQUE (platform_id, order_id, stop_sequence)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -203,7 +203,7 @@
+       "table": "order_stops",
+       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -212,7 +212,7 @@
+       "table": "order_stops",
+       "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -221,7 +221,7 @@
+       "table": "order_stops",
+       "source": "CHECK (latitude IS NULL OR latitude BETWEEN -90 AND 90)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -230,7 +230,7 @@
+       "table": "order_stops",
+       "source": "CHECK (longitude IS NULL OR longitude BETWEEN -180 AND 180)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -239,7 +239,7 @@
+       "table": "transaction_participants",
+       "source": "UNIQUE (platform_id, order_id, participant_role)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -248,7 +248,7 @@
+       "table": "transaction_participants",
+       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -257,7 +257,7 @@
+       "table": "transaction_participants",
+       "source": "FOREIGN KEY (platform_id, customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -266,7 +266,7 @@
+       "table": "transaction_participants",
+       "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -275,7 +275,7 @@
+       "table": "transaction_participants",
+       "source": "CHECK (\n        (participant_role = 'customer' AND customer_profile_id IS NOT NULL AND vendor_profile_id IS NULL) OR\n        (participant_role = 'vendor' AND vendor_profile_id IS NOT NULL AND customer_profile_id IS NULL)\n    )",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -284,7 +284,7 @@
+       "table": "dispatch_offers",
+       "source": "UNIQUE (platform_id, dispatch_offer_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -293,7 +293,7 @@
+       "table": "dispatch_offers",
+       "source": "UNIQUE (platform_id, idempotency_key)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -302,7 +302,7 @@
+       "table": "dispatch_offers",
+       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -311,7 +311,7 @@
+       "table": "dispatch_offers",
+       "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -320,7 +320,7 @@
+       "table": "dispatch_offers",
+       "source": "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -329,7 +329,7 @@
+       "table": "dispatch_offers",
+       "source": "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -338,7 +338,7 @@
+       "table": "dispatch_offers",
+       "source": "CHECK (expires_at > created_at)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -347,7 +347,7 @@
+       "table": "dispatch_offers",
+       "source": "CHECK ((status IN ('accepted', 'declined') AND responded_at IS NOT NULL) OR status NOT IN ('accepted', 'declined'))",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -356,7 +356,7 @@
+       "table": "dispatch_offers",
+       "source": "PARTIAL INDEX CREATE UNIQUE INDEX dispatch_one_accepted_offer_idx\n    ON zippy.dispatch_offers (platform_id, order_id)\n    WHERE status = 'accepted';",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -365,7 +365,7 @@
+       "table": "trips",
+       "source": "UNIQUE (platform_id, trip_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -374,7 +374,7 @@
+       "table": "trips",
+       "source": "UNIQUE (platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -383,7 +383,7 @@
+       "table": "trips",
+       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -392,7 +392,7 @@
+       "table": "trip_assignments",
+       "source": "UNIQUE (platform_id, trip_id, assigned_at)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -401,7 +401,7 @@
+       "table": "trip_assignments",
+       "source": "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -410,7 +410,7 @@
+       "table": "trip_assignments",
+       "source": "FOREIGN KEY (platform_id, dispatch_offer_id) REFERENCES zippy.dispatch_offers(platform_id, dispatch_offer_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -419,7 +419,7 @@
+       "table": "trip_assignments",
+       "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -428,7 +428,7 @@
+       "table": "trip_assignments",
+       "source": "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -437,7 +437,7 @@
+       "table": "trip_assignments",
+       "source": "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -446,7 +446,7 @@
+       "table": "trip_assignments",
+       "source": "FOREIGN KEY (platform_id, assigned_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -455,7 +455,7 @@
+       "table": "trip_assignments",
+       "source": "CHECK (released_at IS NULL OR released_at >= assigned_at)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -464,7 +464,7 @@
+       "table": "trip_assignments",
+       "source": "PARTIAL INDEX CREATE UNIQUE INDEX trip_active_vehicle_idx\n    ON zippy.trip_assignments (platform_id, vehicle_id)\n    WHERE released_at IS NULL;",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -473,7 +473,7 @@
+       "table": "trip_assignments",
+       "source": "PARTIAL INDEX CREATE UNIQUE INDEX trip_active_driver_idx\n    ON zippy.trip_assignments (platform_id, driver_profile_id)\n    WHERE released_at IS NULL;",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -482,7 +482,7 @@
+       "table": "idempotency_records",
+       "source": "UNIQUE (platform_id, operation_scope, idempotency_key)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -491,7 +491,7 @@
+       "table": "idempotency_records",
+       "source": "CHECK ((lease_owner IS NULL) = (lease_expires_at IS NULL))",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -500,7 +500,7 @@
+       "table": "durable_tasks",
+       "source": "UNIQUE (platform_id, durable_task_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -509,7 +509,7 @@
+       "table": "durable_tasks",
+       "source": "UNIQUE (platform_id, task_type, idempotency_key)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -518,7 +518,7 @@
+       "table": "durable_tasks",
+       "source": "CHECK ((lease_owner IS NULL) = (lease_expires_at IS NULL))",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -527,7 +527,7 @@
+       "table": "durable_tasks",
+       "source": "CHECK (attempt_count <= max_attempts)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -536,7 +536,7 @@
+       "table": "durable_tasks",
+       "source": "CHECK (status <> 'dead_lettered' OR attempt_count = max_attempts)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -545,7 +545,7 @@
+       "table": "durable_tasks",
+       "source": "PARTIAL INDEX CREATE INDEX durable_tasks_claim_idx ON zippy.durable_tasks (platform_id, status, next_attempt_at, created_at) WHERE status IN ('pending', 'failed');",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -554,7 +554,7 @@
+       "table": "event_outbox",
+       "source": "UNIQUE (platform_id, outbox_event_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -563,7 +563,7 @@
+       "table": "event_outbox",
+       "source": "UNIQUE (platform_id, destination, idempotency_key)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -572,7 +572,7 @@
+       "table": "event_outbox",
+       "source": "UNIQUE (platform_id, aggregate_type, aggregate_id, aggregate_version, event_type)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -581,7 +581,7 @@
+       "table": "event_outbox",
+       "source": "CHECK (jsonb_typeof(payload) = 'object')",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -590,7 +590,7 @@
+       "table": "event_outbox",
+       "source": "PARTIAL INDEX CREATE INDEX outbox_claim_idx ON zippy.event_outbox (platform_id, status, next_attempt_at, created_at) WHERE status IN ('pending', 'failed');",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -599,7 +599,7 @@
+       "table": "audit_events",
+       "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -608,7 +608,7 @@
+       "table": "service_commitments",
+       "source": "UNIQUE (platform_id, service_commitment_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -617,7 +617,7 @@
+       "table": "service_commitments",
+       "source": "UNIQUE (platform_id, order_id, commitment_type)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -626,7 +626,7 @@
+       "table": "service_commitments",
+       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -635,7 +635,7 @@
+       "table": "order_state_transitions",
+       "source": "UNIQUE (platform_id, order_state_transition_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -644,7 +644,7 @@
+       "table": "order_state_transitions",
+       "source": "UNIQUE (platform_id, order_id, idempotency_key)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -653,7 +653,7 @@
+       "table": "order_state_transitions",
+       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -662,7 +662,7 @@
+       "table": "order_state_transitions",
+       "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -671,7 +671,7 @@
+       "table": "order_state_transitions",
+       "source": "FOREIGN KEY (from_status, to_status) REFERENCES zippy.order_transition_rules(from_status, to_status)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -680,7 +680,7 @@
+       "table": "operational_events",
+       "source": "UNIQUE (platform_id, operational_event_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -689,7 +689,7 @@
+       "table": "operational_events",
+       "source": "UNIQUE (platform_id, aggregate_type, aggregate_id, aggregate_version, event_type)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -698,7 +698,7 @@
+       "table": "operational_events",
+       "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -707,7 +707,7 @@
+       "table": "operational_events",
+       "source": "CHECK (jsonb_typeof(event_data) = 'object')",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -716,7 +716,7 @@
+       "table": "dispatch_requirements",
+       "source": "UNIQUE (platform_id, dispatch_requirement_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -725,7 +725,7 @@
+       "table": "dispatch_requirements",
+       "source": "UNIQUE (platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -734,7 +734,7 @@
+       "table": "dispatch_requirements",
+       "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     },
+@@ -743,7 +743,7 @@
+       "table": "dispatch_requirements",
+       "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+       "status": "DEFERRED_NATIVE_ENFORCEMENT_UNVERIFIED",
+-      "reason": "Bounded command assertions do not establish database-wide enforcement; physical inspection and violating-write tests blocked by invalid Xano credentials.",
++      "reason": "Native enforcement remains unverified. Authenticated catalog reads now succeed; physical inventory and restricted access remain unresolved. No violating-write or hosted M1 behavior cases have executed.",
+       "candidate_assertion": "backend/milestone1/assertions.cjs",
+       "native_test": null
+     }
+@@ -753,5 +753,6 @@
+     "Network adapter intentionally unwired until authenticated identity, isolation, inventory, scope and physical indexes are verified.",
+     "Identity/eligibility rejection cases and key expiry still need native fixture execution; no hosted result is supplied.",
+     "Snapshot counts cover both fixture tenants; they do not establish universal database protections or process/network recovery."
+-  ]
++  ],
++  "native_preview_evidence": "backend/evidence/milestone1-native-preview-2026-10-23.json"
+ }
+--- /dev/null
++++ b/backend/milestone1/native-adapter.cjs
+@@ -0,0 +1,256 @@
++'use strict';
++// Fixed-target native M1 race adapter. Tokens stay in memory; no import API is exposed.
++const fs = require('node:fs');
++const path = require('node:path');
++const crypto = require('node:crypto');
++const manifest = require('./manifest.json');
++const {TABLES} = require('./assertions.cjs');
++const ROOT = path.resolve(__dirname, '../..');
++const ORIGIN = 'https://xynd-fnea-khtp.n7e.xano.io';
++const TENANT = 'sn9m-aat6-200c';
++const META = '/api:meta/workspace/1';
++const LIMITS = Object.freeze({requests:96, concurrent:4, bytes:2_000_000, timeout_ms:30_000, lease_ms:120_000});
++const digest = x => crypto.createHash('sha256').update(x).digest('hex');
++const normalize = x => x.replace(/^\uFEFF/,'').replace(/\r\n/g,'\n').trim();
++const read = p => fs.readFileSync(path.join(ROOT,p),'utf8');
++function documents(source) {
++  if(typeof source !== 'string') throw Error('Invalid source export');
++  return source.split(/^\s*---\s*$/m).map(normalize).filter(Boolean);
++}
++function named(docs, kind, name) {
++  const entries = docs.filter(d => {
++    const m = d.match(new RegExp('^'+kind+' (?:"([^"]+)"|([A-Za-z0-9_]+))\\s*\\{','m'));
++    return (m?.[1] || m?.[2]) === name;
++  });
++  if(entries.length !== 1) throw Error('Missing or duplicate native definition: '+kind+'/'+name);
++  return entries[0];
++}
++function resultValue(response) {
++  if(response?.result?.status !== 'ok') throw Error('Native function/run did not succeed');
++  let v = response.result.result;
++  if(typeof v === 'string') {
++    try { v = JSON.parse(v); } catch { throw Error('Malformed native inspection result'); }
++  }
++  if(!v || typeof v !== 'object' || Array.isArray(v)) throw Error('Invalid native result shape');
++  return v;
++}
++function indexEvidence(inspection, tables) {
++  const expected = [
++    ['idempotency_records', ['platform_id','operation_scope','idempotency_key'], false],
++    ['trip_assignments', ['platform_id','vehicle_id'], true],
++    ['trip_assignments', ['platform_id','driver_profile_id'], true]
++  ];
++  return expected.map(([name,columns,partial]) => {
++    const t = tables.find(t=>t.name===name);
++    const physical = t ? 'mvpw1_'+t.id : null;
++    const suffix = ' on public.'+physical+' using btree ('+columns.join(', ')+')'+(partial?' where (released_at is null)':'');
++    const matches = (inspection.indexes||[]).filter(i =>
++      i.tablename===physical && /^create unique index \S+ on /i.test(i.indexdef) &&
++      i.indexdef.toLowerCase().endsWith(suffix));
++    return {table:name, physical_table:physical, columns, predicate:partial?'released_at IS NULL':null,
++      catalog_definition_observed:matches.length===1, index_name:matches.length===1?matches[0].indexname:null};
++  });
++}
++function inventory(inspection,tables,docs) {
++  const physical = new Set((inspection.tables||[]).map(t=>t.name));
++  const mapped = new Set(), names = new Set(), guids = new Set();
++  const issues = [];
++  for(const t of tables) {
++    if(names.has(t.name) || guids.has(t.guid)) issues.push('DUPLICATE_TABLE_IDENTITY');
++    names.add(t.name);guids.add(t.guid);
++    if(!Number.isInteger(t.id) || t.id<=0) {issues.push('INVALID_TABLE_ID');continue;}
++    const physicalName = 'mvpw1_'+t.id;
++    if(mapped.has(physicalName)) issues.push('DUPLICATE_MAPPING:'+physicalName);
++    mapped.add(physicalName);
++    if(!physical.has(physicalName)) issues.push('MISSING_PHYSICAL:'+physicalName);
++    try {
++      const source = named(docs,'table',t.name);
++      const guid = source.match(/^\s*guid = "([^"]+)"/m)?.[1];
++      if(!guid || guid!==t.guid) issues.push('TABLE_GUID_MISMATCH:'+t.name);
++      const actual = new Set((inspection.columns||[]).filter(c=>c.table_name===physicalName).map(c=>c.column_name));
++      for(const col of t.schema||[]) if(!actual.has(col.name)) issues.push('MISSING_COLUMN:'+t.name+'.'+col.name);
++    } catch { issues.push('MISSING_TABLE_SOURCE:'+t.name); }
++  }
++  for(const d of docs) {
++    const name=d.match(/^table (\w+)\s*\{/m)?.[1];
++    if(name && !names.has(name)) issues.push('MISSING_METADATA_TABLE:'+name);
++  }
++  const unmapped = [...physical].filter(t=>!mapped.has(t)).sort();
++  return {declared_table_count:tables.length,physical_table_count:physical.size,unmapped_tables:unmapped,
++    issues,verified:tables.length===51 && physical.size===51 && !unmapped.length && !issues.length};
++}
++function checkSources(docs) {
++  const hashes = {};
++  const candidate_status = [];
++  for(const c of manifest.candidates) {
++    const local = read(c.path);
++    if(digest(local)!==c.candidate_sha256) throw Error('Local candidate hash drift: '+c.path);
++    const present = docs.filter(d=>d===normalize(local)).length===1;
++    candidate_status.push({path:c.target_path,canonical_source_match:present});
++    // This is a manifest content hash, bound by normalized native source equality.
++    // The separate export hash is the actual returned native byte hash.
++    if(present) hashes[c.target_path]=c.candidate_sha256;
++  }
++  const known = new Set(), missing = [];
++  const replaced = new Map(manifest.candidates.filter(c=>c.baseline_path).map(c=>[c.baseline_path,c.path]));
++  for(const f of walk(path.join(ROOT,'backend/xano'))) {
++    const baseline = normalize(fs.readFileSync(f,'utf8'));
++    known.add(baseline);
++    const relative = path.relative(ROOT,f).split(path.sep).join('/');
++    const replacement = replaced.get(relative);
++    if(!docs.includes(baseline) && !(replacement && docs.includes(normalize(read(replacement))))) missing.push(relative);
++  }
++  for(const c of manifest.candidates) known.add(normalize(read(c.path)));
++  return {source_hashes:hashes,candidates:candidate_status,missing_baseline_resources:missing,
++    unexpected_documents:docs.filter(d=>!known.has(d)).map(d=>digest(d))};
++}
++function walk(dir) {
++  return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e =>
++    e.isDirectory()?walk(path.join(dir,e.name)):e.name.endsWith('.xs')?[path.join(dir,e.name)]:[]);
++}
++function validateInput(name,input) {
++  if(!input || typeof input!=='object' || Array.isArray(input)) throw Error('Invalid input');
++  if(name==='Milestone1/snapshot' && Object.keys(input).length===0) return;
++  if(name!=='Slice1/acceptance') throw Error('Function not allowed by race adapter');
++  const keys=['site','claimed_site','resource_site','asset','driver_asset','key','action','weight','body_type','fault','hold_seconds','expect_failure','variant'].sort();
++  if(JSON.stringify(Object.keys(input).sort())!==JSON.stringify(keys)) throw Error('Unexpected acceptance input fields');
++  if(!['site','claimed_site','resource_site'].every(k=>input[k]==='a') ||
++     !['asset','driver_asset'].every(k=>Number.isInteger(input[k])&&input[k]>=0&&input[k]<=11) ||
++     typeof input.key!=='string' || !/^m1-[A-Za-z0-9_-]{1,100}$/.test(input.key) ||
++     !['execute','inspect'].includes(input.action) || input.weight!==20 ||
++     input.body_type!=='closed' || input.fault!=='none' || input.expect_failure!==false ||
++     input.variant!=='' || input.hold_seconds!==(input.action==='inspect'?0:2))
++    throw Error('Acceptance input exceeds bounded race contract');
++}
++function createNativeAdapter({token=process.env.XANO_METADATA_TOKEN}={}) {
++  if(typeof token!=='string' || !token.trim() || /[\r\n]/.test(token)) throw Error('XANO_METADATA_TOKEN is required');
++  let calls=0,active=0,lease=null,lastLiveHash=null,runningPreflight=false;
++  async function request(route,{method='GET',body,sandbox=false,allowDenied=false}={}) {
++    if(++calls>LIMITS.requests || active>=LIMITS.concurrent) throw Error('Native request budget exceeded');
++    const controller=new AbortController();
++    const timer=setTimeout(()=>controller.abort(),LIMITS.timeout_ms);
++    active++;
++    let response;
++    try {
++      response=await fetch(ORIGIN+route,{
++        method,redirect:'error',signal:controller.signal,
++        headers:{Authorization:'Bearer '+token,Accept:'application/json',
++          ...(sandbox?{'X-Tenant':TENANT}:{}),...(body?{'Content-Type':'application/json'}:{})},
++        ...(body?{body:JSON.stringify(body)}:{})
++      });
++      // Do not read or retain any live records. A scope-denial probe needs only status.
++      if(allowDenied) {
++        await response.body?.cancel();
++        return {denied:[401,403].includes(response.status),http_status:response.status};
++      }
++      if(!response.ok) throw Error('Native HTTP '+response.status);
++      const chunks=[];let size=0;
++      for await(const chunk of response.body) {
++        size+=chunk.byteLength;
++        if(size>LIMITS.bytes) {controller.abort();throw Error('Native response too large');}
++        chunks.push(chunk);
++      }
++      const text=Buffer.concat(chunks).toString('utf8');
++      if(route.includes('/multidoc?')) return text;
++      try{return JSON.parse(text);}catch{throw Error('Malformed native JSON');}
++    } catch(error) {
++      lease=null;
++      // Never echo a response, Authorization header, request body or remote error.
++      const safe=/^Native (HTTP \d+|response too large|request budget exceeded)$/.test(error.message);
++      throw Error(safe?error.message:'Native transport or response failure; no automatic retry');
++    } finally {clearTimeout(timer);active--;}
++  }
++  async function source(sandbox) {
++    return request((sandbox?'/api:meta/sandbox':META)+'/multidoc?branch=v1&env=false&records=false');
++  }
++  async function run(name,input) {return request(META+'/function/run',{method:'POST',sandbox:true,body:{name,branch:'v1',input}});}
++  async function tables() {
++    const out=[];let page=1;
++    while(page) {
++      if(page>5) throw Error('Table pagination limit exceeded');
++      const d=await request(META+'/table?page='+page+'&per_page=100',{sandbox:true});
++      if(!Array.isArray(d.items) || d.curPage!==page) throw Error('Invalid table page');
++      out.push(...d.items);
++      if(d.nextPage!==null && (!Number.isInteger(d.nextPage) || d.nextPage<=page)) throw Error('Invalid next table page');
++      page=d.nextPage;
++    }
++    return out;
++  }
++  return Object.freeze({
++    execution_scope:'xano_native',
++    async preflight() {
++      if(runningPreflight || active) throw Error('Preflight must run alone');
++      lease=null;runningPreflight=true;
++      try {
++        const auth=await request('/api:meta/auth/me');
++        if(!Number.isInteger(auth.id) || !auth.extras?.access_token?.scope) throw Error('Invalid authenticated identity');
++        const workspace=await request(META);
++        if(workspace.id!==1 || workspace.name!=='Zippy Synthetic Prototype' || workspace.branch!=='v1')
++          throw Error('Workspace identity mismatch');
++        const liveBefore=await source(false), sandboxBefore=await source(true), docs=documents(sandboxBefore);
++        // Verify inspected SELECT-only definitions against the pinned repository before POST /run.
++        for(const [name,file] of [
++          ['Slice1/isolation_probe','backend/xano/function/slice_1/isolation_probe.xs'],
++          ['Prototype/inspect_database','backend/xano/function/prototype/inspect_database.xs']
++        ]) if(named(docs,'function',name)!==normalize(read(file))) throw Error('Read-only probe source drift: '+name);
++        const sourceChecks=checkSources(docs);
++        const isolation=resultValue(await run('Slice1/isolation_probe',{}));
++        if(isolation.database!==TENANT) throw Error('Sandbox isolation failed');
++        const inspection=resultValue(await run('Prototype/inspect_database',{}));
++        if(inspection.database!==TENANT) throw Error('Inspection database mismatch');
++        const metadata=await tables();
++        const mapping=inventory(inspection,metadata,docs),indexes=indexEvidence(inspection,metadata);
++        const scope=auth.extras.access_token.scope;
++        const expires=Date.parse(auth.extras.expires_at);
++        const liveMask=scope['workspace:datasource:live'];
++        // Accept only explicit zero. Unrecognized masks/permission models require review.
++        const prohibited=Object.entries(scope).filter(([k,v])=>
++          (k.startsWith('tenant_center')||k.startsWith('tenant_cluster')||k==='release') && v!==0);
++        const scopeRestricted=liveMask===0 && !prohibited.length && Number.isFinite(expires) && expires>Date.now();
++        let denial={denied:false,http_status:null,attempted:false};
++        if(scopeRestricted) {
++          // Existing live starter table 1; discard body even if permissions are unexpectedly broad.
++          denial={...await request(META+'/table/1/content?page=1&per_page=1',{allowDenied:true}),attempted:true};
++        }
++        const sandboxAfter=await source(true),liveAfter=await source(false);
++        const stable=sandboxBefore===sandboxAfter && liveBefore===liveAfter;
++        lastLiveHash=digest(liveBefore);
++        const blockers=[];
++        if(!stable) blockers.push('SOURCE_CHANGED_DURING_PREFLIGHT');
++        if(!mapping.verified || isolation.physical_table_count!==mapping.physical_table_count) blockers.push('PHYSICAL_INVENTORY_UNRECONCILED');
++        if(indexes.some(i=>!i.catalog_definition_observed)) blockers.push('REQUIRED_INDEX_DEFINITIONS_MISSING');
++        if(!scopeRestricted || !denial.denied) blockers.push('RESTRICTED_ACCESS_UNVERIFIED');
++        if(sourceChecks.candidates.some(c=>!c.canonical_source_match)) blockers.push('CANDIDATES_NOT_IMPORTED_OR_SOURCE_DRIFT');
++        if(sourceChecks.unexpected_documents.length || sourceChecks.missing_baseline_resources.length) blockers.push('UNREVIEWED_SANDBOX_SOURCE');
++        if(isolation.advisory_lock_available!==true) blockers.push('ADVISORY_LOCK_UNAVAILABLE');
++        const report={execution_scope:'xano_native',checked_at:new Date().toISOString(),authenticated:true,
++          workspace_id:workspace.id,workspace_name:workspace.name,branch:workspace.branch,database:isolation.database,
++          isolation_verified:stable && isolation.database===TENANT && inspection.database===TENANT,
++          physical_table_count:mapping.physical_table_count,physical_table_mapping_verified:mapping.verified,
++          physical_indexes_verified:indexes.every(i=>i.catalog_definition_observed),
++          restricted_access_verified:scopeRestricted && denial.denied,live_source_hash_before:lastLiveHash,
++          live_source_hash_after:digest(liveAfter),sandbox_source_hash_before:digest(sandboxBefore),
++          sandbox_source_hash_after:digest(sandboxAfter),source_preserved:stable,...sourceChecks,
++          inventory:mapping,index_definitions:indexes,
++          access:{live_data_scope_mask:liveMask,expiry_verified:Number.isFinite(expires)&&expires>Date.now(),
++            expires_at:Number.isFinite(expires)?new Date(expires).toISOString():null,
++            prohibited_admin_scopes:prohibited.map(([k])=>k),live_denial_probe:denial},
++          blockers,ready:blockers.length===0};
++        if(report.ready) lease={until:Math.min(Date.now()+LIMITS.lease_ms,expires)};
++        return report;
++      } finally {runningPreflight=false;}
++    },
++    async invoke(name,input) {
++      validateInput(name,input);
++      if(!lease || Date.now()>=lease.until || runningPreflight) throw Error('Fresh passing native preflight required');
++      return run(name,input);
++    },
++    async preservation() {
++      const live=await source(false);
++      const result={live_source_hash_after:digest(live),matches_preflight:lastLiveHash===digest(live)};
++      if(!result.matches_preflight) lease=null;
++      return result;
++    }
++  });
++}
++module.exports={createNativeAdapter,documents,resultValue,indexEvidence,inventory,validateInput,LIMITS};
+--- a/backend/milestone1/runner.cjs
++++ b/backend/milestone1/runner.cjs
+@@ -1,6 +1,6 @@
+ 'use strict';
+-// An adapter must obtain fresh native reads and source hashes. No network adapter,
+-// token handling, import, seed, delete, payment or model operation is provided here.
++// An adapter must obtain fresh native reads and source hashes. See native-adapter.cjs
++// for the fixed-target native implementation. This runner does not import or seed.
+ const assert=require('node:assert/strict');
+ const A=require('./assertions.cjs');
+ const manifest=require('./manifest.json');
+--- a/docs/STAGING_STATUS.md
++++ b/docs/STAGING_STATUS.md
+@@ -1,3 +1,28 @@
++## Fresh native preview and authenticated preflight — 23 October 2026
++
++Direct authenticated access now succeeds. This supersedes the authentication blocker in the historical sections below. The working source snapshot is pinned to review commit 31fac05763a762680324d014f0b1dcb32955ea84; all 228 source blobs were verified. All 109 preserved backend definitions match the fresh sandbox export after LF normalization and trimming.
++
++Xano's native sandbox dry-run accepted all eight M1 candidates with HTTP 200: exactly three function updates, one new function and four new workflow tests. The preview contains no table changes, deletions, truncations, unresolved placeholders or reported exceptions. This establishes native preview acceptance only; it is not a runtime pass or an import. [Preview evidence](../backend/evidence/milestone1-native-preview-2026-10-23.json) includes unchanged before/after hashes for both live and sandbox source.
++
++The new [native adapter](../backend/milestone1/native-adapter.cjs) and read-only CLI derive preflight facts from authenticated native reads. A real run completed with exit 2 / ready: false. [Native preflight evidence](../backend/evidence/milestone1-native-preflight-2026-10-23.json) records:
++
++| Check | Fresh result |
++| --- | --- |
++| Authentication and workspace | PASS: workspace 1, Zippy Synthetic Prototype, branch v1 |
++| Sandbox identity | PASS: database sn9m-aat6-200c |
++| Source preservation | PASS: live and sandbox exports unchanged |
++| Inventory | BLOCKED: 51 metadata mappings plus two unmapped physical tables, mvpw1_56 and mvpw1_57 |
++| Scoped physical indexes | Idempotency unique index observed; active-vehicle and active-driver partial unique definitions absent |
++| Restricted access | BLOCKED: live-data scope 15; authenticated expiry verified, but restricted access/live denial not established |
++| Candidate import/readback | NOT_IMPORTED; all eight source candidates remain unchanged |
++| Hosted M1 cases / rollback evidence | 31 NOT_RUN; no new behavioral or rollback claims |
++
++The adapter supports the existing bounded race interface, enforces the fixed target and request limits, and refuses invocations without passing fresh preflight. Its 15 mocked transport/preflight checks pass; all 106 existing M1 offline checks still pass. It does not implement negative-fixture provisioning or a complete 31-case executor. See [adapter instructions and limits](../backend/milestone1/README.md) and [verification report](../backend/evidence/milestone1-native-review-validation-2026-10-23.json).
++
++Next dependencies remain supported inventory reconciliation, restricted development access with live-denial evidence, reviewed physical-index remediation, and then preview/import/readback of the eight candidates. No raw cleanup, bootstrap, live publication, repository push, provider action or hosted behavior case ran. All 109 backend definitions, five agent drafts, candidate source files and historical evidence remain preserved. Global staging remains blocked.
++
++## Historical reports (superseded where contradicted by the fresh results above)
++
+ > Latest hosted attempt: from `1ca3b4ea6860e4ad310de29fb1f3a9e9704928e8`. **BLOCKED: direct Xano authentication required.** Direct MCP initialization/tool discovery succeed, but workspace and documentation reads return **Unauthorized - Authentication Required**. Prior Composio reads returned **Invalid token**. Dependent isolation, inventory/index inspection, native import and hosted execution were stopped.
+ 
+ ## Latest hosted attempt
+--- /dev/null
++++ b/scripts/preflight-milestone1-native.cjs
+@@ -0,0 +1,13 @@
++'use strict';
++// Read-only preflight. No import or hosted-case execution option.
++const fs=require('node:fs'),path=require('node:path');
++const {createNativeAdapter}=require('../backend/milestone1/native-adapter.cjs');
++(async()=>{
++  const report=await createNativeAdapter().preflight();
++  if(process.argv[2]) fs.writeFileSync(path.resolve(process.argv[2]),JSON.stringify(report,null,2)+'\n');
++  console.log(JSON.stringify({authenticated:report.authenticated,ready:report.ready,
++    database:report.database,source_preserved:report.source_preserved,
++    physical_tables:report.physical_table_count,unmapped_tables:report.inventory.unmapped_tables,
++    index_definitions:report.index_definitions,blockers:report.blockers},null,2));
++  process.exitCode=report.ready?0:2;
++})().catch(error=>{console.error(error.message);process.exitCode=1;});
+--- /dev/null
++++ b/scripts/test-milestone1-native.cjs
+@@ -0,0 +1,154 @@
++'use strict';
++const test=require('node:test'),assert=require('node:assert/strict');
++const fs=require('node:fs'),path=require('node:path');
++const {createNativeAdapter,documents,resultValue,indexEvidence,inventory,validateInput,LIMITS}=require('../backend/milestone1/native-adapter.cjs');
++const manifest=require('../backend/milestone1/manifest.json');
++const root=path.resolve(__dirname,'..');
++const read=p=>fs.readFileSync(path.join(root,p),'utf8');
++const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):e.name.endsWith('.xs')?[path.join(dir,e.name)]:[]);
++const baseline=walk(path.join(root,'backend/xano')).map(p=>fs.readFileSync(p,'utf8')).join('\n---\n');
++function nativeFixture({imported=false}={}) {
++  const tableDocs=documents(baseline).filter(d=>/^table /m.test(d));
++  const tables=tableDocs.map((d,i)=>({
++    id:i+1,name:d.match(/^table (\w+)/m)[1],guid:d.match(/^\s*guid = "([^"]+)"/m)[1],schema:[{name:'id'}]
++  }));
++  const physical=tables.map(t=>({name:'mvpw1_'+t.id}));
++  const columns=tables.map(t=>({table_name:'mvpw1_'+t.id,column_name:'id'}));
++  const indexes=[
++    ['idempotency_records','platform_id, operation_scope, idempotency_key',''],
++    ['trip_assignments','platform_id, vehicle_id',' WHERE (released_at IS NULL)'],
++    ['trip_assignments','platform_id, driver_profile_id',' WHERE (released_at IS NULL)']
++  ].map(([name,c,p],i)=>{const table='mvpw1_'+tables.find(t=>t.name===name).id;
++    return {tablename:table,indexname:'idx'+i,indexdef:'CREATE UNIQUE INDEX idx'+i+' ON public.'+table+' USING btree ('+c+')'+p};
++  });
++  let sandbox=baseline;
++  if(imported) {
++    for(const c of manifest.candidates.filter(c=>c.baseline_path)) sandbox=sandbox.replace(read(c.baseline_path),read(c.path));
++    sandbox+='\n---\n'+manifest.candidates.filter(c=>!c.baseline_path).map(c=>read(c.path)).join('\n---\n');
++  }
++  return {tables,inspection:{database:'sn9m-aat6-200c',tables:physical,indexes,columns},sandbox};
++}
++const wrap=v=>({result:{status:'ok',result:v}});
++const input=()=>({site:'a',claimed_site:'a',resource_site:'a',asset:2,driver_asset:2,key:'m1-unit-test',
++ action:'inspect',weight:20,body_type:'closed',fault:'none',hold_seconds:0,expect_failure:false,variant:''});
++async function mockNative(options,fn) {
++  const fixture=nativeFixture(options),calls=[],original=global.fetch;
++  let sandboxReads=0;
++  global.fetch=async(url,init)=>{
++    calls.push({url,init});
++    const u=new URL(url),p=u.pathname;
++    if(options.transportError) throw Error('Bearer SECRET_RAW_REMOTE_MESSAGE');
++    if(options.redirect) return new Response('',{status:302,headers:{Location:'https://elsewhere.invalid'}});
++    const json=v=>new Response(JSON.stringify(v),{headers:{'Content-Type':'application/json'}});
++    if(p==='/api:meta/auth/me') return json({id:7,extras:{expires_at:'2099-01-01T00:00:00Z',
++      access_token:{scope:{'workspace:datasource:live':options.broad?15:0}}}});
++    if(p==='/api:meta/workspace/1') return json({id:1,name:'Zippy Synthetic Prototype',branch:'v1'});
++    if(p==='/api:meta/workspace/1/multidoc') return new Response('live fixed source');
++    if(p==='/api:meta/sandbox/multidoc') {
++      sandboxReads++;let s=fixture.sandbox;
++      if(options.probeDrift) s=s.replace('SELECT current_database() AS database','SELECT 1 AS database');
++      if(options.changed && sandboxReads>1) s+='\n// unexpected drift';
++      if(options.missingDependency) s=documents(s).filter(d=>!d.includes('function "Logistics/validate_order"')).join('\n---\n');
++      return new Response(s);
++    }
++    if(p==='/api:meta/workspace/1/table') return json({curPage:1,nextPage:options.badPage?1:null,items:fixture.tables});
++    if(p==='/api:meta/workspace/1/table/1/content') return new Response('NEVER_RETAIN_LIVE_RECORD',{status:options.liveAllowed?200:403});
++    if(p==='/api:meta/workspace/1/function/run') {
++      const b=JSON.parse(init.body);
++      if(b.name==='Slice1/isolation_probe') return json(wrap({database:options.wrongDb?'live':'sn9m-aat6-200c',
++        physical_table_count:options.orphans?53:51,advisory_lock_available:true}));
++      if(b.name==='Prototype/inspect_database') {
++        const i=structuredClone(fixture.inspection);
++        if(options.orphans)i.tables.push({name:'mvpw1_56'},{name:'mvpw1_57'});
++        if(options.missingIndexes)i.indexes=i.indexes.slice(0,1);
++        return json(wrap(JSON.stringify(i)));
++      }
++      return json(wrap({code:'INSPECT'}));
++    }
++    throw Error('Unexpected endpoint '+p);
++  };
++  try {await fn(createNativeAdapter({token:'TEST_TOKEN_NOT_REAL'}),calls,fixture);}
++  finally {global.fetch=original;}
++}
++test('required credential and no arbitrary function/tenant inputs',()=>{
++  assert.throws(()=>createNativeAdapter({token:''}));
++  assert.throws(()=>createNativeAdapter({token:'x\nheader'}));
++  assert.throws(()=>validateInput('Prototype/native_bootstrap',{}));
++  assert.throws(()=>validateInput('Slice1/acceptance',{...input(),tenant:'live'}));
++  assert.throws(()=>validateInput('Slice1/acceptance',{...input(),hold_seconds:3}));
++  assert.throws(()=>validateInput('Slice1/acceptance',{...input(),asset:12}));
++  validateInput('Slice1/acceptance',input());
++});
++test('nested native JSON result accepted; errors and malformed payloads rejected',()=>{
++  assert.deepEqual(resultValue(wrap('{"database":"sandbox"}')),{database:'sandbox'});
++  for(const v of [{result:{status:'error',result:{}}},wrap('bad'),wrap(null)])assert.throws(()=>resultValue(v));
++});
++test('index check rejects wrong table, non-unique and wrong predicate',()=>{
++  const f=nativeFixture();assert.equal(indexEvidence(f.inspection,f.tables).every(i=>i.catalog_definition_observed),true);
++  for(const edit of [i=>i.indexes[1].tablename='other',i=>i.indexes[1].indexdef=i.indexes[1].indexdef.replace('UNIQUE ',''),
++    i=>i.indexes[1].indexdef=i.indexes[1].indexdef.replace('IS NULL','IS NOT NULL')]) {
++    const i=structuredClone(f.inspection);edit(i);assert.equal(indexEvidence(i,f.tables)[1].catalog_definition_observed,false);
++  }
++});
++test('table mapping requires GUIDs and observed columns, not just count',()=>{
++  const f=nativeFixture();assert.equal(inventory(f.inspection,f.tables,documents(f.sandbox)).verified,true);
++  f.tables[0].guid='wrong';assert.equal(inventory(f.inspection,f.tables,documents(f.sandbox)).verified,false);
++});
++test('unimported candidates, broad access, orphans and missing indexes block all invocations',async()=>{
++  await mockNative({broad:true,orphans:true,missingIndexes:true},async(a,calls)=>{
++    const p=await a.preflight();
++    assert.equal(p.ready,false);assert.equal(p.physical_table_count,53);
++    assert.deepEqual(p.inventory.unmapped_tables,['mvpw1_56','mvpw1_57']);
++    assert.equal(p.blockers.length,4);assert.equal(p.access.live_denial_probe.attempted,false);
++    const n=calls.length;await assert.rejects(()=>a.invoke('Slice1/acceptance',input()),/preflight required/);
++    assert.equal(calls.length,n);
++    assert.ok(!JSON.stringify(p).includes('TEST_TOKEN'));
++  });
++});
++test('passing mocked preflight pins target headers, does not retry and allows bounded runner reads',async()=>{
++  await mockNative({imported:true},async(a,calls)=>{
++    const p=await a.preflight();assert.deepEqual(p.blockers,[]);assert.equal(p.ready,true);
++    await a.invoke('Slice1/acceptance',input());
++    const runs=calls.filter(c=>c.url.endsWith('/function/run'));
++    for(const c of runs) {
++      assert.equal(new URL(c.url).origin,'https://xynd-fnea-khtp.n7e.xano.io');
++      assert.equal(c.init.headers['X-Tenant'],'sn9m-aat6-200c');
++      assert.equal(JSON.parse(c.init.body).branch,'v1');assert.equal(c.init.redirect,'error');
++      assert.equal(c.init.headers.Authorization,'Bearer TEST_TOKEN_NOT_REAL');
++    }
++    assert.equal((await a.preservation()).matches_preflight,true);
++    assert.equal(p.access.live_denial_probe.http_status,403);
++    assert.ok(!JSON.stringify(p).includes('NEVER_RETAIN_LIVE_RECORD'));
++  });
++});
++for(const [name,options] of [
++  ['source drift during preflight',{changed:true}],['missing dependent function',{missingDependency:true}],
++  ['scope claims deny but live request succeeds',{liveAllowed:true}]
++]) test(name+' leaves execution locked',async()=>mockNative({imported:true,...options},async(a)=>{
++  const p=await a.preflight();assert.equal(p.ready,false);
++  await assert.rejects(()=>a.invoke('Milestone1/snapshot',{}));
++}));
++test('modified read-only probe stops before any function execution',async()=>mockNative({probeDrift:true},async(a,calls)=>{
++  await assert.rejects(()=>a.preflight(),/probe source drift/);
++  assert.equal(calls.filter(c=>c.url.endsWith('/function/run')).length,0);
++}));
++test('wrong database stops before physical inspection',async()=>mockNative({wrongDb:true},async(a,calls)=>{
++  await assert.rejects(()=>a.preflight(),/isolation failed/);
++  assert.equal(calls.filter(c=>c.url.endsWith('/function/run')).length,1);
++}));
++test('pagination loops fail closed',async()=>mockNative({badPage:true},async(a)=>{
++  await assert.rejects(()=>a.preflight(),/next table page/);
++}));
++test('transport failures redact remote messages and never retry',async()=>mockNative({transportError:true},async(a,calls)=>{
++  await assert.rejects(()=>a.preflight(),e=>!e.message.includes('SECRET')&&e.message.includes('no automatic retry'));
++  assert.equal(calls.length,1);
++}));
++test('redirect responses cannot count as authentication',async()=>mockNative({redirect:true},async(a,calls)=>{
++  await assert.rejects(()=>a.preflight(),/HTTP 302/);assert.equal(calls.length,1);
++}));
++test('request body byte ceiling stops oversized exports',async()=>{
++  const original=global.fetch;
++  global.fetch=async()=>new Response('x'.repeat(LIMITS.bytes+1));
++  try {await assert.rejects(()=>createNativeAdapter({token:'TEST'}).preservation(),/too large/);}
++  finally {global.fetch=original;}
++});

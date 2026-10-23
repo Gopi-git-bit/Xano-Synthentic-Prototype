@@ -1,0 +1,135 @@
+{
+  "time_utc": "2026-10-23T16:31:12.174075+00:00",
+  "http_status": 200,
+  "candidate_count": 8,
+  "response": {
+    "workspace_name": "Zippy Synthetic Prototype",
+    "source_workspace_mismatch": false,
+    "summary": {
+      "table": {
+        "created": 0,
+        "updated": 0,
+        "deleted": 0,
+        "truncated": 0,
+        "unchanged": 0
+      },
+      "function": {
+        "created": 1,
+        "updated": 3,
+        "deleted": 0,
+        "truncated": 0,
+        "unchanged": 0
+      },
+      "query": {
+        "created": 0,
+        "updated": 0,
+        "deleted": 0,
+        "truncated": 0,
+        "unchanged": 0
+      },
+      "message": {
+        "created": 0,
+        "updated": 0,
+        "deleted": 0,
+        "truncated": 0,
+        "unchanged": 0
+      },
+      "workflow_test": {
+        "created": 4,
+        "updated": 0,
+        "deleted": 0,
+        "truncated": 0,
+        "unchanged": 0
+      }
+    },
+    "operations": [
+      {
+        "type": "function",
+        "name": "Logistics/resolve_identity",
+        "action": "update",
+        "details": "Function will be updated [XS content differs]",
+        "reason": "XS content differs"
+      },
+      {
+        "type": "function",
+        "name": "Milestone1/snapshot",
+        "action": "create",
+        "details": "Function will be created"
+      },
+      {
+        "type": "function",
+        "name": "Slice1/acceptance",
+        "action": "update",
+        "details": "Function will be updated [XS content differs]",
+        "reason": "XS content differs"
+      },
+      {
+        "type": "function",
+        "name": "Slice1/create_and_assign",
+        "action": "update",
+        "details": "Function will be updated [XS content differs]",
+        "reason": "XS content differs"
+      },
+      {
+        "type": "workflow_test",
+        "name": "Milestone1 application after_assignment",
+        "action": "create",
+        "details": "Workflow test will be created"
+      },
+      {
+        "type": "workflow_test",
+        "name": "Milestone1 application after_order",
+        "action": "create",
+        "details": "Workflow test will be created"
+      },
+      {
+        "type": "workflow_test",
+        "name": "Milestone1 database after_assignment",
+        "action": "create",
+        "details": "Workflow test will be created"
+      },
+      {
+        "type": "workflow_test",
+        "name": "Milestone1 database after_order",
+        "action": "create",
+        "details": "Workflow test will be created"
+      }
+    ]
+  },
+  "source_preservation": {
+    "live": {
+      "before": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
+      "after": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
+      "unchanged": true
+    },
+    "sandbox": {
+      "before": "4ffe343c426fa1e09773f1c54e71f65d37509f671eca98fdaff3250da67526c4",
+      "after": "4ffe343c426fa1e09773f1c54e71f65d37509f671eca98fdaff3250da67526c4",
+      "unchanged": true
+    }
+  },
+  "import_performed": false,
+  "source_commit": "31fac05763a762680324d014f0b1dcb32955ea84",
+  "endpoint": "/api:meta/sandbox/multidoc/dry-run",
+  "method": "POST",
+  "parameters": {
+    "delete": false,
+    "env": false,
+    "records": false,
+    "transaction": true,
+    "truncate": false,
+    "partial": true,
+    "source_workspace_id": 1
+  },
+  "candidate_hashes": {
+    "backend/milestone1/xano/function/logistics/resolve_identity.xs": "72b74f1e37a5052ef8a9ac604fe0b10e0bcf21a5dc82f16797633b50164a0820",
+    "backend/milestone1/xano/function/milestone1/snapshot.xs": "0ff534849864225fbf1cdc57fdaf96aff18e0f353f041e780225894ada524897",
+    "backend/milestone1/xano/function/slice_1/acceptance.xs": "5efc71399b42e0af78cb5af82580f9ef59b60c088827cdf05620d22b1952408a",
+    "backend/milestone1/xano/function/slice_1/create_and_assign.xs": "7afec4b7c36d377a2fa02c132d1435915105c9bc47d6dbb1d184f5f3a116533c",
+    "backend/milestone1/xano/workflow_test/m1_application_after_assignment.xs": "b2f953114ebf6f51fc111e2b18d3c0f46e4e1838cd04a809aa26d2e9202b2978",
+    "backend/milestone1/xano/workflow_test/m1_application_after_order.xs": "1d4f7f5ef3d2bbbab77c57c3434fce402e11b0a87123cb889769bc14026ddaf4",
+    "backend/milestone1/xano/workflow_test/m1_database_after_assignment.xs": "befaa3da515fcae1e3b8034d02b7be28be7ecef7e70633f45660599db7927f63",
+    "backend/milestone1/xano/workflow_test/m1_database_after_order.xs": "c7cf94b9f2adb03534d7e7398a68ffa234ec24f1ed5dbb07a31223ff96ccfec2"
+  },
+  "scope": "Native dry-run preview only; no import or hosted behavior execution"
+}

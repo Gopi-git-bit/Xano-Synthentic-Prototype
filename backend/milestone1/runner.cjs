@@ -1,6 +1,6 @@
 'use strict';
-// An adapter must obtain fresh native reads and source hashes. No network adapter,
-// token handling, import, seed, delete, payment or model operation is provided here.
+// An adapter must obtain fresh native reads and source hashes. See native-adapter.cjs
+// for the fixed-target native implementation. This runner does not import or seed.
 const assert=require('node:assert/strict');
 const A=require('./assertions.cjs');
 const manifest=require('./manifest.json');

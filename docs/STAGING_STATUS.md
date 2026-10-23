@@ -1,3 +1,28 @@
+## Fresh native preview and authenticated preflight — 23 October 2026
+
+Direct authenticated access now succeeds. This supersedes the authentication blocker in the historical sections below. The working source snapshot is pinned to review commit 31fac05763a762680324d014f0b1dcb32955ea84; all 228 source blobs were verified. All 109 preserved backend definitions match the fresh sandbox export after LF normalization and trimming.
+
+Xano's native sandbox dry-run accepted all eight M1 candidates with HTTP 200: exactly three function updates, one new function and four new workflow tests. The preview contains no table changes, deletions, truncations, unresolved placeholders or reported exceptions. This establishes native preview acceptance only; it is not a runtime pass or an import. [Preview evidence](../backend/evidence/milestone1-native-preview-2026-10-23.json) includes unchanged before/after hashes for both live and sandbox source.
+
+The new [native adapter](../backend/milestone1/native-adapter.cjs) and read-only CLI derive preflight facts from authenticated native reads. A real run completed with exit 2 / ready: false. [Native preflight evidence](../backend/evidence/milestone1-native-preflight-2026-10-23.json) records:
+
+| Check | Fresh result |
+| --- | --- |
+| Authentication and workspace | PASS: workspace 1, Zippy Synthetic Prototype, branch v1 |
+| Sandbox identity | PASS: database sn9m-aat6-200c |
+| Source preservation | PASS: live and sandbox exports unchanged |
+| Inventory | BLOCKED: 51 metadata mappings plus two unmapped physical tables, mvpw1_56 and mvpw1_57 |
+| Scoped physical indexes | Idempotency unique index observed; active-vehicle and active-driver partial unique definitions absent |
+| Restricted access | BLOCKED: live-data scope 15; authenticated expiry verified, but restricted access/live denial not established |
+| Candidate import/readback | NOT_IMPORTED; all eight source candidates remain unchanged |
+| Hosted M1 cases / rollback evidence | 31 NOT_RUN; no new behavioral or rollback claims |
+
+The adapter supports the existing bounded race interface, enforces the fixed target and request limits, and refuses invocations without passing fresh preflight. Its 15 mocked transport/preflight checks pass; all 106 existing M1 offline checks still pass. It does not implement negative-fixture provisioning or a complete 31-case executor. See [adapter instructions and limits](../backend/milestone1/README.md) and [verification report](../backend/evidence/milestone1-native-review-validation-2026-10-23.json).
+
+Next dependencies remain supported inventory reconciliation, restricted development access with live-denial evidence, reviewed physical-index remediation, and then preview/import/readback of the eight candidates. No raw cleanup, bootstrap, live publication, repository push, provider action or hosted behavior case ran. All 109 backend definitions, five agent drafts, candidate source files and historical evidence remain preserved. Global staging remains blocked.
+
+## Historical reports (superseded where contradicted by the fresh results above)
+
 > Latest hosted attempt: from `1ca3b4ea6860e4ad310de29fb1f3a9e9704928e8`. **BLOCKED: direct Xano authentication required.** Direct MCP initialization/tool discovery succeed, but workspace and documentation reads return **Unauthorized - Authentication Required**. Prior Composio reads returned **Invalid token**. Dependent isolation, inventory/index inspection, native import and hosted execution were stopped.
 
 ## Latest hosted attempt
