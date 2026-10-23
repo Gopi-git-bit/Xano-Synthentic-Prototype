@@ -10,11 +10,11 @@ branch v1 {
   }
 
   history = {
-    function  : false
+    function  : 100
     query     : 100
     task      : 100
     tool      : 100
-    trigger   : false
-    middleware: false
+    trigger   : 100
+    middleware: 100
   }
 }
