@@ -3,19 +3,225 @@
   "status": "blocked",
   "ready": false,
   "blockers": [
-    "Atomic conditional updates, duplicate exclusion, vehicle/driver exclusivity and worker claims unproven.",
-    "Non-database failure rollback not demonstrated.",
-    "Deferred schema controls lack demonstrated enforcement and executable integration tests.",
-    "Booking HTTP API, provider payment/webhook handling and durable workers incomplete.",
-    "Recovery, restoration, end-to-end journeys and alerts not demonstrated.",
-    "Bounded Metadata API concurrency passes; public application HTTP/JWT, independent driver/worker claims, restricted credentials remain unverified."
+    "Fresh Xano workspace/branch/sandbox identity and code drift unavailable: authenticated reads return Invalid token.",
+    "Last observed physical count 53 versus 51 declared; supported diagnostic reconciliation unresolved; no count whitelist or deletion.",
+    "194 integrity controls retain blocked status/null executable tests. 79 matching export index declarations are not native enforcement proof.",
+    "Application JWT roles, tenant and owner isolation, ambiguous customer profile rejection, restricted admin scope and magic-link single-use concurrency remain unverified.",
+    "Bounded internal Metadata API vehicle/idempotency races pass historically; independent driver contention, CAS and worker fencing/claims remain unproved.",
+    "Disposable database/application rollback passed historically; full 15-table application-failure rollback and process/network recovery remain unverified.",
+    "Public booking/workflow/transition contracts, signed payment evidence, durable workers, POD and financial/provider integrations incomplete.",
+    "All 70 agent operational scenarios remain NOT_RUN; trusted runtime context/capability/budget/kill-switch gateway missing.",
+    "Lifecycle/payment/idempotency policy conflicts remain open for general public/financial operations; existing synthetic rules preserved.",
+    "Recovery/restoration/deployment rollback/alerts and executable staging suite absent."
   ],
   "ephemeral": {
     "name": "e9aa-vgbb-7f5c",
     "ingress": true,
     "rbac": true,
     "hostname": null,
-    "expires_at": "2026-10-22T05:37:12Z"
+    "expires_at": "2026-10-22T05:37:12Z",
+    "current_existence": "NOT_VERIFIED; last recorded expiry has passed; do not reuse as a current environment."
   },
-  "historical_evidence": "See docs/SLICE1_RESULTS.md. Previous tests are not current HTTP evidence."
+  "historical_evidence": "See docs/SLICE1_RESULTS.md. Previous tests are not current HTTP evidence.",
+  "history": [
+    {
+      "source_commit": "bacde7695fd5628680dad717fc2d1e84ae854acd",
+      "previous_blockers": [
+        "Atomic conditional updates, duplicate exclusion, vehicle/driver exclusivity and worker claims unproven.",
+        "Non-database failure rollback not demonstrated.",
+        "Deferred schema controls lack demonstrated enforcement and executable integration tests.",
+        "Booking HTTP API, provider payment/webhook handling and durable workers incomplete.",
+        "Recovery, restoration, end-to-end journeys and alerts not demonstrated.",
+        "Bounded Metadata API concurrency passes; public application HTTP/JWT, independent driver/worker claims, restricted credentials remain unverified."
+      ],
+      "note": "Retained before the 23 October audit reconciled bounded native proof versus global guarantees."
+    }
+  ],
+  "audit_date": "2026-10-23",
+  "audit_report": "backend/evidence/backend-audit-2026-10-23.json",
+  "source_commit": "bacde7695fd5628680dad717fc2d1e84ae854acd",
+  "current_xano_status": "BLOCKED_AUTHENTICATION_INVALID_TOKEN",
+  "recommended_milestone": {
+    "id": "M1",
+    "name": "Complete the preserved internal synthetic booking-to-assignment proof",
+    "status": "BLOCKED_AT_FRESH_XANO_ACCESS_AND_INVENTORY",
+    "acceptance_criteria": [
+      {
+        "id": "M1-AC-01",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "XN-01"
+        ]
+      },
+      {
+        "id": "M1-AC-02",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "XN-02"
+        ]
+      },
+      {
+        "id": "M1-AC-03",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "XN-03",
+          "CX-02"
+        ]
+      },
+      {
+        "id": "M1-AC-04",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "CX-03",
+          "XN-04"
+        ]
+      },
+      {
+        "id": "M1-AC-05",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "CX-04",
+          "XN-04"
+        ]
+      },
+      {
+        "id": "M1-AC-06",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "CX-04",
+          "XN-04"
+        ]
+      },
+      {
+        "id": "M1-AC-07",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "CX-04",
+          "XN-04"
+        ]
+      },
+      {
+        "id": "M1-AC-08",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "CX-04",
+          "XN-04"
+        ]
+      },
+      {
+        "id": "M1-AC-09",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "CX-05"
+        ]
+      },
+      {
+        "id": "M1-AC-10",
+        "status": "NOT_RUN_THIS_AUDIT",
+        "depends_on": [
+          "XN-04",
+          "CX-05"
+        ]
+      }
+    ]
+  },
+  "execution_tracker": [
+    {
+      "id": "CX-01",
+      "owner": "Codex",
+      "status": "DONE",
+      "depends_on": [],
+      "task": "Pin GitHub head; verify source blob hashes; run existing offline validators; inventory endpoints/functions/tables/controls/agents; commit this report and update existing staging trackers."
+    },
+    {
+      "id": "XN-01",
+      "owner": "Xano-native / account owner",
+      "status": "BLOCKED_AUTHENTICATION",
+      "depends_on": [],
+      "task": "Refresh the existing secure Composio credentials; authenticated workspace listing must confirm workspace 1 is Zippy Synthetic Prototype on the expected origin. Read branch/sandbox identity and code-only exports before any mutation."
+    },
+    {
+      "id": "XN-02",
+      "owner": "Xano-native / Xano support if needed",
+      "status": "BLOCKED",
+      "depends_on": [
+        "XN-01"
+      ],
+      "task": "Resolve 53-versus-51 physical inventory with supported sandbox administration. Identify retired diagnostics and dependencies; preserve evidence. No raw DROP, reset or production migration; no cleanup is authorized or performed by this report."
+    },
+    {
+      "id": "XN-03",
+      "owner": "Xano-native / account administrator",
+      "status": "BLOCKED",
+      "depends_on": [
+        "XN-01"
+      ],
+      "task": "Provision supported expiring least-privilege development access and a durable isolated shared execution target. Confirm sandbox-only permissions; public JWT testing later needs a supported isolated application hostname, not metadata origin."
+    },
+    {
+      "id": "CX-02",
+      "owner": "Codex",
+      "status": "READY_AFTER_DEPENDENCIES",
+      "depends_on": [
+        "XN-01"
+      ],
+      "task": "Compare fresh code-only native export with all 109 pinned documents and hashes; generate exact drift/inventory report. Correct nested function/run parsing; retain all prior evidence."
+    },
+    {
+      "id": "CX-03",
+      "owner": "Codex",
+      "status": "READY_AFTER_DEPENDENCIES",
+      "depends_on": [
+        "CX-02",
+        "XN-02",
+        "XN-03"
+      ],
+      "task": "Prepare minimal sandbox-only identity ambiguity rejection and focused synthetic workflow assertions; inspect current objects/Xano docs, preview exact diff, preserve GUIDs. Do not change lifecycle, money or idempotency policy."
+    },
+    {
+      "id": "CX-04",
+      "owner": "Codex",
+      "status": "READY_AFTER_DEPENDENCIES",
+      "depends_on": [
+        "CX-03"
+      ],
+      "task": "Extend bounded runner/fixtures for driver-only contention, key replay/conflict/expiry, membership/profile/tenant negatives and multi-table database/application fault provenance; cap parallelism at four, redact outputs, refuse occupied assets, retain test rows."
+    },
+    {
+      "id": "XN-04",
+      "owner": "Xano-native execution via authorized connector/CLI",
+      "status": "BLOCKED",
+      "depends_on": [
+        "CX-04"
+      ],
+      "task": "Preview/import only the reviewed changes to the verified separate sandbox, read back hashes, run M1 native acceptance on shared synthetic state, retain native errors/counts and unchanged live-source proof. Do not run native_bootstrap or any migration helper."
+    },
+    {
+      "id": "CX-05",
+      "owner": "Codex",
+      "status": "READY_AFTER_DEPENDENCIES",
+      "depends_on": [
+        "XN-04"
+      ],
+      "task": "Independently evaluate M1-AC-01..10, update report/control links/tracker with actual results; keep global staging blocked and record every unrun/failed test."
+    },
+    {
+      "id": "OWNER-POLICY",
+      "owner": "Gopi / business owners",
+      "status": "OPEN",
+      "depends_on": [],
+      "task": "Resolve lifecycle DEC-01/07, payment DEC-03/04/05/12 and public idempotency scope/retention before general public mutation/financial contracts. No new rule is adopted by this audit."
+    },
+    {
+      "id": "M2-HTTP",
+      "owner": "Codex + Xano-native",
+      "status": "FUTURE_BLOCKED",
+      "depends_on": [
+        "CX-05",
+        "OWNER-POLICY",
+        "XN-03"
+      ],
+      "task": "Define exact public schemas; implement authenticated POST /api/v1/orders and owned workflow retrieval, versioned command boundaries and real application-token role/tenant/owner tests. Public booking is not part of the existing internal proof."
+    }
+  ]
 }

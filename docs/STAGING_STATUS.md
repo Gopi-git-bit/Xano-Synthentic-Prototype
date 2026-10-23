@@ -1,4 +1,46 @@
-> Current update: owner-review pause cleared; coordinate validation corrected; 133 native predicate checks pass. Physical inventory is now 53 versus 51 expected, and trigger/HTTP/security gates remain blocked. See [AUDIT_RESUMPTION.md](AUDIT_RESUMPTION.md), which supersedes conflicting historical diagnostics below.
+> Current audit: 23 October 2026, source commit `bacde7695fd5628680dad717fc2d1e84ae854acd`. Staging remains **BLOCKED**. Fresh Xano reads return **Invalid token**; the physical inventory and native successes below are retained historical observations, not current confirmations.
+
+## Execution tracker — 23 October 2026
+
+The [machine-readable audit](../backend/evidence/backend-audit-2026-10-23.json) inventories all 51 declared tables, all 194 mapped integrity controls, all 12 exported endpoints, 14 missing API capabilities, 22 functions, five business-agent drafts and every one of the 70 unexecuted agent scenarios. It records source hashes, CI runs, evidence limits, policy conflicts, dependencies and exact M1 acceptance criteria. The [machine staging tracker](../backend/evidence/staging-readiness.json) remains `ready: false`.
+
+Fresh local validation passes: 49 shared and 49 exported domain cases, 84 coordinate regressions against both implementations, 49 operational tables/476 fields, export/package/safeguard checks, mocked HTTP-checker tests, and 37 schema plus 13 preparation fixtures. The staging gate exits 1 intentionally. No fresh native execution, application JWT acceptance or operational agent test is claimed. Source CI at `bacde769` passed; its HTTP job was skipped. The successful manual metadata connection run [39734248339](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/39734248339) tested the older `618d4b3` revision only.
+
+Reconciled findings:
+
+- The latest export has 109 documents, 22 functions, 58 embedded unit-test definitions and eight workflow tests. Older 104-document, 20-function and 50-test counts describe earlier snapshots. Definitions are not executed results.
+- Last retained physical inventory is 53 against 51 declared tables, with retired diagnostic names `mvpw1_56` and `mvpw1_57`. Current existence, mapping and cleanup are unverified. A metadata 404 does not prove deletion. No cleanup, reset or count whitelist was performed.
+- The 194 controls comprise 80 foreign keys, 78 unique constraints, 30 checks, three partial unique indexes, two partial claim indexes and one composite primary key. All retain blocked status and null per-control executable tests. Matching native unique-index declarations exist for 79 controls; their physical enforcement remains unverified.
+- Later Metadata API races supersede the blanket shared-state concurrency blocker: one winner plus three busy responses, and one creation plus three replays, are retained bounded internal proof. Separate workflow fixture isolation remains observed. Disposable application-throw rollback passed; full 15-table application-failure rollback and actual process/network recovery remain unverified.
+- `resolve_identity` selects the first customer profile without rejecting ambiguity. Magic-link redemption lacks an evident atomic single-use guard. Public JWT role/tenant/owner tests and restricted administrative access remain absent. The fixture command requires both customer and admin membership; this is not a general customer booking API.
+- Existing seven-state rules, approved payment arithmetic and tenant/operation/key contract remain in place. Slice1 additionally embeds the actor in its operation scope; the proposed agent package adds actor/command/entity scope and 17 states/23 edges. These differences remain open decisions. No new lifecycle, payment timing, custody, credit, tariff or idempotency policy was adopted.
+- All five agents remain configured/unbound drafts according to retained export evidence. All 70 operational scenarios are NOT_RUN. Offline schemas and prompts do not enforce role permissions, tenant isolation, budgets or a kill switch. The 72 legacy PostgreSQL reference cases are a separate inventory, not an automatic Xano gate.
+
+### Next executable milestone: M1 — complete the existing internal synthetic booking-to-assignment proof
+
+Reuse `Slice1/create_and_assign`: trusted synthetic identity -> create -> eligibility -> assign -> audit/task/outbox. Keep the existing two fixture tenants, dual-role restriction, `test-m3-v1` pricing and fixed pending/quoted/confirmed/assigned progression. No public fixture endpoint, model run or provider side effect is part of M1. This scoped proof does not clear the global staging gates.
+
+| Task | Owner | Dependencies | Status / exact deliverable |
+| --- | --- | --- | --- |
+| CX-01 | Codex | None | Complete: pinned audit, source hash verification, offline execution, machine report and tracker update. |
+| XN-01 | Xano-native / account owner | None | BLOCKED: refresh existing secure credentials; successfully list workspaces and verify workspace 1, source v1 and separate sandbox identity before any write. |
+| XN-02 | Xano-native / support | XN-01 | BLOCKED: map 51 declarations to physical tables and resolve the two diagnostics through supported administration, preserving definitions/dependencies/evidence. No raw DROP/reset or cleanup by this audit. |
+| XN-03 | Xano-native administrator | XN-01 | BLOCKED: supported expiring development scope and durable isolated shared execution target; retain safe sandbox-allow/live-denial proof. |
+| CX-02 | Codex | XN-01 | Compare fresh code-only export with all 109 pinned documents; report drift and retain before hashes. |
+| CX-03 | Codex | CX-02, XN-02, XN-03 | Prepare minimal profile-ambiguity rejection and focused sandbox assertions; preserve GUIDs and existing policies. |
+| CX-04 | Codex | CX-03 | Extend bounded runner/fixtures: independent-driver race, replay/conflict/expiry, identity/tenant negatives and multi-table database/application-fault provenance; cap concurrency at four. |
+| XN-04 | Xano-native execution | CX-04 | Preview/import only reviewed sandbox changes; read back, run named cases on shared synthetic state and retain results plus unchanged live-source hash. Do not run migration/bootstrap helpers. |
+| CX-05 | Codex | XN-04 | Independently assess M1-AC-01 through M1-AC-10 and update per-control evidence; keep global staging blocked. |
+| OWNER-POLICY | Gopi / business owners | None | Open: lifecycle DEC-01/07, payment DEC-03/04/05/12, public idempotency scope/canonicalization/expiry. Does not change the existing fixture contract. |
+| M2-HTTP | Codex + Xano-native | CX-05, OWNER-POLICY, XN-03 | Later: exact public booking/workflow schemas and real JWT role/tenant/owner acceptance on a supported isolated hostname. |
+
+M1 passes only with all ten criteria in the audit report supported by actual native evidence. Required persisted success is `202` with stable order/trip/workflow IDs, assigned order version 4, one quote, two stops, one requirement, two participants, one commitment, one offer/trip/assignment, three transitions, four events, one audit/task/outbox/idempotency row. Same-key races give one creation and three replays; changed payload gives 409 without residue. Separate vehicle and driver-only contention each permit one active assignment. Identity/eligibility/tenant negatives and both fault types leave no new rows across all 15 affected tables; retry creates once then replays. Every one of the 72 mapped controls on those write tables has a test or explicit scoped deferral. Before/after live hashes match and existing fixtures/evidence remain preserved. These 72 scoped control records are distinct from the 72 legacy PostgreSQL cases.
+
+No Xano object, record, configuration, payment, agent binding or live branch was changed by this audit. No merge or deployment occurred. Current Xano confirmation remains blocked until an authenticated read succeeds.
+
+## Retained staging history
+
+The following sections preserve earlier reports. The dated tracker above and the machine audit qualify any conflicting blanket statement below.
 
 # Staging implementation status
 
