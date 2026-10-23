@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "purpose": "Explicitly reviewed optional read-only sandbox preparation resources; does not waive any M1 prerequisite",
+  "resources": [
+    {
+      "path": "backend/milestone1/admin-preparation/admin_inventory_probe.native.xs",
+      "sha256": "dbb614aa98d7e570b3b06530844027efd6855fc90f56072fce0558d5f5023f19",
+      "name": "Milestone1/admin_inventory_probe",
+      "side_effects": "SELECT-only catalog and aggregate read; no public endpoint"
+    }
+  ]
+}

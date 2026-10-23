@@ -59,7 +59,16 @@ async function runRace(adapter,{kind,assets,fixture,run_id}) {
     return {...row,started_ms,finished_ms:Date.now()};
   });
   release();
-  const outcomes=await Promise.all(pending);
+  const settled=await Promise.allSettled(pending);
+  if(settled.some(r=>r.status==='rejected')) {
+    // A failed sibling must not return control while other writes are still in flight.
+    const preservation=await adapter.preservation();
+    const error=new Error('Native cohort failed after all in-flight requests settled; inspect state before any retry');
+    error.failed_requests=settled.filter(r=>r.status==='rejected').length;
+    error.preservation=preservation;
+    throw error;
+  }
+  const outcomes=settled.map(r=>r.value);
   const inspections=[];
   for(const r of requests) {const state=unwrap(await adapter.invoke('Slice1/acceptance',{...r,action:'inspect',hold_seconds:0}));selection(state,r);inspections.push(state);}
   const after=unwrap(await adapter.invoke('Milestone1/snapshot',{}));

@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-23T17:31:00.438703+00:00",
+  "base_review_commit": "9931cfba0d559661c73fc0420e602d8cfe1f5aeb",
+  "protected_files_checked": 170,
+  "drift": [],
+  "original_backend_definitions": 109,
+  "five_agent_drafts_preserved": true,
+  "eight_m1_candidate_sources_preserved": true,
+  "historical_evidence_preserved": true,
+  "original_review_zip_and_patch_preserved": true,
+  "scope": "Repository preservation; not hosted behavior proof"
+}

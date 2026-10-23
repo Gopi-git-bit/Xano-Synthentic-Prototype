@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-10-23T17:28:23.692894+00:00",
+  "scope": "Offline validation and read-only native preflight; no hosted M1 cases executed",
+  "original_bundle_offline_passes": 121,
+  "additional_offline_passes": 5,
+  "current_offline_totals": {
+    "M1": 107,
+    "native_adapter_mocked": 19,
+    "total": 126,
+    "failed": 0
+  },
+  "additional_checks": [
+    "reviewed preparation source recognized",
+    "changed preparation source rejected",
+    "invalid physical index rejected",
+    "missing validity evidence rejected",
+    "wait for in-flight race siblings after one fails"
+  ],
+  "checks": [
+    {
+      "command": "node scripts/validate-backend.cjs",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "PASS: 49 shared cases; 49 exported cases; 49 tables; 476 fields.\nScope: offline snapshot checks only; no Xano deployment, HTTP, isolation, or transaction proof.\nPASS: tested export hashes and 16 recorded Xano payment results.\nPASS: 84 coordinate regressions against shared and exported code.\nPASS: five unbound agent exports, supplied package hashes and references, preserved source, 20 readiness mappings. Scope: offline configuration only; 70 acceptance scenarios remain NOT_RUN.\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/validate-xano-safeguards.cjs",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "PASS: offline safeguard checks and complete 72-case reference inventory. Native 72-case acceptance remains NOT_VERIFIED.\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/evaluate-milestone1.cjs",
+      "exit_code": 0,
+      "expected_exit": 0,
+      "stdout": "{\"scope\":\"Evidence evaluation only; does not authenticate or execute Xano\",\"ready\":false,\"totals\":{\"NOT_RUN\":31}}\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/staging-gate.cjs",
+      "exit_code": 1,
+      "expected_exit": 1,
+      "stdout": "",
+      "stderr": "BLOCKED: executable staging suite and required integrity evidence are incomplete.\n"
+    }
+  ],
+  "native_preflight_exit": 2,
+  "ready": false
+}

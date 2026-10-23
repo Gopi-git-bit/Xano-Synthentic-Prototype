@@ -1,3 +1,17 @@
+## Administrator remediation follow-up — 23 October 2026
+
+The verified review bundle is preserved on the review branch at 9931cfba0d559661c73fc0420e602d8cfe1f5aeb. All 228 base Git blobs, ten bundled file hashes, the original patch hash and published ZIP bytes were checked. [Bundle verification](../backend/review-bundles/m1-native-2026-10-23/verification.json) separates **121 offline passes**, **eight native dry-run candidate acceptances**, and **31 hosted cases NOT_RUN**.
+
+Authorized sandbox preparation added only Milestone1/admin_inventory_probe. It was previewed, imported, read back and executed as a SELECT-only diagnostic; all original 109 documents and live source hashes remained unchanged. The two unmapped tables contain two rows and zero rows respectively and were preserved. Two existing active assignments have no duplicate vehicle/driver groups. Their current indexes do not enforce active vehicle/driver uniqueness.
+
+The [administrator remediation plan](XANO_ADMIN_REMEDIATION_PLAN.md) specifies supported inventory reconciliation, a restricted credential and two uniqueness design paths. A proposed active_assignment_reservations table passed a separate preview, with four exact backfill rows prepared. Neither schema nor backfill was applied. No permission was changed. An [unsent support request](XANO_ADMIN_SUPPORT_REQUEST.md) covers the undocumented metadata-adoption/partial-index mechanisms.
+
+The adapter now recognizes the reviewed diagnostic only through its pinned native source hash; its inventory, access and candidate-import gates remain closed. Five additional offline checks cover source recognition/drift rejection, physical index validity and settling concurrent requests after a failure. The current total is 126 passes (107 M1 + 19 adapter); the original 121-pass record remains separate. The original bundle and historical reports are retained verbatim.
+
+Current evidence is in the [follow-up audit](../backend/evidence/milestone1-admin-remediation-audit-2026-10-23.json). The [31-case execution plan](../backend/milestone1/admin-preparation/hosted-execution-plan.json) is explicit preparation, not a completed full-suite executor. Schema choice, restricted access and supported inventory reconciliation remain prerequisites to the revised candidate import and hosted run. Native preview and diagnostic execution are never counted as M1 behavior passes.
+
+No diagnostic deletion, reset, live change, payment execution, agent run, merge or deployment occurred. All lifecycle, payment and idempotency decisions remain unchanged.
+
 ## Fresh native preview and authenticated preflight — 23 October 2026
 
 Direct authenticated access now succeeds. This supersedes the authentication blocker in the historical sections below. The working source snapshot is pinned to review commit 31fac05763a762680324d014f0b1dcb32955ea84; all 228 source blobs were verified. All 109 preserved backend definitions match the fresh sandbox export after LF normalization and trimming.

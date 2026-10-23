@@ -1,0 +1,106 @@
+{
+  "checked_at": "2026-10-23T17:07:33.992264+00:00",
+  "sandbox_name": "sn9m-aat6-200c",
+  "method": "POST",
+  "endpoint": "/api:meta/sandbox/multidoc/dry-run",
+  "parameters": {
+    "delete": "false",
+    "env": "false",
+    "records": "false",
+    "transaction": "true",
+    "truncate": "false",
+    "partial": "true",
+    "source_workspace_id": 1
+  },
+  "previews": [
+    {
+      "file": "admin_inventory_probe.xs",
+      "source_sha256": "e8d51d5999cf786f506294086abbf64fa74da47cc827a798301674082a4dd6e7",
+      "http_status": 200,
+      "response": {
+        "workspace_name": "Zippy Synthetic Prototype",
+        "source_workspace_mismatch": false,
+        "summary": {
+          "table": {
+            "created": 0,
+            "updated": 0,
+            "deleted": 0,
+            "truncated": 0,
+            "unchanged": 0
+          },
+          "function": {
+            "created": 1,
+            "updated": 0,
+            "deleted": 0,
+            "truncated": 0,
+            "unchanged": 0
+          },
+          "query": {
+            "created": 0,
+            "updated": 0,
+            "deleted": 0,
+            "truncated": 0,
+            "unchanged": 0
+          },
+          "message": {
+            "created": 0,
+            "updated": 0,
+            "deleted": 0,
+            "truncated": 0,
+            "unchanged": 0
+          }
+        },
+        "operations": [
+          {
+            "type": "function",
+            "name": "Milestone1/admin_inventory_probe",
+            "action": "create",
+            "details": "Function will be created"
+          }
+        ]
+      },
+      "imported": false
+    },
+    {
+      "file": "proposed_active_assignment_reservations.xs",
+      "source_sha256": "ce19a67839e2b4e9ed0ec8579e045432a73d274b0c694a3eabcf1cfc0a9d6449",
+      "http_status": 200,
+      "response": {
+        "workspace_name": "Zippy Synthetic Prototype",
+        "source_workspace_mismatch": false,
+        "summary": {
+          "table": {
+            "created": 1,
+            "updated": 0,
+            "deleted": 0,
+            "truncated": 0,
+            "unchanged": 0
+          },
+          "query": {
+            "created": 0,
+            "updated": 0,
+            "deleted": 0,
+            "truncated": 0,
+            "unchanged": 0
+          },
+          "message": {
+            "created": 0,
+            "updated": 0,
+            "deleted": 0,
+            "truncated": 0,
+            "unchanged": 0
+          }
+        },
+        "operations": [
+          {
+            "type": "table",
+            "name": "active_assignment_reservations",
+            "action": "create",
+            "details": "Table will be created"
+          }
+        ]
+      },
+      "imported": false
+    }
+  ]
+}

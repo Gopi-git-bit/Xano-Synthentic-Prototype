@@ -205,3 +205,17 @@ test('an omitted rejection code cannot pass an empty response',()=>assert.throws
 test('race requires a concrete shared driver identity',()=>{const r=race('same_driver');r.requests.forEach(q=>delete q.driver_profile_id);assert.throws(()=>A.race(r));});
 test('same-key race requires recorded hashes',()=>{const r=race('same_key');r.requests.forEach(q=>delete q.request_hash);assert.throws(()=>A.race(r));});
 test('fault marker without a native error code is insufficient',()=>{const r=fault('application','after_order');delete r.error.code;assert.throws(()=>A.fault(r));});
+
+test('runner waits for sibling writes after one native request fails',async()=>{
+  const a=adapter({kind:'same_driver'}),invoke=a.invoke;let siblings=0;
+  a.invoke=async(name,input)=>{
+    if(name==='Slice1/acceptance' && input.action==='execute') {
+      if(input.asset===2) throw Error('simulated native transport failure');
+      await new Promise(resolve=>setTimeout(resolve,25));siblings++;
+      return {result:{status:'error'}};
+    }
+    return invoke(name,input);
+  };
+  await assert.rejects(()=>runner.runRace(a,plan),/all in-flight requests settled/);
+  assert.equal(siblings,1);
+});

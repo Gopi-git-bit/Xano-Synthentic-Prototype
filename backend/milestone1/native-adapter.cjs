@@ -34,7 +34,7 @@ function resultValue(response) {
   if(!v || typeof v !== 'object' || Array.isArray(v)) throw Error('Invalid native result shape');
   return v;
 }
-function indexEvidence(inspection, tables) {
+function indexEvidence(inspection, tables, nativeIndexes=[]) {
   const expected = [
     ['idempotency_records', ['platform_id','operation_scope','idempotency_key'], false],
     ['trip_assignments', ['platform_id','vehicle_id'], true],
@@ -48,7 +48,9 @@ function indexEvidence(inspection, tables) {
       i.tablename===physical && /^create unique index \S+ on /i.test(i.indexdef) &&
       i.indexdef.toLowerCase().endsWith(suffix));
     return {table:name, physical_table:physical, columns, predicate:partial?'released_at IS NULL':null,
-      catalog_definition_observed:matches.length===1, index_name:matches.length===1?matches[0].indexname:null};
+      catalog_definition_observed:matches.length===1, index_name:matches.length===1?matches[0].indexname:null,
+      valid_and_ready:matches.length===1 && nativeIndexes.some(i=>i.tablename===physical &&
+        i.indexname===matches[0].indexname && i.indisunique===true && i.indisvalid===true && i.indisready===true)};
   });
 }
 function inventory(inspection,tables,docs) {
@@ -101,6 +103,12 @@ function checkSources(docs) {
     if(!docs.includes(baseline) && !(replacement && docs.includes(normalize(read(replacement))))) missing.push(relative);
   }
   for(const c of manifest.candidates) known.add(normalize(read(c.path)));
+  // Additional sandbox preparation is recognized only by reviewed native bytes.
+  for(const resource of require('./admin-preparation/manifest.json').resources) {
+    const text=read(resource.path);
+    if(digest(text)!==resource.sha256) throw Error('Preparation source hash drift: '+resource.path);
+    known.add(normalize(text));
+  }
   return {source_hashes:hashes,candidates:candidate_status,missing_baseline_resources:missing,
     unexpected_documents:docs.filter(d=>!known.has(d)).map(d=>digest(d))};
 }
@@ -199,7 +207,15 @@ function createNativeAdapter({token=process.env.XANO_METADATA_TOKEN}={}) {
         const inspection=resultValue(await run('Prototype/inspect_database',{}));
         if(inspection.database!==TENANT) throw Error('Inspection database mismatch');
         const metadata=await tables();
-        const mapping=inventory(inspection,metadata,docs),indexes=indexEvidence(inspection,metadata);
+        const preparation=require('./admin-preparation/manifest.json').resources.find(r=>r.name==='Milestone1/admin_inventory_probe');
+        let nativeIndexes=[];
+        if(preparation && docs.some(d=>d.includes('function "Milestone1/admin_inventory_probe" {'))) {
+          if(named(docs,'function',preparation.name)!==normalize(read(preparation.path))) throw Error('Read-only preparation probe source drift');
+          const admin=resultValue(await run(preparation.name,{}));
+          if(admin.database!==TENANT || !Array.isArray(admin.assignment_indexes)) throw Error('Invalid native index validity evidence');
+          nativeIndexes=admin.assignment_indexes;
+        }
+        const mapping=inventory(inspection,metadata,docs),indexes=indexEvidence(inspection,metadata,nativeIndexes);
         const scope=auth.extras.access_token.scope;
         const expires=Date.parse(auth.extras.expires_at);
         const liveMask=scope['workspace:datasource:live'];
@@ -219,6 +235,7 @@ function createNativeAdapter({token=process.env.XANO_METADATA_TOKEN}={}) {
         if(!stable) blockers.push('SOURCE_CHANGED_DURING_PREFLIGHT');
         if(!mapping.verified || isolation.physical_table_count!==mapping.physical_table_count) blockers.push('PHYSICAL_INVENTORY_UNRECONCILED');
         if(indexes.some(i=>!i.catalog_definition_observed)) blockers.push('REQUIRED_INDEX_DEFINITIONS_MISSING');
+        if(indexes.some(i=>i.catalog_definition_observed && !i.valid_and_ready)) blockers.push('INDEX_VALIDITY_UNVERIFIED');
         if(!scopeRestricted || !denial.denied) blockers.push('RESTRICTED_ACCESS_UNVERIFIED');
         if(sourceChecks.candidates.some(c=>!c.canonical_source_match)) blockers.push('CANDIDATES_NOT_IMPORTED_OR_SOURCE_DRIFT');
         if(sourceChecks.unexpected_documents.length || sourceChecks.missing_baseline_resources.length) blockers.push('UNREVIEWED_SANDBOX_SOURCE');
@@ -227,7 +244,7 @@ function createNativeAdapter({token=process.env.XANO_METADATA_TOKEN}={}) {
           workspace_id:workspace.id,workspace_name:workspace.name,branch:workspace.branch,database:isolation.database,
           isolation_verified:stable && isolation.database===TENANT && inspection.database===TENANT,
           physical_table_count:mapping.physical_table_count,physical_table_mapping_verified:mapping.verified,
-          physical_indexes_verified:indexes.every(i=>i.catalog_definition_observed),
+          physical_indexes_verified:indexes.every(i=>i.catalog_definition_observed && i.valid_and_ready),
           restricted_access_verified:scopeRestricted && denial.denied,live_source_hash_before:lastLiveHash,
           live_source_hash_after:digest(liveAfter),sandbox_source_hash_before:digest(sandboxBefore),
           sandbox_source_hash_after:digest(sandboxAfter),source_preserved:stable,...sourceChecks,

@@ -1,3 +1,5 @@
+Current administrator follow-up: [remediation plan](../../docs/XANO_ADMIN_REMEDIATION_PLAN.md). The original 121-check bundle is preserved; five additional checks cover the diagnostic source pin, physical index validity and failed-race settlement. No M1 behavior cases have run.
+
 # M1 candidates and evidence checks
 
 All eight candidates passed the native Xano sandbox dry-run on 23 October 2026. The preview lists three function updates, one new function and four new workflow tests, with no table changes, deletions or truncations. **The candidates have not been imported or executed.** Native preview acceptance does not prove runtime behavior. See [dry-run evidence](../evidence/milestone1-native-preview-2026-10-23.json).
@@ -23,9 +25,9 @@ Exit 0 means the implemented preflight checks passed, 2 means prerequisites are 
 - The authenticated token has live-data scope 15; a restricted development connection and live-denial proof are still required.
 - The eight candidates remain unimported. Native source readback must match before execution.
 
-Preflight checks authenticated identity, token expiry, live-data/admin scopes, stable source exports, known read-only probe source, sandbox database identity, metadata GUIDs/columns, full table mapping, scoped index definitions and candidate source hashes. The source_hashes field contains manifest byte hashes only when native source equals the candidate after LF normalization and trimming; separate export hashes describe the actual native response bytes.
+Preflight recognizes the additional read-only diagnostic only by its reviewed native source hash. It checks authenticated identity, token expiry, live-data/admin scopes, stable source exports, known read-only probe source, sandbox database identity, metadata GUIDs/columns, full table mapping, scoped index definitions and candidate source hashes. The source_hashes field contains manifest byte hashes only when native source equals the candidate after LF normalization and trimming; separate export hashes describe the actual native response bytes.
 
-The restricted-access check currently understands explicit zero scope values only. Other permission models require review; unrecognized values are never assumed safe. It probes live record access only after the scope and expiry checks pass, discards the response body, and requires a 401/403 denial. Catalog index definitions are a prerequisite, not evidence of valid indexes under load or proof of all 72 deferred controls.
+The restricted-access check currently understands explicit zero scope values only. Other permission models require review; unrecognized values are never assumed safe. It probes live record access only after the scope and expiry checks pass, discards the response body, and requires a 401/403 denial. Catalog definitions plus indisunique/indisvalid/indisready are required. They do not prove behavior under load or clear the 72 deferred controls.
 
 All native execution requests force X-Tenant, disable redirects, use a 30-second timeout and a 2 MB response ceiling, and have no automatic retry. Each adapter is limited to 96 requests and four concurrent requests. A passing preflight grants a two-minute execution window, bounded by token expiry; request failures invalidate it. Use a fresh adapter per cohort.
 
@@ -39,4 +41,4 @@ node scripts/test-milestone1.cjs
 node scripts/evaluate-milestone1.cjs
 ~~~
 
-The 15 adapter tests use mocked HTTP responses. The existing 106 checks test source fragments, evidence assertions and orchestration. Neither suite emulates Xano transactions. The read-only native preflight is real hosted evidence; the 31 M1 behavior cases and 70 operational agent cases remain NOT_RUN. All 72 scoped integrity controls retain explicit deferrals. Global staging remains blocked.
+The current 19 adapter tests use mocked HTTP responses; 107 M1 checks test source fragments, evidence assertions and orchestration. The original bundle retains its separate 121-pass result. Neither suite emulates Xano transactions. The read-only native preflight is real hosted evidence; the 31 M1 behavior cases and 70 operational agent cases remain NOT_RUN. All 72 scoped integrity controls retain explicit deferrals. Global staging remains blocked.

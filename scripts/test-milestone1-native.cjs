@@ -26,6 +26,7 @@ function nativeFixture({imported=false}={}) {
     for(const c of manifest.candidates.filter(c=>c.baseline_path)) sandbox=sandbox.replace(read(c.baseline_path),read(c.path));
     sandbox+='\n---\n'+manifest.candidates.filter(c=>!c.baseline_path).map(c=>read(c.path)).join('\n---\n');
   }
+  sandbox+='\n---\n'+read('backend/milestone1/admin-preparation/admin_inventory_probe.native.xs');
   return {tables,inspection:{database:'sn9m-aat6-200c',tables:physical,indexes,columns},sandbox};
 }
 const wrap=v=>({result:{status:'ok',result:v}});
@@ -46,6 +47,8 @@ async function mockNative(options,fn) {
     if(p==='/api:meta/workspace/1/multidoc') return new Response('live fixed source');
     if(p==='/api:meta/sandbox/multidoc') {
       sandboxReads++;let s=fixture.sandbox;
+      if(options.noAdminProbe) s=documents(s).filter(d=>!d.includes('function "Milestone1/admin_inventory_probe"')).join('\n---\n');
+      if(options.tamperedAdminProbe) s=s.replace('Confirmed isolated sandbox required','Changed probe');
       if(options.probeDrift) s=s.replace('SELECT current_database() AS database','SELECT 1 AS database');
       if(options.changed && sandboxReads>1) s+='\n// unexpected drift';
       if(options.missingDependency) s=documents(s).filter(d=>!d.includes('function "Logistics/validate_order"')).join('\n---\n');
@@ -63,6 +66,10 @@ async function mockNative(options,fn) {
         if(options.missingIndexes)i.indexes=i.indexes.slice(0,1);
         return json(wrap(JSON.stringify(i)));
       }
+      if(b.name==='Milestone1/admin_inventory_probe') return json(wrap({
+        database:'sn9m-aat6-200c',
+        assignment_indexes:fixture.inspection.indexes.map((i,n)=>({...i,indisunique:true,indisvalid:!(options.invalidIndex && n===0),indisready:true}))
+      }));
       return json(wrap({code:'INSPECT'}));
     }
     throw Error('Unexpected endpoint '+p);
@@ -152,3 +159,17 @@ test('request body byte ceiling stops oversized exports',async()=>{
   try {await assert.rejects(()=>createNativeAdapter({token:'TEST'}).preservation(),/too large/);}
   finally {global.fetch=original;}
 });
+
+test('reviewed diagnostic preparation is recognized without relaxing prerequisites',async()=>mockNative({adminProbe:true,broad:true,orphans:true,missingIndexes:true},async(a)=>{
+  const p=await a.preflight();assert.equal(p.ready,false);assert.equal(p.unexpected_documents.length,0);assert.equal(p.blockers.length,4);
+}));
+test('changed diagnostic preparation blocks execution',async()=>mockNative({imported:true,adminProbe:true,tamperedAdminProbe:true},async(a)=>{
+  await assert.rejects(()=>a.preflight(),/preparation probe source drift/);
+}));
+
+test('invalid physical unique index cannot satisfy preflight',async()=>mockNative({imported:true,invalidIndex:true},async(a)=>{
+  const p=await a.preflight();assert.equal(p.physical_indexes_verified,false);assert.ok(p.blockers.includes('INDEX_VALIDITY_UNVERIFIED'));
+}));
+test('missing physical validity evidence cannot satisfy preflight',async()=>mockNative({imported:true,noAdminProbe:true},async(a)=>{
+  const p=await a.preflight();assert.equal(p.physical_indexes_verified,false);assert.equal(p.ready,false);
+}));
