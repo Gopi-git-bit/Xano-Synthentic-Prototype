@@ -12,7 +12,8 @@
     "Public booking/workflow/transition contracts, signed payment evidence, durable workers, POD and financial/provider integrations incomplete.",
     "All 70 agent operational scenarios remain NOT_RUN; trusted runtime context/capability/budget/kill-switch gateway missing.",
     "Lifecycle/payment/idempotency policy conflicts remain open for general public/financial operations; existing synthetic rules preserved.",
-    "Recovery/restoration/deployment rollback/alerts and executable staging suite absent."
+    "Recovery/restoration/deployment rollback/alerts and executable staging suite absent.",
+    "M1 candidates are offline preparation only: native grammar/import, adapter wiring, identity fixtures, expiry and all new hosted assertions remain unrun."
   ],
   "ephemeral": {
     "name": "e9aa-vgbb-7f5c",
@@ -44,84 +45,77 @@
   "recommended_milestone": {
     "id": "M1",
     "name": "Complete the preserved internal synthetic booking-to-assignment proof",
-    "status": "BLOCKED_AT_FRESH_XANO_ACCESS_AND_INVENTORY",
+    "status": "OFFLINE_PREPARED_HOSTED_ACCEPTANCE_BLOCKED",
     "acceptance_criteria": [
       {
         "id": "M1-AC-01",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "XN-01"
-        ]
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Authenticated workspace listing and documentation both return Invalid token; no fresh target/source/physical isolation confirmation.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-02",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "XN-02"
-        ]
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Last retained physical inventory is 53 versus 51; current physical mapping, retired diagnostics and supported resolution remain unverified.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-03",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "XN-03",
-          "CX-02"
-        ]
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Restricted credentials, physical indexes and unused shared fixtures not verified. Runner refuses execution without these facts; no hosted network adapter is wired.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-04",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "CX-03",
-          "XN-04"
-        ]
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Identity rejection candidate and source-fragment/role assertions pass offline. Native negative fixtures, real identity/tenant/owner behavior and candidate import remain unexecuted.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-05",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "CX-04",
-          "XN-04"
-        ]
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Helper now requires quotes, requirements, commitments, offers and all 15 counts plus linkage and stable IDs. No current native complete-path run.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-06",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "CX-04",
-          "XN-04"
-        ]
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Strict replay/conflict assertions and same-key race orchestration pass offline. Native changed-payload, 24-hour expiry and stable-result proof still missing; policy unchanged.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-07",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "CX-04",
-          "XN-04"
-        ]
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Driver override, distinct-vehicle/shared-driver assertions and barrier orchestration prepared and tested offline. Independent-driver native contention remains unexecuted.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-08",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "CX-04",
-          "XN-04"
-        ]
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Four candidate fault workflows cover database/application failure after order/assignment, all-15-table before/after equality and stable create/replay. No native import, grammar validation or execution; process/network recovery remains outside these fixtures.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-09",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "CX-05"
-        ]
+        "status": "PARTIAL_SOURCE_ONLY",
+        "fresh_native_pass": false,
+        "explanation": "All 72 controls on the 15 write tables have explicit scoped native-enforcement deferrals. No control has been marked enforced or passed; all 194 remain blocked.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       },
       {
         "id": "M1-AC-10",
-        "status": "NOT_RUN_THIS_AUDIT",
-        "depends_on": [
-          "XN-04",
-          "CX-05"
-        ]
+        "status": "PARTIAL_SOURCE_ONLY",
+        "fresh_native_pass": false,
+        "explanation": "109 export documents, five drafts and prior test reports preserved byte-for-byte; no hosted write or prohibited operation. Fresh native before/after source hashes unavailable.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
       }
     ]
   },
@@ -161,7 +155,7 @@
     {
       "id": "CX-02",
       "owner": "Codex",
-      "status": "READY_AFTER_DEPENDENCIES",
+      "status": "LOCAL_COMPARISON_DONE_NATIVE_COMPARISON_BLOCKED",
       "depends_on": [
         "XN-01"
       ],
@@ -170,7 +164,7 @@
     {
       "id": "CX-03",
       "owner": "Codex",
-      "status": "READY_AFTER_DEPENDENCIES",
+      "status": "PREPARED_OFFLINE_NOT_IMPORTED",
       "depends_on": [
         "CX-02",
         "XN-02",
@@ -181,7 +175,7 @@
     {
       "id": "CX-04",
       "owner": "Codex",
-      "status": "READY_AFTER_DEPENDENCIES",
+      "status": "OFFLINE_ORCHESTRATION_AND_ASSERTIONS_READY_NATIVE_ADAPTER_PENDING",
       "depends_on": [
         "CX-03"
       ],
@@ -199,7 +193,7 @@
     {
       "id": "CX-05",
       "owner": "Codex",
-      "status": "READY_AFTER_DEPENDENCIES",
+      "status": "OFFLINE_EVIDENCE_EVALUATED_NATIVE_BLOCKED",
       "depends_on": [
         "XN-04"
       ],
@@ -223,5 +217,132 @@
       ],
       "task": "Define exact public schemas; implement authenticated POST /api/v1/orders and owned workflow retrieval, versioned command boundaries and real application-token role/tenant/owner tests. Public booking is not part of the existing internal proof."
     }
-  ]
+  ],
+  "continuation_source_commit": "6bcb1391e3a275f6063e72fcce038fe50aee3509",
+  "milestone1_continuation": {
+    "status": "OFFLINE_PREPARED_HOSTED_ACCEPTANCE_BLOCKED",
+    "validation_evidence": {
+      "path": "backend/evidence/milestone1-offline-2026-10-23.json",
+      "sha256": "2e227124a3ae2d9602122175547c4cb030e63419f033f3a0636aa28b8bd7698c",
+      "all_final_checks_expected": true,
+      "staging_gate_exit": 1,
+      "staging_gate_interpretation": "Expected blocked readiness, not acceptance success."
+    },
+    "hosted_cases": {
+      "path": "backend/milestone1/cases.json",
+      "total": 31,
+      "executed": 0,
+      "status": "ALL_NOT_RUN",
+      "network_adapter": "NOT_WIRED_PENDING_VERIFIED_ACCESS_AND_TARGET"
+    },
+    "agent_cases": {
+      "total": 70,
+      "executed_this_continuation": 0,
+      "status": "ALL_NOT_RUN",
+      "definitions_unchanged": true
+    },
+    "criteria": [
+      {
+        "id": "M1-AC-01",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Authenticated workspace listing and documentation both return Invalid token; no fresh target/source/physical isolation confirmation.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-02",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Last retained physical inventory is 53 versus 51; current physical mapping, retired diagnostics and supported resolution remain unverified.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-03",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Restricted credentials, physical indexes and unused shared fixtures not verified. Runner refuses execution without these facts; no hosted network adapter is wired.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-04",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Identity rejection candidate and source-fragment/role assertions pass offline. Native negative fixtures, real identity/tenant/owner behavior and candidate import remain unexecuted.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-05",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Helper now requires quotes, requirements, commitments, offers and all 15 counts plus linkage and stable IDs. No current native complete-path run.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-06",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Strict replay/conflict assertions and same-key race orchestration pass offline. Native changed-payload, 24-hour expiry and stable-result proof still missing; policy unchanged.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-07",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Driver override, distinct-vehicle/shared-driver assertions and barrier orchestration prepared and tested offline. Independent-driver native contention remains unexecuted.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-08",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Four candidate fault workflows cover database/application failure after order/assignment, all-15-table before/after equality and stable create/replay. No native import, grammar validation or execution; process/network recovery remains outside these fixtures.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-09",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "fresh_native_pass": false,
+        "explanation": "All 72 controls on the 15 write tables have explicit scoped native-enforcement deferrals. No control has been marked enforced or passed; all 194 remain blocked.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-10",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "fresh_native_pass": false,
+        "explanation": "109 export documents, five drafts and prior test reports preserved byte-for-byte; no hosted write or prohibited operation. Fresh native before/after source hashes unavailable.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      }
+    ],
+    "acceptance_totals": {
+      "passed": 0,
+      "failed_business_cases": 0,
+      "blocked": 3,
+      "not_run": 5,
+      "partial_source_only": 2
+    },
+    "xano_access": {
+      "account": "custom_ccat_goat-ens",
+      "toolkit": "custom_ccat",
+      "connection_status_reported": "ACTIVE",
+      "authenticated_read_result": "MCP tool error: Invalid token.",
+      "failed_tools": [
+        "CUSTOM_CCAT_LIST_WORKSPACES",
+        "CUSTOM_CCAT_DOCUMENTATION:start"
+      ],
+      "tool_log_id": "log_A830v4dCNd-N",
+      "http_status": null,
+      "secure_action": "In Xano supported Metadata API token/access administration, refresh or create the permitted development credential. Update/reconnect the existing Composio custom_ccat connection custom_ccat_goat-ens in secure connection settings for the verified metadata MCP origin. Keep the token out of chat, GitHub files and PR text. The hosted connection tool exposes no existing-account credential-edit operation; no credential was extracted, replaced or deleted by Codex.",
+      "expected_origin": "https://xynd-fnea-khtp.n7e.xano.io",
+      "metadata_mcp_path": "/x2/mcp/meta/mcp/stream",
+      "resume_test": "Successful authenticated LIST_WORKSPACES, then confirm workspace 1 named Zippy Synthetic Prototype, source v1 and separate physical sandbox sn9m-aat6-200c. Re-read code and inventory before any mutation.",
+      "additional_gates_after_auth": "Reconcile 53 physical tables against 51 declarations; prove restricted access and physical indexes; read current native docs, validate/import only reviewed candidates, verify source readback, wire the native test adapter, execute and retain evidence."
+    },
+    "remaining_implementation": [
+      "Current native documentation/grammar validation and code comparison.",
+      "Hosted rejection fixtures and key-expiry fixture execution.",
+      "Native adapter wiring after verified preflight.",
+      "Hosted driver, replay/conflict and four fault executions with all 15 table observations.",
+      "Physical inventory/index enforcement and credential restriction evidence."
+    ]
+  }
 }

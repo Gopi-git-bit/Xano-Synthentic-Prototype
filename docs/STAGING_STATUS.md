@@ -1,4 +1,37 @@
-> Current audit: 23 October 2026, source commit `bacde7695fd5628680dad717fc2d1e84ae854acd`. Staging remains **BLOCKED**. Fresh Xano reads return **Invalid token**; the physical inventory and native successes below are retained historical observations, not current confirmations.
+> Current continuation: from `6bcb1391e3a275f6063e72fcce038fe50aee3509`. **M1 offline preparation passes; hosted acceptance remains BLOCKED.** Fresh workspace-list and documentation reads still return **Invalid token**. No Xano import or execution occurred.
+
+## M1 executable work and current acceptance
+
+The remote review branch matched `6bcb139` at the start. The local folder was an incomplete non-Git mirror: 190 tracked files matched, 20 historical files were absent and two ignored reports were extra. Restored the absent files from that exact revision and reconstructed its exact Git commit/tree as a complete clean 210-file shallow checkout. No repository instruction files or frontend files exist in that revision. All 109 current backend export documents, all five agent drafts and historical native test reports remain byte-identical.
+
+Prepared eight [review candidates](../backend/milestone1/manifest.json) separately from `backend/xano/`: profile-ambiguity rejection, application faults after order/assignment, a complete 15-table inspection helper with independent driver selection, a read-only snapshot and four native rollback workflows. Replacement candidates preserve original GUIDs. Native grammar validation, import and execution are **NOT_RUN**. The new [race orchestrator](../backend/milestone1/runner.cjs) supplies no network adapter or credentials; it refuses missing target/source/index/access proofs and occupied fixtures before commands. Existing lifecycle, payment authority and idempotency policies are unchanged.
+
+Exact local outcomes are retained in [M1 offline evidence](../backend/evidence/milestone1-offline-2026-10-23.json):
+
+- `node scripts/test-milestone1.cjs`: **106 passed, 0 failed**, covering actual source-expression fragments, all-table residue rejection, stable IDs, independent-driver evidence, fault provenance, preflight refusal and bounded adapter concurrency. These are offline tests, not a Xano transaction emulator.
+- Existing backend/domain/export/package, safeguard and HTTP-checker validators: exit **0**. Python schema checks: **37 + 13 passed**, exit **0**.
+- `node scripts/evaluate-milestone1.cjs`: exit **0**, all **31 hosted slice cases NOT_RUN**, `ready: false`. The evaluator is an evidence inventory, not a readiness gate.
+- `node scripts/evaluate-historical-slice1.cjs`: exit **0**; four retained bounded claims re-evaluated successfully, but insufficient for the stricter M1 criteria. No native rerun.
+- `node scripts/staging-gate.cjs`: expected exit **1**, blocked. `git diff --check`: exit **0**.
+
+| Acceptance criterion | Current result | Remaining evidence |
+| --- | --- | --- |
+| M1-AC-01: fresh authenticated identity/isolation/source | BLOCKED | Successful authenticated Xano reads and current source hashes. |
+| M1-AC-02: physical inventory reconciliation | BLOCKED | Resolve last observed 53 versus 51 through supported administration; no raw cleanup or whitelist. |
+| M1-AC-03: restricted access/shared fixtures | BLOCKED | Scope, physical indexes, isolation and unused assets verified; native adapter wired afterward. |
+| M1-AC-04: identity/tenant/eligibility rejection | NOT_RUN in Xano | Offline guards pass; provision and execute native negative fixtures without modifying existing evidence. |
+| M1-AC-05: complete persisted success | NOT_RUN in Xano | Execute strict 15-table counts, linkage, version 4 and stable 202/result IDs. |
+| M1-AC-06: replay/conflict/expiry | NOT_RUN in Xano | Actual same-key race, valid changed-payload 409, no residue, expired original unavailable. |
+| M1-AC-07: vehicle and independent-driver contention | NOT_RUN in Xano | Shared-state cohort evidence, distinct vehicles for one driver, one winner and no losing rows. |
+| M1-AC-08: four full rollback/retry cases | NOT_RUN in Xano | Import/validate candidate workflows and prove both fault types at both locations across all 15 tables. |
+| M1-AC-09: all scoped controls accounted for | PARTIAL, source only | All 72 explicitly deferred in manifest; native enforcement remains unverified. All 194 controls stay blocked. |
+| M1-AC-10: preservation and verification | PARTIAL, source only | Repository preservation/offline checks pass; fresh native before/after hashes and hosted results unavailable. |
+
+**Next blocker:** refresh the permitted Xano Metadata API development credential through Xano's supported access/token administration, then update/reconnect the existing Composio `custom_ccat` connection `custom_ccat_goat-ens` in secure connection settings. It targets `https://xynd-fnea-khtp.n7e.xano.io/x2/mcp/meta/mcp/stream`. Keep credentials out of chat, files and PR text. The connection tool has no existing-account credential-edit operation; no credential was extracted or deleted. Resume with an authenticated workspace listing, confirm workspace 1 / Zippy Synthetic Prototype / source v1 and separate sandbox `sn9m-aat6-200c`, then re-read code, reconcile inventory and verify restricted access/indexes before native execution.
+
+All 70 operational agent cases remain unrun. The separate 31 M1 hosted cases also remain unrun. No merge, publication, migration, deployment, provider/payment call or model/agent execution occurred.
+
+## Earlier audit record
 
 ## Execution tracker — 23 October 2026
 

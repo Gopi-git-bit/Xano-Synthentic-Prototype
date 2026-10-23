@@ -48,6 +48,12 @@ jobs:
       - name: Validate bounded HTTP checker
         run: node scripts/test-xano-http.cjs
 
+      - name: Validate M1 source candidates and evidence assertions offline
+        run: |
+          node scripts/test-milestone1.cjs
+          node scripts/evaluate-milestone1.cjs
+          node scripts/evaluate-historical-slice1.cjs
+
   xano-readonly-http:
     if: github.event_name == 'workflow_dispatch' && inputs.run_http && github.actor_id == '200721521' && github.ref == 'refs/heads/codex/xano-backend-review'
     needs: contracts-and-schema

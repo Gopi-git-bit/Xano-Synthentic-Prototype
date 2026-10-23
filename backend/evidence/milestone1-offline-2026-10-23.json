@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "scope": "Offline source fragments, evidence assertions and adapter orchestration only; no Xano execution",
+  "base_commit": "6bcb1391e3a275f6063e72fcce038fe50aee3509",
+  "started_at": "2026-10-23T12:56:35.858320+00:00",
+  "ready": false,
+  "native_tests_executed": 0,
+  "agent_tests_executed": 0,
+  "checks": [
+    {
+      "command": "node scripts/validate-backend.cjs",
+      "started_at": "2026-10-23T12:56:35.858330+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS: 49 shared cases; 49 exported cases; 49 tables; 476 fields.\nScope: offline snapshot checks only; no Xano deployment, HTTP, isolation, or transaction proof.\nPASS: tested export hashes and 16 recorded Xano payment results.\nPASS: 84 coordinate regressions against shared and exported code.\nPASS: five unbound agent exports, supplied package hashes and references, preserved source, 20 readiness mappings. Scope: offline configuration only; 70 acceptance scenarios remain NOT_RUN.\n",
+      "stderr": "",
+      "output_sha256": "82d4b9eb13e8945d975d29543585309f9129e573800087724711399993788ac9"
+    },
+    {
+      "command": "node scripts/validate-xano-safeguards.cjs",
+      "started_at": "2026-10-23T12:56:35.998957+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS: offline safeguard checks and complete 72-case reference inventory. Native 72-case acceptance remains NOT_VERIFIED.\n",
+      "stderr": "",
+      "output_sha256": "8bc44f6fb02ec15b6fce402e94bed4c3a09ff1b0c8977ace40bd33305ba06475"
+    },
+    {
+      "command": "node scripts/test-xano-http.cjs",
+      "started_at": "2026-10-23T12:56:36.039029+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS: missing credential, safe connection, redaction, admin-token separation, database mismatch, source drift, and unauthenticated denial checks.\n",
+      "stderr": "",
+      "output_sha256": "fe920cf5a049e695e204355a9383055dd067e6cb2fede582b87eaa3927bc0d22"
+    },
+    {
+      "command": "python scripts/validate-five-agent-schema.py",
+      "started_at": "2026-10-23T12:56:36.101288+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"schema_meta_validation\": \"PASS\", \"schema_cases_passed\": 37, \"binding_preparation_cases_passed\": 13, \"acceptance_cases_executed\": 0}\n",
+      "stderr": "",
+      "output_sha256": "413c8e3ac140420bbbad036be1d1079164cf697b9c3a1e4a476ab7a0339dfaf0"
+    },
+    {
+      "command": "node scripts/test-milestone1.cjs",
+      "started_at": "2026-10-23T12:56:36.200981+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "✔ source predicate: valid customer (7.016029ms)\n✔ source predicate: missing account (0.907035ms)\n✔ source predicate: duplicate authenticated subject (2.081849ms)\n✔ source predicate: unrelated subject (1.59764ms)\n✔ source predicate: blocked account (1.476931ms)\n✔ source predicate: suspended account (1.396061ms)\n✔ source predicate: no memberships (1.364704ms)\n✔ source predicate: expiry at now (2.303858ms)\n✔ source predicate: future memberships (2.350778ms)\n✔ source predicate: cross tenant memberships (2.262487ms)\n✔ source predicate: other account memberships (2.543964ms)\n✔ source predicate: missing customer profile (2.448252ms)\n✔ source predicate: ambiguous customer profiles (3.74118ms)\n✔ source predicate: foreign profile (3.170433ms)\n✔ source predicate: same tenant other owner profile (3.486102ms)\n✔ source predicate: starter admin is not an operational membership (2.162178ms)\n✔ source predicate: non-customer membership needs no customer profile (2.383786ms)\n✔ source predicate: future membership ignored alongside valid memberships (4.041105ms)\n✔ baseline reproduces missing and ambiguous profile acceptance; candidate rejects both (18.676213ms)\n✔ complete evidence includes all 15 persisted tables and stable IDs (1.257335ms)\n✔ missing success record rejected: audit_events (1.522519ms)\n✔ rollback residue rejected: audit_events (0.469597ms)\n✔ missing success record rejected: dispatch_offers (0.348988ms)\n✔ rollback residue rejected: dispatch_offers (0.246766ms)\n✔ missing success record rejected: dispatch_requirements (0.247277ms)\n✔ rollback residue rejected: dispatch_requirements (3.161751ms)\n✔ missing success record rejected: durable_tasks (0.270732ms)\n✔ rollback residue rejected: durable_tasks (0.110273ms)\n✔ missing success record rejected: event_outbox (0.281998ms)\n✔ rollback residue rejected: event_outbox (0.126818ms)\n✔ missing success record rejected: idempotency_records (0.493542ms)\n✔ rollback residue rejected: idempotency_records (0.179656ms)\n✔ missing success record rejected: operational_events (0.400625ms)\n✔ rollback residue rejected: operational_events (0.333745ms)\n✔ missing success record rejected: order_state_transitions (0.274998ms)\n✔ rollback residue rejected: order_state_transitions (0.117644ms)\n✔ missing success record rejected: order_stops (0.149772ms)\n✔ rollback residue rejected: order_stops (0.235119ms)\n✔ missing success record rejected: orders (0.209831ms)\n✔ rollback residue rejected: orders (0.102342ms)\n✔ missing success record rejected: quotes (0.41081ms)\n✔ rollback residue rejected: quotes (0.31004ms)\n✔ missing success record rejected: service_commitments (0.291212ms)\n✔ rollback residue rejected: service_commitments (0.106579ms)\n✔ missing success record rejected: transaction_participants (0.228719ms)\n✔ rollback residue rejected: transaction_participants (0.105026ms)\n✔ missing success record rejected: trip_assignments (0.214288ms)\n✔ rollback residue rejected: trip_assignments (0.091806ms)\n✔ missing success record rejected: trips (0.128251ms)\n✔ rollback residue rejected: trips (0.080058ms)\n✔ complete flag cannot replace full table inventory (5.438639ms)\n✔ missing count key rejected rather than treated as zero (0.303851ms)\n✔ conflict must be 409 and preserve every table (0.152606ms)\n✔ conflict with 202 rejected (0.250421ms)\n✔ stable replay accepted (0.205575ms)\n✔ changed replay order_id rejected (0.244122ms)\n✔ changed replay trip_id rejected (0.175451ms)\n✔ changed replay workflow_id rejected (0.131214ms)\n✔ changed replay correlation_id rejected (0.121511ms)\n✔ overlapping same_key evidence accepted (1.041275ms)\n✔ overlapping same_vehicle evidence accepted (0.472451ms)\n✔ overlapping same_driver evidence accepted (0.191604ms)\n✔ driver-only race cannot reuse the same vehicle (0.388276ms)\n✔ driver-only race cannot use different drivers (0.274868ms)\n✔ two active driver assignments rejected (0.328176ms)\n✔ sequential requests cannot pass as contention (0.225013ms)\n✔ single database session rejected (0.18208ms)\n✔ losing request cannot leave a quote (0.379443ms)\n✔ same-key race must return stable inspected workflow IDs (0.411631ms)\n✔ fault evidence database after_order (0.45119ms)\n✔ fault evidence database after_assignment (0.223421ms)\n✔ fault evidence application after_order (0.481374ms)\n✔ fault evidence application after_assignment (0.17547ms)\n✔ early access denial cannot count as application rollback (0.228429ms)\n✔ wrong application fault location rejected (0.165926ms)\n✔ unverified native source cannot claim rollback proof (0.154289ms)\n✔ offline fixtures are never promoted to hosted evidence (0.163873ms)\n✔ unexecuted case remains NOT_RUN (0.141369ms)\n✔ candidate snapshots and rollback workflows enumerate every write table (0.697916ms)\n✔ strict candidate fixes the old helper omission without changing baseline export (0.288568ms)\n✔ source command guard: dual-role trusted identity (1.510391ms)\n✔ source command guard: customer alone cannot coordinate (0.831724ms)\n✔ source command guard: admin alone cannot coordinate (0.82236ms)\n✔ source command guard: vendor alone cannot coordinate (0.880076ms)\n✔ source command guard: driver alone cannot coordinate (0.963269ms)\n✔ source command guard: body tenant claim cannot override trusted identity (0.804073ms)\n✔ runner starts driver-only commands concurrently and retains loser inspection (13.390236ms)\n✔ runner refuses writes before 53 physical tables (0.436698ms)\n✔ runner refuses writes before unrestricted credential (0.255569ms)\n✔ runner refuses writes before unverified physical indexes (0.210462ms)\n✔ runner refuses writes before unverified table mapping (0.200217ms)\n✔ runner refuses writes before unverified isolation (0.265564ms)\n✔ runner refuses writes before wrong database (0.233166ms)\n✔ runner refuses writes before missing source hashes (0.246155ms)\n✔ runner refuses writes before unauthenticated access (0.273936ms)\n✔ occupied driver stops runner before any command (0.517067ms)\n✔ nested function/run errors cannot be parsed as empty success (0.141681ms)\n✔ runner caps same_key cohort at four concurrent commands (11.594202ms)\n✔ runner caps same_vehicle cohort at four concurrent commands (10.963035ms)\n✔ caller labels cannot fake independent driver selection (0.53938ms)\n✔ candidate hashes and preserved replacement GUIDs match manifest (4.368431ms)\n✔ command policy and business logic are identical after removing explicit fault additions (1.170847ms)\n✔ an omitted rejection code cannot pass an empty response (0.165125ms)\n✔ race requires a concrete shared driver identity (0.184494ms)\n✔ same-key race requires recorded hashes (0.248208ms)\n✔ fault marker without a native error code is insufficient (0.207558ms)\nℹ tests 106\nℹ suites 0\nℹ pass 106\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 156.455485\n",
+      "stderr": "",
+      "output_sha256": "ffcf7cd435c0df722bbd2d8cbad88c914c699d16e34fb39f70d620fe9c79c040",
+      "test_counts": {
+        "tests": 106,
+        "pass": 106,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "command": "node scripts/evaluate-milestone1.cjs",
+      "started_at": "2026-10-23T12:56:36.400811+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"scope\":\"Evidence evaluation only; does not authenticate or execute Xano\",\"ready\":false,\"totals\":{\"NOT_RUN\":31}}\n",
+      "stderr": "",
+      "output_sha256": "7a363e9c349d525c2f257b32a0c0f94b16a5b4f3912797d8c271ad6877e7cc6c"
+    },
+    {
+      "command": "node scripts/evaluate-historical-slice1.cjs",
+      "started_at": "2026-10-23T12:56:36.441079+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "{\"scope\":\"Retained historical evidence evaluation; no fresh Xano execution\",\"recorded_cases_reevaluated\":4,\"bounded_claims\":\"PASS_REEVALUATED\",\"M1_native_acceptance\":\"INSUFFICIENT_EVIDENCE\",\"ready\":false}\n",
+      "stderr": "",
+      "output_sha256": "179c78b1bc2a79c284ef44c7ea1afdc5310fac9723239e1a7ba3a49579e8b4e7"
+    },
+    {
+      "command": "node scripts/staging-gate.cjs",
+      "started_at": "2026-10-23T12:56:36.478422+00:00",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "BLOCKED: executable staging suite and required integrity evidence are incomplete.\n",
+      "output_sha256": "9bbbeb54ad03708d3675e5839d839d1d065fd38a8ffa5f81d7b1c4c23ee4effd"
+    },
+    {
+      "command": "git diff --check",
+      "started_at": "2026-10-23T12:56:36.511376+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "hosted_cases": {
+    "scope": "Evidence evaluation only; does not authenticate or execute Xano",
+    "ready": false,
+    "results": [
+      {
+        "id": "identity-missing_account",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-duplicate_account",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-blocked_account",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-suspended_account",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-no_membership",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-expired_membership",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-future_membership",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-starter_admin_only",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-missing_customer_profile",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-duplicate_customer_profile",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-foreign_tenant_claim",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-foreign_resource",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-foreign_owner",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-overweight",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-wrong_body",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-unverified_document",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-expired_document",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-inactive_vendor",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "identity-inactive_driver",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "positive-a",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "positive-b",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "same-key-race",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "changed-payload",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "expired-key",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "same-vehicle-race",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "same-driver-race",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "database-after_order",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "database-after_assignment",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "application-after_order",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "application-after_assignment",
+        "status": "NOT_RUN"
+      },
+      {
+        "id": "discarded-result",
+        "status": "NOT_RUN"
+      }
+    ]
+  },
+  "historical_evidence_evaluation": {
+    "scope": "Retained historical evidence evaluation; no fresh Xano execution",
+    "ready": false,
+    "checks": [
+      {
+        "file": "backend/evidence/concurrency-result.json",
+        "sha256": "f32291a4eee9d1d45723e6b5ef96103d1c7ed957c28590b62e0a83c53c5ccad6",
+        "captured_at": "2026-10-22T04:45:21.942Z",
+        "original_status": "PASS",
+        "checks": [
+          {
+            "case": "competing_keys",
+            "bounded_recorded_claim": "PASS_REEVALUATED",
+            "current_M1_status": "INSUFFICIENT_EVIDENCE",
+            "missing_fields": [
+              "http_status",
+              "order_id",
+              "trip_id",
+              "workflow_id",
+              "correlation_id",
+              "order_status",
+              "order_version",
+              "table_counts",
+              "linkage_verified",
+              "started_ms",
+              "finished_ms"
+            ],
+            "independent_driver_race_present": false
+          },
+          {
+            "case": "identical_retry",
+            "bounded_recorded_claim": "PASS_REEVALUATED",
+            "current_M1_status": "INSUFFICIENT_EVIDENCE",
+            "missing_fields": [
+              "http_status",
+              "order_id",
+              "trip_id",
+              "workflow_id",
+              "correlation_id",
+              "order_status",
+              "order_version",
+              "table_counts",
+              "linkage_verified",
+              "started_ms",
+              "finished_ms"
+            ],
+            "independent_driver_race_present": false
+          }
+        ]
+      },
+      {
+        "file": "backend/evidence/rollback-result.json",
+        "sha256": "9eaf36a9e869cf0b97fba000cd4931e86cde904961993c80324dca59e6549244",
+        "captured_at": "2026-10-22T04:48:46.078Z",
+        "original_status": "PASS",
+        "checks": [
+          {
+            "case": "database",
+            "bounded_disposable_table_claim": "PASS_REEVALUATED",
+            "current_M1_status": "INSUFFICIENT_EVIDENCE",
+            "reason": "One disposable proof table; no all-15-table multi-write application-fault snapshot or stable retry IDs."
+          },
+          {
+            "case": "application",
+            "bounded_disposable_table_claim": "PASS_REEVALUATED",
+            "current_M1_status": "INSUFFICIENT_EVIDENCE",
+            "reason": "One disposable proof table; no all-15-table multi-write application-fault snapshot or stable retry IDs."
+          }
+        ]
+      }
+    ]
+  },
+  "development_diagnostics": [
+    {
+      "command": "node scripts/test-milestone1.cjs",
+      "intermediate_exit_code": 1,
+      "tests": 101,
+      "passed": 100,
+      "failed": 1,
+      "reason": "Offline adapter fixture keyed inspections by vehicle rather than request key; stricter loser-residue assertion rejected the fixture. Corrected the fixture to use the winning request key; the final expanded suite passes 106/106.",
+      "native_failure": false
+    }
+  ],
+  "status": "PASS_OFFLINE_NATIVE_BLOCKED",
+  "finished_at": "2026-10-23T12:56:36.519056+00:00",
+  "validated_source_sha256": {
+    ".github/workflows/backend-validation.yml": "d92cf5d6c8ef70742189068e51fca5d32d473ddfe4474445c39621f10db4de6a",
+    "backend/milestone1/README.md": "f337b7f4dc40fb33f3d66afe1daebd72fb8e270c4a1196c5bf35dc1f47f518b5",
+    "backend/milestone1/assertions.cjs": "fed5878a7d1f4ad0d684bf6a86bc1e93bfac41c7418ab34537c7560dddd80319",
+    "backend/milestone1/cases.json": "88b2d3a45cfb1c3cff2b2842ab1cab19c63d4078aaf7565c67637064e8d833b2",
+    "backend/milestone1/manifest.json": "103dc6ccb5504b3881e58a5535c3983fbabb9fffd5240dbc34e6bc4a2785911a",
+    "backend/milestone1/runner.cjs": "3785987623dfbf27f63c2646f3aeb747803f5ad7bfc833960544ed7fd0abe8cf",
+    "backend/milestone1/xano/function/logistics/resolve_identity.xs": "72b74f1e37a5052ef8a9ac604fe0b10e0bcf21a5dc82f16797633b50164a0820",
+    "backend/milestone1/xano/function/milestone1/snapshot.xs": "0ff534849864225fbf1cdc57fdaf96aff18e0f353f041e780225894ada524897",
+    "backend/milestone1/xano/function/slice_1/acceptance.xs": "5efc71399b42e0af78cb5af82580f9ef59b60c088827cdf05620d22b1952408a",
+    "backend/milestone1/xano/function/slice_1/create_and_assign.xs": "7afec4b7c36d377a2fa02c132d1435915105c9bc47d6dbb1d184f5f3a116533c",
+    "backend/milestone1/xano/workflow_test/m1_application_after_assignment.xs": "b2f953114ebf6f51fc111e2b18d3c0f46e4e1838cd04a809aa26d2e9202b2978",
+    "backend/milestone1/xano/workflow_test/m1_application_after_order.xs": "1d4f7f5ef3d2bbbab77c57c3434fce402e11b0a87123cb889769bc14026ddaf4",
+    "backend/milestone1/xano/workflow_test/m1_database_after_assignment.xs": "befaa3da515fcae1e3b8034d02b7be28be7ecef7e70633f45660599db7927f63",
+    "backend/milestone1/xano/workflow_test/m1_database_after_order.xs": "c7cf94b9f2adb03534d7e7398a68ffa234ec24f1ed5dbb07a31223ff96ccfec2",
+    "scripts/evaluate-historical-slice1.cjs": "68d1bf0b4ba058046b1dae42f09a7c28da7d5b5f62022f0b97661dae833f3783",
+    "scripts/evaluate-milestone1.cjs": "3728a0e6e649eb3c3122e188703a67dee789547434225e8673ed8c69653a6278",
+    "scripts/test-milestone1.cjs": "5c7d3b136212b47a72a5de7408d65e1178eb7c145b9aec451ea68c920f29b8a1"
+  },
+  "preservation_verification": {
+    "base_commit": "6bcb1391e3a275f6063e72fcce038fe50aee3509",
+    "base_tracked_files": 210,
+    "base_files_preserved_unchanged": 206,
+    "authorized_existing_changes": [
+      ".github/workflows/backend-validation.yml",
+      "backend/evidence/backend-audit-2026-10-23.json",
+      "backend/evidence/staging-readiness.json",
+      "docs/STAGING_STATUS.md"
+    ],
+    "export_documents_preserved": 109,
+    "agent_definitions_preserved": 5,
+    "agent_cases_unchanged_unrun": 70,
+    "new_hosted_cases_unrun": 31,
+    "scoped_controls_native_unverified": 72
+  }
+}
