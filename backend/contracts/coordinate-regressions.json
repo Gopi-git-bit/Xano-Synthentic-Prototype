@@ -1,0 +1,2690 @@
+[
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \" \"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": " ",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"\\t\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "\t",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"0x10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "0x10",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"0b10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "0b10",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"0o10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "0o10",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"1e1\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "1e1",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"+10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "+10",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"10.\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "10.",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \".5\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": ".5",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \" 10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": " 10",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"10 \"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "10 ",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects \"Infinity\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "Infinity",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects null",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": null,
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects true",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": true,
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects []",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": [],
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude rejects {}",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": {},
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude accepts 0",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": 0,
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude accepts \"0\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "0",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude accepts \"-0.125\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "-0.125",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude accepts -90",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": -90,
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.latitude accepts 90",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": 90,
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \" \"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": " ",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"\\t\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "\t",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"0x10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "0x10",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"0b10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "0b10",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"0o10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "0o10",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"1e1\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "1e1",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"+10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "+10",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"10.\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "10.",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \".5\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": ".5",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \" 10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": " 10",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"10 \"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "10 ",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects \"Infinity\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "Infinity",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects null",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": null,
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects true",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": true,
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects []",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": [],
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude rejects {}",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": {},
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude accepts 0",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": 0,
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude accepts \"0\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "0",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude accepts \"-0.125\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "-0.125",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude accepts -180",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": -180,
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "pickup.longitude accepts 180",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": 180,
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \" \"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": " ",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"\\t\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "\t",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"0x10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "0x10",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"0b10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "0b10",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"0o10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "0o10",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"1e1\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "1e1",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"+10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "+10",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"10.\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "10.",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \".5\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": ".5",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \" 10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": " 10",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"10 \"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "10 ",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects \"Infinity\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "Infinity",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects null",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": null,
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects true",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": true,
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects []",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": [],
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude rejects {}",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": {},
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude accepts 0",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": 0,
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude accepts \"0\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "0",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude accepts \"-0.125\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "-0.125",
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude accepts -90",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": -90,
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.latitude accepts 90",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": 90,
+        "longitude": "72.8777",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \" \"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": " ",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"\\t\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "\t",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"0x10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "0x10",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"0b10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "0b10",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"0o10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "0o10",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"1e1\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "1e1",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"+10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "+10",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"10.\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "10.",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \".5\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": ".5",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \" 10\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": " 10",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"10 \"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "10 ",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects \"Infinity\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "Infinity",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects null",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": null,
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects true",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": true,
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects []",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": [],
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude rejects {}",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": {},
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": false,
+      "code": "VALIDATION_FAILED"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude accepts 0",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": 0,
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude accepts \"0\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "0",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude accepts \"-0.125\"",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": "-0.125",
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude accepts -180",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": -180,
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  },
+  {
+    "fn": "validate_order",
+    "name": "delivery.longitude accepts 180",
+    "input": {
+      "pickup": {
+        "address": "Origin",
+        "latitude": "18.5204",
+        "longitude": "73.8567",
+        "accuracy_meters": "5"
+      },
+      "delivery": {
+        "address": "Destination",
+        "latitude": "19.0760",
+        "longitude": 180,
+        "accuracy_meters": "7"
+      },
+      "cargo_description": "Sealed cartons",
+      "cargo_weight_kg": "20.000",
+      "distance_km": "10.000",
+      "service": {
+        "vehicle_class": "light",
+        "body_type": "closed",
+        "hazardous": false,
+        "return_trip": false
+      },
+      "requested_pickup_at": "2030-01-02T10:00:00+05:30"
+    },
+    "expected": {
+      "valid": true,
+      "code": "VALID"
+    }
+  }
+]

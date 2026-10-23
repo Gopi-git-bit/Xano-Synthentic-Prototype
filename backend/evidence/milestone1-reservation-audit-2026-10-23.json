@@ -1,0 +1,174 @@
+{
+  "checked_at": "2026-10-23T18:31:17.339892+00:00",
+  "base_review_commit": "f276295b90c5ecd1b444e4ccb312d6188eb3addd",
+  "authorization": {
+    "new_seven_day_credential": "APPROVED_NOT_CREATED",
+    "existing_credentials_and_account_roles": "UNCHANGED",
+    "reservation_schema_and_four_backfill_rows": "APPROVED_CONDITIONAL_NOT_APPLIED",
+    "release_deletion_live_payment_agents_merge_deployment": "NOT_AUTHORIZED"
+  },
+  "offline": {
+    "original": 121,
+    "prior_followup": 5,
+    "reservation_followup": 35,
+    "current_m1_total": 161
+  },
+  "preview": {
+    "original_candidates": 8,
+    "original_applies_to_revision": false,
+    "revision_candidates": 8,
+    "revision_schema": 1,
+    "revision_http_status": 200,
+    "initial_failure_retained": true
+  },
+  "schema_imports": 0,
+  "backfill_rows_written": 0,
+  "candidate_imports": 0,
+  "hosted_cases_executed": 0,
+  "cases": [
+    {
+      "id": "identity-missing_account",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-duplicate_account",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-blocked_account",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-suspended_account",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-no_membership",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-expired_membership",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-future_membership",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-starter_admin_only",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-missing_customer_profile",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-duplicate_customer_profile",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-foreign_tenant_claim",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-foreign_resource",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-foreign_owner",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-overweight",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-wrong_body",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-unverified_document",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-expired_document",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-inactive_vendor",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "identity-inactive_driver",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "positive-a",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "positive-b",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "same-key-race",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "changed-payload",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "expired-key",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "same-vehicle-race",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "same-driver-race",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "database-after_order",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "database-after_assignment",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "application-after_order",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "application-after_assignment",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "discarded-result",
+      "status": "NOT_RUN"
+    }
+  ],
+  "rollback_tables": 16,
+  "full_native_rollback_proven": false,
+  "native_uniqueness_proven": false,
+  "writer_bypass_prevented": false,
+  "lifecycle_release_reuse_supported": false,
+  "blocked": true,
+  "blockers": [
+    "RESTRICTED_CREDENTIAL_NOT_CREATED_OR_VERIFIED",
+    "SUPPORTED_INVENTORY_RECONCILIATION_UNVERIFIED",
+    "WRITER_BYPASS_PREVENTION_UNVERIFIED",
+    "RESERVATION_SCHEMA_AND_BACKFILL_NOT_APPLIED",
+    "NATIVE_CONTENTION_AND_ROLLBACK_UNPROVEN"
+  ],
+  "new_snapshot_refuses_execution": true,
+  "original_adapter_gates_unchanged": true,
+  "remaining_implementation": [
+    "Reviewed supported inventory manifest and snapshot gate",
+    "Reservation-aware authenticated adapter and full 31-case executor",
+    "Native unique-index contention proof path independent of command advisory lock"
+  ]
+}

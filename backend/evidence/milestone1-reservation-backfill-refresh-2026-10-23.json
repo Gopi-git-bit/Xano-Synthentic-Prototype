@@ -1,0 +1,39 @@
+{
+  "checked_at": "2026-10-23T17:50:33.099276+00:00",
+  "source_active_rows_sha256": "95780bb95456e4aadc4b2331f4808fe1004d420e73de32413774c91067e862af",
+  "reviewed_source_sha256": "95780bb95456e4aadc4b2331f4808fe1004d420e73de32413774c91067e862af",
+  "exact_source_match": true,
+  "active_assignments": 2,
+  "approved_rows": [
+    {
+      "reservation_id": "0f613c72-efad-543b-91e1-0a672d39e61f",
+      "platform_id": "87c1d523-8ba6-4e16-849e-0ca819e572ad",
+      "resource_kind": "vehicle",
+      "resource_id": "24ca1b5c-c369-4fdd-ab4e-e5dd19a1e90d",
+      "trip_assignment_id": "1be48c4a-ba14-477c-8380-fbcf88f76712"
+    },
+    {
+      "reservation_id": "9f4bd2de-ffb0-5f01-b2c0-f47c6689d8af",
+      "platform_id": "87c1d523-8ba6-4e16-849e-0ca819e572ad",
+      "resource_kind": "driver",
+      "resource_id": "622b382a-ca58-4789-ada3-d82786d69651",
+      "trip_assignment_id": "1be48c4a-ba14-477c-8380-fbcf88f76712"
+    },
+    {
+      "reservation_id": "407f9d3e-fcf3-552e-aad2-17c768ce1d00",
+      "platform_id": "87c1d523-8ba6-4e16-849e-0ca819e572ad",
+      "resource_kind": "vehicle",
+      "resource_id": "1684d32d-34c6-4252-bd04-6833615d8e7d",
+      "trip_assignment_id": "c97c4da2-78c9-4085-be27-f62e3a621451"
+    },
+    {
+      "reservation_id": "505a2bc0-2faf-5c5b-996b-87e1cec697d8",
+      "platform_id": "87c1d523-8ba6-4e16-849e-0ca819e572ad",
+      "resource_kind": "driver",
+      "resource_id": "a6e3218d-deb4-4e76-81b7-cbdc5bf8b643",
+      "trip_assignment_id": "c97c4da2-78c9-4085-be27-f62e3a621451"
+    }
+  ],
+  "backfill_rows_written": 0,
+  "refresh_required_immediately_before_any_future_apply": true
+}

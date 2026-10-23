@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status": "OFFLINE_REVIEW_COMPLETE_NATIVE_UNPROVEN",
+  "bundle_sha256": "575b44d8fa4ecd4a7b0d77677246946f6c499a41b769eafc427981a8423cd5e5",
+  "base_command_sha256": "97972dac207c445768ab56884816efb0b6cf850d2eafbb945cd4cc12d1fb2ca2",
+  "contention_command_sha256": "13303af6d4b75fc1c3ba0c6b594c0c44db26ede9629d34110d7cb3e1563c597a",
+  "diff_sha256": "eecc5f6ea51bc9c55de581ad7a4df0b9095433682b5ad8642b4438e58f12a6a7",
+  "reviewed_changes": [
+    "Separate function identity/GUID removal",
+    "Remove tenant advisory lock and its old hold",
+    "Add native pre-claim PID/clock marker and bounded two-second delay",
+    "Retain both unique inserts in the original database transaction and order",
+    "Add claims-acquired PID/clock marker and two-second unique-lock hold",
+    "Return native post-transaction completion time",
+    "No other business write or rollback/fault change"
+  ],
+  "required_proof": [
+    "4 independent native transaction PIDs per cohort",
+    "Every losing session observed waiting on winner lock chain",
+    "Native uniqueness failure names actual reservation index",
+    "One full 16-table winner delta",
+    "No loser/half-reservation residue or retained-record mutations"
+  ],
+  "native_preview": "NOT_RUN",
+  "native_execution": "NOT_RUN",
+  "advisory_serialization_present": false,
+  "release_reuse_supported": false
+}

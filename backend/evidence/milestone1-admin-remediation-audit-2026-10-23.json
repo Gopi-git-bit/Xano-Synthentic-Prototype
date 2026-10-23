@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-23T17:23:39.984656+00:00",
+  "status": "ADMIN_REMEDIATION_REQUIRED",
+  "ready": false,
+  "repository": "Gopi-git-bit/Xano-Synthentic-Prototype",
+  "review_branch": "codex/xano-backend-review",
+  "bundle_preservation_commit": "9931cfba0d559661c73fc0420e602d8cfe1f5aeb",
+  "supersedes_current_access_claims_in": [
+    "backend/evidence/backend-audit-2026-10-23.json",
+    "backend/evidence/staging-readiness.json"
+  ],
+  "historical_evidence_policy": "Earlier reports are preserved verbatim; this dated follow-up is authoritative for current access/preparation.",
+  "evidence_categories": {
+    "original_offline": {
+      "passed": 121,
+      "failed": 0
+    },
+    "original_native_preview": {
+      "accepted_candidates": 8,
+      "requests": 1,
+      "runtime_cases": 0
+    },
+    "additional_preparation_preview": {
+      "diagnostic_functions": 1,
+      "proposed_tables": 1
+    },
+    "additional_preparation_execution": {
+      "read_only_diagnostic_functions": 1,
+      "business_cases": 0
+    },
+    "hosted_m1": {
+      "passed": 0,
+      "not_run": 31
+    },
+    "operational_agents": {
+      "not_run": 70
+    },
+    "additional_offline": {
+      "passed": 5,
+      "failed": 0,
+      "current_total": 126
+    }
+  },
+  "verified": {
+    "workspace_id": 1,
+    "branch": "v1",
+    "sandbox_database": "sn9m-aat6-200c",
+    "authenticated_reads": true,
+    "original_109_source_documents_preserved": true,
+    "live_source_unchanged": true
+  },
+  "blockers": [
+    {
+      "id": "INVENTORY",
+      "status": "SUPPORTED_RECONCILIATION_PENDING",
+      "metadata_tables": 51,
+      "physical_tables": 53,
+      "retained_diagnostics": [
+        {
+          "name": "mvpw1_56",
+          "rows": 2
+        },
+        {
+          "name": "mvpw1_57",
+          "rows": 0
+        }
+      ],
+      "deletion_proposed": false
+    },
+    {
+      "id": "RESTRICTED_ACCESS",
+      "status": "ADMIN_PERMISSION_CHANGE_REQUIRED",
+      "live_data_scope_mask": 15,
+      "permission_changes_made": false
+    },
+    {
+      "id": "ACTIVE_ASSIGNMENT_UNIQUENESS",
+      "status": "SCHEMA_DESIGN_APPROVAL_AND_PROOF_REQUIRED",
+      "active_assignments": 2,
+      "duplicate_vehicle_groups": 0,
+      "duplicate_driver_groups": 0,
+      "required_partial_indexes_present": false,
+      "reservation_table_preview_accepted": true,
+      "reservation_table_created": false,
+      "proposed_backfill_rows": 4
+    }
+  ],
+  "remediation_plan": "docs/XANO_ADMIN_REMEDIATION_PLAN.md",
+  "support_request": "docs/XANO_ADMIN_SUPPORT_REQUEST.md",
+  "imported_preparation_function": "Milestone1/admin_inventory_probe",
+  "m1_candidates_imported": false,
+  "unresolved_policies_preserved": true,
+  "schema_changes": false,
+  "permission_changes": false,
+  "diagnostic_deletes": false,
+  "payments": false,
+  "agent_runs": false,
+  "live_changes": false,
+  "merge": false,
+  "deployment": false,
+  "latest_native_preflight": "backend/evidence/milestone1-admin-preflight-2026-10-23.json",
+  "validation": "backend/evidence/milestone1-admin-validation-2026-10-23.json"
+}

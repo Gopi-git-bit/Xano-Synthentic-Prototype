@@ -1,0 +1,37 @@
+{
+  "authenticated": true,
+  "scope": {
+    "tenant_center:backup": 15,
+    "tenant_center:deploy": 16,
+    "tenant_center:impersonate": 16,
+    "tenant_center:impersonate:edit": 16,
+    "tenant_center:metadata:api": 16,
+    "tenant_center:log": 16,
+    "tenant_center:rbac": 16,
+    "tenant_cluster": 15,
+    "tenant_center": 15,
+    "release": 15,
+    "workspace:addon": 15,
+    "workspace:api": 15,
+    "workspace:content": 15,
+    "workspace:database": 15,
+    "workspace:datasource:live": 15,
+    "workspace:file": 15,
+    "workspace:function": 15,
+    "workspace:service": 15,
+    "workspace:log": 15,
+    "workspace:middleware": 15,
+    "workspace:requesthistory": 15,
+    "workspace:task": 15,
+    "workspace:tool": 15,
+    "workspace:realtime": 15,
+    "workspace:mesh0": 15,
+    "workspace:workflow_test": 15,
+    "workspace:knowledge": 15,
+    "workspace:knowledge:enforce": 0
+  },
+  "instance_user_permission_fields": [
+    "id"
+  ],
+  "least_privilege_verified": false
+}

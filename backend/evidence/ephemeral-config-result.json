@@ -1,0 +1,10 @@
+{
+  "name": "e9aa-vgbb-7f5c",
+  "type": "ephemeral",
+  "state": "ok",
+  "ingress": true,
+  "rbac_enabled": true,
+  "domain": "",
+  "xano_domain": null,
+  "expiry": "2026-10-22 05:37:12+0000"
+}

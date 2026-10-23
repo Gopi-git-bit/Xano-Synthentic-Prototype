@@ -1,0 +1,185 @@
+TAP version 13
+# Subtest: all original 15 expected deltas are preserved; exactly two reservation rows added
+ok 1 - all original 15 expected deltas are preserved; exactly two reservation rows added
+  ---
+  duration_ms: 9.802878
+  ...
+# Subtest: 15-table-only counts cannot pass revision acceptance
+ok 2 - 15-table-only counts cannot pass revision acceptance
+  ---
+  duration_ms: 1.602383
+  ...
+# Subtest: an incomplete reservation pair cannot pass
+ok 3 - an incomplete reservation pair cannot pass
+  ---
+  duration_ms: 0.403543
+  ...
+# Subtest: wrong vehicle reservation rejected
+ok 4 - wrong vehicle reservation rejected
+  ---
+  duration_ms: 0.29961
+  ...
+# Subtest: wrong driver reservation rejected
+ok 5 - wrong driver reservation rejected
+  ---
+  duration_ms: 0.196199
+  ...
+# Subtest: foreign platform reservation rejected
+ok 6 - foreign platform reservation rejected
+  ---
+  duration_ms: 0.234398
+  ...
+# Subtest: foreign assignment reservation rejected
+ok 7 - foreign assignment reservation rejected
+  ---
+  duration_ms: 1.833261
+  ...
+# Subtest: duplicate resource kind reservation rejected
+ok 8 - duplicate resource kind reservation rejected
+  ---
+  duration_ms: 0.284384
+  ...
+# Subtest: duplicate reservation id reservation rejected
+ok 9 - duplicate reservation id reservation rejected
+  ---
+  duration_ms: 0.207993
+  ...
+# Subtest: linkage flag absent reservation rejected
+ok 10 - linkage flag absent reservation rejected
+  ---
+  duration_ms: 0.261294
+  ...
+# Subtest: replay preserves both reservation identities
+ok 11 - replay preserves both reservation identities
+  ---
+  duration_ms: 19.736061
+  ...
+# Subtest: full exact rollback with stable replay is accepted as supplied evidence only
+ok 12 - full exact rollback with stable replay is accepted as supplied evidence only
+  ---
+  duration_ms: 1.016411
+  ...
+# Subtest: counts without content snapshots cannot establish rollback
+ok 13 - counts without content snapshots cannot establish rollback
+  ---
+  duration_ms: 0.401955
+  ...
+# Subtest: snapshot counts and separately supplied counts must agree
+ok 14 - snapshot counts and separately supplied counts must agree
+  ---
+  duration_ms: 0.451925
+  ...
+# Subtest: same-count mutation in active_assignment_reservations rejects rollback
+ok 15 - same-count mutation in active_assignment_reservations rejects rollback
+  ---
+  duration_ms: 0.432796
+  ...
+# Subtest: same-count mutation in audit_events rejects rollback
+ok 16 - same-count mutation in audit_events rejects rollback
+  ---
+  duration_ms: 0.32008
+  ...
+# Subtest: same-count mutation in dispatch_offers rejects rollback
+ok 17 - same-count mutation in dispatch_offers rejects rollback
+  ---
+  duration_ms: 0.252692
+  ...
+# Subtest: same-count mutation in dispatch_requirements rejects rollback
+ok 18 - same-count mutation in dispatch_requirements rejects rollback
+  ---
+  duration_ms: 15.578231
+  ...
+# Subtest: same-count mutation in durable_tasks rejects rollback
+ok 19 - same-count mutation in durable_tasks rejects rollback
+  ---
+  duration_ms: 0.521669
+  ...
+# Subtest: same-count mutation in event_outbox rejects rollback
+ok 20 - same-count mutation in event_outbox rejects rollback
+  ---
+  duration_ms: 0.409651
+  ...
+# Subtest: same-count mutation in idempotency_records rejects rollback
+ok 21 - same-count mutation in idempotency_records rejects rollback
+  ---
+  duration_ms: 0.277494
+  ...
+# Subtest: same-count mutation in operational_events rejects rollback
+ok 22 - same-count mutation in operational_events rejects rollback
+  ---
+  duration_ms: 0.356624
+  ...
+# Subtest: same-count mutation in order_state_transitions rejects rollback
+ok 23 - same-count mutation in order_state_transitions rejects rollback
+  ---
+  duration_ms: 0.237097
+  ...
+# Subtest: same-count mutation in order_stops rejects rollback
+ok 24 - same-count mutation in order_stops rejects rollback
+  ---
+  duration_ms: 0.235058
+  ...
+# Subtest: same-count mutation in orders rejects rollback
+ok 25 - same-count mutation in orders rejects rollback
+  ---
+  duration_ms: 0.269575
+  ...
+# Subtest: same-count mutation in quotes rejects rollback
+ok 26 - same-count mutation in quotes rejects rollback
+  ---
+  duration_ms: 0.243982
+  ...
+# Subtest: same-count mutation in service_commitments rejects rollback
+ok 27 - same-count mutation in service_commitments rejects rollback
+  ---
+  duration_ms: 0.24388
+  ...
+# Subtest: same-count mutation in transaction_participants rejects rollback
+ok 28 - same-count mutation in transaction_participants rejects rollback
+  ---
+  duration_ms: 0.237542
+  ...
+# Subtest: same-count mutation in trip_assignments rejects rollback
+ok 29 - same-count mutation in trip_assignments rejects rollback
+  ---
+  duration_ms: 2.661082
+  ...
+# Subtest: same-count mutation in trips rejects rollback
+ok 30 - same-count mutation in trips rejects rollback
+  ---
+  duration_ms: 0.305661
+  ...
+# Subtest: a snapshot cannot omit any original or added table
+ok 31 - a snapshot cannot omit any original or added table
+  ---
+  duration_ms: 10.9612
+  ...
+# Subtest: non-sandbox or tenant-only snapshot cannot establish full rollback
+ok 32 - non-sandbox or tenant-only snapshot cannot establish full rollback
+  ---
+  duration_ms: 0.391999
+  ...
+# Subtest: database failure cannot be relabeled an application failure
+ok 33 - database failure cannot be relabeled an application failure
+  ---
+  duration_ms: 0.288329
+  ...
+# Subtest: review hashes and preview payload bind this exact revision, independent of original preview
+ok 34 - review hashes and preview payload bind this exact revision, independent of original preview
+  ---
+  duration_ms: 8.237691
+  ...
+# Subtest: snapshot refuses execution while supported inventory reconciliation is missing
+ok 35 - snapshot refuses execution while supported inventory reconciliation is missing
+  ---
+  duration_ms: 0.189081
+  ...
+1..35
+# tests 35
+# suites 0
+# pass 35
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 318.521047

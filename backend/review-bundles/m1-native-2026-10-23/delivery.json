@@ -1,0 +1,42 @@
+{
+  "base_commit": "31fac05763a762680324d014f0b1dcb32955ea84",
+  "changed_files": [
+    "backend/evidence/milestone1-native-preflight-2026-10-23.json",
+    "backend/evidence/milestone1-native-preview-2026-10-23.json",
+    "backend/evidence/milestone1-native-review-validation-2026-10-23.json",
+    "backend/milestone1/README.md",
+    "backend/milestone1/manifest.json",
+    "backend/milestone1/native-adapter.cjs",
+    "backend/milestone1/runner.cjs",
+    "docs/STAGING_STATUS.md",
+    "scripts/preflight-milestone1-native.cjs",
+    "scripts/test-milestone1-native.cjs"
+  ],
+  "patch_apply_check": "PASS",
+  "patch_sha256": "af84176d833575e55c63c1f403205c1d9eb0f360092e0c10fea5f122415e4a03",
+  "hosted_m1_cases": {
+    "NOT_RUN": 31
+  },
+  "native_import": false,
+  "published_to_github": false,
+  "preservation": "All 109 backend definitions, eight candidate source files, five agent drafts and historical evidence are unchanged",
+  "validation": "15 new mocked adapter tests + 106 existing offline M1 checks pass; backend/safeguard validators pass; staging gate remains blocked",
+  "blockers": [
+    "53 physical tables versus 51 declarations",
+    "Missing active-vehicle and active-driver partial unique indexes",
+    "Credential has live-data scope 15",
+    "Candidates not imported"
+  ],
+  "files": {
+    "backend/evidence/milestone1-native-preflight-2026-10-23.json": "d26b0ac607747854a71a2438969af1f6c0fa75bd6dbd09a324537fe2c154ab65",
+    "backend/evidence/milestone1-native-preview-2026-10-23.json": "be6a206bf0017444c038eacb726f4ad549734d1f3289a3b2d1642b801d94115d",
+    "backend/evidence/milestone1-native-review-validation-2026-10-23.json": "d384b847bbd21ccb185e54ce7f853abf19eed24ee919c1def2452a64c7499c49",
+    "backend/milestone1/README.md": "6642df036d9eea2e33cd71eba926a129f045632e64fa940aa1f784ce7ce4c985",
+    "backend/milestone1/manifest.json": "8ab33f2a38d0be96b81f7310609cda1acd0df2ad7eb4f2aa1fc02e257fc68088",
+    "backend/milestone1/native-adapter.cjs": "b38735c85c56a09480da28f0fd5b6b73b99158ae6ed97c472dccca145145404c",
+    "backend/milestone1/runner.cjs": "6be36ad3959fc8214985206209dad078d90daf887b2bdccceb989182794263fa",
+    "docs/STAGING_STATUS.md": "5c5ea4a9e2cd6ed181d140b2e889d3be0ed25803aee74a02fb25112f21517f60",
+    "scripts/preflight-milestone1-native.cjs": "d9cda2960a902ba464d2696e22fc629735aea176a8a0547468023875b98fef3e",
+    "scripts/test-milestone1-native.cjs": "98084c7bb713c3e6b850dbcbf4f34c13013d0fee3fc6f57aaa0f20ec9091816c"
+  }
+}

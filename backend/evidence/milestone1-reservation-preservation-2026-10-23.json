@@ -1,0 +1,212 @@
+{
+  "checked_at": "2026-10-23T18:27:34.018878+00:00",
+  "probe_source_verified": true,
+  "probe_operation": "SELECT-only existing function",
+  "probe_response": {
+    "result": {
+      "status": "ok",
+      "timing": 0.02,
+      "result": "{\"database\" : \"sn9m-aat6-200c\", \"diagnostics\" : [{\"table\" : \"mvpw1_56\", \"row_count\" : 2, \"ordered_row_digest_md5\" : \"9908b788dab4669efa147f6da0509705\"}, {\"table\" : \"mvpw1_57\", \"row_count\" : 0, \"ordered_row_digest_md5\" : \"d41d8cd98f00b204e9800998ecf8427e\"}], \"diagnostic_dependencies\" : [{\"referenced_table\":\"mvpw1_56\",\"deptype\":\"a\",\"dependent_object\":\"constraint mvpw1_56_pkey on table mvpw1_56\"}, \n {\"referenced_table\":\"mvpw1_56\",\"deptype\":\"a\",\"dependent_object\":\"default value for column fixture_key of table mvpw1_56\"}, \n {\"referenced_table\":\"mvpw1_56\",\"deptype\":\"a\",\"dependent_object\":\"default value for column id of table mvpw1_56\"}, \n {\"referenced_table\":\"mvpw1_56\",\"deptype\":\"a\",\"dependent_object\":\"default value for column tenant_key of table mvpw1_56\"}, \n {\"referenced_table\":\"mvpw1_56\",\"deptype\":\"a\",\"dependent_object\":\"default value for column value of table mvpw1_56\"}, \n {\"referenced_table\":\"mvpw1_56\",\"deptype\":\"a\",\"dependent_object\":\"index mvpw1_56_btree_unique_fixture_key_asc\"}, \n {\"referenced_table\":\"mvpw1_56\",\"deptype\":\"a\",\"dependent_object\":\"sequence mvpw1_56_id_seq\"}, \n {\"referenced_table\":\"mvpw1_56\",\"deptype\":\"i\",\"dependent_object\":\"toast table pg_toast.pg_toast_362271\"}, \n {\"referenced_table\":\"mvpw1_56\",\"deptype\":\"i\",\"dependent_object\":\"type mvpw1_56\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"a\",\"dependent_object\":\"constraint mvpw1_57_pkey on table mvpw1_57\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"a\",\"dependent_object\":\"default value for column action of table mvpw1_57\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"a\",\"dependent_object\":\"default value for column event_key of table mvpw1_57\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"a\",\"dependent_object\":\"default value for column id of table mvpw1_57\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"a\",\"dependent_object\":\"default value for column observed_value of table mvpw1_57\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"a\",\"dependent_object\":\"default value for column tenant_key of table mvpw1_57\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"a\",\"dependent_object\":\"index mvpw1_57_btree_unique_event_key_asc\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"a\",\"dependent_object\":\"sequence mvpw1_57_id_seq\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"i\",\"dependent_object\":\"toast table pg_toast.pg_toast_362302\"}, \n {\"referenced_table\":\"mvpw1_57\",\"deptype\":\"i\",\"dependent_object\":\"type mvpw1_57\"}], \"assignment_indexes\" : [{\"tablename\":\"mvpw1_25\",\"indexname\":\"mvpw1_25_af56fa07f585cd4b93b1\",\"indisunique\":true,\"indisvalid\":true,\"indisready\":true,\"definition\":\"CREATE UNIQUE INDEX mvpw1_25_af56fa07f585cd4b93b1 ON public.mvpw1_25 USING btree (platform_id, operation_scope, idempotency_key)\",\"predicate\":null}, \n {\"tablename\":\"mvpw1_25\",\"indexname\":\"mvpw1_25_btree_platform_id_asc\",\"indisunique\":false,\"indisvalid\":true,\"indisready\":true,\"definition\":\"CREATE INDEX mvpw1_25_btree_platform_id_asc ON public.mvpw1_25 USING btree (platform_id)\",\"predicate\":null}, \n {\"tablename\":\"mvpw1_25\",\"indexname\":\"mvpw1_25_btree_unique_idempotency_record_id_asc\",\"indisunique\":true,\"indisvalid\":true,\"indisready\":true,\"definition\":\"CREATE UNIQUE INDEX mvpw1_25_btree_unique_idempotency_record_id_asc ON public.mvpw1_25 USING btree (idempotency_record_id)\",\"predicate\":null}, \n {\"tablename\":\"mvpw1_25\",\"indexname\":\"mvpw1_25_pkey\",\"indisunique\":true,\"indisvalid\":true,\"indisready\":true,\"definition\":\"CREATE UNIQUE INDEX mvpw1_25_pkey ON public.mvpw1_25 USING btree (id)\",\"predicate\":null}, \n {\"tablename\":\"mvpw1_44\",\"indexname\":\"mvpw1_44_8d4c119ecf5c5060c6b9\",\"indisunique\":true,\"indisvalid\":true,\"indisready\":true,\"definition\":\"CREATE UNIQUE INDEX mvpw1_44_8d4c119ecf5c5060c6b9 ON public.mvpw1_44 USING btree (platform_id, trip_id, assigned_at)\",\"predicate\":null}, \n {\"tablename\":\"mvpw1_44\",\"indexname\":\"mvpw1_44_btree_platform_id_asc\",\"indisunique\":false,\"indisvalid\":true,\"indisready\":true,\"definition\":\"CREATE INDEX mvpw1_44_btree_platform_id_asc ON public.mvpw1_44 USING btree (platform_id)\",\"predicate\":null}, \n {\"tablename\":\"mvpw1_44\",\"indexname\":\"mvpw1_44_btree_unique_trip_assignment_id_asc\",\"indisunique\":true,\"indisvalid\":true,\"indisready\":true,\"definition\":\"CREATE UNIQUE INDEX mvpw1_44_btree_unique_trip_assignment_id_asc ON public.mvpw1_44 USING btree (trip_assignment_id)\",\"predicate\":null}, \n {\"tablename\":\"mvpw1_44\",\"indexname\":\"mvpw1_44_pkey\",\"indisunique\":true,\"indisvalid\":true,\"indisready\":true,\"definition\":\"CREATE UNIQUE INDEX mvpw1_44_pkey ON public.mvpw1_44 USING btree (id)\",\"predicate\":null}], \"active_assignment_count\" : 2, \"active_vehicle_duplicate_groups\" : 0, \"active_driver_duplicate_groups\" : 0, \"active_assignment_null_keys\" : 0}"
+    },
+    "logs": []
+  },
+  "live_source_sha256": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
+  "sandbox_source_sha256": "1ce5a11d7970b1e549212ab3bba2b1e46ec13dd1a7e0e8ba2d099395ee17c4e2",
+  "sandbox_document_count": 110,
+  "live_source_unchanged": true,
+  "sandbox_source_unchanged": true,
+  "schema_imports": 0,
+  "backfill_writes": 0,
+  "m1_behavior_cases_executed": 0,
+  "observations": {
+    "database": "sn9m-aat6-200c",
+    "diagnostics": [
+      {
+        "table": "mvpw1_56",
+        "row_count": 2,
+        "ordered_row_digest_md5": "9908b788dab4669efa147f6da0509705"
+      },
+      {
+        "table": "mvpw1_57",
+        "row_count": 0,
+        "ordered_row_digest_md5": "d41d8cd98f00b204e9800998ecf8427e"
+      }
+    ],
+    "diagnostic_dependencies": [
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "a",
+        "dependent_object": "constraint mvpw1_56_pkey on table mvpw1_56"
+      },
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "a",
+        "dependent_object": "default value for column fixture_key of table mvpw1_56"
+      },
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "a",
+        "dependent_object": "default value for column id of table mvpw1_56"
+      },
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "a",
+        "dependent_object": "default value for column tenant_key of table mvpw1_56"
+      },
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "a",
+        "dependent_object": "default value for column value of table mvpw1_56"
+      },
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "a",
+        "dependent_object": "index mvpw1_56_btree_unique_fixture_key_asc"
+      },
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "a",
+        "dependent_object": "sequence mvpw1_56_id_seq"
+      },
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "i",
+        "dependent_object": "toast table pg_toast.pg_toast_362271"
+      },
+      {
+        "referenced_table": "mvpw1_56",
+        "deptype": "i",
+        "dependent_object": "type mvpw1_56"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "a",
+        "dependent_object": "constraint mvpw1_57_pkey on table mvpw1_57"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "a",
+        "dependent_object": "default value for column action of table mvpw1_57"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "a",
+        "dependent_object": "default value for column event_key of table mvpw1_57"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "a",
+        "dependent_object": "default value for column id of table mvpw1_57"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "a",
+        "dependent_object": "default value for column observed_value of table mvpw1_57"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "a",
+        "dependent_object": "default value for column tenant_key of table mvpw1_57"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "a",
+        "dependent_object": "index mvpw1_57_btree_unique_event_key_asc"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "a",
+        "dependent_object": "sequence mvpw1_57_id_seq"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "i",
+        "dependent_object": "toast table pg_toast.pg_toast_362302"
+      },
+      {
+        "referenced_table": "mvpw1_57",
+        "deptype": "i",
+        "dependent_object": "type mvpw1_57"
+      }
+    ],
+    "assignment_indexes": [
+      {
+        "tablename": "mvpw1_25",
+        "indexname": "mvpw1_25_af56fa07f585cd4b93b1",
+        "indisunique": true,
+        "indisvalid": true,
+        "indisready": true,
+        "definition": "CREATE UNIQUE INDEX mvpw1_25_af56fa07f585cd4b93b1 ON public.mvpw1_25 USING btree (platform_id, operation_scope, idempotency_key)",
+        "predicate": null
+      },
+      {
+        "tablename": "mvpw1_25",
+        "indexname": "mvpw1_25_btree_platform_id_asc",
+        "indisunique": false,
+        "indisvalid": true,
+        "indisready": true,
+        "definition": "CREATE INDEX mvpw1_25_btree_platform_id_asc ON public.mvpw1_25 USING btree (platform_id)",
+        "predicate": null
+      },
+      {
+        "tablename": "mvpw1_25",
+        "indexname": "mvpw1_25_btree_unique_idempotency_record_id_asc",
+        "indisunique": true,
+        "indisvalid": true,
+        "indisready": true,
+        "definition": "CREATE UNIQUE INDEX mvpw1_25_btree_unique_idempotency_record_id_asc ON public.mvpw1_25 USING btree (idempotency_record_id)",
+        "predicate": null
+      },
+      {
+        "tablename": "mvpw1_25",
+        "indexname": "mvpw1_25_pkey",
+        "indisunique": true,
+        "indisvalid": true,
+        "indisready": true,
+        "definition": "CREATE UNIQUE INDEX mvpw1_25_pkey ON public.mvpw1_25 USING btree (id)",
+        "predicate": null
+      },
+      {
+        "tablename": "mvpw1_44",
+        "indexname": "mvpw1_44_8d4c119ecf5c5060c6b9",
+        "indisunique": true,
+        "indisvalid": true,
+        "indisready": true,
+        "definition": "CREATE UNIQUE INDEX mvpw1_44_8d4c119ecf5c5060c6b9 ON public.mvpw1_44 USING btree (platform_id, trip_id, assigned_at)",
+        "predicate": null
+      },
+      {
+        "tablename": "mvpw1_44",
+        "indexname": "mvpw1_44_btree_platform_id_asc",
+        "indisunique": false,
+        "indisvalid": true,
+        "indisready": true,
+        "definition": "CREATE INDEX mvpw1_44_btree_platform_id_asc ON public.mvpw1_44 USING btree (platform_id)",
+        "predicate": null
+      },
+      {
+        "tablename": "mvpw1_44",
+        "indexname": "mvpw1_44_btree_unique_trip_assignment_id_asc",
+        "indisunique": true,
+        "indisvalid": true,
+        "indisready": true,
+        "definition": "CREATE UNIQUE INDEX mvpw1_44_btree_unique_trip_assignment_id_asc ON public.mvpw1_44 USING btree (trip_assignment_id)",
+        "predicate": null
+      },
+      {
+        "tablename": "mvpw1_44",
+        "indexname": "mvpw1_44_pkey",
+        "indisunique": true,
+        "indisvalid": true,
+        "indisready": true,
+        "definition": "CREATE UNIQUE INDEX mvpw1_44_pkey ON public.mvpw1_44 USING btree (id)",
+        "predicate": null
+      }
+    ],
+    "active_assignment_count": 2,
+    "active_vehicle_duplicate_groups": 0,
+    "active_driver_duplicate_groups": 0,
+    "active_assignment_null_keys": 0
+  },
+  "diagnostic_rows_unchanged": true
+}

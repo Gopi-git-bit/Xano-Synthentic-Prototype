@@ -1,0 +1,105 @@
+TAP version 13
+# Subtest: required credential and no arbitrary function/tenant inputs
+ok 1 - required credential and no arbitrary function/tenant inputs
+  ---
+  duration_ms: 1.335403
+  ...
+# Subtest: nested native JSON result accepted; errors and malformed payloads rejected
+ok 2 - nested native JSON result accepted; errors and malformed payloads rejected
+  ---
+  duration_ms: 0.632564
+  ...
+# Subtest: index check rejects wrong table, non-unique and wrong predicate
+ok 3 - index check rejects wrong table, non-unique and wrong predicate
+  ---
+  duration_ms: 18.110506
+  ...
+# Subtest: table mapping requires GUIDs and observed columns, not just count
+ok 4 - table mapping requires GUIDs and observed columns, not just count
+  ---
+  duration_ms: 37.981886
+  ...
+# Subtest: unimported candidates, broad access, orphans and missing indexes block all invocations
+ok 5 - unimported candidates, broad access, orphans and missing indexes block all invocations
+  ---
+  duration_ms: 131.955318
+  ...
+# Subtest: passing mocked preflight pins target headers, does not retry and allows bounded runner reads
+ok 6 - passing mocked preflight pins target headers, does not retry and allows bounded runner reads
+  ---
+  duration_ms: 70.542885
+  ...
+# Subtest: source drift during preflight leaves execution locked
+ok 7 - source drift during preflight leaves execution locked
+  ---
+  duration_ms: 128.941676
+  ...
+# Subtest: missing dependent function leaves execution locked
+ok 8 - missing dependent function leaves execution locked
+  ---
+  duration_ms: 57.949706
+  ...
+# Subtest: scope claims deny but live request succeeds leaves execution locked
+ok 9 - scope claims deny but live request succeeds leaves execution locked
+  ---
+  duration_ms: 72.437901
+  ...
+# Subtest: modified read-only probe stops before any function execution
+ok 10 - modified read-only probe stops before any function execution
+  ---
+  duration_ms: 15.982166
+  ...
+# Subtest: wrong database stops before physical inspection
+ok 11 - wrong database stops before physical inspection
+  ---
+  duration_ms: 35.315844
+  ...
+# Subtest: pagination loops fail closed
+ok 12 - pagination loops fail closed
+  ---
+  duration_ms: 14.559553
+  ...
+# Subtest: transport failures redact remote messages and never retry
+ok 13 - transport failures redact remote messages and never retry
+  ---
+  duration_ms: 12.838005
+  ...
+# Subtest: redirect responses cannot count as authentication
+ok 14 - redirect responses cannot count as authentication
+  ---
+  duration_ms: 3.659074
+  ...
+# Subtest: request body byte ceiling stops oversized exports
+ok 15 - request body byte ceiling stops oversized exports
+  ---
+  duration_ms: 17.39803
+  ...
+# Subtest: reviewed diagnostic preparation is recognized without relaxing prerequisites
+ok 16 - reviewed diagnostic preparation is recognized without relaxing prerequisites
+  ---
+  duration_ms: 110.445109
+  ...
+# Subtest: changed diagnostic preparation blocks execution
+ok 17 - changed diagnostic preparation blocks execution
+  ---
+  duration_ms: 31.314816
+  ...
+# Subtest: invalid physical unique index cannot satisfy preflight
+ok 18 - invalid physical unique index cannot satisfy preflight
+  ---
+  duration_ms: 63.703982
+  ...
+# Subtest: missing physical validity evidence cannot satisfy preflight
+ok 19 - missing physical validity evidence cannot satisfy preflight
+  ---
+  duration_ms: 52.494403
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 960.701853

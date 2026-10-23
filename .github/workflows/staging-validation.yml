@@ -1,0 +1,36 @@
+name: Staging readiness gate (blocked)
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Explicit synthetic environment
+        required: true
+        type: choice
+        options: [synthetic-staging]
+permissions:
+  contents: read
+concurrency:
+  group: synthetic-staging-validation
+  cancel-in-progress: false
+jobs:
+  readiness:
+    environment: synthetic-staging
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/validate-backend.cjs
+      - name: Require implemented staging suite and integrity evidence
+        run: node scripts/staging-gate.cjs
+      - name: Sanitized readiness report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-readiness
+          path: reports/staging-readiness.json
+          retention-days: 7

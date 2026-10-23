@@ -1,0 +1,47 @@
+{
+  "status": "NOT_VERIFIED",
+  "ready": false,
+  "scope": "Read-only Xano HTTP connection check; no staging acceptance claim",
+  "checks": [
+    {
+      "name": "metadata_requires_authentication",
+      "status": "PASS",
+      "http_status": 401
+    },
+    {
+      "name": "metadata_credential",
+      "status": "PASS",
+      "http_status": 200,
+      "live_data_scope_present": true,
+      "least_privilege_verified": false
+    },
+    {
+      "name": "workspace_binding",
+      "status": "PASS",
+      "workspace_id": 1,
+      "branch": "v1"
+    },
+    {
+      "name": "direct_push_guard",
+      "status": "PASS"
+    },
+    {
+      "name": "sandbox_probe_source",
+      "status": "PASS",
+      "sha256": "25255a28639748c97247a2c642c0e46ce75c9cc1c2bd7eb62b59cbe1d95483a3"
+    },
+    {
+      "name": "sandbox_database_identity",
+      "status": "PASS",
+      "database": "sn9m-aat6-200c"
+    },
+    {
+      "name": "sandbox_physical_inventory",
+      "status": "FAIL",
+      "code": "UNEXPECTED_PHYSICAL_TABLE_COUNT",
+      "expected_physical_tables": 51,
+      "observed_physical_tables": 53
+    }
+  ],
+  "captured_at": "2026-10-22T09:39:41.500Z"
+}

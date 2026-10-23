@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-22T11:46:07.839Z",
+  "archive_sha256": "0774ffa4f5be4280d1f1847ad5d4c6c462eae1ca85784878a0e8220f3ba14b5c",
+  "manifest_entries_verified": 9,
+  "json_files_parsed": 6,
+  "agents": 5,
+  "business_rules": 20,
+  "requirements": 20,
+  "open_decisions": 15,
+  "acceptance_definitions": 70,
+  "acceptance_status": "ALL_NOT_RUN",
+  "cross_references": "PASS",
+  "source_commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5",
+  "source_count": 92,
+  "full_original_sources_reaudited": false
+}

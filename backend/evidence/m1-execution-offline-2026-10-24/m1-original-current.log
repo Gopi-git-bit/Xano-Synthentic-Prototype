@@ -1,0 +1,545 @@
+TAP version 13
+# Subtest: source predicate: valid customer
+ok 1 - source predicate: valid customer
+  ---
+  duration_ms: 50.206056
+  ...
+# Subtest: source predicate: missing account
+ok 2 - source predicate: missing account
+  ---
+  duration_ms: 1.340469
+  ...
+# Subtest: source predicate: duplicate authenticated subject
+ok 3 - source predicate: duplicate authenticated subject
+  ---
+  duration_ms: 13.991133
+  ...
+# Subtest: source predicate: unrelated subject
+ok 4 - source predicate: unrelated subject
+  ---
+  duration_ms: 22.016378
+  ...
+# Subtest: source predicate: blocked account
+ok 5 - source predicate: blocked account
+  ---
+  duration_ms: 13.935524
+  ...
+# Subtest: source predicate: suspended account
+ok 6 - source predicate: suspended account
+  ---
+  duration_ms: 8.801438
+  ...
+# Subtest: source predicate: no memberships
+ok 7 - source predicate: no memberships
+  ---
+  duration_ms: 7.59328
+  ...
+# Subtest: source predicate: expiry at now
+ok 8 - source predicate: expiry at now
+  ---
+  duration_ms: 54.259056
+  ...
+# Subtest: source predicate: future memberships
+ok 9 - source predicate: future memberships
+  ---
+  duration_ms: 9.170319
+  ...
+# Subtest: source predicate: cross tenant memberships
+ok 10 - source predicate: cross tenant memberships
+  ---
+  duration_ms: 16.743806
+  ...
+# Subtest: source predicate: other account memberships
+ok 11 - source predicate: other account memberships
+  ---
+  duration_ms: 23.988153
+  ...
+# Subtest: source predicate: missing customer profile
+ok 12 - source predicate: missing customer profile
+  ---
+  duration_ms: 31.475387
+  ...
+# Subtest: source predicate: ambiguous customer profiles
+ok 13 - source predicate: ambiguous customer profiles
+  ---
+  duration_ms: 43.507202
+  ...
+# Subtest: source predicate: foreign profile
+ok 14 - source predicate: foreign profile
+  ---
+  duration_ms: 31.942714
+  ...
+# Subtest: source predicate: same tenant other owner profile
+ok 15 - source predicate: same tenant other owner profile
+  ---
+  duration_ms: 31.943606
+  ...
+# Subtest: source predicate: starter admin is not an operational membership
+ok 16 - source predicate: starter admin is not an operational membership
+  ---
+  duration_ms: 21.438848
+  ...
+# Subtest: source predicate: non-customer membership needs no customer profile
+ok 17 - source predicate: non-customer membership needs no customer profile
+  ---
+  duration_ms: 21.33107
+  ...
+# Subtest: source predicate: future membership ignored alongside valid memberships
+ok 18 - source predicate: future membership ignored alongside valid memberships
+  ---
+  duration_ms: 47.097738
+  ...
+# Subtest: baseline reproduces missing and ambiguous profile acceptance; candidate rejects both
+ok 19 - baseline reproduces missing and ambiguous profile acceptance; candidate rejects both
+  ---
+  duration_ms: 152.266014
+  ...
+# Subtest: complete evidence includes all 15 persisted tables and stable IDs
+ok 20 - complete evidence includes all 15 persisted tables and stable IDs
+  ---
+  duration_ms: 3.021057
+  ...
+# Subtest: missing success record rejected: audit_events
+ok 21 - missing success record rejected: audit_events
+  ---
+  duration_ms: 1.791518
+  ...
+# Subtest: rollback residue rejected: audit_events
+ok 22 - rollback residue rejected: audit_events
+  ---
+  duration_ms: 0.272707
+  ...
+# Subtest: missing success record rejected: dispatch_offers
+ok 23 - missing success record rejected: dispatch_offers
+  ---
+  duration_ms: 2.799094
+  ...
+# Subtest: rollback residue rejected: dispatch_offers
+ok 24 - rollback residue rejected: dispatch_offers
+  ---
+  duration_ms: 0.157032
+  ...
+# Subtest: missing success record rejected: dispatch_requirements
+ok 25 - missing success record rejected: dispatch_requirements
+  ---
+  duration_ms: 0.295207
+  ...
+# Subtest: rollback residue rejected: dispatch_requirements
+ok 26 - rollback residue rejected: dispatch_requirements
+  ---
+  duration_ms: 0.122595
+  ...
+# Subtest: missing success record rejected: durable_tasks
+ok 27 - missing success record rejected: durable_tasks
+  ---
+  duration_ms: 0.157186
+  ...
+# Subtest: rollback residue rejected: durable_tasks
+ok 28 - rollback residue rejected: durable_tasks
+  ---
+  duration_ms: 0.102182
+  ...
+# Subtest: missing success record rejected: event_outbox
+ok 29 - missing success record rejected: event_outbox
+  ---
+  duration_ms: 0.189269
+  ...
+# Subtest: rollback residue rejected: event_outbox
+ok 30 - rollback residue rejected: event_outbox
+  ---
+  duration_ms: 10.820958
+  ...
+# Subtest: missing success record rejected: idempotency_records
+ok 31 - missing success record rejected: idempotency_records
+  ---
+  duration_ms: 0.279047
+  ...
+# Subtest: rollback residue rejected: idempotency_records
+ok 32 - rollback residue rejected: idempotency_records
+  ---
+  duration_ms: 0.230034
+  ...
+# Subtest: missing success record rejected: operational_events
+ok 33 - missing success record rejected: operational_events
+  ---
+  duration_ms: 0.321644
+  ...
+# Subtest: rollback residue rejected: operational_events
+ok 34 - rollback residue rejected: operational_events
+  ---
+  duration_ms: 0.199042
+  ...
+# Subtest: missing success record rejected: order_state_transitions
+ok 35 - missing success record rejected: order_state_transitions
+  ---
+  duration_ms: 0.943015
+  ...
+# Subtest: rollback residue rejected: order_state_transitions
+ok 36 - rollback residue rejected: order_state_transitions
+  ---
+  duration_ms: 0.209798
+  ...
+# Subtest: missing success record rejected: order_stops
+ok 37 - missing success record rejected: order_stops
+  ---
+  duration_ms: 0.277453
+  ...
+# Subtest: rollback residue rejected: order_stops
+ok 38 - rollback residue rejected: order_stops
+  ---
+  duration_ms: 4.24671
+  ...
+# Subtest: missing success record rejected: orders
+ok 39 - missing success record rejected: orders
+  ---
+  duration_ms: 4.304728
+  ...
+# Subtest: rollback residue rejected: orders
+ok 40 - rollback residue rejected: orders
+  ---
+  duration_ms: 0.226752
+  ...
+# Subtest: missing success record rejected: quotes
+ok 41 - missing success record rejected: quotes
+  ---
+  duration_ms: 0.18335
+  ...
+# Subtest: rollback residue rejected: quotes
+ok 42 - rollback residue rejected: quotes
+  ---
+  duration_ms: 0.100019
+  ...
+# Subtest: missing success record rejected: service_commitments
+ok 43 - missing success record rejected: service_commitments
+  ---
+  duration_ms: 0.130472
+  ...
+# Subtest: rollback residue rejected: service_commitments
+ok 44 - rollback residue rejected: service_commitments
+  ---
+  duration_ms: 0.094592
+  ...
+# Subtest: missing success record rejected: transaction_participants
+ok 45 - missing success record rejected: transaction_participants
+  ---
+  duration_ms: 0.179192
+  ...
+# Subtest: rollback residue rejected: transaction_participants
+ok 46 - rollback residue rejected: transaction_participants
+  ---
+  duration_ms: 0.090197
+  ...
+# Subtest: missing success record rejected: trip_assignments
+ok 47 - missing success record rejected: trip_assignments
+  ---
+  duration_ms: 0.179635
+  ...
+# Subtest: rollback residue rejected: trip_assignments
+ok 48 - rollback residue rejected: trip_assignments
+  ---
+  duration_ms: 0.092565
+  ...
+# Subtest: missing success record rejected: trips
+ok 49 - missing success record rejected: trips
+  ---
+  duration_ms: 6.175197
+  ...
+# Subtest: rollback residue rejected: trips
+ok 50 - rollback residue rejected: trips
+  ---
+  duration_ms: 0.141348
+  ...
+# Subtest: complete flag cannot replace full table inventory
+ok 51 - complete flag cannot replace full table inventory
+  ---
+  duration_ms: 15.534348
+  ...
+# Subtest: missing count key rejected rather than treated as zero
+ok 52 - missing count key rejected rather than treated as zero
+  ---
+  duration_ms: 0.444294
+  ...
+# Subtest: conflict must be 409 and preserve every table
+ok 53 - conflict must be 409 and preserve every table
+  ---
+  duration_ms: 0.133114
+  ...
+# Subtest: conflict with 202 rejected
+ok 54 - conflict with 202 rejected
+  ---
+  duration_ms: 0.163682
+  ...
+# Subtest: stable replay accepted
+ok 55 - stable replay accepted
+  ---
+  duration_ms: 9.894896
+  ...
+# Subtest: changed replay order_id rejected
+ok 56 - changed replay order_id rejected
+  ---
+  duration_ms: 5.922229
+  ...
+# Subtest: changed replay trip_id rejected
+ok 57 - changed replay trip_id rejected
+  ---
+  duration_ms: 0.198483
+  ...
+# Subtest: changed replay workflow_id rejected
+ok 58 - changed replay workflow_id rejected
+  ---
+  duration_ms: 0.126223
+  ...
+# Subtest: changed replay correlation_id rejected
+ok 59 - changed replay correlation_id rejected
+  ---
+  duration_ms: 0.10609
+  ...
+# Subtest: overlapping same_key evidence accepted
+ok 60 - overlapping same_key evidence accepted
+  ---
+  duration_ms: 0.560535
+  ...
+# Subtest: overlapping same_vehicle evidence accepted
+ok 61 - overlapping same_vehicle evidence accepted
+  ---
+  duration_ms: 0.249703
+  ...
+# Subtest: overlapping same_driver evidence accepted
+ok 62 - overlapping same_driver evidence accepted
+  ---
+  duration_ms: 0.136589
+  ...
+# Subtest: driver-only race cannot reuse the same vehicle
+ok 63 - driver-only race cannot reuse the same vehicle
+  ---
+  duration_ms: 0.189364
+  ...
+# Subtest: driver-only race cannot use different drivers
+ok 64 - driver-only race cannot use different drivers
+  ---
+  duration_ms: 0.237285
+  ...
+# Subtest: two active driver assignments rejected
+ok 65 - two active driver assignments rejected
+  ---
+  duration_ms: 4.529032
+  ...
+# Subtest: sequential requests cannot pass as contention
+ok 66 - sequential requests cannot pass as contention
+  ---
+  duration_ms: 0.248859
+  ...
+# Subtest: single database session rejected
+ok 67 - single database session rejected
+  ---
+  duration_ms: 0.172498
+  ...
+# Subtest: losing request cannot leave a quote
+ok 68 - losing request cannot leave a quote
+  ---
+  duration_ms: 0.470683
+  ...
+# Subtest: same-key race must return stable inspected workflow IDs
+ok 69 - same-key race must return stable inspected workflow IDs
+  ---
+  duration_ms: 0.316139
+  ...
+# Subtest: fault evidence database after_order
+ok 70 - fault evidence database after_order
+  ---
+  duration_ms: 0.250733
+  ...
+# Subtest: fault evidence database after_assignment
+ok 71 - fault evidence database after_assignment
+  ---
+  duration_ms: 6.730145
+  ...
+# Subtest: fault evidence application after_order
+ok 72 - fault evidence application after_order
+  ---
+  duration_ms: 0.177177
+  ...
+# Subtest: fault evidence application after_assignment
+ok 73 - fault evidence application after_assignment
+  ---
+  duration_ms: 0.118053
+  ...
+# Subtest: early access denial cannot count as application rollback
+ok 74 - early access denial cannot count as application rollback
+  ---
+  duration_ms: 0.284406
+  ...
+# Subtest: wrong application fault location rejected
+ok 75 - wrong application fault location rejected
+  ---
+  duration_ms: 0.141804
+  ...
+# Subtest: unverified native source cannot claim rollback proof
+ok 76 - unverified native source cannot claim rollback proof
+  ---
+  duration_ms: 0.113017
+  ...
+# Subtest: offline fixtures are never promoted to hosted evidence
+ok 77 - offline fixtures are never promoted to hosted evidence
+  ---
+  duration_ms: 0.129804
+  ...
+# Subtest: unexecuted case remains NOT_RUN
+ok 78 - unexecuted case remains NOT_RUN
+  ---
+  duration_ms: 0.073132
+  ...
+# Subtest: candidate snapshots and rollback workflows enumerate every write table
+ok 79 - candidate snapshots and rollback workflows enumerate every write table
+  ---
+  duration_ms: 0.635175
+  ...
+# Subtest: strict candidate fixes the old helper omission without changing baseline export
+ok 80 - strict candidate fixes the old helper omission without changing baseline export
+  ---
+  duration_ms: 0.308991
+  ...
+# Subtest: source command guard: dual-role trusted identity
+ok 81 - source command guard: dual-role trusted identity
+  ---
+  duration_ms: 14.079248
+  ...
+# Subtest: source command guard: customer alone cannot coordinate
+ok 82 - source command guard: customer alone cannot coordinate
+  ---
+  duration_ms: 15.466854
+  ...
+# Subtest: source command guard: admin alone cannot coordinate
+ok 83 - source command guard: admin alone cannot coordinate
+  ---
+  duration_ms: 16.78875
+  ...
+# Subtest: source command guard: vendor alone cannot coordinate
+ok 84 - source command guard: vendor alone cannot coordinate
+  ---
+  duration_ms: 3.01686
+  ...
+# Subtest: source command guard: driver alone cannot coordinate
+ok 85 - source command guard: driver alone cannot coordinate
+  ---
+  duration_ms: 8.086909
+  ...
+# Subtest: source command guard: body tenant claim cannot override trusted identity
+ok 86 - source command guard: body tenant claim cannot override trusted identity
+  ---
+  duration_ms: 3.918624
+  ...
+# Subtest: runner starts driver-only commands concurrently and retains loser inspection
+ok 87 - runner starts driver-only commands concurrently and retains loser inspection
+  ---
+  duration_ms: 107.402991
+  ...
+# Subtest: runner refuses writes before 53 physical tables
+ok 88 - runner refuses writes before 53 physical tables
+  ---
+  duration_ms: 7.468037
+  ...
+# Subtest: runner refuses writes before unrestricted credential
+ok 89 - runner refuses writes before unrestricted credential
+  ---
+  duration_ms: 0.234947
+  ...
+# Subtest: runner refuses writes before unverified physical indexes
+ok 90 - runner refuses writes before unverified physical indexes
+  ---
+  duration_ms: 0.167041
+  ...
+# Subtest: runner refuses writes before unverified table mapping
+ok 91 - runner refuses writes before unverified table mapping
+  ---
+  duration_ms: 0.186541
+  ...
+# Subtest: runner refuses writes before unverified isolation
+ok 92 - runner refuses writes before unverified isolation
+  ---
+  duration_ms: 4.36399
+  ...
+# Subtest: runner refuses writes before wrong database
+ok 93 - runner refuses writes before wrong database
+  ---
+  duration_ms: 0.299223
+  ...
+# Subtest: runner refuses writes before missing source hashes
+ok 94 - runner refuses writes before missing source hashes
+  ---
+  duration_ms: 0.360152
+  ...
+# Subtest: runner refuses writes before unauthenticated access
+ok 95 - runner refuses writes before unauthenticated access
+  ---
+  duration_ms: 7.658649
+  ...
+# Subtest: occupied driver stops runner before any command
+ok 96 - occupied driver stops runner before any command
+  ---
+  duration_ms: 0.489336
+  ...
+# Subtest: nested function/run errors cannot be parsed as empty success
+ok 97 - nested function/run errors cannot be parsed as empty success
+  ---
+  duration_ms: 0.140407
+  ...
+# Subtest: runner caps same_key cohort at four concurrent commands
+ok 98 - runner caps same_key cohort at four concurrent commands
+  ---
+  duration_ms: 18.438713
+  ...
+# Subtest: runner caps same_vehicle cohort at four concurrent commands
+ok 99 - runner caps same_vehicle cohort at four concurrent commands
+  ---
+  duration_ms: 19.670112
+  ...
+# Subtest: caller labels cannot fake independent driver selection
+ok 100 - caller labels cannot fake independent driver selection
+  ---
+  duration_ms: 0.468818
+  ...
+# Subtest: candidate hashes and preserved replacement GUIDs match manifest
+ok 101 - candidate hashes and preserved replacement GUIDs match manifest
+  ---
+  duration_ms: 8.017051
+  ...
+# Subtest: command policy and business logic are identical after removing explicit fault additions
+ok 102 - command policy and business logic are identical after removing explicit fault additions
+  ---
+  duration_ms: 0.70871
+  ...
+# Subtest: an omitted rejection code cannot pass an empty response
+ok 103 - an omitted rejection code cannot pass an empty response
+  ---
+  duration_ms: 0.20919
+  ...
+# Subtest: race requires a concrete shared driver identity
+ok 104 - race requires a concrete shared driver identity
+  ---
+  duration_ms: 0.177486
+  ...
+# Subtest: same-key race requires recorded hashes
+ok 105 - same-key race requires recorded hashes
+  ---
+  duration_ms: 0.176897
+  ...
+# Subtest: fault marker without a native error code is insufficient
+ok 106 - fault marker without a native error code is insufficient
+  ---
+  duration_ms: 0.11003
+  ...
+# Subtest: runner waits for sibling writes after one native request fails
+ok 107 - runner waits for sibling writes after one native request fails
+  ---
+  duration_ms: 26.515772
+  ...
+1..107
+# tests 107
+# suites 0
+# pass 107
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 997.135878

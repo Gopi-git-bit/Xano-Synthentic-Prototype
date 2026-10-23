@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Slice1 shared context keeper",
+    "id": 8,
+    "at": "2026-10-21T16:59:39.804Z",
+    "ms": 18888,
+    "result": {
+      "status": "ok",
+      "timing": 9.94
+    }
+  },
+  {
+    "name": "Slice1 shared context observer",
+    "id": 9,
+    "at": "2026-10-21T16:59:43.819Z",
+    "ms": 9801,
+    "result": {
+      "status": "exception",
+      "timing": 0.02,
+      "message": "to_equal failed - expected value 1 does not equal 0"
+    }
+  }
+]

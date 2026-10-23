@@ -1,0 +1,135 @@
+{
+  "schema_version": 3,
+  "revision": "execution-v3",
+  "base_review_commit": "5cc444a847b9e5c5f6978aa32cdc9a9b0a948355",
+  "status": "PREPARED_DISABLED",
+  "native_preview": "NOT_RUN_THIS_REVISION",
+  "native_import": "NOT_IMPORTED",
+  "native_execution": "NOT_RUN",
+  "hosted_cases_executed": 0,
+  "activation": "backend/milestone1/execution-v3/activation.json",
+  "native_helper_count": 10,
+  "case_count": 31,
+  "separate_contention_cohorts": 2,
+  "fixture_tables": [
+    "user",
+    "accounts",
+    "customer_profiles",
+    "vendor_profiles",
+    "driver_profiles",
+    "vehicle_models",
+    "vehicles",
+    "vehicle_documents",
+    "driver_associations",
+    "account_role_memberships"
+  ],
+  "business_tables": [
+    "active_assignment_reservations",
+    "audit_events",
+    "dispatch_offers",
+    "dispatch_requirements",
+    "durable_tasks",
+    "event_outbox",
+    "idempotency_records",
+    "operational_events",
+    "order_state_transitions",
+    "order_stops",
+    "orders",
+    "quotes",
+    "service_commitments",
+    "transaction_participants",
+    "trip_assignments",
+    "trips"
+  ],
+  "files": [
+    {
+      "path": "backend/milestone1/execution-v3/contention.cjs",
+      "sha256": "3388d95837d2f603a5f3f787f7bd3906e8beafb3985d2c31a1895fc6262e4371"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/evidence.cjs",
+      "sha256": "0ee2310d15fe55ddaa313d489efdcdb2e2247620281a877e8f5bd6c619f65507"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/executor.cjs",
+      "sha256": "6ebf64946644fff3020ddfe1f9a9da1e58639c84b32270af5fbe6f1a180b6bc2"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/fixtures.json",
+      "sha256": "b0c866e42b12828d5cab9a42869cb0c6517ae8ea53b41e732322a05260afa612"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/native-adapter.cjs",
+      "sha256": "c9bea6f2612c10a5cb88ea7253d2fc861976292a3129e081c2a29e45d43e9d22"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/catalog.xs",
+      "sha256": "4352a0b442da7f13ba6fc16b04ed2bbde0bdea150eb726415e269be04f0d19a6"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/contention_command.xs",
+      "sha256": "13303af6d4b75fc1c3ba0c6b594c0c44db26ede9629d34110d7cb3e1563c597a"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/contention_waits.xs",
+      "sha256": "0b2962716a858f1201a501c2bac7525ea19a9a494fbcc329e719e8d250d0232b"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/expire_positive_a.xs",
+      "sha256": "89948aa753931d05c70f7a0d15f6fbb9a14f4018a80856126d8c5476538b8546"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/fixture_readback.xs",
+      "sha256": "78835272270742b75bc3791023308e30f027988918064ff12a761c365b508238"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/inspect.xs",
+      "sha256": "32d9ff708a7a5e1e45c6f3eaf74efdc9512a0f7ca097f25a309f76e85858905e"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/invoke.xs",
+      "sha256": "65a19c2189cf35147648d9f8f87dad17242265fe36de90d7edb17690e030de91"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/plan.xs",
+      "sha256": "71e37c333c888ed6b3580c48883f474fd1810fdf0fb53dc903616bf3d9ee1911"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/seed.xs",
+      "sha256": "c73176db2f5448169e29ca28d839171fd71613336f21a5e82d99745ad48bc3b3"
+    },
+    {
+      "path": "backend/milestone1/execution-v3/xano/function/m1_execution/snapshot.xs",
+      "sha256": "bbc96179f456b0eab0198e993f56b801461add896222e3e5b90a3ba936546d59"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/active_assignment_reservations.xs",
+      "sha256": "ce19a67839e2b4e9ed0ec8579e045432a73d274b0c694a3eabcf1cfc0a9d6449"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/assertions.cjs",
+      "sha256": "7fcc48de580730bb3caeea00a376c509679abf588343e95d82b75d8239070072"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/function/logistics/resolve_identity.xs",
+      "sha256": "72b74f1e37a5052ef8a9ac604fe0b10e0bcf21a5dc82f16797633b50164a0820"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/function/slice_1/create_and_assign.xs",
+      "sha256": "97972dac207c445768ab56884816efb0b6cf850d2eafbb945cd4cc12d1fb2ca2"
+    },
+    {
+      "path": "scripts/prepare-m1-execution.py",
+      "sha256": "81cf9f6d0fd8e1310d4f05843484c2ee40500af6c02053320a6c392181a9ba7b"
+    },
+    {
+      "path": "scripts/run-m1-execution.cjs",
+      "sha256": "111f928cd6af87c9487aa20c5839603fa37e3a72894ae25c9078b1b0cf8fe756"
+    }
+  ],
+  "bundle_sha256": "575b44d8fa4ecd4a7b0d77677246946f6c499a41b769eafc427981a8423cd5e5",
+  "schema_unchanged_sha256": "ce19a67839e2b4e9ed0ec8579e045432a73d274b0c694a3eabcf1cfc0a9d6449",
+  "source_assignments_must_be_reread": true,
+  "generator_reproducible": true,
+  "release_reuse": "NOT_IMPLEMENTED_NOT_PROVEN"
+}

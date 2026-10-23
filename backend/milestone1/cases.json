@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "scope": "Prepared hosted cases; NOT_RUN until executed on verified Xano sandbox",
+  "cases": [
+    {
+      "id": "identity-missing_account",
+      "assertion": "rejected",
+      "description": "missing_account",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-duplicate_account",
+      "assertion": "rejected",
+      "description": "duplicate_account",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-blocked_account",
+      "assertion": "rejected",
+      "description": "blocked_account",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-suspended_account",
+      "assertion": "rejected",
+      "description": "suspended_account",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-no_membership",
+      "assertion": "rejected",
+      "description": "no_membership",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-expired_membership",
+      "assertion": "rejected",
+      "description": "expired_membership",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-future_membership",
+      "assertion": "rejected",
+      "description": "future_membership",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-starter_admin_only",
+      "assertion": "rejected",
+      "description": "starter_admin_only",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-missing_customer_profile",
+      "assertion": "rejected",
+      "description": "missing_customer_profile",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-duplicate_customer_profile",
+      "assertion": "rejected",
+      "description": "duplicate_customer_profile",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-foreign_tenant_claim",
+      "assertion": "rejected",
+      "description": "foreign_tenant_claim",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-foreign_resource",
+      "assertion": "rejected",
+      "description": "foreign_resource",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-foreign_owner",
+      "assertion": "rejected",
+      "description": "foreign_owner",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-overweight",
+      "assertion": "rejected",
+      "description": "overweight",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-wrong_body",
+      "assertion": "rejected",
+      "description": "wrong_body",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-unverified_document",
+      "assertion": "rejected",
+      "description": "unverified_document",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-expired_document",
+      "assertion": "rejected",
+      "description": "expired_document",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-inactive_vendor",
+      "assertion": "rejected",
+      "description": "inactive_vendor",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "identity-inactive_driver",
+      "assertion": "rejected",
+      "description": "inactive_driver",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "positive-a",
+      "assertion": "complete",
+      "description": "Trusted positive fixture a",
+      "acceptance_criteria": [
+        "M1-AC-04",
+        "M1-AC-05"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "positive-b",
+      "assertion": "complete",
+      "description": "Trusted positive fixture b",
+      "acceptance_criteria": [
+        "M1-AC-04",
+        "M1-AC-05"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "same-key-race",
+      "assertion": "race",
+      "description": "One create and three stable replays",
+      "acceptance_criteria": [
+        "M1-AC-06"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "changed-payload",
+      "assertion": "rejected",
+      "description": "409 with no changes in all 15 tables",
+      "acceptance_criteria": [
+        "M1-AC-06"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "expired-key",
+      "assertion": "rejected",
+      "description": "Unavailable original; no silent new booking",
+      "acceptance_criteria": [
+        "M1-AC-06"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "same-vehicle-race",
+      "assertion": "race",
+      "description": "One winner and three busy; no loser records",
+      "acceptance_criteria": [
+        "M1-AC-07"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "same-driver-race",
+      "assertion": "race",
+      "description": "Two distinct vehicles, one driver, one winner",
+      "acceptance_criteria": [
+        "M1-AC-07"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "database-after_order",
+      "assertion": "fault",
+      "description": "Fault provenance, all-table rollback, create/replay recovery",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "database-after_assignment",
+      "assertion": "fault",
+      "description": "Fault provenance, all-table rollback, create/replay recovery",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "application-after_order",
+      "assertion": "fault",
+      "description": "Fault provenance, all-table rollback, create/replay recovery",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "application-after_assignment",
+      "assertion": "fault",
+      "description": "Fault provenance, all-table rollback, create/replay recovery",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    },
+    {
+      "id": "discarded-result",
+      "assertion": "replay",
+      "description": "Inspect committed state then replay same result",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "status": "NOT_RUN",
+      "execution_scope": "xano_native",
+      "evidence_ref": null,
+      "arguments": null
+    }
+  ]
+}

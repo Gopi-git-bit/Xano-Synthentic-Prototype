@@ -1,0 +1,558 @@
+{
+  "schema_version": 1,
+  "status": "blocked",
+  "ready": false,
+  "blockers": [
+    "Direct Xano MCP initialization/tools-list succeed (HTTP 200), but listWorkspaces and documentation each return MCP isError true: Unauthorized - Authentication Required. No authenticated Xano profile/server is configured here; the CLI login callback belongs to its originating machine. Prior Composio reads returned Invalid token. Current workspace/source/isolation unverified.",
+    "Last observed physical count 53 versus 51 declared; supported diagnostic reconciliation unresolved; no count whitelist or deletion.",
+    "194 integrity controls retain blocked status/null executable tests. 79 matching export index declarations are not native enforcement proof.",
+    "Application JWT roles, tenant and owner isolation, ambiguous customer profile rejection, restricted admin scope and magic-link single-use concurrency remain unverified.",
+    "Bounded internal Metadata API vehicle/idempotency races pass historically; independent driver contention, CAS and worker fencing/claims remain unproved.",
+    "Disposable database/application rollback passed historically; full 15-table application-failure rollback and process/network recovery remain unverified.",
+    "Public booking/workflow/transition contracts, signed payment evidence, durable workers, POD and financial/provider integrations incomplete.",
+    "All 70 agent operational scenarios remain NOT_RUN; trusted runtime context/capability/budget/kill-switch gateway missing.",
+    "Lifecycle/payment/idempotency policy conflicts remain open for general public/financial operations; existing synthetic rules preserved.",
+    "Recovery/restoration/deployment rollback/alerts and executable staging suite absent.",
+    "M1 candidates are offline preparation only: native grammar/import, adapter wiring, identity fixtures, expiry and all new hosted assertions remain unrun."
+  ],
+  "ephemeral": {
+    "name": "e9aa-vgbb-7f5c",
+    "ingress": true,
+    "rbac": true,
+    "hostname": null,
+    "expires_at": "2026-10-22T05:37:12Z",
+    "current_existence": "NOT_VERIFIED; last recorded expiry has passed; do not reuse as a current environment."
+  },
+  "historical_evidence": "See docs/SLICE1_RESULTS.md. Previous tests are not current HTTP evidence.",
+  "history": [
+    {
+      "source_commit": "bacde7695fd5628680dad717fc2d1e84ae854acd",
+      "previous_blockers": [
+        "Atomic conditional updates, duplicate exclusion, vehicle/driver exclusivity and worker claims unproven.",
+        "Non-database failure rollback not demonstrated.",
+        "Deferred schema controls lack demonstrated enforcement and executable integration tests.",
+        "Booking HTTP API, provider payment/webhook handling and durable workers incomplete.",
+        "Recovery, restoration, end-to-end journeys and alerts not demonstrated.",
+        "Bounded Metadata API concurrency passes; public application HTTP/JWT, independent driver/worker claims, restricted credentials remain unverified."
+      ],
+      "note": "Retained before the 23 October audit reconciled bounded native proof versus global guarantees."
+    }
+  ],
+  "audit_date": "2026-10-23",
+  "audit_report": "backend/evidence/backend-audit-2026-10-23.json",
+  "source_commit": "bacde7695fd5628680dad717fc2d1e84ae854acd",
+  "current_xano_status": "BLOCKED_DIRECT_MCP_TOOL_AUTHENTICATION_REQUIRED",
+  "recommended_milestone": {
+    "id": "M1",
+    "name": "Complete the preserved internal synthetic booking-to-assignment proof",
+    "status": "BLOCKED_DIRECT_AUTHENTICATION_REQUIRED",
+    "acceptance_criteria": [
+      {
+        "id": "M1-AC-01",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Direct Xano MCP initialization/tools-list succeed (HTTP 200), but listWorkspaces and documentation each return MCP isError true: Unauthorized - Authentication Required. No authenticated Xano profile/server is configured here; the CLI login callback belongs to its originating machine. Prior Composio reads returned Invalid token. Current workspace/source/isolation unverified.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-02",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Last retained physical inventory is 53 versus 51; current physical mapping, retired diagnostics and supported resolution remain unverified.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-03",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Restricted credentials, physical indexes and unused shared fixtures not verified. Runner refuses execution without these facts; no hosted network adapter is wired.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-04",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Identity rejection candidate and source-fragment/role assertions pass offline. Native negative fixtures, real identity/tenant/owner behavior and candidate import remain unexecuted.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-05",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Helper now requires quotes, requirements, commitments, offers and all 15 counts plus linkage and stable IDs. No current native complete-path run.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-06",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Strict replay/conflict assertions and same-key race orchestration pass offline. Native changed-payload, 24-hour expiry and stable-result proof still missing; policy unchanged.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-07",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Driver override, distinct-vehicle/shared-driver assertions and barrier orchestration prepared and tested offline. Independent-driver native contention remains unexecuted.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-08",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Four candidate fault workflows cover database/application failure after order/assignment, all-15-table before/after equality and stable create/replay. No native import, grammar validation or execution; process/network recovery remains outside these fixtures.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-09",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "fresh_native_pass": false,
+        "explanation": "All 72 controls on the 15 write tables have explicit scoped native-enforcement deferrals. No control has been marked enforced or passed; all 194 remain blocked.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-10",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "fresh_native_pass": false,
+        "explanation": "109 export documents, five drafts and prior test reports preserved byte-for-byte; no hosted write or prohibited operation. Fresh native before/after source hashes unavailable.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      }
+    ]
+  },
+  "execution_tracker": [
+    {
+      "id": "CX-01",
+      "owner": "Codex",
+      "status": "DONE",
+      "depends_on": [],
+      "task": "Pin GitHub head; verify source blob hashes; run existing offline validators; inventory endpoints/functions/tables/controls/agents; commit this report and update existing staging trackers."
+    },
+    {
+      "id": "XN-01",
+      "owner": "Xano-native / account owner",
+      "status": "BLOCKED_DIRECT_AUTHENTICATION_REQUIRED",
+      "depends_on": [],
+      "task": "Complete the Xano CLI login in the environment that opened the localhost callback link, then resume this task in that authenticated Codex environment or expose its existing authenticated direct Xano MCP connection to this session. The endpoint URL alone carries no authentication. Then authenticate workspace/documentation reads and establish AC-01\u201303 before any write. No Composio reconnection is required."
+    },
+    {
+      "id": "XN-02",
+      "owner": "Xano-native / Xano support if needed",
+      "status": "BLOCKED",
+      "depends_on": [
+        "XN-01"
+      ],
+      "task": "Resolve 53-versus-51 physical inventory with supported sandbox administration. Identify retired diagnostics and dependencies; preserve evidence. No raw DROP, reset or production migration; no cleanup is authorized or performed by this report."
+    },
+    {
+      "id": "XN-03",
+      "owner": "Xano-native / account administrator",
+      "status": "BLOCKED",
+      "depends_on": [
+        "XN-01"
+      ],
+      "task": "Provision supported expiring least-privilege development access and a durable isolated shared execution target. Confirm sandbox-only permissions; public JWT testing later needs a supported isolated application hostname, not metadata origin."
+    },
+    {
+      "id": "CX-02",
+      "owner": "Codex",
+      "status": "LOCAL_COMPARISON_DONE_NATIVE_COMPARISON_BLOCKED",
+      "depends_on": [
+        "XN-01"
+      ],
+      "task": "Compare fresh code-only native export with all 109 pinned documents and hashes; generate exact drift/inventory report. Correct nested function/run parsing; retain all prior evidence."
+    },
+    {
+      "id": "CX-03",
+      "owner": "Codex",
+      "status": "PREPARED_OFFLINE_NOT_IMPORTED",
+      "depends_on": [
+        "CX-02",
+        "XN-02",
+        "XN-03"
+      ],
+      "task": "Prepare minimal sandbox-only identity ambiguity rejection and focused synthetic workflow assertions; inspect current objects/Xano docs, preview exact diff, preserve GUIDs. Do not change lifecycle, money or idempotency policy."
+    },
+    {
+      "id": "CX-04",
+      "owner": "Codex",
+      "status": "OFFLINE_ORCHESTRATION_AND_ASSERTIONS_READY_NATIVE_ADAPTER_PENDING",
+      "depends_on": [
+        "CX-03"
+      ],
+      "task": "Extend bounded runner/fixtures for driver-only contention, key replay/conflict/expiry, membership/profile/tenant negatives and multi-table database/application fault provenance; cap parallelism at four, redact outputs, refuse occupied assets, retain test rows."
+    },
+    {
+      "id": "XN-04",
+      "owner": "Xano-native execution via authorized connector/CLI",
+      "status": "BLOCKED",
+      "depends_on": [
+        "CX-04"
+      ],
+      "task": "Preview/import only the reviewed changes to the verified separate sandbox, read back hashes, run M1 native acceptance on shared synthetic state, retain native errors/counts and unchanged live-source proof. Do not run native_bootstrap or any migration helper."
+    },
+    {
+      "id": "CX-05",
+      "owner": "Codex",
+      "status": "OFFLINE_EVIDENCE_EVALUATED_NATIVE_BLOCKED",
+      "depends_on": [
+        "XN-04"
+      ],
+      "task": "Independently evaluate M1-AC-01..10, update report/control links/tracker with actual results; keep global staging blocked and record every unrun/failed test."
+    },
+    {
+      "id": "OWNER-POLICY",
+      "owner": "Gopi / business owners",
+      "status": "OPEN",
+      "depends_on": [],
+      "task": "Resolve lifecycle DEC-01/07, payment DEC-03/04/05/12 and public idempotency scope/retention before general public mutation/financial contracts. No new rule is adopted by this audit."
+    },
+    {
+      "id": "M2-HTTP",
+      "owner": "Codex + Xano-native",
+      "status": "FUTURE_BLOCKED",
+      "depends_on": [
+        "CX-05",
+        "OWNER-POLICY",
+        "XN-03"
+      ],
+      "task": "Define exact public schemas; implement authenticated POST /api/v1/orders and owned workflow retrieval, versioned command boundaries and real application-token role/tenant/owner tests. Public booking is not part of the existing internal proof."
+    }
+  ],
+  "continuation_source_commit": "6bcb1391e3a275f6063e72fcce038fe50aee3509",
+  "milestone1_continuation": {
+    "status": "OFFLINE_PREPARED_HOSTED_ACCEPTANCE_BLOCKED",
+    "validation_evidence": {
+      "path": "backend/evidence/milestone1-offline-2026-10-23.json",
+      "sha256": "2e227124a3ae2d9602122175547c4cb030e63419f033f3a0636aa28b8bd7698c",
+      "all_final_checks_expected": true,
+      "staging_gate_exit": 1,
+      "staging_gate_interpretation": "Expected blocked readiness, not acceptance success."
+    },
+    "hosted_cases": {
+      "path": "backend/milestone1/cases.json",
+      "total": 31,
+      "executed": 0,
+      "status": "ALL_NOT_RUN",
+      "network_adapter": "NOT_WIRED_PENDING_VERIFIED_ACCESS_AND_TARGET"
+    },
+    "agent_cases": {
+      "total": 70,
+      "executed_this_continuation": 0,
+      "status": "ALL_NOT_RUN",
+      "definitions_unchanged": true
+    },
+    "criteria": [
+      {
+        "id": "M1-AC-01",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Authenticated workspace listing and documentation both return Invalid token; no fresh target/source/physical isolation confirmation.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-02",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Last retained physical inventory is 53 versus 51; current physical mapping, retired diagnostics and supported resolution remain unverified.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-03",
+        "status": "BLOCKED",
+        "fresh_native_pass": false,
+        "explanation": "Restricted credentials, physical indexes and unused shared fixtures not verified. Runner refuses execution without these facts; no hosted network adapter is wired.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-04",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Identity rejection candidate and source-fragment/role assertions pass offline. Native negative fixtures, real identity/tenant/owner behavior and candidate import remain unexecuted.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-05",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Helper now requires quotes, requirements, commitments, offers and all 15 counts plus linkage and stable IDs. No current native complete-path run.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-06",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Strict replay/conflict assertions and same-key race orchestration pass offline. Native changed-payload, 24-hour expiry and stable-result proof still missing; policy unchanged.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-07",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Driver override, distinct-vehicle/shared-driver assertions and barrier orchestration prepared and tested offline. Independent-driver native contention remains unexecuted.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-08",
+        "status": "NOT_RUN",
+        "fresh_native_pass": false,
+        "explanation": "Four candidate fault workflows cover database/application failure after order/assignment, all-15-table before/after equality and stable create/replay. No native import, grammar validation or execution; process/network recovery remains outside these fixtures.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-09",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "fresh_native_pass": false,
+        "explanation": "All 72 controls on the 15 write tables have explicit scoped native-enforcement deferrals. No control has been marked enforced or passed; all 194 remain blocked.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      },
+      {
+        "id": "M1-AC-10",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "fresh_native_pass": false,
+        "explanation": "109 export documents, five drafts and prior test reports preserved byte-for-byte; no hosted write or prohibited operation. Fresh native before/after source hashes unavailable.",
+        "offline_evidence": "backend/evidence/milestone1-offline-2026-10-23.json"
+      }
+    ],
+    "acceptance_totals": {
+      "passed": 0,
+      "failed_business_cases": 0,
+      "blocked": 3,
+      "not_run": 5,
+      "partial_source_only": 2
+    },
+    "xano_access": {
+      "account": "custom_ccat_goat-ens",
+      "toolkit": "custom_ccat",
+      "connection_status_reported": "ACTIVE",
+      "authenticated_read_result": "MCP tool error: Invalid token.",
+      "failed_tools": [
+        "CUSTOM_CCAT_LIST_WORKSPACES",
+        "CUSTOM_CCAT_DOCUMENTATION:start"
+      ],
+      "tool_log_id": "log_A830v4dCNd-N",
+      "http_status": null,
+      "secure_action": "In Xano supported Metadata API token/access administration, refresh or create the permitted development credential. Update/reconnect the existing Composio custom_ccat connection custom_ccat_goat-ens in secure connection settings for the verified metadata MCP origin. Keep the token out of chat, GitHub files and PR text. The hosted connection tool exposes no existing-account credential-edit operation; no credential was extracted, replaced or deleted by Codex.",
+      "expected_origin": "https://xynd-fnea-khtp.n7e.xano.io",
+      "metadata_mcp_path": "/x2/mcp/meta/mcp/stream",
+      "resume_test": "Successful authenticated LIST_WORKSPACES, then confirm workspace 1 named Zippy Synthetic Prototype, source v1 and separate physical sandbox sn9m-aat6-200c. Re-read code and inventory before any mutation.",
+      "additional_gates_after_auth": "Reconcile 53 physical tables against 51 declarations; prove restricted access and physical indexes; read current native docs, validate/import only reviewed candidates, verify source readback, wire the native test adapter, execute and retain evidence."
+    },
+    "remaining_implementation": [
+      "Current native documentation/grammar validation and code comparison.",
+      "Hosted rejection fixtures and key-expiry fixture execution.",
+      "Native adapter wiring after verified preflight.",
+      "Hosted driver, replay/conflict and four fault executions with all 15 table observations.",
+      "Physical inventory/index enforcement and credential restriction evidence."
+    ]
+  },
+  "latest_hosted_attempt": {
+    "base_commit": "1ca3b4ea6860e4ad310de29fb1f3a9e9704928e8",
+    "attempted_at": "2026-10-23T13:49:19.427Z",
+    "status": "BLOCKED_DIRECT_AUTHENTICATION_REQUIRED",
+    "authenticated_reads": [
+      {
+        "tool": "CUSTOM_CCAT_LIST_WORKSPACES",
+        "status": "FAILED_AUTHENTICATION",
+        "error": "MCP tool error: Invalid token.",
+        "http_status": null
+      },
+      {
+        "tool": "CUSTOM_CCAT_DOCUMENTATION",
+        "status": "FAILED_AUTHENTICATION",
+        "error": "MCP tool error: Invalid token.",
+        "http_status": null
+      }
+    ],
+    "direct_connection_discovery": {
+      "user_direction": "Use the existing direct Codex-to-Xano connection; Composio reconnection is not required.",
+      "status": "REACHABLE_UNAUTHENTICATED",
+      "cli_check": {
+        "command": "codex mcp list --json",
+        "exit_code": 0,
+        "stdout": "[]\n",
+        "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Read-only file system (os error 30)\n"
+      },
+      "cloud_codex_config": {
+        "path": "/home/agent/.codex/config.toml",
+        "configured_mcp_servers": [],
+        "credential_values_read_or_recorded": false
+      },
+      "xano_cli_installed": false,
+      "desktop_device": {
+        "name": "DESKTOP-RRI5NH9",
+        "id": "2d4017e4-b823-4af0-a890-4f6cc6c79f44",
+        "status": "OFFLINE",
+        "last_seen_as_reported": "52h ago",
+        "app_version": "0.3.0",
+        "providers_checked": [
+          "remote_desktop_commander_list_devices",
+          "wonder_why_list_devices"
+        ]
+      },
+      "scope": "These observations concern this cloud session and its linked device; they do not disprove an existing direct connection in another Codex environment.",
+      "direct_authenticated_reads_executed": 0,
+      "exposed_to_assistant_catalog": 0,
+      "native_tool_discovery": {
+        "http_status": 200,
+        "tools_count": 243,
+        "authentication_proven": false
+      },
+      "initialize": {
+        "http_status": 200,
+        "server_name": "Xano Metadata API",
+        "server_version": "1.0.0",
+        "protocol_version": "2025-03-26",
+        "authorization_header_supplied": false,
+        "authentication_proven": false
+      },
+      "direct_reads": [
+        {
+          "tool": "listWorkspaces",
+          "arguments": {},
+          "authorization_header_supplied": false,
+          "response": {
+            "http_status": 200,
+            "events": [
+              {
+                "jsonrpc": "2.0",
+                "id": 1,
+                "result": {
+                  "isError": true,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Unauthorized - Authentication Required"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "tool": "documentation",
+          "arguments": {
+            "type": "start"
+          },
+          "authorization_header_supplied": false,
+          "response": {
+            "http_status": 200,
+            "events": [
+              {
+                "jsonrpc": "2.0",
+                "id": 1,
+                "result": {
+                  "isError": true,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Unauthorized - Authentication Required"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "direct_unauthenticated_tool_reads_attempted": 2,
+      "transport": {
+        "first_default_sandbox_attempt": "URLError: <urlopen error [Errno 1] Operation not permitted>",
+        "network_enabled_attempt": "HTTP 200; MCP tool-level authentication denied",
+        "sandbox_network_permission_requested": true
+      },
+      "cli_login_link": {
+        "provided_by_user": true,
+        "destination": "cli",
+        "callback_origin": "http://127.0.0.1:57514",
+        "scope": "Callback belongs to the machine running that login process, not automatically this cloud session.",
+        "opened_by_codex": false,
+        "login_completion_verified": false
+      }
+    },
+    "criteria": [
+      {
+        "id": "M1-AC-01",
+        "status": "BLOCKED",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-02",
+        "status": "BLOCKED",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-03",
+        "status": "BLOCKED",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-04",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-05",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-06",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-07",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-08",
+        "status": "NOT_RUN",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-09",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "native_pass": false
+      },
+      {
+        "id": "M1-AC-10",
+        "status": "PARTIAL_SOURCE_ONLY",
+        "native_pass": false
+      }
+    ],
+    "required_prerequisite": {
+      "action": "Complete the Xano CLI login in the environment that opened the localhost callback link, then resume this task in that authenticated Codex environment or expose its existing authenticated direct Xano MCP connection to this session. The endpoint URL alone carries no authentication.",
+      "metadata_mcp_target": "https://xynd-fnea-khtp.n7e.xano.io/x2/mcp/meta/mcp/stream",
+      "composio_reconnection_required": false,
+      "credential_values_requested_in_chat": false,
+      "connection_changes_by_codex": 0,
+      "then": "Perform successful authenticated workspace listing and native documentation reads; verify workspace 1, source v1/live distinction and separate sandbox sn9m-aat6-200c, then establish AC-01\u201303 before import or hosted execution."
+    },
+    "preservation": {
+      "base_files_compared": 227,
+      "changed_before_work": [],
+      "backend_export_documents": 109,
+      "business_agent_drafts": 5,
+      "agent_operational_cases_unchanged_unrun": 70,
+      "unchanged_original_files": 224,
+      "changed_original_files": [
+        "backend/evidence/backend-audit-2026-10-23.json",
+        "backend/evidence/staging-readiness.json",
+        "docs/STAGING_STATUS.md"
+      ],
+      "added_files": [
+        "backend/evidence/milestone1-hosted-attempt-2026-10-23.json"
+      ],
+      "backend_export_documents_unchanged": 109,
+      "frontend_files_in_base": 0,
+      "policy_conflicts_preserved": true
+    },
+    "path": "backend/evidence/milestone1-hosted-attempt-2026-10-23.json",
+    "sha256": "16bab3ee1fbf2046510bd8b2feadfc7cdcec6ee001f9448548889dcd8432759f",
+    "tool_log_id": "log_h98Xu2kF3mX0",
+    "native_cases_executed": 0,
+    "agent_cases_executed": 0
+  }
+}

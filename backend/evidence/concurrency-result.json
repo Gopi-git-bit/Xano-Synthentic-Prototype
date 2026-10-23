@@ -1,0 +1,493 @@
+{
+  "captured_at": "2026-10-22T04:45:21.942Z",
+  "target": "sn9m-aat6-200c",
+  "transport": "Metadata API function/run over HTTP, administrative authentication; application JWT acceptance not proved",
+  "max_concurrency": 4,
+  "run_id": "http-1792644321944",
+  "cases": [
+    {
+      "kind": "competing_keys",
+      "requests": [
+        {
+          "asset": 0,
+          "key": "http-1792644321944-competing_keys-0"
+        },
+        {
+          "asset": 0,
+          "key": "http-1792644321944-competing_keys-1"
+        },
+        {
+          "asset": 0,
+          "key": "http-1792644321944-competing_keys-2"
+        },
+        {
+          "asset": 0,
+          "key": "http-1792644321944-competing_keys-3"
+        }
+      ],
+      "outcomes": [
+        {
+          "elapsed_ms": 4854,
+          "lock_wait_ms": 82,
+          "db_pid": 173220,
+          "lock_started_ms": 1792644326061,
+          "lock_acquired_ms": 1792644326143,
+          "code": "CREATED",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": false,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": true,
+          "duplicate_acceptable": true
+        },
+        {
+          "elapsed_ms": 10821,
+          "lock_wait_ms": 6972,
+          "db_pid": 173221,
+          "lock_started_ms": 1792644326168,
+          "lock_acquired_ms": 1792644333140,
+          "code": "RESOURCE_BUSY",
+          "caught": false,
+          "order_count": 0,
+          "idem_count": 0,
+          "asset_assignments": 1,
+          "complete": false,
+          "rollback_clean": false,
+          "counts": {
+            "stops": 0,
+            "participants": 0,
+            "transitions": 0,
+            "events": 0,
+            "audit": 0,
+            "tasks": 0,
+            "outbox": 0,
+            "trips": 0,
+            "assignments": 0
+          },
+          "acceptable": true,
+          "duplicate_acceptable": false
+        },
+        {
+          "elapsed_ms": 8717,
+          "lock_wait_ms": 4888,
+          "db_pid": 172829,
+          "lock_started_ms": 1792644326143,
+          "lock_acquired_ms": 1792644331031,
+          "code": "RESOURCE_BUSY",
+          "caught": false,
+          "order_count": 0,
+          "idem_count": 0,
+          "asset_assignments": 1,
+          "complete": false,
+          "rollback_clean": false,
+          "counts": {
+            "stops": 0,
+            "participants": 0,
+            "transitions": 0,
+            "events": 0,
+            "audit": 0,
+            "tasks": 0,
+            "outbox": 0,
+            "trips": 0,
+            "assignments": 0
+          },
+          "acceptable": true,
+          "duplicate_acceptable": false
+        },
+        {
+          "elapsed_ms": 6606,
+          "lock_wait_ms": 2874,
+          "db_pid": 173219,
+          "lock_started_ms": 1792644326061,
+          "lock_acquired_ms": 1792644328935,
+          "code": "RESOURCE_BUSY",
+          "caught": false,
+          "order_count": 0,
+          "idem_count": 0,
+          "asset_assignments": 1,
+          "complete": false,
+          "rollback_clean": false,
+          "counts": {
+            "stops": 0,
+            "participants": 0,
+            "transitions": 0,
+            "events": 0,
+            "audit": 0,
+            "tasks": 0,
+            "outbox": 0,
+            "trips": 0,
+            "assignments": 0
+          },
+          "acceptable": true,
+          "duplicate_acceptable": false
+        }
+      ],
+      "inspections": [
+        {
+          "elapsed_ms": 1100,
+          "lock_wait_ms": 0,
+          "db_pid": 0,
+          "lock_started_ms": 0,
+          "lock_acquired_ms": 0,
+          "code": "INSPECT",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": true,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": false,
+          "duplicate_acceptable": false
+        },
+        {
+          "elapsed_ms": 443,
+          "lock_wait_ms": 0,
+          "db_pid": 0,
+          "lock_started_ms": 0,
+          "lock_acquired_ms": 0,
+          "code": "INSPECT",
+          "caught": false,
+          "order_count": 0,
+          "idem_count": 0,
+          "asset_assignments": 1,
+          "complete": false,
+          "rollback_clean": true,
+          "counts": {
+            "stops": 0,
+            "participants": 0,
+            "transitions": 0,
+            "events": 0,
+            "audit": 0,
+            "tasks": 0,
+            "outbox": 0,
+            "trips": 0,
+            "assignments": 0
+          },
+          "acceptable": false,
+          "duplicate_acceptable": false
+        },
+        {
+          "elapsed_ms": 736,
+          "lock_wait_ms": 0,
+          "db_pid": 0,
+          "lock_started_ms": 0,
+          "lock_acquired_ms": 0,
+          "code": "INSPECT",
+          "caught": false,
+          "order_count": 0,
+          "idem_count": 0,
+          "asset_assignments": 1,
+          "complete": false,
+          "rollback_clean": true,
+          "counts": {
+            "stops": 0,
+            "participants": 0,
+            "transitions": 0,
+            "events": 0,
+            "audit": 0,
+            "tasks": 0,
+            "outbox": 0,
+            "trips": 0,
+            "assignments": 0
+          },
+          "acceptable": false,
+          "duplicate_acceptable": false
+        },
+        {
+          "elapsed_ms": 479,
+          "lock_wait_ms": 0,
+          "db_pid": 0,
+          "lock_started_ms": 0,
+          "lock_acquired_ms": 0,
+          "code": "INSPECT",
+          "caught": false,
+          "order_count": 0,
+          "idem_count": 0,
+          "asset_assignments": 1,
+          "complete": false,
+          "rollback_clean": true,
+          "counts": {
+            "stops": 0,
+            "participants": 0,
+            "transitions": 0,
+            "events": 0,
+            "audit": 0,
+            "tasks": 0,
+            "outbox": 0,
+            "trips": 0,
+            "assignments": 0
+          },
+          "acceptable": false,
+          "duplicate_acceptable": false
+        }
+      ]
+    },
+    {
+      "kind": "identical_retry",
+      "requests": [
+        {
+          "asset": 1,
+          "key": "http-1792644321944-identical_retry"
+        },
+        {
+          "asset": 1,
+          "key": "http-1792644321944-identical_retry"
+        },
+        {
+          "asset": 1,
+          "key": "http-1792644321944-identical_retry"
+        },
+        {
+          "asset": 1,
+          "key": "http-1792644321944-identical_retry"
+        }
+      ],
+      "outcomes": [
+        {
+          "elapsed_ms": 3819,
+          "lock_wait_ms": 22,
+          "db_pid": 173219,
+          "lock_started_ms": 1792644339637,
+          "lock_acquired_ms": 1792644339659,
+          "code": "CREATED",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": false,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": true,
+          "duplicate_acceptable": true
+        },
+        {
+          "elapsed_ms": 5734,
+          "lock_wait_ms": 2396,
+          "db_pid": 173220,
+          "lock_started_ms": 1792644339636,
+          "lock_acquired_ms": 1792644342032,
+          "code": "REPLAY",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": false,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": false,
+          "duplicate_acceptable": true
+        },
+        {
+          "elapsed_ms": 7780,
+          "lock_wait_ms": 4320,
+          "db_pid": 172829,
+          "lock_started_ms": 1792644339836,
+          "lock_acquired_ms": 1792644344156,
+          "code": "REPLAY",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": false,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": false,
+          "duplicate_acceptable": true
+        },
+        {
+          "elapsed_ms": 9834,
+          "lock_wait_ms": 6360,
+          "db_pid": 173221,
+          "lock_started_ms": 1792644339854,
+          "lock_acquired_ms": 1792644346214,
+          "code": "REPLAY",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": false,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": false,
+          "duplicate_acceptable": true
+        }
+      ],
+      "inspections": [
+        {
+          "elapsed_ms": 1360,
+          "lock_wait_ms": 0,
+          "db_pid": 0,
+          "lock_started_ms": 0,
+          "lock_acquired_ms": 0,
+          "code": "INSPECT",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": true,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": false,
+          "duplicate_acceptable": false
+        },
+        {
+          "elapsed_ms": 550,
+          "lock_wait_ms": 0,
+          "db_pid": 0,
+          "lock_started_ms": 0,
+          "lock_acquired_ms": 0,
+          "code": "INSPECT",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": true,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": false,
+          "duplicate_acceptable": false
+        },
+        {
+          "elapsed_ms": 526,
+          "lock_wait_ms": 0,
+          "db_pid": 0,
+          "lock_started_ms": 0,
+          "lock_acquired_ms": 0,
+          "code": "INSPECT",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": true,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": false,
+          "duplicate_acceptable": false
+        },
+        {
+          "elapsed_ms": 539,
+          "lock_wait_ms": 0,
+          "db_pid": 0,
+          "lock_started_ms": 0,
+          "lock_acquired_ms": 0,
+          "code": "INSPECT",
+          "caught": false,
+          "order_count": 1,
+          "idem_count": 1,
+          "asset_assignments": 1,
+          "complete": true,
+          "rollback_clean": true,
+          "counts": {
+            "stops": 2,
+            "participants": 2,
+            "transitions": 3,
+            "events": 4,
+            "audit": 1,
+            "tasks": 1,
+            "outbox": 1,
+            "trips": 1,
+            "assignments": 1
+          },
+          "acceptable": false,
+          "duplicate_acceptable": false
+        }
+      ]
+    }
+  ],
+  "database_verified": "sn9m-aat6-200c",
+  "status": "PASS"
+}
