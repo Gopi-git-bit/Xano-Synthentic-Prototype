@@ -4,6 +4,8 @@
 
 Continued the existing frontend in `C:\Users\ashok\Documents\GitHub\zippy-frontend-polish\frontend` on `feat/frontend-tailwind-polish`. Existing React/Vite/TypeScript, compiled Tailwind v4, role palettes, components and published reference captures are preserved. Historical delivery documents are retained as `BASELINE-README.md` and `BASELINE-DELIVERY.md`.
 
+**Preserved base: `f2fdbba`.** This increment locates the actual deployed Xano workspace/contracts, adds fail-closed release gates and read-only booking validation, and deploys a verified protected Vercel Preview. Backend publication and Zoho troubleshooting remain with the user.
+
 ### Workspaces
 
 - **Customer:** Home, Book, Orders, Payments, Profile. Personal/company profile forms, registration draft plus secure account-entry implementation, four-step booking with preserved inputs, immediate/custom IST scheduling, full/partial/ToPay request options, quote breakdown unavailable states, local confirmation drafts, search/filter/CSV, tracking detail, cancellation-request preparation, payment/collection/balance/consent/invoice distinctions, notifications and support.
@@ -12,30 +14,31 @@ Continued the existing frontend in `C:\Users\ashok\Documents\GitHub\zippy-fronte
 
 ### Integration infrastructure
 
-- Server-runtime proxy for source-verified Xano login/signup/auth-me endpoints.
-- Production account-entry screen, in-memory Xano token, no production role selector.
-- Read-only Zoho adapter requiring Xano Admin **and** explicit per-user record/field grants on every request.
-- Actual module discovery, grant-scoped pagination, field projection, OAuth refresh, bounded 401 retry, rate-limit handling, error sanitization and timeouts.
-- CRM UI for authorized module filtering, current-page search, record detail and pagination. Relevant Zippy order links remain unavailable pending an authorized mapping contract.
+- Server-runtime proxy for discovered Xano login/signup/auth-me endpoints, blocked pending auth security release. Sessions validate active status/system role before releasing a token; legacy company `role` does not grant access.
+- Production account-entry screen, disabled credential entry while unreleased, in-memory Xano token, no production role selector.
+- Separately gated customer booking list/detail with bounded queries, tenant checks, strict null/malformed-response rejection and scalar field projection. Mock-tested against discovered draft shapes; positive live reads remain unverified.
+- All booking writes are blocked; reported actions never become client command grants. Assigned-trip, delivery, POD and financial execution remain unavailable.
+- Admin CRM displays unavailable status with independent MCP 401 and REST OAuth blockers. The earlier read-only adapter and its mock coverage remain dormant behind a separate blocked release flag.
 - Vercel project configuration, API/SPA routes, security headers and secret-free environment example.
 
 All operational examples are explicitly development-only (`demo=1`). Timers never generate payment, assignment, upload, verification or GPS success. Sample POD review states no longer serve as order lifecycle states. ToPay consent and timeout/reconciliation are independent from collections.
 
 ## Verification
 
-Node 24.22.1, npm 11.19.1 and installed Microsoft Edge. **Final results: build/TypeScript and lint passed; 16 browser tests and 9 server tests passed; browser secret scan passed.**
+Node 24.22.1, npm 11.19.1 and installed Microsoft Edge. **Current local results: build/TypeScript and lint passed; 18 browser tests and 17 server tests passed; browser secret scan passed.**
 
 | Check | Coverage |
 |---|---|
 | Build / TypeScript | Passed: `npm run build` compiled TypeScript and Vite production bundle |
 | Lint | Passed: frontend, tests, server, API entry and scripts |
-| Server tests | 9 passed: anonymous/member/ungrounded-Admin denial, object/field scope, pagination, write refusal, refresh, rate limits, timeout, domain validation and signup role injection |
-| Browser tests | 16 passed: three responsive role views, booking, availability/POD, keyboard/Tamil, three axe scans, production isolation, salaried restrictions, fleet evidence remediation, offers, payment distinctions, CRM denial and authenticated CRM contract UI |
+| Server tests | 17 passed: release gates/no upstream calls, legacy-role/inactive/organization denial, safe session issuance, tenant and response validation, immutable write refusals, provider errors/timeouts, plus retained dormant CRM object/field/refresh/rate-limit tests |
+| Browser tests | 18 passed: preserved responsive role workflows and state separation, production isolation, disabled credential entry, authenticated CRM unavailable, booking read contract and stale-record clearing on denial |
 | Responsive | 320, 390, 768, 1024, 1440 px dashboards; every main destination at 320 px |
 | Accessibility | Targeted axe WCAG A/AA dashboards + booking/jobs/reviews; keyboard dialog return focus and reduced-motion configuration |
-| Secret scan | Passed: browser text assets checked against server-secret identifiers and eight private configuration values; no secret values printed |
+| Secret scan | Passed: local/remote browser bundles checked against eight private provider values; repository review checked those plus the Xano metadata credential (nine total), without printing values; 27 deployed source hashes match local files |
+| Vercel Preview | READY / preview; protection, SPA routing, API denial/gates/no-store, same-origin CSP, mobile entry and deployed-bundle isolation verified; temporary bypass revoked |
 
-The first enhanced browser pass passed 14/15 tests; a duplicate “Support” locator was corrected by scoping to navigation. Mobile preview controls were also widened. The authenticated CRM contract UI test was added with browser-level mock responses; it does not access a tenant.
+Browser authentication and positive booking reads use explicitly controlled mocks; they do not prove live Xano success. Original fixture workflows still cover booking draft preservation, restricted finances, evidence, offers and separate payment/consent/POD states. The new read screen also passes targeted axe and 320px overflow checks.
 
 ## Screenshots
 
@@ -53,14 +56,17 @@ Visual review retained the sidebar/card/truck/map/timeline design. Role controls
 
 ## Verified connectivity versus blockers
 
-- **Live connected logistics APIs: none.** No deployed Xano authentication URL or test account exists in the supplied configuration. Login/signup/me contracts are source-verified, wired and mock-tested, not tenant-verified.
+- **Verified live Xano behavior:** anonymous auth/me returns 401; anonymous booking list returns 200/null. Deployed bases and authenticated Metadata API Swagger were located in workspace 3 / v1. **No successful live authentication, booking read or booking-to-delivery workflow is claimed.**
+- **Auth release blocker:** published login/signup pass a password-containing user object to the old logger, and published auth/me lacks authoritative system-role/status/organization fields. Credential entry and upstream authentication calls are blocked by default.
+- **Booking release blocker:** published booking/security/domain handlers are placeholders; substantive implementations are unpublished drafts. Read adapters are gated and mock-tested; every mutation remains blocked. [Exact discovery and backend-owner handoff](XANO.md).
 - **Zoho MCP: HTTP 401.** Read-only discovery failed; no tools/modules or CRM records were accessed. [Sanitized probe evidence](zoho-connectivity.json).
 - **Zoho REST:** client ID, client secret and refresh token are missing. Actual modules, field permissions and test record IDs remain unverified. Default server record grants deny access.
-- **Missing logistics contracts:** workspace/assignment/financial capabilities, final catalog, addresses/routing, quotes/policies, booking/cancellation, offers/availability, trip commands/GPS, upload/verification/recipient confirmation, payments/reconciliation/invoices/refunds/settlements, messaging and audit. [Exact integration matrix](API.md).
-- **Deployment:** Vercel configuration is prepared locally; no remote settings/environment changes, deployment, push or merge were performed. [Remaining Vercel steps](VERCEL.md).
+- **Later-stage contracts not found:** assignment/availability/trip execution/GPS, upload/POD/recipient confirmation, verified collections/reconciliation/invoices/refunds/settlements and messaging. Booking/quote/consent/hold contracts were found in drafts and are not incorrectly described as absent. [Integration matrix](API.md).
+- **Development fixtures:** all full Customer, Vehicle Owner and operational Admin workflows. They are explicitly local previews, never substituted for failed live calls.
+- **Deployment evidence:** see [Vercel status and checks](VERCEL.md). No Git push or merge was performed.
 
 ## Preview and review
 
 See [README](../README.md) for two-terminal startup and commands. Preview entry points use `http://127.0.0.1:5173/?demo=1&preview=customer`, `preview=owner`, or `preview=admin`. Without the explicit development demo flag, the app opens secure account entry.
 
-All source, tests, documentation, screenshots and recoverable reference assets are staged only under `frontend/` for the requested local reviewable commit. Existing Xano sources are unchanged. Deferred visualization, lending, insurance automation, predictive intelligence, advanced analytics, fleet sync, withdrawals and multi-stop optimization are not implemented.
+Changes are confined to `frontend/` for a new reviewable commit above `f2fdbba`. Existing Xano sources are unchanged. Deferred visualization, lending, insurance automation, predictive intelligence, advanced analytics, fleet sync, withdrawals and multi-stop optimization are not implemented.

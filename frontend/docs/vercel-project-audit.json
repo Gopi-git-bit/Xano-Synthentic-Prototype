@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-27T11:08:25.792Z",
+  "projectId": "prj_qdS0VoN46xsmiL9USAGGAPo8f04b",
+  "protection": "prod_deployment_urls_and_all_previews",
+  "automaticCustomDomainAssignment": false,
+  "environmentVariables": [
+    {
+      "key": "XANO_AUTH_BASE_URL",
+      "target": [
+        "preview"
+      ],
+      "type": "encrypted"
+    },
+    {
+      "key": "XANO_LOGISTICS_BASE_URL",
+      "target": [
+        "preview"
+      ],
+      "type": "encrypted"
+    },
+    {
+      "key": "XANO_AUTH_RELEASE",
+      "target": [
+        "preview"
+      ],
+      "type": "encrypted"
+    },
+    {
+      "key": "XANO_BOOKING_READS_RELEASE",
+      "target": [
+        "preview"
+      ],
+      "type": "encrypted"
+    },
+    {
+      "key": "ZOHO_READ_RELEASE",
+      "target": [
+        "preview"
+      ],
+      "type": "encrypted"
+    }
+  ],
+  "activeDeployments": [
+    {
+      "id": "dpl_BrGBBWUSvTbLwhu78tEnwu9UiNJa",
+      "target": "preview",
+      "state": "READY",
+      "url": "zippy-frontend-preview-1hbmyh4oi-gopi-nathan-s-projects.vercel.app"
+    }
+  ],
+  "remainingAutomationBypasses": 0
+}

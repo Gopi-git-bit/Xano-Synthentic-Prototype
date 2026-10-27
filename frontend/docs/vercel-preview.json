@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-27T11:06:50.273Z",
+  "url": "https://zippy-frontend-preview-1hbmyh4oi-gopi-nathan-s-projects.vercel.app",
+  "deploymentId": "dpl_BrGBBWUSvTbLwhu78tEnwu9UiNJa",
+  "projectId": "prj_qdS0VoN46xsmiL9USAGGAPo8f04b",
+  "target": "preview",
+  "readyState": "READY",
+  "protection": "prod_deployment_urls_and_all_previews",
+  "anonymousProtectionStatus": 302,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "noStore": false
+    },
+    {
+      "path": "/admin/crm",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "noStore": false
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "contentType": "application/json",
+      "noStore": true
+    },
+    {
+      "path": "/api/bookings",
+      "status": 401,
+      "contentType": "application/json",
+      "noStore": true
+    },
+    {
+      "path": "/api/crm/modules",
+      "status": 401,
+      "contentType": "application/json",
+      "noStore": true
+    },
+    {
+      "path": "/api/auth/login",
+      "status": 503,
+      "contentType": "application/json",
+      "noStore": true
+    },
+    {
+      "path": "/assets/index-DIBuaKfZ.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=utf-8",
+      "noStore": false
+    }
+  ],
+  "serviceStatus": {
+    "authenticationConfigured": true,
+    "authenticationAvailable": false,
+    "bookingReadsAvailable": false,
+    "bookingWritesAvailable": false,
+    "deliveryAvailable": false,
+    "crmAvailable": false
+  },
+  "browser": {
+    "width": 390,
+    "accessGate": true,
+    "fixtureControlsAbsent": true,
+    "overflow": false,
+    "pageErrors": 0,
+    "bundleSecretScan": "passed"
+  },
+  "temporaryBypassRevoked": true
+}

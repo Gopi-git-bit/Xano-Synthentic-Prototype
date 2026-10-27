@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createGateway } from './gateway.mjs';
 
 const grant = { recordIds: ['100', '101'], fields: ['Last_Name', 'Email'] };
-const baseEnv = { XANO_AUTH_BASE_URL: 'https://xano.example/api:auth', ZOHO_ACCOUNTS_URL: 'https://accounts.zoho.in', ZOHO_CLIENT_ID: 'test-client', ZOHO_CLIENT_SECRET: 'test-secret-not-real', ZOHO_REFRESH_TOKEN: 'test-refresh-not-real', CRM_READ_GRANTS_JSON: JSON.stringify({ 7: { Contacts: grant } }) };
+const baseEnv = { XANO_AUTH_BASE_URL: 'https://xano.example/api:auth', XANO_AUTH_RELEASE: 'verified', ZOHO_READ_RELEASE: 'verified', ZOHO_ACCOUNTS_URL: 'https://accounts.zoho.in', ZOHO_CLIENT_ID: 'test-client', ZOHO_CLIENT_SECRET: 'test-secret-not-real', ZOHO_REFRESH_TOKEN: 'test-refresh-not-real', CRM_READ_GRANTS_JSON: JSON.stringify({ 7: { Contacts: grant } }) };
 const headers = new Headers({ authorization: 'Bearer valid-test-token' });
 const reply = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json', ...headers } });
 function setup(options = {}) {
@@ -11,7 +11,7 @@ function setup(options = {}) {
   const fetchImpl = async (url, init) => {
     calls.push({ url: String(url), init });
     const path = new URL(url).pathname;
-    if (path.endsWith('/auth/me')) return reply({ id: 7, name: 'Test user', email: 'test@example.com', role: options.role || 'admin' });
+    if (path.endsWith('/auth/me')) return reply({ id: 7, name: 'Test user', email: 'test@example.com', role: 'admin', system_role: options.role === 'member' ? 'customer_member' : 'operations_admin', status: 'active', active_organization_id: 12 });
     if (options.override) { const response = await options.override(url, init); if (response) return response; }
     if (path.endsWith('/oauth/v2/token')) return reply({ access_token: 'test-access-not-real', api_domain: 'https://www.zohoapis.in', expires_in: 3600 });
     if (path.endsWith('/settings/modules')) return reply({ modules: [{ api_name: 'Contacts', plural_label: 'People', api_supported: true, viewable: true }, { api_name: 'Leads', api_supported: true, viewable: true }, { api_name: 'Hidden', api_supported: true, viewable: false }] });

@@ -6,7 +6,7 @@ import { api, ApiError } from './api';
 type Module = { apiName: string; label: string; readOnly: boolean };
 type RecordRow = { id: string; fields: Record<string, string | number | boolean | null>; orderLinks: string[] };
 
-export default function CRM({ preview = false }: { preview?: boolean }) {
+export default function CRM({ preview = true }: { preview?: boolean }) {
   const [modules, setModules] = useState<Module[]>([]);
   const [selected, setSelected] = useState('');
   const [query, setQuery] = useState('');
@@ -42,7 +42,7 @@ export default function CRM({ preview = false }: { preview?: boolean }) {
   const filtered = rows.filter(r => `${r.id} ${Object.values(r.fields).join(' ')}`.toLowerCase().includes(query.toLowerCase()));
   return <><PageIntro title="Relationships that move business." subtitle="Authorized CRM records, with Zippy operations kept in context." eyebrow="ADMIN · CRM"/>
     <div className="mb-5"><Notice>Zippy/Xano remains authoritative for orders, collections, POD and holds. Zoho provides relationship information. This adapter is read-only.</Notice></div>
-    {preview ? <Card title="Zoho connectivity"><EmptyState title="Zoho MCP authorization failed"><strong>Last recorded probe: HTTP 401.</strong> No available tenant modules were discovered. OAuth credentials and Xano Admin authorization are required for the REST adapter.</EmptyState><p className="px-6 pb-5 text-xs text-muted">Development previews do not authenticate against live CRM. Sign in through the secure application to discover authorized modules.</p></Card> : <Card title="Authorized modules" action={<Badge>Read-only</Badge>}>
+    {preview ? <Card title="Zoho connectivity"><EmptyState title="Zoho is unavailable"><strong>Last recorded probe: HTTP 401.</strong> MCP authorization failed. Separately, REST OAuth client ID, client secret and refresh token were missing at the last check. Fixing either connection does not verify the other.</EmptyState><p className="px-6 pb-5 text-xs text-muted">Connectivity troubleshooting is with the project owner. CRM reads remain disabled pending independent verification.</p></Card> : <Card title="Authorized modules" action={<Badge>Read-only</Badge>}>
       <div className="space-y-4 px-5 pb-5">
         {loading && <p role="status" className="text-sm">Loading authorized CRM data…</p>}
         {error && <div role="alert" className="rounded-lg bg-[#fcebed] p-4 text-sm text-danger">{error}</div>}

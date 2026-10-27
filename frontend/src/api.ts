@@ -17,8 +17,10 @@ export async function api<T>(route: string, body?: object): Promise<T> {
   return result;
 }
 export async function signIn(mode: 'login' | 'signup', data: { name?: string; email: string; password: string }) {
-  const result = await api<{ authToken: string }>(`auth/${mode}`, data);
+  clearSession();
+  const result = await api<{ authToken: string; user: User }>(`auth/${mode}`, data);
   authToken = result.authToken; // Memory only; no localStorage, URL or role hints.
-  try { return await api<{ user: User }>('auth/me'); } catch (error) { clearSession(); throw error; }
+  return result; // Server revalidates auth/me before releasing this session.
 }
-export type User = { id: number; name: string; email: string; role: 'admin' | 'member' };
+export type User = { id: number; name: string; email: string; systemRole: string; workspace: 'customer' | 'owner' | 'admin'; organizationId: number | null };
+export type ServiceStatus = { authenticationConfigured: boolean; authenticationAvailable: boolean; bookingReadsAvailable: boolean; bookingWritesAvailable: false; deliveryAvailable: false; crmAvailable: false };

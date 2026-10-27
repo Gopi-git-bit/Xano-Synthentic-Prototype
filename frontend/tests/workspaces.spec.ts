@@ -208,17 +208,13 @@ test('demo is explicit; CRM preview never makes live reads; direct anonymous API
   await page.screenshot({ path: 'docs/screenshots/admin-crm-unavailable.png', fullPage: true });
 });
 
-test('authenticated CRM contract UI supports module filter, page search, details and pagination', async ({ page }) => {
+test('authenticated Admin sees honest Zoho unavailability without provider requests', async ({ page }) => {
   // Browser contract mocks only: no requests reach Xano or Zoho.
   await page.route('**/api/**', async route => {
     const url = new URL(route.request().url());
     let json: object;
-    if (url.pathname === '/api/status') json = { authenticationConfigured: true };
-    else if (url.pathname === '/api/auth/login') json = { authToken: 'test-token-only' };
-    else if (url.pathname === '/api/auth/me') json = { user: { id: 7, name: 'Contract test', role: 'admin', email: 'test@example.com' } };
-    else if (url.pathname === '/api/crm/modules') json = { modules: [{ apiName: 'Contacts', label: 'Authorized people', readOnly: true }] };
-    else if (url.pathname === '/api/crm/records') json = { records: [{ id: url.searchParams.get('page') === '2' ? '101' : '100', fields: { Last_Name: url.searchParams.get('page') === '2' ? 'Second record' : 'First record' }, orderLinks: [] }], nextPage: url.searchParams.get('page') === '2' ? null : 2 };
-    else if (url.pathname === '/api/crm/record') json = { record: { id: '100', fields: { Last_Name: 'First record', Email: 'test@example.com' }, orderLinks: [] } };
+    if (url.pathname === '/api/status') json = { authenticationAvailable: true };
+    else if (url.pathname === '/api/auth/login') json = { authToken: 'test-token-only', user: { id: 7, name: 'Contract test', workspace: 'admin', systemRole: 'operations_admin', email: 'test@example.com', organizationId: null } };
     else throw new Error('Unexpected API route');
     await route.fulfill({ json });
   });
@@ -226,17 +222,52 @@ test('authenticated CRM contract UI supports module filter, page search, details
   await page.getByLabel('Email', { exact: true }).fill('test@example.com');
   await page.getByLabel('Password', { exact: true }).fill('Password123');
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
-  await page.getByLabel('Module filter').selectOption('Contacts');
-  await page.getByLabel('Search this authorized page').fill('absent');
-  await expect(page.getByRole('heading', { name: 'No matching records on this page' })).toBeVisible();
-  await page.getByLabel('Search this authorized page').fill('First');
-  await page.getByRole('button', { name: /First record/ }).click();
-  await expect(page.getByRole('dialog')).toContainText('test@example.com');
-  await expect(page.getByRole('dialog')).toContainText('Related Zippy orders: unavailable');
-  await page.keyboard.press('Escape');
-  await page.getByRole('button', { name: 'Next page', exact: true }).click();
-  await expect(page.getByRole('button', { name: /Second record/ })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Next page', exact: true })).toBeDisabled();
+  await expect(page.getByRole('heading', { name: 'Zoho is unavailable' })).toBeVisible();
+  await expect(page.getByText('Last recorded probe: HTTP 401.')).toBeVisible();
+  await expect(page.getByText(/Separately, REST OAuth/)).toBeVisible();
+  await expect(page.getByLabel('Module filter')).toHaveCount(0);
   await page.getByRole('button', { name: 'Sign out', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'A secure start to every journey.' })).toBeVisible();
+});
+
+test('booking read contract shows separate states and clears records on denial', async ({ page }) => {
+  let denied = false;
+  const booking = { id: 31, booking_reference: 'TEST-31', pickup_city: 'Chennai', delivery_city: 'Salem', status: 'delivered', payment_status: 'pending', payment_mode: 'topay', version: 2 };
+  await page.route('**/api/**', async route => {
+    const path = new URL(route.request().url()).pathname;
+    if (path === '/api/status') return route.fulfill({ json: { authenticationAvailable: true, bookingReadsAvailable: true } });
+    if (path === '/api/auth/login') return route.fulfill({ json: { authToken: 'test-token-only', user: { id: 7, name: 'Contract test', workspace: 'customer', systemRole: 'customer_member', organizationId: 12 } } });
+    if (path === '/api/bookings') return route.fulfill({ json: { items: [booking], page: 1, nextPage: null, readOnly: true } });
+    if (path === '/api/bookings/31') return route.fulfill(denied ? { status: 403, json: { error: { code: 'BOOKING_SCOPE_DENIED', message: 'This booking is outside your authorized organization.' } } } : { json: { booking, cargoCount: 1, activeHoldCount: 1, blockingReasons: ['Delivery review pending'], readOnly: true } });
+    throw new Error('Unexpected API route');
+  });
+  await page.goto('http://127.0.0.1:4173/?preview=admin');
+  await page.getByLabel('Email', { exact: true }).fill('test@example.com');
+  await page.getByLabel('Password', { exact: true }).fill('Password123');
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await page.getByRole('button', { name: 'Load / refresh bookings' }).click();
+  await page.getByRole('button', { name: /TEST-31/ }).click();
+  await expect(page.getByRole('dialog')).toContainText('delivered');
+  await expect(page.getByRole('dialog')).toContainText('pending');
+  await expect(page.getByRole('dialog')).toContainText('Not connected');
+  await page.keyboard.press('Escape');
+  await page.setViewportSize({ width: 320, height: 844 });
+  await noOverflow(page);
+  expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
+  denied = true;
+  await page.getByRole('button', { name: /TEST-31/ }).click();
+  await expect(page.getByRole('alert')).toContainText('outside your authorized organization');
+  await expect(page.getByRole('button', { name: /TEST-31/ })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'No bookings on this authorized page' })).toHaveCount(0);
+});
+
+test('configured but unreleased authentication disables credential entry', async ({ page, request }) => {
+  await page.route('**/api/status', route => route.fulfill({ json: { authenticationConfigured: true, authenticationAvailable: false, bookingReadsAvailable: false } }));
+  await page.goto('http://127.0.0.1:4173/');
+  await expect(page.getByLabel('Email', { exact: true })).toBeDisabled();
+  await expect(page.getByLabel('Password', { exact: true })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Sign in unavailable' })).toBeDisabled();
+  const response = await request.post('/api/auth/login', { data: { email: 'test@example.com', password: 'Password123', role: 'admin' } });
+  expect(response.status()).toBe(503);
+  expect((await response.json()).error.code).toBe('AUTH_RELEASE_PENDING');
 });

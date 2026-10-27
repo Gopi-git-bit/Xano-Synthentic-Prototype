@@ -9,26 +9,36 @@
 - The existing compiled Tailwind v4 setup and useful components were continued. No Xano source was modified.
 - Private provider configuration is outside this repository. Names/presence were inspected without printing values. The configured Zoho item is an MCP URL, not REST OAuth credentials.
 
-## Verified source contracts wired through the adapter
+## Discovered contracts and release-gated adapter
+
+Current deployment evidence and exact publication blockers: [Xano discovery](XANO.md). Workspace **3**, live branch **v1**, has published logistics placeholders and substantive unpublished drafts. These are different from the old local checkout. No backend changes were made; publication remains with the user.
 
 | Browser → server | Server → verified Xano path | Contract |
 |---|---|---|
 | `POST /api/auth/login` | `POST {XANO_AUTH_BASE_URL}/auth/login` | email/password → authToken |
 | `POST /api/auth/signup` | `POST …/auth/signup` | name/email/password → authToken; Xano creates **member**, never accepts browser role |
-| `GET /api/auth/me` | `GET …/auth/me` | Bearer token → id/name/email/role |
-| `GET /api/status` | None | Configuration booleans only |
+| `GET /api/auth/me` | `GET …/auth/me` | Bearer token → validated active identity, system role and organization |
+| `GET /api/bookings` | `GET {XANO_LOGISTICS_BASE_URL}/bookings` | Customer-only, tenant-scoped bounded page; projected scalar fields |
+| `GET /api/bookings/{id}` | `GET …/bookings/{id}` | Authorized matching ID/organization; read-only state and hold/cargo counts |
+| `GET /api/status` | None | Configuration and release-availability booleans; not a live health probe |
 
-Sources: `api/authentication/auth_login_POST.xs`, `auth_signup_POST.xs`, `auth_me_GET.xs`; role helper supports **admin/member only**. No deployed URL, credentials or test account was supplied. These are implemented and mock-tested adapters, not proven live connections.
+Sources: separately pulled published/draft workspace snapshots and authenticated Metadata API OpenAPI, recorded in `XANO.md`. Actual bases are now located. No approved positive-auth test account is available; authentication and booking read adapters are **mock-tested, gated, not verified positive live workflows**.
 
-Xano tokens are held in browser memory only, sent in Authorization headers to same-origin API calls, and cleared on sign-out/401. No credentials are placed in query strings, local storage or logs. Reload signs out. Authentication failures and timeouts do not produce success UI. Tokens are revalidated through Xano `auth/me` on every CRM operation.
+`XANO_AUTH_RELEASE=verified` is required before any credential/token request reaches Xano. Default `blocked` protects against the observed old auth logger. Login/signup validate `auth/me` before releasing a session. Legacy `role: admin/member` never grants workspace access. Active `super_admin`/`operations_admin` map to restricted Admin, `customer_admin`/`customer_member` to customer, and `vendor_admin`/`fleet_manager`/`driver` to owner. Non-Admin identity requires an organization ID; published membership guards must still validate it for each operation. Unknown roles/statuses fail closed.
+
+Booking reads also require `XANO_BOOKING_READS_RELEASE=verified`. Only customer roles may use them; driver/vendor/Admin reads are denied pending their own authorized contracts. Browser organization overrides are rejected. Pagination/status inputs are bounded; all records must match the authenticated organization. Null, malformed pages, unknown booking states and mismatched detail IDs return errors, never empty-success UI. Raw contacts, nested financial fields and provider `allowed_actions` are not passed through. Booking mutations always return `BOOKING_WRITES_PENDING`; this increment has no write-release flag. Trip/POD/settlement endpoints remain unwired.
+
+Xano tokens are held in browser memory only, sent in Authorization headers to same-origin API calls, and cleared on sign-out/401. No credentials are placed in query strings, local storage or logs. Reload signs out. Authentication failures and timeouts do not produce success UI. Tokens are revalidated through Xano `auth/me` on every protected operation. Failed booking reads clear displayed results rather than retaining stale authorized data.
 
 ## CRM adapter: read-only, fail closed
+
+**Unavailable in the current UI and preview.** `ZOHO_READ_RELEASE` defaults to `blocked`, before any provider request. The earlier reader implementation and mock coverage are retained for later review, but no troubleshooting or live Zoho calls were performed in this increment. The following describes the dormant adapter, not a verified integration. MCP HTTP 401 and missing REST OAuth credentials are independent blockers.
 
 `GET /api/crm/modules`, `/api/crm/records?module=…&page=…`, `/api/crm/record?module=…&id=…` are **new frontend server-runtime routes**, not invented Xano endpoints.
 
 Authorization order:
 1. Validate the Bearer token through Xano.
-2. Require exact authenticated `role: admin`.
+2. Require active authenticated `system_role: super_admin/operations_admin` and the independent server release gate.
 3. Require server-only per-user `CRM_READ_GRANTS_JSON`.
 4. Validate requested module/record IDs and fields against grants.
 5. Intersect grants with Zoho's actual module metadata (`api_supported`, `viewable`, `visible`).
@@ -53,29 +63,29 @@ Default `{}` denies everything. Admin alone does not grant tenant-wide CRM acces
 
 The MVP pages **explicitly granted IDs** in groups of 10, fetching each using Zoho's record-by-ID endpoint. It does not enumerate the tenant-wide list and filter afterward. `nextPage` describes authorized IDs only; no raw provider page token is exposed. Reads are sequential and bounded. Search filters the current authorized page, clearly labelled in UI. Global CRM search and activity relationship joins remain pending approved scopes/contracts.
 
-Zoho's modules are discovered at runtime; Contacts/Accounts/Leads/Tasks/Calls/Meetings are not fabricated as available. Any actual granted module can be rendered. Fields and available modules are determined by configuration plus provider permissions. Related Zippy order links are unavailable because no authorized mapping or order-read API exists; no unscoped link is generated.
+When separately released, Zoho's modules are discovered at runtime; Contacts/Accounts/Leads/Tasks/Calls/Meetings are not fabricated as available. Fields and modules are determined by configuration plus provider permissions. Related Zippy order links remain unavailable because no authorized CRM-to-booking mapping contract exists; no unscoped link is generated.
 
 OAuth refresh uses the configured regional Accounts domain. Access token/API domain remain server-only, refresh requests are coalesced, tokens expire early in cache, and 401 retries refresh once. API domains are allowlisted before transmitting tokens. Redirects are rejected. Rate-limit responses carry a bounded Retry-After and suspend further CRM calls in that process; there is no automatic retry storm. Upstream bodies/credential errors are sanitized. Serverless instances have independent caches and rate-limit windows; provider limits remain authoritative.
 
 CRM writes are rejected with 405. No synchronization/creation is implemented, so no duplicate records can be created by this adapter. Orders, payments, POD, consent, refunds and holds are never updated from Zoho.
 
-## Missing operational contracts
+## Operational readiness
 
 | Area | Precise missing contract / current behavior |
 |---|---|
-| Workspace grants | Customer/Vehicle Owner capabilities, owner/driver relationships, assigned order/vehicle IDs and field-level financial grants. Production member role is not guessed into either workspace. |
+| Workspace grants | System roles/membership are present in draft security code, not the live identity projection/guards. Owner/driver assigned order/vehicle IDs and financial grants are still uncontracted. |
 | Profile / company | Profile persistence, organization membership, preferred destination, driver/vehicle documents and verification. Preview forms only. |
 | Catalog / addresses | Final vehicle IDs/capacity/body compatibility, location search/pins/routing. Reference vehicle labels and local cities only. |
-| Quote / booking | Quote ID/version/expiry, breakdown, tax, policy-eligible full/partial/ToPay plans, IST schedule validation, idempotent booking acceptance. Draft only; no percentages invented. |
-| Order / cancellation | Canonical enums, authorized listing/detail, cancellation eligibility/fees, request acceptance and audit. Local requests never cancel trips. |
+| Quote / booking | Draft create/quote/accept/confirm contracts located; published endpoints are placeholders. Production writes blocked. Demo form is not mapped blindly to structured addresses/cargo/window inputs. No percentages invented. |
+| Order / cancellation | Draft enums/list/detail/cancel contracts located. Gated read-only adapter prepared; live success unverified. Cancellation execution disabled. |
 | Matching / availability | Eligible offers, authoritative expiry, accept/decline/idempotency, assignment and persisted availability. Explicit local response drafts only. |
 | Trip / tracking | Allowed next actions, milestone command/version, location timestamps, ETA source and stale/offline thresholds. Illustrative map only. |
 | Evidence / POD | Signed upload URL, MIME/content/size verification, submission record, recipient confirmation, review/correction and audit. File selection is local; no upload or verification. |
-| Payments / invoices | Attempt ledger, verified provider events, collections, balances, reconciliation, ToPay consent, invoice access and authorized settlement history. UI states are separate sample records. |
-| Exceptions | Scoped holds/release conditions, evidence channels, human refund approval, confirmation and audit persistence. Execution disabled. |
+| Payments / invoices | Payment selection and consent routes located as unpublished implementations. Collection/provider verification, reconciliation, invoice/refund/settlement APIs were not found. UI states are separate sample records. |
+| Exceptions | Hold/release/resume routes located with unpublished implementations. Evidence and human refund execution contracts remain unverified; all mutations disabled. |
 | Messaging / agents | Support/notifications/announcements delivery and five-agent evidence feed. Local drafts; no broadcasts or synthetic agent activity. |
 
-UI labels in `src/types.ts`/fixtures are **presentation models, not approved backend enums**. No operational API is exposed until its contract and object-level authorization are verified. Unknown routes are rejected, including guessed payment/refund endpoints.
+UI labels in `src/types.ts`/fixtures are **presentation models, not backend enums**. The new read projection uses discovered lowercase Xano lifecycle values without translating POD or payment into booking success. Unknown routes are rejected, including guessed payment/refund endpoints.
 
 ## Connectivity evidence
 
