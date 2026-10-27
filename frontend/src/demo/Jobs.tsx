@@ -1,0 +1,25 @@
+import { useState } from 'react';
+import { Badge, Card, DetailRows, Field, Notice, PageIntro } from '../components';
+import type { Order } from '../types';
+import { scenarios, type Scenario } from './permissions';
+import { Documents, Incidents } from './Workspaces';
+import { OrderList } from './Orders';
+
+export default function Jobs({ orders, scenario, online, onDetail }: { orders: Order[]; scenario: Scenario; online: boolean; onDetail: (o: Order) => void }) {
+  const grant = scenarios[scenario];
+  const [tab, setTab] = useState('Assigned');
+  const [offer, setOffer] = useState<'offered' | 'accepted' | 'declined'>('offered');
+  const [action, setAction] = useState('');
+  const [saved, setSaved] = useState('');
+  const active = orders.filter(o => !['Delivered', 'Cancelled'].includes(o.status));
+  return <><PageIntro title="Your day, on the road." subtitle="Offers, assigned work and evidence in one Vehicle Owner workspace."/>
+    <div className="mb-5 flex flex-wrap gap-2" aria-label="Job sections">{['Assigned', 'Offers', 'Evidence', 'History', 'Report issue'].map(t => <button className={`btn ${t === tab ? 'soft' : ''}`} aria-pressed={t === tab} key={t} onClick={() => { setTab(t); setSaved(''); }}>{t}</button>)}</div>
+    {tab === 'Assigned' && <><OrderList orders={active} onDetail={onDetail} financial={grant.finance}/>{active.length > 0 && <div className="mt-5"><Card title={`Next action · ${active[0].id}`} subtitle="Active assignments continue when availability is offline."><div className="space-y-4 px-5 pb-5"><Badge tone="warning">{active[0].status}</Badge><p className="text-sm">Next: arrival at delivery, delivery evidence and recipient confirmation.</p>{grant.execute ? <form className="space-y-4" onSubmit={e => { e.preventDefault(); setSaved('Trip update prepared locally. The server has not accepted a milestone change.'); }}><Field label="Trip update"><select value={action} required onChange={e => { setAction(e.target.value); setSaved(''); }}><option value="">Choose an update to prepare</option><option>Arrived at delivery</option><option>Delivery update</option><option>Recipient confirmation request</option><option>Cancellation request</option></select></Field><Field label="Update notes"><textarea required maxLength={1000}/></Field><div className="flex flex-wrap gap-3"><button className="btn primary">Prepare update draft</button><button className="btn" disabled>Submit update unavailable</button><button className="btn" type="button" onClick={() => setTab('Evidence')}>Prepare pickup / POD evidence</button></div></form> : <Notice>Trip execution is assigned to the authorized driver. Fleet management access does not grant execution permissions.</Notice>}<button className="btn" onClick={() => setTab('Report issue')}>Report an issue</button>{saved && <p role="status" className="text-xs text-success">{saved}</p>}</div></Card></div>}</>}
+    {tab === 'Offers' && <><Notice>{online ? 'Sample offer only. Eligibility, expiry and assignment must be verified by the matching service.' : 'Offline for new work. Assigned trips remain available.'}</Notice><div className="mt-5"><Card title="Chennai → Coimbatore" subtitle="Illustrative offer · never assigned to a real person"><div className="space-y-4 px-5 pb-5"><DetailRows rows={[
+      ['Cargo', 'Packaged textile rolls · capacity verification required'], ['Vehicle requirement', '14 ft Closed body · reference catalog'], ['Schedule', 'Custom pickup · IST · service confirmation required'], ['Offer expiry', 'Not connected; no countdown implies validity'], ...(grant.finance ? [['Applicable earnings', 'Awaiting verified offer ledger']] as [string, string][] : []),
+    ]}/><Badge>{offer === 'offered' ? 'Preview offer' : offer === 'accepted' ? 'Local acceptance draft · assignment pending' : 'Locally declined'}</Badge>{offer === 'offered' ? <div className="flex flex-wrap gap-3"><button className="btn primary" disabled={!online} onClick={() => setOffer('accepted')}>Preview accept</button><button className="btn" disabled={!online} onClick={() => setOffer('declined')}>Preview decline</button></div> : offer === 'accepted' ? <><Notice>Acceptance is prepared locally. No assignment is confirmed. After server acceptance, cancellation must be requested rather than silently declining.</Notice><button className="btn" onClick={() => setTab('Report issue')}>Prepare cancellation / issue report</button></> : <p className="text-xs text-muted">Preview response saved in this view only.</p>}<button className="btn" disabled>Live offer response unavailable</button></div></Card></div></>}
+    {tab === 'Evidence' && <><div className="mb-5"><Notice>Evidence preparation is a separate permission from executing trip milestones. Corrected evidence remains available for assigned records while settlement is held.</Notice></div><Documents orders={orders} role="owner" canExecute={grant.evidence}/></>}
+    {tab === 'History' && <OrderList orders={orders.filter(o => ['Delivered', 'Cancelled'].includes(o.status))} onDetail={onDetail} financial={grant.finance}/>}
+    {tab === 'Report issue' && <Incidents role="owner"/>}
+  </>;
+}

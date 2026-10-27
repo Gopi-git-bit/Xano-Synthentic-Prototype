@@ -1,0 +1,14 @@
+[
+  {
+    "site": "freight",
+    "url": "https://zippy-freight-studio.gopi18.chatgpt.site/",
+    "status": 200,
+    "result": "Original HTML, loaded assets and screenshots captured."
+  },
+  {
+    "site": "admin",
+    "url": "https://zippy-admin-studio.gopi18.chatgpt.site/",
+    "status": 200,
+    "result": "Original HTML, loaded assets and screenshots captured."
+  }
+]

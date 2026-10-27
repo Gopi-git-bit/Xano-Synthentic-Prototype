@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-27T09:36:11.370Z",
+  "configuration": {
+    "ZOHO_CRM_MCP_URL": "set",
+    "ZOHO_CLIENT_ID": "missing",
+    "ZOHO_CLIENT_SECRET": "missing",
+    "ZOHO_REFRESH_TOKEN": "missing",
+    "XANO_AUTH_BASE_URL": "missing"
+  },
+  "transport": {
+    "host": "crm-data-metadata-60091360159.zohomcp.in",
+    "lastHttpStatus": 401
+  },
+  "tools": [],
+  "result": "connection_or_discovery_failed"
+}
