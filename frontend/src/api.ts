@@ -25,7 +25,8 @@ export async function api<T>(route: string, body?: object, options: { signal?: A
   let response: Response;
   try {
     const signals = [AbortSignal.timeout(20000), ...(token ? [sessionRequests.signal] : []), ...(options.signal ? [options.signal] : [])];
-    response = await fetch(`/api/${route}`, { method: body ? 'POST' : 'GET', credentials: 'omit', cache: 'no-store', headers: { Accept: 'application/json', ...(body ? { 'Content-Type': 'application/json' } : {}), ...(token ? { Authorization: `Bearer ${token}` } : {}) }, ...(body ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.any(signals) });
+    // Preserve Vercel's same-origin Preview access cookie; Xano identity still uses the bearer token.
+    response = await fetch(`/api/${route}`, { method: body ? 'POST' : 'GET', credentials: 'same-origin', cache: 'no-store', headers: { Accept: 'application/json', ...(body ? { 'Content-Type': 'application/json' } : {}), ...(token ? { Authorization: `Bearer ${token}` } : {}) }, ...(body ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.any(signals) });
   } catch {
     if (cancelled()) throw cancellation();
     throw new ApiError('UNAVAILABLE', 'Service unavailable or timed out. No successful outcome is confirmed.');
