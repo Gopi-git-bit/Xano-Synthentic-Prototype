@@ -2,17 +2,19 @@
 
 ## Current Git publication — Composio handoff
 
-https://zippy-frontend-preview-5z2dnet0k-gopi-nathan-s-projects.vercel.app
+https://zippy-frontend-preview-cknmd8fll-gopi-nathan-s-projects.vercel.app
 
-The user supplied this verification from the ChatGPT/Composio session after resolving the GitHub publication blocker:
+The user confirmed publication of the completed booking-reader/session increment through the ChatGPT/Composio session:
 
 - Branch: `Gopi-git-bit/Xano-Synthentic-Prototype` → `feat/frontend-tailwind-polish`.
-- HEAD / deployed Git SHA: `c36631c04e824242b377af05a807f1245579d586`.
-- Preserved parent: `f2fdbbac2f7305a876729af73ba2fa2f57effe15`.
-- Deployment: `dpl_5uGH41TYBgSpCj7svHpxNURLjKrB`, **READY / Git-triggered Preview**.
+- Published application Git SHA: `00d9ef35eb4eb2688eeea290eb412320e0b50366`.
+- Preserved parent: `c36631c04e824242b377af05a807f1245579d586`; preserved ancestor: `f2fdbbac2f7305a876729af73ba2fa2f57effe15`.
+- Deployment: `dpl_CMy74LHJN4R9dr6AZyVMFVGTsypV`, **READY / Git-triggered Preview**.
 - Project: `prj_qdS0VoN46xsmiL9USAGGAPo8f04b`; Root Directory: `frontend`.
 
-This is the supplied publication handoff, not a new remote probe from OpenCode. Newer local frontend work awaits the next Composio publication. Composio tools are unavailable in this OpenCode session; hand subsequent GitHub operations back to that session rather than retrying the failed HTTPS push path.
+Publication of `00d9ef3` is complete. This records the supplied Composio handoff, not a new remote probe from OpenCode. Composio tools are unavailable in this OpenCode session; hand subsequent GitHub operations back to that session rather than retrying the failed HTTPS push path. The next integration dependency is backend publication and approved live test accounts, as recorded in [FRONTEND-PLAN.md](FRONTEND-PLAN.md).
+
+Earlier Git publication `c36631c` used deployment `dpl_5uGH41TYBgSpCj7svHpxNURLjKrB`; the Preview above supersedes that application checkpoint.
 
 Open while signed in to Vercel with access to the `gopi-nathan-s-projects` team. Deployment protection redirects anonymous visitors to Vercel authentication. After that, the application shows its closed Xano access gate; this is not a live booking demo. Existing fixture workspaces remain available locally in development.
 
@@ -54,7 +56,7 @@ Zoho regional OAuth values and `CRM_READ_GRANTS_JSON` were not configured remote
 
 ## Historical remote smoke checks
 
-These checks apply to the earlier direct-upload deployment. An ephemeral automation bypass was used in request headers and **revoked afterward**. No bypass URL or persistent public share link was created. The first smoke attempt saw a protection redirect while the new bypass propagated; a bounded retry passed without disabling protection. They do not claim the newer local reader changes are deployed.
+These checks apply to the earlier direct-upload deployment. An ephemeral automation bypass was used in request headers and **revoked afterward**. No bypass URL or persistent public share link was created. The first smoke attempt saw a protection redirect while the new bypass propagated; a bounded retry passed without disabling protection. They are historical infrastructure checks, not fresh smoke tests of the current Git Preview or live-Xano acceptance results.
 
 | Check | Result |
 |---|---|

@@ -4,15 +4,15 @@
 
 Continued the existing frontend in `C:\Users\ashok\Documents\GitHub\zippy-frontend-polish\frontend` on `feat/frontend-tailwind-polish`. Existing React/Vite/TypeScript, compiled Tailwind v4, role palettes, components and published reference captures are preserved. Historical delivery documents are retained as `BASELINE-README.md` and `BASELINE-DELIVERY.md`.
 
-**Preserved commits: `f2fdbba` and `c36631c`.** The `c36631c` baseline located the actual deployed Xano workspace/contracts and added fail-closed release gates and read-only booking validation. Its protected Preview is published; newer local work is described below. Backend publication and Zoho troubleshooting remain with the user.
+**Preserved commits: `f2fdbba` and `c36631c`.** The `c36631c` baseline located the actual deployed Xano workspace/contracts and added fail-closed release gates and read-only booking validation. Reader/session improvements in `00d9ef3` are now published. Backend publication and Zoho troubleshooting remain with the user.
 
 ### Continuation — 2026-10-28
 
-The user supplied a successful Composio publication handoff for `c36631c`, preserving `f2fdbba`, and its READY Git-triggered Preview. The publication blocker is resolved; [VERCEL.md](VERCEL.md) records that handoff separately from historical direct-upload evidence.
+The user confirmed Composio publication of `00d9ef35eb4eb2688eeea290eb412320e0b50366`, preserving `c36631c` and `f2fdbba`. Its Git-triggered Preview is READY at deployment `dpl_CMy74LHJN4R9dr6AZyVMFVGTsypV` in project `prj_qdS0VoN46xsmiL9USAGGAPo8f04b`. [VERCEL.md](VERCEL.md) records the current Preview URL and handoff separately from historical direct-upload evidence.
 
-The next local frontend increment completes the gated customer booking reader: canonical status filtering, page-preserving refresh/retry, cancellation of superseded reads, bounded manual Retry-After handling and session-expiry recovery. Authenticated UI is removed on 401 (including non-JSON denials), unsupported identity or closed auth release; account availability is rechecked. A late response cannot expose previous-session data or invalidate a newer session. The filter has a separate accessible description. [Current plan and next GitHub action](FRONTEND-PLAN.md).
+Published commit `00d9ef3` completes the gated customer booking reader: canonical status filtering, page-preserving refresh/retry, cancellation of superseded reads, bounded manual Retry-After handling and session-expiry recovery. Authenticated UI is removed on 401 (including non-JSON denials), unsupported identity or closed auth release; account availability is rechecked. A late response cannot expose previous-session data or invalidate a newer session. The filter has a separate accessible description. [Current plan and next integration step](FRONTEND-PLAN.md).
 
-Deployment settings, release gates, backend sources and the existing role-themed fixture workspaces are unchanged. The new reader/session code is local until published through Composio.
+The reader/session publication is complete. Deployment settings, release gates, backend sources and the existing role-themed fixture workspaces remain unchanged by this documentation checkpoint. The current plan has no independent frontend implementation left open; next is live validation after the backend handoff.
 
 ### Workspaces
 
@@ -33,6 +33,8 @@ All operational examples are explicitly development-only (`demo=1`). Timers neve
 
 ## Verification
 
+The implementation checks below were run for application commit `00d9ef3`. This publication-record checkpoint changes documentation only.
+
 Node 24.22.1, npm 11.19.1 and installed Microsoft Edge. **Build/TypeScript, lint, 17 server tests and browser secret scan passed. All 26 browser cases have passing results across the full run and focused reruns.** The full run passed the 18 preserved workspace cases and four new session cases. Four new filter scenarios initially failed due to an exact-label locator; after separating the filter hint and targeting its accessible combobox role, all four passed. The existing reader and session scenarios also passed the focused rerun.
 
 | Check | Coverage |
@@ -43,8 +45,8 @@ Node 24.22.1, npm 11.19.1 and installed Microsoft Edge. **Build/TypeScript, lint
 | Browser tests | 26 unique cases covered: 18 preserved workflows plus 8 new reader/session cases; all passing after focused fixes. New coverage includes status/paging/retry, stale-response isolation, rate-limit waiting, non-JSON 401/identity/gate expiry and blocked-reader isolation |
 | Responsive | 320, 390, 768, 1024, 1440 px dashboards; every main destination at 320 px |
 | Accessibility | Targeted axe WCAG A/AA dashboards + booking/jobs/reviews; keyboard dialog return focus and reduced-motion configuration |
-| Secret scan | Current local bundle passed against eight private provider values. The earlier remote bundle and nine-value repository review belong to the `c36631c` baseline; its deployed source hashes are not claimed to match this newer local increment |
-| Vercel Preview | Composio handoff reports READY / Git Preview at `c36631c`; historical protection/routing/gate smoke results are retained in VERCEL.md. No new remote deployment or bypass was created for this increment |
+| Secret scan | Before committing `00d9ef3`, the local browser bundle passed against eight private provider values and changed files passed against nine private values. Earlier remote bundle/source-hash checks remain historical evidence for the `c36631c` baseline |
+| Vercel Preview | User-supplied Composio handoff confirms READY / Git Preview for `00d9ef3`; historical protection/routing/gate smoke results are retained in VERCEL.md. This checkpoint adds no new remote smoke-test or live-provider claim |
 
 Browser authentication and positive booking reads use explicitly controlled mocks; they do not prove live Xano success. Original fixture workflows still cover booking draft preservation, restricted finances, evidence, offers and separate payment/consent/POD states. The new read screen also passes targeted axe and 320px overflow checks.
 
@@ -71,10 +73,10 @@ Visual review retained the sidebar/card/truck/map/timeline design. Role controls
 - **Zoho REST:** client ID, client secret and refresh token are missing. Actual modules, field permissions and test record IDs remain unverified. Default server record grants deny access.
 - **Later-stage contracts not found:** assignment/availability/trip execution/GPS, upload/POD/recipient confirmation, verified collections/reconciliation/invoices/refunds/settlements and messaging. Booking/quote/consent/hold contracts were found in drafts and are not incorrectly described as absent. [Integration matrix](API.md).
 - **Development fixtures:** all full Customer, Vehicle Owner and operational Admin workflows. They are explicitly local previews, never substituted for failed live calls.
-- **Deployment evidence:** Composio published the `c36631c` baseline and verified its Git Preview, as supplied in the user handoff. This local continuation performed no GitHub push, merge or deployment. See [Vercel status and checks](VERCEL.md).
+- **Deployment evidence:** Composio published `00d9ef3` and reported its READY Git Preview, as supplied in the user handoff. Subsequent GitHub publication remains with that Composio session. See [Vercel status and checks](VERCEL.md).
 
 ## Preview and review
 
 See [README](../README.md) for two-terminal startup and commands. Preview entry points use `http://127.0.0.1:5173/?demo=1&preview=customer`, `preview=owner`, or `preview=admin`. Without the explicit development demo flag, the app opens secure account entry.
 
-Changes are confined to `frontend/` for a new reviewable commit above `f2fdbba`. Existing Xano sources are unchanged. Deferred visualization, lending, insurance automation, predictive intelligence, advanced analytics, fleet sync, withdrawals and multi-stop optimization are not implemented.
+Frontend commits preserve `f2fdbba` and `c36631c`; `00d9ef3` is published. Existing Xano sources are unchanged. Deferred visualization, lending, insurance automation, predictive intelligence, advanced analytics, fleet sync, withdrawals and multi-stop optimization are not implemented.

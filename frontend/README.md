@@ -2,9 +2,9 @@
 
 Enhanced in the existing `frontend/` subproject on `feat/frontend-tailwind-polish`. React, Vite, TypeScript, compiled Tailwind v4, reusable components, reference captures and role themes are preserved.
 
-Commits **`f2fdbba` and `c36631c` are preserved**. Integration work adds fail-closed release gates and a read-only booking adapter based on the actual workspace-3 published/draft contracts. The next local increment completes status filtering, page-preserving retries and session-expiry handling. See [frontend plan and publication handoff](docs/FRONTEND-PLAN.md).
+Commits **`f2fdbba` and `c36631c` are preserved**. Published commit **`00d9ef3`** completes status filtering, page-preserving retries and session-expiry handling for the release-gated booking reader. The next integration step awaits safe backend publication and approved test accounts. See [frontend plan and publication handoff](docs/FRONTEND-PLAN.md).
 
-[Protected Git-triggered Preview](https://zippy-frontend-preview-5z2dnet0k-gopi-nathan-s-projects.vercel.app) — the Composio handoff reports READY at `c36631c`; newer local changes await publication. Requires Vercel team access; Xano sign-in is blocked pending backend fixes. [Deployment evidence](docs/VERCEL.md).
+[Protected Git-triggered Preview](https://zippy-frontend-preview-cknmd8fll-gopi-nathan-s-projects.vercel.app) — the user’s Composio handoff confirms publication complete and READY for `00d9ef3`. Requires Vercel team access; Xano sign-in remains blocked pending backend fixes and live validation. [Deployment evidence](docs/VERCEL.md).
 
 ## Run locally
 
