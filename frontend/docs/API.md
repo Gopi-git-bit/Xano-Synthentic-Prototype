@@ -30,6 +30,10 @@ Booking reads also require `XANO_BOOKING_READS_RELEASE=verified`. Only customer 
 
 Xano tokens are held in browser memory only, sent in Authorization headers to same-origin API calls, and cleared on sign-out/401. No credentials are placed in query strings, local storage or logs. Reload signs out. Authentication failures and timeouts do not produce success UI. Tokens are revalidated through Xano `auth/me` on every protected operation. Failed booking reads clear displayed results rather than retaining stale authorized data.
 
+Session invalidation removes the authenticated workspace and rechecks `/api/status` before enabling credential entry. It handles non-JSON 401 responses as well as `IDENTITY_UNSUPPORTED` and `AUTH_RELEASE_PENDING` errors on authenticated requests. Object-level denial remains a read error rather than silently changing role. Requests capture a session version; sign-out cancels outstanding authenticated reads, and late responses cannot expose old records or invalidate a newer login.
+
+The customer reader sends only `page` and optional canonical booking `status`. Changing status resets to page 1; refresh and explicit retry retain the requested page/filter. New reads supersede earlier ones. Empty-state copy appears only for a successful authorized empty page, never for timeout, denial or contract errors. `Retry-After` temporarily disables manual reads; expiry only re-enables controls and does not initiate requests or imply success. No search endpoint, financial permission or mutation is inferred from these read controls.
+
 ## CRM adapter: read-only, fail closed
 
 **Unavailable in the current UI and preview.** `ZOHO_READ_RELEASE` defaults to `blocked`, before any provider request. The earlier reader implementation and mock coverage are retained for later review, but no troubleshooting or live Zoho calls were performed in this increment. The following describes the dormant adapter, not a verified integration. MCP HTTP 401 and missing REST OAuth credentials are independent blockers.

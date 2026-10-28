@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { LockKeyhole, LogOut } from 'lucide-react';
-import { api, clearSession, signIn, type ServiceStatus, type User } from './api';
+import { api, clearSession, onSessionEnd, signIn, type ServiceStatus, type User } from './api';
 import { Card, Field, Notice, PageIntro } from './components';
 import CRM from './CRM';
 import Bookings from './Bookings';
@@ -13,10 +13,18 @@ export default function Access() {
   const [error, setError] = useState('');
   const [retry, setRetry] = useState(0);
   const [user, setUser] = useState<User | null>(null);
+  useEffect(() => onSessionEnd(reason => {
+    setUser(null);
+    if (reason === 'expired') {
+      setError('Your session has ended. Sign in again to continue.'); setMode('login');
+      setConfigured(false); setBookingReadsAvailable(false); setLoading(true); setRetry(value => value + 1);
+    }
+  }), []);
   useEffect(() => {
     let active = true;
-    api<ServiceStatus>('status').then(r => { if (active) { setConfigured(r.authenticationAvailable === true); setBookingReadsAvailable(r.bookingReadsAvailable === true); setLoading(false); } }).catch(e => { if (active) { setConfigured(false); setBookingReadsAvailable(false); setError(e.message); setLoading(false); } });
-    return () => { active = false; };
+    const controller = new AbortController();
+    api<ServiceStatus>('status', undefined, { signal: controller.signal }).then(r => { if (active) { setConfigured(r.authenticationAvailable === true); setBookingReadsAvailable(r.bookingReadsAvailable === true); setLoading(false); } }).catch(e => { if (active) { setConfigured(false); setBookingReadsAvailable(false); setError(e.message); setLoading(false); } });
+    return () => { active = false; controller.abort(); };
   }, [retry]);
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault(); const form = e.currentTarget; const data = new FormData(form); setLoading(true); setError('');

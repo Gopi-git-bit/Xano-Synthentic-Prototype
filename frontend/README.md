@@ -2,9 +2,9 @@
 
 Enhanced in the existing `frontend/` subproject on `feat/frontend-tailwind-polish`. React, Vite, TypeScript, compiled Tailwind v4, reusable components, reference captures and role themes are preserved.
 
-Commit **`f2fdbba` is preserved**. Current integration work adds fail-closed release gates and a read-only booking adapter based on the actual workspace-3 published/draft contracts. See [Xano discovery and backend handoff](docs/XANO.md).
+Commits **`f2fdbba` and `c36631c` are preserved**. Integration work adds fail-closed release gates and a read-only booking adapter based on the actual workspace-3 published/draft contracts. The next local increment completes status filtering, page-preserving retries and session-expiry handling. See [frontend plan and publication handoff](docs/FRONTEND-PLAN.md).
 
-[Protected Vercel preview](https://zippy-frontend-preview-1hbmyh4oi-gopi-nathan-s-projects.vercel.app) — requires Vercel team access; Xano sign-in is blocked pending backend fixes. [Remote verification](docs/VERCEL.md).
+[Protected Git-triggered Preview](https://zippy-frontend-preview-5z2dnet0k-gopi-nathan-s-projects.vercel.app) — the Composio handoff reports READY at `c36631c`; newer local changes await publication. Requires Vercel team access; Xano sign-in is blocked pending backend fixes. [Deployment evidence](docs/VERCEL.md).
 
 ## Run locally
 
@@ -44,7 +44,7 @@ No operational writes, payment collection, GPS, broadcasts or CRM record mutatio
 
 **Deployed Xano endpoints and OpenAPI contracts were located.** Workspace 3 / v1 authentication is at `api:pofBqnrY`; logistics is at `api:zippy-v1`. Safe live probes verified anonymous `auth/me` → **401** and booking list → **200 / null**. The latter is a published placeholder, not success. Booking/security implementations exist as unpublished drafts. Live auth uses an unsafe older logger, so credential entry stays blocked. No positive login or booking-to-delivery workflow is claimed; an approved test account is still needed.
 
-Auth and booking list/detail are wired and mock-tested behind separate server-only release gates. All booking mutations are refused. The existing demo workflows remain development fixtures, excluded from production bundles. [Release sequence and exact blockers](docs/XANO.md).
+Auth and booking list/detail are wired and mock-tested behind separate server-only release gates. The read UI filters canonical booking states, keeps pagination context across refresh/retry, cancels superseded reads and returns to account entry when a session ends. All booking mutations are refused. The existing demo workflows remain development fixtures, excluded from production bundles. [Release sequence and exact blockers](docs/XANO.md).
 
 The existing Zoho MCP URL was probed read-only: **HTTP 401**, no tools/modules discovered and no records accessed. REST OAuth client ID, client secret and refresh token are absent. See [connectivity evidence](docs/zoho-connectivity.json) and [API/security contract](docs/API.md).
 

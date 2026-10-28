@@ -1,17 +1,29 @@
 # Protected Vercel preview
 
-**READY · Preview · 2026-10-27**
+## Current Git publication — Composio handoff
 
-https://zippy-frontend-preview-1hbmyh4oi-gopi-nathan-s-projects.vercel.app
+https://zippy-frontend-preview-5z2dnet0k-gopi-nathan-s-projects.vercel.app
+
+The user supplied this verification from the ChatGPT/Composio session after resolving the GitHub publication blocker:
+
+- Branch: `Gopi-git-bit/Xano-Synthentic-Prototype` → `feat/frontend-tailwind-polish`.
+- HEAD / deployed Git SHA: `c36631c04e824242b377af05a807f1245579d586`.
+- Preserved parent: `f2fdbbac2f7305a876729af73ba2fa2f57effe15`.
+- Deployment: `dpl_5uGH41TYBgSpCj7svHpxNURLjKrB`, **READY / Git-triggered Preview**.
+- Project: `prj_qdS0VoN46xsmiL9USAGGAPo8f04b`; Root Directory: `frontend`.
+
+This is the supplied publication handoff, not a new remote probe from OpenCode. Newer local frontend work awaits the next Composio publication. Composio tools are unavailable in this OpenCode session; hand subsequent GitHub operations back to that session rather than retrying the failed HTTPS push path.
 
 Open while signed in to Vercel with access to the `gopi-nathan-s-projects` team. Deployment protection redirects anonymous visitors to Vercel authentication. After that, the application shows its closed Xano access gate; this is not a live booking demo. Existing fixture workspaces remain available locally in development.
 
 - Isolated project: `zippy-frontend-preview` (`prj_qdS0VoN46xsmiL9USAGGAPo8f04b`).
-- Deployment: `dpl_BrGBBWUSvTbLwhu78tEnwu9UiNJa`; verified target **preview** and state **READY**.
 - Protection: `prod_deployment_urls_and_all_previews`; automatic custom-domain assignment disabled.
-- No Git repository connection, push or merge. The unrelated existing project was not changed.
-- [Sanitized remote checks](vercel-preview.json) · [mobile access-gate screenshot](screenshots/vercel-protected-access.png).
-- [Final project audit](vercel-project-audit.json): only the READY Preview remains, all five configured variables target Preview only, and zero automation bypasses remain.
+- Audited GitHub integration: `Gopi-git-bit/Xano-Synthentic-Prototype`; production branch `main`, distinct from the feature branch above.
+- Local mapping is at repository-root `.vercel/project.json`, ignored through Git's local `info/exclude`. Deployment cwd is the repository root; Vercel applies `frontend` once. There is no nested `frontend/.vercel/project.json`.
+
+## Historical direct-upload verification — 2026-10-27
+
+Earlier deployment `dpl_BrGBBWUSvTbLwhu78tEnwu9UiNJa` used direct source upload. Its [sanitized remote checks](vercel-preview.json), [mobile access-gate screenshot](screenshots/vercel-protected-access.png), and [project audit](vercel-project-audit.json) remain historical evidence. The audit recorded only that Preview, five Preview-only variables and zero automation bypasses **at the time of that check**; it is not a current deployment inventory.
 
 Vercel forces a new project's first deployment to Production, even when Preview is requested. Two bootstrap deployments encountered that behavior and were deleted; the final deployment was created after bootstrap, verified as Preview, and the remaining bootstrap was removed. No Production environment variables were configured. All application gates stayed closed throughout. The deployed code was uploaded from an explicit source allowlist; private files, raw Xano snapshots, build caches and local credentials were excluded.
 
@@ -40,9 +52,9 @@ Five encrypted project variables were configured for **Preview only**. The bases
 
 Zoho regional OAuth values and `CRM_READ_GRANTS_JSON` were not configured remotely. `.env.example` includes public Xano bases, blocked gates and blank private credential fields. `.env.local`, `.vercel/`, builds and dependencies are ignored. There is no release switch for booking mutations or delivery execution in this increment.
 
-## Remote verification
+## Historical remote smoke checks
 
-An ephemeral automation bypass was used in request headers for smoke checks and **revoked afterward**. No bypass URL or persistent public share link was created. The first smoke attempt saw a protection redirect while the new bypass propagated; a bounded retry passed without disabling protection.
+These checks apply to the earlier direct-upload deployment. An ephemeral automation bypass was used in request headers and **revoked afterward**. No bypass URL or persistent public share link was created. The first smoke attempt saw a protection redirect while the new bypass propagated; a bounded retry passed without disabling protection. They do not claim the newer local reader changes are deployed.
 
 | Check | Result |
 |---|---|

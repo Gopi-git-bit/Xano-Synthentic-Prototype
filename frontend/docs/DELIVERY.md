@@ -4,7 +4,15 @@
 
 Continued the existing frontend in `C:\Users\ashok\Documents\GitHub\zippy-frontend-polish\frontend` on `feat/frontend-tailwind-polish`. Existing React/Vite/TypeScript, compiled Tailwind v4, role palettes, components and published reference captures are preserved. Historical delivery documents are retained as `BASELINE-README.md` and `BASELINE-DELIVERY.md`.
 
-**Preserved base: `f2fdbba`.** This increment locates the actual deployed Xano workspace/contracts, adds fail-closed release gates and read-only booking validation, and deploys a verified protected Vercel Preview. Backend publication and Zoho troubleshooting remain with the user.
+**Preserved commits: `f2fdbba` and `c36631c`.** The `c36631c` baseline located the actual deployed Xano workspace/contracts and added fail-closed release gates and read-only booking validation. Its protected Preview is published; newer local work is described below. Backend publication and Zoho troubleshooting remain with the user.
+
+### Continuation — 2026-10-28
+
+The user supplied a successful Composio publication handoff for `c36631c`, preserving `f2fdbba`, and its READY Git-triggered Preview. The publication blocker is resolved; [VERCEL.md](VERCEL.md) records that handoff separately from historical direct-upload evidence.
+
+The next local frontend increment completes the gated customer booking reader: canonical status filtering, page-preserving refresh/retry, cancellation of superseded reads, bounded manual Retry-After handling and session-expiry recovery. Authenticated UI is removed on 401 (including non-JSON denials), unsupported identity or closed auth release; account availability is rechecked. A late response cannot expose previous-session data or invalidate a newer session. The filter has a separate accessible description. [Current plan and next GitHub action](FRONTEND-PLAN.md).
+
+Deployment settings, release gates, backend sources and the existing role-themed fixture workspaces are unchanged. The new reader/session code is local until published through Composio.
 
 ### Workspaces
 
@@ -25,18 +33,18 @@ All operational examples are explicitly development-only (`demo=1`). Timers neve
 
 ## Verification
 
-Node 24.22.1, npm 11.19.1 and installed Microsoft Edge. **Current local results: build/TypeScript and lint passed; 18 browser tests and 17 server tests passed; browser secret scan passed.**
+Node 24.22.1, npm 11.19.1 and installed Microsoft Edge. **Build/TypeScript, lint, 17 server tests and browser secret scan passed. All 26 browser cases have passing results across the full run and focused reruns.** The full run passed the 18 preserved workspace cases and four new session cases. Four new filter scenarios initially failed due to an exact-label locator; after separating the filter hint and targeting its accessible combobox role, all four passed. The existing reader and session scenarios also passed the focused rerun.
 
 | Check | Coverage |
 |---|---|
 | Build / TypeScript | Passed: `npm run build` compiled TypeScript and Vite production bundle |
 | Lint | Passed: frontend, tests, server, API entry and scripts |
 | Server tests | 17 passed: release gates/no upstream calls, legacy-role/inactive/organization denial, safe session issuance, tenant and response validation, immutable write refusals, provider errors/timeouts, plus retained dormant CRM object/field/refresh/rate-limit tests |
-| Browser tests | 18 passed: preserved responsive role workflows and state separation, production isolation, disabled credential entry, authenticated CRM unavailable, booking read contract and stale-record clearing on denial |
+| Browser tests | 26 unique cases covered: 18 preserved workflows plus 8 new reader/session cases; all passing after focused fixes. New coverage includes status/paging/retry, stale-response isolation, rate-limit waiting, non-JSON 401/identity/gate expiry and blocked-reader isolation |
 | Responsive | 320, 390, 768, 1024, 1440 px dashboards; every main destination at 320 px |
 | Accessibility | Targeted axe WCAG A/AA dashboards + booking/jobs/reviews; keyboard dialog return focus and reduced-motion configuration |
-| Secret scan | Passed: local/remote browser bundles checked against eight private provider values; repository review checked those plus the Xano metadata credential (nine total), without printing values; 27 deployed source hashes match local files |
-| Vercel Preview | READY / preview; protection, SPA routing, API denial/gates/no-store, same-origin CSP, mobile entry and deployed-bundle isolation verified; temporary bypass revoked |
+| Secret scan | Current local bundle passed against eight private provider values. The earlier remote bundle and nine-value repository review belong to the `c36631c` baseline; its deployed source hashes are not claimed to match this newer local increment |
+| Vercel Preview | Composio handoff reports READY / Git Preview at `c36631c`; historical protection/routing/gate smoke results are retained in VERCEL.md. No new remote deployment or bypass was created for this increment |
 
 Browser authentication and positive booking reads use explicitly controlled mocks; they do not prove live Xano success. Original fixture workflows still cover booking draft preservation, restricted finances, evidence, offers and separate payment/consent/POD states. The new read screen also passes targeted axe and 320px overflow checks.
 
@@ -63,7 +71,7 @@ Visual review retained the sidebar/card/truck/map/timeline design. Role controls
 - **Zoho REST:** client ID, client secret and refresh token are missing. Actual modules, field permissions and test record IDs remain unverified. Default server record grants deny access.
 - **Later-stage contracts not found:** assignment/availability/trip execution/GPS, upload/POD/recipient confirmation, verified collections/reconciliation/invoices/refunds/settlements and messaging. Booking/quote/consent/hold contracts were found in drafts and are not incorrectly described as absent. [Integration matrix](API.md).
 - **Development fixtures:** all full Customer, Vehicle Owner and operational Admin workflows. They are explicitly local previews, never substituted for failed live calls.
-- **Deployment evidence:** see [Vercel status and checks](VERCEL.md). No Git push or merge was performed.
+- **Deployment evidence:** Composio published the `c36631c` baseline and verified its Git Preview, as supplied in the user handoff. This local continuation performed no GitHub push, merge or deployment. See [Vercel status and checks](VERCEL.md).
 
 ## Preview and review
 
