@@ -155,7 +155,7 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
         if (method !== 'GET') fail(503, 'BOOKING_WRITES_PENDING', 'Booking commands are unavailable pending published contracts and execution verification. No change was submitted.');
         if (!bookingReadsAvailable()) fail(503, 'BOOKING_RELEASE_PENDING', 'Booking reads are unavailable pending publication and authorization verification in Xano.');
         const allowedParams = new Set(['route', 'page', 'per_page', 'status']);
-        if ([...parsed.searchParams.keys()].some(key => !allowedParams.has(key) || parsed.searchParams.getAll(key).length !== 1)) fail(400, 'INVALID_QUERY', 'Unsupported booking query. Organization context comes from the authenticated account.');
+        if ([...parsed.searchParams.keys()].some(key => !allowedParams.has(key) || parsed.searchParams.getAll(key).length !== 1)) fail(400, 'INVALID_QUERY', env.VERCEL_ENV === 'preview' && env.XANO_PREVIEW_TENANT ? 'Routing review: '+[...parsed.searchParams.keys()].map(key => /^[a-z_]{1,32}$/.test(key) ? key : '[other]').join(', ') : 'Unsupported booking query. Organization context comes from the authenticated account.');
         const options = { headers: { Authorization: headers.get('authorization') } };
         if (route === 'bookings') {
           const page = Number(parsed.searchParams.get('page') || 1);
