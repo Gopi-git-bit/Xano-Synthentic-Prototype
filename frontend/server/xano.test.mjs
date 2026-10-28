@@ -7,6 +7,14 @@ const user = { id: 7, name: 'Test customer', email: 'test@example.com', role: 'a
 const row = { id: 31, customer_organization_id: 12, booking_reference: 'TEST-31', pickup_city: 'Chennai', delivery_city: 'Salem', version: 1, status: 'draft', payment_status: 'pending', payment_mode: 'topay', total_amount: 4500, password: 'must-not-pass', consignee_details: { phone: 'private' } };
 const page = { curPage: 1, nextPage: null, items: [row] };
 const headers = new Headers({ authorization: 'Bearer test-token', 'content-type': 'application/json' });
+test('Vercel rewrite metadata is accepted only when it exactly matches the route', async () => {
+  const {handle,calls}=setup();
+  assert.equal((await handle({url:'/api/gateway?page=1&route=bookings&path=bookings',headers})).status,200);
+  assert.equal(new URL(calls[1].url).searchParams.get('requested_org_id'),'12');
+  for (const query of ['route=bookings&path=other','route=bookings&path=bookings&path=bookings','route=bookings&path=bookings&requested_org_id=99','route=bookings&path=bookings&page=1&page=2','path=bookings']) {
+    assert.equal((await handle({url:'/api/bookings?'+query,headers})).status,400);
+  }
+});
 function setup(options = {}) {
   const calls = [];
   const handle = createGateway({ env: { ...env, ...options.env }, fetchImpl: async (url, init) => {
