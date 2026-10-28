@@ -39,13 +39,22 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
     return `${base.href.replace(/\/$/, '')}/${path}`;
   }
   function configured(key) { try { xanoUrl('', key); return true; } catch { return false; } }
-  const authAvailable = () => configured('XANO_AUTH_BASE_URL') && env.XANO_AUTH_RELEASE === 'verified';
+  function previewConnectionAvailable() {
+    if (!env.XANO_PREVIEW_TENANT) return !env.XANO_PREVIEW_EXPIRES_AT;
+    const expires = Date.parse(env.XANO_PREVIEW_EXPIRES_AT || '');
+    return env.VERCEL_ENV === 'preview' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(env.XANO_PREVIEW_TENANT)
+      && Number.isFinite(expires) && now() < expires;
+  }
+  const authAvailable = () => previewConnectionAvailable() && configured('XANO_AUTH_BASE_URL') && env.XANO_AUTH_RELEASE === 'verified';
   const bookingReadsAvailable = () => authAvailable() && configured('XANO_LOGISTICS_BASE_URL') && env.XANO_BOOKING_READS_RELEASE === 'verified';
   function requireAuthRelease() {
     if (!authAvailable()) fail(503, 'AUTH_RELEASE_PENDING', 'Account access is unavailable pending Xano authentication security and permission verification.');
   }
   async function xano(path, options, key) {
-    const response = await request(xanoUrl(path, key), options);
+    requireAuthRelease();
+    const headers = new Headers(options?.headers);
+    if (env.XANO_PREVIEW_TENANT) headers.set('X-Tenant', env.XANO_PREVIEW_TENANT);
+    const response = await request(xanoUrl(path, key), env.XANO_PREVIEW_TENANT ? { ...options, headers } : options);
     if (response.status === 401) fail(401, 'AUTH_REQUIRED', 'Sign in with a valid account.');
     if (response.status === 403) fail(403, 'ACCESS_DENIED', 'This account is not authorized for the request.');
     if (response.status === 404) fail(404, 'RECORD_UNAVAILABLE', 'The requested record is unavailable.');
