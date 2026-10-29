@@ -1,0 +1,27 @@
+{
+  "status": "NOT_APPROVED",
+  "scope": "ISOLATED_AB_ONLY",
+  "approval_ref": null,
+  "workspace": 3,
+  "source_branch": "v1",
+  "tenant_kind": "ephemeral",
+  "tenant": null,
+  "database_identity": null,
+  "parent_database_identity": null,
+  "expires_at": null,
+  "credential_expires_at": null,
+  "source_manifest_sha256": null,
+  "adapter_sha256": null,
+  "fixture_run_id": null,
+  "proof_refs": {
+    "physical_identity": null,
+    "restricted_tenant_access": null,
+    "parent_live_denial": null,
+    "application_token_isolation": null,
+    "empty_environment_no_live_copy": null,
+    "provider_egress_block": null,
+    "deployed_source_hashes": null,
+    "fixture_ownership": null,
+    "expiry_and_recovery": null
+  }
+}
