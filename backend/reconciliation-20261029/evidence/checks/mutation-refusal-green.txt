@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: covers every captured mutation route
+ok 1 - covers every captured mutation route
+  ---
+  duration_ms: 2.2388
+  type: 'test'
+  ...
+# Subtest: POST bookings refuses before any effect
+ok 2 - POST bookings refuses before any effect
+  ---
+  duration_ms: 1.0884
+  type: 'test'
+  ...
+# Subtest: PATCH bookings/{booking_id} refuses before any effect
+ok 3 - PATCH bookings/{booking_id} refuses before any effect
+  ---
+  duration_ms: 0.5327
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/cancel refuses before any effect
+ok 4 - POST bookings/{booking_id}/cancel refuses before any effect
+  ---
+  duration_ms: 0.3216
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/confirm refuses before any effect
+ok 5 - POST bookings/{booking_id}/confirm refuses before any effect
+  ---
+  duration_ms: 0.3288
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/consent-attempts refuses before any effect
+ok 6 - POST bookings/{booking_id}/consent-attempts refuses before any effect
+  ---
+  duration_ms: 0.3019
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/holds refuses before any effect
+ok 7 - POST bookings/{booking_id}/holds refuses before any effect
+  ---
+  duration_ms: 0.2791
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/holds/{hold_id}/release refuses before any effect
+ok 8 - POST bookings/{booking_id}/holds/{hold_id}/release refuses before any effect
+  ---
+  duration_ms: 0.3169
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/payment-selection refuses before any effect
+ok 9 - POST bookings/{booking_id}/payment-selection refuses before any effect
+  ---
+  duration_ms: 0.3667
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/quotes refuses before any effect
+ok 10 - POST bookings/{booking_id}/quotes refuses before any effect
+  ---
+  duration_ms: 0.4028
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/quotes/{quote_id}/accept refuses before any effect
+ok 11 - POST bookings/{booking_id}/quotes/{quote_id}/accept refuses before any effect
+  ---
+  duration_ms: 0.2882
+  type: 'test'
+  ...
+# Subtest: POST bookings/{booking_id}/resume refuses before any effect
+ok 12 - POST bookings/{booking_id}/resume refuses before any effect
+  ---
+  duration_ms: 0.2382
+  type: 'test'
+  ...
+# Subtest: POST consent-attempts/{attempt_id}/decision refuses before any effect
+ok 13 - POST consent-attempts/{attempt_id}/decision refuses before any effect
+  ---
+  duration_ms: 0.2225
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 123.9045

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\ashok\Documents\GitHub\zippy-backend-m1-review\scripts\validate-five-agent-schema.py", line 16, in <module>
+    assert len(content) == entry["size_bytes"]
+AssertionError

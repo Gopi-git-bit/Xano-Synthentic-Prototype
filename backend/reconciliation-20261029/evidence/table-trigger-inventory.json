@@ -1,0 +1,15 @@
+{
+  "label": "table-trigger-inventory",
+  "method": "GET",
+  "url": "https://xynd-fnea-khtp.n7e.xano.io/api:meta/workspace/3/table/trigger?branch=v1&page=1&per_page=100&include_draft=true",
+  "status": 200,
+  "started_at": "2026-10-29T08:28:33.192Z",
+  "finished_at": "2026-10-29T08:28:33.549Z",
+  "raw_sha256": "7029cff10dca1a6df4382f932d94d52facb92454dd7fca544a763ebfd0186245",
+  "body": {
+    "curPage": 1,
+    "nextPage": null,
+    "prevPage": null,
+    "items": []
+  }
+}

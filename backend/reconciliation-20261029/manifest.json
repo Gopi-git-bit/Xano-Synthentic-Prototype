@@ -1,0 +1,1211 @@
+{
+  "created_at": "2026-10-29T08:52:16.461Z",
+  "base_git_commit": "ed62038f571c02f339972ad7ec5d7cd1a9cffe18",
+  "workspace": 3,
+  "branch": "v1",
+  "data_source": "live",
+  "synthetic_environment": null,
+  "hosted_candidate_runs": 0,
+  "files": [
+    {
+      "path": "backend/reconciliation-20261029/.gitattributes",
+      "bytes": 171,
+      "sha256": "1f54d517f7e15ab5fadda2b823344a1583641055297e040ad8552a8fd074fe72"
+    },
+    {
+      "path": "backend/reconciliation-20261029/README.md",
+      "bytes": 2847,
+      "sha256": "3b7b2cc5e5a70de3acbe22e2cebe9c2f81927863ae59d22d3ee432959cc327fb"
+    },
+    {
+      "path": "backend/reconciliation-20261029/TEST_PLAN.md",
+      "bytes": 6704,
+      "sha256": "feb359b85a094b37235b75226561a8bcc58a1af3fa054fffd4b54b23572f8c78"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/cancel_POST.xs",
+      "bytes": 321,
+      "sha256": "d013d4e28350c1d75edceaf7e4051f10abab95fd6ff57ddb34b95bb844fdc724"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/confirm_POST.xs",
+      "bytes": 322,
+      "sha256": "e113bcca9ce774b51d0836e8a411dc874ad0e050c88c57aab097371f3726dc8d"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/consent-attempts_POST.xs",
+      "bytes": 331,
+      "sha256": "f6270b63a6ea269f412e2ad44af324e7ea59b727cf3b2cd0c0a701ea49db66bc"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/holds/_hold_id_/release_POST.xs",
+      "bytes": 338,
+      "sha256": "3e5f9a4ceb2e97c5c0a19759bd404fefdd1f2298b58884e2068d0964eb2b976f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/holds_POST.xs",
+      "bytes": 320,
+      "sha256": "e2aa9343784fdedc8ec24fdd726ab66ddb98af99acd19fc703a4c608d83c99ea"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/payment-selection_POST.xs",
+      "bytes": 332,
+      "sha256": "b028807f4e278c5cd1206f070b449e7884df1895fdc8dd3dcd6f1a610138b3bf"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/quotes/_quote_id_/accept_POST.xs",
+      "bytes": 339,
+      "sha256": "508950b03e227f1e9c4dd0572a64d1bac514433c964a29db5fe3edc344bd0ab9"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/quotes_POST.xs",
+      "bytes": 321,
+      "sha256": "274b9f2e915bb8609af2497ea7f789075a77dbe402512dd2264fc31bffdffcd5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id_/resume_POST.xs",
+      "bytes": 321,
+      "sha256": "96b5934d83dd108cda21f3780b6608eab29d09922f78978ee0f6019917cfde08"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings/_booking_id__PATCH.xs",
+      "bytes": 315,
+      "sha256": "280280622316e1200c0bafb1a8dc5760ce9f70043af34382b9924a186353d4a4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/bookings_POST.xs",
+      "bytes": 383,
+      "sha256": "1cc432ee2426f8e54dac289f4524f973fc9263f71923046dba377f48832f69f5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/candidate/query/Zippy_V1/consent-attempts/_attempt_id_/decision_POST.xs",
+      "bytes": 331,
+      "sha256": "e6dd67e1dea18121746cf5d1177f32ceb4c7383f00417813ae6a702bbcaf9d93"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/agent-inventory.json",
+      "bytes": 1128,
+      "sha256": "0009d8eb05003d9344b39a9bdd999b199c34348aa89aff6e304ec30677245072"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/agent-trigger-inventory.json",
+      "bytes": 476,
+      "sha256": "317fc7f729bf5266fd016b1eb34b628f465d6aca97faa9c5f7d0f756753a8bbd"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/api-groups.json",
+      "bytes": 2318,
+      "sha256": "95dae120cf4c9a2f9113044f43d138da579834feec8bd8190f1fe0ab50ea80db"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/branches.json",
+      "bytes": 450,
+      "sha256": "e4f46ee178fc74f28baeacfb963d746501d12b1c2152823f0b0ec591913f5caa"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/capture-ledger.json",
+      "bytes": 7852,
+      "sha256": "77fad6153679c695c0924998b694417099073c601cc36c444e982e97bdcdb492"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/capture-tools/capture-datasource.cjs",
+      "bytes": 1113,
+      "sha256": "1b795c82420cd0771713571a61e038f8d738c856c61af0be38680e536583933f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/capture-tools/capture-workspace.cjs",
+      "bytes": 5246,
+      "sha256": "e67d8100456e5a09baa5a8bbc2e7d0c3924a035801e0a214fa6385d67f60a5da"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/capture-tools/discover-meta.cjs",
+      "bytes": 3170,
+      "sha256": "1ef2ac4e6635705973840929cf68c44fb21280dd22638aa7d373a4f7b4d89d37"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/capture-tools/index-capture.cjs",
+      "bytes": 2121,
+      "sha256": "83dccd25b17085977d4eca036121103fd4fe603b0a26a487ef50cdec0ddd61ea"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/capture-tools/spec-receipt.json",
+      "bytes": 206,
+      "sha256": "24f840600c374365cfa16a99489d92c7352940f11cdc1b9dfcb5bd77ac322bb8"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/five-agent-canonical.json",
+      "bytes": 2264,
+      "sha256": "10e43051af8fc57e84d42a409fc638a59d4b99fbc3ee7f073ef0265f49fc3228"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/five-agent-config.txt",
+      "bytes": 896,
+      "sha256": "7595e299a1e6d79ca343dda0a3c76bcd5157981da1f44a6be30e50131e803317"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/five-agent-lf-comparison.json",
+      "bytes": 6439,
+      "sha256": "0f16c668c74c1f128f44d8801193d46ee0eb10f4449800f51e96ead47d764af4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/five-agent-schema-lf-comparison.json",
+      "bytes": 6319,
+      "sha256": "6203b600a163c48d22e8c42fcaec1d621763b38d4957e214c9e2c00d0852de24"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/five-agent-schema.txt",
+      "bytes": 226,
+      "sha256": "a1dff626a6ad6c41dcbb481bf1171677528adce5d0f54e9ee0baa76db87053b6"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/frontend-contracts.txt",
+      "bytes": 3976,
+      "sha256": "bd923747302c8663c7f8602280e3d94adf6638443e8eaaeef0d3b8f1ab11c46a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/known-gaps-final.json",
+      "bytes": 1763,
+      "sha256": "c62ce7286246ee46cdb0811f9eaa9b49f0a80d8336a294036c2a17caf8817eb3"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/known-gaps-red.txt",
+      "bytes": 1280,
+      "sha256": "8840b63f67b458ea90b152295933fbbc8079be242e5a594c9a1ab8d3af3fec8a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/m1-execution-model.txt",
+      "bytes": 4915,
+      "sha256": "c1b6707536dcf7165bdb610cecbdefc0edc5accc85cbef7dc14d1b28d0a891a1"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/mutation-refusal-green.txt",
+      "bytes": 2589,
+      "sha256": "9458aa258412a27da41c5f0207ed2e7ea145f543c83a17f34666919807eed74d"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/red-decoding.json",
+      "bytes": 2407,
+      "sha256": "f209bfa13266305f7096272f95f2170563f4206dcff8e15d692442eeb2148eac"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/checks/results.json",
+      "bytes": 5091,
+      "sha256": "24d5c017f5dbc67d5c4f1f5337898e8e0e61d0a558cb13ab35b4e965acd1d8b4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/comparison-20261027.json",
+      "bytes": 32574,
+      "sha256": "8c7c73c2ff5835224cb012492fed09e376da1c3e6113e7304dabcdff8254b368"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/data-sources-corrected.json",
+      "bytes": 315,
+      "sha256": "2bb7539e8121f76aa920907fd5846dc40eed16a5af88637e7ac9021b2fca2183"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft-export.json",
+      "bytes": 369,
+      "sha256": "ac180434dcbda2bb12aeb86d8f013a53e49a6e4031038cbfb359468e7fe8da6d"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft-export.xs",
+      "bytes": 203403,
+      "sha256": "6030e3e014b51d49d7f6c5fe1b65ec15e25ce22f8a9027990a746367f719f77d"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft-inventory.json",
+      "bytes": 27247,
+      "sha256": "7c5213b484a1ecc5303cadb6ce989205aef926338aafb2f63e80c2dac08a0012"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/addon/user.xs",
+      "bytes": 232,
+      "sha256": "4b0e62da37af0fb6c82e7d24a37005e9e2017d688a4c0f1a363bdc665af8376a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/agent/Xano_Example_Agent.xs",
+      "bytes": 2229,
+      "sha256": "df05d5593a078bd5e260f7a3dccad2e85fd1c39fa2503230d8f68ee1980fe857"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/api_group/Authentication.xs",
+      "bytes": 264,
+      "sha256": "f45a8f5c19cf316038ed56f8c915343433e1bff779d5bd7801e11b95c2a014d2"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/api_group/Event_Logs.xs",
+      "bytes": 187,
+      "sha256": "7daea88b50dff3f2e3c3c4b3b65a216c674ee5eae185b82efd1a7125e31cff1a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/api_group/Zippy_V1.xs",
+      "bytes": 204,
+      "sha256": "e9166f67b2db2115bac5c593d8ca498fee3709a215c624abc47ea9e7b9f97235"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/Quick_Start/enforce_role.xs",
+      "bytes": 1952,
+      "sha256": "fe2c45de2aa3d86d30482d6d1c9aabe8db4a084e46a71b8b6e79cfcc35f145ac"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/Quick_Start/generate_magic_link.xs",
+      "bytes": 1657,
+      "sha256": "bb9173ffee0dd9d5ad5579da9275c7cfc5f53d5af95bb3ba6e3de3ef8a4dac47"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/Quick_Start/log_event.xs",
+      "bytes": 1417,
+      "sha256": "447571d6ba5ddde1668508972aeeba24cc7dd337b813d398196d22e336a2c5c4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/accept_quote.xs",
+      "bytes": 3500,
+      "sha256": "b460d8ce8d150061fbaa59fd60632f2db800a4cff3b0debd672911177740d226"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/cancel_booking.xs",
+      "bytes": 3541,
+      "sha256": "f5926623dadba900a78f55532fa0180d1345c311c8de545059d4f64fab009a55"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/confirm_booking.xs",
+      "bytes": 5479,
+      "sha256": "593ef342ab30f442588932b150ac2b56a32dccb6a2c7e018f9d26303f3f24861"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/create_consent_attempt.xs",
+      "bytes": 5930,
+      "sha256": "bd65362d4888cfcf526413b0bbfe712f8a682e70a214bba972a3029f2b3076cb"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/create_draft.xs",
+      "bytes": 5796,
+      "sha256": "1b805aea468cc9e0197875fdb6ae69eba1a726331c405faa3be4abfaed37956f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/invalidate_quotes.xs",
+      "bytes": 2539,
+      "sha256": "b9219f267cb6c166e96f4e3aa231853e6c708524a98837e2dc3eba0652a3600c"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/manage_hold.xs",
+      "bytes": 5831,
+      "sha256": "82c4027e907347591b3c75a7ac4da67697509098b6c05ee6223ccfd8ffe8a4dd"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/record_consent_decision.xs",
+      "bytes": 5588,
+      "sha256": "3bd9ef1f9de5511314f67707b62bd9869e965d277a76d60d045cd887bd9824d1"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/resume_booking.xs",
+      "bytes": 4711,
+      "sha256": "6786bddbe194ae6d58c6b7ab8fc23d0c02c329278121c202befeb4db5f3ef218"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/booking/select_payment.xs",
+      "bytes": 3114,
+      "sha256": "43ac06d71d33314cf08d59252b83b8dc6d2f4ca703c9d0f0ed3a7d1a49441288"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/pricing/calculate_quote.xs",
+      "bytes": 10206,
+      "sha256": "72a908b8aad9deff14c2986ef19e9a94c2b69893867e50e15dad8719c22f2524"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/security/authorize_resource.xs",
+      "bytes": 3723,
+      "sha256": "ad30437448894dd950579d77bdb92937642befd1bab56f2791573de411770668"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/security/complete_idempotency.xs",
+      "bytes": 996,
+      "sha256": "e078bf6d7cf8e433c61621cff8878c01c782713781f222398d38b8bd49d71050"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/security/resolve_context.xs",
+      "bytes": 4469,
+      "sha256": "39485b53426ec56871b585c6dad3c5cc8d2b49bf9afe6feaf3aeb0be8a134c3f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/security/validate_command.xs",
+      "bytes": 3888,
+      "sha256": "bfa937593d1e954cf8c956f25839a274f0c8910c576f7e5027a817d8d3b4db94"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/function/tests/run_p2_suite.xs",
+      "bytes": 11744,
+      "sha256": "ae531762bf3759424e3e83b1e121609c1951b4b763786ea380dae2016bf84495"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/mcp_server/Xano-Synthetic-Prototype.xs",
+      "bytes": 727,
+      "sha256": "40c558160216c2f467b39cdb066eee0c76343216788b7c536e09ba60034a8118"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/middleware/Zippy_request_guard.xs",
+      "bytes": 691,
+      "sha256": "21a0a61ac076ffeaa500f8950eec5654fc5b607e9d10e07446b0a8086761f81c"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Authentication/auth/login_POST.xs",
+      "bytes": 1298,
+      "sha256": "942a4ba5ee06bba1c1b5d110744fe02805a9ec690c3a9b230e80a390b4b57fb8"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Authentication/auth/me_GET.xs",
+      "bytes": 744,
+      "sha256": "37abd576b0688961319367d5a8eb7af3ef40c0e191b24e14b64a0b638f82da74"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Authentication/auth/signup_POST.xs",
+      "bytes": 2227,
+      "sha256": "2491af030318c51648c6eef66610502a3e7cc08592999c18f43e398c2dcde4f2"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Authentication/chatgpt_POST.xs",
+      "bytes": 305,
+      "sha256": "182205792e01c635dfd86c1b33ff3c2370d4b1611ccdcb7f1327cd0dd019c5b4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Authentication/message/send_welcome_email_POST.xs",
+      "bytes": 2098,
+      "sha256": "cf47debd69c06aeb06bea914e690c1d610bc47dd5a3e3200b980224192aace7a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Authentication/reset/magic-link-login_POST.xs",
+      "bytes": 3080,
+      "sha256": "06406d766cd162696afeb4c6d08c311564ff14ee13a7d0f09bbbbd9d884818bf"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Authentication/reset/request-reset-link_GET.xs",
+      "bytes": 2839,
+      "sha256": "915a68943b6d80faa89b6fcd0d646d703081be1d8e4326b9462afe6316c73479"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Authentication/reset/update_password_POST.xs",
+      "bytes": 1393,
+      "sha256": "a45a7933b7e672f6eba70a4d1c4c933e4e2f4bcfc1fd8f06f4dba1cd350145d7"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Event Logs/logs/user/my_events_GET.xs",
+      "bytes": 809,
+      "sha256": "6b3a5cb5cdbf58024d0dc8618ca5ba2784bfad8ba346e2f30b2883b6ea342b1f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/cancel_POST.xs",
+      "bytes": 2479,
+      "sha256": "2b486d72ed508a35adab3266c094741d0cd922cb63580660015e5e09c23476c6"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/confirm_POST.xs",
+      "bytes": 2264,
+      "sha256": "1db696e70330a434d889f669d6e37136189fe1157684b4e4c96e96dea89d3ad7"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/consent-attempts_POST.xs",
+      "bytes": 2429,
+      "sha256": "0cd464f58b043082cf88aca35907d0d39d4421882767ae924ff50e21202b4193"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/holds/_hold_id_/release_POST.xs",
+      "bytes": 2658,
+      "sha256": "79d8c81adca4d76c5d76b131dd82e99caf45424face275bca1181b0c0ac8ca41"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/holds_POST.xs",
+      "bytes": 2702,
+      "sha256": "dbe215eaeb11c10b0024f9c5ef2361c0a38b7e32c0aad0352b445f617f5248ef"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/payment-selection_POST.xs",
+      "bytes": 2567,
+      "sha256": "f7ab535485ef94afcf5b264d647154748b2827dfaae36a6dc8629fb4eb125d36"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/quotes/_quote_id_/accept_POST.xs",
+      "bytes": 2295,
+      "sha256": "1a379a4b30aa188f630dc527f24ee052807ad42c889e90cdea14e483c1135f59"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/quotes_POST.xs",
+      "bytes": 1505,
+      "sha256": "c1a7d12c5c2b9868bd98748054b6986f2063ef636ec0d5ca5d9718c386ae26a9"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id_/resume_POST.xs",
+      "bytes": 2219,
+      "sha256": "e35dbb0b2aa3f1b9359775cfdd262f0b51f3f257df4f20a69e3f157ba32705ba"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id__GET.xs",
+      "bytes": 4026,
+      "sha256": "90c48e7a158d4569d20914572efc8d84d82d886d17b1ee9656b5a8a20ea82ee0"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings/_booking_id__PATCH.xs",
+      "bytes": 5229,
+      "sha256": "33f2d6e8beb90f83d6db0f091a90d06f0312bc0d308a75a9552280baeccd0f26"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings_GET.xs",
+      "bytes": 2897,
+      "sha256": "f41d682cafca38c5d5d2e159e5e6e0c149911cafaf58663902ad11613986d901"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/bookings_POST.xs",
+      "bytes": 3589,
+      "sha256": "a7bf517c2b6106c6da70c62a44652b47197da2b308c7ad390dfc2afbdab5505d"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/query/Zippy_V1/consent-attempts/_attempt_id_/decision_POST.xs",
+      "bytes": 2241,
+      "sha256": "e48b2e33db77563393cf72460120b709f16c9ffb1f192a8c07a6a3a218399232"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/active_assignment_reservations.xs",
+      "bytes": 1283,
+      "sha256": "c0ec7ed74cc7fbd17ab498d8531f19781a37cfd3a2f044da8c9195994d04371c"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/agent_decision.xs",
+      "bytes": 1463,
+      "sha256": "3ebc4a2f2691fbe70a5716a982017b0459dede137d4df2a8723a1d0849ba87bb"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/agent_execution.xs",
+      "bytes": 1444,
+      "sha256": "d54235f0e0ca3a9eff8eed9e2d7d10aae39c95cbd66dd00ad6ff303a1f9daa9f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/approval_request.xs",
+      "bytes": 1759,
+      "sha256": "5eaad9c6f5cefe0880aed394f98bf65b797fe2b15ef2131d507c65482e04a8c7"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/audit_log.xs",
+      "bytes": 1446,
+      "sha256": "a1b33133ca8fcbd302558004d698f2390d4398d6c063cb59baf3eab76ca8b736"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/booking_quote.xs",
+      "bytes": 2644,
+      "sha256": "6a83e33dace5792cc6a9bd7160ed4a124ddf28fd7aad7582df9d202600cc05f7"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/cargo_detail.xs",
+      "bytes": 2302,
+      "sha256": "4b9a9c2a4fd7d7310d1f46b8b46cd85196d1d764dbc257452d227cfb5c18ebe7"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/compliance_documents.xs",
+      "bytes": 1789,
+      "sha256": "95d211d5193efa60ea87064660352d587cc1f73403016f04cf51cfea11d40218"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/customer_booking.xs",
+      "bytes": 3565,
+      "sha256": "28460bcee5ab57bbe6818630e7a6c0589180014360fb3e11a281d51848d79daf"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/driver_profile.xs",
+      "bytes": 1570,
+      "sha256": "da36ebf979aa5f460b5289c7f9364208c6e786a742b5bc85aaee94d1bfc557ca"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/durable_tasks.xs",
+      "bytes": 1586,
+      "sha256": "1e62b5d49f5e33fbd57600fe6c542c37fa3766b67746d94d325ffa8aca9d2656"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/event_log.xs",
+      "bytes": 743,
+      "sha256": "e063661ec70b8912626c7ca360c7caaaa8e4f2ba30a2640b7913e5c1d70d29f4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/event_outbox.xs",
+      "bytes": 2156,
+      "sha256": "9c526147a34316338b43b45b75cb395ea0f0bc769e99583b27345d8720fca1fa"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/idempotency_key.xs",
+      "bytes": 1143,
+      "sha256": "0b00ed2ceb19edf60f2b41fcb636c87403f652ceb048ae2c8686ef93e92dfc37"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/incident_dispute.xs",
+      "bytes": 2096,
+      "sha256": "102718e28765e551a41b532c8d352e71fa5c558590a8b8ec674e348752688f26"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/order_holds.xs",
+      "bytes": 1597,
+      "sha256": "3154b01d720ce5d56562658eca79c5e4e45f8f4c1a9b7cd53696250015e5c381"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/organization.xs",
+      "bytes": 1385,
+      "sha256": "f1c48e82bba001c9db26fe11db0766afcaf491fd7c39e1990763b5cef4283c33"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/organization_member.xs",
+      "bytes": 1036,
+      "sha256": "a39aaec69b9346b94eeb90b8dd466de673c87b110dc3e003c46838cedbcca03b"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/otp_challenges.xs",
+      "bytes": 1598,
+      "sha256": "8c7c6e58eaa19196cefaebc1ad6c6dfe52f488d3c0777a89bccaf23bbf3ceb83"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/payment_transaction.xs",
+      "bytes": 2086,
+      "sha256": "d3765ccabe37314693e173c40b49948b321d94df44a912cffbe36c85b8c910bf"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/pricing_policies.xs",
+      "bytes": 1785,
+      "sha256": "e49fe740673ecbc4832a90b73da454237862e7df2e8d21769b1f8ed8f69e813c"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/proof_of_delivery.xs",
+      "bytes": 1997,
+      "sha256": "b74bc56ea08e7f93a1097791fd0698f12f3b671cef2b63941ecae29349399539"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/refund_request.xs",
+      "bytes": 2298,
+      "sha256": "5b3eb0920f84520d32769f9b09f7c5b84aa0f4e89494cdd4a369866937d256bb"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/route_cache.xs",
+      "bytes": 1150,
+      "sha256": "33fb9647e4c9662364a069f8f7bebcf6cfb005e039b79e1e8be0bc38849493f2"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/settlement.xs",
+      "bytes": 2058,
+      "sha256": "ec6268259057b162bd22fe044a1a6d427365056f8c66adc32b50465415db50e5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/table_index.xs",
+      "bytes": 1222,
+      "sha256": "5df4a0268d9a0f1aa4901ed129a8843f87aaf9d8b7ae0d66395149b6c6bb2310"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/topay_consent_attempts.xs",
+      "bytes": 1838,
+      "sha256": "f1921c590db0a6561057b332e4a3ba70efd03b27d424a59abe2fff531b07c983"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/tracking_event.xs",
+      "bytes": 1517,
+      "sha256": "5f223a46f56f9209c8c454ef595364da13e60f1bd1526d0e38cb1a7f02d6abff"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/trip.xs",
+      "bytes": 2114,
+      "sha256": "680044d5d3d7ddbfbd8f49daf159b403f5a3020a2d90522dc66bc57a4debe95e"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/trip_stop.xs",
+      "bytes": 1721,
+      "sha256": "9440af2c8f05c1e97886b1820fe27374b185d4651ba47a7021f6f320954fac5a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/user.xs",
+      "bytes": 1617,
+      "sha256": "506037cf4dc4ab9d0e906e13507ae82ead232ec677263129f95dbf87fd87c858"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/vehicle.xs",
+      "bytes": 2198,
+      "sha256": "1dca5c4cbb343408aa462f985bdc3d76147cd7c929e46729d0a03e7863218d8f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/table/vehicle_availability.xs",
+      "bytes": 1348,
+      "sha256": "3891cf2aac1bd351662bac020b88217891cde2e5014787a61f8c60fdf6fae594"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/tool/search_xano_docs.xs",
+      "bytes": 799,
+      "sha256": "6d8fcb26ab81b8c267e5c0207817210fbfd83f8f9d0c474c09c5d49cc7724501"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft/workspace/Zippy_Synthetic_Prototype_1.xs",
+      "bytes": 211,
+      "sha256": "d70f8f0eb2e3edf2285bb6ad735c1820cec3df456ed56784aac20cdf1ef62c0b"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/effective-identity.json",
+      "bytes": 3074,
+      "sha256": "6dfeb2622d5aa8bc7cf55a8ca38fdd00880bd5c6c7526d70f8e8d45dfabb6a7f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/ephemerals.json",
+      "bytes": 430,
+      "sha256": "5a701cacf57e7fd2e4d665f3e1e39bf3994758bda59216ca71e58a6f7eba0ae5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/group-5-openapi.json",
+      "bytes": 13516,
+      "sha256": "ba5ae0719bbbfd2c60816b6a1523e4c3b126cc8e62d50d7c6a3cc9569dd39052"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/group-6-openapi.json",
+      "bytes": 4501,
+      "sha256": "b34e9964aa8bdf26e23e3187616554dd10b279ff3123843a1b5258878fb111c5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/group-7-openapi.json",
+      "bytes": 30355,
+      "sha256": "6694cf102aa2d425774ede7d08910fdcb85b41dc9ef001ce88fe95a12fc17e2e"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/middleware-inventory.json",
+      "bytes": 1582,
+      "sha256": "2b00e6988ae258f80af5abf44608c9659d6c44ad964fa2ef62bd76cd3782fc23"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/mutation-refusal-red.tap",
+      "bytes": 28638,
+      "sha256": "f3b970c53a7e4b4a6a9007a36fdac00fe04affd7f038296a898708f8491b9195"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/mutation-refusal-red.txt",
+      "bytes": 14428,
+      "sha256": "171854a4dca1c7bfa13029fa38064232519db670913eee3139967eaf7ec12616"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published-draft-diff.json",
+      "bytes": 10429,
+      "sha256": "ecb2c41cb79c9b9c54a53ec1a043b4e7333773b9fd609cb813791657cd615bc6"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published-export.json",
+      "bytes": 374,
+      "sha256": "6299071205a7257537e3c9121616b32d77dd77c7354ed4d6f956b32c0167fabe"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published-export.xs",
+      "bytes": 90308,
+      "sha256": "859c60e5519b7568169c237fdf5d7e1209fc30c1af0bf3459068c8633c674f11"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published-inventory.json",
+      "bytes": 27583,
+      "sha256": "11587d65ae89fc981ace26acf22a09e17fc6a0da1d1202e15b37f0d654fddfdb"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/addon/user.xs",
+      "bytes": 232,
+      "sha256": "4b0e62da37af0fb6c82e7d24a37005e9e2017d688a4c0f1a363bdc665af8376a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/agent/Xano_Example_Agent.xs",
+      "bytes": 2229,
+      "sha256": "df05d5593a078bd5e260f7a3dccad2e85fd1c39fa2503230d8f68ee1980fe857"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/api_group/Authentication.xs",
+      "bytes": 264,
+      "sha256": "f45a8f5c19cf316038ed56f8c915343433e1bff779d5bd7801e11b95c2a014d2"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/api_group/Event_Logs.xs",
+      "bytes": 187,
+      "sha256": "7daea88b50dff3f2e3c3c4b3b65a216c674ee5eae185b82efd1a7125e31cff1a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/api_group/Zippy_V1.xs",
+      "bytes": 204,
+      "sha256": "e9166f67b2db2115bac5c593d8ca498fee3709a215c624abc47ea9e7b9f97235"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/Quick_Start/enforce_role.xs",
+      "bytes": 1952,
+      "sha256": "fe2c45de2aa3d86d30482d6d1c9aabe8db4a084e46a71b8b6e79cfcc35f145ac"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/Quick_Start/generate_magic_link.xs",
+      "bytes": 1309,
+      "sha256": "24253c3f9781db5b198726eaa550a512559c22db19ced11eae71bd497cb19e9d"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/Quick_Start/log_event.xs",
+      "bytes": 845,
+      "sha256": "97ee19bd8a71118387fad7a80bc10780b9324804e9afe06af4d48c47cbc7d5f4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/accept_quote.xs",
+      "bytes": 123,
+      "sha256": "ab9d493b350ba68311bd446ff9d3b6417ab63328ba7aeb3ba950716f18f549b0"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/cancel_booking.xs",
+      "bytes": 125,
+      "sha256": "050230fe65b8f72a776fd59adf8dd401e45a0c15830accbf2a3bbf60c42897e2"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/confirm_booking.xs",
+      "bytes": 126,
+      "sha256": "78f2492c179d05d9df190df9bd643c3f2dcd4f2a853bcc70c72fd087503c84d2"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/create_consent_attempt.xs",
+      "bytes": 133,
+      "sha256": "4cf0bc549187a458e5b48c4203349c2d49413e6009e1a67ce7316ccf26d09867"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/create_draft.xs",
+      "bytes": 123,
+      "sha256": "d40539036367db0608ffac5a07b643c07e0d5e13b1dabe2baf86d63c836f56ac"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/invalidate_quotes.xs",
+      "bytes": 128,
+      "sha256": "0bb0ef3f8d4099f3953c0e30b394dbbe13b3a1699f028632b449d0c18c936f24"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/manage_hold.xs",
+      "bytes": 122,
+      "sha256": "af6418541e2ca6c0210305763dad27988b5e0a76ca3956f3f9fa932d0a9386f9"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/record_consent_decision.xs",
+      "bytes": 134,
+      "sha256": "441a23d2fa0a7cd688a2243ee67dfdabe5f93dae7163b1b82cce3831a83c59a4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/resume_booking.xs",
+      "bytes": 125,
+      "sha256": "e6a2ca7d5895d75df2e6aa1ca34b9630af332f486598c8c490766e3279f30be0"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/booking/select_payment.xs",
+      "bytes": 125,
+      "sha256": "a7bc8de66ab8a812f3eb4964ce7a4b021c5f8b5b801a5a9a2b94045197973a12"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/pricing/calculate_quote.xs",
+      "bytes": 126,
+      "sha256": "ac11f4cdb59fc65237a056713e098e5f812e2bde9d5d28e2239210870a2a6276"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/security/authorize_resource.xs",
+      "bytes": 4121,
+      "sha256": "6036cb130fd6af8d845a5f2ac22400bf809cc992ecfcbd4ad7a9fff6a5c7a33b"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/security/complete_idempotency.xs",
+      "bytes": 132,
+      "sha256": "f9fb5717ccb6a7fff20096f87d7411af225b754cf58cce32ecb9b677c71ee2f3"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/security/resolve_context.xs",
+      "bytes": 5755,
+      "sha256": "9ff084010788012fced416399a1b429a11d0a842a58df454c4e09c31e79443b4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/security/validate_command.xs",
+      "bytes": 128,
+      "sha256": "2f86f3f50d46fd391dcadfb4a5bdc9d2096d47e99879e151867a7fa84b50663d"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/function/tests/run_p2_suite.xs",
+      "bytes": 121,
+      "sha256": "7e411d80fb04470de0a8c8d0754ca2573ec877da93f322284a760646dca42eb4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/mcp_server/Xano-Synthetic-Prototype.xs",
+      "bytes": 727,
+      "sha256": "40c558160216c2f467b39cdb066eee0c76343216788b7c536e09ba60034a8118"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/middleware/Zippy_request_guard.xs",
+      "bytes": 426,
+      "sha256": "621824de558d9b716169aa5387c7e42291a655005b3dc6ace59bcef07686422a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/auth/login_POST.xs",
+      "bytes": 1330,
+      "sha256": "e8909a4c322a01f8b65689f60b745fce3a14f8a39746712abe99e13e8576f958"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/auth/me_GET.xs",
+      "bytes": 669,
+      "sha256": "38c539bcad746bc27a8b73b54dfe373481172497ad52295871b3bfd1036dd3d8"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/auth/signup_POST.xs",
+      "bytes": 435,
+      "sha256": "e4046787ca481f2ec53d975192684a0cecf3e2106d8c823edfd940ef90ee4722"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/chatgpt_POST.xs",
+      "bytes": 305,
+      "sha256": "182205792e01c635dfd86c1b33ff3c2370d4b1611ccdcb7f1327cd0dd019c5b4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/message/send_welcome_email_POST.xs",
+      "bytes": 452,
+      "sha256": "dfbdc726fef6893f7af72688904a6b32828cd1ba15d96095b502febda9d1a750"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/reset/magic-link-login_POST.xs",
+      "bytes": 446,
+      "sha256": "c45c8641cee64db5927dd487c9b3b72a7e1a9a57797ca79c44a004b010fb4c5e"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/reset/request-reset-link_GET.xs",
+      "bytes": 447,
+      "sha256": "c4e85220a1b2e7a1637761013043559a8b5a0cac381a98108290673fc351f8b4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/reset/update_password_POST.xs",
+      "bytes": 461,
+      "sha256": "77f5990ccddd548c2dedb1bd3e3e9ad9d5268475bb02ed474c320a441964f06f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Event Logs/logs/user/my_events_GET.xs",
+      "bytes": 1281,
+      "sha256": "582729aa9e0c3e6c581750eaccd5046bc530936d646f2939b3c90635827eb555"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/cancel_POST.xs",
+      "bytes": 164,
+      "sha256": "e39992239dd8f47538f92857d7fb6fde9f2fa1db885de6e72aafb670f21aea19"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/confirm_POST.xs",
+      "bytes": 165,
+      "sha256": "ee8035c44eb569d093369a93e08b0773617b0426955abcb09f6552502fdfed83"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/consent-attempts_POST.xs",
+      "bytes": 174,
+      "sha256": "d8b996ddae8fb79773ad9378ff27787b45100e05fd799e97c98279440c1142aa"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/holds/_hold_id_/release_POST.xs",
+      "bytes": 181,
+      "sha256": "92041676cc047ceee6dcaa29a1ff4fe746e0eaf91b13f59334b03158eaaabaef"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/holds_POST.xs",
+      "bytes": 163,
+      "sha256": "b20e5c75a3a15368832a9546e52df60f83c6f507309fcc0b36c71d91e3692f7e"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/payment-selection_POST.xs",
+      "bytes": 175,
+      "sha256": "d214a7080a74f62a5095d422c5be45e2f118a402fea6169860f40d74b45a22c8"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/quotes/_quote_id_/accept_POST.xs",
+      "bytes": 182,
+      "sha256": "12ada5b0789584c0c234626b2f7fb8a2019b351b364564155e550c9e85b2494b"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/quotes_POST.xs",
+      "bytes": 164,
+      "sha256": "10010e5c8327ef2b19811da21ee75ffe61276a5318ff144ff5a4f432380f87a5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id_/resume_POST.xs",
+      "bytes": 164,
+      "sha256": "6aa844e795b794e5b7fa84a7644083ad311798f1892b2270028e0c096861284e"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id__GET.xs",
+      "bytes": 1945,
+      "sha256": "0f6af78a06a5e15f981c849f9631959064831245813fa79e5d768dd8c065ecb0"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id__PATCH.xs",
+      "bytes": 158,
+      "sha256": "c79229e67f83b3fdb09c099a6388d37968acdc9cbb97aeeeb9674cd373f2be71"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings_GET.xs",
+      "bytes": 1614,
+      "sha256": "c33f5a323b2c22c20b44373bf25132f50cbdc75dd9fdb8b43c8955a19703ae1f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings_POST.xs",
+      "bytes": 142,
+      "sha256": "f4ed07744a5664431a526fbd70962162306afed41dff0a43398741b5473dce50"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/consent-attempts/_attempt_id_/decision_POST.xs",
+      "bytes": 174,
+      "sha256": "4ef823ef51ed9acf3797212db523d2151ebd5ebb22ad6e72153c2a35c7b1662c"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/active_assignment_reservations.xs",
+      "bytes": 1283,
+      "sha256": "c0ec7ed74cc7fbd17ab498d8531f19781a37cfd3a2f044da8c9195994d04371c"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/agent_decision.xs",
+      "bytes": 1463,
+      "sha256": "3ebc4a2f2691fbe70a5716a982017b0459dede137d4df2a8723a1d0849ba87bb"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/agent_execution.xs",
+      "bytes": 1444,
+      "sha256": "d54235f0e0ca3a9eff8eed9e2d7d10aae39c95cbd66dd00ad6ff303a1f9daa9f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/approval_request.xs",
+      "bytes": 1759,
+      "sha256": "5eaad9c6f5cefe0880aed394f98bf65b797fe2b15ef2131d507c65482e04a8c7"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/audit_log.xs",
+      "bytes": 1446,
+      "sha256": "a1b33133ca8fcbd302558004d698f2390d4398d6c063cb59baf3eab76ca8b736"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/booking_quote.xs",
+      "bytes": 2644,
+      "sha256": "6a83e33dace5792cc6a9bd7160ed4a124ddf28fd7aad7582df9d202600cc05f7"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/cargo_detail.xs",
+      "bytes": 2302,
+      "sha256": "4b9a9c2a4fd7d7310d1f46b8b46cd85196d1d764dbc257452d227cfb5c18ebe7"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/compliance_documents.xs",
+      "bytes": 1789,
+      "sha256": "95d211d5193efa60ea87064660352d587cc1f73403016f04cf51cfea11d40218"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/customer_booking.xs",
+      "bytes": 3565,
+      "sha256": "28460bcee5ab57bbe6818630e7a6c0589180014360fb3e11a281d51848d79daf"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/driver_profile.xs",
+      "bytes": 1570,
+      "sha256": "da36ebf979aa5f460b5289c7f9364208c6e786a742b5bc85aaee94d1bfc557ca"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/durable_tasks.xs",
+      "bytes": 1586,
+      "sha256": "1e62b5d49f5e33fbd57600fe6c542c37fa3766b67746d94d325ffa8aca9d2656"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/event_log.xs",
+      "bytes": 743,
+      "sha256": "e063661ec70b8912626c7ca360c7caaaa8e4f2ba30a2640b7913e5c1d70d29f4"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/event_outbox.xs",
+      "bytes": 2156,
+      "sha256": "9c526147a34316338b43b45b75cb395ea0f0bc769e99583b27345d8720fca1fa"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/idempotency_key.xs",
+      "bytes": 1143,
+      "sha256": "0b00ed2ceb19edf60f2b41fcb636c87403f652ceb048ae2c8686ef93e92dfc37"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/incident_dispute.xs",
+      "bytes": 2096,
+      "sha256": "102718e28765e551a41b532c8d352e71fa5c558590a8b8ec674e348752688f26"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/order_holds.xs",
+      "bytes": 1597,
+      "sha256": "3154b01d720ce5d56562658eca79c5e4e45f8f4c1a9b7cd53696250015e5c381"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/organization.xs",
+      "bytes": 1385,
+      "sha256": "f1c48e82bba001c9db26fe11db0766afcaf491fd7c39e1990763b5cef4283c33"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/organization_member.xs",
+      "bytes": 1036,
+      "sha256": "a39aaec69b9346b94eeb90b8dd466de673c87b110dc3e003c46838cedbcca03b"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/otp_challenges.xs",
+      "bytes": 1598,
+      "sha256": "8c7c6e58eaa19196cefaebc1ad6c6dfe52f488d3c0777a89bccaf23bbf3ceb83"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/payment_transaction.xs",
+      "bytes": 2086,
+      "sha256": "d3765ccabe37314693e173c40b49948b321d94df44a912cffbe36c85b8c910bf"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/pricing_policies.xs",
+      "bytes": 1785,
+      "sha256": "e49fe740673ecbc4832a90b73da454237862e7df2e8d21769b1f8ed8f69e813c"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/proof_of_delivery.xs",
+      "bytes": 1997,
+      "sha256": "b74bc56ea08e7f93a1097791fd0698f12f3b671cef2b63941ecae29349399539"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/refund_request.xs",
+      "bytes": 2298,
+      "sha256": "5b3eb0920f84520d32769f9b09f7c5b84aa0f4e89494cdd4a369866937d256bb"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/route_cache.xs",
+      "bytes": 1150,
+      "sha256": "33fb9647e4c9662364a069f8f7bebcf6cfb005e039b79e1e8be0bc38849493f2"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/settlement.xs",
+      "bytes": 2058,
+      "sha256": "ec6268259057b162bd22fe044a1a6d427365056f8c66adc32b50465415db50e5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/table_index.xs",
+      "bytes": 1222,
+      "sha256": "5df4a0268d9a0f1aa4901ed129a8843f87aaf9d8b7ae0d66395149b6c6bb2310"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/topay_consent_attempts.xs",
+      "bytes": 1838,
+      "sha256": "f1921c590db0a6561057b332e4a3ba70efd03b27d424a59abe2fff531b07c983"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/tracking_event.xs",
+      "bytes": 1517,
+      "sha256": "5f223a46f56f9209c8c454ef595364da13e60f1bd1526d0e38cb1a7f02d6abff"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/trip.xs",
+      "bytes": 2114,
+      "sha256": "680044d5d3d7ddbfbd8f49daf159b403f5a3020a2d90522dc66bc57a4debe95e"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/trip_stop.xs",
+      "bytes": 1721,
+      "sha256": "9440af2c8f05c1e97886b1820fe27374b185d4651ba47a7021f6f320954fac5a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/user.xs",
+      "bytes": 1617,
+      "sha256": "506037cf4dc4ab9d0e906e13507ae82ead232ec677263129f95dbf87fd87c858"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/vehicle.xs",
+      "bytes": 2198,
+      "sha256": "1dca5c4cbb343408aa462f985bdc3d76147cd7c929e46729d0a03e7863218d8f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/table/vehicle_availability.xs",
+      "bytes": 1348,
+      "sha256": "3891cf2aac1bd351662bac020b88217891cde2e5014787a61f8c60fdf6fae594"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/tool/search_xano_docs.xs",
+      "bytes": 799,
+      "sha256": "6d8fcb26ab81b8c267e5c0207817210fbfd83f8f9d0c474c09c5d49cc7724501"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/workspace/Zippy_Synthetic_Prototype_1.xs",
+      "bytes": 211,
+      "sha256": "d70f8f0eb2e3edf2285bb6ad735c1820cec3df456ed56784aac20cdf1ef62c0b"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/read-denials.json",
+      "bytes": 3343,
+      "sha256": "ce7b22481c4214ac4ab23dbac4e96a9e30fa039e2c413e5f896672914951c72a"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/review-provenance.json",
+      "bytes": 2218,
+      "sha256": "53013635de613d9950032b8d77c86ddbe57feba1fa5633a670822f5e5b33c350"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/table-inventory.json",
+      "bytes": 43990,
+      "sha256": "828e2513ff387fb8670a1e8afdce11c6668e7aa4668721ddaf82c7221e023853"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/table-trigger-inventory.json",
+      "bytes": 476,
+      "sha256": "dfb52e9d8d3b2cf53e00dc132cf47f3d68fc01069a4117a909bdc7825d5dc2ec"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/task-inventory.json",
+      "bytes": 458,
+      "sha256": "7ab1a6b3b38800b93d960197b7f65010a2e6b3ca2b9c08ecb40be42cd661211d"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/tenants.json",
+      "bytes": 424,
+      "sha256": "b0bc0dce6e9f793a5122256544829225a7a2b55af0ab20814c07e004d1e7d986"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/workflow_test-inventory.json",
+      "bytes": 476,
+      "sha256": "cec2e9108c0d4c96f9dc045d2ed272ade05e56b46c5f70306c3b5a13733c9864"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/workspace-3.json",
+      "bytes": 655,
+      "sha256": "9bfbcd6adb62f06b19f50018b20db4ebb147d009eee07e474de8b89f6350f7e5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/workspaces.json",
+      "bytes": 526,
+      "sha256": "53bf2b186e238003aaf4c820d803f799adc1bcbc93e15a3237a31c413a926bc6"
+    },
+    {
+      "path": "scripts/audit-workspace3-review.cjs",
+      "bytes": 3429,
+      "sha256": "2fac781d92c10c69e55d1edab0459795008fc3e688a41d90f0da7b1431b4bbdb"
+    },
+    {
+      "path": "scripts/check-workspace3-known-gaps.cjs",
+      "bytes": 2606,
+      "sha256": "a4b3b16db38e07f061d36f8092ff51b0b5167beddc24ca8821b5d3c78b914b93"
+    },
+    {
+      "path": "scripts/package-workspace3-evidence.cjs",
+      "bytes": 2850,
+      "sha256": "023d0fb7687df0631071b8d10c33881e751a742e1c2c44f6cc48814a2e6fc587"
+    },
+    {
+      "path": "scripts/probe-workspace3-read-denials.cjs",
+      "bytes": 2838,
+      "sha256": "51f3cd15a24c3150434cb63cef0aa44d4b8434249b07c6eaa2ef772d55596612"
+    },
+    {
+      "path": "scripts/record-workspace3-final-checks.cjs",
+      "bytes": 1880,
+      "sha256": "9c94609cb14e54bb9a5b8f59dcabed9deee8a092748a6a927e0ab2898f0cf3ed"
+    },
+    {
+      "path": "scripts/run-workspace3-offline-checks.cjs",
+      "bytes": 2445,
+      "sha256": "873fdea39b7dcc885d8d27e13a6ea427f8870161d7574fc07f1ef17c0770ee05"
+    },
+    {
+      "path": "scripts/test-workspace3-mutation-refusal.cjs",
+      "bytes": 1902,
+      "sha256": "e67d927401b87f0cb2b14ce489667a4b4e9f3ac96e8ea62c0e12291139da2ed5"
+    },
+    {
+      "path": "scripts/validate-committed-five-agent-package.cjs",
+      "bytes": 2759,
+      "sha256": "5dfec765319a4bc842f140ab27689ac00bf35e3680f122d8a736d1f4cf6fe5dc"
+    },
+    {
+      "path": "scripts/verify-workspace3-evidence.cjs",
+      "bytes": 2148,
+      "sha256": "09cf2151584779a054e5be83d01dc9b443133c832a0e7e03b5223e2af68ef419"
+    }
+  ]
+}

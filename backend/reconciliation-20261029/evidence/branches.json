@@ -1,0 +1,17 @@
+{
+  "label": "branches",
+  "method": "GET",
+  "url": "https://xynd-fnea-khtp.n7e.xano.io/api:meta/workspace/3/branch",
+  "status": 200,
+  "started_at": "2026-10-29T08:28:18.198Z",
+  "finished_at": "2026-10-29T08:28:18.502Z",
+  "raw_sha256": "bd57f578b5d55dc32b1a158b22102f388f1326c70c9ae4de9622c8bcb9566fd8",
+  "body": [
+    {
+      "created_at": "2026-10-24 00:00:54+0000",
+      "label": "v1",
+      "backup": false,
+      "live": true
+    }
+  ]
+}

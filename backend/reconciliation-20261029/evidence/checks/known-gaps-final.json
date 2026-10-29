@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-29T08:44:42.672Z",
+  "command": [
+    "node",
+    "scripts/check-workspace3-known-gaps.cjs"
+  ],
+  "source_sha256": "a4b3b16db38e07f061d36f8092ff51b0b5167beddc24ca8821b5d3c78b914b93",
+  "exit": 1,
+  "scope": "Known source gaps; a passing pattern is not hosted acceptance",
+  "results": [
+    {
+      "name": "distance has no invented 480-km fallback",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "all cargo weight validation precedes booking insert",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "booking reference uses collision-resistant identity",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "create booking and cargo declare transaction boundary",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "confirmation and outbox declare transaction boundary",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "idempotency is mandatory",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "idempotency expiry is checked",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "reservation unique constraints cover vehicle and driver",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "durable worker schema has explicit fencing generation",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "consent challenge is not a fixed numeric literal",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "OTP decision validates before consuming challenge",
+      "status": "FAILED",
+      "scope": "source only"
+    }
+  ]
+}

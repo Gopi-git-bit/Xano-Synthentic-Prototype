@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-29T08:52:08.880Z",
+  "base_git_commit": "ed62038f571c02f339972ad7ec5d7cd1a9cffe18",
+  "review_branch": "codex/xano-m1-reconciliation-20261029",
+  "frontend_commit": "35461bd62bfd90b6f7e901791aa3d097b6649ead",
+  "frontend_clean": true,
+  "existing_backend_tracked_diff": [],
+  "frontend_files": [
+    {
+      "path": "frontend/docs/XANO.md",
+      "sha256": "ce4f79e41986462c8b6847c2cc7f4f08977bbe8beb19c2dd40feb819c3c1f39d"
+    },
+    {
+      "path": "frontend/docs/FRONTEND-PLAN.md",
+      "sha256": "a3be7e3c3df69b8963a8fc9162367cf5114c931d2ea5409ae87053799a7c29be"
+    },
+    {
+      "path": "frontend/docs/API.md",
+      "sha256": "27fd8343105c39f7a7a638a66e88455f7891461d8082954cdfaa68066ebb4eb4"
+    },
+    {
+      "path": "frontend/docs/DELIVERY.md",
+      "sha256": "705cb21c7c8ff0ef6412a1b47116201bbf11c64bed2594a64358ef052cb312e6"
+    },
+    {
+      "path": "frontend/server/gateway.mjs",
+      "sha256": "c0ed0dcd50012ae20f11fd0895d30e0a5701a15a10f5cad582ab4410f21a3bba"
+    },
+    {
+      "path": "frontend/server/bookings.mjs",
+      "sha256": "0f88188ecb4a522164941dbc92a1bf9035705c0471ef508d89c86d38f776a51e"
+    },
+    {
+      "path": "frontend/server/xano.test.mjs",
+      "sha256": "bd8bf54c67ab3f961e807656cfdf169d5fc69508bb93ea0c04ceab35d7677ae4"
+    },
+    {
+      "path": "frontend/tests/booking-reader.spec.ts",
+      "sha256": "1830d459cffd557cf8d5b0a6c6b80bc1f53c1067b51382b5c495f1c6073e74bf"
+    }
+  ],
+  "configured_metadata_secret_scan": {
+    "files": 243,
+    "matches": 0,
+    "values_disclosed": 0
+  },
+  "report_links": "VERIFIED",
+  "reports": [
+    {
+      "path": "docs/XANO_CURRENT_STATE.md",
+      "sha256": "c9992537a7c3cb66962e39b73a8080ad6b665d751709a0b459cd68060ca98277"
+    },
+    {
+      "path": "docs/XANO_M1_RECONCILIATION.md",
+      "sha256": "0d8005332b1962cd45fc09927cdc9efbc033138713395c6d196e12f35a0f7d1c"
+    },
+    {
+      "path": "docs/XANO_BACKEND_TEST_EVIDENCE.md",
+      "sha256": "806ce697ed5c10a842de588a52c4357cf07da10a0f16a21e183a10f21714a26e"
+    },
+    {
+      "path": "docs/XANO_FRONTEND_INTEGRATION_HANDOFF.md",
+      "sha256": "a6ed7113bf1f70fd46de2bd4b4bd9be13710361eef52207bcd6d932593d248ab"
+    }
+  ],
+  "deployment_actions": 0
+}

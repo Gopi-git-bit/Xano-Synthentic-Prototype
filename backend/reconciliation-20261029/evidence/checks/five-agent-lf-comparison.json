@@ -1,0 +1,136 @@
+{
+  "at": "2026-10-29T08:41:30.209Z",
+  "source_commit": "ed62038f571c02f339972ad7ec5d7cd1a9cffe18",
+  "paths": [
+    "backend/agent-package",
+    "backend/evidence/five-agent-configuration.json",
+    "backend/evidence/five-agent-readiness-map.json",
+    "backend/xano/ai/agent",
+    "scripts/validate-five-agent-config.cjs",
+    "scripts/validate-five-agent-schema.py"
+  ],
+  "extraction_directory": "C:\\Users\\ashok\\AppData\\Local\\Temp\\opencode\\zippy-m1-reconciliation-20261029-lf-comparison",
+  "scope": "LF-normalized comparison only; raw byte-manifest failures remain FAILED",
+  "normalized": [
+    {
+      "file": "backend\\agent-package\\CODEX_HANDOFF.md",
+      "raw_sha256": "32930c60622049e568c4d4e19e28f03e99814726ad8d288991800b3100f8ffff",
+      "lf_sha256": "844cdd32e97a72222a7569c3c90f5de88bf44696f52f678b2be9aed42a919630"
+    },
+    {
+      "file": "backend\\agent-package\\Documentation_Validation.json",
+      "raw_sha256": "20918aa65eca97ec53505580fdff79edcdcd20aab8893b2982be1c5915f42224",
+      "lf_sha256": "9869f2fbf6342041abe8b4a35c896a8322944afda972ccda44390214003f8174"
+    },
+    {
+      "file": "backend\\agent-package\\PACKAGE_MANIFEST.json",
+      "raw_sha256": "b0588a134fd5c0c52f10d359cc7c327b380d88c08e6cce04a5d4cba115875dc2",
+      "lf_sha256": "c2d7fbdbeb8ad9a6281eb918448107f5f77b741ecba6615f4822c0b69d60c1fc"
+    },
+    {
+      "file": "backend\\agent-package\\README.md",
+      "raw_sha256": "699cd15e56e061cce68ee3649ef54380ab558eda3be73db7f7bd134cbc38c9d6",
+      "lf_sha256": "39c2f8b33672a0cc031d0d6d1d02d6fe6fe4d451a280cfedbc197c1112dd70f8"
+    },
+    {
+      "file": "backend\\agent-package\\Zippy_Acceptance_Tests.json",
+      "raw_sha256": "08d15d9d09b27df6558923f7f501435f8c47116ba243a7f92fed9e2adfe508cc",
+      "lf_sha256": "7e18a561b3e548cc76de26bcf48ace0ecc4ac5f1e1fba1a31d72b940aa857540"
+    },
+    {
+      "file": "backend\\agent-package\\Zippy_Agent_Contracts.json",
+      "raw_sha256": "5473f8a17daa095e76b6ef06d5dd6dedf5b1e889417a9e4611fe9f64f740e8e1",
+      "lf_sha256": "868a7e40b07abdfded6c9633b503d0dab9fc48727b4dcf78e93dc864189824ac"
+    },
+    {
+      "file": "backend\\agent-package\\Zippy_Agent_Output.schema.json",
+      "raw_sha256": "c17b92a57c5785b5655a4e98da1d8d74b00d2a72258f9c33420a8c859a5936b2",
+      "lf_sha256": "6166c2bf34d6b9088245ba6b3dc90301fc6714faf2316ab58fd5e1df04078ed0"
+    },
+    {
+      "file": "backend\\agent-package\\Zippy_Business_Operations_Report.md",
+      "raw_sha256": "0d464cbda199f34ac930d090080b9c574e49120ad2dd0d581df9b56e6bbcf7fe",
+      "lf_sha256": "c77ea23f32eee34ca4bc5c581b7203969513f8bb471bd5f04ff54f40b3874c78"
+    },
+    {
+      "file": "backend\\agent-package\\Zippy_Five_Agent_Xano_PRD.md",
+      "raw_sha256": "841566a52f70389ed0efffb6a3dbb296300ccb806cf71b4772e5a959d0c358d6",
+      "lf_sha256": "7afc1df5db779d2027a7fabfa0d2d380c681b27073b3875ee9f00434c93bdc60"
+    },
+    {
+      "file": "backend\\agent-package\\Zippy_Source_and_Coverage_Manifest.json",
+      "raw_sha256": "9da41e9b90287c682ed0d7cb9fe83cded4b8dd3fc130754d3acdfcf722ae72a2",
+      "lf_sha256": "8e2608ad15ab06f41b98cbed9a2767179b736dbae91260df0517f71b1d996a1f"
+    },
+    {
+      "file": "backend\\evidence\\five-agent-configuration.json",
+      "raw_sha256": "9daf17a31141469379c64d76de43b2169f7e4f00aa4c57ac893174244005aa60",
+      "lf_sha256": "8fa9afc7ae3fe78b90b28c154916b9afb277fe8f215947cf759f0ccf66e7f25c"
+    },
+    {
+      "file": "backend\\evidence\\five-agent-readiness-map.json",
+      "raw_sha256": "b0310ef9484f1e135d758854a59c9285a14531701a76d700373fa5c4f1aaf96a",
+      "lf_sha256": "9b50d1f3f251c5f88adb369906c4d1a278ee06ef0ad2db560e0a4c68b45b07ed"
+    },
+    {
+      "file": "backend\\xano\\ai\\agent\\xano_example_agent.xs",
+      "raw_sha256": "0f87c94720484b2539273f23dd49838baa843f47fdd19c540d6f5012d24b568f",
+      "lf_sha256": "622b4450f7d0a7818d35b57141ee36929e247ad9f4e88d688404b0bd7df0c146"
+    },
+    {
+      "file": "backend\\xano\\ai\\agent\\zippy_finance_compliance_sandbox_draft.xs",
+      "raw_sha256": "019a8bb6aae8b72456151518d015e998271f6e75a19dbbae51121b19df05099b",
+      "lf_sha256": "425328349485a7d69ae689d4ed86987198b57f1fdc9575eec8e549430fc867dc"
+    },
+    {
+      "file": "backend\\xano\\ai\\agent\\zippy_ims_sandbox_draft.xs",
+      "raw_sha256": "41868f0d0cb346da907ee47a17099f0a6d6fc11a62e937795f62e53f247e6e48",
+      "lf_sha256": "d0a2bb5ae841a9c3d1fb9218497c60a04daf5d944edb9f0debebb272766ce771"
+    },
+    {
+      "file": "backend\\xano\\ai\\agent\\zippy_oms_sandbox_draft.xs",
+      "raw_sha256": "c7edbe8ca05042b12c6a51425fbbb2d2c886d10e025793013d0107a01a97735f",
+      "lf_sha256": "f47f96aa61406b9b9186c5fa33418a5a906dfd645fe58c0e0ab4bcc5db368afe"
+    },
+    {
+      "file": "backend\\xano\\ai\\agent\\zippy_tms_sandbox_draft.xs",
+      "raw_sha256": "b4500ca9edba9566f3487ceadf53b6e28efaedf0d1bd73cd8c38c68085adeead",
+      "lf_sha256": "53318ad7607ad32d5e48e4454fe55910031dd171c89495db2b3d1631ad57a456"
+    },
+    {
+      "file": "backend\\xano\\ai\\agent\\zippy_verification_sandbox_draft.xs",
+      "raw_sha256": "33a75b9691a72d29b7bb38a80644bd963fdc22b3f7043cf1de542974ea2780f5",
+      "lf_sha256": "ab9ce7ec50996c16643bec420ce34bfc7c6f28a96b5b81121559c563c7933399"
+    },
+    {
+      "file": "scripts\\validate-five-agent-config.cjs",
+      "raw_sha256": "2f0202c52a472f363f11fc64cc19bd7ebf127677cd1b90bd4795b8e90f635f38",
+      "lf_sha256": "01a9a9bbf989dd065168943963a9ec5f012271dc705d16df720b894e0635293a"
+    },
+    {
+      "file": "scripts\\validate-five-agent-schema.py",
+      "raw_sha256": "583417a0e4ac654069af7dc4d5df4e1930bbb17062c5cc2638eb192843cab051",
+      "lf_sha256": "648b83b0dc046ad4704062b1b966b0c20e17b38c5aaf82bcd43b9abdd2ec0791"
+    }
+  ],
+  "results": [
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/validate-five-agent-config.cjs"
+      ],
+      "exit": 0,
+      "stdout": "PASS: five unbound agent exports, supplied package hashes and references, preserved source, 20 readiness mappings. Scope: offline configuration only; 70 acceptance scenarios remain NOT_RUN.\n",
+      "stderr": ""
+    },
+    {
+      "command": "python",
+      "args": [
+        "scripts/validate-five-agent-schema.py"
+      ],
+      "exit": 0,
+      "stdout": "{\"schema_meta_validation\": \"PASS\", \"schema_cases_passed\": 37, \"binding_preparation_cases_passed\": 13, \"acceptance_cases_executed\": 0}\r\n",
+      "stderr": ""
+    }
+  ]
+}

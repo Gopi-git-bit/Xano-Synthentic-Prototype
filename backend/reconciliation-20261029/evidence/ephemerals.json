@@ -1,0 +1,15 @@
+{
+  "label": "ephemerals",
+  "method": "GET",
+  "url": "https://xynd-fnea-khtp.n7e.xano.io/api:meta/workspace/3/ephemeral?page=1&per_page=100",
+  "status": 200,
+  "started_at": "2026-10-29T08:28:19.101Z",
+  "finished_at": "2026-10-29T08:28:19.445Z",
+  "raw_sha256": "56ac46dccba1a689b3278515340d1d3ce226287d1db438f5970e1b0e7c654ac0",
+  "body": {
+    "items": [],
+    "curPage": 1,
+    "nextPage": null,
+    "prevPage": null
+  }
+}

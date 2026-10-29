@@ -1,0 +1,11 @@
+# Keep this review's hashed sources reproducible across Windows/Linux checkouts.
+/.gitattributes text eol=lf
+/backend/reconciliation-20261029/.gitattributes text eol=lf
+/backend/reconciliation-20261029/README.md text eol=lf
+/backend/reconciliation-20261029/TEST_PLAN.md text eol=lf
+/scripts/*workspace3*.cjs text eol=lf
+/scripts/validate-committed-five-agent-package.cjs text eol=lf
+/docs/XANO_CURRENT_STATE.md text eol=lf
+/docs/XANO_M1_RECONCILIATION.md text eol=lf
+/docs/XANO_BACKEND_TEST_EVIDENCE.md text eol=lf
+/docs/XANO_FRONTEND_INTEGRATION_HANDOFF.md text eol=lf
