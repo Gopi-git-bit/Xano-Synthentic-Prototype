@@ -1,0 +1,29 @@
+name: Zippy milestone evidence-chain review
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/EXECUTION_TRACKER.md'
+      - 'docs/EVIDENCE.md'
+      - 'scripts/validate-evidence-chain.cjs'
+      - '.github/workflows/evidence-chain.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/EXECUTION_TRACKER.md'
+      - 'docs/EVIDENCE.md'
+      - 'scripts/validate-evidence-chain.cjs'
+      - '.github/workflows/evidence-chain.yml'
+permissions:
+  contents: read
+jobs:
+  validate-evidence-chain:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate predecessor linkage and stage approvals
+        run: node --test scripts/validate-evidence-chain.cjs
