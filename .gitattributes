@@ -23,3 +23,6 @@
 /scripts/record-m1-readiness-checks.cjs text eol=lf
 /scripts/verify-m1-isolated-readiness.cjs text eol=lf
 /scripts/verify-m1-stage-sync.cjs text eol=lf
+/docs/XANO_STAGE_P_PLATFORM_DECISION.md text eol=lf
+/docs/XANO_STAGE_P_CAPABILITY_MATRIX.md text eol=lf
+/docs/XANO_STAGE_P_SUPPORT_REQUEST.md text eol=lf

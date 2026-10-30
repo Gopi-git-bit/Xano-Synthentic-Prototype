@@ -1,0 +1,147 @@
+{
+  "as_of": "2026-10-30T14:06:14.229Z",
+  "scope": "UNSEALED_READ_ONLY_PLATFORM_INVESTIGATION",
+  "baseline_commit": "55d4dd278602c5a81706db70d91b53ca363f4d9c",
+  "branch": "codex/xano-m1-reconciliation-20261029",
+  "initial_worktree": "CLEAN",
+  "target": {
+    "instance": "xynd-fnea-khtp.n7e.xano.io",
+    "instance_id": 9940,
+    "workspace": 3,
+    "workspace_name": "Zippy Synthetic Prototype_1",
+    "branch": "v1",
+    "parent_datasource": "live"
+  },
+  "retained_instance_observation": {
+    "observed_at": "2026-10-30T12:10:58.691Z",
+    "package": "essential2",
+    "package_features": [],
+    "features": [],
+    "additional_rbac": 0,
+    "additional_tenants": 0,
+    "additional_tenants_tier2": 0,
+    "additional_tenants_tier3": 0,
+    "direct_query_access": true,
+    "database_connector": 1,
+    "securitypolicy": false,
+    "byoc_enabled": false,
+    "qualification": "Allocation/feature flags are not complete entitlement or permission semantics; no fresh authenticated lookup."
+  },
+  "inherited_p0": {
+    "discovery_gets": 15,
+    "published": 84,
+    "draft": 84,
+    "differences": 41,
+    "source_integrity": "59/59",
+    "offline": "25/25",
+    "historical_business_source_failures": 11,
+    "finance_and_version_findings": "UNCHANGED",
+    "source_manifest_sha256": "23f6d3bd00c267f481e62bb31506935eda92f4888e909cc6ce16056ef0e20997",
+    "hosted_requests": 0,
+    "hosted_passes": 0,
+    "mutations": 0,
+    "tests_reexecuted": false
+  },
+  "sources": [
+    {
+      "path": "backend/m1-isolated-readiness-20261030/instance-plan-features.json",
+      "sha256": "32e58570c616f59beae9ddc161123714702d3763298beaa9cab21c2c14ce7c9a",
+      "bytes": 2042
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/metadata-capabilities.json",
+      "sha256": "befff1b3988b3756be5a206ebb61b8ffe19198a8e249c7b3fd39f49314f53d65",
+      "bytes": 147356
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/discovery.json",
+      "sha256": "7f901b29b6fb6eded41c33057bd2048ce19c2ed6221e6ec0ae2a379427722c6c",
+      "bytes": 9396
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/documentation-receipts.json",
+      "sha256": "db8d2f328d045f408c674e8d720fa9a4bab5d6f93509ce96c6785d47bbd68e02",
+      "bytes": 1339
+    },
+    {
+      "path": "backend/m1-stage-sync-20261030/private-verification.json",
+      "sha256": "9074cc849dcda0c57dc274b6186dd59f8b47018ce9c1ae468d1855fba142ebdf",
+      "bytes": 3632
+    },
+    {
+      "path": "docs/XANO_M1_ISOLATED_TEST_READINESS.md",
+      "sha256": "7398a78cea6e57ff0b32c858cdf522f1df3686ff83ac7c9b40b2d45fa499a722",
+      "bytes": 26870
+    },
+    {
+      "path": "docs/XANO_ISOLATION_APPROVAL.md",
+      "sha256": "c172e1a6e4d7ebe78ebda03cafe95f5074a8a97b4b59ef6c64edc94c0c330c53",
+      "bytes": 10343
+    },
+    {
+      "path": "docs/XANO_ACCEPTANCE_EXECUTION.md",
+      "sha256": "028b5bfb77fbae5dd3c76ec7ded494bc24a8670d918f7e3dc3cb895b33c10c33",
+      "bytes": 8590
+    },
+    {
+      "path": "docs/XANO_ADMIN_SUPPORT_REQUEST.md",
+      "sha256": "9d978e792f0afc02260f74ab073c06704f18d978734302461eb822fcd5ebe43e",
+      "bytes": 2599
+    },
+    {
+      "path": "backend/evidence/xano-support-submission-2026-10-24.json",
+      "sha256": "7b41b4092c05840cdcf32e070dda93c15a9d5233bfca1efcd9775c6cf98c1a90",
+      "bytes": 4039
+    }
+  ],
+  "support_review": {
+    "historical_submission_date": "2026-10-24",
+    "workspace": 1,
+    "acknowledged": true,
+    "ticket_id": null,
+    "response_received_in_retained_receipt": false,
+    "relevance": "Inventory/permissions questions, not workspace-3 P1 capability answers",
+    "additional_package": "2026-10-27 guard-preview diagnostics reviewed; workspace 1, not P1 capability evidence",
+    "search_scope": "Local docs and known support packages; owner inbox and external support system inaccessible",
+    "vendor_reply_for_p1": "NOT_FOUND_IN_REVIEWED_LOCAL_EVIDENCE",
+    "owner_action": "Check current inbox/ticket history before sending; append to relevant existing thread if appropriate",
+    "new_request": "PREPARED_NOT_SENT"
+  },
+  "canonical_access": {
+    "repository": "Gopi-git-bit/Xano-Synthentic-Prototype",
+    "branch": "docs/zippy-execution-tracker-20261030",
+    "user_supplied_head": "af298f4b0cc10a2b42a88f9adb76c54751477b06",
+    "head_independently_verified": false,
+    "attempted_url": "https://api.github.com/repos/Gopi-git-bit/Xano-Synthentic-Prototype/contents/AGENTS.md?ref=af298f4b0cc10a2b42a88f9adb76c54751477b06",
+    "result": "Transport error",
+    "local_required_files": "ABSENT",
+    "required_files": [
+      "AGENTS.md",
+      "SOUL.md",
+      "DECISION.md",
+      "docs/EXECUTION_TRACKER.md",
+      "docs/EVIDENCE.md",
+      "scripts/validate-evidence-chain.cjs"
+    ],
+    "canonical_update": "PROPOSAL_ONLY",
+    "canonical_validator": "NOT_RUN_FILES_UNAVAILABLE"
+  },
+  "current_task_effects": {
+    "authenticated_xano_requests": 0,
+    "application_requests": 0,
+    "hosted_passes": 0,
+    "xano_mutations": 0,
+    "credential_operations": 0,
+    "provider_calls": 0,
+    "sql": 0,
+    "plan_changes": 0,
+    "support_submissions": 0
+  },
+  "conclusion": "BLOCKED_PENDING_XANO_CONFIRMATION",
+  "stage_p": {
+    "verification": "NOT_RUN",
+    "approval": "NOT_APPROVED",
+    "tenant": null,
+    "database_identity": null
+  }
+}
