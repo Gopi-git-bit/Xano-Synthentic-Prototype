@@ -34,6 +34,8 @@
 | ZD-014 | **Current Xano Essential restrictions** are unresolved; tenant-only RBAC/live-denial, empty bootstrap, physical identity, provider egress and JWT expiry/invalidation need supported proof | PENDING | OpenCode `docs/XANO_M1_ISOLATED_TEST_READINESS.md`, supplied 2026-10-30; no current public receipt | Obtain platform/owner capability decision before Stage P; do not auto-upgrade plan |
 | ZD-015 | The reported **Stage P0 completion** must be reconciled against private receipts before the shared tracker/evidence state advances | PENDING | OpenCode 2026-10-30 report; draft PR #5 still records `W3-P0: NOT_RUN` at this snapshot | Commit verified private continuation, sanitize handoff and update evidence + tracker together |
 
+| ZD-016 | New private Stage P0 continuation SHA 55d4dd278602c5a81706db70d91b53ca363f4d9c and sanitized handoff ZIP SHA-256 da33dc5e6cdb2702246653603ecddf6ee3c5ed601cc165e5bef24fd808cc3130 are **REPORTED** from OpenCode. Canonical Stage P0 remains pending independent receipt review and supported platform isolation answers; Stage P NOT APPROVED | PENDING | OpenCode report supplied 2026-10-30; [W3-P0 evidence](docs/EVIDENCE.md) | Verify private receipts and structural CI; obtain Xano platform capability before requesting separate Stage P approval |
+
 ### Explicitly NOT approved
 
 Approval to create a sanitized public review does **not** authorize: (1) uploading the original Git bundle, (2) merging PRs, (3) granting broader Xano permissions, (4) creating any tenant/credential, (5) importing 59 definitions, (6) creating fixture users/bookings, (7) sending notifications, (8) running financial transactions, or (9) production deployment.

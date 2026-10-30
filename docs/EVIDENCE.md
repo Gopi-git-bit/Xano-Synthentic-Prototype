@@ -1,6 +1,6 @@
 # Zippy Logistics — Milestone Evidence and Predecessor Chain
 
-**Evidence snapshot:** 2026-10-30 (IST). **Current Xano status:** Stage P0 **NOT RUN**; Stage P **NOT APPROVED**.
+**Evidence snapshot:** 2026-10-30 (IST). **Current Xano status:** Stage P0 **REPORTED private read-only evidence, pending independent receipt check**; Stage P **NOT APPROVED**.
 
 This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXECUTION_TRACKER.md). Review [DECISION.md](../DECISION.md) for scoped owner approvals and [SOUL.md](../SOUL.md) for durable engineering guardrails; use [AGENTS.md](../AGENTS.md) as the coding-agent entry point. Use both at the start and end of every ChatGPT/OpenCode milestone. The tracker describes *current work*; this ledger records *which prior stage it depends on, what was actually verified, and which gate still blocks progress*. **A passing Markdown check is not proof of live Xano authorization, tenant isolation, or production readiness.**
 
@@ -12,7 +12,7 @@ This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXEC
 | FE-QA | Independent / parallel | [Frontend GitHub CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/40654010928) at 4c2e716a | Live integration blocked |
 | W3-PRIVATE | B-HIST | Original local Git commit 61d1b139, checked private ZIP + ancestry; not pushed | Hosted acceptance blocked |
 | W3-REVIEW | W3-PRIVATE | [Sanitized PR #4](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/4) and source CI at d7cda3d | Review only |
-| **W3-P0** | W3-REVIEW | **NOT RUN:** fresh read-only workspace-3 identity, RBAC, tenant capability | Read-only discovery allowed |
+| **W3-P0** | W3-REVIEW | **REPORTED:** 15 read-only Xano GETs; 59/59 source integrity and 25/25 offline; private SHA 55d4dd2, independently unverified here | Platform controls and separate Stage P approval blocked |
 | W3-P | W3-P0 | **NOT RUN:** no isolated tenant; no scope/expiry proof | **Owner approval required** |
 | W3-AB | W3-P (+ FE-QA) | **NOT RUN:** synthetic fixtures, native adapter and tenant-access tests | Separate fixture/test approval |
 | W3-C | W3-AB | **NOT RUN:** rollback, idempotency, uniqueness, fencing, OTP and finance | Deterministic implementation + tests |
@@ -117,18 +117,20 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "previous": "W3-REVIEW",
       "related": [],
       "as_of": "2026-10-30",
-      "source_ref": "NOT_ASSIGNED",
-      "verification": "NOT_RUN",
-      "gate": "READ_ONLY_ALLOWED",
+      "source_ref": "55d4dd278602c5a81706db70d91b53ca363f4d9c",
+      "verification": "REPORTED",
+      "gate": "BLOCKED_PLATFORM_PREREQUISITES",
       "approval": "NOT_REQUIRED_READ_ONLY",
       "approval_ref": null,
-      "evidence_scope": "Fresh authenticated Xano workspace-3 permission/isolation/capability inspection not yet executed",
+      "evidence_scope": "OpenCode private report dated 2026-10-30: Stage P0 workspace-3/v1 read-only discovery (15 Xano GETs), 84 published and 84 draft definitions (41 differences), 59/59 private source integrity and 25/25 offline preparation tests. No tenant, preview/import, credentials, fixtures, Xano writes or hosted application requests. Private receipt SHA was locally checked by OpenCode, but NOT independently examined by ChatGPT in this session.",
       "evidence_refs": [
-        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/3"
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-stage-sync-20261030/private-verification.json#sha256=9074cc849dcda0c57dc274b6186dd59f8b47018ce9c1ae468d1855fba142ebdf",
+        "private:handoff-zippy-p0-tracker-handoff-20261030.zip#sha256=da33dc5e6cdb2702246653603ecddf6ee3c5ed601cc165e5bef24fd808cc3130",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/5"
       ],
       "runtime_evidence_refs": [],
-      "blocker": "Fresh authenticated Xano workspace-3 permission/isolation/capability inspection not yet executed",
-      "next_action": "Return exact Stage P approval scope and evidence"
+      "blocker": "Actual private receipts and sanitized handoff ZIP not accessible to ChatGPT (remote device offline; archive not uploaded), so public state is REPORTED. Essential tenant-only RBAC, no-copy bootstrap, parent-live denial, physical separation, provider egress, app JWT invalidation and Stage P approval remain unresolved.",
+      "next_action": "Transfer sanitized P0 handoff ZIP privately or reconnect authorized Windows device. Verify original private commit and receipt hashes, then run canonical evidence-chain validator. Ask Xano for supported Essential isolation controls. Do not create tenant."
     },
     {
       "id": "W3-P",
