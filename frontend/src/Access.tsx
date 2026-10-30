@@ -1,9 +1,9 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { LockKeyhole, LogOut } from 'lucide-react';
 import { api, clearSession, onSessionEnd, signIn, type ServiceStatus, type User } from './api';
-import { Card, Field, Notice, PageIntro } from './components';
-import CRM from './CRM';
+import { Card, Field, Notice } from './components';
 import Bookings from './Bookings';
+import { AdminRestricted, VehicleOwnerRestricted } from './RestrictedWorkspaces';
 
 export default function Access() {
   const [configured, setConfigured] = useState(false);
@@ -32,7 +32,7 @@ export default function Access() {
     catch (e) { setError((e as Error).message); }
     finally { setLoading(false); }
   }
-  if (user) return <main data-role={user.workspace} className="min-h-dvh bg-canvas p-4 text-ink sm:p-8"><div className="mx-auto max-w-6xl"><header className="mb-8 flex flex-wrap items-center justify-between gap-4"><span className="font-bold">Zippy · {user.name}</span><button className="btn" onClick={() => { clearSession(); setUser(null); }}><LogOut size={16}/> Sign out</button></header>{user.workspace === 'admin' ? <CRM/> : user.workspace === 'customer' ? <Bookings available={bookingReadsAvailable}/> : <><PageIntro title="Your account is verified." subtitle="Assigned-work integration is pending."/><Notice>Vehicle Owner assignment, execution and financial permissions require verified API contracts. No job, vehicle or earnings records are loaded.</Notice></>}</div></main>;
+  if (user) return <main data-role={user.workspace} className="min-h-dvh bg-canvas p-4 text-ink sm:p-8"><div className="mx-auto max-w-6xl"><header className="mb-8 flex flex-wrap items-center justify-between gap-4"><span className="font-bold">Zippy · {user.name}</span><button className="btn" onClick={() => { clearSession(); setUser(null); }}><LogOut size={16}/> Sign out</button></header>{user.workspace === 'admin' ? <AdminRestricted/> : user.workspace === 'customer' ? <Bookings available={bookingReadsAvailable}/> : <VehicleOwnerRestricted role={user.systemRole}/>}</div></main>;
   return <main data-role="customer" className="grid min-h-dvh place-items-center bg-canvas p-4 text-ink sm:p-8"><Card className="w-full max-w-lg"><div className="space-y-6 p-6 sm:p-9"><div className="brand"><span className="brand-mark">z</span><span className="text-3xl font-bold">zippy</span></div><LockKeyhole className="text-brand"/><h1 className="text-3xl font-bold">A secure start to every journey.</h1><p className="text-sm text-muted">{mode === 'login' ? 'Sign in with your Zippy account.' : 'Create an account. Workspace permissions are assigned separately.'}</p>
     {!configured && !loading && <Notice>Account access is unavailable pending Xano authentication security and permission verification. Protected orders, payments and admin operations are unavailable.</Notice>}
     {error && <p role="alert" className="text-sm text-danger">{error}</p>}
