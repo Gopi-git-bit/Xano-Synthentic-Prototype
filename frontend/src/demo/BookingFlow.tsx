@@ -57,9 +57,9 @@ export default function BookingFlow({ booking, setBooking, onSave, onCancel }: {
         {step === 2 && <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <Field label="Pickup schedule"><select value={booking.schedule} onChange={e => change('schedule', e.target.value)}><option>Immediate</option><option>Custom time</option></select></Field>
           <Field label="Pickup date and time (IST)"><input type="datetime-local" min={istNow()} value={booking.when} disabled={booking.schedule !== 'Custom time'} required={booking.schedule === 'Custom time'} onChange={e => change('when', e.target.value)} /></Field>
-          <Field label="Requested payment arrangement"><select value={booking.mode} onChange={e => change('mode', e.target.value)}><option>Full payment</option><option>Partial payment</option><option>ToPay</option></select></Field>
+          <Field label="Requested payment arrangement"><select value={booking.mode} onChange={e => change('mode', e.target.value)}><option>Full payment</option><option>Partial payment</option><option disabled>ToPay — temporarily unavailable</option></select></Field>
           {field('Designated payer', 'payer', 'text', 'Full name or company')}
-          <div className="sm:col-span-2"><Notice>Payment arrangements are requests, subject to policy. Partial-payment amounts, ToPay eligibility and taxes will come from an approved quote.</Notice></div>
+          <div className="sm:col-span-2 space-y-2"><Notice>ToPay consent and payment selection are temporarily unavailable until secure verification is approved. Full and partial payment requests in this preview do not initiate payments.</Notice><Notice>Freight quotation, quote acceptance and confirmation—including prepaid confirmation—are unavailable pending verified route evidence. Preview drafts remain local only.</Notice></div>
         </div>}
         {step === 3 && <div className="mt-5 space-y-5">
           <DetailRows rows={[
@@ -69,7 +69,7 @@ export default function BookingFlow({ booking, setBooking, onSave, onCancel }: {
             ['Handling', booking.handling], ['Instructions', booking.notes || 'None'], ['Pickup', booking.schedule === 'Custom time' ? `${booking.when.replace('T', ' · ')} IST` : 'Immediate'],
             ['Payer', booking.payer], ['Requested arrangement', booking.mode],
           ]}/>
-          <Notice>Save a draft to review the experience. No vehicle is booked and no payment is initiated.</Notice>
+          <Notice>Save a local preview draft only. Freight quotes, confirmation, resume and ToPay consent are temporarily unavailable. No Xano booking, vehicle assignment or payment is created.</Notice>
         </div>}
         <div className="mt-7 flex flex-wrap justify-between gap-3 border-t border-line pt-5"><button type="button" className="btn" onClick={() => { setError(''); if (step > 0) setStep(step - 1); else onCancel(); }}><ArrowLeft size={15}/>{step ? 'Back' : 'Return home'}</button><button className="btn primary" type="submit">{step === 3 ? 'Save preview draft' : 'Continue'} <ArrowRight size={15}/></button></div>
       </form></Card>
@@ -77,7 +77,7 @@ export default function BookingFlow({ booking, setBooking, onSave, onCancel }: {
         ['Pickup', booking.from || 'Choose location'], ['Delivery', booking.to || 'Choose location'], ['Vehicle', booking.vehicle],
       ]}/><h3 className="mt-5 text-sm font-bold">Quote breakdown</h3><DetailRows rows={[
         ['Transport & charges', 'Awaiting verified quote'], ['Tax', 'Not calculated'], ['Amount due now', 'Awaiting verified quote'], ['Remaining balance', 'Awaiting verified quote'],
-      ]}/><div className="mt-5 flex gap-2 text-xs leading-relaxed text-muted"><ShieldCheck size={18} className="text-brand"/><p>Rates and amounts are never inferred from the visual references.</p></div><button className="btn mt-5 w-full" disabled>Request quote unavailable</button></aside>
+      ]}/><div className="mt-5 flex gap-2 text-xs leading-relaxed text-muted"><ShieldCheck size={18} className="text-brand"/><p>Rates and amounts are never inferred from the visual references.</p></div><button className="btn mt-5 w-full" disabled title="Awaiting verified route evidence and release approval">Request quote temporarily unavailable</button></aside>
     </div>
   </>;
 }
