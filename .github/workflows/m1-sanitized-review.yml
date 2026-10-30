@@ -1,0 +1,25 @@
+# Source-review quality gate only; no Xano or provider access.
+name: Zippy M1 sanitized source review
+on:
+  pull_request:
+    branches:
+      - codex/xano-backend-review
+    paths:
+      - 'review/workspace3-m1/**'
+      - '.github/workflows/m1-sanitized-review.yml'
+  push:
+    branches:
+      - review/xano-m1-sanitized-20261030
+permissions:
+  contents: read
+jobs:
+  refusal-source-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify sanitized source review
+        run: node --test review/workspace3-m1/refusal-source.test.cjs
