@@ -59,9 +59,13 @@ test('booking preserves inputs, validates contacts and saves only a draft', asyn
   await expect(page.getByLabel('Cargo description')).toHaveValue('Textile rolls');
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
   await page.getByLabel('Designated payer').fill('Gopi Industries');
-  await page.getByLabel('Requested payment arrangement').selectOption('ToPay');
+  const paymentArrangement = page.getByLabel('Requested payment arrangement');
+  await expect(paymentArrangement.locator('option', { hasText: 'ToPay — temporarily unavailable' })).toHaveAttribute('disabled', '');
+  await paymentArrangement.selectOption('Full payment');
+  await expect(paymentArrangement).toHaveValue('Full payment');
+  await expect(page.getByText('ToPay consent and payment selection are temporarily unavailable', { exact: false })).toBeVisible();
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
-  await expect(page.getByText('ToPay', { exact: true })).toBeVisible();
+  await expect(page.getByText('Full payment', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Save preview draft' }).click();
   await page.getByRole('button', { name: 'View order DRAFT-1', exact: true }).click();
   await expect(page.getByRole('dialog')).toContainText('Not initiated');
