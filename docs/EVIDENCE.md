@@ -1,6 +1,6 @@
 # Zippy Logistics — Milestone Evidence and Predecessor Chain
 
-**Evidence snapshot:** 2026-10-30 (IST). **Current Xano status:** Stage P0 **REPORTED private read-only evidence, pending independent receipt check**; Stage P **NOT APPROVED**.
+**Evidence snapshot:** 2026-10-30 (IST). **Current Xano status:** Stage P0 **VERIFIED_READ_ONLY against preserved private receipts (not a new Xano GET run)**; Stage P **NOT_RUN / NOT_APPROVED**.
 
 This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXECUTION_TRACKER.md). Review [DECISION.md](../DECISION.md) for scoped owner approvals and [SOUL.md](../SOUL.md) for durable engineering guardrails; use [AGENTS.md](../AGENTS.md) as the coding-agent entry point. Use both at the start and end of every ChatGPT/OpenCode milestone. The tracker describes *current work*; this ledger records *which prior stage it depends on, what was actually verified, and which gate still blocks progress*. **A passing Markdown check is not proof of live Xano authorization, tenant isolation, or production readiness.**
 
@@ -12,7 +12,7 @@ This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXEC
 | FE-QA | Independent / parallel | [Frontend GitHub CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/40654010928) at 4c2e716a | Live integration blocked |
 | W3-PRIVATE | B-HIST | Original local Git commit 61d1b139, checked private ZIP + ancestry; not pushed | Hosted acceptance blocked |
 | W3-REVIEW | W3-PRIVATE | [Sanitized PR #4](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/4) and source CI at d7cda3d | Review only |
-| **W3-P0** | W3-REVIEW | **REPORTED:** 15 read-only Xano GETs; 59/59 source integrity and 25/25 offline; private SHA 55d4dd2, independently unverified here | Platform controls and separate Stage P approval blocked |
+| **W3-P0** | W3-REVIEW | **VERIFIED_READ_ONLY:** ZIP + 12/12 private Git receipts/hash/ancestry; 15 prior GETs, 59/59 source integrity and 25/25 offline only | Stage P blocked: platform controls, owner approval and native isolation proof |
 | W3-P | W3-P0 | **NOT RUN:** no isolated tenant; no scope/expiry proof | **Owner approval required** |
 | W3-AB | W3-P (+ FE-QA) | **NOT RUN:** synthetic fixtures, native adapter and tenant-access tests | Separate fixture/test approval |
 | W3-C | W3-AB | **NOT RUN:** rollback, idempotency, uniqueness, fencing, OTP and finance | Deterministic implementation + tests |
@@ -118,19 +118,32 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "related": [],
       "as_of": "2026-10-30",
       "source_ref": "55d4dd278602c5a81706db70d91b53ca363f4d9c",
-      "verification": "REPORTED",
+      "verification": "VERIFIED_READ_ONLY",
       "gate": "BLOCKED_PLATFORM_PREREQUISITES",
       "approval": "NOT_REQUIRED_READ_ONLY",
       "approval_ref": null,
-      "evidence_scope": "OpenCode private report dated 2026-10-30: Stage P0 workspace-3/v1 read-only discovery (15 Xano GETs), 84 published and 84 draft definitions (41 differences), 59/59 private source integrity and 25/25 offline preparation tests. No tenant, preview/import, credentials, fixtures, Xano writes or hosted application requests. Private receipt SHA was locally checked by OpenCode, but NOT independently examined by ChatGPT in this session.",
+      "evidence_scope": "Independent ChatGPT read of private ZIP and git commit 55d4dd2 on 2026-10-30: ZIP byte SHA, all 7 archived files/hashes, exact HEAD and parent, 12/12 original private Git receipt SHA-256 matches, private-verification.json hash and source/test summary fields verified. Underlying retained OpenCode P0 Metadata GETs (15 scoped reads, 14 direct 200 + CLI list), 84 published and 84 draft definitions (41 differences), 59/59 source integrity and 25/25 offline tests are evidenced by original receipts; not newly re-executed here. 0 hosted app requests, 0 Xano writes, 0 actual tenant or restricted credential.",
       "evidence_refs": [
         "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-stage-sync-20261030/private-verification.json#sha256=9074cc849dcda0c57dc274b6186dd59f8b47018ce9c1ae468d1855fba142ebdf",
         "private:handoff-zippy-p0-tracker-handoff-20261030.zip#sha256=da33dc5e6cdb2702246653603ecddf6ee3c5ed601cc165e5bef24fd808cc3130",
         "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/5"
       ],
-      "runtime_evidence_refs": [],
-      "blocker": "Actual private receipts and sanitized handoff ZIP not accessible to ChatGPT (remote device offline; archive not uploaded), so public state is REPORTED. Essential tenant-only RBAC, no-copy bootstrap, parent-live denial, physical separation, provider egress, app JWT invalidation and Stage P approval remain unresolved.",
-      "next_action": "Transfer sanitized P0 handoff ZIP privately or reconnect authorized Windows device. Verify original private commit and receipt hashes, then run canonical evidence-chain validator. Ask Xano for supported Essential isolation controls. Do not create tenant."
+      "runtime_evidence_refs": [
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/discovery.json#sha256=7f901b29b6fb6eded41c33057bd2048ce19c2ed6221e6ec0ae2a379427722c6c",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/instance-capabilities.json#sha256=aaea6d9ce87d70c226fa7635004d64626e0d6211b6b13626d7e051b6bbc5e287",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/instance-plan-features.json#sha256=32e58570c616f59beae9ddc161123714702d3763298beaa9cab21c2c14ce7c9a",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/cli-checks.json#sha256=653c10c2edb97c0284679c3fe3e04878dd340bfb402addc799534a5a11fd5f00",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/published-inventory.json#sha256=8e1e52acd978e67720b201bb9d7f680e7d10c655ecbeffeb7b64a3937211dafc",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/draft-inventory.json#sha256=902957651a1114d782886f59c7b8eb568d68257a6feb429812bed9f1598338e1",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/published-draft-diff.json#sha256=ecb2c41cb79c9b9c54a53ec1a043b4e7333773b9fd609cb813791657cd615bc6",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/source-integrity.json#sha256=8138e37e8d5792aab54e3044a8091a2c9e06e1f15646cc3115488ef313e402e8",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/acceptance-preparation.json#sha256=94d788bcf5207d744198eeaee3646d61728feaeeead0d2b2b0c8fd48041b5cc1",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/acceptance-hardening-tests.json#sha256=7fbd766188e3fb81e00ef55ffa27aad65f1f3e7250c97fa0d51ec3d29f7f513f",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-isolated-readiness-20261030/continuation-hashes.json#sha256=7c3cf54c42d53fad4967967c5c4db07c5ed5980e284f72277bfb9ffa3e2f0476",
+        "private:55d4dd278602c5a81706db70d91b53ca363f4d9c:backend/m1-stage-sync-20261030/private-verification.json#sha256=9074cc849dcda0c57dc274b6186dd59f8b47018ce9c1ae468d1855fba142ebdf"
+      ],
+      "blocker": "Stage P is NOT APPROVED; Essential tenant-only RBAC/parent-live denial, no-copy and no-secret bootstrap, independent physical database identity, provider egress, agent task disablement and JWT isolation/invalidation remain unverified. No runtime isolation test has been run.",
+      "next_action": "Obtain supported Xano evidence and owner decision for isolation permissions and no-copy bootstrap. Prepare separate Stage P approval only after control feasibility; never create a tenant based solely on P0 verification."
     },
     {
       "id": "W3-P",
