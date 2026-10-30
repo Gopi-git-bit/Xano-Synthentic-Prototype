@@ -69,6 +69,7 @@ Private local ancestry: ed62038f571c02f339972ad7ec5d7cd1a9cffe18 → ea543e9c467
 | XB-03 | Customer booking mutation refusal | **VERIFIED static review only; hosted NOT_RUN** | [PR #4](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/4) has 12 **GUID-omitted/non-deployable** candidates | Review original private GUID-bound versions; tenant-only preview and zero-effect runtime proof after approval |
 | XB-04 | Database physical constraints, write atomicity, idempotency, consent and concurrency | **FAILED source gates / BLOCKED native proof** | OpenCode 2026-10-29 reconciliation; [public gate summary](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/review/xano-m1-sanitized-20261030/review/workspace3-m1/M1_REVIEW_AND_GATES.md) | Address 11 failing source gates; real transaction/uniqueness/rollback/fencing proofs |
 | XB-P0 | Workspace-3 read-only capability verification | **VERIFIED_READ_ONLY (retained private receipts only)** | 55d4dd278602c5a81706db70d91b53ca363f4d9c; 7/7 archived files and 12/12 Git receipt hashes independently matched; 25/25 offline tests retained; 0 hosted | Resolve supported Essential isolation controls; Stage P NOT_APPROVED |
+| XB-P1 | Stage P1 Essential platform capability decision | **VERIFIED_READ_ONLY documents/integrity; BLOCKED_PENDING_XANO_CONFIRMATION** | Private P1 commit 215d4e600bd4c7454d31c5581971e058fe6147dd; 18 public document reads, 9/9 Git receipt hashes, 0 authenticated Xano requests; support draft UNSENT | Owner reviews existing vendor correspondence and private draft, seeks supported isolation proof |
 | XB-05 | Workspace-3 restricted ephemeral test environment | **BLOCKED — STAGE P NOT APPROVED** | [Gate P scope](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/docs/m1-workspace3-review-baseline-20261029/docs/M1_WORKSPACE3_DECISION_GATES_20261029.md); detailed plan private | Separate owner approval, verified parent-live denial, distinct physical database, expiry and egress restrictions |
 | XB-06 | Synthetic A/B fixtures, native test adapter and observer | **NOT_IMPLEMENTED adapter / BLOCKED fixtures** | Private 2026-10-29 acceptance handoff; [public summary](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/review/xano-m1-sanitized-20261030/review/workspace3-m1/M1_REVIEW_AND_GATES.md) | Stage P succeeds; separate fixture/test approval; native adapter independently verified |
 | XB-07 | Historical M1 31-case hosted acceptance | **0/31 hosted passes; NOT_RUN in current workspace-3 reconciliation** | [Historical staging](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/codex/xano-backend-review/docs/STAGING_STATUS.md) | Do not run workspace-1 harness unchanged against workspace 3; map native invariants and run approved tests |
@@ -117,15 +118,15 @@ Refresh all branch refs and CI on every handoff; refresh Xano runtime before a c
 
 ## 7. Next executable task — exact handoff
 
-**Priority: supported Stage P platform capability resolution and separate owner decision, NOT provisioning.** [W3-P0](EVIDENCE.md) now records **VERIFIED_READ_ONLY** for preserved private receipt integrity, independently checked on 2026-10-30 against local Git commit 55d4dd278602c5a81706db70d91b53ca363f4d9c. This did **not** rerun live Xano Metadata calls, hosted acceptance tests or any write. **Stage P remains NOT_RUN / NOT_APPROVED.**
+**Priority: Owner-reviewed Xano vendor capability clarification, NOT provisioning.** Stage P1 is completed for the limited read-only public-document investigation and verified private evidence chain at commit 215d4e600bd4c7454d31c5581971e058fe6147dd. **W3-P1-PLATFORM gate BLOCKED_PENDING_XANO_CONFIRMATION. Stage P NOT_RUN / NOT_APPROVED.**
 
-1. Obtain Xano's supported answers for this exact Essential2 instance: ephemeral entitlement; dedicated tenant-only Metadata permissions denying parent live records and parent code/schema/env writes; empty/no-copy bootstrap; independent parent/tenant physical database identity; external provider egress and task/agent disablement; and application JWT separation/invalidation on tenant expiry.
-2. Document which controls are actually enforceable and independently observable without customer-record reads or live write probes. Do not assume Pro upgrade is required or sufficient; any plan/role change requires separate owner approval.
-3. Prepare the bounded Stage P provisioning/proof request with explicit owner reference, named profiles, four-hour expiry, one-hour restricted credential, safe stop conditions and isolated-only source preview/import constraints. **Do not create an environment or issue credentials until approved**.
-4. Preserve original private lineage, sealed evidence, all 11 failing business-source gates, native adapter/observer NOT_IMPLEMENTED, 0 hosted application requests and unmodified release switches. Keep W3-AB, W3-C and W3-RELEASE NOT_RUN.
-5. At every future authorized milestone, update EXECUTION_TRACKER.md and EVIDENCE.md together, run the canonical node test and link the exact source/receipt hashes. A passing structural test alone cannot establish Xano runtime acceptance.
+1. Review existing Xano support correspondence for an answer to ephemeral entitlement, tenant-only permissions with parent-live denial, independent DB identity, no-copy/no-secret bootstrap, provider/agent egress blocking, application JWT isolation and expiry/recovery. Do not claim support has not replied without checking the available account.
+2. Review the private prepared support draft. Ask the owner before sending it, avoid duplicate requests, and never disclose secrets or private administrative receipts.
+3. Evaluate Essential ephemeral, Essential alternative, isolated separate instance and plan/add-on only against supported platform evidence. Pro RBAC availability alone does not establish a complete tenant isolation solution.
+4. Only after vendor-supported controls and safe independent proof methods are known, prepare separately scoped Stage P authorization. Tenant creation, credentials, preview/import, fixture creation, hosted testing, messaging and payment execution remain prohibited.
+5. Update the predecessor-linked tracker and evidence with authoritative responses and new approval decisions. Preserve all prior failures, zero hosted M1 acceptance and future stages NOT_RUN.
 
-**Frontend** need not be rebuilt for this gate. No live Xano, provider, payment, messaging, agent or production operations are authorized.
+**Next actor:** Owner and Xano support. OpenCode can prepare further read-only evidence. No frontend rebuild required.
 
 ## 8. Reusable OpenCode/ChatGPT resume contract
 
@@ -148,6 +149,8 @@ ChatGPT should request new OpenCode status only when the tracker is stale, an ap
 | 2026-10-30 | ChatGPT + Composio | Synchronized public Stage P0 as REPORTED only; no hosted proof or Stage P approval claimed | [EVIDENCE.md](EVIDENCE.md), PR #5 | Complete independent receipt comparison and check supported platform controls |
 
 | 2026-10-30 | ChatGPT + Remote Desktop Commander | Independently verified private P0 handoff ZIP SHA-256 da33dc5e6cdb2702246653603ecddf6ee3c5ed601cc165e5bef24fd808cc3130, 7 archive entries, private Git HEAD/parent/clean state, 12/12 Git object receipt hashes and source/test summary | Private commit 55d4dd278602c5a81706db70d91b53ca363f4d9c; [EVIDENCE.md](EVIDENCE.md) | Stage P platform capability review only; do not create tenant |
+
+| 2026-10-30 | OpenCode / ChatGPT (remote Git audit) | P1 documentation-only review completed; private ZIP and 9/9 original Git evidence object hashes confirmed, seven capability outcomes unresolved | P1 commit 215d4e600bd4c7454d31c5581971e058fe6147dd; [EVIDENCE.md](EVIDENCE.md); handoff SHA-256 15336d59c6f04efb40272bf418d5a430b430f1aa77d88218ba33e3ff7394e752 | Owner reviews Xano support draft; no Stage P permission |
 
 ### Required new checkpoint row
 

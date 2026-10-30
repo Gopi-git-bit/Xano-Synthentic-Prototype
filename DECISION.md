@@ -38,6 +38,8 @@
 
 | ZD-017 | Stage P0 private receipt and Git ancestry integrity was independently rechecked through authorized remote device; all seven ZIP files and 12 Git receipt hashes matched. Status upgraded **only** to VERIFIED_READ_ONLY for preserved P0 evidence, not new live Xano tests. No Stage P entitlement, isolation proof or owner approval was gained. | ADOPTED_DIRECTION | 2026-10-30 Git receipt inspection, original private commit 55d4dd278602c5a81706db70d91b53ca363f4d9c, [W3-P0 evidence](docs/EVIDENCE.md) | Continue supported Xano Essential capability confirmation; Stage P remains NOT_RUN / NOT_APPROVED |
 
+| ZD-018 | Stage W3-P1-PLATFORM public-document capability investigation follows accepted P0; exact private commit 215d4e600bd4c7454d31c5581971e058fe6147dd and 9/9 referenced private Git evidence hashes checked. **BLOCKED_PENDING_XANO_CONFIRMATION**, with Essential tenant-only security and other protections unresolved. The documentation result is not a live Xano entitlement or isolation proof. Support request NOT SENT. | PENDING | [W3-P1 evidence](docs/EVIDENCE.md), verified sanitized handoff SHA-256 15336d59c6f04efb40272bf418d5a430b430f1aa77d88218ba33e3ff7394e752 | Owner reviews existing support correspondence, then explicitly authorizes vendor questions if needed; no plan change or tenant creation |
+
 ### Explicitly NOT approved
 
 Approval to create a sanitized public review does **not** authorize: (1) uploading the original Git bundle, (2) merging PRs, (3) granting broader Xano permissions, (4) creating any tenant/credential, (5) importing 59 definitions, (6) creating fixture users/bookings, (7) sending notifications, (8) running financial transactions, or (9) production deployment.

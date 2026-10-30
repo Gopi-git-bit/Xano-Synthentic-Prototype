@@ -13,6 +13,7 @@ This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXEC
 | W3-PRIVATE | B-HIST | Original local Git commit 61d1b139, checked private ZIP + ancestry; not pushed | Hosted acceptance blocked |
 | W3-REVIEW | W3-PRIVATE | [Sanitized PR #4](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/4) and source CI at d7cda3d | Review only |
 | **W3-P0** | W3-REVIEW | **VERIFIED_READ_ONLY:** ZIP + 12/12 private Git receipts/hash/ancestry; 15 prior GETs, 59/59 source integrity and 25/25 offline only | Stage P blocked: platform controls, owner approval and native isolation proof |
+| **W3-P1-PLATFORM** | W3-P0 | **VERIFIED_READ_ONLY:** public docs and 9/9 private hash objects, not new authenticated Xano tests | **BLOCKED_PENDING_XANO_CONFIRMATION**; support NOT SENT |
 | W3-P | W3-P0 | **NOT RUN:** no isolated tenant; no scope/expiry proof | **Owner approval required** |
 | W3-AB | W3-P (+ FE-QA) | **NOT RUN:** synthetic fixtures, native adapter and tenant-access tests | Separate fixture/test approval |
 | W3-C | W3-AB | **NOT RUN:** rollback, idempotency, uniqueness, fencing, OTP and finance | Deterministic implementation + tests |
@@ -146,9 +147,43 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "next_action": "Obtain supported Xano evidence and owner decision for isolation permissions and no-copy bootstrap. Prepare separate Stage P approval only after control feasibility; never create a tenant based solely on P0 verification."
     },
     {
-      "id": "W3-P",
+      "id": "W3-P1-PLATFORM",
       "previous": "W3-P0",
       "related": [],
+      "as_of": "2026-10-30",
+      "source_ref": "215d4e600bd4c7454d31c5581971e058fe6147dd",
+      "verification": "VERIFIED_READ_ONLY",
+      "gate": "BLOCKED_PENDING_XANO_CONFIRMATION",
+      "approval": "NOT_REQUIRED_READ_ONLY",
+      "approval_ref": null,
+      "evidence_scope": "Private P1 public-document review. ChatGPT independently checked SHA-256 of the private handoff ZIP, 6 handoff files, exact Git commit and parent and 9/9 private Git evidence objects. OpenCode captured 18 public official-document GETs, prepared a seven-question capability matrix and a private unsent support draft. ZERO new authenticated Xano calls, credentials, tenant operations, hosted app requests and Xano mutations. VERIFIED_READ_ONLY applies to review evidence integrity, not to tenant entitlement, isolation or provider enforcement.",
+      "evidence_refs": [
+        "private:handoff-zippy-p1-platform-handoff-20261030.zip#sha256=15336d59c6f04efb40272bf418d5a430b430f1aa77d88218ba33e3ff7394e752",
+        "https://docs.xano.com/xano-cli/ephemeral.md",
+        "https://docs.xano.com/xano-features/metadata-api/token-scopes-reference.md",
+        "https://docs.xano.com/enterprise/enterprise-features/tenant-center.md",
+        "https://www.xano.com/pricing/"
+      ],
+      "runtime_evidence_refs": [
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:docs/XANO_STAGE_P_PLATFORM_DECISION.md#sha256=378d0fdb620a9d84ec17f344eb300203a5ac8d1b43a49ab9bacfc8e0b616c5ac",
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:docs/XANO_STAGE_P_CAPABILITY_MATRIX.md#sha256=41d6c1ac89b8046e0f13df931012230341889055ab61118bb1d3df319270a740",
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:docs/XANO_STAGE_P_SUPPORT_REQUEST.md#sha256=45cefe7b6458898aa903d031ab7b1807e6cf86752f5aeec668f2e6df51dc67ed",
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:backend/m1-platform-capability-20261030/documentation-receipts.json#sha256=f7b4ade9fe99c01d739c69c54d7790561e0664006e8d2ccb4beae04d54ab73ed",
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:backend/m1-platform-capability-20261030/account-documentation-receipt.json#sha256=1a3552c8ddf4ac6eef3956dff78155cf30959d32660c8270877b448efc6dc346",
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:backend/m1-platform-capability-20261030/schema-observations.json#sha256=e4e20c6097f79a2b61eb42e674049863c3c625f8e1ce251aca90987207e04ce5",
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:backend/m1-platform-capability-20261030/investigation-context.json#sha256=7060ccadb54caa8770917d07eb9026f17c67c96af13ca0a3687f8c0fd3701298",
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:backend/m1-platform-capability-20261030/investigation-hashes.json#sha256=da29a17ff4f8a19df36a4629357d14988990f6822cfb77c982faf3c20d2e78a5",
+        "private:215d4e600bd4c7454d31c5581971e058fe6147dd:backend/m1-platform-capability-20261030/verification.json#sha256=a6a07e4501ec29757906c7dca632c1d77d81852c8f0b8dbd108b987ed51921d0"
+      ],
+      "blocker": "Essential2 ephemeral entitlement, tenant-only role and parent-live denial, physical database identities, no-secret/no-copy bootstrap, provider and agent egress blocking, JWT cross-tenant isolation and expiry/recovery remain unproven. Xano vendor support request is not sent, and Stage P owner authorization is absent.",
+      "next_action": "Review existing Xano support correspondence and the private targeted support draft. Obtain owner authorization before routing unanswered platform questions. Preserve Stage P NOT_RUN / NOT_APPROVED until supported safeguards and separate approval."
+    },
+    {
+      "id": "W3-P",
+      "previous": "W3-P0",
+      "related": [
+        "W3-P1-PLATFORM"
+      ],
       "as_of": "2026-10-30",
       "source_ref": "NOT_ASSIGNED",
       "verification": "NOT_RUN",
@@ -225,6 +260,12 @@ Maintain unique IDs and complete the current stage in order. This structured reg
 }
 ```
 <!-- EVIDENCE_CHAIN_END -->
+
+## Stage P1 — Platform capabilities, 2026-10-30
+
+The original P1 private Git commit 215d4e600bd4c7454d31c5581971e058fe6147dd directly follows accepted Stage P0. ChatGPT remotely confirmed its clean Git state, original parent, handoff ZIP SHA-256 15336d59c6f04efb40272bf418d5a430b430f1aa77d88218ba33e3ff7394e752, six listed handoff file hashes and nine exact private Git-object hashes. OpenCode performed 18 official public document reads and no new authenticated Xano actions. This stage verifies documentation and receipt integrity, not the actual runtime platform safety controls.
+
+Seven determinations: P1-01 entitlement REQUIRES_VENDOR_CONFIRMATION; P1-02 tenant-only identity BLOCKED; P1-03 DB separation SUPPORTED_BUT_UNPROVEN; P1-04 no-copy bootstrap REQUIRES_VENDOR_CONFIRMATION; P1-05 provider/agent blocking BLOCKED; P1-06 application token isolation REQUIRES_VENDOR_CONFIRMATION; P1-07 expiry/recovery SUPPORTED_BUT_UNPROVEN. Current essential2 entitlement is not proven to meet them; a plan upgrade is neither established necessary nor sufficient. The support draft is private and NOT SENT. W3-P retains predecessor W3-P0 and additionally references P1, with no execution or approval.
 
 ## Mandatory Stage P0 evidence package
 
