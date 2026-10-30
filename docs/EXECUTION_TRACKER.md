@@ -2,6 +2,8 @@
 
 **Document role:** Project-wide recovery checkpoint and status validator for ChatGPT, OpenCode, Codex, Xano and GitHub. Read this file before assigning new work. Update it after each completed milestone. It is not proof of production readiness by itself.
 
+**Mandatory stage evidence:** [EVIDENCE.md](EVIDENCE.md) stores the machine-readable predecessor chain, proof scope, approval gate and evidence receipt. A completed stage requires updating BOTH documents together; the evidence-chain CI only checks structure, not Xano runtime.
+
 **Snapshot:** 2026-10-30 (Asia/Kolkata)  
 **Repository:** [Gopi-git-bit/Xano-Synthentic-Prototype](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype) — active project. **New-logistic- is historical reference only.**  
 **Default branch:** main, last inspected at 223bae3a1b63218f050ebe48cef7903595926db7; currently Xano-exported source, **not** the deployed React frontend.  
@@ -12,12 +14,12 @@
 
 ## 1. Read this first at the start of every session
 
-1. Open **this file**, identify its snapshot date, check the **Next executable task** and **Approvals** sections; do not repeat completed audits without a changed input.
+1. Open **this file and [EVIDENCE.md](EVIDENCE.md)**, verify the previous stage's source SHA, evidence scope, blocker and approval before checking the **Next executable task**; do not repeat completed audits without a changed input.
 2. Check live GitHub branch tips, open PRs and CI using the authorized GitHub connector. Compare against Section 2. GitHub data is authoritative for **GitHub commits only**, not Xano runtime.
 3. If Xano is authenticated in the current environment, verify its **workspace ID, source branch, data source, effective permissions, draft/published code and tenant isolation** with read-only calls. A GitHub export or imported API catalog is not a live runtime test.
 4. If OpenCode has advanced **local-only** work, inspect the exact local commit/report or private approved handoff; do not invent a public GitHub URL or treat local evidence as deployed code.
 5. Update rows below only with a **source, observed result, scope, branch/commit, verification date and next action**. If evidence is missing or old, use UNKNOWN, REPORTED or BLOCKED, not VERIFIED.
-6. Finish every work session by updating **Section 9 checkpoint log** and **Section 7 next task** in the same reviewable change. Preserve completed historical evidence; do not rewrite sealed receipts.
+6. Finish every work session by updating **Section 9 checkpoint log**, **Section 7 next task**, and [EVIDENCE.md](EVIDENCE.md) in the same reviewable change. Preserve historical evidence; do not rewrite sealed receipts. Run `node --test scripts/validate-evidence-chain.cjs`; a green structural check does not establish runtime acceptance.
 
 ### Status vocabulary
 
@@ -112,7 +114,7 @@ Refresh all branch refs and CI on every handoff; refresh Xano runtime before a c
 
 ## 7. Next executable task — exact handoff
 
-**Priority M1-P0: OpenCode, strictly read-only.**
+**Priority M1-P0: OpenCode, strictly read-only.** The linked [W3-P0 evidence stage](EVIDENCE.md) remains NOT_RUN; isolated Stage P is NOT_APPROVED. Before changing that status, attach a new sanitized scoped receipt to EVIDENCE.md and update this tracker together.
 
 1. Verify its authenticated Xano CLI/MCP profile points to workspace **3**, branch **v1** and an authorized source; inspect effective role, available ephemeral features, token-expiry controls and restricted tenant permissions. Do not use the historical workspace-1 profile by default.
 2. Recheck published/draft auth/read/security dependency hashes and current tenant/ephemeral inventory **without reading customer/vendor records**. If no authenticated access, report BLOCKED and stop before any write.
@@ -126,7 +128,7 @@ No new frontend design work is the present critical path; avoid reassigning comp
 
 ## 8. Reusable OpenCode/ChatGPT resume contract
 
-> Read docs/EXECUTION_TRACKER.md in Gopi-git-bit/Xano-Synthentic-Prototype before starting. Identify the active repo, exact branch SHAs, current blockers, approvals and Section 7 next task. Refresh only the sources needed to validate the proposed action; keep source/offline, CI and hosted Xano evidence separate. Do not rerun unchanged historical tests or change live Xano. Complete the next permitted task, link sanitized proof, update the workstream row plus checkpoint log, and return DONE / BLOCKED / NOT RUN with one exact successor. Never report success from source presence or a green CI job alone.
+> Read docs/EXECUTION_TRACKER.md and docs/EVIDENCE.md in Gopi-git-bit/Xano-Synthentic-Prototype before starting. Identify the active repo, exact branch SHAs, current blockers, approvals and Section 7 next task. Refresh only the sources needed to validate the proposed action; keep source/offline, CI and hosted Xano evidence separate. Do not rerun unchanged historical tests or change live Xano. Complete the next permitted task, link sanitized proof, update the workstream row plus checkpoint log, and return DONE / BLOCKED / NOT RUN with one exact successor. Never report success from source presence or a green CI job alone.
 
 ChatGPT should request new OpenCode status only when the tracker is stale, an approval gate has changed, or the needed runtime proof is unavailable through its connectors. If OpenCode cannot push due to Windows Git TLS resets, produce a **private** handoff/patch; Composio can review GitHub without making the raw evidence public.
 
@@ -139,6 +141,7 @@ ChatGPT should request new OpenCode status only when the tracker is stale, an ap
 | 2026-10-29 | OpenCode | Workspace-3 reconciliation, source gaps, 12 refusal candidates and isolation plan completed locally | Private ancestors ea543e9... / 61d1b139...; [public gate notes PR #3](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/3) | Stage P capability and approval |
 | 2026-10-30 | ChatGPT + Composio | Private bundle/hash and ancestry verified in prior inspection; user-approved sanitized review published; source CI passed; original history kept private | [PR #4](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/4), E-CI-02 | OpenCode Stage P0 read-only assessment |
 | 2026-10-30 | ChatGPT + Composio | Established first centralized project execution tracker from GitHub, documented handoffs and private audit summary; no production operations | This tracker review commit/PR | Owner review and regular checkpoint updates |
+| 2026-10-30 | ChatGPT + Composio | Linked predecessor evidence chain and a structural transition validator; Stage P0 NOT_RUN and Stage P NOT_APPROVED | [EVIDENCE.md](EVIDENCE.md), [validator](../scripts/validate-evidence-chain.cjs), [CI workflow](../.github/workflows/evidence-chain.yml) | OpenCode Stage P0 read-only verification and new evidence receipt |
 
 ### Required new checkpoint row
 
