@@ -2,6 +2,8 @@
 
 **Document role:** Project-wide recovery checkpoint and status validator for ChatGPT, OpenCode, Codex, Xano and GitHub. Read this file before assigning new work. Update it after each completed milestone. It is not proof of production readiness by itself.
 
+**Project governance:** [SOUL.md](../SOUL.md) sets durable intent and engineering guardrails; [DECISION.md](../DECISION.md) records owner scope, pending proposals and approval boundaries; [AGENTS.md](../AGENTS.md) is the coding-agent read order. These do not override evidence or explicit scoped approvals.
+
 **Mandatory stage evidence:** [EVIDENCE.md](EVIDENCE.md) stores the machine-readable predecessor chain, proof scope, approval gate and evidence receipt. A completed stage requires updating BOTH documents together; the evidence-chain CI only checks structure, not Xano runtime.
 
 **Snapshot:** 2026-10-30 (Asia/Kolkata)  

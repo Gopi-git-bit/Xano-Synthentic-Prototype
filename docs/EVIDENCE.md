@@ -2,7 +2,7 @@
 
 **Evidence snapshot:** 2026-10-30 (IST). **Current Xano status:** Stage P0 **NOT RUN**; Stage P **NOT APPROVED**.
 
-This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXECUTION_TRACKER.md). Use both at the start and end of every ChatGPT/OpenCode milestone. The tracker describes *current work*; this ledger records *which prior stage it depends on, what was actually verified, and which gate still blocks progress*. **A passing Markdown check is not proof of live Xano authorization, tenant isolation, or production readiness.**
+This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXECUTION_TRACKER.md). Review [DECISION.md](../DECISION.md) for scoped owner approvals and [SOUL.md](../SOUL.md) for durable engineering guardrails; use [AGENTS.md](../AGENTS.md) as the coding-agent entry point. Use both at the start and end of every ChatGPT/OpenCode milestone. The tracker describes *current work*; this ledger records *which prior stage it depends on, what was actually verified, and which gate still blocks progress*. **A passing Markdown check is not proof of live Xano authorization, tenant isolation, or production readiness.**
 
 ## Evidence chain and gate status
 
