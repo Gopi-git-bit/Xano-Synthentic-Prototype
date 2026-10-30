@@ -12,13 +12,17 @@ function need(ok,code){if(!ok){const e=new Error(code);e.code=code;throw e;}}
 const positive=x=>Number.isSafeInteger(x)&&x>0;
 const digest=x=>typeof x==='string'&&/^[a-f0-9]{64}$/.test(x);
 const statuses=['draft','quoted','booked','assigned','in_transit','delivered','completed','cancelled'];
+const sourceManifest='23f6d3bd00c267f481e62bb31506935eda92f4888e909cc6ce16056ef0e20997';
 function gate(r,now=Date.now()){
  need(r?.status==='APPROVED'&&r.scope==='ISOLATED_AB_ONLY'&&typeof r.approval_ref==='string'&&r.approval_ref.length>0,'APPROVAL_REQUIRED');
+ for(const stage of ['P','F','AB'])need(typeof r.approval_refs?.[stage]==='string'&&r.approval_refs[stage].trim().length>0,'STAGE_APPROVAL_REQUIRED');
+ need(new Set(Object.values(r.approval_refs)).size===3,'SEPARATE_STAGE_APPROVALS_REQUIRED');
  need(r.workspace===3&&r.source_branch==='v1'&&r.tenant_kind==='ephemeral','WRONG_TARGET');
  need(typeof r.tenant==='string'&&/^e[a-z0-9-]{5,}$/.test(r.tenant),'EPHEMERAL_REQUIRED');
  need(typeof r.database_identity==='string'&&r.database_identity.length>0&&typeof r.parent_database_identity==='string'&&r.parent_database_identity.length>0&&r.parent_database_identity!==r.database_identity,'DATABASE_ISOLATION_REQUIRED');
- const expiry=Date.parse(r.expires_at),credential=Date.parse(r.credential_expires_at);
- need(Number.isFinite(expiry)&&expiry>now+60000&&expiry<=now+4*3600000&&credential>now+60000&&credential<=expiry,'EXPIRY_REQUIRED');
+ const expiry=Date.parse(r.expires_at),created=Date.parse(r.tenant_created_at),credential=Date.parse(r.credential_expires_at),issued=Date.parse(r.credential_issued_at);
+ need(Number.isFinite(created)&&created<=now&&expiry>now+60000&&expiry-created<=4*3600000&&Number.isFinite(issued)&&issued>=created&&issued<=now&&credential>now+60000&&credential-issued<=3600000&&credential<=expiry,'EXPIRY_REQUIRED');
+ need(r.source_manifest_sha256===sourceManifest,'REVIEWED_SOURCE_REQUIRED');
  need(digest(r.source_manifest_sha256)&&digest(r.adapter_sha256)&&typeof r.fixture_run_id==='string'&&r.fixture_run_id.length>0,'PINNED_SOURCE_REQUIRED');
  for(const name of ['physical_identity','restricted_tenant_access','parent_live_denial','application_token_isolation','empty_environment_no_live_copy','provider_egress_block','deployed_source_hashes','fixture_ownership','expiry_and_recovery'])need(typeof r.proof_refs?.[name]==='string'&&r.proof_refs[name].length>0,'PROOF_REQUIRED');
  return true;

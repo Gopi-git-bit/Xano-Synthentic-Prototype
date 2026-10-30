@@ -1,0 +1,306 @@
+{
+  "status": "VERIFIED",
+  "manifest_sha256": "23f6d3bd00c267f481e62bb31506935eda92f4888e909cc6ce16056ef0e20997",
+  "definitions": 59,
+  "private_originals_match": true,
+  "extra_files": 0,
+  "files": [
+    {
+      "path": "api_group/Authentication.xs",
+      "sha256": "f45a8f5c19cf316038ed56f8c915343433e1bff779d5bd7801e11b95c2a014d2",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "api_group/Zippy_V1.xs",
+      "sha256": "e9166f67b2db2115bac5c593d8ca498fee3709a215c624abc47ea9e7b9f97235",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "function/Quick_Start/log_event.xs",
+      "sha256": "97ee19bd8a71118387fad7a80bc10780b9324804e9afe06af4d48c47cbc7d5f4",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "function/security/authorize_resource.xs",
+      "sha256": "6036cb130fd6af8d845a5f2ac22400bf809cc992ecfcbd4ad7a9fff6a5c7a33b",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "function/security/resolve_context.xs",
+      "sha256": "9ff084010788012fced416399a1b429a11d0a842a58df454c4e09c31e79443b4",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Authentication/auth/login_POST.xs",
+      "sha256": "e8909a4c322a01f8b65689f60b745fce3a14f8a39746712abe99e13e8576f958",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Authentication/auth/me_GET.xs",
+      "sha256": "38c539bcad746bc27a8b73b54dfe373481172497ad52295871b3bfd1036dd3d8",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Authentication/auth/signup_POST.xs",
+      "sha256": "e4046787ca481f2ec53d975192684a0cecf3e2106d8c823edfd940ef90ee4722",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings_GET.xs",
+      "sha256": "c33f5a323b2c22c20b44373bf25132f50cbdc75dd9fdb8b43c8955a19703ae1f",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings_POST.xs",
+      "sha256": "1cc432ee2426f8e54dac289f4524f973fc9263f71923046dba377f48832f69f5",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id__GET.xs",
+      "sha256": "0f6af78a06a5e15f981c849f9631959064831245813fa79e5d768dd8c065ecb0",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id__PATCH.xs",
+      "sha256": "280280622316e1200c0bafb1a8dc5760ce9f70043af34382b9924a186353d4a4",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/cancel_POST.xs",
+      "sha256": "d013d4e28350c1d75edceaf7e4051f10abab95fd6ff57ddb34b95bb844fdc724",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/confirm_POST.xs",
+      "sha256": "e113bcca9ce774b51d0836e8a411dc874ad0e050c88c57aab097371f3726dc8d",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/consent-attempts_POST.xs",
+      "sha256": "f6270b63a6ea269f412e2ad44af324e7ea59b727cf3b2cd0c0a701ea49db66bc",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/holds_POST.xs",
+      "sha256": "e2aa9343784fdedc8ec24fdd726ab66ddb98af99acd19fc703a4c608d83c99ea",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/holds/_hold_id_/release_POST.xs",
+      "sha256": "3e5f9a4ceb2e97c5c0a19759bd404fefdd1f2298b58884e2068d0964eb2b976f",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/payment-selection_POST.xs",
+      "sha256": "b028807f4e278c5cd1206f070b449e7884df1895fdc8dd3dcd6f1a610138b3bf",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/quotes_POST.xs",
+      "sha256": "274b9f2e915bb8609af2497ea7f789075a77dbe402512dd2264fc31bffdffcd5",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/quotes/_quote_id_/accept_POST.xs",
+      "sha256": "508950b03e227f1e9c4dd0572a64d1bac514433c964a29db5fe3edc344bd0ab9",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/bookings/_booking_id_/resume_POST.xs",
+      "sha256": "96b5934d83dd108cda21f3780b6608eab29d09922f78978ee0f6019917cfde08",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Zippy_V1/consent-attempts/_attempt_id_/decision_POST.xs",
+      "sha256": "e6dd67e1dea18121746cf5d1177f32ceb4c7383f00417813ae6a702bbcaf9d93",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Authentication/message/send_welcome_email_POST.xs",
+      "sha256": "dfbdc726fef6893f7af72688904a6b32828cd1ba15d96095b502febda9d1a750",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Authentication/reset/magic-link-login_POST.xs",
+      "sha256": "c45c8641cee64db5927dd487c9b3b72a7e1a9a57797ca79c44a004b010fb4c5e",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Authentication/reset/request-reset-link_GET.xs",
+      "sha256": "c4e85220a1b2e7a1637761013043559a8b5a0cac381a98108290673fc351f8b4",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "query/Authentication/reset/update_password_POST.xs",
+      "sha256": "77f5990ccddd548c2dedb1bd3e3e9ad9d5268475bb02ed474c320a441964f06f",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/active_assignment_reservations.xs",
+      "sha256": "c0ec7ed74cc7fbd17ab498d8531f19781a37cfd3a2f044da8c9195994d04371c",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/agent_decision.xs",
+      "sha256": "3ebc4a2f2691fbe70a5716a982017b0459dede137d4df2a8723a1d0849ba87bb",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/agent_execution.xs",
+      "sha256": "d54235f0e0ca3a9eff8eed9e2d7d10aae39c95cbd66dd00ad6ff303a1f9daa9f",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/approval_request.xs",
+      "sha256": "5eaad9c6f5cefe0880aed394f98bf65b797fe2b15ef2131d507c65482e04a8c7",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/audit_log.xs",
+      "sha256": "a1b33133ca8fcbd302558004d698f2390d4398d6c063cb59baf3eab76ca8b736",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/booking_quote.xs",
+      "sha256": "6a83e33dace5792cc6a9bd7160ed4a124ddf28fd7aad7582df9d202600cc05f7",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/cargo_detail.xs",
+      "sha256": "4b9a9c2a4fd7d7310d1f46b8b46cd85196d1d764dbc257452d227cfb5c18ebe7",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/compliance_documents.xs",
+      "sha256": "95d211d5193efa60ea87064660352d587cc1f73403016f04cf51cfea11d40218",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/customer_booking.xs",
+      "sha256": "28460bcee5ab57bbe6818630e7a6c0589180014360fb3e11a281d51848d79daf",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/driver_profile.xs",
+      "sha256": "da36ebf979aa5f460b5289c7f9364208c6e786a742b5bc85aaee94d1bfc557ca",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/durable_tasks.xs",
+      "sha256": "1e62b5d49f5e33fbd57600fe6c542c37fa3766b67746d94d325ffa8aca9d2656",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/event_log.xs",
+      "sha256": "e063661ec70b8912626c7ca360c7caaaa8e4f2ba30a2640b7913e5c1d70d29f4",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/event_outbox.xs",
+      "sha256": "9c526147a34316338b43b45b75cb395ea0f0bc769e99583b27345d8720fca1fa",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/idempotency_key.xs",
+      "sha256": "0b00ed2ceb19edf60f2b41fcb636c87403f652ceb048ae2c8686ef93e92dfc37",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/incident_dispute.xs",
+      "sha256": "102718e28765e551a41b532c8d352e71fa5c558590a8b8ec674e348752688f26",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/order_holds.xs",
+      "sha256": "3154b01d720ce5d56562658eca79c5e4e45f8f4c1a9b7cd53696250015e5c381",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/organization.xs",
+      "sha256": "f1c48e82bba001c9db26fe11db0766afcaf491fd7c39e1990763b5cef4283c33",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/organization_member.xs",
+      "sha256": "a39aaec69b9346b94eeb90b8dd466de673c87b110dc3e003c46838cedbcca03b",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/otp_challenges.xs",
+      "sha256": "8c7c6e58eaa19196cefaebc1ad6c6dfe52f488d3c0777a89bccaf23bbf3ceb83",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/payment_transaction.xs",
+      "sha256": "d3765ccabe37314693e173c40b49948b321d94df44a912cffbe36c85b8c910bf",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/pricing_policies.xs",
+      "sha256": "e49fe740673ecbc4832a90b73da454237862e7df2e8d21769b1f8ed8f69e813c",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/proof_of_delivery.xs",
+      "sha256": "b74bc56ea08e7f93a1097791fd0698f12f3b671cef2b63941ecae29349399539",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/refund_request.xs",
+      "sha256": "5b3eb0920f84520d32769f9b09f7c5b84aa0f4e89494cdd4a369866937d256bb",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/route_cache.xs",
+      "sha256": "33fb9647e4c9662364a069f8f7bebcf6cfb005e039b79e1e8be0bc38849493f2",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/settlement.xs",
+      "sha256": "ec6268259057b162bd22fe044a1a6d427365056f8c66adc32b50465415db50e5",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/table_index.xs",
+      "sha256": "5df4a0268d9a0f1aa4901ed129a8843f87aaf9d8b7ae0d66395149b6c6bb2310",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/topay_consent_attempts.xs",
+      "sha256": "f1921c590db0a6561057b332e4a3ba70efd03b27d424a59abe2fff531b07c983",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/tracking_event.xs",
+      "sha256": "5f223a46f56f9209c8c454ef595364da13e60f1bd1526d0e38cb1a7f02d6abff",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/trip.xs",
+      "sha256": "680044d5d3d7ddbfbd8f49daf159b403f5a3020a2d90522dc66bc57a4debe95e",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/trip_stop.xs",
+      "sha256": "9440af2c8f05c1e97886b1820fe27374b185d4651ba47a7021f6f320954fac5a",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/user.xs",
+      "sha256": "506037cf4dc4ab9d0e906e13507ae82ead232ec677263129f95dbf87fd87c858",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/vehicle.xs",
+      "sha256": "1dca5c4cbb343408aa462f985bdc3d76147cd7c929e46729d0a03e7863218d8f",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "table/vehicle_availability.xs",
+      "sha256": "3891cf2aac1bd351662bac020b88217891cde2e5014787a61f8c60fdf6fae594",
+      "status": "VERIFIED"
+    }
+  ],
+  "network_requests": 0,
+  "imports": 0
+}

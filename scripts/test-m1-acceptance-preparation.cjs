@@ -3,7 +3,8 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const R=require('../backend/m1-acceptance-preparation/runner.cjs');
 const template=require('../backend/m1-acceptance-preparation/approval.template.json');
 const H='a'.repeat(64),J='b'.repeat(64);
-function ready(){return {...template,status:'APPROVED',approval_ref:'offline-fixture-not-approval',tenant:'etest-only',database_identity:'synthetic-isolated-db',parent_database_identity:'parent-db',expires_at:new Date(Date.now()+3600000).toISOString(),credential_expires_at:new Date(Date.now()+1800000).toISOString(),source_manifest_sha256:H,adapter_sha256:H,fixture_run_id:'synthetic-run',proof_refs:Object.fromEntries(Object.keys(template.proof_refs).map(k=>[k,'offline-fixture:'+k]))};}
+const sourceManifest='23f6d3bd00c267f481e62bb31506935eda92f4888e909cc6ce16056ef0e20997';
+function ready(){const now=Date.now();return {...template,status:'APPROVED',approval_ref:'offline-fixture-not-approval',approval_refs:{P:'offline-P',F:'offline-F',AB:'offline-AB'},tenant:'etest-only',database_identity:'synthetic-isolated-db',parent_database_identity:'parent-db',tenant_created_at:new Date(now).toISOString(),expires_at:new Date(now+3600000).toISOString(),credential_issued_at:new Date(now).toISOString(),credential_expires_at:new Date(now+1800000).toISOString(),source_manifest_sha256:sourceManifest,adapter_sha256:H,fixture_run_id:'synthetic-run',proof_refs:Object.fromEntries(Object.keys(template.proof_refs).map(k=>[k,'offline-fixture:'+k]))};}
 function snap(r=ready()){return {database_identity:r.database_identity,fixture_run_id:r.fixture_run_id,provider_requests:0,agent_calls:0,tables:Object.fromEntries(R.tables.map(name=>[name,{hash:H,count:0,rows:[]}]))};}
 function booking(id=1,org=10){return {id,booking_reference:'SYNTHETIC-'+id,customer_organization_id:org,status:'draft',payment_status:'pending',payment_mode:null,pickup_city:'Synthetic A',delivery_city:'Synthetic B',version:1};}
 test('committed approval template blocks before any adapter access',async()=>{let calls=0;await assert.rejects(R.execute(template,new Proxy({},{get(){calls++;throw Error('unexpected');}})),/APPROVAL_REQUIRED/);assert.equal(calls,0);});
@@ -23,3 +24,14 @@ function adapter(r,{write=false,transportFailure=false}={}){
 test('even denied HTTP response fails when DB changes; no retry',async()=>{const r=ready(),a=adapter(r,{write:true}),result=await R.execute(r,a);assert.equal(result.status,'FAILED');assert.equal(result.reason,'DATABASE_SIDE_EFFECT');assert.equal(a.counts().calls,1);assert.equal(a.counts().observations,2);assert.equal(result.hosted_passes,0);});
 test('transport failure still observes post-state, stops and redacts error',async()=>{const r=ready(),a=adapter(r,{transportFailure:true}),result=await R.execute(r,a);assert.equal(result.status,'FAILED');assert.equal(a.counts().observations,2);assert.equal(a.counts().calls,1);assert.doesNotMatch(JSON.stringify(result),/private token/);});
 test('fresh preflight target drift prevents login or request',async()=>{const r=ready(),a=adapter(r);a.preflight=async()=>({...r,tenant:'eother-target'});a.login=async()=>assert.fail('must not login');const result=await R.execute(r,a);assert.equal(result.reason,'PREFLIGHT_DRIFT');assert.equal(a.counts().calls,0);});
+for(const [label,edit]of [
+ ['two-hour-credential',r=>{r.expires_at=new Date(Date.now()+3*3600000).toISOString();r.credential_expires_at=new Date(Date.now()+2*3600000).toISOString();}],
+ ['credential-issued-too-early',r=>{r.tenant_created_at=new Date(Date.now()-2*3600000).toISOString();r.credential_issued_at=new Date(Date.now()-3600000).toISOString();}],
+ ['future-credential-issuance',r=>r.credential_issued_at=new Date(Date.now()+30000).toISOString()],
+ ['missing-credential-issuance',r=>delete r.credential_issued_at],
+ ['overlong-original-tenant-lifetime',r=>r.tenant_created_at=new Date(Date.now()-4*3600000).toISOString()],
+ ['unreviewed-source-manifest',r=>r.source_manifest_sha256=H],
+ ['missing-fixture-approval',r=>r.approval_refs.F=null],
+ ['provisioning-approval-reused-for-runtime',r=>r.approval_refs.AB=r.approval_refs.P]
+])test('readiness rejects '+label+' before any adapter access',async()=>{const r=ready();edit(r);let calls=0;await assert.rejects(R.execute(r,new Proxy({},{get(){calls++;throw Error('unexpected adapter access');}})));assert.equal(calls,0);});
+test('credential and tenant lifetime boundaries are accepted by local shape gate only',()=>{const r=ready(),now=Date.now();r.tenant_created_at=new Date(now).toISOString();r.expires_at=new Date(now+4*3600000).toISOString();r.credential_issued_at=new Date(now).toISOString();r.credential_expires_at=new Date(now+3600000).toISOString();assert.equal(R.gate(r,now),true);r.credential_expires_at=new Date(now+3600001).toISOString();assert.throws(()=>R.gate(r,now),/EXPIRY_REQUIRED/);});

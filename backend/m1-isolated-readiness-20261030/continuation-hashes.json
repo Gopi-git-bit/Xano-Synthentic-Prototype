@@ -1,0 +1,121 @@
+{
+  "at": "2026-10-30T12:15:43.603Z",
+  "scope": "UNSEALED_CONTINUATION_INDEX",
+  "files": [
+    {
+      "path": "backend/m1-isolated-readiness-20261030/acceptance-hardening-tests.json",
+      "sha256": "7fbd766188e3fb81e00ef55ffa27aad65f1f3e7250c97fa0d51ec3d29f7f513f",
+      "bytes": 5582
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/acceptance-preparation.json",
+      "sha256": "94d788bcf5207d744198eeaee3646d61728feaeeead0d2b2b0c8fd48041b5cc1",
+      "bytes": 2936
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/cli-checks.json",
+      "sha256": "653c10c2edb97c0284679c3fe3e04878dd340bfb402addc799534a5a11fd5f00",
+      "bytes": 7560
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/discovery.json",
+      "sha256": "7f901b29b6fb6eded41c33057bd2048ce19c2ed6221e6ec0ae2a379427722c6c",
+      "bytes": 9396
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/documentation-receipts.json",
+      "sha256": "db8d2f328d045f408c674e8d720fa9a4bab5d6f93509ce96c6785d47bbd68e02",
+      "bytes": 1339
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/draft-inventory.json",
+      "sha256": "902957651a1114d782886f59c7b8eb568d68257a6feb429812bed9f1598338e1",
+      "bytes": 22420
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/git-preservation.json",
+      "sha256": "85cbb6fca719697c757dd643d93c962704de4957cf55f5886764caffe8f87883",
+      "bytes": 1523
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/instance-capabilities.json",
+      "sha256": "aaea6d9ce87d70c226fa7635004d64626e0d6211b6b13626d7e051b6bbc5e287",
+      "bytes": 2022
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/instance-plan-features.json",
+      "sha256": "32e58570c616f59beae9ddc161123714702d3763298beaa9cab21c2c14ce7c9a",
+      "bytes": 2042
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/metadata-capabilities.json",
+      "sha256": "befff1b3988b3756be5a206ebb61b8ffe19198a8e249c7b3fd39f49314f53d65",
+      "bytes": 147356
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/published-draft-diff.json",
+      "sha256": "ecb2c41cb79c9b9c54a53ec1a043b4e7333773b9fd609cb813791657cd615bc6",
+      "bytes": 10429
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/published-inventory.json",
+      "sha256": "8e1e52acd978e67720b201bb9d7f680e7d10c655ecbeffeb7b64a3937211dafc",
+      "bytes": 22420
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/source-integrity.json",
+      "sha256": "8138e37e8d5792aab54e3044a8091a2c9e06e1f15646cc3115488ef313e402e8",
+      "bytes": 10586
+    },
+    {
+      "path": "backend/m1-isolated-readiness-20261030/final-local-checks.json",
+      "sha256": "104e1f8bbbc69e502a9f3ff3eb098290bbb39728df6d3c290c5ebd97ca4d0f60",
+      "bytes": 689
+    },
+    {
+      "path": "docs/XANO_M1_ISOLATED_TEST_READINESS.md",
+      "sha256": "7398a78cea6e57ff0b32c858cdf522f1df3686ff83ac7c9b40b2d45fa499a722",
+      "bytes": 26870
+    },
+    {
+      "path": "scripts/verify-m1-isolated-readiness.cjs",
+      "sha256": "b47597c82851633aa4903f172d96d91b3cb3fd1a9b7044b4fc9f762f50b6da81",
+      "bytes": 8261
+    },
+    {
+      "path": "scripts/record-m1-readiness-checks.cjs",
+      "sha256": "cf609ac0ca12fe64aaa3d53ba5b88a9b2ecb354f5b1d01abb5a2a1b42eddd6db",
+      "bytes": 7225
+    },
+    {
+      "path": "backend/m1-acceptance-preparation/approval.template.json",
+      "sha256": "60a00b47728ae6a5559c7b30dbad224e4290d16f004602d5c291b2b61836f03b",
+      "bytes": 858
+    },
+    {
+      "path": "backend/m1-acceptance-preparation/runner.cjs",
+      "sha256": "b0131581cd056157eeb56c693bdd6808f67ddceb1c1254ca26aff28d181be631",
+      "bytes": 14977
+    },
+    {
+      "path": "scripts/test-m1-acceptance-preparation.cjs",
+      "sha256": "4aeff738852f3e50ed6a17f03bc7aac1f0ec73b28a22edcb023051db0b94801a",
+      "bytes": 7432
+    }
+  ],
+  "temporary_capture_scripts": [
+    {
+      "path": "C:/Users/ashok/AppData/Local/Temp/opencode/zippy-readiness-capabilities-20261030.cjs",
+      "sha256": "aa5de4daac3576c54ea7d7336cc5dab39fde3d4dab372c3612d34a51787fe69f"
+    },
+    {
+      "path": "C:/Users/ashok/AppData/Local/Temp/opencode/zippy-readiness-docs-20261030.cjs",
+      "sha256": "42822a97b0869159df7eee91b10b920deb386807376ea3c0c4a4c6a7768b25cb"
+    },
+    {
+      "path": "C:/Users/ashok/AppData/Local/Temp/opencode/zippy-readiness-final-check-20261030.cjs",
+      "sha256": "bd3ca4c11bb0653c99cb25b71bd65c84063511072574d1ce3751354013e41686"
+    }
+  ],
+  "note": "No historical seal regenerated. Supplemental projection script hash describes final version including package.features; initial projection did not include that field."
+}

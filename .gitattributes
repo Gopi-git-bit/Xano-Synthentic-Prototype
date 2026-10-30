@@ -19,3 +19,7 @@
 /scripts/test-m1-acceptance-preparation.cjs text eol=lf
 /scripts/record-m1-preparation.cjs text eol=lf
 /scripts/export-m1-transfer.cjs text eol=lf
+/docs/XANO_M1_ISOLATED_TEST_READINESS.md text eol=lf
+/scripts/record-m1-readiness-checks.cjs text eol=lf
+/scripts/verify-m1-isolated-readiness.cjs text eol=lf
+/scripts/verify-m1-stage-sync.cjs text eol=lf

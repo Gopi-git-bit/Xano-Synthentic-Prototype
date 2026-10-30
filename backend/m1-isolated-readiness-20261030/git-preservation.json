@@ -1,0 +1,32 @@
+{
+  "head": {
+    "started_at": "2026-10-30T12:10:18.416Z",
+    "exit_code": 0,
+    "output": "61d1b139d27646187f7d4a52bcc6546e11b70a4c\n",
+    "output_sha256": "182630d82d8cb677692e6d74b4ce06d1e8b89996029c1a9724c531cebc06d0ec"
+  },
+  "branch": {
+    "started_at": "2026-10-30T12:10:18.495Z",
+    "exit_code": 0,
+    "output": "codex/xano-m1-reconciliation-20261029\n",
+    "output_sha256": "1c5f268db319953a13479b284eecdac575a7f77620d24600a106c5052ac6f808"
+  },
+  "ancestor": {
+    "started_at": "2026-10-30T12:10:18.569Z",
+    "exit_code": 0,
+    "output": "",
+    "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "tracked_diff": {
+    "started_at": "2026-10-30T12:10:18.652Z",
+    "exit_code": 0,
+    "output": "",
+    "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "worktrees": {
+    "started_at": "2026-10-30T12:10:18.824Z",
+    "exit_code": 0,
+    "output": "worktree C:/Users/ashok/Documents/GitHub/Xano-Synthentic-Prototype\nHEAD 223bae3a1b63218f050ebe48cef7903595926db7\nbranch refs/heads/main\n\nworktree C:/Users/ashok/Documents/GitHub/zippy-backend-m1-review\nHEAD 61d1b139d27646187f7d4a52bcc6546e11b70a4c\nbranch refs/heads/codex/xano-m1-reconciliation-20261029\n\nworktree C:/Users/ashok/Documents/GitHub/zippy-frontend-polish\nHEAD 35461bd62bfd90b6f7e901791aa3d097b6649ead\nbranch refs/heads/feat/frontend-tailwind-polish\n\n",
+    "output_sha256": "a83017cadcade258ac62d91141b5f555d3584548d0f83f4cb677c461bf37f23f"
+  }
+}
