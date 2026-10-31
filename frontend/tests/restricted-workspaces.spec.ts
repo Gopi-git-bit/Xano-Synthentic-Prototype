@@ -47,7 +47,7 @@ for (const role of roles) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
     const a11y = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
     expect(a11y.violations).toEqual([]);
-    expect(seen).toEqual(['GET /api/status', 'POST /api/auth/login']);
+    expect(seen).toEqual(['GET /api/status', 'POST /api/auth/login', ...(role.workspace === 'admin' ? ['GET /api/status'] : [])]);
     await page.getByRole('button', { name: 'Sign out' }).click();
     await expect(page.getByRole('heading', { name: 'A secure start to every journey.' })).toBeVisible();
   });

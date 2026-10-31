@@ -36,7 +36,7 @@ Fixtures require **both development mode and `demo=1`**. Production excludes fix
 - Customer: Home, Book, Orders, Payments, Profile. Four-step booking, IST scheduling, payment-plan requests, quote-unavailable breakdown, drafts, search/filter/export, cancellation-request drafts, tracking details, invoices-unavailable, notifications and support.
 - Vehicle Owner: Home, Jobs, Vehicles, Earnings, Profile. One workspace with explicit owner-driver, salaried-driver and fleet-owner preview grants. Assigned-record scope, financial redaction, availability, offer-response drafts, active-trip action drafts, evidence/POD selection, recipient-confirmation status, document corrections, vehicle/driver records and settlement holds.
 - Admin: oversight, evidence/financial exceptions, damage reports, scoped hold details, human refund review requirements, announcement/support drafts, five responsibility areas and CRM.
-- Production: release-gated Xano account entry/registration and `auth/me` verification, authoritative system-role checks and customer-organization booking reads. All release flags are currently blocked. Admin CRM displays honest unavailability; Vehicle Owner assigned-work access awaits callable contracts.
+- Production build: release-gated Xano account entry/registration and `auth/me` verification, authoritative system-role checks and customer-organization booking reads. Admin CRM now checks authenticated server status before showing dynamically granted modules. Release flags remain blocked; Vehicle Owner assigned-work access awaits callable contracts.
 
 No operational writes, payment collection, GPS, broadcasts or CRM record mutations are performed by previews. Financial and upload actions remain unavailable until their authoritative APIs exist.
 
@@ -46,7 +46,7 @@ No operational writes, payment collection, GPS, broadcasts or CRM record mutatio
 
 Auth and booking list/detail are wired and mock-tested behind separate server-only release gates. The read UI filters canonical booking states, keeps pagination context across refresh/retry, cancels superseded reads and returns to account entry when a session ends. All booking mutations are refused. The existing demo workflows remain development fixtures, excluded from production bundles. [Release sequence and exact blockers](docs/XANO.md).
 
-The existing Zoho MCP URL was probed read-only: **HTTP 401**, no tools/modules discovered and no records accessed. REST OAuth client ID, client secret and refresh token are absent. See [connectivity evidence](docs/zoho-connectivity.json) and [API/security contract](docs/API.md).
+The **2026-10-31** OpenCode MCP connection successfully read organization/module/field metadata for **Zippy Logitech**, superseding the historical October 27 MCP 401 result. REST OAuth credentials and explicit server record grants are still absent; MCP does not supply them to the frontend gateway. The Admin reader is tested through the real gateway with synthetic providers, not live-connected. See [CRM acceptance and release blockers](docs/ZIPPY_ZOHO_CRM_FRONTEND_ACCEPTANCE.md), [sanitized audit](docs/zoho-audit-2026-10-31.json) and [API/security contract](docs/API.md).
 
 ## Checks
 
@@ -56,6 +56,7 @@ npm run lint
 npm run build
 npm run test:server
 npm test
+npm run verify:crm
 node scripts/scan-browser.mjs
 ```
 
@@ -69,7 +70,7 @@ The optional private-file argument to `scan-browser.mjs` checks exact configured
 src/main.tsx               Explicit development-only fixture import
 src/Access.tsx, api.ts      Account entry and same-origin API client; token in memory
 src/Bookings.tsx           Gated read-only customer booking list/detail
-src/CRM.tsx                Unavailable Admin screen; dormant reader retained
+src/CRM.tsx                Gated Admin CRM module/list/detail reader; preview stays offline
 src/components.tsx         Reusable accessible UI, map and timeline
 src/styles.css             Compiled Tailwind v4 + semantic role themes
 src/demo/                  Preserved/enhanced fixture workspaces and permissions

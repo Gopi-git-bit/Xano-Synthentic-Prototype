@@ -41,6 +41,6 @@ export function AdminRestricted() {
       <RestrictedCard title="Finance and compliance" action="Finance records unavailable"
         description="Payments, settlements, refunds and approval actions are blocked. Refund execution always requires independent human authorization."/>
     </div>
-    <div className="mt-7"><CRM/></div>
+    <div className="mt-7"><CRM preview={false}/></div>
   </>;
 }

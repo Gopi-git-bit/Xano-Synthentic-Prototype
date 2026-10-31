@@ -205,7 +205,7 @@ test('demo is explicit; CRM preview never makes live reads; direct anonymous API
   const calls: string[] = [];
   page.on('request', r => { if (r.url().includes('/api/crm')) calls.push(r.url()); });
   await page.goto('/?demo=1&preview=admin#CRM');
-  await expect(page.getByText('Last recorded probe: HTTP 401.')).toBeVisible();
+  await expect(page.getByText('This development preview does not access CRM records.')).toBeVisible();
   expect(calls).toEqual([]);
   const response = await request.get('/api/crm/records?module=Contacts&id=1');
   expect(response.status()).toBe(401);
@@ -227,8 +227,8 @@ test('authenticated Admin sees honest Zoho unavailability without provider reque
   await page.getByLabel('Password', { exact: true }).fill('Password123');
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Zoho is unavailable' })).toBeVisible();
-  await expect(page.getByText('Last recorded probe: HTTP 401.')).toBeVisible();
-  await expect(page.getByText(/Separately, REST OAuth/)).toBeVisible();
+  await expect(page.getByRole('alert')).toContainText('Server REST configuration, verified Admin access and release authorization are required.');
+  await expect(page.getByRole('alert')).toContainText('MCP connectivity is independent.');
   await expect(page.getByLabel('Module filter')).toHaveCount(0);
   await page.getByRole('button', { name: 'Sign out', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'A secure start to every journey.' })).toBeVisible();

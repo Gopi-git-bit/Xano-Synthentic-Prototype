@@ -20,7 +20,7 @@ Current deployment evidence and exact publication blockers: [Xano discovery](XAN
 | `GET /api/auth/me` | `GET …/auth/me` | Bearer token → validated active identity, system role and organization |
 | `GET /api/bookings` | `GET {XANO_LOGISTICS_BASE_URL}/bookings` | Customer-only, tenant-scoped bounded page; projected scalar fields |
 | `GET /api/bookings/{id}` | `GET …/bookings/{id}` | Authorized matching ID/organization; read-only state and hold/cargo counts |
-| `GET /api/status` | None | Configuration and release-availability booleans; not a live health probe |
+| `GET /api/status` | Public: none. Authenticated Admin: `auth/me`, then release-gated Zoho v8 module metadata | Separate configuration, release authorization and per-request verified CRM availability; no record reads |
 
 Sources: separately pulled published/draft workspace snapshots and authenticated Metadata API OpenAPI, recorded in `XANO.md`. Actual bases are now located. No approved positive-auth test account is available; authentication and booking read adapters are **mock-tested, gated, not verified positive live workflows**.
 
@@ -36,7 +36,7 @@ The customer reader sends only `page` and optional canonical booking `status`. C
 
 ## CRM adapter: read-only, fail closed
 
-**Unavailable in the current UI and preview.** `ZOHO_READ_RELEASE` defaults to `blocked`, before any provider request. The earlier reader implementation and mock coverage are retained for later review, but no troubleshooting or live Zoho calls were performed in this increment. The following describes the dormant adapter, not a verified integration. MCP HTTP 401 and missing REST OAuth credentials are independent blockers.
+**Wired and mock-verified; production release blocked.** The authenticated Admin now mounts the reader with `preview={false}`; development previews remain offline. The reader requests authenticated `/api/status` and then `/api/crm/modules` before rendering module selection. `ZOHO_READ_RELEASE` defaults to `blocked`. On October 31, MCP organization/module/field metadata calls succeeded, but REST credentials and explicit record grants were absent. See [current acceptance evidence](ZIPPY_ZOHO_CRM_FRONTEND_ACCEPTANCE.md). No live REST or real-record success is claimed.
 
 `GET /api/crm/modules`, `/api/crm/records?module=…&page=…`, `/api/crm/record?module=…&id=…` are **new frontend server-runtime routes**, not invented Xano endpoints.
 
@@ -45,8 +45,9 @@ Authorization order:
 2. Require active authenticated `system_role: super_admin/operations_admin` and the independent server release gate.
 3. Require server-only per-user `CRM_READ_GRANTS_JSON`.
 4. Validate requested module/record IDs and fields against grants.
-5. Intersect grants with Zoho's actual module metadata (`api_supported`, `viewable`, `visible`).
-6. Request only authorized IDs; project only allowlisted scalar fields. Nested lookup objects are not passed through.
+5. Intersect grants with Zoho's actual module metadata (`api_supported`, `viewable`, `visible`, visible status).
+6. Before record retrieval, verify each granted field against `/crm/v8/settings/fields?module=…`: field presence alone is insufficient; require `visible: true` and no `private.restricted` flag.
+7. Request only authorized IDs; project only allowlisted scalar fields. Nested lookup objects become null. Reject malformed or mismatched record responses. Recheck the grant configuration before reads and before releasing responses, including in-flight revocation.
 
 Grant format (schema example only; no real records):
 
@@ -61,7 +62,7 @@ Grant format (schema example only; no real records):
 }
 ```
 
-Default `{}` denies everything. Admin alone does not grant tenant-wide CRM access. Grants belong to one configured tenant and must be maintained by the server operator; there is no client self-grant flow. For larger deployments, replace static grants with an approved authoritative CRM access/link service. Do not introduce wildcard grants or unscoped tenant reads.
+Default `{}` denies everything. Missing required entries: approved active Xano Admin user ID, actual module API name, separately approved numeric test record IDs, and approved scalar field API names. None have been fabricated. At most 20 modules per Admin, 1,000 explicit IDs per module and 50 field names are accepted. Empty module/record grants return authorized empty results, never tenant-wide fallback. Admin alone does not grant tenant-wide CRM access. Grants belong to one configured tenant and must be maintained by the server operator; there is no client self-grant flow. For larger deployments, replace static grants with an approved authoritative CRM access/link service. Do not introduce wildcard grants or unscoped tenant reads.
 
 ### Pagination and limitations
 
@@ -69,7 +70,15 @@ The MVP pages **explicitly granted IDs** in groups of 10, fetching each using Zo
 
 When separately released, Zoho's modules are discovered at runtime; Contacts/Accounts/Leads/Tasks/Calls/Meetings are not fabricated as available. Fields and modules are determined by configuration plus provider permissions. Related Zippy order links remain unavailable because no authorized CRM-to-booking mapping contract exists; no unscoped link is generated.
 
-OAuth refresh uses the configured regional Accounts domain. Access token/API domain remain server-only, refresh requests are coalesced, tokens expire early in cache, and 401 retries refresh once. API domains are allowlisted before transmitting tokens. Redirects are rejected. Rate-limit responses carry a bounded Retry-After and suspend further CRM calls in that process; there is no automatic retry storm. Upstream bodies/credential errors are sanitized. Serverless instances have independent caches and rate-limit windows; provider limits remain authoritative.
+OAuth refresh uses the configured regional Accounts domain. Access token/API domain remain server-only, refresh requests are coalesced, tokens expire early in cache, and 401 retries refresh once. API domains must both be allowlisted and match the Accounts region (for India: `accounts.zoho.in` → `www.zohoapis.in`). Redirects are rejected. Each upstream request has a 12-second timeout; CRM work has a 15-second request budget. Rate-limit responses carry a bounded Retry-After and suspend further CRM calls in that process; there is no automatic retry storm. Upstream bodies/credential errors are sanitized. Serverless instances have independent caches and rate-limit windows; provider limits remain authoritative.
+
+Public `/api/status` reports `crmConfigured` (complete OAuth configuration with valid Accounts host), `crmReleaseAuthorized` (server release marker), `crmConnectionVerified: false`, and `crmAvailable: false`. It does not probe Zoho. Authenticated Admin status additionally validates Xano identity/grants and performs an actual v8 module read when configuration and release checks pass. Only that successful response sets verified/available true. Failed authentication, permissions or provider reads return sanitized errors, not a cached success. This metadata result is not proof of record-read scopes or production acceptance; record routes revalidate module/field/object permissions independently on every request.
+
+Required minimum REST scopes: `ZohoCRM.settings.modules.READ`, `ZohoCRM.settings.fields.READ`, and only the granted module scopes such as `ZohoCRM.modules.contacts.READ` or `ZohoCRM.modules.accounts.READ`. The MCP catalog's presence does not prove these REST token scopes. Neither metadata visibility nor OAuth token creation authorizes Zippy records. Keep release flags blocked until connection, authorized test-record reads, trusted Xano identity/security checks and regressions have separate recorded evidence and the operator approves release.
+
+Run `npm run verify:crm -- <private-env-file-path>` for a bounded, sanitized check through this exact gateway. It uses an existing `ZIPPY_TEST_ADMIN_TOKEN`; it never performs login/signup, overrides gates, selects records automatically or logs tokens. `ZOHO_TEST_MODULE` and `ZOHO_TEST_RECORD_ID` must name a separately approved record already present in that Admin's grants. It runs module metadata, then field metadata and at most one record read. The probe always leaves production blocked; an operator must evaluate evidence separately. Without credentials/grants/session it reports blocked and makes no provider calls.
+
+CRM UI search is local to the visible authorized page. Pagination/refresh/retry retain request context; failures clear records/details, denials remove module access, and session expiry unmounts the workspace. Superseded and signed-out requests cannot reintroduce old data. Rate-limit timers only re-enable manual controls. A11y checks cover module selection and mobile layout. Xano order relationships remain explicitly unavailable.
 
 CRM writes are rejected with 405. No synchronization/creation is implemented, so no duplicate records can be created by this adapter. Orders, payments, POD, consent, refunds and holds are never updated from Zoho.
 
@@ -93,4 +102,4 @@ UI labels in `src/types.ts`/fixtures are **presentation models, not backend enum
 
 ## Connectivity evidence
 
-`docs/zoho-connectivity.json`: read-only MCP initialization on 2026-10-27 returned **401**, with zero tools/modules discovered. No customer CRM records were read or modified. REST OAuth was not attempted because client ID, secret and refresh token were missing. A configured URL alone is not a working integration.
+`docs/zoho-connectivity.json` preserves the historical October 27 MCP 401. `docs/zoho-audit-2026-10-31.json` records the current successful MCP metadata reads and independently blocked REST/real-record checks. No customer CRM records were read or modified. A connected MCP or configured URL alone is not a working frontend REST integration.

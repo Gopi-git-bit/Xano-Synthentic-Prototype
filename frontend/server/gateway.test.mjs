@@ -15,6 +15,7 @@ function setup(options = {}) {
     if (options.override) { const response = await options.override(url, init); if (response) return response; }
     if (path.endsWith('/oauth/v2/token')) return reply({ access_token: 'test-access-not-real', api_domain: 'https://www.zohoapis.in', expires_in: 3600 });
     if (path.endsWith('/settings/modules')) return reply({ modules: [{ api_name: 'Contacts', plural_label: 'People', api_supported: true, viewable: true }, { api_name: 'Leads', api_supported: true, viewable: true }, { api_name: 'Hidden', api_supported: true, viewable: false }] });
+    if (path.endsWith('/settings/fields')) return reply({ fields: grant.fields.map(api_name => ({ api_name, visible: true })) });
     if (/\/Contacts\/\d+$/.test(path)) return reply({ data: [{ id: path.split('/').at(-1), Last_Name: 'Example', Email: 'test@example.com', Salary: 9000, Owner: { name: 'Secret relation' } }] });
     throw new Error('Unexpected URL');
   };
