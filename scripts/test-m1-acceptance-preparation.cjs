@@ -1,0 +1,37 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const R=require('../backend/m1-acceptance-preparation/runner.cjs');
+const template=require('../backend/m1-acceptance-preparation/approval.template.json');
+const H='a'.repeat(64),J='b'.repeat(64);
+const sourceManifest='23f6d3bd00c267f481e62bb31506935eda92f4888e909cc6ce16056ef0e20997';
+function ready(){const now=Date.now();return {...template,status:'APPROVED',approval_ref:'offline-fixture-not-approval',approval_refs:{P:'offline-P',F:'offline-F',AB:'offline-AB'},tenant:'etest-only',database_identity:'synthetic-isolated-db',parent_database_identity:'parent-db',tenant_created_at:new Date(now).toISOString(),expires_at:new Date(now+3600000).toISOString(),credential_issued_at:new Date(now).toISOString(),credential_expires_at:new Date(now+1800000).toISOString(),source_manifest_sha256:sourceManifest,adapter_sha256:H,fixture_run_id:'synthetic-run',proof_refs:Object.fromEntries(Object.keys(template.proof_refs).map(k=>[k,'offline-fixture:'+k]))};}
+function snap(r=ready()){return {database_identity:r.database_identity,fixture_run_id:r.fixture_run_id,provider_requests:0,agent_calls:0,tables:Object.fromEntries(R.tables.map(name=>[name,{hash:H,count:0,rows:[]}]))};}
+function booking(id=1,org=10){return {id,booking_reference:'SYNTHETIC-'+id,customer_organization_id:org,status:'draft',payment_status:'pending',payment_mode:null,pickup_city:'Synthetic A',delivery_city:'Synthetic B',version:1};}
+test('committed approval template blocks before any adapter access',async()=>{let calls=0;await assert.rejects(R.execute(template,new Proxy({},{get(){calls++;throw Error('unexpected');}})),/APPROVAL_REQUIRED/);assert.equal(calls,0);});
+for(const [label,edit]of [
+ ['workspace-one',r=>r.workspace=1],['live-kind',r=>r.tenant_kind='live'],['same-database',r=>r.database_identity=r.parent_database_identity],['expired',r=>r.expires_at=new Date(0).toISOString()],['long-lifetime',r=>r.expires_at=new Date(Date.now()+25*3600000).toISOString()],['credential-outlives-tenant',r=>r.credential_expires_at=new Date(Date.now()+2*3600000).toISOString()],['missing-egress-proof',r=>r.proof_refs.provider_egress_block=null],['missing-adapter-pin',r=>r.adapter_sha256=null]
+])test('rejects '+label+' before any transport call',async()=>{const r=ready();edit(r);let calls=0;await assert.rejects(R.execute(r,new Proxy({},{get(){calls++;return undefined;}})));assert.equal(calls,0);});
+test('plan covers exactly twelve routes and 144 refusal requests',()=>{const p=R.plan();assert.equal(p.mutation_routes.length,12);assert.equal(p.stageA.requests,144);assert.equal(p.stageC.status,'BLOCKED');assert.equal(p.native_adapter,'NOT_IMPLEMENTED');});
+test('snapshot detects same-count mutation, missing table, provider and agent calls',()=>{const r=ready(),a=snap(r);for(const alter of [s=>s.tables.customer_booking.hash=J,s=>delete s.tables.user,s=>s.provider_requests=1,s=>s.agent_calls=1,s=>s.database_identity='parent-db']){const b=structuredClone(a);alter(b);assert.throws(()=>R.unchanged(a,b,r));}});
+test('null/malformed/foreign/duplicate provider pages never succeed',()=>{const row=booking(),good={curPage:1,nextPage:null,items:[row]};R.page(good,10,1,20,null,[1]);for(const bad of [null,{},[],{...good,items:[booking(1,20)]},{...good,items:[row,row]},{...good,nextPage:'2'},{...good,items:[]}])assert.throws(()=>R.page(bad,10,1,20,null,[1]));});
+test('booking projection rejects credentials or contact/finance additions',()=>{for(const extra of [{password:'synthetic'},{total_amount:100},{consignee_details:{}}])assert.throws(()=>R.row({...booking(),...extra},10));});
+function adapter(r,{write=false,transportFailure=false}={}){
+ let calls=0,observations=0;const state=snap(r);
+ return {scope:'offline_simulation',preflight:async()=>r,fixtures:async()=>({run_id:r.fixture_run_id,orgA:10,orgB:20,users:{A:1,B:2,suspendable:3,revocable:4,driver:5,operator:6,pending:7},memberships:{revocable:4},missing:999,bookingsA:[{id:1,status:'draft'},{id:2,status:'draft'},{id:3,status:'booked'}],bookingsB:[{id:4,status:'draft'},{id:5,status:'booked'}],hold_id:1,quote_id:'00000000-0000-4000-8000-000000000001',attempt_id:'00000000-0000-4000-8000-000000000002'}),
+ login:async alias=>({status:200,body:{authToken:'synthetic-token-not-real',user_id:{A:1,B:2,suspendable:3,revocable:4,driver:5,operator:6}[alias]}}),loginAudit:async alias=>({new_rows:1,user_id:{A:1,B:2,suspendable:3,revocable:4,driver:5,operator:6}[alias],action:'login',metadata_empty:true,credential_matches:0}),
+ snapshot:async()=>{observations++;return structuredClone(state);},request:async()=>{calls++;if(write)state.tables.customer_booking.hash=J;if(transportFailure)throw Error('private token must not reach receipt');return {status:401,body:{code:'ERROR_CODE_UNAUTHORIZED',message:'denied'}};},counts:()=>({calls,observations})};
+}
+test('even denied HTTP response fails when DB changes; no retry',async()=>{const r=ready(),a=adapter(r,{write:true}),result=await R.execute(r,a);assert.equal(result.status,'FAILED');assert.equal(result.reason,'DATABASE_SIDE_EFFECT');assert.equal(a.counts().calls,1);assert.equal(a.counts().observations,2);assert.equal(result.hosted_passes,0);});
+test('transport failure still observes post-state, stops and redacts error',async()=>{const r=ready(),a=adapter(r,{transportFailure:true}),result=await R.execute(r,a);assert.equal(result.status,'FAILED');assert.equal(a.counts().observations,2);assert.equal(a.counts().calls,1);assert.doesNotMatch(JSON.stringify(result),/private token/);});
+test('fresh preflight target drift prevents login or request',async()=>{const r=ready(),a=adapter(r);a.preflight=async()=>({...r,tenant:'eother-target'});a.login=async()=>assert.fail('must not login');const result=await R.execute(r,a);assert.equal(result.reason,'PREFLIGHT_DRIFT');assert.equal(a.counts().calls,0);});
+for(const [label,edit]of [
+ ['two-hour-credential',r=>{r.expires_at=new Date(Date.now()+3*3600000).toISOString();r.credential_expires_at=new Date(Date.now()+2*3600000).toISOString();}],
+ ['credential-issued-too-early',r=>{r.tenant_created_at=new Date(Date.now()-2*3600000).toISOString();r.credential_issued_at=new Date(Date.now()-3600000).toISOString();}],
+ ['future-credential-issuance',r=>r.credential_issued_at=new Date(Date.now()+30000).toISOString()],
+ ['missing-credential-issuance',r=>delete r.credential_issued_at],
+ ['overlong-original-tenant-lifetime',r=>r.tenant_created_at=new Date(Date.now()-4*3600000).toISOString()],
+ ['unreviewed-source-manifest',r=>r.source_manifest_sha256=H],
+ ['missing-fixture-approval',r=>r.approval_refs.F=null],
+ ['provisioning-approval-reused-for-runtime',r=>r.approval_refs.AB=r.approval_refs.P]
+])test('readiness rejects '+label+' before any adapter access',async()=>{const r=ready();edit(r);let calls=0;await assert.rejects(R.execute(r,new Proxy({},{get(){calls++;throw Error('unexpected adapter access');}})));assert.equal(calls,0);});
+test('credential and tenant lifetime boundaries are accepted by local shape gate only',()=>{const r=ready(),now=Date.now();r.tenant_created_at=new Date(now).toISOString();r.expires_at=new Date(now+4*3600000).toISOString();r.credential_issued_at=new Date(now).toISOString();r.credential_expires_at=new Date(now+3600000).toISOString();assert.equal(R.gate(r,now),true);r.credential_expires_at=new Date(now+3600001).toISOString();assert.throws(()=>R.gate(r,now),/EXPIRY_REQUIRED/);});

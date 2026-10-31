@@ -1,0 +1,11 @@
+{
+  "profile": "zippy-synthetic-dev",
+  "instance": "https://xynd-fnea-khtp.n7e.xano.io",
+  "workspace": 1,
+  "branch": "v1",
+  "sandbox": "sn9m-aat6-200c",
+  "default_profile_unchanged": true,
+  "credential_backup_created": true,
+  "token_scope_restricted": false,
+  "datasource_note": "Only live label is available. Separate sandbox database identity is the boundary; profile does not claim to redirect Direct SQL."
+}

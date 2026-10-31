@@ -1,0 +1,331 @@
+{
+  "started_at": "2026-10-30T12:08:49.169Z",
+  "scope": "READ_ONLY_P0",
+  "status": "BLOCKED",
+  "approval": "NOT_APPROVED",
+  "profile": "default",
+  "workspace": 3,
+  "source_branch": "v1",
+  "instance": "https://xynd-fnea-khtp.n7e.xano.io",
+  "tenant": null,
+  "database_identity": null,
+  "parent_database_identity": null,
+  "ledger": [
+    {
+      "method": "GET",
+      "route": "/apispec:meta?type=json",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:49.170Z",
+      "finished_at": "2026-10-30T12:08:50.752Z",
+      "bytes": 1109739,
+      "response_sha256": "f6d8a92630e63791937454895b429254f1bd2255816252719be3dbf542c4f95a"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/auth/me",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:50.788Z",
+      "finished_at": "2026-10-30T12:08:51.256Z",
+      "bytes": 3465,
+      "response_sha256": "76bea7d9ecf6364aaa6413460f27baaa557f79f07a65487799cf41bad19d27ea"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:51.258Z",
+      "finished_at": "2026-10-30T12:08:51.592Z",
+      "bytes": 260,
+      "response_sha256": "0bb7cb37e69fd31805470a0be135b1d5a16470afd0c8ed70403ed2c9be188ef9"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/branch",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:51.592Z",
+      "finished_at": "2026-10-30T12:08:52.186Z",
+      "bytes": 83,
+      "response_sha256": "bd57f578b5d55dc32b1a158b22102f388f1326c70c9ae4de9622c8bcb9566fd8"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/datasource",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:52.186Z",
+      "finished_at": "2026-10-30T12:08:52.484Z",
+      "bytes": 36,
+      "response_sha256": "0f1b5abb8c86c5ccf6670578c5c3d801f72051c5b9ee5e002e3feb01b65c83f1"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/tenant?page=1&per_page=100",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:52.484Z",
+      "finished_at": "2026-10-30T12:08:52.789Z",
+      "bytes": 56,
+      "response_sha256": "56ac46dccba1a689b3278515340d1d3ce226287d1db438f5970e1b0e7c654ac0"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/ephemeral?page=1&per_page=100",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:52.790Z",
+      "finished_at": "2026-10-30T12:08:53.102Z",
+      "bytes": 56,
+      "response_sha256": "56ac46dccba1a689b3278515340d1d3ce226287d1db438f5970e1b0e7c654ac0"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/multidoc?branch=v1&env=false&records=false&include_draft=false",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:53.102Z",
+      "finished_at": "2026-10-30T12:08:56.252Z",
+      "bytes": 90308,
+      "response_sha256": "859c60e5519b7568169c237fdf5d7e1209fc30c1af0bf3459068c8633c674f11"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/multidoc?branch=v1&env=false&records=false&include_draft=true",
+      "status": 200,
+      "started_at": "2026-10-30T12:08:56.278Z",
+      "finished_at": "2026-10-30T12:09:01.163Z",
+      "bytes": 203403,
+      "response_sha256": "6030e3e014b51d49d7f6c5fe1b65ec15e25ce22f8a9027990a746367f719f77d"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/task?branch=v1&page=1&per_page=100",
+      "status": 200,
+      "started_at": "2026-10-30T12:09:01.185Z",
+      "finished_at": "2026-10-30T12:09:01.472Z",
+      "bytes": 56,
+      "response_sha256": "7029cff10dca1a6df4382f932d94d52facb92454dd7fca544a763ebfd0186245"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/table/trigger?branch=v1&page=1&per_page=100",
+      "status": 200,
+      "started_at": "2026-10-30T12:09:01.472Z",
+      "finished_at": "2026-10-30T12:09:01.789Z",
+      "bytes": 56,
+      "response_sha256": "7029cff10dca1a6df4382f932d94d52facb92454dd7fca544a763ebfd0186245"
+    },
+    {
+      "method": "GET",
+      "route": "/api:meta/workspace/3/agent/trigger?branch=v1&page=1&per_page=100",
+      "status": 200,
+      "started_at": "2026-10-30T12:09:01.789Z",
+      "finished_at": "2026-10-30T12:09:02.097Z",
+      "bytes": 56,
+      "response_sha256": "7029cff10dca1a6df4382f932d94d52facb92454dd7fca544a763ebfd0186245"
+    }
+  ],
+  "metadata_writes": 0,
+  "record_reads": 0,
+  "environment_value_reads": 0,
+  "credential_minting": 0,
+  "application_requests": 0,
+  "identity": {
+    "principal_id": 178782,
+    "instance_id": 9940,
+    "role": "admin",
+    "role_permissions": {
+      "instance:billing": 16,
+      "instance:workspace": 15,
+      "workspace:action:export": 16,
+      "workspace:action:rundebug": 16,
+      "workspace:action:rundebug_from_request_history": 16,
+      "workspace:addon": 15,
+      "workspace:api": 15,
+      "workspace:content": 15,
+      "workspace:database": 15,
+      "workspace:datasource:live": 15,
+      "workspace:feature:connect": 16,
+      "workspace:feature:marketplace": 16,
+      "workspace:file": 15,
+      "workspace:function": 15,
+      "workspace:log": 15,
+      "workspace:middleware": 15,
+      "workspace:realtime": 15,
+      "workspace:microservice": 15,
+      "workspace:requesthistory": 15,
+      "workspace:service": 15,
+      "workspace:settings": 15,
+      "workspace:task": 15,
+      "workspace:tool": 15,
+      "workspace:workflow_test": 15,
+      "workspace:knowledge": 15,
+      "workspace:knowledge:enforce": 16,
+      "workspace:policy": 15,
+      "tenant_center": 15,
+      "tenant_center:backup": 15,
+      "tenant_center:deploy": 16,
+      "tenant_center:deploy:bypass_approval": 0,
+      "tenant_center:impersonate": 16,
+      "tenant_center:impersonate:edit": 16,
+      "tenant_center:log": 16,
+      "tenant_center:metadata:api": 16,
+      "tenant_center:rbac": 16,
+      "tenant_center:secrets": 15,
+      "tenant_cluster": 15,
+      "tenant_cluster:secrets": 15,
+      "release": 15
+    },
+    "effective_scope": {
+      "tenant_center:backup": 15,
+      "tenant_center:deploy": 16,
+      "tenant_center:deploy:bypass_approval": 0,
+      "tenant_center:impersonate": 16,
+      "tenant_center:impersonate:edit": 16,
+      "tenant_center:metadata:api": 16,
+      "tenant_center:log": 16,
+      "tenant_center:rbac": 16,
+      "tenant_center:secrets": 15,
+      "tenant_cluster": 15,
+      "tenant_cluster:secrets": 15,
+      "tenant_center": 15,
+      "release": 15,
+      "workspace:addon": 15,
+      "workspace:api": 15,
+      "workspace:content": 15,
+      "workspace:database": 15,
+      "workspace:datasource:live": 15,
+      "workspace:file": 15,
+      "workspace:function": 15,
+      "workspace:service": 15,
+      "workspace:log": 15,
+      "workspace:middleware": 15,
+      "workspace:requesthistory": 15,
+      "workspace:task": 15,
+      "workspace:tool": 15,
+      "workspace:realtime": 15,
+      "workspace:microservice": 15,
+      "workspace:mesh0": 15,
+      "workspace:workflow_test": 15,
+      "workspace:knowledge": 15,
+      "workspace:knowledge:enforce": 0,
+      "workspace:policy": 15
+    },
+    "expires_at": "never"
+  },
+  "identity_metadata_fields": {
+    "extras": [
+      "instance",
+      "access_token",
+      "expires_at",
+      "name",
+      "email"
+    ],
+    "instance": [
+      "id",
+      "user",
+      "name",
+      "display",
+      "cluster",
+      "features",
+      "auto_logout_time",
+      "merge_strategy",
+      "redis_isolation",
+      "preferences",
+      "direct_query_access",
+      "byoc",
+      "k8s",
+      "membership",
+      "package"
+    ],
+    "membership": [
+      "role",
+      "rolePermissions",
+      "workspace",
+      "permissions"
+    ]
+  },
+  "workspace_metadata": {
+    "id": 3,
+    "name": "Zippy Synthetic Prototype_1",
+    "branch": "v1",
+    "field_names": [
+      "id",
+      "created_at",
+      "name",
+      "description",
+      "swagger",
+      "preferences",
+      "documentation",
+      "branch"
+    ]
+  },
+  "branches": [
+    {
+      "label": "v1",
+      "live": true
+    }
+  ],
+  "datasources": [
+    {
+      "label": "live"
+    }
+  ],
+  "tenants": {
+    "count": 0,
+    "nextPage": null,
+    "items": []
+  },
+  "ephemerals": {
+    "count": 0,
+    "nextPage": null,
+    "items": []
+  },
+  "published": {
+    "count": 84,
+    "counts": {
+      "addon": 1,
+      "agent": 1,
+      "api_group": 3,
+      "function": 19,
+      "mcp_server": 1,
+      "middleware": 1,
+      "query": 23,
+      "table": 33,
+      "tool": 1,
+      "workspace": 1
+    },
+    "inventory_sha256": "7b06e6a779037407224fb357d2cfb1133d251f1ce0104d717ff0b74b6312c374",
+    "unchanged_from_reconciliation": true
+  },
+  "published_application_token_ttl_seconds": 86400,
+  "draft": {
+    "count": 84,
+    "counts": {
+      "addon": 1,
+      "agent": 1,
+      "api_group": 3,
+      "function": 19,
+      "mcp_server": 1,
+      "middleware": 1,
+      "query": 23,
+      "table": 33,
+      "tool": 1,
+      "workspace": 1
+    },
+    "inventory_sha256": "535399c4c635b3ba2eec841e885fd7e09a73a4cc550798eb9061b91b543d85e5",
+    "unchanged_from_reconciliation": true
+  },
+  "task": {
+    "count": 0,
+    "nextPage": null,
+    "items": []
+  },
+  "table/trigger": {
+    "count": 0,
+    "nextPage": null,
+    "items": []
+  },
+  "agent/trigger": {
+    "count": 0,
+    "nextPage": null,
+    "items": []
+  },
+  "discovery_status": "VERIFIED",
+  "finished_at": "2026-10-30T12:09:02.097Z"
+}

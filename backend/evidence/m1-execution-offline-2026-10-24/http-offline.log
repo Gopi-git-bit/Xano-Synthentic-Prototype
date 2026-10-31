@@ -1,0 +1,1 @@
+PASS: missing credential, safe connection, redaction, admin-token separation, database mismatch, source drift, and unauthenticated denial checks.

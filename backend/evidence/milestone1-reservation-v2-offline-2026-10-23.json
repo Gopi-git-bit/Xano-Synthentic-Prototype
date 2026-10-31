@@ -1,0 +1,56 @@
+{
+  "checked_at": "2026-10-23T18:23:26.594523+00:00",
+  "execution_scope": "offline_only",
+  "original_offline_passes": 121,
+  "prior_followup_passes": 5,
+  "reservation_revision_tests": 35,
+  "initial_revision_test_attempt": {
+    "passed": 32,
+    "failed": 3,
+    "cause": "Reservation-ID UUID validator omitted one group; corrected locally before final run"
+  },
+  "runs": [
+    {
+      "command": "node scripts/test-milestone1.cjs",
+      "exit_code": 0,
+      "summary": " four concurrent commands\nok 98 - runner caps same_key cohort at four concurrent commands\n  ---\n  duration_ms: 16.576587\n  ...\n# Subtest: runner caps same_vehicle cohort at four concurrent commands\nok 99 - runner caps same_vehicle cohort at four concurrent commands\n  ---\n  duration_ms: 12.002735\n  ...\n# Subtest: caller labels cannot fake independent driver selection\nok 100 - caller labels cannot fake independent driver selection\n  ---\n  duration_ms: 0.730272\n  ...\n# Subtest: candidate hashes and preserved replacement GUIDs match manifest\nok 101 - candidate hashes and preserved replacement GUIDs match manifest\n  ---\n  duration_ms: 20.455519\n  ...\n# Subtest: command policy and business logic are identical after removing explicit fault additions\nok 102 - command policy and business logic are identical after removing explicit fault additions\n  ---\n  duration_ms: 0.790044\n  ...\n# Subtest: an omitted rejection code cannot pass an empty response\nok 103 - an omitted rejection code cannot pass an empty response\n  ---\n  duration_ms: 0.168698\n  ...\n# Subtest: race requires a concrete shared driver identity\nok 104 - race requires a concrete shared driver identity\n  ---\n  duration_ms: 0.188009\n  ...\n# Subtest: same-key race requires recorded hashes\nok 105 - same-key race requires recorded hashes\n  ---\n  duration_ms: 0.24519\n  ...\n# Subtest: fault marker without a native error code is insufficient\nok 106 - fault marker without a native error code is insufficient\n  ---\n  duration_ms: 0.13013\n  ...\n# Subtest: runner waits for sibling writes after one native request fails\nok 107 - runner waits for sibling writes after one native request fails\n  ---\n  duration_ms: 26.07515\n  ...\n1..107\n# tests 107\n# suites 0\n# pass 107\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 967.410692\n",
+      "log_sha256": "6921e30e9fe118271f613f2f1e31035ed665f9c5bbc3dd7590b2b8d20fcceaf0"
+    },
+    {
+      "command": "node scripts/test-milestone1-native.cjs",
+      "exit_code": 0,
+      "summary": "s leaves execution locked\n  ---\n  duration_ms: 56.546381\n  ...\n# Subtest: modified read-only probe stops before any function execution\nok 10 - modified read-only probe stops before any function execution\n  ---\n  duration_ms: 15.033686\n  ...\n# Subtest: wrong database stops before physical inspection\nok 11 - wrong database stops before physical inspection\n  ---\n  duration_ms: 20.703612\n  ...\n# Subtest: pagination loops fail closed\nok 12 - pagination loops fail closed\n  ---\n  duration_ms: 46.719066\n  ...\n# Subtest: transport failures redact remote messages and never retry\nok 13 - transport failures redact remote messages and never retry\n  ---\n  duration_ms: 1.382674\n  ...\n# Subtest: redirect responses cannot count as authentication\nok 14 - redirect responses cannot count as authentication\n  ---\n  duration_ms: 10.62648\n  ...\n# Subtest: request body byte ceiling stops oversized exports\nok 15 - request body byte ceiling stops oversized exports\n  ---\n  duration_ms: 13.981362\n  ...\n# Subtest: reviewed diagnostic preparation is recognized without relaxing prerequisites\nok 16 - reviewed diagnostic preparation is recognized without relaxing prerequisites\n  ---\n  duration_ms: 64.658609\n  ...\n# Subtest: changed diagnostic preparation blocks execution\nok 17 - changed diagnostic preparation blocks execution\n  ---\n  duration_ms: 13.895628\n  ...\n# Subtest: invalid physical unique index cannot satisfy preflight\nok 18 - invalid physical unique index cannot satisfy preflight\n  ---\n  duration_ms: 49.454104\n  ...\n# Subtest: missing physical validity evidence cannot satisfy preflight\nok 19 - missing physical validity evidence cannot satisfy preflight\n  ---\n  duration_ms: 49.444771\n  ...\n1..19\n# tests 19\n# suites 0\n# pass 19\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 906.192368\n",
+      "log_sha256": "db654410ce3371cce915c7a5b4269e07e9e267bd4faedf26cdf7318737a77e87"
+    },
+    {
+      "command": "node --test scripts/test-milestone1-reservations.cjs",
+      "exit_code": 0,
+      "summary": "s rollback\n  ---\n  duration_ms: 0.47465\n  ...\n# Subtest: same-count mutation in service_commitments rejects rollback\nok 27 - same-count mutation in service_commitments rejects rollback\n  ---\n  duration_ms: 0.429499\n  ...\n# Subtest: same-count mutation in transaction_participants rejects rollback\nok 28 - same-count mutation in transaction_participants rejects rollback\n  ---\n  duration_ms: 0.392546\n  ...\n# Subtest: same-count mutation in trip_assignments rejects rollback\nok 29 - same-count mutation in trip_assignments rejects rollback\n  ---\n  duration_ms: 0.392135\n  ...\n# Subtest: same-count mutation in trips rejects rollback\nok 30 - same-count mutation in trips rejects rollback\n  ---\n  duration_ms: 0.306041\n  ...\n# Subtest: a snapshot cannot omit any original or added table\nok 31 - a snapshot cannot omit any original or added table\n  ---\n  duration_ms: 47.000953\n  ...\n# Subtest: non-sandbox or tenant-only snapshot cannot establish full rollback\nok 32 - non-sandbox or tenant-only snapshot cannot establish full rollback\n  ---\n  duration_ms: 0.50567\n  ...\n# Subtest: database failure cannot be relabeled an application failure\nok 33 - database failure cannot be relabeled an application failure\n  ---\n  duration_ms: 0.508055\n  ...\n# Subtest: review hashes and preview payload bind this exact revision, independent of original preview\nok 34 - review hashes and preview payload bind this exact revision, independent of original preview\n  ---\n  duration_ms: 8.47388\n  ...\n# Subtest: snapshot refuses execution while supported inventory reconciliation is missing\nok 35 - snapshot refuses execution while supported inventory reconciliation is missing\n  ---\n  duration_ms: 0.28627\n  ...\n1..35\n# tests 35\n# suites 0\n# pass 35\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 499.851679\n",
+      "log_sha256": "aa4fda88f5171f224e2a77724f5da78e7246c696083bddeb0ee07f74b682497b"
+    },
+    {
+      "command": "node scripts/validate-backend.cjs",
+      "exit_code": 0,
+      "summary": "PASS: 49 shared cases; 49 exported cases; 49 tables; 476 fields.\nScope: offline snapshot checks only; no Xano deployment, HTTP, isolation, or transaction proof.\nPASS: tested export hashes and 16 recorded Xano payment results.\nPASS: 84 coordinate regressions against shared and exported code.\nPASS: five unbound agent exports, supplied package hashes and references, preserved source, 20 readiness mappings. Scope: offline configuration only; 70 acceptance scenarios remain NOT_RUN.\n",
+      "log_sha256": "82d4b9eb13e8945d975d29543585309f9129e573800087724711399993788ac9"
+    },
+    {
+      "command": "node scripts/validate-xano-safeguards.cjs",
+      "exit_code": 0,
+      "summary": "PASS: offline safeguard checks and complete 72-case reference inventory. Native 72-case acceptance remains NOT_VERIFIED.\n",
+      "log_sha256": "8bc44f6fb02ec15b6fce402e94bed4c3a09ff1b0c8977ace40bd33305ba06475"
+    },
+    {
+      "command": "node scripts/evaluate-milestone1.cjs",
+      "exit_code": 0,
+      "summary": "{\"scope\":\"Evidence evaluation only; does not authenticate or execute Xano\",\"ready\":false,\"totals\":{\"NOT_RUN\":31}}\n",
+      "log_sha256": "7a363e9c349d525c2f257b32a0c0f94b16a5b4f3912797d8c271ad6877e7cc6c"
+    },
+    {
+      "command": "node scripts/staging-gate.cjs",
+      "exit_code": 1,
+      "summary": "BLOCKED: executable staging suite and required integrity evidence are incomplete.\n",
+      "log_sha256": "9bbbeb54ad03708d3675e5839d839d1d065fd38a8ffa5f81d7b1c4c23ee4effd"
+    }
+  ]
+}

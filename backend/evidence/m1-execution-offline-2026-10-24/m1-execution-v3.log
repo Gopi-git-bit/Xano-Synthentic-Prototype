@@ -1,0 +1,125 @@
+TAP version 13
+# Subtest: complete offline model traverses all 31 cases with duplicate-profile qualification
+ok 1 - complete offline model traverses all 31 cases with duplicate-profile qualification
+  ---
+  duration_ms: 1000.454401
+  ...
+# Subtest: committed activation prevents even a preflight network call
+ok 2 - committed activation prevents even a preflight network call
+  ---
+  duration_ms: 0.872971
+  ...
+# Subtest: no direct invoke or forged contention capability bypasses preflight
+ok 3 - no direct invoke or forged contention capability bypasses preflight
+  ---
+  duration_ms: 1.122566
+  ...
+# Subtest: blocked gate returns zero completed cases and never calls a writer
+ok 4 - blocked gate returns zero completed cases and never calls a writer
+  ---
+  duration_ms: 0.75944
+  ...
+# Subtest: all concurrent requests settle before reporting a transport failure
+ok 5 - all concurrent requests settle before reporting a transport failure
+  ---
+  duration_ms: 15.300805
+  ...
+# Subtest: transport failure stops subsequent cases without a writer retry
+ok 6 - transport failure stops subsequent cases without a writer retry
+  ---
+  duration_ms: 7.083158
+  ...
+# Subtest: run fixtures are disjoint except explicit positive-a reuse
+ok 7 - run fixtures are disjoint except explicit positive-a reuse
+  ---
+  duration_ms: 0.284416
+  ...
+# Subtest: duplicate-account fixture crosses platforms and retains one subject
+ok 8 - duplicate-account fixture crosses platforms and retains one subject
+  ---
+  duration_ms: 0.104611
+  ...
+# Subtest: duplicate-profile conflict is the deliberate fixture violation
+ok 9 - duplicate-profile conflict is the deliberate fixture violation
+  ---
+  duration_ms: 0.168716
+  ...
+# Subtest: foreign-owner fixture does not collide with vendor account uniqueness
+ok 10 - foreign-owner fixture does not collide with vendor account uniqueness
+  ---
+  duration_ms: 0.129479
+  ...
+# Subtest: all fixture writes use the ten approved additive fixture tables
+ok 11 - all fixture writes use the ten approved additive fixture tables
+  ---
+  duration_ms: 0.313864
+  ...
+# Subtest: seed rejects out-of-contract input {"case_id":"unknown"}
+ok 12 - seed rejects out-of-contract input {"case_id":"unknown"}
+  ---
+  duration_ms: 8.552166
+  ...
+# Subtest: seed rejects out-of-contract input {"case_id":"positive-a","rows":[]}
+ok 13 - seed rejects out-of-contract input {"case_id":"positive-a","rows":[]}
+  ---
+  duration_ms: 0.922795
+  ...
+# Subtest: seed rejects out-of-contract input {"case_id":"changed-payload"}
+ok 14 - seed rejects out-of-contract input {"case_id":"changed-payload"}
+  ---
+  duration_ms: 0.215799
+  ...
+# Subtest: invoke rejects unbounded indexes, overrides and non-fault recovery
+ok 15 - invoke rejects unbounded indexes, overrides and non-fault recovery
+  ---
+  duration_ms: 5.424238
+  ...
+# Subtest: ordinary indexes, invalid indexes and nullable unique keys cannot satisfy gate
+ok 16 - ordinary indexes, invalid indexes and nullable unique keys cannot satisfy gate
+  ---
+  duration_ms: 0.800313
+  ...
+# Subtest: prepared native contention path removes advisory serialization and retains both claims
+ok 17 - prepared native contention path removes advisory serialization and retains both claims
+  ---
+  duration_ms: 0.308417
+  ...
+# Subtest: all 16 original/revised write deltas are checked in full snapshots
+ok 18 - all 16 original/revised write deltas are checked in full snapshots
+  ---
+  duration_ms: 14.573184
+  ...
+# Subtest: same-count mutation and deletion of retained rows are rejected
+ok 19 - same-count mutation and deletion of retained rows are rejected
+  ---
+  duration_ms: 0.587606
+  ...
+# Subtest: offline proof evaluator rejects absent native timing, same session and ordinary busy errors
+ok 20 - offline proof evaluator rejects absent native timing, same session and ordinary busy errors
+  ---
+  duration_ms: 4.45076
+  ...
+# Subtest: same-driver loser half-reservation residue fails full-table proof
+ok 21 - same-driver loser half-reservation residue fails full-table proof
+  ---
+  duration_ms: 2.873942
+  ...
+# Subtest: expiry only occurs after positive-a and precedes the expired-command snapshot
+ok 22 - expiry only occurs after positive-a and precedes the expired-command snapshot
+  ---
+  duration_ms: 0.620865
+  ...
+# Subtest: discarded result is explicitly qualified and all four faults have 16-table rollback evidence
+ok 23 - discarded result is explicitly qualified and all four faults have 16-table rollback evidence
+  ---
+  duration_ms: 14.943438
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1332.928553

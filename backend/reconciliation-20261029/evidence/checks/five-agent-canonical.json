@@ -1,0 +1,34 @@
+{
+  "at": "2026-10-29T08:40:28.092Z",
+  "source_commit": "ed62038f571c02f339972ad7ec5d7cd1a9cffe18",
+  "paths": [
+    "backend/agent-package",
+    "backend/evidence/five-agent-configuration.json",
+    "backend/evidence/five-agent-readiness-map.json",
+    "backend/xano/ai/agent",
+    "scripts/validate-five-agent-config.cjs",
+    "scripts/validate-five-agent-schema.py"
+  ],
+  "extraction_directory": "C:\\Users\\ashok\\AppData\\Local\\Temp\\opencode\\zippy-m1-reconciliation-20261029-canonical-package",
+  "scope": "Canonical Git bytes, offline only; original Windows checkout failures retained",
+  "results": [
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/validate-five-agent-config.cjs"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r\n\r\n2732 !== 2714\r\n\r\n    at Object.<anonymous> (C:\\Users\\ashok\\AppData\\Local\\Temp\\opencode\\zippy-m1-reconciliation-20261029-canonical-package\\scripts\\validate-five-agent-config.cjs:5:57)\r\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: true,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 2732,\r\n  expected: 2714,\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.22.1\r\n"
+    },
+    {
+      "command": "python",
+      "args": [
+        "scripts/validate-five-agent-schema.py"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\ashok\\AppData\\Local\\Temp\\opencode\\zippy-m1-reconciliation-20261029-canonical-package\\scripts\\validate-five-agent-schema.py\", line 16, in <module>\r\n    assert len(content) == entry[\"size_bytes\"]\r\nAssertionError\r\n"
+    }
+  ]
+}

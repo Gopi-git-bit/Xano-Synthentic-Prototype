@@ -1,0 +1,135 @@
+{
+  "execution_scope": "xano_native",
+  "checked_at": "2026-10-23T17:28:23.476Z",
+  "authenticated": true,
+  "workspace_id": 1,
+  "workspace_name": "Zippy Synthetic Prototype",
+  "branch": "v1",
+  "database": "sn9m-aat6-200c",
+  "isolation_verified": true,
+  "physical_table_count": 53,
+  "physical_table_mapping_verified": false,
+  "physical_indexes_verified": false,
+  "restricted_access_verified": false,
+  "live_source_hash_before": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
+  "live_source_hash_after": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
+  "sandbox_source_hash_before": "1ce5a11d7970b1e549212ab3bba2b1e46ec13dd1a7e0e8ba2d099395ee17c4e2",
+  "sandbox_source_hash_after": "1ce5a11d7970b1e549212ab3bba2b1e46ec13dd1a7e0e8ba2d099395ee17c4e2",
+  "source_preserved": true,
+  "source_hashes": {},
+  "candidates": [
+    {
+      "path": "function/logistics/resolve_identity.xs",
+      "canonical_source_match": false
+    },
+    {
+      "path": "function/milestone1/snapshot.xs",
+      "canonical_source_match": false
+    },
+    {
+      "path": "function/slice_1/acceptance.xs",
+      "canonical_source_match": false
+    },
+    {
+      "path": "function/slice_1/create_and_assign.xs",
+      "canonical_source_match": false
+    },
+    {
+      "path": "workflow_test/m1_application_after_assignment.xs",
+      "canonical_source_match": false
+    },
+    {
+      "path": "workflow_test/m1_application_after_order.xs",
+      "canonical_source_match": false
+    },
+    {
+      "path": "workflow_test/m1_database_after_assignment.xs",
+      "canonical_source_match": false
+    },
+    {
+      "path": "workflow_test/m1_database_after_order.xs",
+      "canonical_source_match": false
+    }
+  ],
+  "missing_baseline_resources": [],
+  "unexpected_documents": [],
+  "inventory": {
+    "declared_table_count": 51,
+    "physical_table_count": 53,
+    "unmapped_tables": [
+      "mvpw1_56",
+      "mvpw1_57"
+    ],
+    "issues": [],
+    "verified": false
+  },
+  "index_definitions": [
+    {
+      "table": "idempotency_records",
+      "physical_table": "mvpw1_25",
+      "columns": [
+        "platform_id",
+        "operation_scope",
+        "idempotency_key"
+      ],
+      "predicate": null,
+      "catalog_definition_observed": true,
+      "index_name": "mvpw1_25_af56fa07f585cd4b93b1",
+      "valid_and_ready": true
+    },
+    {
+      "table": "trip_assignments",
+      "physical_table": "mvpw1_44",
+      "columns": [
+        "platform_id",
+        "vehicle_id"
+      ],
+      "predicate": "released_at IS NULL",
+      "catalog_definition_observed": false,
+      "index_name": null,
+      "valid_and_ready": false
+    },
+    {
+      "table": "trip_assignments",
+      "physical_table": "mvpw1_44",
+      "columns": [
+        "platform_id",
+        "driver_profile_id"
+      ],
+      "predicate": "released_at IS NULL",
+      "catalog_definition_observed": false,
+      "index_name": null,
+      "valid_and_ready": false
+    }
+  ],
+  "access": {
+    "live_data_scope_mask": 15,
+    "expiry_verified": true,
+    "expires_at": "2026-10-30T15:34:43.000Z",
+    "prohibited_admin_scopes": [
+      "tenant_center:backup",
+      "tenant_center:deploy",
+      "tenant_center:impersonate",
+      "tenant_center:impersonate:edit",
+      "tenant_center:log",
+      "tenant_center:rbac",
+      "tenant_center:secrets",
+      "tenant_cluster",
+      "tenant_cluster:secrets",
+      "tenant_center",
+      "release"
+    ],
+    "live_denial_probe": {
+      "denied": false,
+      "http_status": null,
+      "attempted": false
+    }
+  },
+  "blockers": [
+    "PHYSICAL_INVENTORY_UNRECONCILED",
+    "REQUIRED_INDEX_DEFINITIONS_MISSING",
+    "RESTRICTED_ACCESS_UNVERIFIED",
+    "CANDIDATES_NOT_IMPORTED_OR_SOURCE_DRIFT"
+  ],
+  "ready": false
+}

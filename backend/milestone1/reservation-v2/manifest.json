@@ -1,0 +1,115 @@
+{
+  "schema_version": 2,
+  "revision": "reservation-v2",
+  "base_review_commit": "f276295b90c5ecd1b444e4ccb312d6188eb3addd",
+  "status": "DRAFT_BLOCKED_NOT_IMPORTED",
+  "activation_enabled": false,
+  "native_preview": "PASS_EIGHT_CANDIDATES_PLUS_SCHEMA_ONE_REQUEST",
+  "native_execution": "NOT_RUN",
+  "original_preview_applies": false,
+  "write_tables": [
+    "active_assignment_reservations",
+    "audit_events",
+    "dispatch_offers",
+    "dispatch_requirements",
+    "durable_tasks",
+    "event_outbox",
+    "idempotency_records",
+    "operational_events",
+    "order_state_transitions",
+    "order_stops",
+    "orders",
+    "quotes",
+    "service_commitments",
+    "transaction_participants",
+    "trip_assignments",
+    "trips"
+  ],
+  "original_tables_preserved": 15,
+  "reservation_lifecycle": "CREATE_ONLY_RELEASE_REUSE_NOT_IMPLEMENTED",
+  "blockers": [
+    "RESTRICTED_CREDENTIAL_NOT_CREATED",
+    "SUPPORTED_INVENTORY_RECONCILIATION_UNVERIFIED",
+    "WRITER_BYPASS_PREVENTION_UNVERIFIED",
+    "PHYSICAL_RESERVATION_INDEXES_NOT_CREATED",
+    "NATIVE_CONTENTION_AND_ROLLBACK_UNPROVEN"
+  ],
+  "candidates": [
+    {
+      "path": "backend/milestone1/reservation-v2/xano/function/logistics/resolve_identity.xs",
+      "target_path": "function/logistics/resolve_identity.xs",
+      "original_candidate_sha256": "72b74f1e37a5052ef8a9ac604fe0b10e0bcf21a5dc82f16797633b50164a0820",
+      "candidate_sha256": "72b74f1e37a5052ef8a9ac604fe0b10e0bcf21a5dc82f16797633b50164a0820",
+      "changed": false,
+      "native_status": "NOT_IMPORTED_NOT_RUN"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/function/milestone1/snapshot.xs",
+      "target_path": "function/milestone1/snapshot.xs",
+      "original_candidate_sha256": "0ff534849864225fbf1cdc57fdaf96aff18e0f353f041e780225894ada524897",
+      "candidate_sha256": "3569f0b81606137f720caee8beefb2d3e6b0ffbc2b440f57b49e573a4362fc9c",
+      "changed": true,
+      "native_status": "NOT_IMPORTED_NOT_RUN"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/function/slice_1/acceptance.xs",
+      "target_path": "function/slice_1/acceptance.xs",
+      "original_candidate_sha256": "5efc71399b42e0af78cb5af82580f9ef59b60c088827cdf05620d22b1952408a",
+      "candidate_sha256": "d1087eb6e5c2f65bd720ad42e3b93638e151e0307ac16272e31afac64cea9002",
+      "changed": true,
+      "native_status": "NOT_IMPORTED_NOT_RUN"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/function/slice_1/create_and_assign.xs",
+      "target_path": "function/slice_1/create_and_assign.xs",
+      "original_candidate_sha256": "7afec4b7c36d377a2fa02c132d1435915105c9bc47d6dbb1d184f5f3a116533c",
+      "candidate_sha256": "97972dac207c445768ab56884816efb0b6cf850d2eafbb945cd4cc12d1fb2ca2",
+      "changed": true,
+      "native_status": "NOT_IMPORTED_NOT_RUN"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/workflow_test/m1_application_after_assignment.xs",
+      "target_path": "workflow_test/m1_application_after_assignment.xs",
+      "original_candidate_sha256": "b2f953114ebf6f51fc111e2b18d3c0f46e4e1838cd04a809aa26d2e9202b2978",
+      "candidate_sha256": "e8dcf308fed31d07500dbb0ee6a5d6a5dbcdbe08e99220a08053de8da05b984a",
+      "changed": true,
+      "native_status": "NOT_IMPORTED_NOT_RUN"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/workflow_test/m1_application_after_order.xs",
+      "target_path": "workflow_test/m1_application_after_order.xs",
+      "original_candidate_sha256": "1d4f7f5ef3d2bbbab77c57c3434fce402e11b0a87123cb889769bc14026ddaf4",
+      "candidate_sha256": "efd1e7aaa5be5736a88c03a800fe7cfcc351ed334ad27adbdd89cc8143f58f7c",
+      "changed": true,
+      "native_status": "NOT_IMPORTED_NOT_RUN"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/workflow_test/m1_database_after_assignment.xs",
+      "target_path": "workflow_test/m1_database_after_assignment.xs",
+      "original_candidate_sha256": "befaa3da515fcae1e3b8034d02b7be28be7ecef7e70633f45660599db7927f63",
+      "candidate_sha256": "63f55d5ce871eeb845864ac4277abdba20697c8f0edc8d7fb3da84137450f970",
+      "changed": true,
+      "native_status": "NOT_IMPORTED_NOT_RUN"
+    },
+    {
+      "path": "backend/milestone1/reservation-v2/xano/workflow_test/m1_database_after_order.xs",
+      "target_path": "workflow_test/m1_database_after_order.xs",
+      "original_candidate_sha256": "c7cf94b9f2adb03534d7e7398a68ffa234ec24f1ed5dbb07a31223ff96ccfec2",
+      "candidate_sha256": "b531b47574c528b3f83a146363d1d6539f477e34ca7da6506283174d309ef4b5",
+      "changed": true,
+      "native_status": "NOT_IMPORTED_NOT_RUN"
+    }
+  ],
+  "schema": {
+    "path": "backend/milestone1/reservation-v2/active_assignment_reservations.xs",
+    "sha256": "ce19a67839e2b4e9ed0ec8579e045432a73d274b0c694a3eabcf1cfc0a9d6449",
+    "approved_conditionally": true,
+    "imported": false
+  },
+  "assertions": {
+    "path": "backend/milestone1/reservation-v2/assertions.cjs",
+    "sha256": "7fcc48de580730bb3caeea00a376c509679abf588343e95d82b75d8239070072"
+  },
+  "preview_evidence": "backend/evidence/milestone1-reservation-v2-preview-2026-10-23.json",
+  "snapshot_inventory_gate": "EXPLICIT_FALSE_PENDING_SUPPORTED_RECONCILIATION"
+}

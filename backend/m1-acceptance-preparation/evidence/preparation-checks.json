@@ -1,0 +1,41 @@
+{
+  "recorded_at": "2026-10-29T09:20:55.069Z",
+  "node": "v24.22.1",
+  "scope": "Offline preparation safety tests only; not hosted acceptance",
+  "test_command": "node --test --test-reporter=tap scripts/test-m1-acceptance-preparation.cjs",
+  "executed_tests": 16,
+  "passed": 16,
+  "failed": 0,
+  "transcript_location": "OpenCode continuation session tool output; test suite executed once before this receipt recorder",
+  "plan_command": [
+    "node",
+    "backend/m1-acceptance-preparation/runner.cjs",
+    "--plan"
+  ],
+  "plan_exit": 0,
+  "blocked_cli_exit": 1,
+  "blocked_cli_reason": "APPROVAL_REQUIRED",
+  "native_adapter_loaded": false,
+  "application_requests": 0,
+  "environment_writes": 0,
+  "hosted_passes": 0,
+  "source_files": [
+    {
+      "path": "backend/m1-acceptance-preparation/runner.cjs",
+      "sha256": "e0f768e59d429de7a7a034e1593fe798a491c0e67066052ce399f32a2b23abf7"
+    },
+    {
+      "path": "scripts/test-m1-acceptance-preparation.cjs",
+      "sha256": "d3b9ebdc800268d0336987bb8a2a4ad4b98884b2e9a34927840dcd6689d520b1"
+    },
+    {
+      "path": "scripts/prepare-m1-isolated-source.cjs",
+      "sha256": "a82a60790786a7cd671095036b96aca81ab347e4c1bc078e4eef8dbe98d4cbaf"
+    }
+  ],
+  "original_checks_repeated": [
+    "240-artifact seal verification required by publication task",
+    "Git object/link/blob integrity review"
+  ],
+  "original_behavior_tests_repeated": 0
+}

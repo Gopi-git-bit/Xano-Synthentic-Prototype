@@ -1,0 +1,112 @@
+{
+  "captured_at": "2026-10-23T17:29:19.021892+00:00",
+  "database": "sn9m-aat6-200c",
+  "status": "RETAINED_DIAGNOSTICS_SUPPORTED_CLASSIFICATION_PENDING",
+  "accepted_inventory_exception": false,
+  "objects": [
+    {
+      "physical_name": "mvpw1_56",
+      "columns": [
+        {
+          "table_name": "mvpw1_56",
+          "column_name": "id",
+          "data_type": "bigint"
+        },
+        {
+          "table_name": "mvpw1_56",
+          "column_name": "fixture_key",
+          "data_type": "text"
+        },
+        {
+          "table_name": "mvpw1_56",
+          "column_name": "tenant_key",
+          "data_type": "text"
+        },
+        {
+          "table_name": "mvpw1_56",
+          "column_name": "value",
+          "data_type": "text"
+        }
+      ],
+      "indexes": [
+        {
+          "tablename": "mvpw1_56",
+          "indexname": "mvpw1_56_btree_unique_fixture_key_asc",
+          "indexdef": "CREATE UNIQUE INDEX mvpw1_56_btree_unique_fixture_key_asc ON public.mvpw1_56 USING btree (fixture_key)"
+        },
+        {
+          "tablename": "mvpw1_56",
+          "indexname": "mvpw1_56_pkey",
+          "indexdef": "CREATE UNIQUE INDEX mvpw1_56_pkey ON public.mvpw1_56 USING btree (id)"
+        }
+      ],
+      "constraints": [
+        {
+          "tablename": "mvpw1_56",
+          "conname": "mvpw1_56_pkey",
+          "contype": "p",
+          "definition": "PRIMARY KEY (id)"
+        }
+      ],
+      "triggers": [],
+      "catalog_sha256": "d5a5c48dbd1ee625fd9a5e6d307089f07531a7b5333bf121e35544aed52b97d9"
+    },
+    {
+      "physical_name": "mvpw1_57",
+      "columns": [
+        {
+          "table_name": "mvpw1_57",
+          "column_name": "id",
+          "data_type": "bigint"
+        },
+        {
+          "table_name": "mvpw1_57",
+          "column_name": "event_key",
+          "data_type": "text"
+        },
+        {
+          "table_name": "mvpw1_57",
+          "column_name": "tenant_key",
+          "data_type": "text"
+        },
+        {
+          "table_name": "mvpw1_57",
+          "column_name": "action",
+          "data_type": "text"
+        },
+        {
+          "table_name": "mvpw1_57",
+          "column_name": "observed_value",
+          "data_type": "text"
+        }
+      ],
+      "indexes": [
+        {
+          "tablename": "mvpw1_57",
+          "indexname": "mvpw1_57_btree_unique_event_key_asc",
+          "indexdef": "CREATE UNIQUE INDEX mvpw1_57_btree_unique_event_key_asc ON public.mvpw1_57 USING btree (event_key)"
+        },
+        {
+          "tablename": "mvpw1_57",
+          "indexname": "mvpw1_57_pkey",
+          "indexdef": "CREATE UNIQUE INDEX mvpw1_57_pkey ON public.mvpw1_57 USING btree (id)"
+        }
+      ],
+      "constraints": [
+        {
+          "tablename": "mvpw1_57",
+          "conname": "mvpw1_57_pkey",
+          "contype": "p",
+          "definition": "PRIMARY KEY (id)"
+        }
+      ],
+      "triggers": [],
+      "catalog_sha256": "5ac960934c4ea22201918d86e9dd7a5e30834ad97a5a86f8de0f4ed642b7d7d1"
+    }
+  ],
+  "data_fingerprints_evidence": "backend/evidence/milestone1-admin-inventory-2026-10-23.json",
+  "no_delete_or_reset": true,
+  "no_preserved_application_source_references": true,
+  "source_scan_count": 109,
+  "scan_limitation": "Dynamic SQL and external clients are not ruled out."
+}

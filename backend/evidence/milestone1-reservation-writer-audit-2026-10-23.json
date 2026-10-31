@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-23T18:31:17.339892+00:00",
+  "scope": "Static scan of complete sandbox export; not authorization or runtime bypass proof",
+  "sandbox_documents_scanned": 110,
+  "assignment_writers": [
+    {
+      "resource": "function \"Slice1/create_and_assign\"",
+      "source_sha256_trimmed": "0e438cb07f2772c347697403df783cf7bfc045f5966abb1c14c1061446f49b0c"
+    }
+  ],
+  "direct_query_mutation_capability_candidates": [
+    "function \"Prototype/native_bootstrap\""
+  ],
+  "replacement": "backend/milestone1/reservation-v2/xano/function/slice_1/create_and_assign.xs",
+  "direct_metadata_writes_denied": null,
+  "direct_database_writes_denied": null,
+  "dynamic_sql_and_external_writers_ruled_out": false,
+  "writer_enforcement_verified": false,
+  "contention_proven": false,
+  "release_reuse_supported": false
+}

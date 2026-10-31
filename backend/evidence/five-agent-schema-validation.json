@@ -1,0 +1,271 @@
+{
+  "checked_at": "2026-10-22T11:51:13.691177+00:00",
+  "scope": "Offline schema fixtures and preparation helper only; no Xano model or application execution",
+  "json_files_parsed": 6,
+  "schema_meta_validation": "PASS",
+  "validator": "jsonschema 4.26.0",
+  "python": "3.12.10",
+  "schema_cases_passed": 37,
+  "binding_preparation_cases_passed": 13,
+  "results": [
+    {
+      "name": "valid synthetic OMS",
+      "status": "pass",
+      "schema_valid": true
+    },
+    {
+      "name": "valid synthetic IMS",
+      "status": "pass",
+      "schema_valid": true
+    },
+    {
+      "name": "valid synthetic TMS",
+      "status": "pass",
+      "schema_valid": true
+    },
+    {
+      "name": "valid synthetic VERIFICATION",
+      "status": "pass",
+      "schema_valid": true
+    },
+    {
+      "name": "valid synthetic FINANCE_COMPLIANCE",
+      "status": "pass",
+      "schema_valid": true
+    },
+    {
+      "name": "missing schema_version",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing agent_id",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing tenant_id",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing entity_type",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing entity_id",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing expected_entity_version",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing request_id",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing trace_id",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing idempotency_key",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing policy_version",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing evidence_refs",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing outcome",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing reason_code",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing reason",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing proposed_action",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing unknowns",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing model_version",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing prompt_version",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "unknown agent",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "unexpected command field",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "invalid version",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "boolean version",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "blank tenant",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "unexpected outcome",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "oversized reason",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "bad confidence",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "duplicate evidence",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "unknown entity",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "string unknowns",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "unlisted action",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "extra action field",
+      "status": "pass",
+      "schema_valid": false
+    },
+    {
+      "name": "missing action ref",
+      "status": "pass",
+      "schema_valid": false
+    }
+  ],
+  "binding_preparation_results": [
+    {
+      "name": "matching synthetic context",
+      "status": "pass",
+      "execution_authorized": false
+    },
+    {
+      "name": "reject changed agent_id",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed tenant_id",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed entity_type",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed entity_id",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed expected_entity_version",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed request_id",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed trace_id",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed idempotency_key",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed policy_version",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed prompt_version",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject changed model_version",
+      "status": "pass",
+      "code": "CONTEXT_MISMATCH"
+    },
+    {
+      "name": "reject schema-valid guarded command in unbound draft",
+      "status": "pass"
+    }
+  ],
+  "limits": [
+    "Schema accepts another nonempty tenant string: trusted runtime binding is required",
+    "Shared schema permits globally allowlisted commands without per-agent authorization",
+    "Preparation helper is not deployed or attached to any Xano agent or request path"
+  ],
+  "acceptance_cases": 70,
+  "acceptance_cases_executed": 0,
+  "acceptance_status": "ALL_NOT_RUN"
+}

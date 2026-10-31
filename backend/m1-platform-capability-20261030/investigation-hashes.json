@@ -1,0 +1,192 @@
+{
+  "at": "2026-10-30T14:13:36.194Z",
+  "scope": "NEW_UNSEALED_P1_CONTENT_INDEX",
+  "baseline": "55d4dd278602c5a81706db70d91b53ca363f4d9c",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 1405,
+      "sha256": "ed2f57e9c7abf0aaf95ed204a4135aee796001501a8dbf566984cf07e84f006c"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/.gitattributes",
+      "bytes": 75,
+      "sha256": "9ceb38f171024cb23a3b942f27022793c2fb15b4349d9fb7e3e7bddefc736ea3"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/README.md",
+      "bytes": 2015,
+      "sha256": "3726b57190bf924fb04f656c56be59fa367436e4e45c08770ec10fffc2817e30"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/SOURCE_CATALOG.md",
+      "bytes": 3588,
+      "sha256": "bd994de592e9bf9e140a30ff7bba02543fe66a7e931b53457295ca1516d4c267"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/account-documentation-receipt.json",
+      "bytes": 398,
+      "sha256": "1a3552c8ddf4ac6eef3956dff78155cf30959d32660c8270877b448efc6dc346"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/capture-account-doc.cjs",
+      "bytes": 1007,
+      "sha256": "02083f8d7767e5a543c1f76243f5e19984ad27ebfdd6625a6d9a500e8a07f349"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/capture-public-docs.cjs",
+      "bytes": 2795,
+      "sha256": "9380b26542f660cdb5febbaa7b2e5dbb93530c8aa08302600d0d3f4aaf7f0d1f"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documentation-receipts.json",
+      "bytes": 8223,
+      "sha256": "f7b4ade9fe99c01d739c69c54d7790561e0664006e8d2ccb4beae04d54ab73ed"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D01.md",
+      "bytes": 11041,
+      "sha256": "304384126c8585a8055a19fdcf784d12aef2f7142bb3f5747481d459f094d4d4"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D02.md",
+      "bytes": 8221,
+      "sha256": "3bad8823bb5205270869a628938a3ebbd4849ff33a00e7a7cef3a003eac092e8"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D03.md",
+      "bytes": 8648,
+      "sha256": "19e9868a93746bfcd41115516f756f73d386402262dba3b327ff03e05b5fbbcb"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D04.md",
+      "bytes": 3712,
+      "sha256": "dfbd75635dbf75fee79729ccecf948580ba355027eb2fbeec2566a320f6d52af"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D05.md",
+      "bytes": 42248,
+      "sha256": "f4e65349e4b575223073d39532c26a3a2d55a780a137949e5516394033134738"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D06.md",
+      "bytes": 3715,
+      "sha256": "da75a7aa6323d1152aa93790df0335339c5e9233ed71cdd2aa8259eb69076235"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D07.md",
+      "bytes": 3668,
+      "sha256": "178fe6cf3bd812992a05ec335a7af916444838695a902fd5bef61f76650564f4"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D08.md",
+      "bytes": 9522,
+      "sha256": "016dd5d6ea3a85ec5e5308f9add783db7270a7d6299d3cc20861855acfb62ce2"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D09.md",
+      "bytes": 8989,
+      "sha256": "7f67d181d639a5debdd909d056be55887da31b8381ef50eaea28c2019ab19383"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D10.md",
+      "bytes": 11975,
+      "sha256": "f5fd2c725cf3acab8227e81e4298eeea72a18b4ba16b0bb5dcb1556464d2f481"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D11.md",
+      "bytes": 11160,
+      "sha256": "d091d0bf5ea3d4da39dc37c6650b8de9e41bc86de464badf0637020b88390d40"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D12.md",
+      "bytes": 9140,
+      "sha256": "659efcf348d5986cce97d71e75d63e7bf839ce322a311117e4b35043fe48c966"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D13.md",
+      "bytes": 7739,
+      "sha256": "12ecc63f776643695f1e4acb21e0f0cd5775b76269666009982ba136c0dd427b"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D14.md",
+      "bytes": 3609,
+      "sha256": "4ded9c43459d5eca42156617a13f7c22ba621ab321752403dd1413e75670c6a3"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D15.md",
+      "bytes": 5446,
+      "sha256": "1f5745f888a66c65be5cff346e2706fad1651e62f8835e628c25a7a1d8b4f29c"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D16.html",
+      "bytes": 346700,
+      "sha256": "730274281cba14c9a0d98d0222793d9ff139d40f9e7da9cd308953fa4e17b22f"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D17.md",
+      "bytes": 3180,
+      "sha256": "2442af0797c171bb1d4c9f91173fed0751c13f8f48d47b50bfc104d13cfc008c"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/documents/D18.md",
+      "bytes": 3673,
+      "sha256": "9b97df8580842c0a708d30ba3e1092a671bbc97a3ba3fd5b38cbc3477774b557"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/evaluate-retained-evidence.cjs",
+      "bytes": 7227,
+      "sha256": "f27e9a729fb9d52e7941be7644c7fd04444ab9e7f168837d317789266faaba10"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/export-sanitized-handoff.cjs",
+      "bytes": 13064,
+      "sha256": "3c6872342fc2cc458e24a2b17648f6729bff83beee1474bbfdda5ee229b1035d"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/investigation-context.json",
+      "bytes": 5319,
+      "sha256": "7060ccadb54caa8770917d07eb9026f17c67c96af13ca0a3687f8c0fd3701298"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/local-validation-attempts.json",
+      "bytes": 975,
+      "sha256": "20883e5e567779e83abd3955f63a37d7843c8465e02c2e71efe60d35a8069def"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/pricing-text.txt",
+      "bytes": 15441,
+      "sha256": "2ff4991233369ce2df89a138cd00e3a3c6847efbabaa6f51d6974ecb4beb99b5"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/schema-observations.json",
+      "bytes": 6712,
+      "sha256": "e4e20c6097f79a2b61eb42e674049863c3c625f8e1ce251aca90987207e04ce5"
+    },
+    {
+      "path": "backend/m1-platform-capability-20261030/verify-investigation.cjs",
+      "bytes": 6751,
+      "sha256": "7c319c1bc26404530f45889a3ae40b1080e387b1614a23f9a4ffc0907b83c190"
+    },
+    {
+      "path": "docs/XANO_STAGE_P_CAPABILITY_MATRIX.md",
+      "bytes": 22612,
+      "sha256": "41d6c1ac89b8046e0f13df931012230341889055ab61118bb1d3df319270a740"
+    },
+    {
+      "path": "docs/XANO_STAGE_P_PLATFORM_DECISION.md",
+      "bytes": 11148,
+      "sha256": "378d0fdb620a9d84ec17f344eb300203a5ac8d1b43a49ab9bacfc8e0b616c5ac"
+    },
+    {
+      "path": "docs/XANO_STAGE_P_SUPPORT_REQUEST.md",
+      "bytes": 8812,
+      "sha256": "45cefe7b6458898aa903d031ab7b1807e6cf86752f5aeec668f2e6df51dc67ed"
+    }
+  ],
+  "exclusions": [
+    "investigation-hashes.json (self)",
+    "verification.json (created after index)"
+  ],
+  "historical_seals_modified": false
+}

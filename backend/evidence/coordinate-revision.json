@@ -1,0 +1,12 @@
+{
+  "scope": "Coordinate syntax fix only; earlier payment report is retained historical evidence.",
+  "base_git_commit": "618d4b34051f9cce14ae49abd2ab3d9dd15386b6",
+  "path": "function/logistics/validate_order.xs",
+  "previous_sha256": "b99183c4afb15463956d4171e154ea709b0e5f7fdb0cfa80a8c7db7d335b4cf1",
+  "current_sha256": "1be7ee2b408e116d247d835787d3e298fce53e9c786b3d99dfe34164eb785b54",
+  "native_trimmed_source_sha256": "e6775981910853a198f4c4225d9be329b10e9b91c064bd2a3c68461ab68ba144",
+  "native_evidence_sha256": "521c4bc766748a658dcbb734419cf698c616918031c537a57e4f2deb9f866807",
+  "native_cases": 133,
+  "coordinate_cases": 84,
+  "live_unchanged": true
+}

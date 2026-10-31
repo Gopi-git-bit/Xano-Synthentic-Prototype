@@ -1,0 +1,89 @@
+{
+  "captured_at": "2026-10-22T04:00:03.8194399Z",
+  "scope": "Xano sandbox payment unit tests only",
+  "passed": 16,
+  "failed": 0,
+  "export_manifest": "payment-tested-export.json",
+  "results": [
+    {
+      "id": "f033e556a80690020799da98d6e06ed3",
+      "name": "full 100 of 100",
+      "status": "pass"
+    },
+    {
+      "id": "bcdc0ee66ceebdba616d1d725c0f6d5f",
+      "name": "full 50 of 100",
+      "status": "pass"
+    },
+    {
+      "id": "2340427ad63f6810e243f9fbd5be1b82",
+      "name": "partial 50 of 100",
+      "status": "pass"
+    },
+    {
+      "id": "52e9caa8745a6a53c8b7680137791095",
+      "name": "partial 49.99 of 100",
+      "status": "pass"
+    },
+    {
+      "id": "043a4965953204f131627cd033a714e7",
+      "name": "to_pay 0 of 100",
+      "status": "pass"
+    },
+    {
+      "id": "b8ca51a057263dba897fbfb68ff73524",
+      "name": "to_pay 1 of 100",
+      "status": "pass"
+    },
+    {
+      "id": "c1b40014e8550f8718a48bcc735de794",
+      "name": "fake 100 of 100",
+      "status": "pass"
+    },
+    {
+      "id": "7f18eaec34bfe7fb1d3ef4abf5a964c3",
+      "name": "full -1 of -1",
+      "status": "pass"
+    },
+    {
+      "id": "f3ddaf00d4a0b750dd6e4ab00804feea",
+      "name": "partial upper boundary",
+      "status": "pass"
+    },
+    {
+      "id": "216fe36256ef9ac612314bdd749728f9",
+      "name": "partial one cent over",
+      "status": "pass"
+    },
+    {
+      "id": "3fd41561f277ab9d3ccbb45ab11c8be7",
+      "name": "partial 150 percent",
+      "status": "pass"
+    },
+    {
+      "id": "c168c09aef80ddf410486259d09339b6",
+      "name": "partial odd cent below half",
+      "status": "pass"
+    },
+    {
+      "id": "a6c15dbf6d9626a49bae1470a3121fd1",
+      "name": "partial odd cent above half",
+      "status": "pass"
+    },
+    {
+      "id": "88c9adff01370be70199fe9210c77464",
+      "name": "full overpayment",
+      "status": "pass"
+    },
+    {
+      "id": "29d7a8dac3b54fc9c4ed6cea17527164",
+      "name": "to pay nonzero",
+      "status": "pass"
+    },
+    {
+      "id": "60cdedc1969a50c33a2584a563b82676",
+      "name": "large exact partial overpayment",
+      "status": "pass"
+    }
+  ]
+}

@@ -1,0 +1,695 @@
+{
+  "at": "2026-10-29T09:07:17.973Z",
+  "workspace": {
+    "id": 3,
+    "name": "Zippy Synthetic Prototype_1",
+    "branch": "v1"
+  },
+  "branches": [
+    {
+      "label": "v1",
+      "live": true
+    }
+  ],
+  "datasources": [
+    {
+      "label": "live"
+    }
+  ],
+  "identity": {
+    "role": "admin",
+    "expires_at": "never",
+    "live_datasource_scope": 15
+  },
+  "tenants": {
+    "curPage": 1,
+    "nextPage": null,
+    "items": []
+  },
+  "ephemerals": {
+    "curPage": 1,
+    "nextPage": null,
+    "items": []
+  },
+  "capabilities": {
+    "/workspace/{workspace_id}/ephemeral": {
+      "get": {
+        "summary": "List all ephemeral tenants in a workspace",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "default": 50
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "name",
+                "created_at",
+                "state"
+              ],
+              "default": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            }
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create a new ephemeral tenant in a workspace",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "request_schema": {
+          "type": "object",
+          "properties": {
+            "display": {
+              "type": "string",
+              "description": ""
+            },
+            "description": {
+              "type": "string",
+              "description": ""
+            },
+            "expires_hours": {
+              "type": "integer",
+              "format": "int64",
+              "description": "",
+              "nullable": true,
+              "default": 1
+            },
+            "tag": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tag": {
+                    "type": "string",
+                    "description": ""
+                  }
+                },
+                "required": [
+                  "tag"
+                ]
+              }
+            }
+          },
+          "required": [
+            "display"
+          ]
+        }
+      }
+    },
+    "/workspace/{workspace_id}/tenant/{tenant_name}": {
+      "delete": {
+        "summary": "Delete a tenant permanently. This destroys all associated infrastructure and cannot be undone.",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tenant_name",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "get": {
+        "summary": "Retrieve a specific tenant by name",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tenant_name",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update tenant properties",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tenant_name",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "request_schema": {
+          "type": "object",
+          "properties": {
+            "display": {
+              "type": "string",
+              "description": ""
+            },
+            "description": {
+              "type": "string",
+              "description": ""
+            },
+            "domain": {
+              "type": "string",
+              "description": "",
+              "nullable": true
+            },
+            "proxy": {
+              "type": "string",
+              "description": "",
+              "nullable": true
+            },
+            "tasks": {
+              "type": "boolean",
+              "description": ""
+            },
+            "ingress": {
+              "type": "boolean",
+              "description": ""
+            },
+            "swoole": {
+              "type": "boolean",
+              "description": "",
+              "nullable": true
+            },
+            "tag": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tag": {
+                    "type": "string",
+                    "description": ""
+                  }
+                },
+                "required": [
+                  "tag"
+                ]
+              }
+            },
+            "rbac": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": ""
+                }
+              },
+              "required": [
+                "enabled"
+              ]
+            },
+            "deploy_settings": {
+              "type": "object",
+              "properties": {
+                "required_reviewers": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "",
+                  "nullable": true
+                },
+                "allow_deploy_bypass": {
+                  "type": "boolean",
+                  "description": "",
+                  "nullable": true
+                },
+                "allow_quick_deploy": {
+                  "type": "boolean",
+                  "description": "",
+                  "nullable": true
+                }
+              },
+              "nullable": true
+            }
+          },
+          "required": [
+            "display",
+            "description",
+            "domain",
+            "tasks",
+            "ingress",
+            "tag",
+            "rbac"
+          ]
+        }
+      }
+    },
+    "/workspace/{workspace_id}/tenant/{tenant_name}/multidoc": {
+      "get": {
+        "summary": "Export a tenant's workspace as a XanoScript multidoc",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tenant_name",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "env",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "records",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "include_draft",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ]
+      },
+      "post": {
+        "summary": "Import a XanoScript multidoc into a tenant's workspace",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tenant_name",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "env",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "records",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "truncate",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "delete",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "partial",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "transaction",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "source_workspace_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "default": 0
+            }
+          },
+          {
+            "name": "protect_guids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "override_reason",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "bypass_approval",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ]
+      }
+    },
+    "/workspace/{workspace_id}/tenant/{tenant_name}/multidoc/dry-run": {
+      "post": {
+        "summary": "Preview what a multidoc import would change in a tenant's workspace without making any changes",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tenant_name",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "env",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "records",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "truncate",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "delete",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "partial",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "source_workspace_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "default": 0
+            }
+          },
+          {
+            "name": "protect_guids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ]
+      }
+    },
+    "/workspace/{workspace_id}/tenant/{tenant_name}/impersonate": {
+      "get": {
+        "summary": "Impersonate a tenant (get authentication credentials)",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tenant_name",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "guest_read_only",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  "ledger": [
+    {
+      "method": "GET",
+      "route": "/apispec:meta?type=json",
+      "status": 200,
+      "sha256": "f6d8a92630e63791937454895b429254f1bd2255816252719be3dbf542c4f95a",
+      "at": "2026-10-29T09:07:15.443Z"
+    },
+    {
+      "method": "GET",
+      "route": "/auth/me",
+      "status": 200,
+      "sha256": "76bea7d9ecf6364aaa6413460f27baaa557f79f07a65487799cf41bad19d27ea",
+      "at": "2026-10-29T09:07:16.014Z"
+    },
+    {
+      "method": "GET",
+      "route": "/workspace/3",
+      "status": 200,
+      "sha256": "0bb7cb37e69fd31805470a0be135b1d5a16470afd0c8ed70403ed2c9be188ef9",
+      "at": "2026-10-29T09:07:16.328Z"
+    },
+    {
+      "method": "GET",
+      "route": "/workspace/3/branch",
+      "status": 200,
+      "sha256": "bd57f578b5d55dc32b1a158b22102f388f1326c70c9ae4de9622c8bcb9566fd8",
+      "at": "2026-10-29T09:07:16.639Z"
+    },
+    {
+      "method": "GET",
+      "route": "/workspace/3/datasource",
+      "status": 200,
+      "sha256": "0f1b5abb8c86c5ccf6670578c5c3d801f72051c5b9ee5e002e3feb01b65c83f1",
+      "at": "2026-10-29T09:07:17.244Z"
+    },
+    {
+      "method": "GET",
+      "route": "/workspace/3/tenant?page=1&per_page=100",
+      "status": 200,
+      "sha256": "56ac46dccba1a689b3278515340d1d3ce226287d1db438f5970e1b0e7c654ac0",
+      "at": "2026-10-29T09:07:17.542Z"
+    },
+    {
+      "method": "GET",
+      "route": "/workspace/3/ephemeral?page=1&per_page=100",
+      "status": 200,
+      "sha256": "56ac46dccba1a689b3278515340d1d3ce226287d1db438f5970e1b0e7c654ac0",
+      "at": "2026-10-29T09:07:17.972Z"
+    }
+  ],
+  "metadata_writes": 0,
+  "record_reads": 0,
+  "credential_minting": 0,
+  "application_requests": 0,
+  "status": "PROVISIONING_NOT_APPROVED"
+}

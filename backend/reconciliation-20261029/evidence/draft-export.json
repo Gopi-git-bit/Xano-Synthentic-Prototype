@@ -1,0 +1,9 @@
+{
+  "label": "draft-export",
+  "method": "GET",
+  "url": "https://xynd-fnea-khtp.n7e.xano.io/api:meta/workspace/3/multidoc?branch=v1&env=false&records=false&include_draft=true",
+  "status": 200,
+  "started_at": "2026-10-29T08:28:22.883Z",
+  "finished_at": "2026-10-29T08:28:28.252Z",
+  "raw_sha256": "6030e3e014b51d49d7f6c5fe1b65ec15e25ce22f8a9027990a746367f719f77d"
+}

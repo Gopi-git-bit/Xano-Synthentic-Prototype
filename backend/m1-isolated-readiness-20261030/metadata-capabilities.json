@@ -1,0 +1,4927 @@
+{
+  "paths": [
+    {
+      "route": "/auth/me",
+      "operations": {
+        "get": {
+          "summary": "Retrieve information about the authenticated user including ID, name, and email address.",
+          "description": "Retrieve information about the authenticated user including ID, name, and email address.\n<br /><br />\n<b>Authentication:</b> required",
+          "parameters": [],
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "extras": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/ephemeral",
+      "operations": {
+        "get": {
+          "summary": "List ephemeral tenants across every workspace the caller can access",
+          "description": "List ephemeral tenants across every workspace the caller can access\n<br /><br />\n<b>Authentication:</b> required",
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            },
+            {
+              "name": "per_page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 50
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "asc"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "",
+                  "default": 1
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "timestamptz",
+                  "description": "",
+                  "default": "2024-01-01 00:00:00+0000"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "",
+                  "default": "my-tenant"
+                },
+                "display": {
+                  "type": "string",
+                  "description": "",
+                  "default": "My Tenant"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "",
+                  "default": "Production tenant"
+                },
+                "domain": {
+                  "type": "string",
+                  "description": ""
+                },
+                "proxy": {
+                  "type": "string",
+                  "description": ""
+                },
+                "xano_domain": {
+                  "type": "string",
+                  "description": "",
+                  "default": "my-tenant.xano.io"
+                },
+                "tag": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": ""
+                  }
+                },
+                "rbac": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "description": ""
+                    }
+                  }
+                },
+                "version": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "",
+                  "default": 1
+                },
+                "deployed_at": {
+                  "type": "string",
+                  "format": "timestamptz",
+                  "description": "",
+                  "default": "2024-01-01 00:00:00+0000"
+                },
+                "license": {
+                  "type": "string",
+                  "description": "",
+                  "default": "tier1"
+                },
+                "k8s": {
+                  "type": "object",
+                  "description": ""
+                },
+                "tasks": {
+                  "type": "boolean",
+                  "description": "",
+                  "default": true
+                },
+                "ingress": {
+                  "type": "boolean",
+                  "description": "",
+                  "default": true
+                },
+                "ephemeral": {
+                  "type": "boolean",
+                  "description": ""
+                },
+                "state": {
+                  "type": "string",
+                  "description": "",
+                  "default": "ok"
+                },
+                "release": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "v1.0"
+                    }
+                  }
+                },
+                "cluster": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "default"
+                    }
+                  }
+                },
+                "platform": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "",
+                      "default": 1
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "timestamptz",
+                      "description": "",
+                      "default": "2024-01-01 00:00:00+0000"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "default"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/tenant/cluster/{cluster_id}/license",
+      "operations": {
+        "get": {
+          "summary": "Retrieve the license (kubeconfig) for a tenant cluster",
+          "description": "Retrieve the license (kubeconfig) for a tenant cluster\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster Secrets: Read",
+          "parameters": [
+            {
+              "name": "cluster_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "post": {
+          "summary": "Update the license (kubeconfig) for a tenant cluster",
+          "description": "Update the license (kubeconfig) for a tenant cluster\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster Secrets: Update",
+          "parameters": [
+            {
+              "name": "cluster_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/tenant/cluster/{cluster_id}",
+      "operations": {
+        "delete": {
+          "summary": "Delete a tenant cluster permanently",
+          "description": "Delete a tenant cluster permanently\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster: Delete",
+          "parameters": [
+            {
+              "name": "cluster_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "get": {
+          "summary": "Retrieve a specific tenant cluster by ID",
+          "description": "Retrieve a specific tenant cluster by ID\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster: Read",
+          "parameters": [
+            {
+              "name": "cluster_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "us-east-1"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "US East production cluster"
+              },
+              "domain": {
+                "type": "string",
+                "description": "",
+                "default": "us-east.example.com"
+              },
+              "type": {
+                "type": "string",
+                "description": "",
+                "default": "standard"
+              },
+              "warm": {
+                "type": "object",
+                "properties": {
+                  "micro": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "small": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 2
+                  },
+                  "medium": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "large": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "xlarge": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  }
+                }
+              },
+              "ingress": {
+                "type": "object",
+                "properties": {
+                  "xano_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "xano_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "annotations": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update a tenant cluster",
+          "description": "Update a tenant cluster\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster: Update",
+          "parameters": [
+            {
+              "name": "cluster_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": ""
+              },
+              "description": {
+                "type": "string",
+                "description": ""
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "type": {
+                "type": "string",
+                "description": "",
+                "enum": [
+                  "standard",
+                  "run"
+                ]
+              },
+              "warm": {
+                "type": "object",
+                "properties": {
+                  "micro": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "small": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "medium": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "large": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "xlarge": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  }
+                }
+              },
+              "ingress": {
+                "type": "object",
+                "properties": {
+                  "xano_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "xano_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "annotations": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "domain",
+              "type"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "us-east-1"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "US East production cluster"
+              },
+              "domain": {
+                "type": "string",
+                "description": "",
+                "default": "us-east.example.com"
+              },
+              "type": {
+                "type": "string",
+                "description": "",
+                "default": "standard"
+              },
+              "warm": {
+                "type": "object",
+                "properties": {
+                  "micro": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "small": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 2
+                  },
+                  "medium": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "large": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "xlarge": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  }
+                }
+              },
+              "ingress": {
+                "type": "object",
+                "properties": {
+                  "xano_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "xano_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "annotations": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/tenant/cluster",
+      "operations": {
+        "get": {
+          "summary": "List all tenant clusters",
+          "description": "List all tenant clusters\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster: Read",
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            },
+            {
+              "name": "per_page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 50
+              }
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "created_at"
+                ],
+                "default": "name"
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "asc"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "",
+                  "default": 1
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "timestamptz",
+                  "description": "",
+                  "default": "2024-01-01 00:00:00+0000"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "",
+                  "default": "us-east-1"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "",
+                  "default": "US East production cluster"
+                },
+                "domain": {
+                  "type": "string",
+                  "description": "",
+                  "default": "us-east.example.com"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "",
+                  "default": "standard"
+                },
+                "warm": {
+                  "type": "object",
+                  "properties": {
+                    "micro": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": ""
+                    },
+                    "small": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "",
+                      "default": 2
+                    },
+                    "medium": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "",
+                      "default": 1
+                    },
+                    "large": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": ""
+                    },
+                    "xlarge": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": ""
+                    }
+                  }
+                },
+                "ingress": {
+                  "type": "object",
+                  "properties": {
+                    "xano_tls_host": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "xano_secret": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "custom_secret": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "custom_tls_host": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "annotations": {
+                      "type": "string",
+                      "description": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new tenant cluster",
+          "description": "Create a new tenant cluster\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster: Create",
+          "parameters": [],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": ""
+              },
+              "description": {
+                "type": "string",
+                "description": ""
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "credentials": {
+                "type": "string",
+                "description": ""
+              },
+              "type": {
+                "type": "string",
+                "description": "",
+                "enum": [
+                  "standard",
+                  "run"
+                ],
+                "default": "standard"
+              },
+              "warm": {
+                "type": "object",
+                "properties": {
+                  "micro": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "small": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "medium": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "large": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "xlarge": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  }
+                }
+              },
+              "ingress": {
+                "type": "object",
+                "properties": {
+                  "xano_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "xano_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "annotations": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            },
+            "required": [
+              "name",
+              "credentials"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "us-east-1"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "US East production cluster"
+              },
+              "domain": {
+                "type": "string",
+                "description": "",
+                "default": "us-east.example.com"
+              },
+              "type": {
+                "type": "string",
+                "description": "",
+                "default": "standard"
+              },
+              "warm": {
+                "type": "object",
+                "properties": {
+                  "micro": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "small": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 2
+                  },
+                  "medium": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "large": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "xlarge": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  }
+                }
+              },
+              "ingress": {
+                "type": "object",
+                "properties": {
+                  "xano_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "xano_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_secret": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "custom_tls_host": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "annotations": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/tenant/token/exchange",
+      "operations": {
+        "post": {
+          "summary": "",
+          "description": "<br /><br />\n<b>Authentication:</b> not required",
+          "parameters": [],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "required": [
+              "token"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/ephemeral",
+      "operations": {
+        "get": {
+          "summary": "List all ephemeral tenants in a workspace",
+          "description": "List all ephemeral tenants in a workspace\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            },
+            {
+              "name": "per_page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 50
+              }
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "created_at",
+                  "state"
+                ],
+                "default": "name"
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "asc"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "",
+                  "default": 1
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "timestamptz",
+                  "description": "",
+                  "default": "2024-01-01 00:00:00+0000"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "",
+                  "default": "my-tenant"
+                },
+                "display": {
+                  "type": "string",
+                  "description": "",
+                  "default": "My Tenant"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "",
+                  "default": "Production tenant"
+                },
+                "domain": {
+                  "type": "string",
+                  "description": ""
+                },
+                "proxy": {
+                  "type": "string",
+                  "description": ""
+                },
+                "xano_domain": {
+                  "type": "string",
+                  "description": "",
+                  "default": "my-tenant.xano.io"
+                },
+                "tag": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": ""
+                  }
+                },
+                "rbac": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "description": ""
+                    }
+                  }
+                },
+                "version": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "",
+                  "default": 1
+                },
+                "deployed_at": {
+                  "type": "string",
+                  "format": "timestamptz",
+                  "description": "",
+                  "default": "2024-01-01 00:00:00+0000"
+                },
+                "license": {
+                  "type": "string",
+                  "description": "",
+                  "default": "tier1"
+                },
+                "k8s": {
+                  "type": "object",
+                  "description": ""
+                },
+                "tasks": {
+                  "type": "boolean",
+                  "description": "",
+                  "default": true
+                },
+                "ingress": {
+                  "type": "boolean",
+                  "description": "",
+                  "default": true
+                },
+                "ephemeral": {
+                  "type": "boolean",
+                  "description": ""
+                },
+                "state": {
+                  "type": "string",
+                  "description": "",
+                  "default": "ok"
+                },
+                "release": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "v1.0"
+                    }
+                  }
+                },
+                "cluster": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "default"
+                    }
+                  }
+                },
+                "platform": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "",
+                      "default": 1
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "timestamptz",
+                      "description": "",
+                      "default": "2024-01-01 00:00:00+0000"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "default"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new ephemeral tenant in a workspace",
+          "description": "Create a new ephemeral tenant in a workspace\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Create",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "display": {
+                "type": "string",
+                "description": ""
+              },
+              "description": {
+                "type": "string",
+                "description": ""
+              },
+              "expires_hours": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "nullable": true,
+                "default": 1
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tag": {
+                      "type": "string",
+                      "description": ""
+                    }
+                  },
+                  "required": [
+                    "tag"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "display"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant"
+              },
+              "display": {
+                "type": "string",
+                "description": "",
+                "default": "My Tenant"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "Production tenant"
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "proxy": {
+                "type": "string",
+                "description": ""
+              },
+              "xano_domain": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant.xano.io"
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "rbac": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              },
+              "version": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "deployed_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "license": {
+                "type": "string",
+                "description": "",
+                "default": "tier1"
+              },
+              "k8s": {
+                "type": "object",
+                "description": ""
+              },
+              "tasks": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ingress": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ephemeral": {
+                "type": "boolean",
+                "description": ""
+              },
+              "state": {
+                "type": "string",
+                "description": "",
+                "default": "ok"
+              },
+              "release": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "v1.0"
+                  }
+                }
+              },
+              "cluster": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              },
+              "platform": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "timestamptz",
+                    "description": "",
+                    "default": "2024-01-01 00:00:00+0000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/backup/import",
+      "operations": {
+        "post": {
+          "summary": "Import a backup file into a tenant",
+          "description": "Import a backup file into a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Create",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/backup/{backup_id}/export",
+      "operations": {
+        "get": {
+          "summary": "Get a download link for a tenant backup",
+          "description": "Get a download link for a tenant backup\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "backup_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/backup/{backup_id}",
+      "operations": {
+        "delete": {
+          "summary": "Delete a backup",
+          "description": "Delete a backup\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Delete",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "backup_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/backup",
+      "operations": {
+        "get": {
+          "summary": "List backups for a tenant",
+          "description": "List backups for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "post": {
+          "summary": "Create a backup for a tenant",
+          "description": "Create a backup for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Create",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": ""
+              },
+              "format": {
+                "type": "string",
+                "description": "",
+                "enum": [
+                  "auto",
+                  "pg",
+                  "json"
+                ],
+                "default": "auto"
+              }
+            }
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/deploy",
+      "operations": {
+        "post": {
+          "summary": "Deploy a release to a tenant",
+          "description": "Deploy a release to a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Deploy: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "release_name": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "required": [
+              "release_name"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant"
+              },
+              "display": {
+                "type": "string",
+                "description": "",
+                "default": "My Tenant"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "Production tenant"
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "proxy": {
+                "type": "string",
+                "description": ""
+              },
+              "xano_domain": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant.xano.io"
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "rbac": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              },
+              "version": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "deployed_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "license": {
+                "type": "string",
+                "description": "",
+                "default": "tier1"
+              },
+              "k8s": {
+                "type": "object",
+                "description": ""
+              },
+              "tasks": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ingress": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ephemeral": {
+                "type": "boolean",
+                "description": ""
+              },
+              "state": {
+                "type": "string",
+                "description": "",
+                "default": "ok"
+              },
+              "release": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "v1.0"
+                  }
+                }
+              },
+              "cluster": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              },
+              "platform": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "timestamptz",
+                    "description": "",
+                    "default": "2024-01-01 00:00:00+0000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/env/{env_name}",
+      "operations": {
+        "delete": {
+          "summary": "Delete a single environment variable for a tenant",
+          "description": "Delete a single environment variable for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Delete",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "env_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "get": {
+          "summary": "Get a single environment variable for a tenant",
+          "description": "Get a single environment variable for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "env_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "patch": {
+          "summary": "Upsert a single environment variable for a tenant",
+          "description": "Upsert a single environment variable for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Update",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "env_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "env": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "market_item": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": ""
+                        },
+                        "snapshot_id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": ""
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "snapshot_id"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "value",
+                  "market_item"
+                ]
+              }
+            },
+            "required": [
+              "env"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "description": ""
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/env_all",
+      "operations": {
+        "get": {
+          "summary": "Get all environment variables for a tenant",
+          "description": "Get all environment variables for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "put": {
+          "summary": "Set all environment variables for a tenant (replaces all existing)",
+          "description": "Set all environment variables for a tenant (replaces all existing)\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Update",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "envs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": ""
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "value"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "envs"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/env_key",
+      "operations": {
+        "get": {
+          "summary": "List environment variable keys for a tenant",
+          "description": "List environment variable keys for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "env": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/function/run",
+      "operations": {
+        "post": {
+          "summary": "Execute a named function in a tenant",
+          "description": "Execute a named function in a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nWorkspace Function: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": ""
+              },
+              "branch": {
+                "type": "string",
+                "description": ""
+              },
+              "input": {
+                "type": "object",
+                "description": "",
+                "nullable": true
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "example": {
+              "name": "",
+              "input": null
+            }
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/impersonate",
+      "operations": {
+        "get": {
+          "summary": "Impersonate a tenant (get authentication credentials)",
+          "description": "Impersonate a tenant (get authentication credentials)\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Impersonate: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "guest_read_only",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "_ti": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/license",
+      "operations": {
+        "get": {
+          "summary": "Retrieve the license for a tenant",
+          "description": "Retrieve the license for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "post": {
+          "summary": "Update the license for a tenant",
+          "description": "Update the license for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Update",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/microservice",
+      "operations": {
+        "get": {
+          "summary": "Live deployment status for every microservice in a tenant's workspace",
+          "description": "Live deployment status for every microservice in a tenant's workspace\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/multidoc/dry-run",
+      "operations": {
+        "post": {
+          "summary": "Preview what a multidoc import would change in a tenant's workspace without making any changes",
+          "description": "Preview what a multidoc import would change in a tenant's workspace without making any changes\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Update",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "env",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "records",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "truncate",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "delete",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "partial",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "source_workspace_id",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 0
+              }
+            },
+            {
+              "name": "protect_guids",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "workspace_name": {
+                "type": "string",
+                "description": ""
+              },
+              "source_workspace_mismatch": {
+                "type": "boolean",
+                "description": ""
+              },
+              "policies_skipped": {
+                "type": "object",
+                "description": ""
+              },
+              "summary": {
+                "type": "object",
+                "description": ""
+              },
+              "operations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "action": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "details": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "reason": {
+                      "type": "string",
+                      "description": ""
+                    }
+                  }
+                }
+              },
+              "warnings": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": ""
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/multidoc",
+      "operations": {
+        "get": {
+          "summary": "Export a tenant's workspace as a XanoScript multidoc",
+          "description": "Export a tenant's workspace as a XanoScript multidoc\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "env",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "records",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "include_draft",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "description": ""
+          }
+        },
+        "post": {
+          "summary": "Import a XanoScript multidoc into a tenant's workspace",
+          "description": "Import a XanoScript multidoc into a tenant's workspace\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Update",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "env",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "records",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "truncate",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "delete",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "partial",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "transaction",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "source_workspace_id",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 0
+              }
+            },
+            {
+              "name": "protect_guids",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "override_reason",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "bypass_approval",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/platform/deploy",
+      "operations": {
+        "post": {
+          "summary": "Deploy a platform version to a tenant",
+          "description": "Deploy a platform version to a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Deploy: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "platform_id": {
+                "type": "integer",
+                "format": "int64",
+                "description": ""
+              },
+              "license": {
+                "type": "string",
+                "description": "",
+                "nullable": true
+              },
+              "reason": {
+                "type": "string",
+                "description": "",
+                "nullable": true
+              }
+            },
+            "required": [
+              "platform_id"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/restore",
+      "operations": {
+        "post": {
+          "summary": "Restore a tenant from a backup. This replaces the current tenant data.",
+          "description": "Restore a tenant from a backup. This replaces the current tenant data.\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Update",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "backup_id": {
+                "type": "integer",
+                "format": "int64",
+                "description": ""
+              }
+            },
+            "required": [
+              "backup_id"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant"
+              },
+              "display": {
+                "type": "string",
+                "description": "",
+                "default": "My Tenant"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "Production tenant"
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "proxy": {
+                "type": "string",
+                "description": ""
+              },
+              "xano_domain": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant.xano.io"
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "rbac": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              },
+              "version": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "deployed_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "license": {
+                "type": "string",
+                "description": "",
+                "default": "tier1"
+              },
+              "k8s": {
+                "type": "object",
+                "description": ""
+              },
+              "tasks": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ingress": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ephemeral": {
+                "type": "boolean",
+                "description": ""
+              },
+              "state": {
+                "type": "string",
+                "description": "",
+                "default": "ok"
+              },
+              "release": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "v1.0"
+                  }
+                }
+              },
+              "cluster": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              },
+              "platform": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "timestamptz",
+                    "description": "",
+                    "default": "2024-01-01 00:00:00+0000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/snapshot/swap",
+      "operations": {
+        "post": {
+          "summary": "Swap a tenant onto a snapshot",
+          "description": "Swap a tenant onto a snapshot\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Update",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "snapshot": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "required": [
+              "snapshot"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/snapshot",
+      "operations": {
+        "delete": {
+          "summary": "Delete a tenant snapshot",
+          "description": "Delete a tenant snapshot\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Delete",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "snapshot": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "required": [
+              "snapshot"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "get": {
+          "summary": "List snapshots for a tenant",
+          "description": "List snapshots for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a snapshot for a tenant",
+          "description": "Create a snapshot for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Backup: Create",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": ""
+              }
+            }
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/static_host/{static_host}/build/{build_id}/env",
+      "operations": {
+        "post": {
+          "summary": "Update a tenant static hosting environment",
+          "description": "Update a tenant static hosting environment\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Deploy: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "build_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "env": {
+                "type": "string",
+                "description": "",
+                "enum": [
+                  "prod",
+                  "dev"
+                ]
+              }
+            },
+            "required": [
+              "env"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/static_host/{static_host}/build/{build_id}/multidoc",
+      "operations": {
+        "get": {
+          "summary": "Export a tenant static host build as multidoc",
+          "description": "Export a tenant static host build as multidoc\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "build_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "source",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "original",
+                  "built"
+                ],
+                "default": "original"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/static_host/{static_host}/build/{build_id}",
+      "operations": {
+        "delete": {
+          "summary": "Delete a tenant static host build",
+          "description": "Delete a tenant static host build\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Deploy: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "build_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "get": {
+          "summary": "Retrieve a specific build for a tenant static host",
+          "description": "Retrieve a specific build for a tenant static host\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "build_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/static_host/{static_host}/build",
+      "operations": {
+        "get": {
+          "summary": "Retrieve builds for a tenant static host",
+          "description": "Retrieve builds for a tenant static host\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "post": {
+          "summary": "Create a static host build for a tenant",
+          "description": "Create a static host build for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Deploy: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/static_host/{static_host}/edit",
+      "operations": {
+        "post": {
+          "summary": "Update a tenant static host's details",
+          "description": "Update a tenant static host's details\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Deploy: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": ""
+              },
+              "description": {
+                "type": "string",
+                "description": ""
+              },
+              "git": {
+                "type": "object",
+                "properties": {
+                  "repo": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "private_key": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "public_key": {
+                    "type": "string",
+                    "description": ""
+                  }
+                },
+                "required": [
+                  "repo",
+                  "private_key",
+                  "public_key"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "git"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/static_host/{static_host}/migrate",
+      "operations": {
+        "post": {
+          "summary": "Migrate a tenant static host to instance-managed (v2) hosting",
+          "description": "Migrate a tenant static host to instance-managed (v2) hosting\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Deploy: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "env": {
+                "type": "string",
+                "description": ""
+              }
+            }
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/static_host/{static_host}",
+      "operations": {
+        "get": {
+          "summary": "Get a single tenant static host's details",
+          "description": "Get a single tenant static host's details\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "static_host",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/static_host",
+      "operations": {
+        "get": {
+          "summary": "Retrieve static hosts for a tenant",
+          "description": "Retrieve static hosts for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "post": {
+          "summary": "Create a new static host for a tenant",
+          "description": "Create a new static host for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Deploy: Enabled",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": ""
+              },
+              "description": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/unit_test/{unit_test_id}/run",
+      "operations": {
+        "post": {
+          "summary": "Run a single unit test for a tenant",
+          "description": "Run a single unit test for a tenant\n<br /><br />\n<b>Authentication:</b> required",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "unit_test_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "branch": {
+                "type": "string",
+                "description": ""
+              }
+            }
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/unit_test",
+      "operations": {
+        "get": {
+          "summary": "List all unit tests for a tenant",
+          "description": "List all unit tests for a tenant\n<br /><br />\n<b>Authentication:</b> required",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "branch",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "obj_type",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            },
+            {
+              "name": "per_page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 50
+              }
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/workflow_test/{workflow_test_id}/run",
+      "operations": {
+        "post": {
+          "summary": "Run a workflow test for a tenant",
+          "description": "Run a workflow test for a tenant\n<br /><br />\n<b>Authentication:</b> required",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "workflow_test_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/workflow_test",
+      "operations": {
+        "get": {
+          "summary": "List workflow tests for a tenant",
+          "description": "List workflow tests for a tenant\n<br /><br />\n<b>Authentication:</b> required",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "branch",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "include_draft",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "include_xanoscript",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            },
+            {
+              "name": "per_page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 50
+              }
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "created_at",
+                  "updated_at",
+                  "name"
+                ],
+                "default": "created_at"
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "desc"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}",
+      "operations": {
+        "delete": {
+          "summary": "Delete a tenant permanently. This destroys all associated infrastructure and cannot be undone.",
+          "description": "Delete a tenant permanently. This destroys all associated infrastructure and cannot be undone.\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Delete",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "get": {
+          "summary": "Retrieve a specific tenant by name",
+          "description": "Retrieve a specific tenant by name\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant"
+              },
+              "display": {
+                "type": "string",
+                "description": "",
+                "default": "My Tenant"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "Production tenant"
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "proxy": {
+                "type": "string",
+                "description": ""
+              },
+              "xano_domain": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant.xano.io"
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "rbac": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              },
+              "version": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "deployed_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "license": {
+                "type": "string",
+                "description": "",
+                "default": "tier1"
+              },
+              "k8s": {
+                "type": "object",
+                "description": ""
+              },
+              "tasks": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ingress": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ephemeral": {
+                "type": "boolean",
+                "description": ""
+              },
+              "state": {
+                "type": "string",
+                "description": "",
+                "default": "ok"
+              },
+              "release": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "v1.0"
+                  }
+                }
+              },
+              "cluster": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              },
+              "platform": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "timestamptz",
+                    "description": "",
+                    "default": "2024-01-01 00:00:00+0000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update tenant properties",
+          "description": "Update tenant properties\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Update",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "tenant_name",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "display": {
+                "type": "string",
+                "description": ""
+              },
+              "description": {
+                "type": "string",
+                "description": ""
+              },
+              "domain": {
+                "type": "string",
+                "description": "",
+                "nullable": true
+              },
+              "proxy": {
+                "type": "string",
+                "description": "",
+                "nullable": true
+              },
+              "tasks": {
+                "type": "boolean",
+                "description": ""
+              },
+              "ingress": {
+                "type": "boolean",
+                "description": ""
+              },
+              "swoole": {
+                "type": "boolean",
+                "description": "",
+                "nullable": true
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tag": {
+                      "type": "string",
+                      "description": ""
+                    }
+                  },
+                  "required": [
+                    "tag"
+                  ]
+                }
+              },
+              "rbac": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                },
+                "required": [
+                  "enabled"
+                ]
+              },
+              "deploy_settings": {
+                "type": "object",
+                "properties": {
+                  "required_reviewers": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "nullable": true
+                  },
+                  "allow_deploy_bypass": {
+                    "type": "boolean",
+                    "description": "",
+                    "nullable": true
+                  },
+                  "allow_quick_deploy": {
+                    "type": "boolean",
+                    "description": "",
+                    "nullable": true
+                  }
+                },
+                "nullable": true
+              }
+            },
+            "required": [
+              "display",
+              "description",
+              "domain",
+              "tasks",
+              "ingress",
+              "tag",
+              "rbac"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant"
+              },
+              "display": {
+                "type": "string",
+                "description": "",
+                "default": "My Tenant"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "Production tenant"
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "proxy": {
+                "type": "string",
+                "description": ""
+              },
+              "xano_domain": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant.xano.io"
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "rbac": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              },
+              "version": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "deployed_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "license": {
+                "type": "string",
+                "description": "",
+                "default": "tier1"
+              },
+              "k8s": {
+                "type": "object",
+                "description": ""
+              },
+              "tasks": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ingress": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ephemeral": {
+                "type": "boolean",
+                "description": ""
+              },
+              "state": {
+                "type": "string",
+                "description": "",
+                "default": "ok"
+              },
+              "release": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "v1.0"
+                  }
+                }
+              },
+              "cluster": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              },
+              "platform": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "timestamptz",
+                    "description": "",
+                    "default": "2024-01-01 00:00:00+0000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant",
+      "operations": {
+        "get": {
+          "summary": "List all tenants in a workspace",
+          "description": "List all tenants in a workspace\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 1
+              }
+            },
+            {
+              "name": "per_page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": 50
+              }
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "created_at",
+                  "state"
+                ],
+                "default": "name"
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "asc"
+              }
+            }
+          ],
+          "response_schema": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "",
+                  "default": 1
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "timestamptz",
+                  "description": "",
+                  "default": "2024-01-01 00:00:00+0000"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "",
+                  "default": "my-tenant"
+                },
+                "display": {
+                  "type": "string",
+                  "description": "",
+                  "default": "My Tenant"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "",
+                  "default": "Production tenant"
+                },
+                "domain": {
+                  "type": "string",
+                  "description": ""
+                },
+                "proxy": {
+                  "type": "string",
+                  "description": ""
+                },
+                "xano_domain": {
+                  "type": "string",
+                  "description": "",
+                  "default": "my-tenant.xano.io"
+                },
+                "tag": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": ""
+                  }
+                },
+                "rbac": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "description": ""
+                    }
+                  }
+                },
+                "version": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "",
+                  "default": 1
+                },
+                "deployed_at": {
+                  "type": "string",
+                  "format": "timestamptz",
+                  "description": "",
+                  "default": "2024-01-01 00:00:00+0000"
+                },
+                "license": {
+                  "type": "string",
+                  "description": "",
+                  "default": "tier1"
+                },
+                "k8s": {
+                  "type": "object",
+                  "description": ""
+                },
+                "tasks": {
+                  "type": "boolean",
+                  "description": "",
+                  "default": true
+                },
+                "ingress": {
+                  "type": "boolean",
+                  "description": "",
+                  "default": true
+                },
+                "ephemeral": {
+                  "type": "boolean",
+                  "description": ""
+                },
+                "state": {
+                  "type": "string",
+                  "description": "",
+                  "default": "ok"
+                },
+                "release": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "v1.0"
+                    }
+                  }
+                },
+                "cluster": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "default"
+                    }
+                  }
+                },
+                "platform": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "",
+                      "default": 1
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "timestamptz",
+                      "description": "",
+                      "default": "2024-01-01 00:00:00+0000"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "default": "default"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new tenant in a workspace",
+          "description": "Create a new tenant in a workspace\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Create",
+          "parameters": [
+            {
+              "name": "workspace_id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "request_schema": {
+            "type": "object",
+            "properties": {
+              "display": {
+                "type": "string",
+                "description": ""
+              },
+              "description": {
+                "type": "string",
+                "description": ""
+              },
+              "cluster_id": {
+                "type": "integer",
+                "format": "int64",
+                "description": ""
+              },
+              "platform_id": {
+                "type": "integer",
+                "format": "int64",
+                "description": ""
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "license": {
+                "type": "string",
+                "description": "",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ],
+                "default": "tier1"
+              },
+              "tasks": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ingress": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "resources": {
+                "type": "object",
+                "description": "",
+                "nullable": true
+              },
+              "license_overrides": {
+                "type": "object",
+                "description": "",
+                "nullable": true
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tag": {
+                      "type": "string",
+                      "description": ""
+                    }
+                  },
+                  "required": [
+                    "tag"
+                  ]
+                }
+              },
+              "deploy_settings": {
+                "type": "object",
+                "properties": {
+                  "required_reviewers": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "allow_deploy_bypass": {
+                    "type": "boolean",
+                    "description": ""
+                  },
+                  "allow_quick_deploy": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              }
+            },
+            "required": [
+              "display"
+            ]
+          },
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "created_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "name": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant"
+              },
+              "display": {
+                "type": "string",
+                "description": "",
+                "default": "My Tenant"
+              },
+              "description": {
+                "type": "string",
+                "description": "",
+                "default": "Production tenant"
+              },
+              "domain": {
+                "type": "string",
+                "description": ""
+              },
+              "proxy": {
+                "type": "string",
+                "description": ""
+              },
+              "xano_domain": {
+                "type": "string",
+                "description": "",
+                "default": "my-tenant.xano.io"
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "rbac": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              },
+              "version": {
+                "type": "integer",
+                "format": "int64",
+                "description": "",
+                "default": 1
+              },
+              "deployed_at": {
+                "type": "string",
+                "format": "timestamptz",
+                "description": "",
+                "default": "2024-01-01 00:00:00+0000"
+              },
+              "license": {
+                "type": "string",
+                "description": "",
+                "default": "tier1"
+              },
+              "k8s": {
+                "type": "object",
+                "description": ""
+              },
+              "tasks": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ingress": {
+                "type": "boolean",
+                "description": "",
+                "default": true
+              },
+              "ephemeral": {
+                "type": "boolean",
+                "description": ""
+              },
+              "state": {
+                "type": "string",
+                "description": "",
+                "default": "ok"
+              },
+              "release": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "v1.0"
+                  }
+                }
+              },
+              "cluster": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              },
+              "platform": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "",
+                    "default": 1
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "timestamptz",
+                    "description": "",
+                    "default": "2024-01-01 00:00:00+0000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "default": "default"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "note": "Specification presence is not plan entitlement. Impersonation GETs mint credentials and were not called."
+}

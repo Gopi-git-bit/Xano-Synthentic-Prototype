@@ -1,0 +1,6450 @@
+{
+  "tables": [
+    {
+      "name": "platforms",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "platform_key text NOT NULL UNIQUE"
+        },
+        {
+          "name": "display_name",
+          "type": "text",
+          "nullable": false,
+          "sql": "display_name text NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "CHECK (platform_key ~ '^[a-z][a-z0-9_]{2,62}$')"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "accounts",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "account_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "external_subject",
+          "type": "text",
+          "nullable": false,
+          "sql": "external_subject text NOT NULL"
+        },
+        {
+          "name": "email_normalized",
+          "type": "text",
+          "nullable": true,
+          "sql": "email_normalized text"
+        },
+        {
+          "name": "phone_e164",
+          "type": "text",
+          "nullable": true,
+          "sql": "phone_e164 text"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "active",
+            "suspended",
+            "blocked"
+          ],
+          "sql": "status zippy.account_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "updated_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "account_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "account_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "external_subject"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "email_normalized"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "phone_e164"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, account_id)",
+        "UNIQUE (platform_id, external_subject)",
+        "UNIQUE (platform_id, email_normalized)",
+        "UNIQUE (platform_id, phone_e164)",
+        "CHECK (email_normalized IS NOT NULL OR phone_e164 IS NOT NULL)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "roles",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "role_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "role_code text PRIMARY KEY"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": false,
+          "sql": "description text NOT NULL"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "role_code"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "account_role_memberships",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "membership_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "membership_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "account_id uuid NOT NULL"
+        },
+        {
+          "name": "role_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "role_code text NOT NULL REFERENCES zippy.roles(role_code)"
+        },
+        {
+          "name": "valid_from",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "valid_from timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "valid_until",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "valid_until timestamptz"
+        },
+        {
+          "name": "granted_by_account_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "granted_by_account_id uuid"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "membership_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "account_id"
+            },
+            {
+              "name": "role_code"
+            },
+            {
+              "name": "valid_from"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "account_id",
+              "op": "asc"
+            },
+            {
+              "name": "valid_until",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, account_id, role_code, valid_from)",
+        "CHECK (valid_until IS NULL OR valid_until > valid_from)",
+        "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "FOREIGN KEY (platform_id, granted_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "legal_entities",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "legal_entity_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "legal_entity_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "legal_name",
+          "type": "text",
+          "nullable": false,
+          "sql": "legal_name text NOT NULL"
+        },
+        {
+          "name": "registration_reference",
+          "type": "text",
+          "nullable": true,
+          "sql": "registration_reference text"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "legal_entity_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "legal_entity_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "registration_reference"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, legal_entity_id)",
+        "UNIQUE (platform_id, registration_reference)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "customer_profiles",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "customer_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "customer_profile_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "account_id uuid NOT NULL"
+        },
+        {
+          "name": "legal_entity_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "legal_entity_id uuid"
+        },
+        {
+          "name": "verification_status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "verified",
+            "rejected"
+          ],
+          "sql": "verification_status text NOT NULL DEFAULT 'pending' CHECK (verification_status IN ('pending', 'verified', 'rejected'))"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "customer_profile_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "customer_profile_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "account_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, customer_profile_id)",
+        "UNIQUE (platform_id, account_id)",
+        "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "FOREIGN KEY (platform_id, legal_entity_id) REFERENCES zippy.legal_entities(platform_id, legal_entity_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "vendor_profiles",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "vendor_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vendor_profile_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "account_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "account_id uuid"
+        },
+        {
+          "name": "legal_entity_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "legal_entity_id uuid"
+        },
+        {
+          "name": "eligibility_status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "approved",
+            "suspended",
+            "rejected"
+          ],
+          "sql": "eligibility_status text NOT NULL DEFAULT 'pending' CHECK (eligibility_status IN ('pending', 'approved', 'suspended', 'rejected'))"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "vendor_profile_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "vendor_profile_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "account_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "legal_entity_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "CHECK ((account_id IS NOT NULL)::integer + (legal_entity_id IS NOT NULL)::integer = 1)",
+        "UNIQUE (platform_id, vendor_profile_id)",
+        "UNIQUE (platform_id, account_id)",
+        "UNIQUE (platform_id, legal_entity_id)",
+        "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "FOREIGN KEY (platform_id, legal_entity_id) REFERENCES zippy.legal_entities(platform_id, legal_entity_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "company_memberships",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "company_membership_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "company_membership_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "legal_entity_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "legal_entity_id uuid NOT NULL"
+        },
+        {
+          "name": "account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "account_id uuid NOT NULL"
+        },
+        {
+          "name": "membership_role",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "owner",
+            "manager",
+            "dispatcher",
+            "driver"
+          ],
+          "sql": "membership_role text NOT NULL CHECK (membership_role IN ('owner', 'manager', 'dispatcher', 'driver'))"
+        },
+        {
+          "name": "valid_from",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "valid_from timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "valid_until",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "valid_until timestamptz"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "company_membership_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "legal_entity_id"
+            },
+            {
+              "name": "account_id"
+            },
+            {
+              "name": "membership_role"
+            },
+            {
+              "name": "valid_from"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "account_id",
+              "op": "asc"
+            },
+            {
+              "name": "valid_until",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, legal_entity_id, account_id, membership_role, valid_from)",
+        "CHECK (valid_until IS NULL OR valid_until > valid_from)",
+        "FOREIGN KEY (platform_id, legal_entity_id) REFERENCES zippy.legal_entities(platform_id, legal_entity_id)",
+        "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "driver_profiles",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "driver_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "driver_profile_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "account_id uuid NOT NULL"
+        },
+        {
+          "name": "licence_reference",
+          "type": "text",
+          "nullable": false,
+          "sql": "licence_reference text NOT NULL"
+        },
+        {
+          "name": "eligibility_status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "approved",
+            "suspended",
+            "expired",
+            "rejected"
+          ],
+          "sql": "eligibility_status text NOT NULL DEFAULT 'pending' CHECK (eligibility_status IN ('pending', 'approved', 'suspended', 'expired', 'rejected'))"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "driver_profile_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "driver_profile_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "account_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "licence_reference"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, driver_profile_id)",
+        "UNIQUE (platform_id, account_id)",
+        "UNIQUE (platform_id, licence_reference)",
+        "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "driver_associations",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "driver_association_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "driver_association_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "driver_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "driver_profile_id uuid NOT NULL"
+        },
+        {
+          "name": "vendor_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vendor_profile_id uuid NOT NULL"
+        },
+        {
+          "name": "valid_from",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "valid_from timestamptz NOT NULL"
+        },
+        {
+          "name": "valid_until",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "valid_until timestamptz"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "driver_association_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "driver_profile_id"
+            },
+            {
+              "name": "vendor_profile_id"
+            },
+            {
+              "name": "valid_from"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "vendor_profile_id",
+              "op": "asc"
+            },
+            {
+              "name": "valid_until",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, driver_profile_id, vendor_profile_id, valid_from)",
+        "CHECK (valid_until IS NULL OR valid_until > valid_from)",
+        "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
+        "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "admin_account_actions",
+      "source": "0001_foundation.up.sql",
+      "columns": [
+        {
+          "name": "admin_action_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "admin_action_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "affected_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "affected_account_id uuid NOT NULL"
+        },
+        {
+          "name": "acting_admin_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "acting_admin_account_id uuid NOT NULL"
+        },
+        {
+          "name": "action",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "create",
+            "block",
+            "suspend",
+            "unblock"
+          ],
+          "sql": "action zippy.admin_action_kind NOT NULL"
+        },
+        {
+          "name": "previous_status",
+          "type": "enum",
+          "nullable": true,
+          "values": [
+            "pending",
+            "active",
+            "suspended",
+            "blocked"
+          ],
+          "sql": "previous_status zippy.account_status"
+        },
+        {
+          "name": "new_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pending",
+            "active",
+            "suspended",
+            "blocked"
+          ],
+          "sql": "new_status zippy.account_status NOT NULL"
+        },
+        {
+          "name": "reason_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "reason_code text NOT NULL"
+        },
+        {
+          "name": "reason_note",
+          "type": "text",
+          "nullable": true,
+          "sql": "reason_note text"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "occurred_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "occurred_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "admin_action_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "affected_account_id",
+              "op": "asc"
+            },
+            {
+              "name": "occurred_at",
+              "op": "desc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "CHECK (affected_account_id <> acting_admin_account_id)",
+        "CHECK (\n        (action = 'create' AND previous_status IS NULL) OR\n        (action <> 'create' AND previous_status IS NOT NULL)\n    )",
+        "FOREIGN KEY (platform_id, affected_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "FOREIGN KEY (platform_id, acting_admin_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "vehicle_models",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "vehicle_model_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vehicle_model_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "model_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "model_code text NOT NULL"
+        },
+        {
+          "name": "display_name",
+          "type": "text",
+          "nullable": false,
+          "sql": "display_name text NOT NULL"
+        },
+        {
+          "name": "capacity_kg",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "capacity_kg numeric(12,3) NOT NULL CHECK (capacity_kg > 0)"
+        },
+        {
+          "name": "body_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "body_type text NOT NULL"
+        },
+        {
+          "name": "source_version",
+          "type": "text",
+          "nullable": false,
+          "sql": "source_version text NOT NULL"
+        },
+        {
+          "name": "approved_by_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "approved_by_account_id uuid NOT NULL"
+        },
+        {
+          "name": "approved_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "approved_at timestamptz NOT NULL"
+        },
+        {
+          "name": "active",
+          "type": "bool",
+          "nullable": false,
+          "defaultValue": "true",
+          "sql": "active boolean NOT NULL DEFAULT true"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "vehicle_model_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "vehicle_model_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "model_code"
+            },
+            {
+              "name": "source_version"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, vehicle_model_id)",
+        "UNIQUE (platform_id, model_code, source_version)",
+        "FOREIGN KEY (platform_id, approved_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "vehicles",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "vehicle_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vehicle_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "vendor_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vendor_profile_id uuid NOT NULL"
+        },
+        {
+          "name": "vehicle_model_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vehicle_model_id uuid NOT NULL"
+        },
+        {
+          "name": "registration_number",
+          "type": "text",
+          "nullable": false,
+          "sql": "registration_number text NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "approved",
+            "suspended",
+            "rejected",
+            "retired"
+          ],
+          "sql": "status zippy.vehicle_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "approved_by_account_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "approved_by_account_id uuid"
+        },
+        {
+          "name": "approved_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "approved_at timestamptz"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "updated_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "vehicle_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "vehicle_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "registration_number"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "vendor_profile_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, vehicle_id)",
+        "UNIQUE (platform_id, registration_number)",
+        "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+        "FOREIGN KEY (platform_id, vehicle_model_id) REFERENCES zippy.vehicle_models(platform_id, vehicle_model_id)",
+        "FOREIGN KEY (platform_id, approved_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK ((status = 'approved' AND approved_by_account_id IS NOT NULL AND approved_at IS NOT NULL) OR status <> 'approved')"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "vehicle_documents",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "vehicle_document_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vehicle_document_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "vehicle_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vehicle_id uuid NOT NULL"
+        },
+        {
+          "name": "document_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "document_type text NOT NULL"
+        },
+        {
+          "name": "object_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "object_key text NOT NULL"
+        },
+        {
+          "name": "checksum_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "checksum_sha256 text NOT NULL CHECK (checksum_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "valid_from",
+          "type": "date",
+          "nullable": true,
+          "sql": "valid_from date"
+        },
+        {
+          "name": "valid_until",
+          "type": "date",
+          "nullable": true,
+          "sql": "valid_until date"
+        },
+        {
+          "name": "verification_status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "verified",
+            "rejected",
+            "expired"
+          ],
+          "sql": "verification_status text NOT NULL DEFAULT 'pending' CHECK (verification_status IN ('pending', 'verified', 'rejected', 'expired'))"
+        },
+        {
+          "name": "verified_by_account_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "verified_by_account_id uuid"
+        },
+        {
+          "name": "verified_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "verified_at timestamptz"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "vehicle_document_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "vehicle_document_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "vehicle_id"
+            },
+            {
+              "name": "document_type"
+            },
+            {
+              "name": "object_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, vehicle_document_id)",
+        "UNIQUE (platform_id, vehicle_id, document_type, object_key)",
+        "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+        "FOREIGN KEY (platform_id, verified_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK (valid_until IS NULL OR valid_from IS NULL OR valid_until >= valid_from)",
+        "CHECK ((verification_status = 'verified' AND verified_by_account_id IS NOT NULL AND verified_at IS NOT NULL) OR verification_status <> 'verified')"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "quotes",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "quote_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "quote_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "customer_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "customer_profile_id uuid NOT NULL"
+        },
+        {
+          "name": "policy_version",
+          "type": "text",
+          "nullable": false,
+          "sql": "policy_version text NOT NULL"
+        },
+        {
+          "name": "input_hash_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "input_hash_sha256 text NOT NULL CHECK (input_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "input_evidence",
+          "type": "json",
+          "nullable": false,
+          "sql": "input_evidence jsonb NOT NULL"
+        },
+        {
+          "name": "amount",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "amount numeric(18,2) NOT NULL CHECK (amount >= 0)"
+        },
+        {
+          "name": "currency_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "currency_code varchar(3) NOT NULL CHECK (currency_code ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "expires_at timestamptz NOT NULL"
+        },
+        {
+          "name": "created_by_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "created_by_account_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "quote_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "quote_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "customer_profile_id"
+            },
+            {
+              "name": "policy_version"
+            },
+            {
+              "name": "input_hash_sha256"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, quote_id)",
+        "UNIQUE (platform_id, customer_profile_id, policy_version, input_hash_sha256)",
+        "FOREIGN KEY (platform_id, customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+        "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK (jsonb_typeof(input_evidence) = 'object')",
+        "CHECK (expires_at > created_at)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "orders",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "booking_customer_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "booking_customer_profile_id uuid NOT NULL"
+        },
+        {
+          "name": "quote_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "quote_id uuid NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "quoted",
+            "confirmed",
+            "assigned",
+            "in_transit",
+            "delivered",
+            "cancelled"
+          ],
+          "sql": "status zippy.order_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "cargo_description",
+          "type": "text",
+          "nullable": false,
+          "sql": "cargo_description text NOT NULL"
+        },
+        {
+          "name": "cargo_weight_kg",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "cargo_weight_kg numeric(12,3) NOT NULL CHECK (cargo_weight_kg > 0)"
+        },
+        {
+          "name": "special_handling_code",
+          "type": "text",
+          "nullable": true,
+          "sql": "special_handling_code text"
+        },
+        {
+          "name": "version",
+          "type": "int",
+          "nullable": false,
+          "defaultValue": "1",
+          "sql": "version integer NOT NULL DEFAULT 1 CHECK (version > 0)"
+        },
+        {
+          "name": "created_by_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "created_by_account_id uuid NOT NULL"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "updated_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "order_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "booking_customer_profile_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            },
+            {
+              "name": "created_at",
+              "op": "desc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, order_id)",
+        "FOREIGN KEY (platform_id, booking_customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+        "FOREIGN KEY (platform_id, quote_id) REFERENCES zippy.quotes(platform_id, quote_id)",
+        "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "order_stops",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "order_stop_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_stop_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "stop_sequence",
+          "type": "int",
+          "nullable": false,
+          "sql": "stop_sequence smallint NOT NULL CHECK (stop_sequence > 0)"
+        },
+        {
+          "name": "stop_kind",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pickup",
+            "delivery",
+            "waypoint"
+          ],
+          "sql": "stop_kind text NOT NULL CHECK (stop_kind IN ('pickup', 'delivery', 'waypoint'))"
+        },
+        {
+          "name": "address_text",
+          "type": "text",
+          "nullable": false,
+          "sql": "address_text text NOT NULL"
+        },
+        {
+          "name": "latitude",
+          "type": "decimal",
+          "nullable": true,
+          "sql": "latitude numeric(9,6)"
+        },
+        {
+          "name": "longitude",
+          "type": "decimal",
+          "nullable": true,
+          "sql": "longitude numeric(9,6)"
+        },
+        {
+          "name": "accuracy_meters",
+          "type": "decimal",
+          "nullable": true,
+          "sql": "accuracy_meters numeric(10,2) CHECK (accuracy_meters IS NULL OR accuracy_meters >= 0)"
+        },
+        {
+          "name": "source",
+          "type": "text",
+          "nullable": false,
+          "sql": "source text NOT NULL"
+        },
+        {
+          "name": "created_by_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "created_by_account_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "order_stop_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_id"
+            },
+            {
+              "name": "stop_sequence"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, order_id, stop_sequence)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK (latitude IS NULL OR latitude BETWEEN -90 AND 90)",
+        "CHECK (longitude IS NULL OR longitude BETWEEN -180 AND 180)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "transaction_participants",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "transaction_participant_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "transaction_participant_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "participant_role",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "customer",
+            "vendor"
+          ],
+          "sql": "participant_role zippy.participant_role NOT NULL"
+        },
+        {
+          "name": "customer_profile_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "customer_profile_id uuid"
+        },
+        {
+          "name": "vendor_profile_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "vendor_profile_id uuid"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "transaction_participant_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_id"
+            },
+            {
+              "name": "participant_role"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, order_id, participant_role)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+        "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+        "CHECK (\n        (participant_role = 'customer' AND customer_profile_id IS NOT NULL AND vendor_profile_id IS NULL) OR\n        (participant_role = 'vendor' AND vendor_profile_id IS NOT NULL AND customer_profile_id IS NULL)\n    )"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "dispatch_offers",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "dispatch_offer_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "dispatch_offer_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "vendor_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vendor_profile_id uuid NOT NULL"
+        },
+        {
+          "name": "vehicle_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "vehicle_id uuid"
+        },
+        {
+          "name": "driver_profile_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "driver_profile_id uuid"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "accepted",
+            "declined",
+            "expired",
+            "cancelled"
+          ],
+          "sql": "status zippy.offer_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "scoring_input_version",
+          "type": "text",
+          "nullable": false,
+          "sql": "scoring_input_version text NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "expires_at timestamptz NOT NULL"
+        },
+        {
+          "name": "responded_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "responded_at timestamptz"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "dispatch_offer_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "dispatch_offer_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "order_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            },
+            {
+              "name": "expires_at",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, dispatch_offer_id)",
+        "UNIQUE (platform_id, idempotency_key)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+        "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+        "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
+        "CHECK (expires_at > created_at)",
+        "CHECK ((status IN ('accepted', 'declined') AND responded_at IS NOT NULL) OR status NOT IN ('accepted', 'declined'))",
+        "PARTIAL INDEX CREATE UNIQUE INDEX dispatch_one_accepted_offer_idx\n    ON zippy.dispatch_offers (platform_id, order_id)\n    WHERE status = 'accepted';"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "trips",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "trip_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "trip_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"planned\"",
+          "values": [
+            "planned",
+            "assigned",
+            "active",
+            "completed",
+            "cancelled",
+            "exception"
+          ],
+          "sql": "status zippy.trip_status NOT NULL DEFAULT 'planned'"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "updated_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "trip_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "trip_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            },
+            {
+              "name": "updated_at",
+              "op": "desc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, trip_id)",
+        "UNIQUE (platform_id, order_id)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "trip_assignments",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "trip_assignment_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "trip_assignment_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "trip_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "trip_id uuid NOT NULL"
+        },
+        {
+          "name": "dispatch_offer_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "dispatch_offer_id uuid NOT NULL"
+        },
+        {
+          "name": "vendor_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vendor_profile_id uuid NOT NULL"
+        },
+        {
+          "name": "vehicle_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vehicle_id uuid NOT NULL"
+        },
+        {
+          "name": "driver_profile_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "driver_profile_id uuid NOT NULL"
+        },
+        {
+          "name": "assigned_by_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "assigned_by_account_id uuid NOT NULL"
+        },
+        {
+          "name": "assigned_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "assigned_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "released_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "released_at timestamptz"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "trip_assignment_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "trip_id"
+            },
+            {
+              "name": "assigned_at"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, trip_id, assigned_at)",
+        "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+        "FOREIGN KEY (platform_id, dispatch_offer_id) REFERENCES zippy.dispatch_offers(platform_id, dispatch_offer_id)",
+        "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+        "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+        "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
+        "FOREIGN KEY (platform_id, assigned_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK (released_at IS NULL OR released_at >= assigned_at)",
+        "PARTIAL INDEX CREATE UNIQUE INDEX trip_active_vehicle_idx\n    ON zippy.trip_assignments (platform_id, vehicle_id)\n    WHERE released_at IS NULL;",
+        "PARTIAL INDEX CREATE UNIQUE INDEX trip_active_driver_idx\n    ON zippy.trip_assignments (platform_id, driver_profile_id)\n    WHERE released_at IS NULL;"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "trip_milestones",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "trip_milestone_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "trip_milestone_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "trip_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "trip_id uuid NOT NULL"
+        },
+        {
+          "name": "milestone",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pickup",
+            "in_transit",
+            "arrival",
+            "delivery",
+            "pod_pending",
+            "exception"
+          ],
+          "sql": "milestone zippy.milestone_kind NOT NULL"
+        },
+        {
+          "name": "sequence_no",
+          "type": "int",
+          "nullable": false,
+          "sql": "sequence_no integer NOT NULL CHECK (sequence_no > 0)"
+        },
+        {
+          "name": "actor_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "actor_account_id uuid NOT NULL"
+        },
+        {
+          "name": "source",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "manual",
+            "system",
+            "verified_webhook"
+          ],
+          "sql": "source text NOT NULL CHECK (source IN ('manual', 'system', 'verified_webhook'))"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": true,
+          "sql": "reason text"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "occurred_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "occurred_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "trip_milestone_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "trip_id"
+            },
+            {
+              "name": "sequence_no"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "trip_id",
+              "op": "asc"
+            },
+            {
+              "name": "occurred_at",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, trip_id, sequence_no)",
+        "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+        "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "trip_location_history",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "location_sample_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "location_sample_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "trip_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "trip_id uuid NOT NULL"
+        },
+        {
+          "name": "vehicle_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "vehicle_id uuid NOT NULL"
+        },
+        {
+          "name": "actor_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "actor_account_id uuid NOT NULL"
+        },
+        {
+          "name": "latitude",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "latitude numeric(9,6) NOT NULL CHECK (latitude BETWEEN -90 AND 90)"
+        },
+        {
+          "name": "longitude",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "longitude numeric(9,6) NOT NULL CHECK (longitude BETWEEN -180 AND 180)"
+        },
+        {
+          "name": "accuracy_meters",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "accuracy_meters numeric(10,2) NOT NULL CHECK (accuracy_meters >= 0)"
+        },
+        {
+          "name": "source",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "browser",
+            "manual",
+            "device"
+          ],
+          "sql": "source text NOT NULL CHECK (source IN ('browser', 'manual', 'device'))"
+        },
+        {
+          "name": "consent_reference",
+          "type": "text",
+          "nullable": false,
+          "sql": "consent_reference text NOT NULL"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "captured_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "captured_at timestamptz NOT NULL"
+        },
+        {
+          "name": "received_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "received_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "location_sample_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "trip_id",
+              "op": "asc"
+            },
+            {
+              "name": "captured_at",
+              "op": "desc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+        "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+        "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "pod_documents",
+      "source": "0002_operations.up.sql",
+      "columns": [
+        {
+          "name": "pod_document_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "pod_document_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "trip_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "trip_id uuid NOT NULL"
+        },
+        {
+          "name": "uploaded_by_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "uploaded_by_account_id uuid NOT NULL"
+        },
+        {
+          "name": "object_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "object_key text NOT NULL"
+        },
+        {
+          "name": "content_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "content_type text NOT NULL"
+        },
+        {
+          "name": "byte_size",
+          "type": "int",
+          "nullable": false,
+          "sql": "byte_size bigint NOT NULL CHECK (byte_size > 0)"
+        },
+        {
+          "name": "checksum_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "checksum_sha256 text NOT NULL CHECK (checksum_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "verification_status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "accepted",
+            "rejected",
+            "manual_review"
+          ],
+          "sql": "verification_status text NOT NULL DEFAULT 'pending' CHECK (verification_status IN ('pending', 'accepted', 'rejected', 'manual_review'))"
+        },
+        {
+          "name": "verified_by_account_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "verified_by_account_id uuid"
+        },
+        {
+          "name": "verified_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "verified_at timestamptz"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "pod_document_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "pod_document_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "object_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "order_id",
+              "op": "asc"
+            },
+            {
+              "name": "verification_status",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, pod_document_id)",
+        "UNIQUE (platform_id, object_key)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+        "FOREIGN KEY (platform_id, uploaded_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "FOREIGN KEY (platform_id, verified_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK ((verification_status IN ('accepted', 'rejected') AND verified_by_account_id IS NOT NULL AND verified_at IS NOT NULL) OR verification_status NOT IN ('accepted', 'rejected'))"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "webhook_receipts",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "webhook_receipt_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "webhook_receipt_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "nullable": false,
+          "sql": "provider text NOT NULL"
+        },
+        {
+          "name": "provider_event_id",
+          "type": "text",
+          "nullable": false,
+          "sql": "provider_event_id text NOT NULL"
+        },
+        {
+          "name": "signature_verified",
+          "type": "bool",
+          "nullable": false,
+          "defaultValue": "false",
+          "sql": "signature_verified boolean NOT NULL DEFAULT false"
+        },
+        {
+          "name": "payload_hash_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "payload_hash_sha256 text NOT NULL CHECK (payload_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "payload_reference",
+          "type": "text",
+          "nullable": true,
+          "sql": "payload_reference text"
+        },
+        {
+          "name": "processing_status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "processing",
+            "succeeded",
+            "failed",
+            "dead_lettered"
+          ],
+          "sql": "processing_status zippy.processing_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "attempt_count",
+          "type": "int",
+          "nullable": false,
+          "defaultValue": "0",
+          "sql": "attempt_count integer NOT NULL DEFAULT 0 CHECK (attempt_count >= 0)"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "received_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "received_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "processed_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "processed_at timestamptz"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "webhook_receipt_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "webhook_receipt_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "provider"
+            },
+            {
+              "name": "provider_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "processing_status",
+              "op": "asc"
+            },
+            {
+              "name": "received_at",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, webhook_receipt_id)",
+        "UNIQUE (platform_id, provider, provider_event_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "gateway_events",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "gateway_event_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "gateway_event_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "webhook_receipt_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "webhook_receipt_id uuid NOT NULL"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "gateway",
+          "type": "text",
+          "nullable": false,
+          "sql": "gateway text NOT NULL"
+        },
+        {
+          "name": "gateway_event_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "gateway_event_type text NOT NULL"
+        },
+        {
+          "name": "amount",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "amount numeric(18,2) NOT NULL CHECK (amount >= 0)"
+        },
+        {
+          "name": "currency_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "currency_code varchar(3) NOT NULL CHECK (currency_code ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "evidence_hash_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "evidence_hash_sha256 text NOT NULL CHECK (evidence_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "verified_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "verified_at timestamptz NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "gateway_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "gateway_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "webhook_receipt_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, gateway_event_id)",
+        "UNIQUE (platform_id, webhook_receipt_id)",
+        "FOREIGN KEY (platform_id, webhook_receipt_id) REFERENCES zippy.webhook_receipts(platform_id, webhook_receipt_id)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "payment_projections",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "payment_projection_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "payment_projection_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "gateway_event_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "gateway_event_id uuid NOT NULL"
+        },
+        {
+          "name": "operational_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pending",
+            "evidence_verified",
+            "failed",
+            "reversed"
+          ],
+          "sql": "operational_status text NOT NULL CHECK (operational_status IN ('pending', 'evidence_verified', 'failed', 'reversed'))"
+        },
+        {
+          "name": "amount",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "amount numeric(18,2) NOT NULL CHECK (amount >= 0)"
+        },
+        {
+          "name": "currency_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "currency_code varchar(3) NOT NULL CHECK (currency_code ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "projected_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "projected_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "payment_projection_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "payment_projection_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_id"
+            },
+            {
+              "name": "gateway_event_id"
+            },
+            {
+              "name": "operational_status"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "order_id",
+              "op": "asc"
+            },
+            {
+              "name": "projected_at",
+              "op": "desc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, payment_projection_id)",
+        "UNIQUE (platform_id, order_id, gateway_event_id, operational_status)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, gateway_event_id) REFERENCES zippy.gateway_events(platform_id, gateway_event_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "financial_requests",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "financial_request_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "financial_request_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "request_type",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "partner_sync",
+            "draft_customer_invoice",
+            "draft_vendor_bill",
+            "read_status"
+          ],
+          "sql": "request_type text NOT NULL CHECK (request_type IN ('partner_sync', 'draft_customer_invoice', 'draft_vendor_bill', 'read_status'))"
+        },
+        {
+          "name": "amount",
+          "type": "decimal",
+          "nullable": true,
+          "sql": "amount numeric(18,2)"
+        },
+        {
+          "name": "currency_code",
+          "type": "text",
+          "nullable": true,
+          "sql": "currency_code varchar(3)"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"requested\"",
+          "values": [
+            "requested",
+            "approved_for_send",
+            "sent",
+            "acknowledged",
+            "rejected",
+            "failed"
+          ],
+          "sql": "status zippy.financial_request_status NOT NULL DEFAULT 'requested'"
+        },
+        {
+          "name": "requester_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "requester_account_id uuid NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "request_hash_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "request_hash_sha256 text NOT NULL CHECK (request_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "requested_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "requested_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "updated_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "financial_request_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "financial_request_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "request_type"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            },
+            {
+              "name": "requested_at",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, financial_request_id)",
+        "UNIQUE (platform_id, request_type, idempotency_key)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, requester_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK ((amount IS NULL AND currency_code IS NULL) OR (amount >= 0 AND currency_code ~ '^[A-Z]{3}$'))"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "external_references",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "external_reference_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "external_reference_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "local_entity_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "local_entity_type text NOT NULL"
+        },
+        {
+          "name": "local_entity_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "local_entity_id uuid NOT NULL"
+        },
+        {
+          "name": "external_system",
+          "type": "text",
+          "nullable": false,
+          "sql": "external_system text NOT NULL"
+        },
+        {
+          "name": "external_model",
+          "type": "text",
+          "nullable": false,
+          "sql": "external_model text NOT NULL"
+        },
+        {
+          "name": "external_id",
+          "type": "text",
+          "nullable": false,
+          "sql": "external_id text NOT NULL"
+        },
+        {
+          "name": "external_version",
+          "type": "text",
+          "nullable": true,
+          "sql": "external_version text"
+        },
+        {
+          "name": "sync_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pending",
+            "synchronized",
+            "stale",
+            "failed"
+          ],
+          "sql": "sync_status text NOT NULL CHECK (sync_status IN ('pending', 'synchronized', 'stale', 'failed'))"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "updated_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "external_reference_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "external_reference_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "local_entity_type"
+            },
+            {
+              "name": "local_entity_id"
+            },
+            {
+              "name": "external_system"
+            },
+            {
+              "name": "external_model"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "external_system"
+            },
+            {
+              "name": "external_model"
+            },
+            {
+              "name": "external_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, external_reference_id)",
+        "UNIQUE (platform_id, local_entity_type, local_entity_id, external_system, external_model)",
+        "UNIQUE (platform_id, external_system, external_model, external_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "settlement_projections",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "settlement_projection_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "settlement_projection_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "financial_request_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "financial_request_id uuid NOT NULL"
+        },
+        {
+          "name": "external_reference_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "external_reference_id uuid"
+        },
+        {
+          "name": "operational_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "not_requested",
+            "requested",
+            "pending_external",
+            "externally_confirmed",
+            "failed"
+          ],
+          "sql": "operational_status text NOT NULL CHECK (operational_status IN ('not_requested', 'requested', 'pending_external', 'externally_confirmed', 'failed'))"
+        },
+        {
+          "name": "source_observed_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "source_observed_at timestamptz"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "settlement_projection_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "settlement_projection_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, settlement_projection_id)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, financial_request_id) REFERENCES zippy.financial_requests(platform_id, financial_request_id)",
+        "FOREIGN KEY (platform_id, external_reference_id) REFERENCES zippy.external_references(platform_id, external_reference_id)",
+        "CHECK ((operational_status = 'externally_confirmed' AND external_reference_id IS NOT NULL AND source_observed_at IS NOT NULL) OR operational_status <> 'externally_confirmed')"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "refund_requests",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "refund_request_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "refund_request_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "requester_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "requester_account_id uuid NOT NULL"
+        },
+        {
+          "name": "amount",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "amount numeric(18,2) NOT NULL CHECK (amount > 0)"
+        },
+        {
+          "name": "currency_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "currency_code varchar(3) NOT NULL CHECK (currency_code ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "target_reference",
+          "type": "text",
+          "nullable": false,
+          "sql": "target_reference text NOT NULL"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false,
+          "sql": "reason text NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"requested\"",
+          "values": [
+            "requested",
+            "approved",
+            "rejected",
+            "executed",
+            "failed"
+          ],
+          "sql": "status zippy.refund_status NOT NULL DEFAULT 'requested'"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "requested_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "requested_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "refund_request_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "refund_request_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "order_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, refund_request_id)",
+        "UNIQUE (platform_id, idempotency_key)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, requester_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "refund_decisions",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "refund_decision_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "refund_decision_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "refund_request_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "refund_request_id uuid NOT NULL"
+        },
+        {
+          "name": "approver_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "approver_account_id uuid NOT NULL"
+        },
+        {
+          "name": "decision",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "approved",
+            "rejected"
+          ],
+          "sql": "decision text NOT NULL CHECK (decision IN ('approved', 'rejected'))"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false,
+          "sql": "reason text NOT NULL"
+        },
+        {
+          "name": "decided_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "decided_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "refund_decision_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "refund_decision_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "refund_request_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, refund_decision_id)",
+        "UNIQUE (platform_id, refund_request_id)",
+        "FOREIGN KEY (platform_id, refund_request_id) REFERENCES zippy.refund_requests(platform_id, refund_request_id)",
+        "FOREIGN KEY (platform_id, approver_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "refund_executions",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "refund_execution_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "refund_execution_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "refund_request_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "refund_request_id uuid NOT NULL"
+        },
+        {
+          "name": "refund_decision_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "refund_decision_id uuid NOT NULL"
+        },
+        {
+          "name": "external_reference_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "external_reference_id uuid NOT NULL"
+        },
+        {
+          "name": "amount",
+          "type": "decimal",
+          "nullable": false,
+          "sql": "amount numeric(18,2) NOT NULL CHECK (amount > 0)"
+        },
+        {
+          "name": "currency_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "currency_code varchar(3) NOT NULL CHECK (currency_code ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "target_reference",
+          "type": "text",
+          "nullable": false,
+          "sql": "target_reference text NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "evidence_hash_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "evidence_hash_sha256 text NOT NULL CHECK (evidence_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "executed_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "executed_at timestamptz NOT NULL"
+        },
+        {
+          "name": "recorded_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "recorded_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "refund_execution_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "refund_execution_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "refund_request_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, refund_execution_id)",
+        "UNIQUE (platform_id, refund_request_id)",
+        "UNIQUE (platform_id, idempotency_key)",
+        "FOREIGN KEY (platform_id, refund_request_id) REFERENCES zippy.refund_requests(platform_id, refund_request_id)",
+        "FOREIGN KEY (platform_id, refund_decision_id) REFERENCES zippy.refund_decisions(platform_id, refund_decision_id)",
+        "FOREIGN KEY (platform_id, external_reference_id) REFERENCES zippy.external_references(platform_id, external_reference_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "idempotency_records",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "idempotency_record_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "idempotency_record_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "operation_scope",
+          "type": "text",
+          "nullable": false,
+          "sql": "operation_scope text NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "request_hash_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "request_hash_sha256 text NOT NULL CHECK (request_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "processing",
+            "succeeded",
+            "failed",
+            "dead_lettered"
+          ],
+          "sql": "status zippy.processing_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "response_code",
+          "type": "int",
+          "nullable": true,
+          "sql": "response_code integer"
+        },
+        {
+          "name": "response_reference",
+          "type": "text",
+          "nullable": true,
+          "sql": "response_reference text"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "lease_owner",
+          "type": "text",
+          "nullable": true,
+          "sql": "lease_owner text"
+        },
+        {
+          "name": "lease_expires_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "lease_expires_at timestamptz"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "completed_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "completed_at timestamptz"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "0005: default now + 24h; service must set expiry"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "idempotency_record_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "operation_scope"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, operation_scope, idempotency_key)",
+        "CHECK ((lease_owner IS NULL) = (lease_expires_at IS NULL))"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "durable_tasks",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "durable_task_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "durable_task_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "task_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "task_type text NOT NULL"
+        },
+        {
+          "name": "aggregate_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "aggregate_type text NOT NULL"
+        },
+        {
+          "name": "aggregate_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "aggregate_id uuid NOT NULL"
+        },
+        {
+          "name": "payload_reference",
+          "type": "text",
+          "nullable": false,
+          "sql": "payload_reference text NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "processing",
+            "succeeded",
+            "failed",
+            "dead_lettered"
+          ],
+          "sql": "status zippy.processing_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "attempt_count",
+          "type": "int",
+          "nullable": false,
+          "defaultValue": "0",
+          "sql": "attempt_count integer NOT NULL DEFAULT 0 CHECK (attempt_count >= 0)"
+        },
+        {
+          "name": "max_attempts",
+          "type": "int",
+          "nullable": false,
+          "sql": "max_attempts integer NOT NULL CHECK (max_attempts > 0)"
+        },
+        {
+          "name": "next_attempt_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "next_attempt_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "lease_owner",
+          "type": "text",
+          "nullable": true,
+          "sql": "lease_owner text"
+        },
+        {
+          "name": "lease_expires_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "lease_expires_at timestamptz"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "updated_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "durable_task_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "durable_task_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "task_type"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, durable_task_id)",
+        "UNIQUE (platform_id, task_type, idempotency_key)",
+        "CHECK ((lease_owner IS NULL) = (lease_expires_at IS NULL))",
+        "CHECK (attempt_count <= max_attempts)",
+        "CHECK (status <> 'dead_lettered' OR attempt_count = max_attempts)",
+        "PARTIAL INDEX CREATE INDEX durable_tasks_claim_idx ON zippy.durable_tasks (platform_id, status, next_attempt_at, created_at) WHERE status IN ('pending', 'failed');"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "event_outbox",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "outbox_event_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "outbox_event_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "aggregate_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "aggregate_type text NOT NULL"
+        },
+        {
+          "name": "aggregate_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "aggregate_id uuid NOT NULL"
+        },
+        {
+          "name": "aggregate_version",
+          "type": "int",
+          "nullable": false,
+          "sql": "aggregate_version integer NOT NULL CHECK (aggregate_version > 0)"
+        },
+        {
+          "name": "event_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "event_type text NOT NULL"
+        },
+        {
+          "name": "destination",
+          "type": "text",
+          "nullable": false,
+          "sql": "destination text NOT NULL"
+        },
+        {
+          "name": "payload",
+          "type": "json",
+          "nullable": false,
+          "sql": "payload jsonb NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "processing",
+            "succeeded",
+            "failed",
+            "dead_lettered"
+          ],
+          "sql": "status zippy.processing_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "attempt_count",
+          "type": "int",
+          "nullable": false,
+          "defaultValue": "0",
+          "sql": "attempt_count integer NOT NULL DEFAULT 0 CHECK (attempt_count >= 0)"
+        },
+        {
+          "name": "next_attempt_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "next_attempt_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "published_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "published_at timestamptz"
+        },
+        {
+          "name": "max_attempts",
+          "type": "int",
+          "nullable": false,
+          "defaultValue": "5"
+        },
+        {
+          "name": "lease_owner",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "lease_expires_at",
+          "type": "timestamp",
+          "nullable": true
+        },
+        {
+          "name": "last_error",
+          "type": "text",
+          "nullable": true
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "outbox_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "outbox_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "destination"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "aggregate_type"
+            },
+            {
+              "name": "aggregate_id"
+            },
+            {
+              "name": "aggregate_version"
+            },
+            {
+              "name": "event_type"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, outbox_event_id)",
+        "UNIQUE (platform_id, destination, idempotency_key)",
+        "UNIQUE (platform_id, aggregate_type, aggregate_id, aggregate_version, event_type)",
+        "CHECK (jsonb_typeof(payload) = 'object')",
+        "PARTIAL INDEX CREATE INDEX outbox_claim_idx ON zippy.event_outbox (platform_id, status, next_attempt_at, created_at) WHERE status IN ('pending', 'failed');"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "event_inbox",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "inbox_event_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "inbox_event_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "source",
+          "type": "text",
+          "nullable": false,
+          "sql": "source text NOT NULL"
+        },
+        {
+          "name": "source_event_id",
+          "type": "text",
+          "nullable": false,
+          "sql": "source_event_id text NOT NULL"
+        },
+        {
+          "name": "payload_hash_sha256",
+          "type": "text",
+          "nullable": false,
+          "sql": "payload_hash_sha256 text NOT NULL CHECK (payload_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "processing",
+            "succeeded",
+            "failed",
+            "dead_lettered"
+          ],
+          "sql": "status zippy.processing_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "attempt_count",
+          "type": "int",
+          "nullable": false,
+          "defaultValue": "0",
+          "sql": "attempt_count integer NOT NULL DEFAULT 0 CHECK (attempt_count >= 0)"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "received_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "received_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "processed_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "processed_at timestamptz"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "inbox_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "inbox_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "source"
+            },
+            {
+              "name": "source_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            },
+            {
+              "name": "received_at",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, inbox_event_id)",
+        "UNIQUE (platform_id, source, source_event_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "dead_letter_records",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "dead_letter_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "dead_letter_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "source_kind",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "task",
+            "outbox",
+            "inbox",
+            "webhook"
+          ],
+          "sql": "source_kind text NOT NULL CHECK (source_kind IN ('task', 'outbox', 'inbox', 'webhook'))"
+        },
+        {
+          "name": "source_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "source_id uuid NOT NULL"
+        },
+        {
+          "name": "terminal_reason",
+          "type": "text",
+          "nullable": false,
+          "sql": "terminal_reason text NOT NULL"
+        },
+        {
+          "name": "attempt_count",
+          "type": "int",
+          "nullable": false,
+          "sql": "attempt_count integer NOT NULL CHECK (attempt_count > 0)"
+        },
+        {
+          "name": "payload_reference",
+          "type": "text",
+          "nullable": true,
+          "sql": "payload_reference text"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "dead_lettered_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "dead_lettered_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "dead_letter_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "source_kind"
+            },
+            {
+              "name": "source_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, source_kind, source_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "audit_events",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "audit_event_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "audit_event_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "actor_account_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "actor_account_id uuid"
+        },
+        {
+          "name": "actor_type",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "account",
+            "service",
+            "system"
+          ],
+          "sql": "actor_type text NOT NULL CHECK (actor_type IN ('account', 'service', 'system'))"
+        },
+        {
+          "name": "action",
+          "type": "text",
+          "nullable": false,
+          "sql": "action text NOT NULL"
+        },
+        {
+          "name": "entity_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "entity_type text NOT NULL"
+        },
+        {
+          "name": "entity_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "entity_id uuid NOT NULL"
+        },
+        {
+          "name": "before_hash_sha256",
+          "type": "text",
+          "nullable": true,
+          "sql": "before_hash_sha256 text CHECK (before_hash_sha256 IS NULL OR before_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "after_hash_sha256",
+          "type": "text",
+          "nullable": true,
+          "sql": "after_hash_sha256 text CHECK (after_hash_sha256 IS NULL OR after_hash_sha256 ~ '^[0-9a-f]{64}$')"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": true,
+          "sql": "reason text"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "occurred_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "occurred_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "audit_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "entity_type",
+              "op": "asc"
+            },
+            {
+              "name": "entity_id",
+              "op": "asc"
+            },
+            {
+              "name": "occurred_at",
+              "op": "desc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "operational_exceptions",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "operational_exception_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "operational_exception_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "exception_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "exception_code text NOT NULL"
+        },
+        {
+          "name": "severity",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "sql": "severity text NOT NULL CHECK (severity IN ('low', 'medium', 'high', 'critical'))"
+        },
+        {
+          "name": "entity_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "entity_type text NOT NULL"
+        },
+        {
+          "name": "entity_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "entity_id uuid NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"open\"",
+          "values": [
+            "open",
+            "assigned",
+            "resolved",
+            "closed"
+          ],
+          "sql": "status zippy.exception_status NOT NULL DEFAULT 'open'"
+        },
+        {
+          "name": "owner_account_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "owner_account_id uuid"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false,
+          "sql": "reason text NOT NULL"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "opened_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "opened_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "resolved_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "resolved_at timestamptz"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "operational_exception_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "operational_exception_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            },
+            {
+              "name": "severity",
+              "op": "asc"
+            },
+            {
+              "name": "opened_at",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, operational_exception_id)",
+        "FOREIGN KEY (platform_id, owner_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK ((status IN ('resolved', 'closed') AND resolved_at IS NOT NULL) OR status NOT IN ('resolved', 'closed'))"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "exception_status_history",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "exception_status_history_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "exception_status_history_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "operational_exception_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "operational_exception_id uuid NOT NULL"
+        },
+        {
+          "name": "previous_status",
+          "type": "enum",
+          "nullable": true,
+          "values": [
+            "open",
+            "assigned",
+            "resolved",
+            "closed"
+          ],
+          "sql": "previous_status zippy.exception_status"
+        },
+        {
+          "name": "new_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "open",
+            "assigned",
+            "resolved",
+            "closed"
+          ],
+          "sql": "new_status zippy.exception_status NOT NULL"
+        },
+        {
+          "name": "actor_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "actor_account_id uuid NOT NULL"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false,
+          "sql": "reason text NOT NULL"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "occurred_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "occurred_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "exception_status_history_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "FOREIGN KEY (platform_id, operational_exception_id) REFERENCES zippy.operational_exceptions(platform_id, operational_exception_id)",
+        "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "service_commitments",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "service_commitment_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "service_commitment_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "commitment_type",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pickup",
+            "delivery",
+            "pod"
+          ],
+          "sql": "commitment_type text NOT NULL CHECK (commitment_type IN ('pickup', 'delivery', 'pod'))"
+        },
+        {
+          "name": "committed_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "committed_at timestamptz NOT NULL"
+        },
+        {
+          "name": "policy_version",
+          "type": "text",
+          "nullable": false,
+          "sql": "policy_version text NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "service_commitment_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "service_commitment_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_id"
+            },
+            {
+              "name": "commitment_type"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, service_commitment_id)",
+        "UNIQUE (platform_id, order_id, commitment_type)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "sla_evidence",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "sla_evidence_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "sla_evidence_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "service_commitment_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "service_commitment_id uuid NOT NULL"
+        },
+        {
+          "name": "outcome",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "met",
+            "breached",
+            "not_applicable"
+          ],
+          "sql": "outcome text NOT NULL CHECK (outcome IN ('met', 'breached', 'not_applicable'))"
+        },
+        {
+          "name": "evidence_reference",
+          "type": "text",
+          "nullable": false,
+          "sql": "evidence_reference text NOT NULL"
+        },
+        {
+          "name": "measured_at",
+          "type": "timestamp",
+          "nullable": false,
+          "sql": "measured_at timestamptz NOT NULL"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "sla_evidence_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "service_commitment_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, service_commitment_id)",
+        "FOREIGN KEY (platform_id, service_commitment_id) REFERENCES zippy.service_commitments(platform_id, service_commitment_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "notification_attempts",
+      "source": "0003_evidence_and_reliability.up.sql",
+      "columns": [
+        {
+          "name": "notification_attempt_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "notification_attempt_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "recipient_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "recipient_account_id uuid NOT NULL"
+        },
+        {
+          "name": "channel",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "email",
+            "sms",
+            "in_app"
+          ],
+          "sql": "channel text NOT NULL CHECK (channel IN ('email', 'sms', 'in_app'))"
+        },
+        {
+          "name": "template_version",
+          "type": "text",
+          "nullable": false,
+          "sql": "template_version text NOT NULL"
+        },
+        {
+          "name": "business_event_reference",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "business_event_reference uuid NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "nullable": false,
+          "defaultValue": "\"pending\"",
+          "values": [
+            "pending",
+            "processing",
+            "succeeded",
+            "failed",
+            "dead_lettered"
+          ],
+          "sql": "status zippy.processing_status NOT NULL DEFAULT 'pending'"
+        },
+        {
+          "name": "attempt_count",
+          "type": "int",
+          "nullable": false,
+          "defaultValue": "0",
+          "sql": "attempt_count integer NOT NULL DEFAULT 0 CHECK (attempt_count >= 0)"
+        },
+        {
+          "name": "next_attempt_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "next_attempt_at timestamptz"
+        },
+        {
+          "name": "provider_reference",
+          "type": "text",
+          "nullable": true,
+          "sql": "provider_reference text"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        },
+        {
+          "name": "delivered_at",
+          "type": "timestamp",
+          "nullable": true,
+          "sql": "delivered_at timestamptz"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "notification_attempt_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "notification_attempt_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "channel"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id",
+              "op": "asc"
+            },
+            {
+              "name": "status",
+              "op": "asc"
+            },
+            {
+              "name": "next_attempt_at",
+              "op": "asc"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, notification_attempt_id)",
+        "UNIQUE (platform_id, channel, idempotency_key)",
+        "FOREIGN KEY (platform_id, recipient_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "order_transition_rules",
+      "source": "0004_controls.up.sql",
+      "columns": [
+        {
+          "name": "from_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pending",
+            "quoted",
+            "confirmed",
+            "assigned",
+            "in_transit",
+            "delivered",
+            "cancelled"
+          ],
+          "sql": "from_status zippy.order_status NOT NULL"
+        },
+        {
+          "name": "to_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pending",
+            "quoted",
+            "confirmed",
+            "assigned",
+            "in_transit",
+            "delivered",
+            "cancelled"
+          ],
+          "sql": "to_status zippy.order_status NOT NULL"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "from_status"
+            },
+            {
+              "name": "to_status"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "PRIMARY KEY (from_status, to_status)",
+        "CHECK (from_status <> to_status)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "order_state_transitions",
+      "source": "0004_controls.up.sql",
+      "columns": [
+        {
+          "name": "order_state_transition_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_state_transition_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "from_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pending",
+            "quoted",
+            "confirmed",
+            "assigned",
+            "in_transit",
+            "delivered",
+            "cancelled"
+          ],
+          "sql": "from_status zippy.order_status NOT NULL"
+        },
+        {
+          "name": "to_status",
+          "type": "enum",
+          "nullable": false,
+          "values": [
+            "pending",
+            "quoted",
+            "confirmed",
+            "assigned",
+            "in_transit",
+            "delivered",
+            "cancelled"
+          ],
+          "sql": "to_status zippy.order_status NOT NULL"
+        },
+        {
+          "name": "actor_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "actor_account_id uuid NOT NULL"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": false,
+          "sql": "reason text NOT NULL"
+        },
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": false,
+          "sql": "idempotency_key text NOT NULL"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "occurred_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "occurred_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "order_state_transition_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_state_transition_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_id"
+            },
+            {
+              "name": "idempotency_key"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, order_state_transition_id)",
+        "UNIQUE (platform_id, order_id, idempotency_key)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "FOREIGN KEY (from_status, to_status) REFERENCES zippy.order_transition_rules(from_status, to_status)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "operational_events",
+      "source": "0004_controls.up.sql",
+      "columns": [
+        {
+          "name": "operational_event_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "operational_event_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "aggregate_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "aggregate_type text NOT NULL"
+        },
+        {
+          "name": "aggregate_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "aggregate_id uuid NOT NULL"
+        },
+        {
+          "name": "aggregate_version",
+          "type": "int",
+          "nullable": false,
+          "sql": "aggregate_version integer NOT NULL CHECK (aggregate_version > 0)"
+        },
+        {
+          "name": "event_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "event_type text NOT NULL"
+        },
+        {
+          "name": "event_data",
+          "type": "json",
+          "nullable": false,
+          "sql": "event_data jsonb NOT NULL"
+        },
+        {
+          "name": "actor_account_id",
+          "type": "uuid",
+          "nullable": true,
+          "sql": "actor_account_id uuid"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "occurred_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "occurred_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "operational_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "operational_event_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "aggregate_type"
+            },
+            {
+              "name": "aggregate_id"
+            },
+            {
+              "name": "aggregate_version"
+            },
+            {
+              "name": "event_type"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, operational_event_id)",
+        "UNIQUE (platform_id, aggregate_type, aggregate_id, aggregate_version, event_type)",
+        "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+        "CHECK (jsonb_typeof(event_data) = 'object')"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "payment_intents",
+      "source": "0006_operations_finance.up.sql",
+      "columns": [
+        {
+          "name": "payment_intent_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "payment_intent_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "external_reference_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "external_reference_id uuid NOT NULL"
+        },
+        {
+          "name": "expected_amount_minor_units",
+          "type": "int",
+          "nullable": false,
+          "sql": "expected_amount_minor_units bigint NOT NULL\n        CHECK (expected_amount_minor_units > 0 AND expected_amount_minor_units <= 999999999999)"
+        },
+        {
+          "name": "expected_currency_code",
+          "type": "text",
+          "nullable": false,
+          "sql": "expected_currency_code varchar(3) NOT NULL CHECK (expected_currency_code ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "payment_intent_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "payment_intent_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "external_reference_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, payment_intent_id)",
+        "UNIQUE (platform_id, external_reference_id)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, external_reference_id)\n        REFERENCES zippy.external_references(platform_id, external_reference_id)"
+      ],
+      "nativeSqlParity": false
+    },
+    {
+      "name": "dispatch_requirements",
+      "source": "0006_operations_finance.up.sql",
+      "columns": [
+        {
+          "name": "dispatch_requirement_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "dispatch_requirement_id uuid PRIMARY KEY DEFAULT gen_random_uuid()"
+        },
+        {
+          "name": "platform_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "platform_id uuid NOT NULL REFERENCES zippy.platforms(platform_id)"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "order_id uuid NOT NULL"
+        },
+        {
+          "name": "required_body_type",
+          "type": "text",
+          "nullable": false,
+          "sql": "required_body_type text NOT NULL CHECK (length(required_body_type) BETWEEN 1 AND 64)"
+        },
+        {
+          "name": "created_by_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "created_by_account_id uuid NOT NULL"
+        },
+        {
+          "name": "correlation_id",
+          "type": "uuid",
+          "nullable": false,
+          "sql": "correlation_id uuid NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "defaultValue": "now",
+          "sql": "created_at timestamptz NOT NULL DEFAULT clock_timestamp()"
+        }
+      ],
+      "indexes": [
+        {
+          "type": "primary",
+          "field": [
+            {
+              "name": "id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "dispatch_requirement_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "dispatch_requirement_id"
+            }
+          ]
+        },
+        {
+          "type": "btree|unique",
+          "field": [
+            {
+              "name": "platform_id"
+            },
+            {
+              "name": "order_id"
+            }
+          ]
+        },
+        {
+          "type": "btree",
+          "field": [
+            {
+              "name": "platform_id"
+            }
+          ]
+        }
+      ],
+      "deferredSqlControls": [
+        "UNIQUE (platform_id, dispatch_requirement_id)",
+        "UNIQUE (platform_id, order_id)",
+        "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+        "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)"
+      ],
+      "nativeSqlParity": false
+    }
+  ],
+  "notes": [
+    "Existing foundation definitions are preserved.",
+    "SQL RLS, foreign keys, triggers, append-only guards and partial indexes require explicit equivalent implementation.",
+    "Integer id is Xano-native; original business UUIDs remain separately unique.",
+    "No auto CRUD APIs are generated."
+  ]
+}

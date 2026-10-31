@@ -1,0 +1,33 @@
+{
+  "raw_sha256": "f3b970c53a7e4b4a6a9007a36fdac00fe04affd7f038296a898708f8491b9195",
+  "decoded_sha256": "171854a4dca1c7bfa13029fa38064232519db670913eee3139967eaf7ec12616",
+  "transformation": "UTF-16LE PowerShell redirection to UTF-8; original retained",
+  "summary": [
+    "Γä╣ tests 13\r",
+    "Γä╣ pass 1\r",
+    "Γä╣ fail 12\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r",
+    "      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\r",
+    "      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\r"
+  ]
+}

@@ -1,0 +1,1229 @@
+{
+  "captured_at": "2026-10-22T09:26:20.199Z",
+  "workspace": 1,
+  "branch": "v1",
+  "sandbox": "sn9m-aat6-200c",
+  "base_git_commit": "618d4b34051f9cce14ae49abd2ab3d9dd15386b6",
+  "method": "Metadata function/run; pure predicates only; NOT public application HTTP",
+  "parallelism": 4,
+  "passed": 133,
+  "failed": 0,
+  "coordinate_cases": 84,
+  "shared_cases": 49,
+  "validate_order_sha256": "e6775981910853a198f4c4225d9be329b10e9b91c064bd2a3c68461ab68ba144",
+  "sandbox_sha256": "43bf8d2a7f5975b4c0fe662d0948d5fb45cc78d5c38225daaa3d7d06a556a5bb",
+  "live_unchanged": true,
+  "results": [
+    {
+      "name": "canonical order accepted",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "reject cargo_weight_kg 0",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "reject distance_km NaN",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "reject cargo_weight_kg 1.0001",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "reject requested_pickup_at 2030-01-02T10:00:00",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "PICKUP_TIMEZONE_REQUIRED"
+      }
+    },
+    {
+      "name": "reject hazardous cargo",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "HAZARDOUS_CARGO_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "reject unapproved return pricing",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "RETURN_TRIP_POLICY_UNAPPROVED"
+      }
+    },
+    {
+      "name": "reject identical coordinates",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "IDENTICAL_STOPS"
+      }
+    },
+    {
+      "name": "reject unknown booking fields",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "reject null latitude",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "full 100 of 100",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "full 50 of 100",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "partial 50 of 100",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "partial 49.99 of 100",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "to_pay 0 of 100",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "to_pay 1 of 100",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "fake 100 of 100",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "full -1 of -1",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_AMOUNT"
+      }
+    },
+    {
+      "name": "legal pending to quoted",
+      "fn": "validate_transition",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "illegal skipped lifecycle",
+      "fn": "validate_transition",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "ILLEGAL_TRANSITION"
+      }
+    },
+    {
+      "name": "stale version",
+      "fn": "validate_transition",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "STATE_CONFLICT"
+      }
+    },
+    {
+      "name": "blocked account",
+      "fn": "validate_transition",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "name": "unauthorized actor",
+      "fn": "validate_transition",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "name": "canonical repository price 240",
+      "fn": "calculate_test_quote",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID",
+        "amount": "240.00",
+        "amount_minor": "24000",
+        "currency": "INR",
+        "policy_version": "test-m3-v1"
+      }
+    },
+    {
+      "name": "half up paise",
+      "fn": "calculate_test_quote",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID",
+        "amount": "0.01",
+        "amount_minor": "1",
+        "currency": "INR",
+        "policy_version": "test-m3-v1"
+      }
+    },
+    {
+      "name": "production policy fails closed",
+      "fn": "calculate_test_quote",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "PRICING_POLICY_UNAPPROVED"
+      }
+    },
+    {
+      "name": "compliant capacity boundary",
+      "fn": "evaluate_dispatch",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "ELIGIBLE"
+      }
+    },
+    {
+      "name": "overweight exclusion",
+      "fn": "evaluate_dispatch",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "CAPACITY_EXCEEDED"
+      }
+    },
+    {
+      "name": "expired insurance",
+      "fn": "evaluate_dispatch",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "COMPLIANCE_DOCUMENT_INVALID"
+      }
+    },
+    {
+      "name": "busy driver excluded",
+      "fn": "evaluate_dispatch",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "RESOURCE_BUSY"
+      }
+    },
+    {
+      "name": "body compatibility enforced",
+      "fn": "evaluate_dispatch",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "BODY_TYPE_MISMATCH"
+      }
+    },
+    {
+      "name": "cross platform denied",
+      "fn": "evaluate_dispatch",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "name": "separate human review allowed",
+      "fn": "evaluate_refund",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID",
+        "execution_authorized": false
+      }
+    },
+    {
+      "name": "self approval denied",
+      "fn": "evaluate_refund",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "SELF_APPROVAL_FORBIDDEN"
+      }
+    },
+    {
+      "name": "agent approval denied",
+      "fn": "evaluate_refund",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "HUMAN_APPROVAL_REQUIRED"
+      }
+    },
+    {
+      "name": "verified POD operational eligibility",
+      "fn": "evaluate_settlement",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "ELIGIBLE",
+        "execution_authorized": false
+      }
+    },
+    {
+      "name": "unverified POD blocks settlement",
+      "fn": "evaluate_settlement",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "POD_REQUIRED"
+      }
+    },
+    {
+      "name": "bounded retry backoff",
+      "fn": "retry_delay",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "RETRY",
+        "retryable": true,
+        "delay_seconds": 300
+      }
+    },
+    {
+      "name": "terminal attempts become dead letter",
+      "fn": "retry_delay",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "DEAD_LETTER",
+        "retryable": false,
+        "delay_seconds": 0
+      }
+    },
+    {
+      "name": "reject numeric precision overflow",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "reject impossible calendar date",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "partial upper boundary",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "partial one cent over",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "partial 150 percent",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "partial odd cent below half",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "partial odd cent above half",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "full overpayment",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "to pay nonzero",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "large exact partial overpayment",
+      "fn": "validate_payment_plan",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "INVALID_PAYMENT_PLAN"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \" \"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"\\t\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"0x10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"0b10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"0o10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"1e1\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"+10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"10.\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \".5\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \" 10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"10 \"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects \"Infinity\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects null",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects true",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects []",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude rejects {}",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.latitude accepts 0",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.latitude accepts \"0\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.latitude accepts \"-0.125\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.latitude accepts -90",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.latitude accepts 90",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \" \"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"\\t\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"0x10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"0b10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"0o10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"1e1\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"+10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"10.\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \".5\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \" 10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"10 \"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects \"Infinity\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects null",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects true",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects []",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude rejects {}",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "pickup.longitude accepts 0",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.longitude accepts \"0\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.longitude accepts \"-0.125\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.longitude accepts -180",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "pickup.longitude accepts 180",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \" \"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"\\t\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"0x10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"0b10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"0o10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"1e1\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"+10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"10.\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \".5\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \" 10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"10 \"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects \"Infinity\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects null",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects true",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects []",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude rejects {}",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.latitude accepts 0",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.latitude accepts \"0\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.latitude accepts \"-0.125\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.latitude accepts -90",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.latitude accepts 90",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \" \"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"\\t\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"0x10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"0b10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"0o10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"1e1\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"+10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"10.\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \".5\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \" 10\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"10 \"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects \"Infinity\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects null",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects true",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects []",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude rejects {}",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": false,
+        "code": "VALIDATION_FAILED"
+      }
+    },
+    {
+      "name": "delivery.longitude accepts 0",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.longitude accepts \"0\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.longitude accepts \"-0.125\"",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.longitude accepts -180",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    },
+    {
+      "name": "delivery.longitude accepts 180",
+      "fn": "validate_order",
+      "status": "pass",
+      "actual": {
+        "valid": true,
+        "code": "VALID"
+      }
+    }
+  ]
+}

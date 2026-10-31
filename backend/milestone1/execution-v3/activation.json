@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "PENDING",
+  "execution_enabled": false,
+  "workspace_id": 1,
+  "branch": "v1",
+  "tenant": "sn9m-aat6-200c",
+  "required_evidence": {
+    "access": null,
+    "inventory": null,
+    "writers": null,
+    "import_readback": null
+  },
+  "missing": [
+    "RESTRICTED_CREDENTIAL_AND_ACTUAL_LIVE_DENIAL",
+    "SUPPORTED_DIAGNOSTIC_INVENTORY_DECISION",
+    "APPROVED_SCHEMA_BACKFILL_AND_PHYSICAL_INDEXES",
+    "ENFORCED_WRITER_RESTRICTIONS",
+    "V3_NATIVE_VALIDATION_IMPORT_AND_READBACK"
+  ],
+  "lifecycle": "CREATE_ONLY_RELEASE_REUSE_NOT_IMPLEMENTED"
+}

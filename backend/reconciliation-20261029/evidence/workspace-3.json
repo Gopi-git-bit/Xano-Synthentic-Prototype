@@ -1,0 +1,23 @@
+{
+  "label": "workspace-3",
+  "method": "GET",
+  "url": "https://xynd-fnea-khtp.n7e.xano.io/api:meta/workspace/3",
+  "status": 200,
+  "started_at": "2026-10-29T08:28:17.890Z",
+  "finished_at": "2026-10-29T08:28:18.195Z",
+  "raw_sha256": "0bb7cb37e69fd31805470a0be135b1d5a16470afd0c8ed70403ed2c9be188ef9",
+  "body": {
+    "id": 3,
+    "created_at": "2026-10-24 00:00:54+0000",
+    "name": "Zippy Synthetic Prototype_1",
+    "description": "",
+    "swagger": true,
+    "preferences": {
+      "allow_push": true
+    },
+    "documentation": {
+      "link": "https://xynd-fnea-khtp.n7e.xano.io/apispec:workspace:3:v1?type=json"
+    },
+    "branch": "v1"
+  }
+}
