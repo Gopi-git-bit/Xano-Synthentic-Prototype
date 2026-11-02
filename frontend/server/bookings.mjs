@@ -1,4 +1,4 @@
-// Projection for the discovered workspace-3 draft read contract. Publication is gated separately.
+// Projection for retained published workspace-3 read source. Runtime acceptance stays gated.
 export const bookingStatuses = ['draft', 'quoted', 'booked', 'assigned', 'in_transit', 'delivered', 'completed', 'cancelled'];
 const positiveId = value => Number.isSafeInteger(value) && value > 0;
 const text = value => typeof value === 'string' && value.length > 0 && value.length <= 500;

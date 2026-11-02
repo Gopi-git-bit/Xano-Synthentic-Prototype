@@ -160,13 +160,15 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
         }
         return { status: 200, data };
       }
-      if (['auth/login', 'auth/signup'].includes(route)) {
+      // Signup is not a login capability. Published signup refuses; recovery is NOT_DEPLOYED.
+      if (['auth/signup', 'auth/register'].includes(route)) fail(503, 'REGISTRATION_PENDING', 'Registration is unavailable pending an isolated, verified onboarding contract. No account was created.');
+      if (route === 'auth/login') {
         if (method !== 'POST') fail(405, 'METHOD_NOT_ALLOWED', 'Use POST for account access.');
         requireAuthRelease();
         if (!headers.get('content-type')?.startsWith('application/json')) fail(415, 'JSON_REQUIRED', 'JSON is required.');
-        const { email, password, name } = body || {};
-        if (typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || typeof password !== 'string' || password.length < 8 || password.length > 256 || (route === 'auth/signup' && (typeof name !== 'string' || !name.trim() || name.length > 100))) fail(400, 'INVALID_INPUT', 'Enter a valid name, email and password (8–256 characters).');
-        const data = await xano(route, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email.trim().toLowerCase(), password, ...(route === 'auth/signup' ? { name: name.trim() } : {}) }) });
+        const { email, password } = body || {};
+        if (typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || typeof password !== 'string' || password.length < 8 || password.length > 256) fail(400, 'INVALID_INPUT', 'Enter a valid email and password (8–256 characters).');
+        const data = await xano(route, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email.trim().toLowerCase(), password }) });
         if (typeof data?.authToken !== 'string' || !/^[^\s]{1,4096}$/.test(data.authToken)) fail(502, 'INVALID_RESPONSE', 'Account response needs verification.');
         const user = await authenticate(new Headers({ Authorization: `Bearer ${data.authToken}` }));
         return { status: 200, data: { authToken: data.authToken, user } };
