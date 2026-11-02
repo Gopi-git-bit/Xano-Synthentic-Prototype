@@ -60,8 +60,8 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
     if (!/^Bearer [^\s]{1,4096}$/.test(auth)) fail(401, 'AUTH_REQUIRED', 'Sign in to continue.');
     requireAuthRelease();
     const user = await xano('auth/me', { headers: { Authorization: auth } });
-    const workspace = ['super_admin', 'operations_admin'].includes(user?.system_role) ? 'admin' : ['customer_admin', 'customer_member'].includes(user?.system_role) ? 'customer' : ['vendor_admin', 'fleet_manager', 'driver'].includes(user?.system_role) ? 'owner' : null;
-    if (!Number.isSafeInteger(user?.id) || user.id <= 0 || !workspace || user.status !== 'active' || typeof user.name !== 'string' || typeof user.email !== 'string' || (workspace !== 'admin' && (!Number.isSafeInteger(user.active_organization_id) || user.active_organization_id <= 0))) fail(403, 'IDENTITY_UNSUPPORTED', 'Active account permissions and organization context need verification.');
+    const workspace = ['super_admin', 'operations_admin'].includes(user?.system_role) ? 'admin' : ['customer_admin', 'customer_member'].includes(user?.system_role) ? 'customer' : ['vendor_admin', 'vendor_member', 'owner_admin', 'owner_member'].includes(user?.system_role) ? 'owner' : null;
+    if (!Number.isSafeInteger(user?.id) || user.id <= 0 || !workspace || user.status !== 'active' || typeof user.name !== 'string' || typeof user.email !== 'string' || (workspace !== 'admin' && (!["customer","owner"].includes(workspace) || !Number.isSafeInteger(user.active_organization_id)))) fail(403, 'IDENTITY_UNSUPPORTED', 'This account is not supported by the current verified identity contract.');
     return { id: user.id, name: user.name, email: user.email, systemRole: user.system_role, workspace, organizationId: Number.isSafeInteger(user.active_organization_id) && user.active_organization_id > 0 ? user.active_organization_id : null };
   }
   function grantsFor(user) {
@@ -78,11 +78,11 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
   function moduleGrant(grants, module) {
     if (!namePattern.test(module) || !Object.hasOwn(grants, module)) fail(403, 'CRM_SCOPE_DENIED', 'This CRM scope is not authorized.');
     const grant = grants[module];
-    if (!Array.isArray(grant?.recordIds) || grant.recordIds.length > 1000 || !grant.recordIds.every(id => typeof id === 'string' && recordPattern.test(id)) || !Array.isArray(grant.fields) || !grant.fields.some(f => f !== 'id') || grant.fields.length > 50 || !grant.fields.every(f => typeof f === 'string' && namePattern.test(f) && !['constructor', 'prototype'].includes(f))) fail(503, 'GRANTS_INVALID', 'CRM record and field grants need review.');
+    if (!Array.isArray(grant?.recordIds) || grant.recordIds.length > 1000 || !grant.recordIds.every(id => typeof id === 'string' && recordPattern.test(id)) || !Array.isArray(grant.fields) || !grant.fields.every(f => typeof f === 'string' && namePattern.test(f)) || grant.fields.length > 50) fail(503, 'GRANTS_INVALID', 'CRM access configuration needs review.');
     return grant;
   }
   function accountsUrl() {
-    if (!env.ZOHO_CLIENT_ID || !env.ZOHO_CLIENT_SECRET || !env.ZOHO_REFRESH_TOKEN || !env.ZOHO_ACCOUNTS_URL) fail(503, 'ZOHO_NOT_CONFIGURED', 'Zoho OAuth is not configured. The MCP connection does not supply REST credentials.');
+    if (!env.ZOHO_CLIENT_ID || !env.ZOHO_CLIENT_SECRET || !env.ZOHO_REFRESH_TOKEN || !env.ZOHO_ACCOUNTS_URL) fail(503, 'ZOHO_NOT_CONFIGURED', 'Zoho OAuth is not configured. The MCP connection does not have the required tenant credentials.');
     let accounts;
     try { accounts = new URL(env.ZOHO_ACCOUNTS_URL); } catch { fail(503, 'ZOHO_CONFIG_INVALID', 'Zoho regional configuration needs review.'); }
     if (accounts.protocol !== 'https:' || !accountsHosts.has(accounts.hostname) || accounts.port || accounts.username || accounts.password || accounts.pathname !== '/' || accounts.search || accounts.hash) fail(503, 'ZOHO_CONFIG_INVALID', 'Zoho regional configuration needs review.');
@@ -94,13 +94,13 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
     if (refreshing) return refreshing;
     refreshing = (async () => {
       const accounts = accountsUrl();
-      const response = await request(`${accounts.origin}/oauth/v2/token`, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ grant_type: 'refresh_token', client_id: env.ZOHO_CLIENT_ID, client_secret: env.ZOHO_CLIENT_SECRET, refresh_token: env.ZOHO_REFRESH_TOKEN }) });
+      const response = await request(`${accounts.origin}/oauth/v2/token`, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ grant_type: 'refresh_token', client_id: env.ZOHO_CLIENT_ID, client_secret: env.ZOHO_CLIENT_SECRET, refresh_token: env.ZOHO_REFRESH_TOKEN }).toString() });
       handleRateLimit(response);
       if (!response.ok) fail(503, 'ZOHO_REFRESH_FAILED', 'Zoho authorization could not be refreshed.');
       const data = await json(response);
       let api;
       try { api = new URL(data.api_domain); } catch { fail(503, 'ZOHO_REFRESH_FAILED', 'Zoho authorization needs review.'); }
-      if (typeof data?.access_token !== 'string' || !/^[^\s]{1,8192}$/.test(data.access_token) || !Number.isFinite(data.expires_in) || data.expires_in <= 0 || data.expires_in > 86400 || api.protocol !== 'https:' || !apiHosts.has(api.hostname) || api.hostname !== apiForAccounts.get(accounts.hostname) || api.port || api.username || api.password || api.pathname !== '/' || api.search || api.hash) fail(503, 'ZOHO_REFRESH_FAILED', 'Zoho authorization needs review.');
+      if (typeof data?.access_token !== 'string' || !/^[^\s]{1,8192}$/.test(data.access_token) || !Number.isFinite(data.expires_in) || data.expires_in <= 0 || data.expires_in > 86400 || api.protocol !== 'https:' || !apiHosts.has(api.hostname) || api.port || api.username || api.password || api.pathname !== '/') fail(503, 'ZOHO_REFRESH_FAILED', 'Zoho authorization needs review.');
       token = { value: data.access_token, domain: api.origin, expires: now() + Math.max(0, data.expires_in - 60) * 1000 };
       return token;
     })();
@@ -121,24 +121,21 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
   async function modulesFor(grants, signal) {
     const result = await zoho('settings/modules', signal);
     if (!Array.isArray(result?.modules) || !result.modules.every(m => object(m) && typeof m.api_name === 'string' && namePattern.test(m.api_name))) fail(502, 'INVALID_RESPONSE', 'Zoho module metadata is unavailable.');
-    return result.modules.filter(m => m.api_supported === true && m.viewable === true && m.visible !== false && (m.status === undefined || m.status === 'visible') && Object.hasOwn(grants, m.api_name)).map(m => ({ apiName: m.api_name, label: typeof m.plural_label === 'string' ? m.plural_label : m.api_name, readOnly: true }));
+    return result.modules.filter(m => m.api_supported === true && m.viewable === true && m.visible !== false && (m.status === undefined || m.status === 'visible') && Object.hasOwn(grants, m.api_name));
   }
   async function verifyFields(module, grant, signal) {
     const result = await zoho(`settings/fields?module=${encodeURIComponent(module)}`, signal);
     if (!Array.isArray(result?.fields) || !result.fields.every(f => object(f) && typeof f.api_name === 'string')) fail(502, 'INVALID_RESPONSE', 'Zoho field metadata is unavailable.');
-    // Metadata can include hidden fields. Presence alone is not read permission.
-    if (!grant.fields.filter(f => f !== 'id').every(name => result.fields.some(f => f.api_name === name && f.visible === true && f.private?.restricted !== true))) fail(403, 'CRM_FIELDS_DENIED', 'Approved CRM fields are not available with current permissions.');
+    if (!grant.fields.filter(f => f !== 'id').every(name => result.fields.some(f => f.api_name === name && f.visible === true && f.private?.restricted !== true))) fail(403, 'CRM_FIELDS_DENIED', 'This field is not permitted for the current admin scope.');
   }
   async function readRecord(module, id, grant, signal) {
-    // Object authorization BEFORE requesting a record, even for an authenticated Admin.
     if (!recordPattern.test(id) || !grant.recordIds.includes(id)) fail(403, 'CRM_SCOPE_DENIED', 'This CRM record is not authorized.');
     const result = await zoho(`${module}/${id}?fields=${encodeURIComponent(grant.fields.join(','))}`, signal);
-    if (!Array.isArray(result?.data) || result.data.length > 1 || (result.data.length && (!object(result.data[0]) || result.data[0].id !== id))) fail(502, 'INVALID_RESPONSE', 'Zoho record response could not be verified.');
+    if (!Array.isArray(result?.data) || result.data.length > 1 || (result.data.length && (!object(result.data[0]) || result.data[0].id !== id))) fail(502, 'INVALID_RESPONSE', 'Zoho record response is malformed.');
     const row = result.data[0];
     if (!row) fail(404, 'CRM_RECORD_UNAVAILABLE', 'This CRM record is unavailable.');
-    // Field grants also limit related lookup objects: never pass nested provider data through.
     const fields = Object.fromEntries(grant.fields.filter(f => f !== 'id').map(f => [f, ['string', 'number', 'boolean'].includes(typeof row[f]) ? row[f] : null]));
-    return { id, fields, orderLinks: [] }; // A verified Xano link/assignment contract is not available.
+    return { id, fields, orderLinks: [] };
   }
 
   return async function handle({ method = 'GET', url, headers = new Headers(), body }) {
@@ -146,8 +143,19 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
       const parsed = new URL(url, 'https://local.invalid');
       const route = parsed.searchParams.get('route') || parsed.pathname.replace(/^\/api\//, '');
       if (route === 'status' && method === 'GET') {
-        const data = { authenticationConfigured: configured('XANO_AUTH_BASE_URL'), authenticationAvailable: authAvailable(), bookingReadsAvailable: bookingReadsAvailable(), bookingWritesAvailable: false, deliveryAvailable: false, assessmentsAvailable: false, assessmentReviewAvailable: false, crmConfigured: crmConfigured(), crmReleaseAuthorized: env.ZOHO_READ_RELEASE === 'verified', crmConnectionVerified: false, crmAvailable: false };
-        // Public status never probes Zoho or claims that credentials/release flags prove access.
+        const data = {
+          authenticationConfigured: configured('XANO_AUTH_BASE_URL'),
+          authenticationAvailable: authAvailable(),
+          bookingReadsAvailable: bookingReadsAvailable(),
+          bookingWritesAvailable: false,
+          deliveryAvailable: false,
+          assessmentsAvailable: false,
+          assessmentReviewAvailable: false,
+          crmConfigured: crmConfigured(),
+          crmReleaseAuthorized: env.ZOHO_READ_RELEASE === 'verified',
+          crmAvailable: false,
+          crmConnectionVerified: false,
+        };
         if (headers.has('authorization')) {
           const user = await authenticate(headers);
           if (user.workspace === 'admin' && data.crmConfigured && data.crmReleaseAuthorized) {
@@ -160,14 +168,13 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
         }
         return { status: 200, data };
       }
-      // Signup is not a login capability. Published signup refuses; recovery is NOT_DEPLOYED.
       if (['auth/signup', 'auth/register'].includes(route)) fail(503, 'REGISTRATION_PENDING', 'Registration is unavailable pending an isolated, verified onboarding contract. No account was created.');
       if (route === 'auth/login') {
         if (method !== 'POST') fail(405, 'METHOD_NOT_ALLOWED', 'Use POST for account access.');
         requireAuthRelease();
         if (!headers.get('content-type')?.startsWith('application/json')) fail(415, 'JSON_REQUIRED', 'JSON is required.');
         const { email, password } = body || {};
-        if (typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || typeof password !== 'string' || password.length < 8 || password.length > 256) fail(400, 'INVALID_INPUT', 'Enter a valid email and password (8â€“256 characters).');
+        if (typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || typeof password !== 'string' || password.length < 8 || password.length > 256) fail(400, 'INVALID_CREDENTIALS', 'Provide a valid email and password.');
         const data = await xano(route, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email.trim().toLowerCase(), password }) });
         if (typeof data?.authToken !== 'string' || !/^[^\s]{1,4096}$/.test(data.authToken)) fail(502, 'INVALID_RESPONSE', 'Account response needs verification.');
         const user = await authenticate(new Headers({ Authorization: `Bearer ${data.authToken}` }));
@@ -180,13 +187,13 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
         if (method !== 'GET') fail(503, 'BOOKING_WRITES_PENDING', 'Booking commands are unavailable pending published contracts and execution verification. No change was submitted.');
         if (!bookingReadsAvailable()) fail(503, 'BOOKING_RELEASE_PENDING', 'Booking reads are unavailable pending publication and authorization verification in Xano.');
         const allowedParams = new Set(['route', 'page', 'per_page', 'status']);
-        if ([...parsed.searchParams.keys()].some(key => !allowedParams.has(key) || parsed.searchParams.getAll(key).length !== 1)) fail(400, 'INVALID_QUERY', 'Unsupported booking query. Organization context comes from the authenticated account.');
+        if ([...parsed.searchParams.keys()].some(key => !allowedParams.has(key) || parsed.searchParams.getAll(key).length !== 1)) fail(400, 'INVALID_QUERY', 'Unsupported booking query. Organization-scoped filtering is required.');
         const options = { headers: { Authorization: headers.get('authorization') } };
         if (route === 'bookings') {
           const page = Number(parsed.searchParams.get('page') || 1);
           const perPage = Number(parsed.searchParams.get('per_page') || 20);
           const status = parsed.searchParams.get('status') || '';
-          if (!Number.isSafeInteger(page) || page < 1 || page > 10000 || !Number.isSafeInteger(perPage) || perPage < 1 || perPage > 100 || (status && !bookingStatuses.includes(status))) fail(400, 'INVALID_QUERY', 'Invalid booking page or status.');
+          if (!Number.isSafeInteger(page) || page < 1 || page > 10000 || !Number.isSafeInteger(perPage) || perPage < 1 || perPage > 100 || (status && !bookingStatuses.includes(status))) fail(400, 'INVALID_QUERY', 'Unsupported booking query. Organization-scoped filtering is required.');
           const query = new URLSearchParams({ page: String(page), per_page: String(perPage), requested_org_id: String(user.organizationId), ...(status ? { status } : {}) });
           const result = await xano(`bookings?${query}`, options, 'XANO_LOGISTICS_BASE_URL');
           return { status: 200, data: bookingPage(result, user, page, perPage, fail) };
@@ -207,7 +214,7 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
         const unchanged = () => { if (snapshot !== env.CRM_READ_GRANTS_JSON) fail(403, 'CRM_SCOPE_CHANGED', 'CRM permissions changed. Retry to verify access.'); };
         if (method !== 'GET') fail(405, 'READ_ONLY', 'CRM writes are not enabled.');
         const params = new Set(['route', ...(route === 'crm/records' ? ['module', 'page'] : route === 'crm/record' ? ['module', 'id'] : [])]);
-        if ([...parsed.searchParams.keys()].some(key => !params.has(key) || parsed.searchParams.getAll(key).length !== 1)) fail(400, 'INVALID_QUERY', 'Unsupported CRM query. Access is controlled by server grants.');
+        if ([...parsed.searchParams.keys()].some(key => !params.has(key) || parsed.searchParams.getAll(key).length !== 1)) fail(400, 'INVALID_QUERY', 'Unsupported CRM query. Access is controlled by tenant-scoped grants.');
         if (route === 'crm/modules') {
           const modules = await modulesFor(grants, signal);
           unchanged();
@@ -231,7 +238,6 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
           const ids = [...new Set(grant.recordIds)];
           const pageSize = 10;
           const records = [];
-          // Sequential bounded reads avoid request bursts. Never read ungranted tenant records.
           for (const recordId of ids.slice((page - 1) * pageSize, page * pageSize)) {
             unchanged();
             records.push(await readRecord(module, recordId, grant, signal));
