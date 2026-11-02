@@ -1,5 +1,7 @@
 # Zippy Logistics frontend
 
+Latest backend handoff: [Session 2 alignment 0.1.1](../contracts/backend-frontend/0.1.1/README.md). Recovery remains NOT_DEPLOYED; new proposal checks and the historical export inventory are included in frontend CI.
+
 Enhanced in the existing `frontend/` subproject on `feat/frontend-tailwind-polish`. React, Vite, TypeScript, compiled Tailwind v4, reusable components, reference captures and role themes are preserved.
 
 Commits **`f2fdbba` and `c36631c` are preserved**. The current alignment baseline is integration commit **`96619a8`**, draft PR #7. See the checked [backend–frontend mismatch matrix 0.1.0](../contracts/backend-frontend/0.1.0/README.md) for current source, deployment and runtime boundaries.
