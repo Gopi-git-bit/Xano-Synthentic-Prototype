@@ -1,0 +1,152 @@
+{
+  "checked_at": "2026-10-23T20:00:03.759013+00:00",
+  "execution_scope": "offline_only",
+  "results": [
+    {
+      "name": "backend",
+      "command": [
+        "node",
+        "scripts/validate-backend.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/backend.log",
+      "output_sha256": "82d4b9eb13e8945d975d29543585309f9129e573800087724711399993788ac9",
+      "tail": "84 coordinate regressions against shared and exported code.\nPASS: five unbound agent exports, supplied package hashes and references, preserved source, 20 readiness mappings. Scope: offline configuration only; 70 acceptance scenarios remain NOT_RUN.\n"
+    },
+    {
+      "name": "safeguards",
+      "command": [
+        "node",
+        "scripts/validate-xano-safeguards.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/safeguards.log",
+      "output_sha256": "8bc44f6fb02ec15b6fce402e94bed4c3a09ff1b0c8977ace40bd33305ba06475",
+      "tail": "PASS: offline safeguard checks and complete 72-case reference inventory. Native 72-case acceptance remains NOT_VERIFIED.\n"
+    },
+    {
+      "name": "http-offline",
+      "command": [
+        "node",
+        "scripts/test-xano-http.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/http-offline.log",
+      "output_sha256": "fe920cf5a049e695e204355a9383055dd067e6cb2fede582b87eaa3927bc0d22",
+      "tail": "PASS: missing credential, safe connection, redaction, admin-token separation, database mismatch, source drift, and unauthenticated denial checks.\n"
+    },
+    {
+      "name": "m1-original-current",
+      "command": [
+        "node",
+        "scripts/test-milestone1.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/m1-original-current.log",
+      "output_sha256": "253ac40b60cf7bd231a732b29ff423047327f650a4b5ca7bca36c4d1c0f7bc4b",
+      "tail": "after one native request fails\nok 107 - runner waits for sibling writes after one native request fails\n  ---\n  duration_ms: 26.515772\n  ...\n1..107\n# tests 107\n# suites 0\n# pass 107\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 997.135878\n"
+    },
+    {
+      "name": "m1-native-adapter-offline",
+      "command": [
+        "node",
+        "scripts/test-milestone1-native.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/m1-native-adapter-offline.log",
+      "output_sha256": "5fe187c15de63f0cfbf73355f268273500d8ed8fe376db7f6f9c74d45fd35db3",
+      "tail": "ity evidence cannot satisfy preflight\nok 19 - missing physical validity evidence cannot satisfy preflight\n  ---\n  duration_ms: 52.494403\n  ...\n1..19\n# tests 19\n# suites 0\n# pass 19\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 960.701853\n"
+    },
+    {
+      "name": "m1-reservations",
+      "command": [
+        "node",
+        "--test",
+        "scripts/test-milestone1-reservations.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/m1-reservations.log",
+      "output_sha256": "05531decf1cffe292c0f10f9ecbe33f8b56f575f17c68bc1ef29231926225bde",
+      "tail": "iliation is missing\nok 35 - snapshot refuses execution while supported inventory reconciliation is missing\n  ---\n  duration_ms: 0.189081\n  ...\n1..35\n# tests 35\n# suites 0\n# pass 35\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 318.521047\n"
+    },
+    {
+      "name": "m1-execution-v3",
+      "command": [
+        "node",
+        "--test",
+        "scripts/test-m1-execution.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/m1-execution-v3.log",
+      "output_sha256": "5d7dced6915db9719ae6b255135f97551eecfdd29e8f7bc1948e38240bd2ebc5",
+      "tail": "nce\nok 23 - discarded result is explicitly qualified and all four faults have 16-table rollback evidence\n  ---\n  duration_ms: 14.943438\n  ...\n1..23\n# tests 23\n# suites 0\n# pass 23\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1332.928553\n"
+    },
+    {
+      "name": "m1-evaluator",
+      "command": [
+        "node",
+        "scripts/evaluate-milestone1.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/m1-evaluator.log",
+      "output_sha256": "7a363e9c349d525c2f257b32a0c0f94b16a5b4f3912797d8c271ad6877e7cc6c",
+      "tail": "{\"scope\":\"Evidence evaluation only; does not authenticate or execute Xano\",\"ready\":false,\"totals\":{\"NOT_RUN\":31}}\n"
+    },
+    {
+      "name": "historical-evaluator",
+      "command": [
+        "node",
+        "scripts/evaluate-historical-slice1.cjs"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/historical-evaluator.log",
+      "output_sha256": "179c78b1bc2a79c284ef44c7ea1afdc5310fac9723239e1a7ba3a49579e8b4e7",
+      "tail": "{\"scope\":\"Retained historical evidence evaluation; no fresh Xano execution\",\"recorded_cases_reevaluated\":4,\"bounded_claims\":\"PASS_REEVALUATED\",\"M1_native_acceptance\":\"INSUFFICIENT_EVIDENCE\",\"ready\":false}\n"
+    },
+    {
+      "name": "staging-gate",
+      "command": [
+        "node",
+        "scripts/staging-gate.cjs"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/staging-gate.log",
+      "output_sha256": "9bbbeb54ad03708d3675e5839d839d1d065fd38a8ffa5f81d7b1c4c23ee4effd",
+      "tail": "BLOCKED: executable staging suite and required integrity evidence are incomplete.\n"
+    },
+    {
+      "name": "execution-gate",
+      "command": [
+        "node",
+        "scripts/run-m1-execution.cjs",
+        "--check"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "expected_outcome": true,
+      "output_path": "backend/evidence/m1-execution-offline-2026-10-24/execution-gate.log",
+      "output_sha256": "cc557c68873f8f2b70541af24191e8f1ba80ad10260fd4a14a5d16252d6f8015",
+      "tail": "kers\": [\n    \"RESTRICTED_CREDENTIAL_AND_ACTUAL_LIVE_DENIAL\",\n    \"SUPPORTED_DIAGNOSTIC_INVENTORY_DECISION\",\n    \"APPROVED_SCHEMA_BACKFILL_AND_PHYSICAL_INDEXES\",\n    \"ENFORCED_WRITER_RESTRICTIONS\",\n    \"V3_NATIVE_VALIDATION_IMPORT_AND_READBACK\"\n  ]\n}\n"
+    }
+  ]
+}

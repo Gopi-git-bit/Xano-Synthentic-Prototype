@@ -1,0 +1,50 @@
+{
+  "scope": "Known source gaps; a passing pattern is not hosted acceptance",
+  "results": [
+    {
+      "name": "distance has no invented 480-km fallback",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "all cargo weight validation precedes booking insert",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "booking reference uses collision-resistant identity",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "create booking and cargo declare transaction boundary",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "confirmation and outbox declare transaction boundary",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "idempotency is mandatory",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "idempotency expiry is checked",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "reservation unique constraints cover vehicle and driver",
+      "status": "FAILED",
+      "scope": "source only"
+    },
+    {
+      "name": "durable worker schema has explicit fencing generation",
+      "status": "FAILED",
+      "scope": "source only"
+    }
+  ]
+}

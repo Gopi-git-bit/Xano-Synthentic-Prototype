@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "submitted_on_ist": "2026-10-24",
+  "service": "Xano support",
+  "url": "https://www.xano.com/support/",
+  "browser_run_id": "35a8227c-e467-4ad2-a41d-ae35f3bb8a66",
+  "browser_run_url": "https://agent.tinyfish.ai/runs/35a8227c-e467-4ad2-a41d-ae35f3bb8a66",
+  "submitted": true,
+  "acknowledgement": "Thank you for reaching out!",
+  "stated_response_window": "2\u20133 business days",
+  "ticket_id": null,
+  "sender": {
+    "name": "Gopi Nathan",
+    "email": "admin@zippylogitech.com",
+    "company": "Zippy Logitech"
+  },
+  "category": "Support",
+  "marketing_opt_in": false,
+  "inventory_reconciliation_verified": false,
+  "response_received": false,
+  "authorization": "Explicit latest user instruction to submit the prepared inventory request",
+  "request_text": "Subject: Supported retention/reconciliation of two diagnostic tables in isolated Xano sandbox\n\nTarget: instance xynd-fnea-khtp.n7e.xano.io, workspace 1, source v1, isolated sandbox sn9m-aat6-200c. Please do not change the live workspace.\n\n1. Metadata lists 51 tables, while the sandbox physical catalog lists 53. Metadata table IDs 56 and 57 return 404, but physical tables mvpw1_56 (two rows) and mvpw1_57 (zero rows) remain. Linked evidence records their schema/dependency fingerprints. No current exported application source references them. Please establish their lineage and provide a supported method to retain/reconcile their metadata or confirm intentional retained-diagnostic status, preserving identifiers and all data. We do not authorize table deletion, reset or count-only cleanup.\n2. Is there a supported Xano mechanism for unique indexes on trip_assignments(platform_id,vehicle_id) and (platform_id,driver_profile_id), each WHERE released_at IS NULL? The public XanoScript/index API inspected exposes no predicate. Please specify creation, export/import, backup/restore, schema-edit and support guarantees before any DDL is considered.\n3. Please confirm the least-privilege role/token configuration for sandbox multidoc import, function/run and workflow tests with live-data access denied, including the Tenant Metadata API gateway. We will independently prove safe sandbox reads and actual live authorization denial. We will not treat a 404 or a denied login as a live-access denial test.\n\nEvidence: backend/evidence/milestone1-admin-inventory-2026-10-23.json, milestone1-native-preflight-2026-10-23.json, and docs/XANO_ADMIN_REMEDIATION_PLAN.md. No tokens, database passwords or raw diagnostic records are included.\n\n4. For the approved active_assignment_reservations alternative, identify supported restrictions for the intended M1 execution principal that deny direct assignment CRUD or arbitrary writer authoring while permitting reviewed sandbox command execution. The existing owner token/account must remain unchanged. Scope the guarantee explicitly; no database-wide enforcement claim is made for a reservation protocol while bypass writers remain possible. If a role/account change is necessary, provide its exact delta before any action.\n\nFollow-up: the new credential and conditional reservation schema/four-row backfill are owner-approved, but not applied. See XANO_RESERVATION_REVISION.md. Please respond with the supported mechanism and any exact prerequisite changes; do not make changes to the live workspace or delete/reset diagnostic tables.\n\n\nPrepared request and evidence:\nhttps://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/5cc444a847b9e5c5f6978aa32cdc9a9b0a948355/docs/XANO_ADMIN_SUPPORT_REQUEST.md\nhttps://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/5cc444a847b9e5c5f6978aa32cdc9a9b0a948355/backend/evidence/milestone1-admin-inventory-2026-10-23.json\nhttps://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/5cc444a847b9e5c5f6978aa32cdc9a9b0a948355/docs/XANO_RESERVATION_REVISION.md\n",
+  "qualification": "Submission acknowledgement only; no vendor decision, reconciliation, schema approval or permission verification is inferred."
+}

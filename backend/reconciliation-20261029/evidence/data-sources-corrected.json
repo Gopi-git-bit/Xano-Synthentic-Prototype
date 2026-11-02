@@ -1,0 +1,13 @@
+{
+  "method": "GET",
+  "url": "https://xynd-fnea-khtp.n7e.xano.io/api:meta/workspace/3/datasource",
+  "status": 200,
+  "at": "2026-10-29T08:36:13.881Z",
+  "raw_sha256": "0f1b5abb8c86c5ccf6670578c5c3d801f72051c5b9ee5e002e3feb01b65c83f1",
+  "body": [
+    {
+      "label": "live",
+      "color": "#008000"
+    }
+  ]
+}

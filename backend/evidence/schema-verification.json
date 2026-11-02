@@ -1,0 +1,6 @@
+{
+  "tables": 49,
+  "columns": 476,
+  "passed": true,
+  "scope": "Server-export field/type presence. SQL row security, triggers, foreign keys and concurrency are NOT verified."
+}

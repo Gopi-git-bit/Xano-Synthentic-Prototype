@@ -1,0 +1,1751 @@
+{
+  "schema_version": 1,
+  "controls": [
+    {
+      "id": "platforms-1",
+      "table": "platforms",
+      "source": "CHECK (platform_key ~ '^[a-z][a-z0-9_]{2,62}$')",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "accounts-1",
+      "table": "accounts",
+      "source": "UNIQUE (platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "accounts-2",
+      "table": "accounts",
+      "source": "UNIQUE (platform_id, external_subject)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "accounts-3",
+      "table": "accounts",
+      "source": "UNIQUE (platform_id, email_normalized)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "accounts-4",
+      "table": "accounts",
+      "source": "UNIQUE (platform_id, phone_e164)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "accounts-5",
+      "table": "accounts",
+      "source": "CHECK (email_normalized IS NOT NULL OR phone_e164 IS NOT NULL)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "account_role_memberships-1",
+      "table": "account_role_memberships",
+      "source": "UNIQUE (platform_id, account_id, role_code, valid_from)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "account_role_memberships-2",
+      "table": "account_role_memberships",
+      "source": "CHECK (valid_until IS NULL OR valid_until > valid_from)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "account_role_memberships-3",
+      "table": "account_role_memberships",
+      "source": "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "account_role_memberships-4",
+      "table": "account_role_memberships",
+      "source": "FOREIGN KEY (platform_id, granted_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "legal_entities-1",
+      "table": "legal_entities",
+      "source": "UNIQUE (platform_id, legal_entity_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "legal_entities-2",
+      "table": "legal_entities",
+      "source": "UNIQUE (platform_id, registration_reference)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "customer_profiles-1",
+      "table": "customer_profiles",
+      "source": "UNIQUE (platform_id, customer_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "customer_profiles-2",
+      "table": "customer_profiles",
+      "source": "UNIQUE (platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "customer_profiles-3",
+      "table": "customer_profiles",
+      "source": "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "customer_profiles-4",
+      "table": "customer_profiles",
+      "source": "FOREIGN KEY (platform_id, legal_entity_id) REFERENCES zippy.legal_entities(platform_id, legal_entity_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vendor_profiles-1",
+      "table": "vendor_profiles",
+      "source": "CHECK ((account_id IS NOT NULL)::integer + (legal_entity_id IS NOT NULL)::integer = 1)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "vendor_profiles-2",
+      "table": "vendor_profiles",
+      "source": "UNIQUE (platform_id, vendor_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vendor_profiles-3",
+      "table": "vendor_profiles",
+      "source": "UNIQUE (platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vendor_profiles-4",
+      "table": "vendor_profiles",
+      "source": "UNIQUE (platform_id, legal_entity_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vendor_profiles-5",
+      "table": "vendor_profiles",
+      "source": "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vendor_profiles-6",
+      "table": "vendor_profiles",
+      "source": "FOREIGN KEY (platform_id, legal_entity_id) REFERENCES zippy.legal_entities(platform_id, legal_entity_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "company_memberships-1",
+      "table": "company_memberships",
+      "source": "UNIQUE (platform_id, legal_entity_id, account_id, membership_role, valid_from)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "company_memberships-2",
+      "table": "company_memberships",
+      "source": "CHECK (valid_until IS NULL OR valid_until > valid_from)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "company_memberships-3",
+      "table": "company_memberships",
+      "source": "FOREIGN KEY (platform_id, legal_entity_id) REFERENCES zippy.legal_entities(platform_id, legal_entity_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "company_memberships-4",
+      "table": "company_memberships",
+      "source": "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "driver_profiles-1",
+      "table": "driver_profiles",
+      "source": "UNIQUE (platform_id, driver_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "driver_profiles-2",
+      "table": "driver_profiles",
+      "source": "UNIQUE (platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "driver_profiles-3",
+      "table": "driver_profiles",
+      "source": "UNIQUE (platform_id, licence_reference)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "driver_profiles-4",
+      "table": "driver_profiles",
+      "source": "FOREIGN KEY (platform_id, account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "driver_associations-1",
+      "table": "driver_associations",
+      "source": "UNIQUE (platform_id, driver_profile_id, vendor_profile_id, valid_from)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "driver_associations-2",
+      "table": "driver_associations",
+      "source": "CHECK (valid_until IS NULL OR valid_until > valid_from)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "driver_associations-3",
+      "table": "driver_associations",
+      "source": "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "driver_associations-4",
+      "table": "driver_associations",
+      "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "admin_account_actions-1",
+      "table": "admin_account_actions",
+      "source": "CHECK (affected_account_id <> acting_admin_account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "admin_account_actions-2",
+      "table": "admin_account_actions",
+      "source": "CHECK (\n        (action = 'create' AND previous_status IS NULL) OR\n        (action <> 'create' AND previous_status IS NOT NULL)\n    )",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "admin_account_actions-3",
+      "table": "admin_account_actions",
+      "source": "FOREIGN KEY (platform_id, affected_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "admin_account_actions-4",
+      "table": "admin_account_actions",
+      "source": "FOREIGN KEY (platform_id, acting_admin_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_models-1",
+      "table": "vehicle_models",
+      "source": "UNIQUE (platform_id, vehicle_model_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_models-2",
+      "table": "vehicle_models",
+      "source": "UNIQUE (platform_id, model_code, source_version)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_models-3",
+      "table": "vehicle_models",
+      "source": "FOREIGN KEY (platform_id, approved_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicles-1",
+      "table": "vehicles",
+      "source": "UNIQUE (platform_id, vehicle_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicles-2",
+      "table": "vehicles",
+      "source": "UNIQUE (platform_id, registration_number)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicles-3",
+      "table": "vehicles",
+      "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicles-4",
+      "table": "vehicles",
+      "source": "FOREIGN KEY (platform_id, vehicle_model_id) REFERENCES zippy.vehicle_models(platform_id, vehicle_model_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicles-5",
+      "table": "vehicles",
+      "source": "FOREIGN KEY (platform_id, approved_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicles-6",
+      "table": "vehicles",
+      "source": "CHECK ((status = 'approved' AND approved_by_account_id IS NOT NULL AND approved_at IS NOT NULL) OR status <> 'approved')",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_documents-1",
+      "table": "vehicle_documents",
+      "source": "UNIQUE (platform_id, vehicle_document_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_documents-2",
+      "table": "vehicle_documents",
+      "source": "UNIQUE (platform_id, vehicle_id, document_type, object_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_documents-3",
+      "table": "vehicle_documents",
+      "source": "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_documents-4",
+      "table": "vehicle_documents",
+      "source": "FOREIGN KEY (platform_id, verified_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_documents-5",
+      "table": "vehicle_documents",
+      "source": "CHECK (valid_until IS NULL OR valid_from IS NULL OR valid_until >= valid_from)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "vehicle_documents-6",
+      "table": "vehicle_documents",
+      "source": "CHECK ((verification_status = 'verified' AND verified_by_account_id IS NOT NULL AND verified_at IS NOT NULL) OR verification_status <> 'verified')",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "quotes-1",
+      "table": "quotes",
+      "source": "UNIQUE (platform_id, quote_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "quotes-2",
+      "table": "quotes",
+      "source": "UNIQUE (platform_id, customer_profile_id, policy_version, input_hash_sha256)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "quotes-3",
+      "table": "quotes",
+      "source": "FOREIGN KEY (platform_id, customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "quotes-4",
+      "table": "quotes",
+      "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "quotes-5",
+      "table": "quotes",
+      "source": "CHECK (jsonb_typeof(input_evidence) = 'object')",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "quotes-6",
+      "table": "quotes",
+      "source": "CHECK (expires_at > created_at)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "orders-1",
+      "table": "orders",
+      "source": "UNIQUE (platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "orders-2",
+      "table": "orders",
+      "source": "FOREIGN KEY (platform_id, booking_customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "orders-3",
+      "table": "orders",
+      "source": "FOREIGN KEY (platform_id, quote_id) REFERENCES zippy.quotes(platform_id, quote_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "orders-4",
+      "table": "orders",
+      "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_stops-1",
+      "table": "order_stops",
+      "source": "UNIQUE (platform_id, order_id, stop_sequence)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_stops-2",
+      "table": "order_stops",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_stops-3",
+      "table": "order_stops",
+      "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_stops-4",
+      "table": "order_stops",
+      "source": "CHECK (latitude IS NULL OR latitude BETWEEN -90 AND 90)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "order_stops-5",
+      "table": "order_stops",
+      "source": "CHECK (longitude IS NULL OR longitude BETWEEN -180 AND 180)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "transaction_participants-1",
+      "table": "transaction_participants",
+      "source": "UNIQUE (platform_id, order_id, participant_role)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "transaction_participants-2",
+      "table": "transaction_participants",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "transaction_participants-3",
+      "table": "transaction_participants",
+      "source": "FOREIGN KEY (platform_id, customer_profile_id) REFERENCES zippy.customer_profiles(platform_id, customer_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "transaction_participants-4",
+      "table": "transaction_participants",
+      "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "transaction_participants-5",
+      "table": "transaction_participants",
+      "source": "CHECK (\n        (participant_role = 'customer' AND customer_profile_id IS NOT NULL AND vendor_profile_id IS NULL) OR\n        (participant_role = 'vendor' AND vendor_profile_id IS NOT NULL AND customer_profile_id IS NULL)\n    )",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-1",
+      "table": "dispatch_offers",
+      "source": "UNIQUE (platform_id, dispatch_offer_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-2",
+      "table": "dispatch_offers",
+      "source": "UNIQUE (platform_id, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-3",
+      "table": "dispatch_offers",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-4",
+      "table": "dispatch_offers",
+      "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-5",
+      "table": "dispatch_offers",
+      "source": "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-6",
+      "table": "dispatch_offers",
+      "source": "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-7",
+      "table": "dispatch_offers",
+      "source": "CHECK (expires_at > created_at)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-8",
+      "table": "dispatch_offers",
+      "source": "CHECK ((status IN ('accepted', 'declined') AND responded_at IS NOT NULL) OR status NOT IN ('accepted', 'declined'))",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_offers-9",
+      "table": "dispatch_offers",
+      "source": "PARTIAL INDEX CREATE UNIQUE INDEX dispatch_one_accepted_offer_idx\n    ON zippy.dispatch_offers (platform_id, order_id)\n    WHERE status = 'accepted';",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trips-1",
+      "table": "trips",
+      "source": "UNIQUE (platform_id, trip_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trips-2",
+      "table": "trips",
+      "source": "UNIQUE (platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trips-3",
+      "table": "trips",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-1",
+      "table": "trip_assignments",
+      "source": "UNIQUE (platform_id, trip_id, assigned_at)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-2",
+      "table": "trip_assignments",
+      "source": "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-3",
+      "table": "trip_assignments",
+      "source": "FOREIGN KEY (platform_id, dispatch_offer_id) REFERENCES zippy.dispatch_offers(platform_id, dispatch_offer_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-4",
+      "table": "trip_assignments",
+      "source": "FOREIGN KEY (platform_id, vendor_profile_id) REFERENCES zippy.vendor_profiles(platform_id, vendor_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-5",
+      "table": "trip_assignments",
+      "source": "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-6",
+      "table": "trip_assignments",
+      "source": "FOREIGN KEY (platform_id, driver_profile_id) REFERENCES zippy.driver_profiles(platform_id, driver_profile_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-7",
+      "table": "trip_assignments",
+      "source": "FOREIGN KEY (platform_id, assigned_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-8",
+      "table": "trip_assignments",
+      "source": "CHECK (released_at IS NULL OR released_at >= assigned_at)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-9",
+      "table": "trip_assignments",
+      "source": "PARTIAL INDEX CREATE UNIQUE INDEX trip_active_vehicle_idx\n    ON zippy.trip_assignments (platform_id, vehicle_id)\n    WHERE released_at IS NULL;",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_assignments-10",
+      "table": "trip_assignments",
+      "source": "PARTIAL INDEX CREATE UNIQUE INDEX trip_active_driver_idx\n    ON zippy.trip_assignments (platform_id, driver_profile_id)\n    WHERE released_at IS NULL;",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_milestones-1",
+      "table": "trip_milestones",
+      "source": "UNIQUE (platform_id, trip_id, sequence_no)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_milestones-2",
+      "table": "trip_milestones",
+      "source": "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_milestones-3",
+      "table": "trip_milestones",
+      "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_location_history-1",
+      "table": "trip_location_history",
+      "source": "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_location_history-2",
+      "table": "trip_location_history",
+      "source": "FOREIGN KEY (platform_id, vehicle_id) REFERENCES zippy.vehicles(platform_id, vehicle_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "trip_location_history-3",
+      "table": "trip_location_history",
+      "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "pod_documents-1",
+      "table": "pod_documents",
+      "source": "UNIQUE (platform_id, pod_document_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "pod_documents-2",
+      "table": "pod_documents",
+      "source": "UNIQUE (platform_id, object_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "pod_documents-3",
+      "table": "pod_documents",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "pod_documents-4",
+      "table": "pod_documents",
+      "source": "FOREIGN KEY (platform_id, trip_id) REFERENCES zippy.trips(platform_id, trip_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "pod_documents-5",
+      "table": "pod_documents",
+      "source": "FOREIGN KEY (platform_id, uploaded_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "pod_documents-6",
+      "table": "pod_documents",
+      "source": "FOREIGN KEY (platform_id, verified_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "pod_documents-7",
+      "table": "pod_documents",
+      "source": "CHECK ((verification_status IN ('accepted', 'rejected') AND verified_by_account_id IS NOT NULL AND verified_at IS NOT NULL) OR verification_status NOT IN ('accepted', 'rejected'))",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "webhook_receipts-1",
+      "table": "webhook_receipts",
+      "source": "UNIQUE (platform_id, webhook_receipt_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "webhook_receipts-2",
+      "table": "webhook_receipts",
+      "source": "UNIQUE (platform_id, provider, provider_event_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "gateway_events-1",
+      "table": "gateway_events",
+      "source": "UNIQUE (platform_id, gateway_event_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "gateway_events-2",
+      "table": "gateway_events",
+      "source": "UNIQUE (platform_id, webhook_receipt_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "gateway_events-3",
+      "table": "gateway_events",
+      "source": "FOREIGN KEY (platform_id, webhook_receipt_id) REFERENCES zippy.webhook_receipts(platform_id, webhook_receipt_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "gateway_events-4",
+      "table": "gateway_events",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "payment_projections-1",
+      "table": "payment_projections",
+      "source": "UNIQUE (platform_id, payment_projection_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "payment_projections-2",
+      "table": "payment_projections",
+      "source": "UNIQUE (platform_id, order_id, gateway_event_id, operational_status)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "payment_projections-3",
+      "table": "payment_projections",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "payment_projections-4",
+      "table": "payment_projections",
+      "source": "FOREIGN KEY (platform_id, gateway_event_id) REFERENCES zippy.gateway_events(platform_id, gateway_event_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "financial_requests-1",
+      "table": "financial_requests",
+      "source": "UNIQUE (platform_id, financial_request_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "financial_requests-2",
+      "table": "financial_requests",
+      "source": "UNIQUE (platform_id, request_type, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "financial_requests-3",
+      "table": "financial_requests",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "financial_requests-4",
+      "table": "financial_requests",
+      "source": "FOREIGN KEY (platform_id, requester_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "financial_requests-5",
+      "table": "financial_requests",
+      "source": "CHECK ((amount IS NULL AND currency_code IS NULL) OR (amount >= 0 AND currency_code ~ '^[A-Z]{3}$'))",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "external_references-1",
+      "table": "external_references",
+      "source": "UNIQUE (platform_id, external_reference_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "external_references-2",
+      "table": "external_references",
+      "source": "UNIQUE (platform_id, local_entity_type, local_entity_id, external_system, external_model)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "external_references-3",
+      "table": "external_references",
+      "source": "UNIQUE (platform_id, external_system, external_model, external_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "settlement_projections-1",
+      "table": "settlement_projections",
+      "source": "UNIQUE (platform_id, settlement_projection_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "settlement_projections-2",
+      "table": "settlement_projections",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "settlement_projections-3",
+      "table": "settlement_projections",
+      "source": "FOREIGN KEY (platform_id, financial_request_id) REFERENCES zippy.financial_requests(platform_id, financial_request_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "settlement_projections-4",
+      "table": "settlement_projections",
+      "source": "FOREIGN KEY (platform_id, external_reference_id) REFERENCES zippy.external_references(platform_id, external_reference_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "settlement_projections-5",
+      "table": "settlement_projections",
+      "source": "CHECK ((operational_status = 'externally_confirmed' AND external_reference_id IS NOT NULL AND source_observed_at IS NOT NULL) OR operational_status <> 'externally_confirmed')",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_requests-1",
+      "table": "refund_requests",
+      "source": "UNIQUE (platform_id, refund_request_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_requests-2",
+      "table": "refund_requests",
+      "source": "UNIQUE (platform_id, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_requests-3",
+      "table": "refund_requests",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_requests-4",
+      "table": "refund_requests",
+      "source": "FOREIGN KEY (platform_id, requester_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_decisions-1",
+      "table": "refund_decisions",
+      "source": "UNIQUE (platform_id, refund_decision_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_decisions-2",
+      "table": "refund_decisions",
+      "source": "UNIQUE (platform_id, refund_request_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_decisions-3",
+      "table": "refund_decisions",
+      "source": "FOREIGN KEY (platform_id, refund_request_id) REFERENCES zippy.refund_requests(platform_id, refund_request_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_decisions-4",
+      "table": "refund_decisions",
+      "source": "FOREIGN KEY (platform_id, approver_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_executions-1",
+      "table": "refund_executions",
+      "source": "UNIQUE (platform_id, refund_execution_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_executions-2",
+      "table": "refund_executions",
+      "source": "UNIQUE (platform_id, refund_request_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_executions-3",
+      "table": "refund_executions",
+      "source": "UNIQUE (platform_id, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_executions-4",
+      "table": "refund_executions",
+      "source": "FOREIGN KEY (platform_id, refund_request_id) REFERENCES zippy.refund_requests(platform_id, refund_request_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_executions-5",
+      "table": "refund_executions",
+      "source": "FOREIGN KEY (platform_id, refund_decision_id) REFERENCES zippy.refund_decisions(platform_id, refund_decision_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "refund_executions-6",
+      "table": "refund_executions",
+      "source": "FOREIGN KEY (platform_id, external_reference_id) REFERENCES zippy.external_references(platform_id, external_reference_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "idempotency_records-1",
+      "table": "idempotency_records",
+      "source": "UNIQUE (platform_id, operation_scope, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "idempotency_records-2",
+      "table": "idempotency_records",
+      "source": "CHECK ((lease_owner IS NULL) = (lease_expires_at IS NULL))",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "durable_tasks-1",
+      "table": "durable_tasks",
+      "source": "UNIQUE (platform_id, durable_task_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "durable_tasks-2",
+      "table": "durable_tasks",
+      "source": "UNIQUE (platform_id, task_type, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "durable_tasks-3",
+      "table": "durable_tasks",
+      "source": "CHECK ((lease_owner IS NULL) = (lease_expires_at IS NULL))",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "durable_tasks-4",
+      "table": "durable_tasks",
+      "source": "CHECK (attempt_count <= max_attempts)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "durable_tasks-5",
+      "table": "durable_tasks",
+      "source": "CHECK (status <> 'dead_lettered' OR attempt_count = max_attempts)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "durable_tasks-6",
+      "table": "durable_tasks",
+      "source": "PARTIAL INDEX CREATE INDEX durable_tasks_claim_idx ON zippy.durable_tasks (platform_id, status, next_attempt_at, created_at) WHERE status IN ('pending', 'failed');",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "event_outbox-1",
+      "table": "event_outbox",
+      "source": "UNIQUE (platform_id, outbox_event_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "event_outbox-2",
+      "table": "event_outbox",
+      "source": "UNIQUE (platform_id, destination, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "event_outbox-3",
+      "table": "event_outbox",
+      "source": "UNIQUE (platform_id, aggregate_type, aggregate_id, aggregate_version, event_type)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "event_outbox-4",
+      "table": "event_outbox",
+      "source": "CHECK (jsonb_typeof(payload) = 'object')",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "event_outbox-5",
+      "table": "event_outbox",
+      "source": "PARTIAL INDEX CREATE INDEX outbox_claim_idx ON zippy.event_outbox (platform_id, status, next_attempt_at, created_at) WHERE status IN ('pending', 'failed');",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "event_inbox-1",
+      "table": "event_inbox",
+      "source": "UNIQUE (platform_id, inbox_event_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "event_inbox-2",
+      "table": "event_inbox",
+      "source": "UNIQUE (platform_id, source, source_event_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dead_letter_records-1",
+      "table": "dead_letter_records",
+      "source": "UNIQUE (platform_id, source_kind, source_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "audit_events-1",
+      "table": "audit_events",
+      "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "operational_exceptions-1",
+      "table": "operational_exceptions",
+      "source": "UNIQUE (platform_id, operational_exception_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "operational_exceptions-2",
+      "table": "operational_exceptions",
+      "source": "FOREIGN KEY (platform_id, owner_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "operational_exceptions-3",
+      "table": "operational_exceptions",
+      "source": "CHECK ((status IN ('resolved', 'closed') AND resolved_at IS NOT NULL) OR status NOT IN ('resolved', 'closed'))",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "exception_status_history-1",
+      "table": "exception_status_history",
+      "source": "FOREIGN KEY (platform_id, operational_exception_id) REFERENCES zippy.operational_exceptions(platform_id, operational_exception_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "exception_status_history-2",
+      "table": "exception_status_history",
+      "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "service_commitments-1",
+      "table": "service_commitments",
+      "source": "UNIQUE (platform_id, service_commitment_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "service_commitments-2",
+      "table": "service_commitments",
+      "source": "UNIQUE (platform_id, order_id, commitment_type)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "service_commitments-3",
+      "table": "service_commitments",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "sla_evidence-1",
+      "table": "sla_evidence",
+      "source": "UNIQUE (platform_id, service_commitment_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "sla_evidence-2",
+      "table": "sla_evidence",
+      "source": "FOREIGN KEY (platform_id, service_commitment_id) REFERENCES zippy.service_commitments(platform_id, service_commitment_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "notification_attempts-1",
+      "table": "notification_attempts",
+      "source": "UNIQUE (platform_id, notification_attempt_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "notification_attempts-2",
+      "table": "notification_attempts",
+      "source": "UNIQUE (platform_id, channel, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "notification_attempts-3",
+      "table": "notification_attempts",
+      "source": "FOREIGN KEY (platform_id, recipient_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_transition_rules-1",
+      "table": "order_transition_rules",
+      "source": "PRIMARY KEY (from_status, to_status)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "order_transition_rules-2",
+      "table": "order_transition_rules",
+      "source": "CHECK (from_status <> to_status)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "order_state_transitions-1",
+      "table": "order_state_transitions",
+      "source": "UNIQUE (platform_id, order_state_transition_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_state_transitions-2",
+      "table": "order_state_transitions",
+      "source": "UNIQUE (platform_id, order_id, idempotency_key)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_state_transitions-3",
+      "table": "order_state_transitions",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_state_transitions-4",
+      "table": "order_state_transitions",
+      "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "order_state_transitions-5",
+      "table": "order_state_transitions",
+      "source": "FOREIGN KEY (from_status, to_status) REFERENCES zippy.order_transition_rules(from_status, to_status)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "operational_events-1",
+      "table": "operational_events",
+      "source": "UNIQUE (platform_id, operational_event_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "operational_events-2",
+      "table": "operational_events",
+      "source": "UNIQUE (platform_id, aggregate_type, aggregate_id, aggregate_version, event_type)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "operational_events-3",
+      "table": "operational_events",
+      "source": "FOREIGN KEY (platform_id, actor_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "operational_events-4",
+      "table": "operational_events",
+      "source": "CHECK (jsonb_typeof(event_data) = 'object')",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject violating writes through every exposed mutation path and verify persisted state.",
+      "executable_test": null
+    },
+    {
+      "id": "payment_intents-1",
+      "table": "payment_intents",
+      "source": "UNIQUE (platform_id, payment_intent_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "payment_intents-2",
+      "table": "payment_intents",
+      "source": "UNIQUE (platform_id, external_reference_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "payment_intents-3",
+      "table": "payment_intents",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "payment_intents-4",
+      "table": "payment_intents",
+      "source": "FOREIGN KEY (platform_id, external_reference_id)\n        REFERENCES zippy.external_references(platform_id, external_reference_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_requirements-1",
+      "table": "dispatch_requirements",
+      "source": "UNIQUE (platform_id, dispatch_requirement_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_requirements-2",
+      "table": "dispatch_requirements",
+      "source": "UNIQUE (platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Synchronize conflicting writes; exactly one winner and no loser residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_requirements-3",
+      "table": "dispatch_requirements",
+      "source": "FOREIGN KEY (platform_id, order_id) REFERENCES zippy.orders(platform_id, order_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    },
+    {
+      "id": "dispatch_requirements-4",
+      "table": "dispatch_requirements",
+      "source": "FOREIGN KEY (platform_id, created_by_account_id) REFERENCES zippy.accounts(platform_id, account_id)",
+      "status": "blocked",
+      "enforcement": "Not demonstrated on Xano; mapped SQL is not an installed constraint.",
+      "required_test": "Reject missing and cross-tenant references; verify zero residue.",
+      "executable_test": null
+    }
+  ]
+}

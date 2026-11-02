@@ -1,0 +1,3783 @@
+{
+  "metadata": {
+    "version": "1.0.0-review",
+    "execution_status": "not_run",
+    "count": 70,
+    "note": "Scenario definitions and structural validation only; no application/runtime test pass is claimed."
+  },
+  "tests": [
+    {
+      "id": "ZSC-01",
+      "title": "Mandatory fields missing, malformed phone, nonpositive weight",
+      "given": [
+        "An authenticated booking request otherwise valid for a configured serviceable lane.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Submit a booking payload with one missing or invalid required value per fixture.",
+      "then": [
+        "Reject intake with field-level reason; no confirmation or matching side effect; retain failure trace.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md"
+      ],
+      "requirement_tags": [
+        "booking",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Validation schema and required cargo measurements must be versioned.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-03",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-05",
+        "BR-06",
+        "BR-14",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+      ]
+    },
+    {
+      "id": "ZSC-02",
+      "title": "Organized-company booking OTP fails or expires",
+      "given": [
+        "A booking by an organized-company or individual segment and a recorded OTP verification state.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Submit the booking with failed or expired segment-appropriate OTP evidence.",
+      "then": [
+        "Block submission progression; expose backend failed/expired state and retry path; no UI-local confirmation.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Customer Frontend for Current Project.md",
+        "00_System/API and Event Contract for Current Project.md"
+      ],
+      "requirement_tags": [
+        "booking",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "OTP validity, retry limits, account lock and authorized-company-contact rules.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-03",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-05",
+        "BR-06",
+        "BR-14",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-03",
+      "title": "Individual/unorganized customer lacks company GST/PAN",
+      "given": [
+        "An individual/unorganized customer with approved individual onboarding verification.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Submit an individual/unorganized booking without company-only fields but with the approved individual verification evidence.",
+      "then": [
+        "Use individual phone-OTP/KYC path; do not reject solely because company-only fields are absent.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "00_System/Customer Frontend for Current Project.md",
+        "00_System/API and Event Contract for Current Project.md"
+      ],
+      "requirement_tags": [
+        "booking",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Exact individual/company classification threshold and approved KYC evidence.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-03",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-05",
+        "BR-06",
+        "BR-14",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-04",
+      "title": "Origin/destination outside configured serviceable corridor",
+      "given": [
+        "A route absent from the active serviceability allowlist.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request booking confirmation on the unsupported directed lane.",
+      "then": [
+        "Do not accept an unsupported promise; return covered/alternative locations or manual evaluation.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "IMS"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md"
+      ],
+      "requirement_tags": [
+        "booking",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Launch corridor allowlist, directionality and who may expand coverage.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-03",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-05",
+        "BR-06",
+        "BR-14",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+      ]
+    },
+    {
+      "id": "ZSC-05",
+      "title": "Highest-scoring vehicle violates body, payload, volume, permit or insurance constraint",
+      "given": [
+        "A set of candidates including an economically attractive but cargo/capacity/compliance-ineligible vehicle.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request candidate ranking with the incompatible candidate ranked economically highest.",
+      "then": [
+        "Hard-filter it before ranking; high confidence or favorable economics cannot override safety eligibility.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect.",
+        "A tanker is rejected as a generic closed-body replacement; any allowed dimensional tolerance still rejects physical non-fit, irrespective of premium priority or score."
+      ],
+      "agents": [
+        "IMS",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "05_Algorithms/Matching/IMS Matching Engine.md",
+        "04_AI_Agents/Corridor Matching Agent with PydanticAI.md",
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "06_Scenarios/Customer Requests/Scenario - Electronics Need Closed Body Vehicle.md",
+        "06_Scenarios/Customer Requests/Scenario - Hazardous Material Transport.md"
+      ],
+      "requirement_tags": [
+        "eligibility",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Cargo categories, inclusive capacity boundary, dimensional checks and permit rules.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-07",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-11",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Matching/IMS%20Matching%20Engine.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Corridor%20Matching%20Agent%20with%20PydanticAI.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Electronics%20Need%20Closed%20Body%20Vehicle.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Hazardous%20Material%20Transport.md"
+      ]
+    },
+    {
+      "id": "ZSC-06",
+      "title": "Compliance record is stale or validity ends before execution",
+      "given": [
+        "A vehicle whose required compliance observation is older than the configured maximum age or has expired.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Refresh matching using the stale compliance snapshot.",
+      "then": [
+        "Treat stale compliance as ineligible until refreshed; return explicit refresh blocker, not a score penalty.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "IMS"
+      ],
+      "source_paths": [
+        "05_Algorithms/Matching/IMS Matching Engine.md"
+      ],
+      "requirement_tags": [
+        "eligibility",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "IMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Document freshness TTL and trip-horizon expiry policy; future expiry behavior is proposed refinement.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-07",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-11",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Matching/IMS%20Matching%20Engine.md"
+      ]
+    },
+    {
+      "id": "ZSC-07",
+      "title": "Lane/risk data missing or stale; model fills gaps confidently",
+      "given": [
+        "A shipment whose required lane/risk inputs are absent or beyond configured freshness.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request a routing/matching recommendation with stale or missing source observations.",
+      "then": [
+        "Require source/timestamp and lower confidence or escalate; never invent data or override a hard eligibility gate.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "IMS",
+        "TMS"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Corridor Matching Agent with PydanticAI.md"
+      ],
+      "requirement_tags": [
+        "matching",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Field-level freshness windows and confidence calibration; draft source, not established thresholds.",
+      "requirement_refs": [
+        "PRD-04",
+        "PRD-15",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-09",
+        "BR-14",
+        "BR-15",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Corridor%20Matching%20Agent%20with%20PydanticAI.md"
+      ]
+    },
+    {
+      "id": "ZSC-08",
+      "title": "Price below margin floor during normal or shortage conditions",
+      "given": [
+        "A versioned route margin policy and prices on both sides of the applicable floor.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request quote acceptance or order progression below the configured effective margin floor.",
+      "then": [
+        "Reject/hold under effective approved policy; do not invent a crisis discount or override by free text.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md"
+      ],
+      "requirement_tags": [
+        "pricing",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_conflict_requires_decision",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Select margin formula/floor, supply threshold, crisis buffer and exception authority before enablement.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-10",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-07",
+        "BR-13",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-09",
+      "title": "Full-payment button clicked or consent accepted without verified payment",
+      "given": [
+        "An unconfirmed order and no verified event satisfying its required finance gate.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request confirmation from a payment-intent event or consent event without the required verified payment event.",
+      "then": [
+        "Do not treat UI click, payment intent or ToPay consent alone as funds received; keep financial gate unresolved.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Customer Frontend for Current Project.md",
+        "04_AI_Agents/07_State_Machine.md",
+        "00_System/Zippy Logistics SOP Operating System.md"
+      ],
+      "requirement_tags": [
+        "payment",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_conflict_requires_decision",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Resolve direct CREATED→CONFIRMED SOP wording versus payment-evidenced canonical flow.",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-09",
+        "PRD-10",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-08",
+        "BR-13",
+        "BR-15",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/07_State_Machine.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+      ]
+    },
+    {
+      "id": "ZSC-10",
+      "title": "Required advance/balance fails after loading",
+      "given": [
+        "A loaded shipment with a failed payment attempt and an unpaid required departure amount.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request departure after loading while the configured required payment condition remains unsatisfied.",
+      "then": [
+        "Keep movement blocked while required payment gate is unresolved; allow backend-approved retry/fallback; reminders alone do not release movement.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "TMS"
+      ],
+      "source_paths": [
+        "00_System/Customer Frontend for Current Project.md",
+        "00_System/Driver Frontend for Current Project.md"
+      ],
+      "requirement_tags": [
+        "payment",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Advance percentage, departure-payment threshold, authorized emergency/safety movement exception.",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-09",
+        "PRD-10",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-08",
+        "BR-13",
+        "BR-15",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-11",
+      "title": "Consignee declines, times out or consent expires",
+      "given": [
+        "A ToPay order awaiting the current consignee consent.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Process the consignee denied, expired and timed-out responses as separate fixtures.",
+      "then": [
+        "Redirect responsibility to consignor with pay/cancel/hold options; do not pressure driver to depart as paid.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "00_System/API and Event Contract for Current Project.md",
+        "00_System/Customer Frontend for Current Project.md",
+        "00_System/Driver Frontend for Current Project.md"
+      ],
+      "requirement_tags": [
+        "topay",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Consent expiry, response authentication and policy for repeated denial.",
+      "requirement_refs": [
+        "PRD-09",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-08",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-12",
+      "title": "Consignor resumes a held ToPay order",
+      "given": [
+        "A ToPay order on hold with a recorded denial and prior consent attempt history.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request resume of a held ToPay case.",
+      "then": [
+        "Create a new consent request and preserve prior denial/hold history; resume only toward the next legal gate.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "00_System/API and Event Contract for Current Project.md",
+        "00_System/Customer Frontend for Current Project.md"
+      ],
+      "requirement_tags": [
+        "topay",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Which legal backend state/overlay represents hold and resume.",
+      "requirement_refs": [
+        "PRD-09",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-08",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-13",
+      "title": "A late Yes response arrives for an obsolete consent attempt",
+      "given": [
+        "A newer consent attempt or payer choice superseding an earlier attempt.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Deliver a late accepted response for an obsolete consent attempt.",
+      "then": [
+        "Reject or mark stale attempt; never overwrite a later denial/payer change or authorize the wrong payment path.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "00_System/API and Event Contract for Current Project.md",
+        "04_AI_Agents/07_State_Machine.md"
+      ],
+      "requirement_tags": [
+        "topay",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Proposed attempt_id, expires_at and current payer-version binding; not explicitly specified.",
+      "requirement_refs": [
+        "PRD-09",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-08",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/07_State_Machine.md"
+      ]
+    },
+    {
+      "id": "ZSC-14",
+      "title": "Unapproved account selects Credit or asks to extend limit",
+      "given": [
+        "A customer lacking active Credit approval, limit or due-date policy.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request Credit for an account without active approved credit policy.",
+      "then": [
+        "Hide/reject unapproved mode; show approved due date/limit only from backend policy; no agent underwriting decision.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Customer Frontend for Current Project.md",
+        "00_System/Transport Company Frontend for Current Project.md"
+      ],
+      "requirement_tags": [
+        "credit",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Credit eligibility, limits, overdue blocks and lender/legal approval remain separate business decisions.",
+      "requirement_refs": [
+        "PRD-09",
+        "PRD-10",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-08",
+        "BR-13",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Transport%20Company%20Frontend%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-15",
+      "title": "All candidates exhausted or pickup promise now infeasible",
+      "given": [
+        "A confirmed eligible shipment with no feasible candidates under allowed fallback steps.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Run the permitted matching fallback ladder to exhaustion.",
+      "then": [
+        "Record attempted fallback ladder and explicit exhaustion; escalate; propose new time/vehicle/price only with customer confirmation.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "IMS",
+        "OMS",
+        "TMS"
+      ],
+      "source_paths": [
+        "05_Algorithms/Matching/IMS Matching Engine.md",
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "06_Scenarios/Fleet Shortage/Scenario - No Own Fleet Available.md",
+        "06_Scenarios/Partner Network/Scenario - Partner Network Utilization.md"
+      ],
+      "requirement_tags": [
+        "matching",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "OMS",
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Fallback limits, radius, timeout and customer no-penalty cancellation policy.",
+      "requirement_refs": [
+        "PRD-04",
+        "PRD-15",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-09",
+        "BR-14",
+        "BR-15",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Matching/IMS%20Matching%20Engine.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20No%20Own%20Fleet%20Available.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Partner%20Network/Scenario%20-%20Partner%20Network%20Utilization.md"
+      ]
+    },
+    {
+      "id": "ZSC-16",
+      "title": "Two orders concurrently reserve the same vehicle",
+      "given": [
+        "Two eligible orders competing for one currently available vehicle.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Execute two reservation requests concurrently for the same vehicle.",
+      "then": [
+        "At most one active reservation succeeds; loser tries next candidate and records conflict; reservation is not assignment.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "IMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "05_Algorithms/Matching/IMS Matching Engine.md",
+        "00_System/Zippy Logistics SOP Operating System.md"
+      ],
+      "requirement_tags": [
+        "race",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Atomic implementation and deterministic tie rules must be tested, not assumed from prose.",
+      "requirement_refs": [
+        "PRD-03",
+        "PRD-04",
+        "PRD-05",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-05",
+        "BR-07",
+        "BR-09",
+        "BR-14",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Matching/IMS%20Matching%20Engine.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+      ]
+    },
+    {
+      "id": "ZSC-17",
+      "title": "Driver acknowledges at/after reservation expiry while replacement is accepted",
+      "given": [
+        "A vehicle reservation that expired and a later valid replacement assignment.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Process a late acknowledgment after lease expiry and a successful replacement reservation.",
+      "then": [
+        "Expired acceptance must not resurrect the lease or displace newer assignment; at most one committed vehicle/driver pair.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "IMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "05_Algorithms/Matching/IMS Matching Engine.md",
+        "00_System/Zippy Logistics SOP Operating System.md"
+      ],
+      "requirement_tags": [
+        "race",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Proposed authoritative-clock boundary and reservation-version fencing; inclusive/exclusive expiry needs decision.",
+      "requirement_refs": [
+        "PRD-03",
+        "PRD-04",
+        "PRD-05",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-05",
+        "BR-07",
+        "BR-09",
+        "BR-14",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Matching/IMS%20Matching%20Engine.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+      ]
+    },
+    {
+      "id": "ZSC-18",
+      "title": "Assigned driver accepts but does not move, is unreachable or unavailable",
+      "given": [
+        "An assigned trip with no observed movement or a confirmed unavailable driver.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Fire the configured no-movement/unreachable timer or verified unavailability event.",
+      "then": [
+        "Expose timeout risk; verify situation; route backup-driver/pair workflow and revised ETA; retain incident and original assignment evidence.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "TMS",
+        "IMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Driver Frontend for Current Project.md",
+        "06_Scenarios/Fleet Shortage/Scenario - Driver Unavailable.md",
+        "02_Sources/driver_app_verification_harness_alignment_source.md"
+      ],
+      "requirement_tags": [
+        "no-show",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "TMS",
+      "evidence_producers": [
+        "IMS",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "5m reservation, 10m offer acceptance and 15m movement are distinct/conflicting timers needing canonical definition.",
+      "requirement_refs": [
+        "PRD-11",
+        "PRD-15",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-09",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20Driver%20Unavailable.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/02_Sources/driver_app_verification_harness_alignment_source.md"
+      ]
+    },
+    {
+      "id": "ZSC-19",
+      "title": "Offline acceptance reconnects after server assigned vehicle elsewhere",
+      "given": [
+        "A queued offline acceptance and a different authoritative assignment on reconnect.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Sync the old offline acceptance after the server assignment changed.",
+      "then": [
+        "Show conflict, refresh authoritative assignment and do not claim success; local evidence may queue but assignment cannot.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "IMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Transport Company Frontend for Current Project.md",
+        "02_Sources/transport_app_harness_engineering_alignment_source.md",
+        "00_System/Driver Frontend for Current Project.md"
+      ],
+      "requirement_tags": [
+        "offline",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Conflict response format and whether user may re-submit for new offer.",
+      "requirement_refs": [
+        "PRD-05",
+        "PRD-06",
+        "PRD-12",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-09",
+        "BR-10",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Transport%20Company%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/02_Sources/transport_app_harness_engineering_alignment_source.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-20",
+      "title": "Pre-pickup no-show or mid-trip breakdown needs reassignment",
+      "given": [
+        "A no-show or breakdown requiring a new execution resource while the original order is not terminal.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request a replacement driver or vehicle through recovery workflow.",
+      "then": [
+        "Use controlled replacement workflow without illegal backward state transition; retain original and new trip/custody links.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "TMS",
+        "IMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Fleet Shortage/Scenario - Driver Unavailable.md",
+        "06_Scenarios/Fleet Shortage/Scenario - Vehicle Breakdown Mid-Route.md",
+        "04_AI_Agents/07_State_Machine.md",
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md"
+      ],
+      "requirement_tags": [
+        "recovery",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_conflict_requires_decision",
+      "business_owner": "TMS",
+      "evidence_producers": [
+        "IMS",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Current locked graph lacks explicit reassignment/recovery transitions; decide separate trip assignment events versus graph extension.",
+      "requirement_refs": [
+        "PRD-11",
+        "PRD-15",
+        "PRD-19",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-09",
+        "BR-12",
+        "BR-14",
+        "BR-15",
+        "BR-16",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20Driver%20Unavailable.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20Vehicle%20Breakdown%20Mid-Route.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/07_State_Machine.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-21",
+      "title": "Customer cancels before dispatch versus after vehicle travels",
+      "given": [
+        "An order in each allowed cancellation stage, with recorded assignment and travel evidence.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request cancellation in separate before-dispatch and after-dispatch fixtures.",
+      "then": [
+        "Apply only approved stage-based policy; display fee before commitment; release resource and initiate authorized refund workflow, not automatic invented amount.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "FINANCE_COMPLIANCE",
+        "TMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Customer Requests/Scenario - Customer Cancels Order.md",
+        "00_System/Transport Company Frontend for Current Project.md",
+        "02_Sources/transport_app_harness_engineering_alignment_source.md"
+      ],
+      "requirement_tags": [
+        "cancellation",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_conflict_requires_decision",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE",
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Fee formula, grace window, dispatch evidence, return cost, payer and approval path missing/contradictory.",
+      "requirement_refs": [
+        "PRD-03",
+        "PRD-11",
+        "PRD-19",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-05",
+        "BR-12",
+        "BR-14",
+        "BR-15",
+        "BR-16",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Customer%20Cancels%20Order.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Transport%20Company%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/02_Sources/transport_app_harness_engineering_alignment_source.md"
+      ]
+    },
+    {
+      "id": "ZSC-22",
+      "title": "Cancellation races with acceptance, pickup or payment callback",
+      "given": [
+        "An eligible live order and competing cancellation/commitment events.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Run cancellation concurrently with acceptance, pickup and payment callback in separate fixtures.",
+      "then": [
+        "One linearized outcome; losing action receives authoritative state; no orphaned reservation, duplicate refund or post-cancel dispatch.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/07_State_Machine.md",
+        "00_System/Async Event and Worker Orchestration for Current Project.md",
+        "00_System/Testing and Verification Strategy for Current Project.md",
+        "06_Scenarios/Customer Requests/Scenario - Customer Cancels Order.md"
+      ],
+      "requirement_tags": [
+        "race",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Proposed concurrency acceptance criterion; exact winner rule and cancellation cutoff must be approved.",
+      "requirement_refs": [
+        "PRD-03",
+        "PRD-04",
+        "PRD-05",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-05",
+        "BR-07",
+        "BR-09",
+        "BR-14",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/07_State_Machine.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Async%20Event%20and%20Worker%20Orchestration%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Testing%20and%20Verification%20Strategy%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Customer%20Cancels%20Order.md"
+      ]
+    },
+    {
+      "id": "ZSC-23",
+      "title": "Same-day/Express request cannot meet feasible lane, driver or vehicle constraints",
+      "given": [
+        "An urgent request with a known infeasible promise/capacity constraint.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request an Express/same-day confirmation when the feasibility gate fails.",
+      "then": [
+        "Do not sell unsupported service; offer explicit alternative or escalate; never silently reduce buffer or rewrite promise.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Customer Requests/Scenario - Same Day Delivery.md",
+        "00_System/Driver Frontend for Current Project.md",
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md"
+      ],
+      "requirement_tags": [
+        "promise",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Express eligibility and premium/refund policy; no unconditional guaranteed return-load promise.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-12",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-10",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Same%20Day%20Delivery.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-24",
+      "title": "Mandatory E-way bill missing/expired or NIC portal down",
+      "given": [
+        "A shipment for which the approved compliance policy makes the missing/expired document mandatory.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request dispatch with a missing/expired mandatory document and with a reported issuing-system outage.",
+      "then": [
+        "Safe proposed default is block dispatch and escalate; do not adopt documented outage exception until compliance owner resolves conflict.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE",
+        "TMS"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "06_Scenarios/Compliance/Scenario - E-way Bill Expiry During Transit.md"
+      ],
+      "requirement_tags": [
+        "compliance",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_conflict_requires_decision",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE",
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "SOP-005/018 allow 24h post-dispatch production but SOP-014 says mandatory E-way bill is non-overridable; legal review required.",
+      "requirement_refs": [
+        "PRD-07",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-11",
+        "BR-14",
+        "BR-15",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Compliance/Scenario%20-%20E-way%20Bill%20Expiry%20During%20Transit.md"
+      ]
+    },
+    {
+      "id": "ZSC-25",
+      "title": "Documents, actual cargo, assigned vehicle or pickup evidence mismatch",
+      "given": [
+        "A pickup with a mismatch between order, document, actual cargo, vehicle or evidence metadata.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request departure when document, cargo, assigned vehicle or pickup evidence disagrees.",
+      "then": [
+        "Flag exact discrepancy; hold document/departure gate until corrected or permitted reviewed exception; preserve evidence versions.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "TMS"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "06_Scenarios/Customer Requests/Scenario - Fragile Cargo Handling Required.md"
+      ],
+      "requirement_tags": [
+        "pickup",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Tolerance, geofence, scan freshness and replacement-vehicle document process.",
+      "requirement_refs": [
+        "PRD-07",
+        "PRD-12",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-10",
+        "BR-11",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Fragile%20Cargo%20Handling%20Required.md"
+      ]
+    },
+    {
+      "id": "ZSC-26",
+      "title": "Phone GPS disagrees with VTU or telemetry is absent",
+      "given": [
+        "A live trip with contradictory or absent trusted location observations.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Submit contradictory phone/VTU observations or stale/missing telemetry.",
+      "then": [
+        "Surface integrity warning and policy-selected source of truth; investigate/reconcile; do not infer guilt or completed milestones from uncertain telemetry.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "TMS",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "00_System/Driver Frontend for Current Project.md",
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md",
+        "00_System/Zippy Logistics SOP Operating System.md"
+      ],
+      "requirement_tags": [
+        "telemetry",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "TMS",
+      "evidence_producers": [
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Authoritative source hierarchy, acceptable drift and offline stale threshold.",
+      "requirement_refs": [
+        "PRD-12",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-10",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+      ]
+    },
+    {
+      "id": "ZSC-27",
+      "title": "Long halt, deviation, speeding, flood/protest or accident",
+      "given": [
+        "A live shipment exposed to a safety incident or route disruption.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Raise a configured safety/disruption alert while a live shipment is underway.",
+      "then": [
+        "Prioritize safe stop/contact/emergency escalation; update ETA and incidents; do not optimize SLA by unsafe travel.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "TMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "06_Scenarios/Disruptions/Scenario - Natural Disaster Impact.md",
+        "06_Scenarios/Disruptions/Scenario - Route Blocked Due to Protests.md"
+      ],
+      "requirement_tags": [
+        "safety",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "TMS",
+      "evidence_producers": [
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Alert thresholds are documented SOP values, not independently validated regulatory limits.",
+      "requirement_refs": [
+        "PRD-11",
+        "PRD-12",
+        "PRD-18",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-10",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Natural%20Disaster%20Impact.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Route%20Blocked%20Due%20to%20Protests.md"
+      ]
+    },
+    {
+      "id": "ZSC-28",
+      "title": "Breakdown requires cargo transfer to another vehicle",
+      "given": [
+        "A breakdown event with known cargo/driver location and repair/transfer options.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request breakdown recovery with repair and cargo-transfer branches.",
+      "then": [
+        "Assess safety/repair versus transfer; coordinate replacement and custody evidence; notify revised timeline; preserve claim and incident trail.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "TMS",
+        "IMS",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "06_Scenarios/Fleet Shortage/Scenario - Vehicle Breakdown Mid-Route.md",
+        "00_System/Zippy Logistics SOP Operating System.md"
+      ],
+      "requirement_tags": [
+        "recovery",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "TMS",
+      "evidence_producers": [
+        "IMS",
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Transfer authorization, manifest chain, seals, cargo condition and split costs need executable policy.",
+      "requirement_refs": [
+        "PRD-11",
+        "PRD-15",
+        "PRD-19",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-09",
+        "BR-12",
+        "BR-14",
+        "BR-15",
+        "BR-16",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20Vehicle%20Breakdown%20Mid-Route.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+      ]
+    },
+    {
+      "id": "ZSC-29",
+      "title": "Combined load exceeds capacity or one pickup/stop evidence is missing",
+      "given": [
+        "A multi-stop shipment with capacity and required stop evidence defined.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Attempt pickup/completion with combined capacity exceeded or one required stop event absent.",
+      "then": [
+        "Check cumulative capacity, time windows and per-stop completion; do not infer full order completion from one stop.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "TMS",
+        "IMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Customer Requests/Scenario - Multiple Pickup Points.md"
+      ],
+      "requirement_tags": [
+        "multi-stop",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "TMS",
+      "evidence_producers": [
+        "IMS",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "MVP inclusion, partial pickup/delivery state semantics and per-stop settlement policy.",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-04",
+        "PRD-19",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-09",
+        "BR-12",
+        "BR-16",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Multiple%20Pickup%20Points.md"
+      ]
+    },
+    {
+      "id": "ZSC-30",
+      "title": "POD photo poor, recipient absent/refuses, location/time mismatch",
+      "given": [
+        "A delivery-evidence submission with deficient quality, location, timing or recipient acknowledgment.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Submit poor-quality, wrong-location or disputed POD evidence.",
+      "then": [
+        "Request re-upload or controlled alternative-evidence review; preserve raw claim and do not make delivery fully evidenced automatically.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "TMS"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "06_Scenarios/Admin Escalations/Scenario - Delayed POD Submission.md"
+      ],
+      "requirement_tags": [
+        "pod",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Evidence quality, geofence/time tolerance, authorized verifier and alternate-recipient policy.",
+      "requirement_refs": [
+        "PRD-07",
+        "PRD-08",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-11",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Delayed%20POD%20Submission.md"
+      ]
+    },
+    {
+      "id": "ZSC-31",
+      "title": "OTP missing, incorrect repeatedly or consignee unavailable",
+      "given": [
+        "A delivery requiring OTP verification and no valid successful verification.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Verify delivery with absent, expired or repeatedly incorrect consignee OTP.",
+      "then": [
+        "Keep evidence/settlement gate closed; use recorded resend/lock and manual review flow, not silent bypass.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect.",
+        "Alternate recipient evidence remains disabled by default; an exception needs the separately approved DEC-11 policy, required evidence and scoped human approval, never a generic bypass."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "00_System/API and Event Contract for Current Project.md",
+        "06_Scenarios/Admin Escalations/Scenario - Delayed POD Submission.md"
+      ],
+      "requirement_tags": [
+        "pod",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_conflict_requires_decision",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "SOP describes 3 resend/incorrect attempts and dual-supervisor exception; canonical allowed exception and separation of roles unresolved.",
+      "requirement_refs": [
+        "PRD-07",
+        "PRD-08",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-11",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Delayed%20POD%20Submission.md"
+      ]
+    },
+    {
+      "id": "ZSC-32",
+      "title": "OCR says delivered but authenticity/OTP/verification incomplete",
+      "given": [
+        "OCR-extracted POD text but incomplete independent authenticity/recipient checks.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Submit an OCR success classification without the required authenticity and OTP verification.",
+      "then": [
+        "No OCR-only revenue recognition or payout; require authentic evidence, authorized verification and all financial gates.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md",
+        "04_AI_Agents/Payment Settlement Agent.md",
+        "04_AI_Agents/Accounting Policy Engine for Broker Model.md",
+        "06_Scenarios/Admin Escalations/Scenario - Delayed POD Submission.md"
+      ],
+      "requirement_tags": [
+        "pod",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "OCR confidence never substitutes for identity or delivery evidence.",
+      "requirement_refs": [
+        "PRD-07",
+        "PRD-08",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-11",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Payment%20Settlement%20Agent.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Accounting%20Policy%20Engine%20for%20Broker%20Model.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Delayed%20POD%20Submission.md"
+      ]
+    },
+    {
+      "id": "ZSC-33",
+      "title": "Offline POD captured then re-synced repeatedly/out of order",
+      "given": [
+        "An offline evidence item and an authoritative backend lifecycle.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Sync the same offline POD repeatedly and then deliver an older completion message.",
+      "then": [
+        "Show local pending evidence; backend accepts/rejects against authoritative state; replay creates no duplicate POD decision, completion or payout.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "TMS"
+      ],
+      "source_paths": [
+        "00_System/Driver Frontend for Current Project.md",
+        "00_System/Async Event and Worker Orchestration for Current Project.md",
+        "06_Scenarios/Admin Escalations/Scenario - Delayed POD Submission.md"
+      ],
+      "requirement_tags": [
+        "offline",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Capture versus upload timestamp, evidence deduplication and conflict retention.",
+      "requirement_refs": [
+        "PRD-05",
+        "PRD-06",
+        "PRD-12",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-09",
+        "BR-10",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Async%20Event%20and%20Worker%20Orchestration%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Delayed%20POD%20Submission.md"
+      ]
+    },
+    {
+      "id": "ZSC-34",
+      "title": "Non-delivery, forgery, damage or partial delivery claim",
+      "given": [
+        "A disputed delivery with original POD, trip evidence and financial exposure.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Process a non-delivery, damage, forgery or partial-delivery dispute.",
+      "then": [
+        "Open case and preserve evidence; DISPUTE recommends but does not close/refund; apply dispute hold and route lawful human/workflow decision.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "VERIFICATION",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md"
+      ],
+      "requirement_tags": [
+        "dispute",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "VERIFICATION",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Refund formula, approval tiers, partial payout and who bears loss; ₹5,000 threshold not adopted by this audit.",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md"
+      ]
+    },
+    {
+      "id": "ZSC-35",
+      "title": "Amount mismatch, duplicate payment or ToPay still uncollected after POD",
+      "given": [
+        "A delivered shipment with payment amount or collection status unresolved.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Process a payment mismatch, duplicate payment or still-uncollected ToPay obligation after delivery.",
+      "then": [
+        "Keep mismatched amount in review and payout blocked; invoice sent/POD uploaded is not payment success.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md",
+        "00_System/Customer Frontend for Current Project.md",
+        "00_System/Driver Frontend for Current Project.md",
+        "06_Scenarios/Admin Escalations/Scenario - Payment Dispute.md"
+      ],
+      "requirement_tags": [
+        "payment",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Exact matching tolerances, overpayment handling, partial release and approved credit exceptions.",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-09",
+        "PRD-10",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-08",
+        "BR-13",
+        "BR-15",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Customer%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Payment%20Dispute.md"
+      ]
+    },
+    {
+      "id": "ZSC-36",
+      "title": "Refund API times out with uncertain outcome; same request retried",
+      "given": [
+        "An authorized refund request whose provider outcome is unknown after a timeout.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Retry a refund after the payment provider timed out without a confirmed result.",
+      "then": [
+        "Reconcile provider status using stable refund identity before retry; at most one refund and journal reversal; remain pending when unknown.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "00_System/Async Event and Worker Orchestration for Current Project.md",
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "06_Scenarios/Customer Requests/Scenario - Customer Cancels Order.md"
+      ],
+      "requirement_tags": [
+        "refund",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Proposed uncertain-outcome protocol; provider idempotency key and reconciliation SLA required.",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-10",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Async%20Event%20and%20Worker%20Orchestration%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Customer%20Cancels%20Order.md"
+      ]
+    },
+    {
+      "id": "ZSC-37",
+      "title": "Multiple simultaneous fraud, damage, payment or compliance holds; one is cleared",
+      "given": [
+        "An order with independent active holds for different blocking reasons.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Clear one of several active holds using evidence that resolves only that reason.",
+      "then": [
+        "Release only the resolved hold with evidence; remaining holds continue blocking payout; no blanket release from single approval.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "VERIFICATION",
+        "OMS"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md",
+        "04_AI_Agents/Payment Settlement Agent.md",
+        "00_System/Zippy Logistics SOP Operating System.md"
+      ],
+      "requirement_tags": [
+        "hold",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "VERIFICATION",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Independent hold IDs, owner, reason and evidence required; blanket 'release all holds' SOP wording must be constrained.",
+      "requirement_refs": [
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Payment%20Settlement%20Agent.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md"
+      ]
+    },
+    {
+      "id": "ZSC-38",
+      "title": "Provider account changes, beneficiary mismatch or new bank account",
+      "given": [
+        "A provider whose current payout destination differs from prior verified beneficiary evidence.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request payout following a bank-account change or beneficiary-name mismatch.",
+      "then": [
+        "Freeze/escalate payment path until beneficiary verification completes; do not reuse old approval for new bank details.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md",
+        "04_AI_Agents/Payment Settlement Agent.md"
+      ],
+      "requirement_tags": [
+        "bank",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Verification method, cooling period and approver separation.",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Payment%20Settlement%20Agent.md"
+      ]
+    },
+    {
+      "id": "ZSC-39",
+      "title": "Customer paid, but collection/custody/disbursement path is unknown or unapproved",
+      "given": [
+        "A transaction with unidentified funds holder or unapproved payout path.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request settlement when custody or disbursement authority is unknown/unapproved.",
+      "then": [
+        "Record obligation separately from custody; prohibit payout release until approved path and funds holder are identified.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect.",
+        "Collector, actual custodian, approved custody-path ID/policy and partner-versus-platform executor are explicit; unknown/unapproved custody blocks payout despite apparent collection."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Payment Settlement Agent.md",
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md"
+      ],
+      "requirement_tags": [
+        "custody",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Regulated partner/legal approval is not established by repo provider-capability descriptions.",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-10",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13",
+        "BR-15",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Payment%20Settlement%20Agent.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md"
+      ]
+    },
+    {
+      "id": "ZSC-40",
+      "title": "Gross freight posted as revenue, unclear supplier role or nonreconciling split",
+      "given": [
+        "A standard broker-model fixture with expected balanced collection, payable, fee and tax components.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request financial posting with gross-freight revenue or a nonreconciling split.",
+      "then": [
+        "Hold posting/settlement; standard broker revenue limited to commission/platform fee after verified POD+OTP and cleared holds.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Accounting Policy Engine for Broker Model.md",
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md"
+      ],
+      "requirement_tags": [
+        "accounting",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Principal/agent accounting classification, GST basis and example arithmetic require owner review.",
+      "requirement_refs": [
+        "PRD-10",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Accounting%20Policy%20Engine%20for%20Broker%20Model.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md"
+      ]
+    },
+    {
+      "id": "ZSC-41",
+      "title": "POD+bank verified but no human approval or other gates remain",
+      "given": [
+        "A delivered order with at least one required approval or payment/verification/custody gate absent.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request payout using only POD and bank verification, with human approval or another gate missing.",
+      "then": [
+        "Do not use abbreviated auto-payout row as complete authorization; require full gate evaluation and selected human approval mode.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "VERIFICATION"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md",
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "04_AI_Agents/Payment Settlement Agent.md"
+      ],
+      "requirement_tags": [
+        "payout",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_conflict_requires_decision",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "VERIFICATION"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Resolve auto payout versus finance_admin/super_admin approval; approved five-agent deployment must not erase human authority.",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Payment%20Settlement%20Agent.md"
+      ]
+    },
+    {
+      "id": "ZSC-42",
+      "title": "Settlement fails after record creation but before journal/invoice/outbox completion",
+      "given": [
+        "A settlement fixture with all approved prerequisites, mock provider and failure injection.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Inject failure at each settlement record/journal/invoice/outbox commit boundary and replay the same request.",
+      "then": [
+        "No externally reported success on partial commit; transaction rollback or explicit recoverable pending state; replay yields one consistent outcome.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "00_System/Async Event and Worker Orchestration for Current Project.md"
+      ],
+      "requirement_tags": [
+        "atomicity",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Proposed atomic settlement aggregate, provider-side saga/reconciliation and success semantics.",
+      "requirement_refs": [
+        "PRD-04",
+        "PRD-06",
+        "PRD-08",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-09",
+        "BR-13",
+        "BR-15",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Async%20Event%20and%20Worker%20Orchestration%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-43",
+      "title": "Duplicate event delivery, retry exhaustion or DLQ replay",
+      "given": [
+        "A durable event already partially or fully processed, with stable consumer identity.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Deliver duplicates, exhaust retry policy and replay the dead-letter record.",
+      "then": [
+        "No duplicate assignment/payment/invoice/notification/state mutation; visible failure bucket with reason, retry count and replay audit.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "00_System/Async Event and Worker Orchestration for Current Project.md",
+        "00_System/Testing and Verification Strategy for Current Project.md"
+      ],
+      "requirement_tags": [
+        "replay",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Per-consumer idempotency retention, retry limits, ordering and who can replay.",
+      "requirement_refs": [
+        "PRD-05",
+        "PRD-06",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-09",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Async%20Event%20and%20Worker%20Orchestration%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Testing%20and%20Verification%20Strategy%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-44",
+      "title": "Customer/driver/company/agent requests another tenant's order, evidence or financial entity by ID",
+      "given": [
+        "Two distinct tenant/party contexts with unrelated orders, evidence and financial records.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Read and mutate an unrelated party's order/evidence/payment using a valid actor session but guessed entity IDs.",
+      "then": [
+        "Deny regardless of guessed ID, role claim or retrieved context; no cross-tenant data in response, logs, prompts or memory.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "00_System/Role and Permission Matrix for Current Project.md",
+        "supabase/migrations/20260101000001_rls_policies.sql",
+        "05_Algorithms/Matching/IMS Matching Engine.md"
+      ],
+      "requirement_tags": [
+        "tenancy",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "RLS shows relationship scope, not proof of end-to-end tenant-bound agent calls; define tenant/party context and service-role enforcement.",
+      "requirement_refs": [
+        "PRD-14",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Role%20and%20Permission%20Matrix%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/supabase/migrations/20260101000001_rls_policies.sql",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Matching/IMS%20Matching%20Engine.md"
+      ]
+    },
+    {
+      "id": "ZSC-45",
+      "title": "Transport company switches between hirer and provider, or salaried driver invokes owner action",
+      "given": [
+        "A dual-role company and a salaried driver with explicitly scoped permissions.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Switch company role context and attempt salaried-driver owner-only action in separate fixtures.",
+      "then": [
+        "Maintain separate role-context permissions/ledgers; single inventory pool; block unauthorized action; no UI-only access control.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "00_System/Transport Company Frontend for Current Project.md",
+        "00_System/Driver Frontend for Current Project.md",
+        "00_System/Role and Permission Matrix for Current Project.md",
+        "06_Scenarios/Partner Network/Scenario - Partner Network Utilization.md"
+      ],
+      "requirement_tags": [
+        "role",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "MVP transport-company scope conflicts with expanded current frontend; decide launch participation.",
+      "requirement_refs": [
+        "PRD-14",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Transport%20Company%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Driver%20Frontend%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Role%20and%20Permission%20Matrix%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Partner%20Network/Scenario%20-%20Partner%20Network%20Utilization.md"
+      ]
+    },
+    {
+      "id": "ZSC-46",
+      "title": "Same principal proposes and approves own high-risk exception, or stale approval reused after price/payee/evidence changes",
+      "given": [
+        "A high-risk proposal with maker/checker requirements, or an approval whose scoped values later changed.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Approve one's own high-risk proposal or replay an old approval after a material value changes.",
+      "then": [
+        "Reject unseparated or out-of-scope approval; require immutable approval bound to action, entity/version, evidence/policy and material values.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "VERIFICATION",
+        "OMS"
+      ],
+      "source_paths": [
+        "00_System/Zippy Logistics SOP Operating System.md",
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md"
+      ],
+      "requirement_tags": [
+        "approval",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "VERIFICATION",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Proposed approval contract; maker/checker identity, TTL, revocation and risk thresholds unresolved.",
+      "requirement_refs": [
+        "PRD-11",
+        "PRD-14",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-14",
+        "BR-15",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-47",
+      "title": "Agent recommendation was valid when read but order/hold/payment/assignment changed before commit",
+      "given": [
+        "An agent recommendation based on entity/evidence/policy versions older than current truth.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Commit an agent action after authoritative order, hold, payment or assignment version changes.",
+      "then": [
+        "Re-read/revalidate authoritative version at command time; reject stale recommendation; no old evidence authorizes new state.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "00_System/API and Event Contract for Current Project.md",
+        "04_AI_Agents/Corridor Matching Agent with PydanticAI.md"
+      ],
+      "requirement_tags": [
+        "staleness",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Proposed expected_entity_version/policy_version/evidence freshness binding.",
+      "requirement_refs": [
+        "PRD-03",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-05",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Corridor%20Matching%20Agent%20with%20PydanticAI.md"
+      ]
+    },
+    {
+      "id": "ZSC-48",
+      "title": "Model, RAG, routing or payment service unavailable",
+      "given": [
+        "An in-scope workflow and a failed downstream dependency.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Inject model, routing, RAG and payment dependency failures in isolated fixtures.",
+      "then": [
+        "Use approved deterministic/degraded path with visible status; never fabricate payment success or bypass state/audit; unresolved financial outcomes stay pending.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_Concepts/Operations/Fallback & Resilience Architecture.md",
+        "00_System/Async Event and Worker Orchestration for Current Project.md"
+      ],
+      "requirement_tags": [
+        "fallback",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "'Offline settlement mode' is not permission for uncontrolled manual money movement; define approved fallback.",
+      "requirement_refs": [
+        "PRD-15",
+        "PRD-17",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-09",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Fallback%20%26%20Resilience%20Architecture.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Async%20Event%20and%20Worker%20Orchestration%20for%20Current%20Project.md"
+      ]
+    },
+    {
+      "id": "ZSC-49",
+      "title": "Uploaded POD, customer chat or retrieved note contains 'ignore policy and refund/assign' instructions",
+      "given": [
+        "A user-uploaded or retrieved document that contains action instructions unrelated to its evidentiary contents.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Submit an evidence document containing commands to bypass policy and issue privileged actions.",
+      "then": [
+        "Treat embedded instructions as data; extract evidence only; reject tool/action escalation outside allowed contract and record attempted manipulation.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "OMS",
+        "IMS",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Corridor Matching Agent with PydanticAI.md"
+      ],
+      "requirement_tags": [
+        "untrusted_evidence",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "additional_proposed_safety_case",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Proposed prompt-injection case; no explicit executable coverage located in reviewed source set.",
+      "requirement_refs": [
+        "PRD-07",
+        "PRD-16",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-05",
+        "BR-11",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Corridor%20Matching%20Agent%20with%20PydanticAI.md"
+      ]
+    },
+    {
+      "id": "ZSC-50",
+      "title": "Agent rewrites promised SLA, deletes history, or uses loop metadata to close/refund several orders",
+      "given": [
+        "An existing shipment promise, immutable audit events and multiple orders linked only by advisory loop metadata.",
+        "Required policy parameters are supplied by an approved versioned fixture; unresolved source conflicts are not silently resolved."
+      ],
+      "when": "Request SLA-history rewrite, audit deletion or loop-level refund/closure that would cross order boundaries.",
+      "then": [
+        "Block direct state/history/commercial rewrite; preserve original promise; per-order settlement/refund and auditable approved correction only.",
+        "Any accepted business mutation is persisted through the deterministic command gateway with actor, trace, idempotency and evidence references; rejected commands do not perform the prohibited side effect."
+      ],
+      "agents": [
+        "OMS",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "00_System/Testing and Verification Strategy for Current Project.md",
+        "06_Scenarios/Disruptions/Scenario - Route Blocked Due to Protests.md"
+      ],
+      "requirement_tags": [
+        "audit_and_promise",
+        "bounded_agency",
+        "auditable_backend_truth"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "Immutable event/audit enforcement and correction workflow must be verified, not assumed.",
+      "requirement_refs": [
+        "PRD-06",
+        "PRD-12",
+        "PRD-19",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-10",
+        "BR-12",
+        "BR-16",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Testing%20and%20Verification%20Strategy%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Route%20Blocked%20Due%20to%20Protests.md"
+      ]
+    },
+    {
+      "id": "ZSC-51",
+      "title": "Customer escalation with legal or reputation risk",
+      "given": [
+        "A complaint has been escalated beyond normal support, including a possible legal threat."
+      ],
+      "when": "Classify and route the escalation.",
+      "then": [
+        "Create a traceable case and assign the configured authorized human handler.",
+        "Preserve facts and original communications; do not make admissions, settlement promises or refunds without the required authority.",
+        "Surface response SLA from approved policy rather than inventing a deadline.",
+        "A critical internal alert has a named acknowledgement owner and approved deadline; non-acknowledgement escalates even if a notification was delivered."
+      ],
+      "agents": [
+        "OMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "06_Scenarios/Admin Escalations/Scenario - Customer Escalation.md"
+      ],
+      "requirement_tags": [
+        "escalation",
+        "human_approval"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-11",
+        "PRD-18",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Customer%20Escalation.md"
+      ]
+    },
+    {
+      "id": "ZSC-52",
+      "title": "Standard Chennai-to-Trichy equipment booking reaches a feasible quote",
+      "given": [
+        "A shipment fixture uses the source example: industrial equipment, requested 20-ft truck, declared 2.5-ton load, Chennai to Trichy.",
+        "The active serviceability, dimensions, vehicle capacities and customer policy approve this fixture."
+      ],
+      "when": "Evaluate quote and matching candidates.",
+      "then": [
+        "Use direction-specific approved lane and vehicle compatibility data, not the example's approximate distance as live truth.",
+        "Return an auditable quote and feasible candidates; do not confirm assignment before payment, reservation and acceptance gates."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "06_Scenarios/Customer Requests/Scenario - Need 20 ft Truck Chennai to Trichy.md"
+      ],
+      "requirement_tags": [
+        "booking",
+        "happy_path",
+        "cargo_compatibility"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-01",
+        "PRD-02",
+        "PRD-03",
+        "PRD-04",
+        "PRD-07",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-04",
+        "BR-05",
+        "BR-06",
+        "BR-09",
+        "BR-11",
+        "BR-14",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Need%2020%20ft%20Truck%20Chennai%20to%20Trichy.md"
+      ]
+    },
+    {
+      "id": "ZSC-53",
+      "title": "Fuel shortage does not silently reprice a confirmed order",
+      "given": [
+        "An active shipment is affected by a reported fuel shortage and revised route/fuel information."
+      ],
+      "when": "Assess available fuel, route feasibility and cost impact.",
+      "then": [
+        "Identify affected shipments and produce safe route/stop or assistance recommendations.",
+        "Record revised ETA and operational risk.",
+        "Any commercial adjustment follows approved pricing and customer-consent rules; a fuel-shortage note cannot authorize changing an accepted quote."
+      ],
+      "agents": [
+        "TMS",
+        "IMS",
+        "OMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "06_Scenarios/Disruptions/Scenario - Fuel Shortage Crisis.md"
+      ],
+      "requirement_tags": [
+        "fuel_shortage",
+        "promise_integrity",
+        "commercial_approval"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "TMS",
+      "evidence_producers": [
+        "IMS",
+        "OMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-11",
+        "PRD-12",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-10",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Fuel%20Shortage%20Crisis.md"
+      ]
+    },
+    {
+      "id": "ZSC-54",
+      "title": "Driver strike requires feasibility recheck without automatic legal declaration",
+      "given": [
+        "A verified disruption affects driver supply on configured lanes."
+      ],
+      "when": "Re-evaluate affected orders and approved partner fallback.",
+      "then": [
+        "Identify affected orders, rank feasible alternatives and surface revised timing.",
+        "Do not assign unqualified replacement capacity or silently cancel other customers' work.",
+        "Treat force-majeure invocation as human/legal review, not autonomous agent authority."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "06_Scenarios/Disruptions/Scenario - Driver Strike.md"
+      ],
+      "requirement_tags": [
+        "supply_disruption",
+        "human_approval"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "OMS",
+      "evidence_producers": [
+        "IMS",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-04",
+        "PRD-11",
+        "PRD-15",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-09",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Disruptions/Scenario%20-%20Driver%20Strike.md"
+      ]
+    },
+    {
+      "id": "ZSC-55",
+      "title": "Partner excess capacity is permission-scoped supply, not an assignment",
+      "given": [
+        "An approved partner reports excess capacity with current location, timing, compatibility and commercial terms."
+      ],
+      "when": "Evaluate that capacity against permitted open demand.",
+      "then": [
+        "Check agreement/data-sharing scope, compliance validity and actual availability.",
+        "Produce eligible candidate recommendations; reserve atomically only through approved flow.",
+        "Do not share unrelated customer details or commit commercial terms solely from a partner's message."
+      ],
+      "agents": [
+        "IMS",
+        "VERIFICATION",
+        "OMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "06_Scenarios/Fleet Shortage/Scenario - Excess Capacity from Partner.md",
+        "06_Scenarios/Partner Network/Scenario - Partner Network Utilization.md"
+      ],
+      "requirement_tags": [
+        "partner_capacity",
+        "tenancy",
+        "reservation"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "VERIFICATION",
+        "OMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-04",
+        "PRD-14",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-09",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Fleet%20Shortage/Scenario%20-%20Excess%20Capacity%20from%20Partner.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Partner%20Network/Scenario%20-%20Partner%20Network%20Utilization.md"
+      ]
+    },
+    {
+      "id": "ZSC-56",
+      "title": "Partner failure after acceptance produces governed recovery",
+      "given": [
+        "An accepted partner reports refusal, no-show or breakdown, with cargo either not collected or already in custody."
+      ],
+      "when": "Raise the failure and request recovery.",
+      "then": [
+        "Record failure type, cargo location and custody state.",
+        "Use approved replacement workflow and preserve the original acceptance and incident history.",
+        "Route performance/suspension or compensation decisions to the authorized human/policy path; do not autonomously blacklist."
+      ],
+      "agents": [
+        "TMS",
+        "IMS",
+        "VERIFICATION",
+        "OMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "06_Scenarios/Partner Network/Scenario - Partner Transporter Failure.md"
+      ],
+      "requirement_tags": [
+        "partner_failure",
+        "custody",
+        "human_approval"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "TMS",
+      "evidence_producers": [
+        "IMS",
+        "VERIFICATION",
+        "OMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-10",
+        "PRD-11",
+        "PRD-15",
+        "PRD-19",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-09",
+        "BR-12",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-16",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Partner%20Network/Scenario%20-%20Partner%20Transporter%20Failure.md"
+      ]
+    },
+    {
+      "id": "ZSC-57",
+      "title": "Temperature-sensitive cargo needs explicit range and monitoring",
+      "given": [
+        "A shipment declares temperature sensitivity, but its approved temperature range or qualified vehicle/monitoring evidence is absent."
+      ],
+      "when": "Evaluate eligibility and departure readiness.",
+      "then": [
+        "Block readiness until required cargo-specific range, vehicle capability and monitoring evidence are present.",
+        "Do not treat a generic closed-body classification as sufficient cold-chain evidence.",
+        "A later excursion creates an auditable incident and required review/hold, not a fabricated compliant reading."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "IMS",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "06_Scenarios/Customer Requests/Scenario - Temperature Sensitive Goods.md"
+      ],
+      "requirement_tags": [
+        "cold_chain",
+        "cargo_compatibility",
+        "evidence"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "IMS",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-04",
+        "PRD-07",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-09",
+        "BR-11",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Temperature%20Sensitive%20Goods.md"
+      ]
+    },
+    {
+      "id": "ZSC-58",
+      "title": "High-value electronics needs secure capacity and declared-value coverage",
+      "given": [
+        "Cargo is classified high-value under the active policy and requires secure transport."
+      ],
+      "when": "Evaluate a candidate lacking one required security, tracking, driver or insurance condition.",
+      "then": [
+        "Reject the incompatible candidate despite better price/ranking.",
+        "Record which requirement is missing; escalate only through approved secure-capacity workflow.",
+        "Use configured security/insurance/telemetry thresholds, not unapproved historical numeric examples."
+      ],
+      "agents": [
+        "IMS",
+        "VERIFICATION",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "06_Scenarios/High Value Cargo/Scenario - High Value Electronics Transit.md"
+      ],
+      "requirement_tags": [
+        "high_value_cargo",
+        "insurance",
+        "security"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "VERIFICATION",
+        "TMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-07",
+        "PRD-14",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-04",
+        "BR-06",
+        "BR-11",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/High%20Value%20Cargo/Scenario%20-%20High%20Value%20Electronics%20Transit.md"
+      ]
+    },
+    {
+      "id": "ZSC-59",
+      "title": "Fragile cargo handling and condition evidence must be complete",
+      "given": [
+        "Fragile cargo requires approved packaging, loading method and securing/handling capability."
+      ],
+      "when": "Attempt acceptance or departure with missing required capability or condition evidence.",
+      "then": [
+        "Block the affected gate and explain missing requirement.",
+        "Record pickup condition, loading method and responsible operator before movement.",
+        "Do not infer undamaged cargo from absence of a photo."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "IMS",
+        "TMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Customer Requests/Scenario - Fragile Cargo Handling Required.md"
+      ],
+      "requirement_tags": [
+        "fragile_cargo",
+        "pickup_evidence"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "IMS",
+        "TMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-07",
+        "PRD-12",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-10",
+        "BR-11",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Fragile%20Cargo%20Handling%20Required.md"
+      ]
+    },
+    {
+      "id": "ZSC-60",
+      "title": "Hazardous cargo classification or permit gap routes to compliance",
+      "given": [
+        "Cargo may be hazardous and classification, permit or certified-vehicle evidence is unresolved."
+      ],
+      "when": "Evaluate standard booking and matching.",
+      "then": [
+        "Do not route the shipment through an ordinary cargo path.",
+        "Require approved classification/permits/capability or human compliance review.",
+        "No high model confidence, urgency or price advantage overrides the mandatory gate."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE",
+        "IMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Customer Requests/Scenario - Hazardous Material Transport.md"
+      ],
+      "requirement_tags": [
+        "hazmat",
+        "compliance",
+        "hard_gate"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE",
+        "IMS",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-03",
+        "PRD-07",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-05",
+        "BR-06",
+        "BR-11",
+        "BR-14",
+        "BR-15",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Hazardous%20Material%20Transport.md"
+      ]
+    },
+    {
+      "id": "ZSC-61",
+      "title": "Electronics cannot use an incompatible open-body alternative",
+      "given": [
+        "Electronics require the approved closed-body/security/insurance conditions and only an incompatible open-body candidate is available."
+      ],
+      "when": "Evaluate candidate and scarcity fallback.",
+      "then": [
+        "Exclude the candidate; return qualified fallback or explicit no-match.",
+        "Do not reinterpret urgency or customer price preference as waiver of mandatory equipment requirements."
+      ],
+      "agents": [
+        "IMS",
+        "VERIFICATION",
+        "OMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Customer Requests/Scenario - Electronics Need Closed Body Vehicle.md"
+      ],
+      "requirement_tags": [
+        "electronics",
+        "cargo_compatibility"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "IMS",
+      "evidence_producers": [
+        "VERIFICATION",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-02",
+        "PRD-04",
+        "PRD-07",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06",
+        "BR-09",
+        "BR-11",
+        "BR-17",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Customer%20Requests/Scenario%20-%20Electronics%20Need%20Closed%20Body%20Vehicle.md"
+      ]
+    },
+    {
+      "id": "ZSC-62",
+      "title": "Payment dispute is reconciled against accepted commercial evidence",
+      "given": [
+        "A customer disputes an invoice amount or deduction and the accepted quote, adjustments and payment events are available."
+      ],
+      "when": "Assemble dispute evidence and recommend resolution.",
+      "then": [
+        "Compare charges to accepted quote and authorized adjustments, recording each discrepancy.",
+        "Separate valid-error, supported-charge and unresolved branches.",
+        "No refund execution, denial of dispute or final commercial outcome without the approved authority and trace."
+      ],
+      "agents": [
+        "FINANCE_COMPLIANCE",
+        "VERIFICATION",
+        "OMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Admin Escalations/Scenario - Payment Dispute.md"
+      ],
+      "requirement_tags": [
+        "payment_dispute",
+        "refund_authority"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "FINANCE_COMPLIANCE",
+      "evidence_producers": [
+        "VERIFICATION",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-08",
+        "PRD-11",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Admin%20Escalations/Scenario%20-%20Payment%20Dispute.md"
+      ]
+    },
+    {
+      "id": "ZSC-63",
+      "title": "E-way evidence expires while shipment is in transit",
+      "given": [
+        "A live shipment's mandatory document validity will not cover the remaining journey under the approved compliance policy."
+      ],
+      "when": "Raise expiry risk and evaluate recovery.",
+      "then": [
+        "Escalate to human compliance and the operational owner; preserve location and document evidence.",
+        "Apply the approved safe-stop/extension workflow rather than falsely extending validity in metadata.",
+        "Do not select a disputed document-override policy from historical prose; unresolved authority blocks the relevant progression."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE",
+        "TMS",
+        "OMS"
+      ],
+      "source_paths": [
+        "06_Scenarios/Compliance/Scenario - E-way Bill Expiry During Transit.md"
+      ],
+      "requirement_tags": [
+        "in_transit_compliance",
+        "e_way_bill",
+        "hard_gate"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "source_derived_scenario_with_proposed_executable_assertions",
+      "business_owner": "VERIFICATION",
+      "evidence_producers": [
+        "FINANCE_COMPLIANCE",
+        "TMS",
+        "OMS"
+      ],
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "requirement_refs": [
+        "PRD-03",
+        "PRD-07",
+        "PRD-11",
+        "PRD-12",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-05",
+        "BR-10",
+        "BR-11",
+        "BR-14",
+        "BR-15",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/06_Scenarios/Compliance/Scenario%20-%20E-way%20Bill%20Expiry%20During%20Transit.md"
+      ]
+    },
+    {
+      "id": "ZSC-64",
+      "title": "Complete synthetic paid order through financial closure",
+      "given": [
+        "Approved single state graph, payment-mode matrix, synthetic identities and isolated target.",
+        "Fresh eligible resources and valid evidence; all financial providers mocked or sandboxed."
+      ],
+      "when": "Run intake → quote → payment gate → reservation/acceptance → pickup/loading/transit → POD/recipient verification → settlement/reconciliation → close.",
+      "then": [
+        "Every required transition and handoff persists exactly once with the required evidence and expected version.",
+        "Only one assignment; amounts reconcile; no hold bypass; one verified settlement outcome; no real recipient/payment side effects."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Autonomous Agent Integration Blueprint.md"
+      ],
+      "requirement_tags": [
+        "happy_path",
+        "full_lifecycle"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "implementation_safety_design",
+      "business_owner": "OMS",
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "All affected approved policies and actual target bindings must be supplied before execution.",
+      "requirement_refs": [
+        "PRD-01",
+        "PRD-02",
+        "PRD-03",
+        "PRD-04",
+        "PRD-08",
+        "PRD-10",
+        "PRD-13",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-04",
+        "BR-05",
+        "BR-06",
+        "BR-07",
+        "BR-09",
+        "BR-13",
+        "BR-14",
+        "BR-15",
+        "BR-17",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md"
+      ]
+    },
+    {
+      "id": "ZSC-65",
+      "title": "Same idempotency key with equal and different canonical payload",
+      "given": [
+        "A successful command result is durable."
+      ],
+      "when": "Repeat the same key and canonical payload, then reuse the key with a different amount/resource/action payload.",
+      "then": [
+        "Equal payload returns original result with no duplicate side effect.",
+        "Different payload conflicts; original result remains immutable and no new operation starts."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Autonomous Agent Integration Blueprint.md"
+      ],
+      "requirement_tags": [
+        "idempotency",
+        "payload_conflict"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "implementation_safety_design",
+      "business_owner": "OMS",
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "All affected approved policies and actual target bindings must be supplied before execution.",
+      "requirement_refs": [
+        "PRD-05",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-09",
+        "BR-18",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md"
+      ]
+    },
+    {
+      "id": "ZSC-66",
+      "title": "Crash between transaction commit and event delivery",
+      "given": [
+        "A business transaction includes audit/outbox and command result."
+      ],
+      "when": "Crash before commit, after commit before publish, and after publish before consumer acknowledgement.",
+      "then": [
+        "Before commit: no partial visible assignment/state/money mutation.",
+        "After commit: recovery publishes durable outbox; consumer deduplication produces one effective business outcome; audit remains coherent."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Autonomous Agent Integration Blueprint.md"
+      ],
+      "requirement_tags": [
+        "atomicity",
+        "outbox",
+        "replay"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "implementation_safety_design",
+      "business_owner": "OMS",
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "All affected approved policies and actual target bindings must be supplied before execution.",
+      "requirement_refs": [
+        "PRD-04",
+        "PRD-05",
+        "PRD-06",
+        "PRD-08",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-07",
+        "BR-09",
+        "BR-13",
+        "BR-15",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md"
+      ]
+    },
+    {
+      "id": "ZSC-67",
+      "title": "Malformed model output, invented action or missing evidence",
+      "given": [
+        "Agent output validation and server-side action/argument allowlists are active."
+      ],
+      "when": "Return invalid JSON, extra executable fields, unauthorized tool name, missing policy version or unsupported evidence reference.",
+      "then": [
+        "Reject the assessment/command without business mutation.",
+        "Record safe error and route to bounded fallback/review; no best-effort interpretation of untrusted executable text."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Autonomous Agent Integration Blueprint.md"
+      ],
+      "requirement_tags": [
+        "model_contract",
+        "tool_authorization"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "implementation_safety_design",
+      "business_owner": "OMS",
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "All affected approved policies and actual target bindings must be supplied before execution.",
+      "requirement_refs": [
+        "PRD-14",
+        "PRD-16",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-04",
+        "BR-05",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md"
+      ]
+    },
+    {
+      "id": "ZSC-68",
+      "title": "Agent attempts unrestricted data write or role escalation",
+      "given": [
+        "Each agent is issued a scoped identity and only logical allowlisted tools."
+      ],
+      "when": "Attempt raw database write, generic ERP write, spoofed admin actor, unrelated tenant, or a finance action via notification tool.",
+      "then": [
+        "Every route rejects unauthorized actions server-side even when the prompt/model claims approval.",
+        "No secret or unrelated row is returned; denial audited without exposing credentials."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Autonomous Agent Integration Blueprint.md"
+      ],
+      "requirement_tags": [
+        "tool_authorization",
+        "tenancy",
+        "role"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "implementation_safety_design",
+      "business_owner": "OMS",
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "All affected approved policies and actual target bindings must be supplied before execution.",
+      "requirement_refs": [
+        "PRD-14",
+        "PRD-16",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-04",
+        "BR-05",
+        "BR-17",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md"
+      ]
+    },
+    {
+      "id": "ZSC-69",
+      "title": "Privacy-safe evidence and audit traces",
+      "given": [
+        "Synthetic documents contain canary secrets, OTP values and unrelated personal fields."
+      ],
+      "when": "Run extraction, model assessment, error handling, logging and user-facing notification.",
+      "then": [
+        "Model inputs and ordinary logs contain only allowlisted necessary fields/references.",
+        "No passwords/tokens/raw OTP/full identity identifiers or unrelated data leak; restricted original evidence access remains scoped."
+      ],
+      "agents": [
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE",
+        "OMS"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Autonomous Agent Integration Blueprint.md"
+      ],
+      "requirement_tags": [
+        "privacy",
+        "audit"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "implementation_safety_design",
+      "business_owner": "VERIFICATION",
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "All affected approved policies and actual target bindings must be supplied before execution.",
+      "requirement_refs": [
+        "PRD-06",
+        "PRD-07",
+        "PRD-14",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-02",
+        "BR-11",
+        "BR-17",
+        "BR-18",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md"
+      ]
+    },
+    {
+      "id": "ZSC-70",
+      "title": "Kill switch and aged-review queue recovery",
+      "given": [
+        "Pending assignments, holds, outbox items and unknown payment outcomes exist."
+      ],
+      "when": "Disable agent consequential actions, restart workers, then run authorized recovery and queue-age reporting.",
+      "then": [
+        "No new forbidden assignment/disbursement occurs; committed facts/evidence remain readable.",
+        "Every open hold/unknown outcome has an owner and due/review status; restart does not duplicate money or lose cases."
+      ],
+      "agents": [
+        "OMS",
+        "IMS",
+        "TMS",
+        "VERIFICATION",
+        "FINANCE_COMPLIANCE"
+      ],
+      "source_paths": [
+        "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+        "04_AI_Agents/Autonomous Agent Integration Blueprint.md"
+      ],
+      "requirement_tags": [
+        "fallback",
+        "operations",
+        "recovery"
+      ],
+      "status": "not_run",
+      "kind": "proposed_acceptance_test",
+      "source_basis": "implementation_safety_design",
+      "business_owner": "OMS",
+      "command_executor": "Guarded domain service on the verified Xano target; not the recommending AI agent",
+      "policy_decision_needed": "All affected approved policies and actual target bindings must be supplied before execution.",
+      "requirement_refs": [
+        "PRD-11",
+        "PRD-15",
+        "PRD-17",
+        "PRD-18",
+        "PRD-19",
+        "PRD-20"
+      ],
+      "business_rule_refs": [
+        "BR-09",
+        "BR-12",
+        "BR-14",
+        "BR-15",
+        "BR-16",
+        "BR-19",
+        "BR-20"
+      ],
+      "source_urls": [
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+        "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md"
+      ]
+    }
+  ]
+}

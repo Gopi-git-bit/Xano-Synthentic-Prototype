@@ -1,0 +1,8 @@
+{
+  "captured_at": "2026-10-22T04:51:17.320Z",
+  "live_unchanged_during_task": true,
+  "sha256": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
+  "documents": 21,
+  "preserved_locally": "work/synthetic-safeguards/live-baseline",
+  "review": "Workspace description changed and new middleware Zippy_request_guard has empty stack and silent exception policy. Not copied into sandbox."
+}

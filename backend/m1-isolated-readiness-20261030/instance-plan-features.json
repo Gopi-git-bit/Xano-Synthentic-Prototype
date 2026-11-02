@@ -1,0 +1,105 @@
+{
+  "at": "2026-10-30T12:10:58.691Z",
+  "profile": "default",
+  "workspace": 3,
+  "method": "GET",
+  "route": "/api:meta/auth/me",
+  "http": 200,
+  "response_sha256": "76bea7d9ecf6364aaa6413460f27baaa557f79f07a65487799cf41bad19d27ea",
+  "instance_id": 9940,
+  "package": {
+    "field_names": [
+      "name",
+      "features"
+    ],
+    "name": "essential2",
+    "scalar_limits": {},
+    "features": []
+  },
+  "features": [],
+  "direct_query_access": true,
+  "byoc": {
+    "enabled": false
+  },
+  "k8s": {
+    "deployments": {
+      "realtime": {
+        "enabled": true
+      },
+      "mesh0": {
+        "enabled": true
+      },
+      "database": {
+        "enabled": true
+      },
+      "redis": {
+        "enabled": true
+      },
+      "frontend": {
+        "enabled": true
+      },
+      "backend": {
+        "enabled": true
+      },
+      "task": {
+        "enabled": true
+      },
+      "node": {
+        "enabled": true
+      },
+      "deno": {
+        "enabled": true
+      }
+    },
+    "microservices": [],
+    "ingress": {
+      "primary": {
+        "host": "xynd-fnea-khtp.n7e.xano.io"
+      },
+      "vanity": {
+        "host": ""
+      }
+    },
+    "extras": {
+      "microservice": false,
+      "microservice_v2": false,
+      "securitypolicy": false,
+      "compliance": false,
+      "link": false,
+      "swoole": true,
+      "studio": false
+    },
+    "support": {
+      "name": "basic"
+    },
+    "compliance": {
+      "hipaa": false,
+      "hds": false,
+      "cui": false
+    },
+    "additional": {
+      "memberships": 0,
+      "workspaces": 0,
+      "tasks": 0,
+      "version_history": 0,
+      "media_storage": 0,
+      "database_storage": 0,
+      "data_sources": 0,
+      "rbac": 0,
+      "link": 0,
+      "static_ip": 0,
+      "unlimited_tasks": 0,
+      "database_connector": 1,
+      "private_storage": 0,
+      "middleware": 0,
+      "async_dedicated": 0,
+      "tenants": 0,
+      "tenants_tier2": 0,
+      "tenants_tier3": 0
+    }
+  },
+  "membership_scope": {
+    "workspace": [],
+    "permissions": null
+  }
+}

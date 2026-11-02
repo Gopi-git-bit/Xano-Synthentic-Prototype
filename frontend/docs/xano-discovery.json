@@ -1,0 +1,23 @@
+{
+  "observedOn": "2026-10-27",
+  "mode": "read-only discovery; no backend publication or record mutations",
+  "instance": "https://xynd-fnea-khtp.n7e.xano.io",
+  "workspace": { "id": 3, "name": "Zippy Synthetic Prototype_1", "branch": "v1", "live": true },
+  "groups": [
+    { "id": 5, "name": "Authentication", "base": "https://xynd-fnea-khtp.n7e.xano.io/api:pofBqnrY", "openapiPaths": 7 },
+    { "id": 7, "name": "Zippy_V1", "base": "https://xynd-fnea-khtp.n7e.xano.io/api:zippy-v1", "publicSwagger": false, "openapiPaths": 12, "operations": 14 }
+  ],
+  "specs": [
+    { "file": "group-5-openapi.json", "sha256": "effa7a0a797b1fd0ed861b005407417dea5ac9d1937975fd0d3329a6d3304663" },
+    { "file": "group-7-openapi.json", "sha256": "f3a3d99eaa7716e3195b4a641e9d70212f8464929b45e1644b03d334612749ce" },
+    { "file": "workspace-openapi.json", "sha256": "330e0eb592d173622184c83dc2402f0038320f60ed7eb0f631615153c968b81a" }
+  ],
+  "runtimeReads": [
+    { "method": "GET", "path": "/api:pofBqnrY/auth/me", "credentials": "none", "http": 401, "interpretation": "anonymous access denied" },
+    { "method": "GET", "path": "/api:zippy-v1/bookings", "credentials": "none", "http": 200, "responseKind": "null", "interpretation": "published placeholder; not booking success or an authorized empty list" }
+  ],
+  "positiveAuthenticationVerified": false,
+  "positiveBookingReadsVerified": false,
+  "bookingMutationsAttempted": false,
+  "backendChanges": false
+}

@@ -1,0 +1,198 @@
+{
+  "as_of": "2026-10-30T14:06:14.221Z",
+  "classification": "VERIFIED_INSTANCE",
+  "scope": "RETAINED_PUBLIC_SCHEMA_EXPOSURE_ONLY_NOT_ENTITLEMENT",
+  "source": "backend/m1-isolated-readiness-20261030/metadata-capabilities.json",
+  "source_sha256": "befff1b3988b3756be5a206ebb61b8ffe19198a8e249c7b3fd39f49314f53d65",
+  "routes": [
+    {
+      "route": "/workspace/{workspace_id}/ephemeral",
+      "operations": {
+        "get": {
+          "description": "List all ephemeral tenants in a workspace\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "request_fields": [],
+          "response_fields": [],
+          "response_item_fields": [
+            "id",
+            "created_at",
+            "name",
+            "display",
+            "description",
+            "domain",
+            "proxy",
+            "xano_domain",
+            "tag",
+            "rbac",
+            "version",
+            "deployed_at",
+            "license",
+            "k8s",
+            "tasks",
+            "ingress",
+            "ephemeral",
+            "state",
+            "release",
+            "cluster",
+            "platform"
+          ]
+        },
+        "post": {
+          "description": "Create a new ephemeral tenant in a workspace\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Create",
+          "request_fields": [
+            "display",
+            "description",
+            "expires_hours",
+            "tag"
+          ],
+          "response_fields": [
+            "id",
+            "created_at",
+            "name",
+            "display",
+            "description",
+            "domain",
+            "proxy",
+            "xano_domain",
+            "tag",
+            "rbac",
+            "version",
+            "deployed_at",
+            "license",
+            "k8s",
+            "tasks",
+            "ingress",
+            "ephemeral",
+            "state",
+            "release",
+            "cluster",
+            "platform"
+          ],
+          "response_item_fields": []
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}",
+      "operations": {
+        "delete": {
+          "description": "Delete a tenant permanently. This destroys all associated infrastructure and cannot be undone.\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Delete",
+          "request_fields": [],
+          "response_fields": [],
+          "response_item_fields": []
+        },
+        "get": {
+          "description": "Retrieve a specific tenant by name\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Read",
+          "request_fields": [],
+          "response_fields": [
+            "id",
+            "created_at",
+            "name",
+            "display",
+            "description",
+            "domain",
+            "proxy",
+            "xano_domain",
+            "tag",
+            "rbac",
+            "version",
+            "deployed_at",
+            "license",
+            "k8s",
+            "tasks",
+            "ingress",
+            "ephemeral",
+            "state",
+            "release",
+            "cluster",
+            "platform"
+          ],
+          "response_item_fields": []
+        },
+        "put": {
+          "description": "Update tenant properties\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center: Update",
+          "request_fields": [
+            "display",
+            "description",
+            "domain",
+            "proxy",
+            "tasks",
+            "ingress",
+            "swoole",
+            "tag",
+            "rbac",
+            "deploy_settings"
+          ],
+          "response_fields": [
+            "id",
+            "created_at",
+            "name",
+            "display",
+            "description",
+            "domain",
+            "proxy",
+            "xano_domain",
+            "tag",
+            "rbac",
+            "version",
+            "deployed_at",
+            "license",
+            "k8s",
+            "tasks",
+            "ingress",
+            "ephemeral",
+            "state",
+            "release",
+            "cluster",
+            "platform"
+          ],
+          "response_item_fields": []
+        }
+      }
+    },
+    {
+      "route": "/workspace/{workspace_id}/tenant/{tenant_name}/license",
+      "operations": {
+        "get": {
+          "description": "Retrieve the license for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Read",
+          "request_fields": [],
+          "response_fields": [],
+          "response_item_fields": []
+        },
+        "post": {
+          "description": "Update the license for a tenant\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_center Secrets: Update",
+          "request_fields": [
+            "value"
+          ],
+          "response_fields": [],
+          "response_item_fields": []
+        }
+      }
+    },
+    {
+      "route": "/tenant/cluster/{cluster_id}/license",
+      "operations": {
+        "get": {
+          "description": "Retrieve the license (kubeconfig) for a tenant cluster\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster Secrets: Read",
+          "request_fields": [],
+          "response_fields": [],
+          "response_item_fields": []
+        },
+        "post": {
+          "description": "Update the license (kubeconfig) for a tenant cluster\n<br /><br />\n<b>Authentication:</b> required\n<br /><br />\n<b>Required API Scope:</b>\nTenant_cluster Secrets: Update",
+          "request_fields": [
+            "value"
+          ],
+          "response_fields": [],
+          "response_item_fields": []
+        }
+      }
+    }
+  ],
+  "notes": [
+    "Ephemeral create schema exposes expires_hours; CLI/documentation bounds are 1-24. No creation was attempted.",
+    "Tenant detail/create/list schemas expose created_at but no explicit expires_at or authoritative physical database identity field. Actual optional fields remain unknown with empty inventories.",
+    "No copy-record/secret deny switch or tasks override in the inspected ephemeral create body; absence is not no-copy or tasks-off proof.",
+    "License routes require Secrets: Read; cluster license is kubeconfig, not a harmless subscription probe.",
+    "No supported policy simulation or authoritative entitlement endpoint was identified in the inspected subset; this is not a claim none exists."
+  ]
+}

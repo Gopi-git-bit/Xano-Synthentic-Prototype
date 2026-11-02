@@ -1,0 +1,4 @@
+# Captures and receipts are byte-hashed. Keep the Xano exporter formatting intact.
+evidence/** -text whitespace=-blank-at-eol
+manifest.json -text
+candidate/** text eol=lf

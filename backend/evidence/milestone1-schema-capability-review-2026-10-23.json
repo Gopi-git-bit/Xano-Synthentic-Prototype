@@ -1,0 +1,122 @@
+{
+  "reviewed_at": "2026-10-23T17:25:30.936350+00:00",
+  "primary_sources": [
+    {
+      "url": "https://docs.xano.com/team-collaboration/role-based-access-control-rbac",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "f0b37678ad9b11c207fa1ad165e007dd81edd8078dbe3a60194b1be142fc4f2b"
+    },
+    {
+      "url": "https://docs.xano.com/xano-cli/sandbox",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "0225baea4f0324f46114b521103033930b51b55a6445f5153950478161099bb8"
+    },
+    {
+      "url": "https://docs.xano.com/xanoscript/db",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "6f44e39d03dda53da0b2b0a049d081fb50f536bbbd42230a93bf80d0530f4433"
+    },
+    {
+      "url": "https://docs.xano.com/xano-features/metadata-api",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "6c9c00b9a60ff86ce5caff3a4428602614322253f176057adc386e63c4d61dc3"
+    },
+    {
+      "url": "https://docs.xano.com/xano-features/metadata-api/token-scopes-reference",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "0151b77dfdd6c149b4abc60df25aad300e04fa8b8143179bd435fd43a96d491f"
+    },
+    {
+      "url": "https://docs.xano.com/xano-features/metadata-api/instance_api/create_a_unique_index_on_table_fields_to_enforce_data_uniqueness_and_improve_query_performance",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "c1b28b1b8526e019aa32b77e3b3c45c5d1b289b6a3e91d16c148a47dd903e67b"
+    },
+    {
+      "url": "https://docs.xano.com/the-database/database-performance-and-maintenance/schema-versioning",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "44e46cbd5aa16f72598fb1d975893dfff5a01daf111228fb461678cc545eb987"
+    },
+    {
+      "url": "https://docs.xano.com/the-database/database-performance-and-maintenance/indexing",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "8364450a0a034840c362319328548875d42068d0e017c8c8d42f7b0611f30f5f"
+    },
+    {
+      "url": "https://docs.xano.com/the-function-stack/functions/database-requests/direct-database-query",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "0c50c12f15745e8ba1381b6552be82b46bd031c16cac4f9958adab3d728ba193"
+    },
+    {
+      "url": "https://docs.xano.com/the-function-stack/functions/database-requests/database-transaction",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "86f1bce218e364f00012033f3ccff4484426c437558e66f5f7c89df97d5c38c2"
+    },
+    {
+      "url": "https://docs.xano.com/enterprise/enterprise-features/rbac-role-based-access-control",
+      "retrieved_at_date": "2026-10-23",
+      "content_sha256": "846e2e1a4aa2f440c8abd43e1f8ec30bdfc1afa86e1404c7557463cf82cf2856"
+    }
+  ],
+  "native_tool_schema": {
+    "name": "createUniqueIndex",
+    "title": "createUniqueIndex",
+    "description": "Creates a unique index on table fields to enforce data uniqueness and improve query performance.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "op"
+            ]
+          },
+          "description": "An array of objects specifying the columns and sort order for the index."
+        },
+        "workspace_id": {
+          "type": "number",
+          "description": "ID of the workspace. Required."
+        },
+        "table_id": {
+          "type": "number",
+          "description": "ID of the table. Required."
+        }
+      },
+      "required": [
+        "fields"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": true
+    },
+    "execution": {
+      "taskSupport": "forbidden"
+    },
+    "_meta": {}
+  },
+  "findings": {
+    "composite_unique_fields": "Documented and reservation-table native preview accepted",
+    "partial_unique_predicate": "Not present in inspected public contracts; support not established, not a proof of universal absence",
+    "direct_sql_ddl": "No out-of-band DDL run; SQL execution capability does not establish supported schema lifecycle",
+    "transaction_warning": "Official documentation limits its general rollback guarantee to database operations; application faults require actual native evidence"
+  },
+  "proposed_schema_sha256": "ce19a67839e2b4e9ed0ec8579e045432a73d274b0c694a3eabcf1cfc0a9d6449"
+}

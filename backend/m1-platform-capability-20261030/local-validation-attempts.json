@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-30",
+  "scope": "NEW_P1_LOCAL_DOCUMENT_CHECKER_ONLY",
+  "initial_attempt": {
+    "exit_code": 1,
+    "assertion": "Git blob bytes equal existing working-tree bytes for every historical input",
+    "cause": "Two pre-existing support files use CRLF in the working tree and LF in Git; exact source contents match after LF normalization.",
+    "affected_paths": [
+      "docs/XANO_ADMIN_SUPPORT_REQUEST.md",
+      "backend/evidence/xano-support-submission-2026-10-24.json"
+    ],
+    "historical_files_modified": false,
+    "receipt_outputs_created_by_failed_attempt": false
+  },
+  "correction": "Pin both actual Git and worktree SHA-256 for only these two known legacy files, require exact LF-normalized equality, retain byte equality for all other inputs. No historical hash, file, seal or test result changed.",
+  "final_result_location": "verification.json",
+  "historical_tests_reexecuted": false,
+  "canonical_validator": "NOT_RUN_FILES_UNAVAILABLE"
+}

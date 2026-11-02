@@ -1,0 +1,252 @@
+{
+  "failed": 0,
+  "passed": 41,
+  "results": [
+    {
+      "name": "canonical repository price 240",
+      "obj_name": "Logistics/calculate_test_quote",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "half up paise",
+      "obj_name": "Logistics/calculate_test_quote",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "production policy fails closed",
+      "obj_name": "Logistics/calculate_test_quote",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "compliant capacity boundary",
+      "obj_name": "Logistics/evaluate_dispatch",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "overweight exclusion",
+      "obj_name": "Logistics/evaluate_dispatch",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "expired insurance",
+      "obj_name": "Logistics/evaluate_dispatch",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "busy driver excluded",
+      "obj_name": "Logistics/evaluate_dispatch",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "body compatibility enforced",
+      "obj_name": "Logistics/evaluate_dispatch",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "cross platform denied",
+      "obj_name": "Logistics/evaluate_dispatch",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "separate human review allowed",
+      "obj_name": "Logistics/evaluate_refund",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "self approval denied",
+      "obj_name": "Logistics/evaluate_refund",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "agent approval denied",
+      "obj_name": "Logistics/evaluate_refund",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "verified POD operational eligibility",
+      "obj_name": "Logistics/evaluate_settlement",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "unverified POD blocks settlement",
+      "obj_name": "Logistics/evaluate_settlement",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "bounded retry backoff",
+      "obj_name": "Logistics/retry_delay",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "terminal attempts become dead letter",
+      "obj_name": "Logistics/retry_delay",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "canonical order accepted",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject cargo_weight_kg 0",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject distance_km NaN",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject cargo_weight_kg 1.0001",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject requested_pickup_at 2030-01-02T10:00:00",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject hazardous cargo",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject unapproved return pricing",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject identical coordinates",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject unknown booking fields",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject null latitude",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject numeric precision overflow",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "reject impossible calendar date",
+      "obj_name": "Logistics/validate_order",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "full 100 of 100",
+      "obj_name": "Logistics/validate_payment_plan",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "full 50 of 100",
+      "obj_name": "Logistics/validate_payment_plan",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "partial 50 of 100",
+      "obj_name": "Logistics/validate_payment_plan",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "partial 49.99 of 100",
+      "obj_name": "Logistics/validate_payment_plan",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "to_pay 0 of 100",
+      "obj_name": "Logistics/validate_payment_plan",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "to_pay 1 of 100",
+      "obj_name": "Logistics/validate_payment_plan",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "fake 100 of 100",
+      "obj_name": "Logistics/validate_payment_plan",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "full -1 of -1",
+      "obj_name": "Logistics/validate_payment_plan",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "legal pending to quoted",
+      "obj_name": "Logistics/validate_transition",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "illegal skipped lifecycle",
+      "obj_name": "Logistics/validate_transition",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "stale version",
+      "obj_name": "Logistics/validate_transition",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "blocked account",
+      "obj_name": "Logistics/validate_transition",
+      "obj_type": "function",
+      "status": "pass"
+    },
+    {
+      "name": "unauthorized actor",
+      "obj_name": "Logistics/validate_transition",
+      "obj_type": "function",
+      "status": "pass"
+    }
+  ]
+}
