@@ -9,7 +9,7 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: 'http://127.0.0.1:5174',
-    channel: 'msedge',
+    channel: process.env.CI ? undefined : 'msedge',
     viewport: { width: 1440, height: 1000 },
     reducedMotion: 'reduce',
     trace: 'retain-on-failure',

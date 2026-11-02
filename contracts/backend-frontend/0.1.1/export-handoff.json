@@ -1,0 +1,1055 @@
+{
+  "captureDate": "2026-10-29",
+  "currentLiveInventory": false,
+  "published": [
+    {
+      "key": "addon:user",
+      "path": "published/addon/user.xs",
+      "sha256": "6757c72e2b3830074d7b22c4682961a74bcbd0b9dd00550d57fa7a633702ab97"
+    },
+    {
+      "key": "agent:Xano Example Agent",
+      "path": "published/agent/Xano_Example_Agent.xs",
+      "sha256": "34e7e42a01c736762bcb94ec63fbd02c0d5746960697d3636d6f9ba1a54cf381"
+    },
+    {
+      "key": "api_group:Authentication",
+      "path": "published/api_group/Authentication.xs",
+      "sha256": "af9ae73e48d4523808d064c566482a5ff9a867cd7414b7a5a21cc3c67d443a66"
+    },
+    {
+      "key": "api_group:Event Logs",
+      "path": "published/api_group/Event_Logs.xs",
+      "sha256": "ffa841dfe3ed96e5e0063523d02d8ea756629b5d76018b3ff0adfad163d2477a"
+    },
+    {
+      "key": "api_group:Zippy_V1",
+      "path": "published/api_group/Zippy_V1.xs",
+      "sha256": "0d5fa96f8a9d82b452b7344ce50f712903d3b2cd0db7ec7fed1cae5357df4890"
+    },
+    {
+      "key": "function:booking/accept_quote",
+      "path": "published/function/booking/accept_quote.xs",
+      "sha256": "d01d1a54dfcad0db8f525c4984ed87075493819f708a1aa62b3a9a5959b90c94"
+    },
+    {
+      "key": "function:booking/cancel_booking",
+      "path": "published/function/booking/cancel_booking.xs",
+      "sha256": "7eb63b7c78a848b84267f026a1f04f25f9bc56b3946f365a747e7bb8f3e364df"
+    },
+    {
+      "key": "function:booking/confirm_booking",
+      "path": "published/function/booking/confirm_booking.xs",
+      "sha256": "7a5d945d3d4a0d7bcbdac3dbbf57e8c4d4637a86435f765171cb1df39e115760"
+    },
+    {
+      "key": "function:booking/create_consent_attempt",
+      "path": "published/function/booking/create_consent_attempt.xs",
+      "sha256": "3e5087428091a116abb9cb4d120a5ea3696bdfa4d970fa18cde37ca6fd7fa692"
+    },
+    {
+      "key": "function:booking/create_draft",
+      "path": "published/function/booking/create_draft.xs",
+      "sha256": "5816aa5b0ef198f6e8bd750621ce7fdf5d17947837f0cd3be2a71a8e86b48a5c"
+    },
+    {
+      "key": "function:booking/invalidate_quotes",
+      "path": "published/function/booking/invalidate_quotes.xs",
+      "sha256": "a16838da8c887523c517357eb1d6e6d63723f8c1cf04fa80b13b33a76a8b6c29"
+    },
+    {
+      "key": "function:booking/manage_hold",
+      "path": "published/function/booking/manage_hold.xs",
+      "sha256": "c38f9f20433032f7e3aed84b287ad4fb7ee09900d2e7af78fba31e8470747ede"
+    },
+    {
+      "key": "function:booking/record_consent_decision",
+      "path": "published/function/booking/record_consent_decision.xs",
+      "sha256": "1a9a77510e943bb864e6d1c9591a2c19bfb8bbee2435ed94e1353fe1eefc44f3"
+    },
+    {
+      "key": "function:booking/resume_booking",
+      "path": "published/function/booking/resume_booking.xs",
+      "sha256": "d8bbc25026758e3bef235b38c67373e1f31dade4848efbace225ba8bd3d001ce"
+    },
+    {
+      "key": "function:booking/select_payment",
+      "path": "published/function/booking/select_payment.xs",
+      "sha256": "017825e37f9fc6f3ab7aac87a122647830dba27c9bc35f161bbf0d335a214e58"
+    },
+    {
+      "key": "function:pricing/calculate_quote",
+      "path": "published/function/pricing/calculate_quote.xs",
+      "sha256": "e511cd4b2a1be9452f8125dcd491f319cb3d0fa5ce3817cbb61ec02e5bcee156"
+    },
+    {
+      "key": "function:Quick Start/enforce_role",
+      "path": "published/function/Quick_Start/enforce_role.xs",
+      "sha256": "037d41108573b8db179190fe0ce80b9fa218cac4064735c5b7a568a980a62960"
+    },
+    {
+      "key": "function:Quick Start/generate_magic_link",
+      "path": "published/function/Quick_Start/generate_magic_link.xs",
+      "sha256": "6333aa888b100c6ff29c613a09e9992496f2a3f40a0933d820f8ce94b71149d6"
+    },
+    {
+      "key": "function:Quick Start/log_event",
+      "path": "published/function/Quick_Start/log_event.xs",
+      "sha256": "457707e681eee41060ec51a4b6f1e2ac60b56fc959711ee8cf3d92ccb25cfdef"
+    },
+    {
+      "key": "function:security/authorize_resource",
+      "path": "published/function/security/authorize_resource.xs",
+      "sha256": "a2c334e54cc0f67131a9d4317c2475fe8149775831ec6f23e57f6845a2988c5f"
+    },
+    {
+      "key": "function:security/complete_idempotency",
+      "path": "published/function/security/complete_idempotency.xs",
+      "sha256": "b513d80ddf36d73fef547e6752ab46b08ff69ba02f3b7ad4c326fbc620dc12b5"
+    },
+    {
+      "key": "function:security/resolve_context",
+      "path": "published/function/security/resolve_context.xs",
+      "sha256": "7aab2928332d8edefd2cf689366f51d8e86c3a440753a68286446c8493bc7bce"
+    },
+    {
+      "key": "function:security/validate_command",
+      "path": "published/function/security/validate_command.xs",
+      "sha256": "86bc98dbefe018ec3b9c932ba5fd67f77556076ed25804ac1d4580b12d192d03"
+    },
+    {
+      "key": "function:tests/run_p2_suite",
+      "path": "published/function/tests/run_p2_suite.xs",
+      "sha256": "057b71674a5369bb0fcbdf666a387ef72fbddce45fa6285acab4fdb5ce97ddb8"
+    },
+    {
+      "key": "mcp_server:Xano-Synthetic-Prototype",
+      "path": "published/mcp_server/Xano-Synthetic-Prototype.xs",
+      "sha256": "d917378ef94531835e3dccb2f06fd1ca7724009fa58ecd705109c6ef7b07795a"
+    },
+    {
+      "key": "middleware:Zippy_request_guard",
+      "path": "published/middleware/Zippy_request_guard.xs",
+      "sha256": "469e827ba4e2a8325f8886a5ef6f71904e4e86bd6f676021cd48e1f6580f92fa"
+    },
+    {
+      "key": "query:auth/login:POST:Authentication",
+      "path": "published/query/Authentication/auth/login_POST.xs",
+      "sha256": "6dfcf963bfb3229375a67ee172343508613a6fed8239d525fe2bbfea7346662c"
+    },
+    {
+      "key": "query:auth/me:GET:Authentication",
+      "path": "published/query/Authentication/auth/me_GET.xs",
+      "sha256": "8e1705c9ea6d34e25414479bca8c23cb39aecc280601dd537f67864bb067266a"
+    },
+    {
+      "key": "query:auth/signup:POST:Authentication",
+      "path": "published/query/Authentication/auth/signup_POST.xs",
+      "sha256": "cd86683376a4c9d59caa9d0a4ddeeaaf9b451816f9bb2c203c5ce18aa07f612e"
+    },
+    {
+      "key": "query:bookings:GET:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings_GET.xs",
+      "sha256": "2afa288cd47e66f31fd67922c0e2e2024da29ab434a06d9e94abbf1e4461557e"
+    },
+    {
+      "key": "query:bookings:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings_POST.xs",
+      "sha256": "aca1f93fee6b4814367664787bdeb6ac051431d1eb036c295b870cbc18b68948"
+    },
+    {
+      "key": "query:bookings/{booking_id}:GET:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id__GET.xs",
+      "sha256": "a0a73dd9ac6ade2cf656817473a8f3d7bcea92a8fa51db2f4a7d153a3ae8fbb9"
+    },
+    {
+      "key": "query:bookings/{booking_id}:PATCH:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id__PATCH.xs",
+      "sha256": "fc5300ade2f603f35720f0da1d31a1014b22daca0f4d9e0f9a33921bea0ecc80"
+    },
+    {
+      "key": "query:bookings/{booking_id}/cancel:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/cancel_POST.xs",
+      "sha256": "5212881e83a404b193ab42f97505c6f16627214ba0dceb30e02d6e83c3e42113"
+    },
+    {
+      "key": "query:bookings/{booking_id}/confirm:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/confirm_POST.xs",
+      "sha256": "5d9d7cb88a6ce7f37505d28ece6e4123c11a0cb8dd8a90bd091713634b84a6f9"
+    },
+    {
+      "key": "query:bookings/{booking_id}/consent-attempts:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/consent-attempts_POST.xs",
+      "sha256": "2ccecde8bf8491bfb186d2473292a2f6abdda076d910565bea1d16cad6113bec"
+    },
+    {
+      "key": "query:bookings/{booking_id}/holds:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/holds_POST.xs",
+      "sha256": "de70a6fe421632cffaa297b23b734555f697927b802a8ede5886ba2cb273abd5"
+    },
+    {
+      "key": "query:bookings/{booking_id}/holds/{hold_id}/release:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/holds/_hold_id_/release_POST.xs",
+      "sha256": "6e25675ac505e9388765c1d992c439481c0d9d985f1500aeb7c3b0d0c69dff58"
+    },
+    {
+      "key": "query:bookings/{booking_id}/payment-selection:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/payment-selection_POST.xs",
+      "sha256": "a6b6baf5dfaba6776c0a95d7d7af7b046649b8eadbdc128ea6b71fb00c2a274f"
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/quotes_POST.xs",
+      "sha256": "329e081e07b15b3ae428817ffb435bb63e0a0bb8d05032e2de3ee478db1f30d4"
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes/{quote_id}/accept:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/quotes/_quote_id_/accept_POST.xs",
+      "sha256": "998d77a590517110daf5ecc42cd9e78688bde60a947ba93d42e7ff11fc58b076"
+    },
+    {
+      "key": "query:bookings/{booking_id}/resume:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/bookings/_booking_id_/resume_POST.xs",
+      "sha256": "384ce77a844033a342bf47bf1948e1be5862e333d0fe64db8ae5cfcd85e46e44"
+    },
+    {
+      "key": "query:chatgpt:POST:Authentication",
+      "path": "published/query/Authentication/chatgpt_POST.xs",
+      "sha256": "757b35e26bc71e0e6af63a5096a014e97f0f5b18f88d778262229fcc5c6078dc"
+    },
+    {
+      "key": "query:consent-attempts/{attempt_id}/decision:POST:Zippy_V1",
+      "path": "published/query/Zippy_V1/consent-attempts/_attempt_id_/decision_POST.xs",
+      "sha256": "8b04721b5a0654613604b899eef21450a105dfcd4211f690d189ce392b918f1a"
+    },
+    {
+      "key": "query:logs/user/my_events:GET:Event Logs",
+      "path": "published/query/Event Logs/logs/user/my_events_GET.xs",
+      "sha256": "3f2902d05fbf71f07ec3c063f8edd0cc0d927bcb18dc73d76c2756ab5843407d"
+    },
+    {
+      "key": "query:message/send_welcome_email:POST:Authentication",
+      "path": "published/query/Authentication/message/send_welcome_email_POST.xs",
+      "sha256": "6514282d414253dc16316f5ad2e523b5a5d012d105e2a09eaf1433ebe41eb423"
+    },
+    {
+      "key": "query:reset/magic-link-login:POST:Authentication",
+      "path": "published/query/Authentication/reset/magic-link-login_POST.xs",
+      "sha256": "b45b6f41b1efb901119a656f8ce993d63a1bc378496aac1e02b46c3e9a09b547"
+    },
+    {
+      "key": "query:reset/request-reset-link:GET:Authentication",
+      "path": "published/query/Authentication/reset/request-reset-link_GET.xs",
+      "sha256": "0b797b7b6a5bcebe15fa7e0052ee7b97f071221a83afb24c0fbcf66adbbdae05"
+    },
+    {
+      "key": "query:reset/update_password:POST:Authentication",
+      "path": "published/query/Authentication/reset/update_password_POST.xs",
+      "sha256": "9f2a3a19f2ed8e9117f73f86f7544ae66580d757f3e3a8c7a24e75262b1613ec"
+    },
+    {
+      "key": "table:active_assignment_reservations",
+      "path": "published/table/active_assignment_reservations.xs",
+      "sha256": "6e9c405dadadebe6ed52726e111d5683856b1bc972a801ea35f0490f23f85dae"
+    },
+    {
+      "key": "table:agent_decision",
+      "path": "published/table/agent_decision.xs",
+      "sha256": "fbe480bb2f8bac9be9a00fe77b36bc578e488c599db1a8bd9e4deb09e1508269"
+    },
+    {
+      "key": "table:agent_execution",
+      "path": "published/table/agent_execution.xs",
+      "sha256": "c3a90a616fa28b7bc584b803ad3d8f7a1cedfcff625e7f964a19670bfd321f09"
+    },
+    {
+      "key": "table:approval_request",
+      "path": "published/table/approval_request.xs",
+      "sha256": "6a650e4ef8102ea8fe9058a5441530e937804a5d180a1eefde74c275e834cfba"
+    },
+    {
+      "key": "table:audit_log",
+      "path": "published/table/audit_log.xs",
+      "sha256": "95decf63954aa2b243b05ecf19655126b1c3fd7908e14d058e0bc0674ad066fc"
+    },
+    {
+      "key": "table:booking_quote",
+      "path": "published/table/booking_quote.xs",
+      "sha256": "e3cfacf60fbe4c7afc214643160ab6c5d8e56dae1f4118ce2bc4c87320ff08a0"
+    },
+    {
+      "key": "table:cargo_detail",
+      "path": "published/table/cargo_detail.xs",
+      "sha256": "bbd062012b212c264e380ba774acde52f2ec1935f9105e11546e92fd3ca8a25c"
+    },
+    {
+      "key": "table:compliance_documents",
+      "path": "published/table/compliance_documents.xs",
+      "sha256": "0d41aa1c7e6689810257a58176a47fa19fe305e13aa7fff693c79b2e1a4a93c2"
+    },
+    {
+      "key": "table:customer_booking",
+      "path": "published/table/customer_booking.xs",
+      "sha256": "d6d573e99f98d4acdf2a76b1dd34bb069b8b3ef91e35a14383b0b943f1bf2a6a"
+    },
+    {
+      "key": "table:driver_profile",
+      "path": "published/table/driver_profile.xs",
+      "sha256": "cf47ad5cf22a9bcbd2fe03b542a4305a8c02d3dc42cc2292f098ba885594ba1c"
+    },
+    {
+      "key": "table:durable_tasks",
+      "path": "published/table/durable_tasks.xs",
+      "sha256": "3c077f5b4c5bea5d9031dcb0929028619fe76dcf4ed1b79699d1b2e7d284e2c3"
+    },
+    {
+      "key": "table:event_log",
+      "path": "published/table/event_log.xs",
+      "sha256": "09d4946d85925fb6bf631ff8ecd246af1f8fe325d4f5dfa52afcca5b3e6301bd"
+    },
+    {
+      "key": "table:event_outbox",
+      "path": "published/table/event_outbox.xs",
+      "sha256": "fd31419b391174f1db07ead0dbfe7f274ae6ad185069674d0dcc2474cc63ac18"
+    },
+    {
+      "key": "table:idempotency_key",
+      "path": "published/table/idempotency_key.xs",
+      "sha256": "d2a4d0ab3a90115d0a6be33526ecf66e4c39c579148c94e8cb51fd93f8c1e7a3"
+    },
+    {
+      "key": "table:incident_dispute",
+      "path": "published/table/incident_dispute.xs",
+      "sha256": "ee588b485c9383f2b2965be6ed70c74040b9e87f780c026bae9e112e93b62d74"
+    },
+    {
+      "key": "table:order_holds",
+      "path": "published/table/order_holds.xs",
+      "sha256": "3d00a8cafab028d5545938bbab5b8c4133f3075d0bc5ef2f7ee0766be1daa33b"
+    },
+    {
+      "key": "table:organization",
+      "path": "published/table/organization.xs",
+      "sha256": "6c1d47de7aacecbc3173f77428a9bcb6665bd188514e5475ff1992248ae8e8b1"
+    },
+    {
+      "key": "table:organization_member",
+      "path": "published/table/organization_member.xs",
+      "sha256": "24b23f966f28569c18f4e058bbcf00fa2492cfc722b2992f790cf997675e7981"
+    },
+    {
+      "key": "table:otp_challenges",
+      "path": "published/table/otp_challenges.xs",
+      "sha256": "9087a17394c34f714beac5b34e1336abaa7e48a61de4ba160c0e425011be4b42"
+    },
+    {
+      "key": "table:payment_transaction",
+      "path": "published/table/payment_transaction.xs",
+      "sha256": "f7b3a1614dd5b1f3368f48d9c9d6cf06106319dfde7fbfc7bec9894b965b1b10"
+    },
+    {
+      "key": "table:pricing_policies",
+      "path": "published/table/pricing_policies.xs",
+      "sha256": "8f291a291360d074b2199edc37b4f8f6b89c59ce4e494e946fcf9a0d06385559"
+    },
+    {
+      "key": "table:proof_of_delivery",
+      "path": "published/table/proof_of_delivery.xs",
+      "sha256": "602ff3ff4506025bcbc3a4d5b7655b62842cd864937fb2ee8d191f3845b9b1f4"
+    },
+    {
+      "key": "table:refund_request",
+      "path": "published/table/refund_request.xs",
+      "sha256": "4a304ec4be50056a3e66a7c4ae8e0e3c3b5f32a3f6b10dc985a91920fa9df1e7"
+    },
+    {
+      "key": "table:route_cache",
+      "path": "published/table/route_cache.xs",
+      "sha256": "e52b98f90ed2fa4505cda903385a9291e15b44d8982267203df426611c363068"
+    },
+    {
+      "key": "table:settlement",
+      "path": "published/table/settlement.xs",
+      "sha256": "42ac548b88d001daa4d981d04d815c73a53c64247690c6a8865fb3bcc97143b4"
+    },
+    {
+      "key": "table:table_index",
+      "path": "published/table/table_index.xs",
+      "sha256": "a9c6ec7c4492340bd7bf1e3fff9b194a73107fc57700f09e33e6c03401268705"
+    },
+    {
+      "key": "table:topay_consent_attempts",
+      "path": "published/table/topay_consent_attempts.xs",
+      "sha256": "29feaa2787685994090f386883e4e0e6e1b330645605f6378c7651e82c48d040"
+    },
+    {
+      "key": "table:tracking_event",
+      "path": "published/table/tracking_event.xs",
+      "sha256": "09c65db2287a7bf304e9f5dba2c75c70e82847f4488d37d205c60301f5efa4fc"
+    },
+    {
+      "key": "table:trip",
+      "path": "published/table/trip.xs",
+      "sha256": "4562e58490c3933302b78e3a9870f3b8e2830ce793605504672f6703f95e138f"
+    },
+    {
+      "key": "table:trip_stop",
+      "path": "published/table/trip_stop.xs",
+      "sha256": "7f62440bd3830d7934997a0b39ef58e685099a08a82909d6ca16854f23100869"
+    },
+    {
+      "key": "table:user",
+      "path": "published/table/user.xs",
+      "sha256": "aad55be18f10ed7f0ca02cea248f3952af5cbd7e918dee7ecca4c1f1d1af76a7"
+    },
+    {
+      "key": "table:vehicle",
+      "path": "published/table/vehicle.xs",
+      "sha256": "919fe15438d22ed0cd374fa69669c3cc815c367378242ff7017bc37548173cc5"
+    },
+    {
+      "key": "table:vehicle_availability",
+      "path": "published/table/vehicle_availability.xs",
+      "sha256": "d667c833b245b9765b1fb6f15ba1c9d48a131d27aabbf90b5544e4699c914799"
+    },
+    {
+      "key": "tool:search_xano_docs",
+      "path": "published/tool/search_xano_docs.xs",
+      "sha256": "4a96b07ce2a5e6fe64bafbbca681623f715720d47f1094750c1c2ed8f838d70b"
+    },
+    {
+      "key": "workspace:Zippy Synthetic Prototype_1",
+      "path": "published/workspace/Zippy_Synthetic_Prototype_1.xs",
+      "sha256": "d42264526f385839c2294bb038dccbd93552c901b8de949bde5f81e51bb4eec1"
+    }
+  ],
+  "draft": [
+    {
+      "key": "addon:user",
+      "path": "draft/addon/user.xs",
+      "sha256": "6757c72e2b3830074d7b22c4682961a74bcbd0b9dd00550d57fa7a633702ab97"
+    },
+    {
+      "key": "agent:Xano Example Agent",
+      "path": "draft/agent/Xano_Example_Agent.xs",
+      "sha256": "34e7e42a01c736762bcb94ec63fbd02c0d5746960697d3636d6f9ba1a54cf381"
+    },
+    {
+      "key": "api_group:Authentication",
+      "path": "draft/api_group/Authentication.xs",
+      "sha256": "af9ae73e48d4523808d064c566482a5ff9a867cd7414b7a5a21cc3c67d443a66"
+    },
+    {
+      "key": "api_group:Event Logs",
+      "path": "draft/api_group/Event_Logs.xs",
+      "sha256": "ffa841dfe3ed96e5e0063523d02d8ea756629b5d76018b3ff0adfad163d2477a"
+    },
+    {
+      "key": "api_group:Zippy_V1",
+      "path": "draft/api_group/Zippy_V1.xs",
+      "sha256": "0d5fa96f8a9d82b452b7344ce50f712903d3b2cd0db7ec7fed1cae5357df4890"
+    },
+    {
+      "key": "function:booking/accept_quote",
+      "path": "draft/function/booking/accept_quote.xs",
+      "sha256": "990a25022958e8992d5bf0681a9bb423607dd843f2cdebae7a3d97c63b3ede7a"
+    },
+    {
+      "key": "function:booking/cancel_booking",
+      "path": "draft/function/booking/cancel_booking.xs",
+      "sha256": "1fcdabf4a628d40e493f7ec2a5469265bd8393ae528b9311fb3dad4598ebbace"
+    },
+    {
+      "key": "function:booking/confirm_booking",
+      "path": "draft/function/booking/confirm_booking.xs",
+      "sha256": "08fdbd81982dcf50ceaea09481ea58c667b51b466021bf948613cf06df386133"
+    },
+    {
+      "key": "function:booking/create_consent_attempt",
+      "path": "draft/function/booking/create_consent_attempt.xs",
+      "sha256": "d9da8930ffb4899e489b838b745d33cb31f9166ae3ba3d7fc953ce7448b22ad5"
+    },
+    {
+      "key": "function:booking/create_draft",
+      "path": "draft/function/booking/create_draft.xs",
+      "sha256": "f1ef263fae0ee4535e9116cadfe8c22a7cfb37d1835ee92c23120ea0e83fedbc"
+    },
+    {
+      "key": "function:booking/invalidate_quotes",
+      "path": "draft/function/booking/invalidate_quotes.xs",
+      "sha256": "1af81aea3a69d92e5faaad9de3312cacad05473255910b6c488061d93e19756b"
+    },
+    {
+      "key": "function:booking/manage_hold",
+      "path": "draft/function/booking/manage_hold.xs",
+      "sha256": "9ce87d52e351652756543ad43428d5641a4f871642570fb5e55e7a7bc0c6fbb2"
+    },
+    {
+      "key": "function:booking/record_consent_decision",
+      "path": "draft/function/booking/record_consent_decision.xs",
+      "sha256": "833d949283cefb35cc8515db30281f5b254dc62a9105041b90529f92a39deba1"
+    },
+    {
+      "key": "function:booking/resume_booking",
+      "path": "draft/function/booking/resume_booking.xs",
+      "sha256": "5cde490ffa348f54314d8523e0f8e8db472d700209558888594957b266271dad"
+    },
+    {
+      "key": "function:booking/select_payment",
+      "path": "draft/function/booking/select_payment.xs",
+      "sha256": "5c15677baa6ff45e4cf8529d2c2ff0600f81e8d90d8e12be10add68a9f8c4e5a"
+    },
+    {
+      "key": "function:pricing/calculate_quote",
+      "path": "draft/function/pricing/calculate_quote.xs",
+      "sha256": "a5225c57d2c4126c595c867c1158dbfc444c38eee695bda16252a5c11393e00c"
+    },
+    {
+      "key": "function:Quick Start/enforce_role",
+      "path": "draft/function/Quick_Start/enforce_role.xs",
+      "sha256": "037d41108573b8db179190fe0ce80b9fa218cac4064735c5b7a568a980a62960"
+    },
+    {
+      "key": "function:Quick Start/generate_magic_link",
+      "path": "draft/function/Quick_Start/generate_magic_link.xs",
+      "sha256": "76f662e091a133a811e9eef5ae8e7710e620433a7c13a74a0c110cfbe9fe0a76"
+    },
+    {
+      "key": "function:Quick Start/log_event",
+      "path": "draft/function/Quick_Start/log_event.xs",
+      "sha256": "a36a02edf706dc9faac2ad20ab801d065b78dc150b46f13e5150c95c6f768bbe"
+    },
+    {
+      "key": "function:security/authorize_resource",
+      "path": "draft/function/security/authorize_resource.xs",
+      "sha256": "24ea325b8cc55a43ca3a8b085b2fa073b04d14195ee2dfea1fddffeb77e819b1"
+    },
+    {
+      "key": "function:security/complete_idempotency",
+      "path": "draft/function/security/complete_idempotency.xs",
+      "sha256": "73f1d2c5a92b2bb850a7c92d6b728cd5b46ccf6dea64f0b25c2c7bdcbd20ea39"
+    },
+    {
+      "key": "function:security/resolve_context",
+      "path": "draft/function/security/resolve_context.xs",
+      "sha256": "a725678d77832c61ad0bdad7b00fea97750c58fb34b5eccca7b0648e3921f482"
+    },
+    {
+      "key": "function:security/validate_command",
+      "path": "draft/function/security/validate_command.xs",
+      "sha256": "a9c4f806aafc193e26f060d1be48b904ce88118084618a13dbd24c65396e1abc"
+    },
+    {
+      "key": "function:tests/run_p2_suite",
+      "path": "draft/function/tests/run_p2_suite.xs",
+      "sha256": "6dc605c37719b179f68364292247896c26966ca6ecc037b1df90e5c9a576e3bf"
+    },
+    {
+      "key": "mcp_server:Xano-Synthetic-Prototype",
+      "path": "draft/mcp_server/Xano-Synthetic-Prototype.xs",
+      "sha256": "d917378ef94531835e3dccb2f06fd1ca7724009fa58ecd705109c6ef7b07795a"
+    },
+    {
+      "key": "middleware:Zippy_request_guard",
+      "path": "draft/middleware/Zippy_request_guard.xs",
+      "sha256": "a811a335b48bed882c00986a576b2d6c03d0df8178994b5fa851d378d3ef5b5c"
+    },
+    {
+      "key": "query:auth/login:POST:Authentication",
+      "path": "draft/query/Authentication/auth/login_POST.xs",
+      "sha256": "4de7a0860893858d2e6dbb19c2beb3e52191e45454bc77f027c7ae5381fd6699"
+    },
+    {
+      "key": "query:auth/me:GET:Authentication",
+      "path": "draft/query/Authentication/auth/me_GET.xs",
+      "sha256": "c47e3e7d0cc598685fd331e8cd03c53fb97e37c39d3e7657094eedc90ed44224"
+    },
+    {
+      "key": "query:auth/signup:POST:Authentication",
+      "path": "draft/query/Authentication/auth/signup_POST.xs",
+      "sha256": "8f828a370c0cde5472797df0cd2cc4bebd5ec211cc4bd9eeb631a74f06830555"
+    },
+    {
+      "key": "query:bookings:GET:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings_GET.xs",
+      "sha256": "a8166405c58b2fd4341649d635b003c418a9eaed3c933cca4a82913fa67e0d31"
+    },
+    {
+      "key": "query:bookings:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings_POST.xs",
+      "sha256": "e2c3f0026d1ffbb360869f1ad015ac14498fd4a2f5d8a8a270b068c4a6bd9d9c"
+    },
+    {
+      "key": "query:bookings/{booking_id}:GET:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id__GET.xs",
+      "sha256": "a8d2579c53ddf7cbcffbaab12bc7365c13d46e28b9eed3a3fed32d5706b06649"
+    },
+    {
+      "key": "query:bookings/{booking_id}:PATCH:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id__PATCH.xs",
+      "sha256": "2cdcdf585dd8341a26d7204abfd1e1a1113d879ac0c37dd8713099e4313d3316"
+    },
+    {
+      "key": "query:bookings/{booking_id}/cancel:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/cancel_POST.xs",
+      "sha256": "3e954253be2e7078b9133a1b2278dd4969bf1f9ef7f0c5477328133477c59245"
+    },
+    {
+      "key": "query:bookings/{booking_id}/confirm:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/confirm_POST.xs",
+      "sha256": "409eb8b46b77183bb665bee1d0ae8f817bce85010c8a25cf55da982c48846980"
+    },
+    {
+      "key": "query:bookings/{booking_id}/consent-attempts:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/consent-attempts_POST.xs",
+      "sha256": "279d5596f76d9d6649d42613ec74044fcf292a06fac2ef30830f589339acc49c"
+    },
+    {
+      "key": "query:bookings/{booking_id}/holds:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/holds_POST.xs",
+      "sha256": "fe59aae386d670a55f040146369edee4b2990efcc3a69b8f833d70fa270c719c"
+    },
+    {
+      "key": "query:bookings/{booking_id}/holds/{hold_id}/release:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/holds/_hold_id_/release_POST.xs",
+      "sha256": "19cda7d840833507b51f4ee51cb5291401b907c12289258200976d7a7ab441d4"
+    },
+    {
+      "key": "query:bookings/{booking_id}/payment-selection:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/payment-selection_POST.xs",
+      "sha256": "b4c31023e11ee1ed3f3cd358fa7e84eeec67b86381b82cd94502cd91df9ee620"
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/quotes_POST.xs",
+      "sha256": "a10dd269cc9879a565b41986214e51660915ef0966a8007aaa06809c792b753a"
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes/{quote_id}/accept:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/quotes/_quote_id_/accept_POST.xs",
+      "sha256": "4d4615166f730576b3cb11f97ae134c94a4739cd9cda62677903e384d3aac769"
+    },
+    {
+      "key": "query:bookings/{booking_id}/resume:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/bookings/_booking_id_/resume_POST.xs",
+      "sha256": "9b697b5762cb0d5e7cca57d0a534f3c46ebbb563465b0efe5a0b706251a396ac"
+    },
+    {
+      "key": "query:chatgpt:POST:Authentication",
+      "path": "draft/query/Authentication/chatgpt_POST.xs",
+      "sha256": "757b35e26bc71e0e6af63a5096a014e97f0f5b18f88d778262229fcc5c6078dc"
+    },
+    {
+      "key": "query:consent-attempts/{attempt_id}/decision:POST:Zippy_V1",
+      "path": "draft/query/Zippy_V1/consent-attempts/_attempt_id_/decision_POST.xs",
+      "sha256": "6c2b632a2db61fef0965a8e5864ec84bbd8d2ac029bcc09c6af618ab22ee4539"
+    },
+    {
+      "key": "query:logs/user/my_events:GET:Event Logs",
+      "path": "draft/query/Event Logs/logs/user/my_events_GET.xs",
+      "sha256": "60c8e3fe6709dd29d946497a342e93914d7e78061a33bca8ae9588dfe62c09ec"
+    },
+    {
+      "key": "query:message/send_welcome_email:POST:Authentication",
+      "path": "draft/query/Authentication/message/send_welcome_email_POST.xs",
+      "sha256": "f71c879229b4e5e69f90be92197e1e95f9bc3d342d44099f4e5e5348b5525800"
+    },
+    {
+      "key": "query:reset/magic-link-login:POST:Authentication",
+      "path": "draft/query/Authentication/reset/magic-link-login_POST.xs",
+      "sha256": "4fde8607a1aec128e8965d3156fdefbfb26e27c9b49f315d2bebe1aeed5c1f43"
+    },
+    {
+      "key": "query:reset/request-reset-link:GET:Authentication",
+      "path": "draft/query/Authentication/reset/request-reset-link_GET.xs",
+      "sha256": "d2e4aaa5f7335c30f4dabf7327889d3b094f5a1c298c7fd9ac80bbf6963874f8"
+    },
+    {
+      "key": "query:reset/update_password:POST:Authentication",
+      "path": "draft/query/Authentication/reset/update_password_POST.xs",
+      "sha256": "11feba94ddc3d50bab4c700c9137f3e67ca8d7e031844da5722b5ad9841e271a"
+    },
+    {
+      "key": "table:active_assignment_reservations",
+      "path": "draft/table/active_assignment_reservations.xs",
+      "sha256": "6e9c405dadadebe6ed52726e111d5683856b1bc972a801ea35f0490f23f85dae"
+    },
+    {
+      "key": "table:agent_decision",
+      "path": "draft/table/agent_decision.xs",
+      "sha256": "fbe480bb2f8bac9be9a00fe77b36bc578e488c599db1a8bd9e4deb09e1508269"
+    },
+    {
+      "key": "table:agent_execution",
+      "path": "draft/table/agent_execution.xs",
+      "sha256": "c3a90a616fa28b7bc584b803ad3d8f7a1cedfcff625e7f964a19670bfd321f09"
+    },
+    {
+      "key": "table:approval_request",
+      "path": "draft/table/approval_request.xs",
+      "sha256": "6a650e4ef8102ea8fe9058a5441530e937804a5d180a1eefde74c275e834cfba"
+    },
+    {
+      "key": "table:audit_log",
+      "path": "draft/table/audit_log.xs",
+      "sha256": "95decf63954aa2b243b05ecf19655126b1c3fd7908e14d058e0bc0674ad066fc"
+    },
+    {
+      "key": "table:booking_quote",
+      "path": "draft/table/booking_quote.xs",
+      "sha256": "e3cfacf60fbe4c7afc214643160ab6c5d8e56dae1f4118ce2bc4c87320ff08a0"
+    },
+    {
+      "key": "table:cargo_detail",
+      "path": "draft/table/cargo_detail.xs",
+      "sha256": "bbd062012b212c264e380ba774acde52f2ec1935f9105e11546e92fd3ca8a25c"
+    },
+    {
+      "key": "table:compliance_documents",
+      "path": "draft/table/compliance_documents.xs",
+      "sha256": "0d41aa1c7e6689810257a58176a47fa19fe305e13aa7fff693c79b2e1a4a93c2"
+    },
+    {
+      "key": "table:customer_booking",
+      "path": "draft/table/customer_booking.xs",
+      "sha256": "d6d573e99f98d4acdf2a76b1dd34bb069b8b3ef91e35a14383b0b943f1bf2a6a"
+    },
+    {
+      "key": "table:driver_profile",
+      "path": "draft/table/driver_profile.xs",
+      "sha256": "cf47ad5cf22a9bcbd2fe03b542a4305a8c02d3dc42cc2292f098ba885594ba1c"
+    },
+    {
+      "key": "table:durable_tasks",
+      "path": "draft/table/durable_tasks.xs",
+      "sha256": "3c077f5b4c5bea5d9031dcb0929028619fe76dcf4ed1b79699d1b2e7d284e2c3"
+    },
+    {
+      "key": "table:event_log",
+      "path": "draft/table/event_log.xs",
+      "sha256": "09d4946d85925fb6bf631ff8ecd246af1f8fe325d4f5dfa52afcca5b3e6301bd"
+    },
+    {
+      "key": "table:event_outbox",
+      "path": "draft/table/event_outbox.xs",
+      "sha256": "fd31419b391174f1db07ead0dbfe7f274ae6ad185069674d0dcc2474cc63ac18"
+    },
+    {
+      "key": "table:idempotency_key",
+      "path": "draft/table/idempotency_key.xs",
+      "sha256": "d2a4d0ab3a90115d0a6be33526ecf66e4c39c579148c94e8cb51fd93f8c1e7a3"
+    },
+    {
+      "key": "table:incident_dispute",
+      "path": "draft/table/incident_dispute.xs",
+      "sha256": "ee588b485c9383f2b2965be6ed70c74040b9e87f780c026bae9e112e93b62d74"
+    },
+    {
+      "key": "table:order_holds",
+      "path": "draft/table/order_holds.xs",
+      "sha256": "3d00a8cafab028d5545938bbab5b8c4133f3075d0bc5ef2f7ee0766be1daa33b"
+    },
+    {
+      "key": "table:organization",
+      "path": "draft/table/organization.xs",
+      "sha256": "6c1d47de7aacecbc3173f77428a9bcb6665bd188514e5475ff1992248ae8e8b1"
+    },
+    {
+      "key": "table:organization_member",
+      "path": "draft/table/organization_member.xs",
+      "sha256": "24b23f966f28569c18f4e058bbcf00fa2492cfc722b2992f790cf997675e7981"
+    },
+    {
+      "key": "table:otp_challenges",
+      "path": "draft/table/otp_challenges.xs",
+      "sha256": "9087a17394c34f714beac5b34e1336abaa7e48a61de4ba160c0e425011be4b42"
+    },
+    {
+      "key": "table:payment_transaction",
+      "path": "draft/table/payment_transaction.xs",
+      "sha256": "f7b3a1614dd5b1f3368f48d9c9d6cf06106319dfde7fbfc7bec9894b965b1b10"
+    },
+    {
+      "key": "table:pricing_policies",
+      "path": "draft/table/pricing_policies.xs",
+      "sha256": "8f291a291360d074b2199edc37b4f8f6b89c59ce4e494e946fcf9a0d06385559"
+    },
+    {
+      "key": "table:proof_of_delivery",
+      "path": "draft/table/proof_of_delivery.xs",
+      "sha256": "602ff3ff4506025bcbc3a4d5b7655b62842cd864937fb2ee8d191f3845b9b1f4"
+    },
+    {
+      "key": "table:refund_request",
+      "path": "draft/table/refund_request.xs",
+      "sha256": "4a304ec4be50056a3e66a7c4ae8e0e3c3b5f32a3f6b10dc985a91920fa9df1e7"
+    },
+    {
+      "key": "table:route_cache",
+      "path": "draft/table/route_cache.xs",
+      "sha256": "e52b98f90ed2fa4505cda903385a9291e15b44d8982267203df426611c363068"
+    },
+    {
+      "key": "table:settlement",
+      "path": "draft/table/settlement.xs",
+      "sha256": "42ac548b88d001daa4d981d04d815c73a53c64247690c6a8865fb3bcc97143b4"
+    },
+    {
+      "key": "table:table_index",
+      "path": "draft/table/table_index.xs",
+      "sha256": "a9c6ec7c4492340bd7bf1e3fff9b194a73107fc57700f09e33e6c03401268705"
+    },
+    {
+      "key": "table:topay_consent_attempts",
+      "path": "draft/table/topay_consent_attempts.xs",
+      "sha256": "29feaa2787685994090f386883e4e0e6e1b330645605f6378c7651e82c48d040"
+    },
+    {
+      "key": "table:tracking_event",
+      "path": "draft/table/tracking_event.xs",
+      "sha256": "09c65db2287a7bf304e9f5dba2c75c70e82847f4488d37d205c60301f5efa4fc"
+    },
+    {
+      "key": "table:trip",
+      "path": "draft/table/trip.xs",
+      "sha256": "4562e58490c3933302b78e3a9870f3b8e2830ce793605504672f6703f95e138f"
+    },
+    {
+      "key": "table:trip_stop",
+      "path": "draft/table/trip_stop.xs",
+      "sha256": "7f62440bd3830d7934997a0b39ef58e685099a08a82909d6ca16854f23100869"
+    },
+    {
+      "key": "table:user",
+      "path": "draft/table/user.xs",
+      "sha256": "aad55be18f10ed7f0ca02cea248f3952af5cbd7e918dee7ecca4c1f1d1af76a7"
+    },
+    {
+      "key": "table:vehicle",
+      "path": "draft/table/vehicle.xs",
+      "sha256": "919fe15438d22ed0cd374fa69669c3cc815c367378242ff7017bc37548173cc5"
+    },
+    {
+      "key": "table:vehicle_availability",
+      "path": "draft/table/vehicle_availability.xs",
+      "sha256": "d667c833b245b9765b1fb6f15ba1c9d48a131d27aabbf90b5544e4699c914799"
+    },
+    {
+      "key": "tool:search_xano_docs",
+      "path": "draft/tool/search_xano_docs.xs",
+      "sha256": "4a96b07ce2a5e6fe64bafbbca681623f715720d47f1094750c1c2ed8f838d70b"
+    },
+    {
+      "key": "workspace:Zippy Synthetic Prototype_1",
+      "path": "draft/workspace/Zippy_Synthetic_Prototype_1.xs",
+      "sha256": "d42264526f385839c2294bb038dccbd93552c901b8de949bde5f81e51bb4eec1"
+    }
+  ],
+  "differences": [
+    {
+      "key": "function:booking/accept_quote",
+      "published_sha256": "d01d1a54dfcad0db8f525c4984ed87075493819f708a1aa62b3a9a5959b90c94",
+      "draft_sha256": "990a25022958e8992d5bf0681a9bb423607dd843f2cdebae7a3d97c63b3ede7a"
+    },
+    {
+      "key": "function:booking/cancel_booking",
+      "published_sha256": "7eb63b7c78a848b84267f026a1f04f25f9bc56b3946f365a747e7bb8f3e364df",
+      "draft_sha256": "1fcdabf4a628d40e493f7ec2a5469265bd8393ae528b9311fb3dad4598ebbace"
+    },
+    {
+      "key": "function:booking/confirm_booking",
+      "published_sha256": "7a5d945d3d4a0d7bcbdac3dbbf57e8c4d4637a86435f765171cb1df39e115760",
+      "draft_sha256": "08fdbd81982dcf50ceaea09481ea58c667b51b466021bf948613cf06df386133"
+    },
+    {
+      "key": "function:booking/create_consent_attempt",
+      "published_sha256": "3e5087428091a116abb9cb4d120a5ea3696bdfa4d970fa18cde37ca6fd7fa692",
+      "draft_sha256": "d9da8930ffb4899e489b838b745d33cb31f9166ae3ba3d7fc953ce7448b22ad5"
+    },
+    {
+      "key": "function:booking/create_draft",
+      "published_sha256": "5816aa5b0ef198f6e8bd750621ce7fdf5d17947837f0cd3be2a71a8e86b48a5c",
+      "draft_sha256": "f1ef263fae0ee4535e9116cadfe8c22a7cfb37d1835ee92c23120ea0e83fedbc"
+    },
+    {
+      "key": "function:booking/invalidate_quotes",
+      "published_sha256": "a16838da8c887523c517357eb1d6e6d63723f8c1cf04fa80b13b33a76a8b6c29",
+      "draft_sha256": "1af81aea3a69d92e5faaad9de3312cacad05473255910b6c488061d93e19756b"
+    },
+    {
+      "key": "function:booking/manage_hold",
+      "published_sha256": "c38f9f20433032f7e3aed84b287ad4fb7ee09900d2e7af78fba31e8470747ede",
+      "draft_sha256": "9ce87d52e351652756543ad43428d5641a4f871642570fb5e55e7a7bc0c6fbb2"
+    },
+    {
+      "key": "function:booking/record_consent_decision",
+      "published_sha256": "1a9a77510e943bb864e6d1c9591a2c19bfb8bbee2435ed94e1353fe1eefc44f3",
+      "draft_sha256": "833d949283cefb35cc8515db30281f5b254dc62a9105041b90529f92a39deba1"
+    },
+    {
+      "key": "function:booking/resume_booking",
+      "published_sha256": "d8bbc25026758e3bef235b38c67373e1f31dade4848efbace225ba8bd3d001ce",
+      "draft_sha256": "5cde490ffa348f54314d8523e0f8e8db472d700209558888594957b266271dad"
+    },
+    {
+      "key": "function:booking/select_payment",
+      "published_sha256": "017825e37f9fc6f3ab7aac87a122647830dba27c9bc35f161bbf0d335a214e58",
+      "draft_sha256": "5c15677baa6ff45e4cf8529d2c2ff0600f81e8d90d8e12be10add68a9f8c4e5a"
+    },
+    {
+      "key": "function:pricing/calculate_quote",
+      "published_sha256": "e511cd4b2a1be9452f8125dcd491f319cb3d0fa5ce3817cbb61ec02e5bcee156",
+      "draft_sha256": "a5225c57d2c4126c595c867c1158dbfc444c38eee695bda16252a5c11393e00c"
+    },
+    {
+      "key": "function:Quick Start/generate_magic_link",
+      "published_sha256": "6333aa888b100c6ff29c613a09e9992496f2a3f40a0933d820f8ce94b71149d6",
+      "draft_sha256": "76f662e091a133a811e9eef5ae8e7710e620433a7c13a74a0c110cfbe9fe0a76"
+    },
+    {
+      "key": "function:Quick Start/log_event",
+      "published_sha256": "457707e681eee41060ec51a4b6f1e2ac60b56fc959711ee8cf3d92ccb25cfdef",
+      "draft_sha256": "a36a02edf706dc9faac2ad20ab801d065b78dc150b46f13e5150c95c6f768bbe"
+    },
+    {
+      "key": "function:security/authorize_resource",
+      "published_sha256": "a2c334e54cc0f67131a9d4317c2475fe8149775831ec6f23e57f6845a2988c5f",
+      "draft_sha256": "24ea325b8cc55a43ca3a8b085b2fa073b04d14195ee2dfea1fddffeb77e819b1"
+    },
+    {
+      "key": "function:security/complete_idempotency",
+      "published_sha256": "b513d80ddf36d73fef547e6752ab46b08ff69ba02f3b7ad4c326fbc620dc12b5",
+      "draft_sha256": "73f1d2c5a92b2bb850a7c92d6b728cd5b46ccf6dea64f0b25c2c7bdcbd20ea39"
+    },
+    {
+      "key": "function:security/resolve_context",
+      "published_sha256": "7aab2928332d8edefd2cf689366f51d8e86c3a440753a68286446c8493bc7bce",
+      "draft_sha256": "a725678d77832c61ad0bdad7b00fea97750c58fb34b5eccca7b0648e3921f482"
+    },
+    {
+      "key": "function:security/validate_command",
+      "published_sha256": "86bc98dbefe018ec3b9c932ba5fd67f77556076ed25804ac1d4580b12d192d03",
+      "draft_sha256": "a9c4f806aafc193e26f060d1be48b904ce88118084618a13dbd24c65396e1abc"
+    },
+    {
+      "key": "function:tests/run_p2_suite",
+      "published_sha256": "057b71674a5369bb0fcbdf666a387ef72fbddce45fa6285acab4fdb5ce97ddb8",
+      "draft_sha256": "6dc605c37719b179f68364292247896c26966ca6ecc037b1df90e5c9a576e3bf"
+    },
+    {
+      "key": "middleware:Zippy_request_guard",
+      "published_sha256": "469e827ba4e2a8325f8886a5ef6f71904e4e86bd6f676021cd48e1f6580f92fa",
+      "draft_sha256": "a811a335b48bed882c00986a576b2d6c03d0df8178994b5fa851d378d3ef5b5c"
+    },
+    {
+      "key": "query:auth/login:POST:Authentication",
+      "published_sha256": "6dfcf963bfb3229375a67ee172343508613a6fed8239d525fe2bbfea7346662c",
+      "draft_sha256": "4de7a0860893858d2e6dbb19c2beb3e52191e45454bc77f027c7ae5381fd6699"
+    },
+    {
+      "key": "query:auth/me:GET:Authentication",
+      "published_sha256": "8e1705c9ea6d34e25414479bca8c23cb39aecc280601dd537f67864bb067266a",
+      "draft_sha256": "c47e3e7d0cc598685fd331e8cd03c53fb97e37c39d3e7657094eedc90ed44224"
+    },
+    {
+      "key": "query:auth/signup:POST:Authentication",
+      "published_sha256": "cd86683376a4c9d59caa9d0a4ddeeaaf9b451816f9bb2c203c5ce18aa07f612e",
+      "draft_sha256": "8f828a370c0cde5472797df0cd2cc4bebd5ec211cc4bd9eeb631a74f06830555"
+    },
+    {
+      "key": "query:bookings:GET:Zippy_V1",
+      "published_sha256": "2afa288cd47e66f31fd67922c0e2e2024da29ab434a06d9e94abbf1e4461557e",
+      "draft_sha256": "a8166405c58b2fd4341649d635b003c418a9eaed3c933cca4a82913fa67e0d31"
+    },
+    {
+      "key": "query:bookings:POST:Zippy_V1",
+      "published_sha256": "aca1f93fee6b4814367664787bdeb6ac051431d1eb036c295b870cbc18b68948",
+      "draft_sha256": "e2c3f0026d1ffbb360869f1ad015ac14498fd4a2f5d8a8a270b068c4a6bd9d9c"
+    },
+    {
+      "key": "query:bookings/{booking_id}:GET:Zippy_V1",
+      "published_sha256": "a0a73dd9ac6ade2cf656817473a8f3d7bcea92a8fa51db2f4a7d153a3ae8fbb9",
+      "draft_sha256": "a8d2579c53ddf7cbcffbaab12bc7365c13d46e28b9eed3a3fed32d5706b06649"
+    },
+    {
+      "key": "query:bookings/{booking_id}:PATCH:Zippy_V1",
+      "published_sha256": "fc5300ade2f603f35720f0da1d31a1014b22daca0f4d9e0f9a33921bea0ecc80",
+      "draft_sha256": "2cdcdf585dd8341a26d7204abfd1e1a1113d879ac0c37dd8713099e4313d3316"
+    },
+    {
+      "key": "query:bookings/{booking_id}/cancel:POST:Zippy_V1",
+      "published_sha256": "5212881e83a404b193ab42f97505c6f16627214ba0dceb30e02d6e83c3e42113",
+      "draft_sha256": "3e954253be2e7078b9133a1b2278dd4969bf1f9ef7f0c5477328133477c59245"
+    },
+    {
+      "key": "query:bookings/{booking_id}/confirm:POST:Zippy_V1",
+      "published_sha256": "5d9d7cb88a6ce7f37505d28ece6e4123c11a0cb8dd8a90bd091713634b84a6f9",
+      "draft_sha256": "409eb8b46b77183bb665bee1d0ae8f817bce85010c8a25cf55da982c48846980"
+    },
+    {
+      "key": "query:bookings/{booking_id}/consent-attempts:POST:Zippy_V1",
+      "published_sha256": "2ccecde8bf8491bfb186d2473292a2f6abdda076d910565bea1d16cad6113bec",
+      "draft_sha256": "279d5596f76d9d6649d42613ec74044fcf292a06fac2ef30830f589339acc49c"
+    },
+    {
+      "key": "query:bookings/{booking_id}/holds:POST:Zippy_V1",
+      "published_sha256": "de70a6fe421632cffaa297b23b734555f697927b802a8ede5886ba2cb273abd5",
+      "draft_sha256": "fe59aae386d670a55f040146369edee4b2990efcc3a69b8f833d70fa270c719c"
+    },
+    {
+      "key": "query:bookings/{booking_id}/holds/{hold_id}/release:POST:Zippy_V1",
+      "published_sha256": "6e25675ac505e9388765c1d992c439481c0d9d985f1500aeb7c3b0d0c69dff58",
+      "draft_sha256": "19cda7d840833507b51f4ee51cb5291401b907c12289258200976d7a7ab441d4"
+    },
+    {
+      "key": "query:bookings/{booking_id}/payment-selection:POST:Zippy_V1",
+      "published_sha256": "a6b6baf5dfaba6776c0a95d7d7af7b046649b8eadbdc128ea6b71fb00c2a274f",
+      "draft_sha256": "b4c31023e11ee1ed3f3cd358fa7e84eeec67b86381b82cd94502cd91df9ee620"
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes:POST:Zippy_V1",
+      "published_sha256": "329e081e07b15b3ae428817ffb435bb63e0a0bb8d05032e2de3ee478db1f30d4",
+      "draft_sha256": "a10dd269cc9879a565b41986214e51660915ef0966a8007aaa06809c792b753a"
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes/{quote_id}/accept:POST:Zippy_V1",
+      "published_sha256": "998d77a590517110daf5ecc42cd9e78688bde60a947ba93d42e7ff11fc58b076",
+      "draft_sha256": "4d4615166f730576b3cb11f97ae134c94a4739cd9cda62677903e384d3aac769"
+    },
+    {
+      "key": "query:bookings/{booking_id}/resume:POST:Zippy_V1",
+      "published_sha256": "384ce77a844033a342bf47bf1948e1be5862e333d0fe64db8ae5cfcd85e46e44",
+      "draft_sha256": "9b697b5762cb0d5e7cca57d0a534f3c46ebbb563465b0efe5a0b706251a396ac"
+    },
+    {
+      "key": "query:consent-attempts/{attempt_id}/decision:POST:Zippy_V1",
+      "published_sha256": "8b04721b5a0654613604b899eef21450a105dfcd4211f690d189ce392b918f1a",
+      "draft_sha256": "6c2b632a2db61fef0965a8e5864ec84bbd8d2ac029bcc09c6af618ab22ee4539"
+    },
+    {
+      "key": "query:logs/user/my_events:GET:Event Logs",
+      "published_sha256": "3f2902d05fbf71f07ec3c063f8edd0cc0d927bcb18dc73d76c2756ab5843407d",
+      "draft_sha256": "60c8e3fe6709dd29d946497a342e93914d7e78061a33bca8ae9588dfe62c09ec"
+    },
+    {
+      "key": "query:message/send_welcome_email:POST:Authentication",
+      "published_sha256": "6514282d414253dc16316f5ad2e523b5a5d012d105e2a09eaf1433ebe41eb423",
+      "draft_sha256": "f71c879229b4e5e69f90be92197e1e95f9bc3d342d44099f4e5e5348b5525800"
+    },
+    {
+      "key": "query:reset/magic-link-login:POST:Authentication",
+      "published_sha256": "b45b6f41b1efb901119a656f8ce993d63a1bc378496aac1e02b46c3e9a09b547",
+      "draft_sha256": "4fde8607a1aec128e8965d3156fdefbfb26e27c9b49f315d2bebe1aeed5c1f43"
+    },
+    {
+      "key": "query:reset/request-reset-link:GET:Authentication",
+      "published_sha256": "0b797b7b6a5bcebe15fa7e0052ee7b97f071221a83afb24c0fbcf66adbbdae05",
+      "draft_sha256": "d2e4aaa5f7335c30f4dabf7327889d3b094f5a1c298c7fd9ac80bbf6963874f8"
+    },
+    {
+      "key": "query:reset/update_password:POST:Authentication",
+      "published_sha256": "9f2a3a19f2ed8e9117f73f86f7544ae66580d757f3e3a8c7a24e75262b1613ec",
+      "draft_sha256": "11feba94ddc3d50bab4c700c9137f3e67ca8d7e031844da5722b5ad9841e271a"
+    }
+  ]
+}

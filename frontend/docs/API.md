@@ -11,12 +11,12 @@
 
 ## Discovered contracts and release-gated adapter
 
-Current deployment evidence and exact publication blockers: [Xano discovery](XANO.md). Workspace **3**, live branch **v1**, has published logistics placeholders and substantive unpublished drafts. These are different from the old local checkout. No backend changes were made; publication remains with the user.
+Current versioned evidence and remaining dependencies: [alignment 0.1.0](../../contracts/backend-frontend/0.1.0/README.md). Retained workspace **3** / **v1** published source contains hardened auth/customer readers; mutations are empty stubs and signup refuses. Drafts and recovery proposals are not a release. Positive runtime acceptance remains blocked.
 
 | Browser → server | Server → verified Xano path | Contract |
 |---|---|---|
 | `POST /api/auth/login` | `POST {XANO_AUTH_BASE_URL}/auth/login` | email/password → authToken |
-| `POST /api/auth/signup` | `POST …/auth/signup` | name/email/password → authToken; Xano creates **member**, never accepts browser role |
+| `POST /api/auth/signup` or `/api/auth/register` | None | Always local 503 `REGISTRATION_PENDING`, even when login is released; no account/session creation |
 | `GET /api/auth/me` | `GET …/auth/me` | Bearer token → validated active identity, system role and organization |
 | `GET /api/bookings` | `GET {XANO_LOGISTICS_BASE_URL}/bookings` | Customer-only, tenant-scoped bounded page; projected scalar fields |
 | `GET /api/bookings/{id}` | `GET …/bookings/{id}` | Authorized matching ID/organization; read-only state and hold/cargo counts |
@@ -24,7 +24,7 @@ Current deployment evidence and exact publication blockers: [Xano discovery](XAN
 
 Sources: separately pulled published/draft workspace snapshots and authenticated Metadata API OpenAPI, recorded in `XANO.md`. Actual bases are now located. No approved positive-auth test account is available; authentication and booking read adapters are **mock-tested, gated, not verified positive live workflows**.
 
-`XANO_AUTH_RELEASE=verified` is required before any credential/token request reaches Xano. Default `blocked` protects against the observed old auth logger. Login/signup validate `auth/me` before releasing a session. Legacy `role: admin/member` never grants workspace access. Active `super_admin`/`operations_admin` map to restricted Admin, `customer_admin`/`customer_member` to customer, and `vendor_admin`/`fleet_manager`/`driver` to owner. Non-Admin identity requires an organization ID; published membership guards must still validate it for each operation. Unknown roles/statuses fail closed.
+`XANO_AUTH_RELEASE=verified` is required before login or token validation reaches Xano. Default `blocked` remains until isolated runtime acceptance; retained published source fixes the older logger but does not prove persisted-log behavior. Login revalidates `auth/me` before releasing a session. Recovery registration `0.1.0-draft` is **NOT_DEPLOYED**, requires organization onboarding and returns no `authToken`; it is not adapted into login. Legacy `role: admin/member` never grants workspace access. Active `super_admin`/`operations_admin` map to restricted Admin, `customer_admin`/`customer_member` to customer, and `vendor_admin`/`fleet_manager`/`driver` to owner. Non-Admin identity requires an organization ID; published membership guards must still validate it for each operation. Unknown roles/statuses fail closed.
 
 Booking reads also require `XANO_BOOKING_READS_RELEASE=verified`. Only customer roles may use them; driver/vendor/Admin reads are denied pending their own authorized contracts. Browser organization overrides are rejected. Pagination/status inputs are bounded; all records must match the authenticated organization. Null, malformed pages, unknown booking states and mismatched detail IDs return errors, never empty-success UI. Raw contacts, nested financial fields and provider `allowed_actions` are not passed through. Booking mutations always return `BOOKING_WRITES_PENDING`; this increment has no write-release flag. Trip/POD/settlement endpoints remain unwired.
 

@@ -48,13 +48,13 @@ export async function api<T>(route: string, body?: object, options: { signal?: A
   }
   return result;
 }
-export async function signIn(mode: 'login' | 'signup', data: { name?: string; email: string; password: string }) {
+export async function signIn(data: { email: string; password: string }) {
   clearSession();
   const version = sessionVersion;
-  const result = await api<{ authToken: string; user: User }>(`auth/${mode}`, data);
+  const result = await api<{ authToken: string; user: User }>('auth/login', data);
   if (version !== sessionVersion) throw new ApiError('REQUEST_CANCELLED', 'Account request cancelled.');
   authToken = result.authToken; // Memory only; no localStorage, URL or role hints.
   return result; // Server revalidates auth/me before releasing this session.
 }
 export type User = { id: number; name: string; email: string; systemRole: string; workspace: 'customer' | 'owner' | 'admin'; organizationId: number | null };
-export type ServiceStatus = { authenticationConfigured: boolean; authenticationAvailable: boolean; bookingReadsAvailable: boolean; bookingWritesAvailable: false; deliveryAvailable: false; crmConfigured: boolean; crmReleaseAuthorized: boolean; crmConnectionVerified: boolean; crmAvailable: boolean };
+export type ServiceStatus = { authenticationConfigured: boolean; authenticationAvailable: boolean; bookingReadsAvailable: boolean; bookingWritesAvailable: false; deliveryAvailable: false; assessmentsAvailable: false; assessmentReviewAvailable: false; crmConfigured: boolean; crmReleaseAuthorized: boolean; crmConnectionVerified: boolean; crmAvailable: boolean };

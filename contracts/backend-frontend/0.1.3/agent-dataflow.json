@@ -1,0 +1,163 @@
+{
+  "version": "0.1.3",
+  "agents": {
+    "OMS": {
+      "status": "PROPOSED_NOT_DEPLOYED",
+      "scope": "customer_booking.customer_organization_id = authorized customer organization; cargo_detail.booking_id must join the selected booking.",
+      "serverOnlyReadProjection": {
+        "customer_booking": [
+          "id",
+          "customer_organization_id",
+          "status",
+          "version",
+          "pickup_city",
+          "delivery_city"
+        ],
+        "cargo_detail": [
+          "id",
+          "booking_id",
+          "weight_kg",
+          "package_count"
+        ]
+      },
+      "modelInput": "Only server-derived bounded evidence codes and opaque evidence IDs. These database projections are not raw model input.",
+      "output": "HUMAN_REVIEW with allowlisted reason and evidence IDs; never a command or authorization.",
+      "writesAllowed": false,
+      "runtimeVerified": false
+    },
+    "IMS": {
+      "status": "PROPOSED_NOT_DEPLOYED",
+      "scope": "vehicle.organization_id and vehicle_availability.organization_id = authorized vendor organization; availability.vehicle_id joins that vehicle. Reservation vehicle and driver must independently belong to the same vendor. order_id is a cross-tenant customer reference: never expose booking data without a separate customer grant.",
+      "serverOnlyReadProjection": {
+        "vehicle": [
+          "id",
+          "organization_id",
+          "status",
+          "max_payload_kg"
+        ],
+        "vehicle_availability": [
+          "id",
+          "vehicle_id",
+          "organization_id",
+          "available_from",
+          "available_until",
+          "is_active"
+        ],
+        "active_assignment_reservations": [
+          "id",
+          "order_id",
+          "vehicle_id",
+          "driver_id",
+          "status",
+          "expires_at"
+        ]
+      },
+      "modelInput": "Only server-derived bounded evidence codes and opaque evidence IDs. These database projections are not raw model input.",
+      "output": "HUMAN_REVIEW with allowlisted reason and evidence IDs; never a command or authorization.",
+      "writesAllowed": false,
+      "runtimeVerified": false
+    },
+    "TMS": {
+      "status": "PROPOSED_NOT_DEPLOYED",
+      "scope": "trip.vendor_organization_id = authorized vendor organization; stops/incidents join selected trip. A driver additionally matches trip.driver_id to an active driver_profile for the authenticated user and organization. Booking references do not grant customer data access.",
+      "serverOnlyReadProjection": {
+        "trip": [
+          "id",
+          "booking_id",
+          "vendor_organization_id",
+          "driver_id",
+          "vehicle_id",
+          "status"
+        ],
+        "trip_stop": [
+          "id",
+          "trip_id",
+          "stop_sequence",
+          "status"
+        ],
+        "incident_dispute": [
+          "id",
+          "trip_id",
+          "incident_type",
+          "severity",
+          "status"
+        ]
+      },
+      "modelInput": "Only server-derived bounded evidence codes and opaque evidence IDs. These database projections are not raw model input.",
+      "output": "HUMAN_REVIEW with allowlisted reason and evidence IDs; never a command or authorization.",
+      "writesAllowed": false,
+      "runtimeVerified": false
+    },
+    "VERIFICATION": {
+      "status": "PROPOSED_NOT_DEPLOYED",
+      "scope": "POD joins authorized trip; stop_id must join a stop of that trip and driver_id must match its driver. compliance_documents owner_type selects organization, vehicle or driver_profile; resolve owner_id through that type and verify organization independently. No generic owner_id authorization.",
+      "serverOnlyReadProjection": {
+        "proof_of_delivery": [
+          "id",
+          "trip_id",
+          "stop_id",
+          "driver_id",
+          "status",
+          "otp_verified"
+        ],
+        "compliance_documents": [
+          "id",
+          "owner_type",
+          "owner_id",
+          "valid_until",
+          "verification_status"
+        ]
+      },
+      "modelInput": "Only server-derived bounded evidence codes and opaque evidence IDs. These database projections are not raw model input.",
+      "output": "HUMAN_REVIEW with allowlisted reason and evidence IDs; never a command or authorization.",
+      "writesAllowed": false,
+      "runtimeVerified": false
+    },
+    "FINANCE_COMPLIANCE": {
+      "status": "PROPOSED_NOT_DEPLOYED",
+      "scope": "Explicit finance grant plus target organization required. Customer payment/refund scope and vendor settlement scope are separate projections: never merge across organizations because a trip references a booking. Refund payment_transaction_id and booking_id must agree.",
+      "serverOnlyReadProjection": {
+        "payment_transaction": [
+          "id",
+          "booking_id",
+          "customer_organization_id",
+          "amount",
+          "currency",
+          "status"
+        ],
+        "settlement": [
+          "id",
+          "trip_id",
+          "vendor_organization_id",
+          "gross_carrier_amount",
+          "platform_fee",
+          "tax_tds",
+          "net_payout_amount",
+          "currency",
+          "status"
+        ],
+        "refund_request": [
+          "id",
+          "booking_id",
+          "payment_transaction_id",
+          "refund_amount",
+          "currency",
+          "status"
+        ]
+      },
+      "modelInput": "Only server-derived bounded evidence codes and opaque evidence IDs. These database projections are not raw model input.",
+      "output": "HUMAN_REVIEW with allowlisted reason and evidence IDs; never a command or authorization.",
+      "writesAllowed": false,
+      "runtimeVerified": false
+    }
+  },
+  "sharedRequirements": [
+    "Authenticate server-side; reject suspended users, inactive organization or revoked membership before reading records.",
+    "Derive user, tenant and agent grants from trusted backend state, never browser/model role fields.",
+    "Recheck membership and record freshness before returning or storing a recommendation.",
+    "Only customer_booking has the mapped version field; other entities need an approved transactional snapshot/revision strategy. Do not invent version=1.",
+    "No prompts, secrets, private storage keys, OTPs, contacts, claim tokens or raw free text reach models.",
+    "All joins must be scoped before projection; no external models, schedules, triggers or business writes.",
+    "Amounts require explicit units and rounding policy before numerical comparison; currency matching is mandatory."
+  ]
+}

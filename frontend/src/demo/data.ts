@@ -18,7 +18,7 @@ export const identities: Record<Role, { name: string; initials: string; account:
 export const navs: Record<Role, string[]> = {
   customer: ['Home', 'Book', 'Orders', 'Payments', 'Profile'],
   owner: ['Home', 'Jobs', 'Vehicles', 'Earnings', 'Profile'],
-  admin: ['Home', 'All Orders', 'Participants', 'Fleet Visibility', 'Payments', 'Reviews & Holds', 'Incidents', 'Support', 'Announcements', 'CRM', 'Agent Responsibilities'],
+  admin: ['Home', 'All Orders', 'Participants', 'Fleet Visibility', 'Payments', 'Reviews & Holds', 'Incidents', 'Support', 'Announcements', 'CRM', 'Agent Responsibilities', 'Agent Assessments'],
 };
 
 export const tamil: Record<string, string> = {
@@ -55,3 +55,4 @@ export const holds = [
   { id: 'ZP-2045', reason: 'Incomplete proof of delivery', action: 'Provider settlement release', owner: 'Operations · POD review', evidence: 'Clear recipient signature and delivery receipt', release: 'Authorized verification of corrected POD and Finance review', detail: 'The recipient signature is unclear. Delivery evidence is required before the settlement can be reviewed.' },
   { id: 'ZP-2044', reason: 'Payment reconciliation', action: 'Refund processing', owner: 'Finance / Compliance', evidence: 'Verified provider collection and reconciliation record', release: 'Eligible refundable balance, human approval and audit record', detail: 'No verified collection is recorded. A refund cannot be approved from this preview.' },
 ];
+

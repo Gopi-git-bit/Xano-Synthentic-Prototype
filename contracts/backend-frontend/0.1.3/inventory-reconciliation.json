@@ -1,0 +1,311 @@
+{
+  "version": "0.1.3",
+  "sourceDate": "2026-10-29",
+  "currentLiveInventoryVerified": false,
+  "reference": "User supplied vfs-workspace3-v1 symbolic labels, no current source bytes or GUIDs supplied",
+  "displayAliases": {
+    "Quick Start": "quick_start",
+    "Event Logs": "Event_Logs",
+    "Zippy Synthetic Prototype_1": "zippy_synthetic_prototype_1",
+    "Zippy_request_guard": "zippy_request_guard",
+    "Xano Example Agent": "xano_example_agent",
+    "Xano-Synthetic-Prototype": "xano_synthetic_prototype"
+  },
+  "methodCaveat": "Reference omits methods on most endpoints. These are explicitly inferred from retained declarations; path/group identity comparison is stronger than independent method confirmation.",
+  "referenceCount": 85,
+  "publishedCount": 84,
+  "referenceOnly": [
+    "table:zippy_db_crosswalk_49_to_xano_33"
+  ],
+  "exportOnly": [],
+  "verdict": "The supplied symbolic inventory matches the retained export except the named crosswalk. This supports H1 for these inputs; it does not prove current live completeness or intentional exclusion.",
+  "changedCount": 41,
+  "safetyChangedCount": 14,
+  "safetyFiles": [
+    {
+      "key": "function:booking/accept_quote",
+      "changed": true,
+      "publishedPath": "published/function/booking/accept_quote.xs",
+      "draftPath": "draft/function/booking/accept_quote.xs",
+      "publishedSha256": "d01d1a54dfcad0db8f525c4984ed87075493819f708a1aa62b3a9a5959b90c94",
+      "draftSha256": "990a25022958e8992d5bf0681a9bb423607dd843f2cdebae7a3d97c63b3ede7a",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 4
+      }
+    },
+    {
+      "key": "function:booking/confirm_booking",
+      "changed": true,
+      "publishedPath": "published/function/booking/confirm_booking.xs",
+      "draftPath": "draft/function/booking/confirm_booking.xs",
+      "publishedSha256": "7a5d945d3d4a0d7bcbdac3dbbf57e8c4d4637a86435f765171cb1df39e115760",
+      "draftSha256": "08fdbd81982dcf50ceaea09481ea58c667b51b466021bf948613cf06df386133",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 8
+      }
+    },
+    {
+      "key": "function:booking/create_consent_attempt",
+      "changed": true,
+      "publishedPath": "published/function/booking/create_consent_attempt.xs",
+      "draftPath": "draft/function/booking/create_consent_attempt.xs",
+      "publishedSha256": "3e5087428091a116abb9cb4d120a5ea3696bdfa4d970fa18cde37ca6fd7fa692",
+      "draftSha256": "d9da8930ffb4899e489b838b745d33cb31f9166ae3ba3d7fc953ce7448b22ad5",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 5
+      }
+    },
+    {
+      "key": "function:booking/create_draft",
+      "changed": true,
+      "publishedPath": "published/function/booking/create_draft.xs",
+      "draftPath": "draft/function/booking/create_draft.xs",
+      "publishedSha256": "5816aa5b0ef198f6e8bd750621ce7fdf5d17947837f0cd3be2a71a8e86b48a5c",
+      "draftSha256": "f1ef263fae0ee4535e9116cadfe8c22a7cfb37d1835ee92c23120ea0e83fedbc",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 6
+      }
+    },
+    {
+      "key": "function:booking/record_consent_decision",
+      "changed": true,
+      "publishedPath": "published/function/booking/record_consent_decision.xs",
+      "draftPath": "draft/function/booking/record_consent_decision.xs",
+      "publishedSha256": "1a9a77510e943bb864e6d1c9591a2c19bfb8bbee2435ed94e1353fe1eefc44f3",
+      "draftSha256": "833d949283cefb35cc8515db30281f5b254dc62a9105041b90529f92a39deba1",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 11
+      }
+    },
+    {
+      "key": "function:booking/resume_booking",
+      "changed": true,
+      "publishedPath": "published/function/booking/resume_booking.xs",
+      "draftPath": "draft/function/booking/resume_booking.xs",
+      "publishedSha256": "d8bbc25026758e3bef235b38c67373e1f31dade4848efbace225ba8bd3d001ce",
+      "draftSha256": "5cde490ffa348f54314d8523e0f8e8db472d700209558888594957b266271dad",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 2
+      }
+    },
+    {
+      "key": "function:booking/select_payment",
+      "changed": true,
+      "publishedPath": "published/function/booking/select_payment.xs",
+      "draftPath": "draft/function/booking/select_payment.xs",
+      "publishedSha256": "017825e37f9fc6f3ab7aac87a122647830dba27c9bc35f161bbf0d335a214e58",
+      "draftSha256": "5c15677baa6ff45e4cf8529d2c2ff0600f81e8d90d8e12be10add68a9f8c4e5a",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 4
+      }
+    },
+    {
+      "key": "function:pricing/calculate_quote",
+      "changed": true,
+      "publishedPath": "published/function/pricing/calculate_quote.xs",
+      "draftPath": "draft/function/pricing/calculate_quote.xs",
+      "publishedSha256": "e511cd4b2a1be9452f8125dcd491f319cb3d0fa5ce3817cbb61ec02e5bcee156",
+      "draftSha256": "a5225c57d2c4126c595c867c1158dbfc444c38eee695bda16252a5c11393e00c",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 4
+      }
+    },
+    {
+      "key": "query:bookings/{booking_id}/confirm:POST:Zippy_V1",
+      "changed": true,
+      "publishedPath": "published/query/Zippy_V1/bookings/_booking_id_/confirm_POST.xs",
+      "draftPath": "draft/query/Zippy_V1/bookings/_booking_id_/confirm_POST.xs",
+      "publishedSha256": "5d9d7cb88a6ce7f37505d28ece6e4123c11a0cb8dd8a90bd091713634b84a6f9",
+      "draftSha256": "409eb8b46b77183bb665bee1d0ae8f817bce85010c8a25cf55da982c48846980",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 1
+      }
+    },
+    {
+      "key": "query:bookings/{booking_id}/consent-attempts:POST:Zippy_V1",
+      "changed": true,
+      "publishedPath": "published/query/Zippy_V1/bookings/_booking_id_/consent-attempts_POST.xs",
+      "draftPath": "draft/query/Zippy_V1/bookings/_booking_id_/consent-attempts_POST.xs",
+      "publishedSha256": "2ccecde8bf8491bfb186d2473292a2f6abdda076d910565bea1d16cad6113bec",
+      "draftSha256": "279d5596f76d9d6649d42613ec74044fcf292a06fac2ef30830f589339acc49c",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 1
+      }
+    },
+    {
+      "key": "query:bookings/{booking_id}/payment-selection:POST:Zippy_V1",
+      "changed": true,
+      "publishedPath": "published/query/Zippy_V1/bookings/_booking_id_/payment-selection_POST.xs",
+      "draftPath": "draft/query/Zippy_V1/bookings/_booking_id_/payment-selection_POST.xs",
+      "publishedSha256": "a6b6baf5dfaba6776c0a95d7d7af7b046649b8eadbdc128ea6b71fb00c2a274f",
+      "draftSha256": "b4c31023e11ee1ed3f3cd358fa7e84eeec67b86381b82cd94502cd91df9ee620",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 1
+      }
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes/{quote_id}/accept:POST:Zippy_V1",
+      "changed": true,
+      "publishedPath": "published/query/Zippy_V1/bookings/_booking_id_/quotes/_quote_id_/accept_POST.xs",
+      "draftPath": "draft/query/Zippy_V1/bookings/_booking_id_/quotes/_quote_id_/accept_POST.xs",
+      "publishedSha256": "998d77a590517110daf5ecc42cd9e78688bde60a947ba93d42e7ff11fc58b076",
+      "draftSha256": "4d4615166f730576b3cb11f97ae134c94a4739cd9cda62677903e384d3aac769",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 1
+      }
+    },
+    {
+      "key": "query:bookings/{booking_id}/resume:POST:Zippy_V1",
+      "changed": true,
+      "publishedPath": "published/query/Zippy_V1/bookings/_booking_id_/resume_POST.xs",
+      "draftPath": "draft/query/Zippy_V1/bookings/_booking_id_/resume_POST.xs",
+      "publishedSha256": "384ce77a844033a342bf47bf1948e1be5862e333d0fe64db8ae5cfcd85e46e44",
+      "draftSha256": "9b697b5762cb0d5e7cca57d0a534f3c46ebbb563465b0efe5a0b706251a396ac",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 1
+      }
+    },
+    {
+      "key": "query:consent-attempts/{attempt_id}/decision:POST:Zippy_V1",
+      "changed": true,
+      "publishedPath": "published/query/Zippy_V1/consent-attempts/_attempt_id_/decision_POST.xs",
+      "draftPath": "draft/query/Zippy_V1/consent-attempts/_attempt_id_/decision_POST.xs",
+      "publishedSha256": "8b04721b5a0654613604b899eef21450a105dfcd4211f690d189ce392b918f1a",
+      "draftSha256": "6c2b632a2db61fef0965a8e5864ec84bbd8d2ac029bcc09c6af618ab22ee4539",
+      "publishedEvidence": {
+        "emptyStack": true,
+        "nullResponse": true,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      },
+      "draftEvidence": {
+        "emptyStack": false,
+        "nullResponse": false,
+        "safetyMarkerLines": [],
+        "preconditionCount": 0
+      }
+    }
+  ],
+  "ruleCorrections": {
+    "R5": "Changed hashes show content drift, not attribution to a later safety patch. Inspect the actual guard code and date.",
+    "R6": "Equal copies do not prove a guard exists. Both may be unguarded; presence and reachability require content/runtime evidence.",
+    "R7": "A count below 14 alone cannot establish which guards are published; classify each file."
+  }
+}

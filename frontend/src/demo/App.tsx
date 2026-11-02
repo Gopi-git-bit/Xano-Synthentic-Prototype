@@ -9,10 +9,11 @@ import { AgentResponsibilities, ConnectionStatus, Documents, Fleet, Incidents, P
 import { scenarios, scopedOwnerOrders, type Scenario } from './permissions';
 import Jobs from './Jobs';
 import CRM from '../CRM';
+import AgentAssessmentsView from './AgentAssessments';
 
 const roles: Role[] = ['customer', 'owner', 'admin'];
 const roleNames: Record<Role, string> = { customer: 'Customer', owner: 'Vehicle Owner', admin: 'Admin' };
-const icons: Record<string, LucideIcon> = { Home: LayoutDashboard, Book: Plus, Orders: Box, Jobs: Truck, Vehicles: Truck, Earnings: Wallet, 'All Orders': Box, 'Fleet Visibility': MapPin, Payments: Wallet, Support: CircleHelp, Profile: Users, Incidents: ShieldCheck, Participants: Users, 'Reviews & Holds': ClipboardCheck, Announcements: Send, CRM: MessageSquare, 'Agent Responsibilities': Activity };
+const icons: Record<string, LucideIcon> = { Home: LayoutDashboard, Book: Plus, Orders: Box, Jobs: Truck, Vehicles: Truck, Earnings: Wallet, 'All Orders': Box, 'Fleet Visibility': MapPin, Payments: Wallet, Support: CircleHelp, Profile: Users, Incidents: ShieldCheck, Participants: Users, 'Reviews & Holds': ClipboardCheck, Announcements: Send, CRM: MessageSquare, 'Agent Responsibilities': Activity, 'Agent Assessments': Activity };
 const initialRole = () => { const value = new URLSearchParams(location.search).get('preview'); return roles.includes(value as Role) ? value as Role : 'customer'; };
 const hashPage = () => { try { return decodeURIComponent(location.hash.slice(1)); } catch { return ''; } };
 const initialScenario = (): Scenario => { const value = new URLSearchParams(location.search).get('scenario'); return value && Object.hasOwn(scenarios, value) ? value as Scenario : 'ownerDriver'; };
@@ -95,6 +96,7 @@ export default function App() {
   else if (page === 'Fleet Visibility') content = <><PageIntro title="A clearer view of the journey." subtitle="Illustrative route; last location update unavailable. Tracking is stale/offline."/><RouteMap zoom={zoom} setZoom={setZoom}/></>;
   else if (page === 'Participants') content = <Participants/>;
   else if (page === 'Incidents') content = <Incidents role={role}/>;
+  else if (page === 'Agent Assessments') content = <AgentAssessmentsView />;
   else if (page === 'CRM') content = <CRM preview/>;
   else if (page === 'Support' || page === 'Announcements') content = <Support role={role} announcement={page === 'Announcements'}/>;
   else content = <AgentResponsibilities/>;
@@ -109,3 +111,4 @@ export default function App() {
     {info && <Dialog title={info === 'help' ? 'Here for the whole journey.' : 'Your latest updates'} onClose={() => setInfo(null)}>{info === 'help' ? <Support role={role}/> : <><Badge>Sample notifications</Badge><DetailRows rows={scopedOrders.slice(0, 3).map(o => [o.id, o.status])}/><Notice>Notification delivery is not connected.</Notice></>}</Dialog>}
   </div>;
 }
+

@@ -1,0 +1,52 @@
+{
+  "version": "0.1.1",
+  "recoveryVersion": "0.1.1-draft",
+  "deployment": "NOT_DEPLOYED",
+  "runtimeVerified": false,
+  "releaseEligible": false,
+  "receiptSha256": "15569db2cf081deb5f1e4c69a762fb0fd069991c2776c78c4ef53cc973e05489",
+  "proposalSha256": "68e5fa3528e8290a97066da8299d9a022523effc9213c704965860945c244ae8",
+  "validationScope": "Duplicate-key YAML parsing, local references, targeted semantic checks and frontend mock denials; NOT full OpenAPI validation or runtime verification",
+  "findings": [
+    {
+      "id": "S2-01",
+      "status": "BLOCKED",
+      "issue": "Global servers apply both API groups to every path; x-api-group does not override OpenAPI routing. Use operation-level servers or separate specs."
+    },
+    {
+      "id": "S2-02",
+      "status": "BLOCKED",
+      "issue": "BookingItemFinancial allOf is unsatisfiable: closed base rejects money fields and closed extension rejects required base fields. Flatten the financial projection with one closed property set."
+    },
+    {
+      "id": "S2-03",
+      "status": "BLOCKED",
+      "issue": "Recovery admin items/paging/projection differs from existing customer curPage/nextPage/items. Do not adapt customer readers or infer unobserved pagination/timestamp serialization."
+    },
+    {
+      "id": "S2-04",
+      "status": "BLOCKED",
+      "issue": "Unscoped super_admin all-tenant access and finance expand October 31 conservative explicit-tenant/no-finance proposal; policy is not approved by this receipt."
+    },
+    {
+      "id": "S2-05",
+      "status": "BLOCKED",
+      "issue": "D-1 through D-4 remain uncoded/unvalidated. Error enums and 409 mapping are intended, not observed Xano wire behavior. Removing Idempotency-Key does not establish safe transition retry."
+    },
+    {
+      "id": "S2-06",
+      "status": "BLOCKED",
+      "issue": "Equal file counts do not verify byte identity or no writes. Count deltas alone do not establish exactly one missing table or its identity; compare full VFS keys/hashes to supplied inventory."
+    },
+    {
+      "id": "S2-07",
+      "status": "BLOCKED",
+      "issue": "P2 reclaim/release/complete check-then-write races remain. P5 liveness-read followed by deletion is also TOCTOU; uniqueness alone does not prove stale-delete or lease safety. P6 physical atomicity and all-writer enforcement remain unverified."
+    },
+    {
+      "id": "S2-08",
+      "status": "BLOCKED",
+      "issue": "Different datasource names and broad CRUD grants do not establish physical separation, denial of workspace 3, provider egress control or expiry. Existing isolation prerequisites remain."
+    }
+  ]
+}
