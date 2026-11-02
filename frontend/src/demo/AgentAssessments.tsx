@@ -1,5 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react';
-import { AlertTriangle, ArrowRight, CheckCircle2, CircleAlert, Clock3, FileText, RefreshCw, ShieldCheck, Sparkles, TriangleAlert, UserRound, Workflow } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, FileText, RefreshCw, TriangleAlert } from 'lucide-react';
 import { Badge, Card, DetailRows, Notice, PageIntro } from '../components';
 
 const stagePalette = {
@@ -97,7 +96,7 @@ const initialAgents: AgentAssessment[] = [
     freshness: '5 minutes ago',
     confidence: 88,
     recommendation: 'Trip can be prepared for operator review; settlement and closure remain separate.',
-    evidence: ['Route and loading sequence are available.', 'No live live-tracking source is connected.', 'Exception queue includes only a stale checkpoint warning.', 'Backend execution is not available in this demo.'],
+    evidence: ['Route and loading sequence are available.', 'No live tracking source is connected.', 'Exception queue includes only a stale checkpoint warning.', 'Backend execution is not available in this demo.'],
     reasonLabel: 'Operational exception warning but no confirmed failure state.',
     requiredReview: false,
     stale: false,
@@ -147,7 +146,8 @@ export default function AgentAssessments() {
   const [reviewReason, setReviewReason] = useState('');
   const [history, setHistory] = useState<ReviewRecord[]>(initialHistory);
 
-  const selectedAgent = useMemo(() => agents.find(item => item.id === selected) ?? agents[0], [agents, selected]);
+  const selectedAgent = agents.find(item => item.id === selected) ?? agents[0];
+
   const resetDemo = () => {
     setAgents(initialAgents);
     setSelected('OMS');
@@ -197,7 +197,7 @@ export default function AgentAssessments() {
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
-          <Sparkles size={14} className="text-brand" />
+          <AlertTriangle size={14} className="text-brand" />
           <span>Demo review only · no operations are executed</span>
         </div>
         <button className="btn soft" type="button" onClick={resetDemo} aria-label="Reset demo assessments">
