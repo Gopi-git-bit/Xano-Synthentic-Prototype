@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import { AlertTriangle, CheckCircle2, FileText, RefreshCw, TriangleAlert } from 'lucide-react';
 import { Badge, Card, DetailRows, Notice, PageIntro } from '../components';
 
@@ -6,9 +7,9 @@ const stagePalette = {
   'Assessment available': 'info',
   'Insufficient evidence': 'warning',
   'Human review required': 'warning',
-  'Stale': 'danger',
-  'Conflict': 'danger',
-  'Unavailable': 'neutral',
+  Stale: 'danger',
+  Conflict: 'danger',
+  Unavailable: 'neutral',
 } as const;
 
 type StageState = keyof typeof stagePalette;
@@ -141,12 +142,12 @@ const initialHistory: ReviewRecord[] = [
 ];
 
 export default function AgentAssessments() {
-  const [agents, setAgents] = useState<AgentAssessment[]>(() => initialAgents);
+  const [agents, setAgents] = useState<AgentAssessment[]>(initialAgents);
   const [selected, setSelected] = useState<AgentAssessment['id']>('OMS');
   const [reviewReason, setReviewReason] = useState('');
   const [history, setHistory] = useState<ReviewRecord[]>(initialHistory);
 
-  const selectedAgent = agents.find(item => item.id === selected) ?? agents[0];
+  const selectedAgent = useMemo(() => agents.find(item => item.id === selected) ?? agents[0], [agents, selected]);
 
   const resetDemo = () => {
     setAgents(initialAgents);
@@ -159,6 +160,7 @@ export default function AgentAssessments() {
     if (!selectedAgent) return;
     const reason = reviewReason.trim();
     if (action !== 'Request reassessment' && !reason) return;
+
     const next: ReviewRecord = {
       id: `review-${Date.now()}`,
       agent: selectedAgent.id,
@@ -168,7 +170,9 @@ export default function AgentAssessments() {
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       previous: selectedAgent.linkedFrom || selectedAgent.id,
     };
+
     setHistory(prev => [next, ...prev]);
+
     if (action === 'Request reassessment') {
       const nextState: AgentAssessment = {
         ...selectedAgent,
@@ -180,9 +184,17 @@ export default function AgentAssessments() {
       };
       setAgents(prev => prev.map(item => item.id === selectedAgent.id ? nextState : item));
     }
+
     if (action === 'Reject') {
-      setAgents(prev => prev.map(item => item.id === selectedAgent.id ? { ...item, status: 'Insufficient evidence', stale: false, recommendation: 'Rejected pending additional evidence.', reasonLabel: 'Review rejected; evidence remains insufficient.' } : item));
+      setAgents(prev => prev.map(item => item.id === selectedAgent.id ? {
+        ...item,
+        status: 'Insufficient evidence',
+        stale: false,
+        recommendation: 'Rejected pending additional evidence.',
+        reasonLabel: 'Review rejected; evidence remains insufficient.',
+      } : item));
     }
+
     setReviewReason('');
   };
 
