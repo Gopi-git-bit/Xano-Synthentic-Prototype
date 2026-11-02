@@ -146,7 +146,7 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
       const parsed = new URL(url, 'https://local.invalid');
       const route = parsed.searchParams.get('route') || parsed.pathname.replace(/^\/api\//, '');
       if (route === 'status' && method === 'GET') {
-        const data = { authenticationConfigured: configured('XANO_AUTH_BASE_URL'), authenticationAvailable: authAvailable(), bookingReadsAvailable: bookingReadsAvailable(), bookingWritesAvailable: false, deliveryAvailable: false, crmConfigured: crmConfigured(), crmReleaseAuthorized: env.ZOHO_READ_RELEASE === 'verified', crmConnectionVerified: false, crmAvailable: false };
+        const data = { authenticationConfigured: configured('XANO_AUTH_BASE_URL'), authenticationAvailable: authAvailable(), bookingReadsAvailable: bookingReadsAvailable(), bookingWritesAvailable: false, deliveryAvailable: false, assessmentsAvailable: false, assessmentReviewAvailable: false, crmConfigured: crmConfigured(), crmReleaseAuthorized: env.ZOHO_READ_RELEASE === 'verified', crmConnectionVerified: false, crmAvailable: false };
         // Public status never probes Zoho or claims that credentials/release flags prove access.
         if (headers.has('authorization')) {
           const user = await authenticate(headers);
@@ -167,7 +167,7 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
         requireAuthRelease();
         if (!headers.get('content-type')?.startsWith('application/json')) fail(415, 'JSON_REQUIRED', 'JSON is required.');
         const { email, password } = body || {};
-        if (typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || typeof password !== 'string' || password.length < 8 || password.length > 256) fail(400, 'INVALID_INPUT', 'Enter a valid email and password (8–256 characters).');
+        if (typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || typeof password !== 'string' || password.length < 8 || password.length > 256) fail(400, 'INVALID_INPUT', 'Enter a valid email and password (8â€“256 characters).');
         const data = await xano(route, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email.trim().toLowerCase(), password }) });
         if (typeof data?.authToken !== 'string' || !/^[^\s]{1,4096}$/.test(data.authToken)) fail(502, 'INVALID_RESPONSE', 'Account response needs verification.');
         const user = await authenticate(new Headers({ Authorization: `Bearer ${data.authToken}` }));

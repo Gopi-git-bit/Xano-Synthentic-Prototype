@@ -57,4 +57,4 @@ export async function signIn(data: { email: string; password: string }) {
   return result; // Server revalidates auth/me before releasing this session.
 }
 export type User = { id: number; name: string; email: string; systemRole: string; workspace: 'customer' | 'owner' | 'admin'; organizationId: number | null };
-export type ServiceStatus = { authenticationConfigured: boolean; authenticationAvailable: boolean; bookingReadsAvailable: boolean; bookingWritesAvailable: false; deliveryAvailable: false; crmConfigured: boolean; crmReleaseAuthorized: boolean; crmConnectionVerified: boolean; crmAvailable: boolean };
+export type ServiceStatus = { authenticationConfigured: boolean; authenticationAvailable: boolean; bookingReadsAvailable: boolean; bookingWritesAvailable: false; deliveryAvailable: false; assessmentsAvailable: false; assessmentReviewAvailable: false; crmConfigured: boolean; crmReleaseAuthorized: boolean; crmConnectionVerified: boolean; crmAvailable: boolean };
