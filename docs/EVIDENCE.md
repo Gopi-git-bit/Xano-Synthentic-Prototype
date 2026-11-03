@@ -426,6 +426,29 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "runtime_evidence_refs": [],
       "blocker": "ZIPPY_PREVIEW_AUTOMATION_SECRET is MISSING in the private environment file and no project automation secret was found. Runtime key-match verification and actual protected browser acceptance cannot start. No credential was fabricated or protection weakened. Original W3-P/AB/C/RELEASE gates unchanged.",
       "next_action": "Supply an authorized automation credential through the private environment file, verify protected access and runtime key match, then run Playwright via Node --env-file against the exact da5db4e preview before tenant expiry."
+    },
+    {
+      "id": "FE-SB-REMOTE-PREFLIGHT-20261103",
+      "previous": "FE-SB-TEST-RUNTIME-READY",
+      "related": [
+        "FE-SB-BROWSER",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "da5db4e0cd997694b6c90d09adea793a7325f393",
+      "verification": "BLOCKED",
+      "gate": "BLOCKED_PROTECTED_BROWSER_ACCESS",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner November 3 request to use reconnected Remote Desktop Commander to execute the previously approved synthetic-only sandbox browser test; no authorization to generate project-wide SSO bypass.",
+      "evidence_scope": "Remote Desktop Commander device SYMCHNDT-ACCOUNT confirmed ONLINE. Read-only local repo checkout exact branch feat/protected-customer-xano-20261103 at sha da5db4e; 6/7 required private env variables PRESENT and ZIPPY_PREVIEW_AUTOMATION_SECRET MISSING. Existing local private-preflight.cjs executed using Node --env-file: Upstash Redis REST connectivity PRESENT, sensitive session key metadata PRESENT but runtime MAC match MISSING (unverifiable without SSO access), exact Vercel deployment dpl_2X1UArWggQkobx5HbKTcQkX2WE7M READY for same SHA, SSO 302 and production inventory unchanged; preflight reported zero cloud mutations and synthetic account creation. Playwright CLI invoked with same private env file; configuration denied execution at line 10 due to missing protected preview automation access; zero browser tests or Xano writes. No private values were printed or published.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/11",
+        "docs/evidence/customer-browser-gateway-20261103/remote-preflight-20261103.json"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "ZIPPY_PREVIEW_AUTOMATION_SECRET still absent from the private env. No authorized protection automation bypass or browser session available; runtime key MAC equality and browser-Xano flow NOT_RUN. Formal W3-P/AB/C/RELEASE unchanged.",
+      "next_action": "Obtain owner-approved least-privilege protection access privately without reducing Vercel SSO; re-run private-preflight and genuine Playwright browser E2E with the same live isolated Xano tenant before 2026-11-04T06:56:09Z; report PASS only after actual receipts."
     }
   ]
 }
@@ -493,3 +516,7 @@ The prior free Upstash and preview configuration remains in place. Only the bran
 OpenCode located the saved Notepad Redis settings and imported the REST URL/write token into a private ACL-restricted environment file; values were never printed or committed. Bundled Git was discovered dynamically and the clean worktree fast-forwarded to the user's exact `da5db4e0cd997694b6c90d09adea793a7325f393`. MCP authentication and documentation search succeeded; its team list was empty and project reads failed, so authenticated scope-specific CLI access was verified instead. Redis REST PING passed. Preview scope, stable origin, synthetic release and **120-second** lifetime matched; tenant **6 / exwq-wsmx-c3e1** was active with expiry **2026-11-04 06:56:09 UTC**, tasks disabled and no environment keys/executable operational resources.
 
 The missing local session key was securely synchronized to the existing preview-branch sensitive variable under the owner's explicit instruction, and unchanged source rebuilt to READY preview **dpl_2X1UArWggQkobx5HbKTcQkX2WE7M**. Production environment values and deployment inventory compared unchanged; SSO still returns **302** without credentials. **20/20** focused mock gateway/store tests passed. The private environment has **six PRESENT variables and one MISSING variable: ZIPPY_PREVIEW_AUTOMATION_SECRET**. No new protection credential was created, and no protected browser test or Xano write executed. [Sanitized repair receipt](evidence/customer-browser-gateway-20261103/environment-repair.json) and [hash](evidence/customer-browser-gateway-20261103/environment-repair-manifest.json). Verdict remains **BLOCKED**.
+
+## November 3 — Remote Desktop recovered; actual browser command denied before execution
+
+Remote Desktop Commander connected to Windows device SYMCHNDT-ACCOUNT. Verified frontend checkout branch `feat/protected-customer-xano-20261103` at `da5db4e0cd997694b6c90d09adea793a7325f393`. The guarded preflight and Playwright command ran with the existing private Node `--env-file`. Preflight independently confirmed 6/7 required configuration values and Redis REST reachability, stable SSO-protected preview deployment `dpl_2X1UArWggQkobx5HbKTcQkX2WE7M` READY for exact source, and production unchanged. `ZIPPY_PREVIEW_AUTOMATION_SECRET` remains MISSING; the frontend Playwright configuration rejected execution before any browser requests, Xano registration or draft write. Runtime session-key MAC match remains unverified behind SSO. See [sanitized receipt](evidence/customer-browser-gateway-20261103/remote-preflight-20261103.json). Existing historical approvals and FAIL/BLOCKED receipts remain unchanged.
