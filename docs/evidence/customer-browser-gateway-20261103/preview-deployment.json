@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-03T08:57:03.414Z",
+  "deployment": "dpl_FjVaaPYPpVqcs1ddFJrEn3ssv4Wy",
+  "source_commit": "1f4953c10d420d78522c7b7561df789556e2eb58",
+  "origin": "https://zippy-frontend-preview-grsvluv3a-gopi-nathan-s-projects.vercel.app",
+  "deployment_state": "READY",
+  "protected_probe": {
+    "method": "GET",
+    "credentials_supplied": false,
+    "status": 302,
+    "redirect_origin": "https://vercel.com"
+  },
+  "inspected_build": {
+    "command": "tsc -b && vite build --mode sandbox-preview",
+    "customer_chunk": "CustomerPreview-BYAUwp8k.js",
+    "completed_at": "2026-11-03T08:53:20.374Z"
+  },
+  "browser_acceptance": "NOT_RUN",
+  "gateway_configuration": "BLOCKED_MISSING_SHARED_STORE_AND_PREVIEW_CONFIGURATION"
+}

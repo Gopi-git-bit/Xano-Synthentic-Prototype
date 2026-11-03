@@ -1,0 +1,25 @@
+{
+  "reads": [
+    {
+      "at": "2026-11-03T08:39:26.430Z",
+      "method": "GET",
+      "url": "https://zippy-frontend-preview.vercel.app/",
+      "status": 404,
+      "redirect_origin": null
+    },
+    {
+      "at": "2026-11-03T08:39:26.901Z",
+      "method": "GET",
+      "url": "https://zippy-frontend-preview-gxai1q2gd-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+      "status": 302,
+      "redirect_origin": "https://vercel.com"
+    }
+  ],
+  "authenticated_vercel_connection_available": false,
+  "preview_automation_credential_available": false,
+  "shared_store_configuration_available": false,
+  "actual_browser_xano_calls": 0,
+  "verdict": "BLOCKED",
+  "production_deployment_operations": 0,
+  "production_inventory_comparison": "NOT_AVAILABLE_WITHOUT_AUTHENTICATED_VERCEL_ACCESS"
+}

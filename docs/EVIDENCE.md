@@ -19,6 +19,7 @@ This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXEC
 | W3-C | W3-AB | **NOT RUN:** rollback, idempotency, uniqueness, fencing, OTP and finance | Deterministic implementation + tests |
 | W3-RELEASE | W3-C (+ FE-QA) | **NOT RUN:** live release and external provider integrations | Explicit production approval |
 | FE-SB-ADAPTER | W3-SB-CUSTOMER (+ FE-QA), separate sandbox stream | **VERIFIED_HOSTED, sandbox-only PASS:** exact PR #10/#12, 45/45 definitions, 67/67 server tests, seven-step HTTP 200s and A/B denial receipts | REVIEW_ONLY; protected browser preview and formal Stage P/AB/C/production gates remain blocked |
+| FE-SB-BROWSER | FE-SB-ADAPTER (+ FE-QA, W3-SB-CUSTOMER) | Implemented at `1f4953c`; 89/89 mock server, 57/57 local browser, overlapping 7/7 enhanced rerun; read-only tenant/source verification; protected Git preview READY | **BLOCKED hosted acceptance**: preview automation access and shared session-store/key/origin configuration; no actual browser-to-Xano calls |
 
 OpenCode's workspace-1 historical physical table discrepancy and source tests are **not** workspace-3 physical or runtime evidence. The original private 61d1b139 is **not** the sanitized GitHub d7cda3d commit.
 
@@ -335,20 +336,24 @@ Maintain unique IDs and complete the current stage in order. This structured reg
         "W3-SB-CUSTOMER"
       ],
       "as_of": "2026-11-03",
-      "source_ref": "4fd844b66901a387898e2c35e83714b96c999ba9",
-      "verification": "PASSED_CI",
-      "gate": "REVIEW_ONLY",
-      "approval": "NOT_APPROVED",
-      "approval_ref": null,
-      "evidence_scope": "GitHub frontend CI pass for gated synthetic browser customer registration/login/draft/order UI; Vercel Git preview READY with SSO and sandbox-preview build. Browser UI is in-memory synthetic only and does not invoke Xano API.",
+      "source_ref": "1f4953c10d420d78522c7b7561df789556e2eb58",
+      "verification": "BLOCKED",
+      "gate": "BLOCKED_PROTECTED_BROWSER_CONFIGURATION",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner November 3 Execute Protected Browser-to-Xano Integration request: dedicated branch based on PR13, synthetic-only verified tenant, protected server gateway and actual browser acceptance, push and update PR11; followed by Vercel agent setup request. Excludes production publication/promotion, merges, payments, refunds, notifications, dispatch and operational AI. Project-wide automation-secret authorization remains unresolved.",
+      "evidence_scope": "Connected gateway and reused Customer UI implemented/pushed on dedicated PR13-based branch. 89/89 mock server, 57/57 local Playwright and overlapping enhanced 7/7 browser-security rerun passed; TypeScript, ESLint, production/connected builds, static browser/CSP scan passed, production dependency audit zero vulnerabilities. Tenant 6 reverified read-only; unchanged synthetic counts and 87+87 parent definitions; 45/45 source matches after reviewed formatting normalization with original 42/45 receipt preserved. Actual browser command blocked at configuration validation; zero browser-Xano calls/writes. Vercel CLI authenticated and global guidance installed; shared MCP configured but OAuth pending. Free Redis setup requires human terms; protected Git preview READY at exact implementation commit. Prior PR13 CI/rehearsal evidence retained, not transferred to new hosted acceptance.",
       "evidence_refs": [
         "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/13",
         "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41597929982",
-        "https://zippy-frontend-preview-gxai1q2gd-gopi-nathan-s-projects.vercel.app/?sandbox=1"
+        "https://zippy-frontend-preview-gxai1q2gd-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/commit/1f4953c10d420d78522c7b7561df789556e2eb58",
+        "docs/evidence/customer-browser-gateway-20261103/README.md",
+        "docs/evidence/customer-browser-gateway-20261103/summary.json",
+        "https://zippy-frontend-preview-grsvluv3a-gopi-nathan-s-projects.vercel.app/?sandbox=1"
       ],
       "runtime_evidence_refs": [],
-      "blocker": "Hosted UI not independently exercised behind SSO; real browser-to-Xano HTTP gateway not implemented or executed. Stage P/AB/C and production approvals unchanged.",
-      "next_action": "Review protected synthetic preview; implement separate server-mediated sandbox gateway with verified tenant, authentication, CSRF, rate limiting, and browser denial tests after approval."
+      "blocker": "Actual hosted browser acceptance NOT_RUN: no shared Redis resource/credentials, preview session key/exact origin, or separately authorized preview automation access. MCP OAuth and Upstash terms remained pending in tool checks. Original Stage P/AB/C and production approvals unchanged.",
+      "next_action": "Finish required browser consent, configure only the dedicated protected preview, verify tenant lifetime/deployed SHA, and run npm run test:sandbox:browser. Report CUSTOMER_SANDBOX_BROWSER_E2E_PASS only after actual workflow and security assertions pass."
     }
   ]
 }
@@ -392,3 +397,9 @@ All **87 published and 87 draft** source files were byte-identical before/after,
 ## November 3 — SSO-protected synthetic browser preview
 
 PR #13 and the green frontend CI prove the browser rehearsal builds and Playwright tests pass. Vercel deployment dpl_5NqdHNGjbeq6z5CcUzZevnniuecc is READY with SSO protection enabled; compiled CustomerPreview is present in the sandbox-preview build. This is PASSED_CI / REVIEW_ONLY, not actual Xano browser E2E or production acceptance.
+
+## November 3 — Protected browser gateway implementation, hosted BLOCKED
+
+The same FE-SB-BROWSER milestone now has implemented source at `1f4953c10d420d78522c7b7561df789556e2eb58`, branch `feat/protected-customer-xano-20261103`, based on exact PR #13 head. [Report and sanitized receipts](evidence/customer-browser-gateway-20261103/README.md) preserve 89/89 mock server checks, 57/57 local Playwright, overlapping enhanced 7/7 rerun, passed source/build/security scans, read-only tenant/source checks and original failures. A genuine browser harness exists but stopped before calls/writes because hosted configuration is incomplete. The historical PR #13 rehearsal and prior server-adapter HTTP PASS remain intact.
+
+Vercel CLI/guidance setup succeeded; shared MCP is configured but authentication remained pending. Free sandbox Redis provisioning requires human terms acceptance; authorized preview automation access and session configuration are missing. Git produced READY preview `dpl_FjVaaPYPpVqcs1ddFJrEn3ssv4Wy` for the exact new SHA. Production inventory, environment metadata and SSO were compared read-only and remained unchanged. Current verdict **BLOCKED**; formal W3-P/AB/C/RELEASE transitions are unchanged. This checkpoint changes `docs/EXECUTION_TRACKER.md`, `docs/EVIDENCE.md` and `docs/evidence/customer-browser-gateway-20261103/` only.
