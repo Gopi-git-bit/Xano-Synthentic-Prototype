@@ -1,0 +1,121 @@
+{
+  "at": "2026-11-03T07:04:22.634Z",
+  "target": {
+    "id": 6,
+    "name": "exwq-wsmx-c3e1",
+    "workspace_id": 1,
+    "type": "ephemeral",
+    "tasks": false,
+    "expires_at": "2026-11-04 06:56:09+0000"
+  },
+  "passed": true,
+  "registration": {
+    "userId": 4,
+    "organizationId": 4,
+    "pendingReviewId": 4
+  },
+  "receipts": [
+    {
+      "method": "POST",
+      "target": "isolated-tenant",
+      "route": "/api:zippy-customer-draft-auth/auth/register",
+      "status": 200,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    },
+    {
+      "method": "POST",
+      "target": "isolated-tenant",
+      "route": "/api:zippy-customer-draft-auth/auth/login",
+      "status": 200,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:04:12.330Z",
+      "target": "parent-read-only",
+      "method": "GET",
+      "route": "/api:pofBqnrY/auth/me",
+      "credential_case": "absent",
+      "status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "error_fields": [
+        "code",
+        "message"
+      ],
+      "identity_fields_present": false,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:04:12.597Z",
+      "target": "parent-read-only",
+      "method": "GET",
+      "route": "/api:pofBqnrY/auth/me",
+      "credential_case": "tampered",
+      "status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "error_fields": [
+        "code",
+        "message"
+      ],
+      "identity_fields_present": false,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:04:12.859Z",
+      "target": "parent-read-only",
+      "method": "GET",
+      "route": "/api:pofBqnrY/auth/me",
+      "credential_case": "valid-sandbox",
+      "status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "error_fields": [
+        "code",
+        "message"
+      ],
+      "identity_fields_present": false,
+      "secret_exclusion_passed": true
+    }
+  ],
+  "absent_and_invalid_error_bodies_equal": false,
+  "sandbox_and_invalid_error_bodies_equal": true,
+  "no_writes_in_parent_read_phase": true,
+  "tenant_tables_unchanged_in_read_phase": 34,
+  "final_counts": {
+    "active_assignment_reservations": 0,
+    "agent_decision": 0,
+    "agent_execution": 0,
+    "approval_request": 4,
+    "audit_log": 7,
+    "booking_quote": 0,
+    "cargo_detail": 0,
+    "compliance_documents": 0,
+    "customer_booking": 3,
+    "driver_profile": 0,
+    "durable_tasks": 0,
+    "event_log": 0,
+    "event_outbox": 0,
+    "idempotency_key": 3,
+    "incident_dispute": 0,
+    "order_holds": 0,
+    "organization": 4,
+    "organization_member": 4,
+    "otp_challenges": 0,
+    "payment_transaction": 0,
+    "pricing_policies": 0,
+    "proof_of_delivery": 0,
+    "refund_request": 0,
+    "route_cache": 0,
+    "settlement": 0,
+    "table_index": 0,
+    "topay_consent_attempts": 0,
+    "tracking_event": 0,
+    "trip": 0,
+    "trip_stop": 0,
+    "user": 4,
+    "vehicle": 0,
+    "vehicle_availability": 0,
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": 0
+  },
+  "resolves": "supplement-http.json parent-token test: all three requests correctly returned HTTP 401; only absent-versus-invalid error-body equality was over-constrained. Retained original 15/16 result; targeted check confirms sandbox token exactly matches invalid-token denial and exposes no identity."
+}

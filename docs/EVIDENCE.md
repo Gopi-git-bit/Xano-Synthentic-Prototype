@@ -18,6 +18,7 @@ This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXEC
 | W3-AB | W3-P (+ FE-QA) | **NOT RUN:** synthetic fixtures, native adapter and tenant-access tests | Separate fixture/test approval |
 | W3-C | W3-AB | **NOT RUN:** rollback, idempotency, uniqueness, fencing, OTP and finance | Deterministic implementation + tests |
 | W3-RELEASE | W3-C (+ FE-QA) | **NOT RUN:** live release and external provider integrations | Explicit production approval |
+| FE-SB-ADAPTER | W3-SB-CUSTOMER (+ FE-QA), separate sandbox stream | **VERIFIED_HOSTED, sandbox-only PASS:** exact PR #10/#12, 45/45 definitions, 67/67 server tests, seven-step HTTP 200s and A/B denial receipts | REVIEW_ONLY; protected browser preview and formal Stage P/AB/C/production gates remain blocked |
 
 OpenCode's workspace-1 historical physical table discrepancy and source tests are **not** workspace-3 physical or runtime evidence. The original private 61d1b139 is **not** the sanitized GitHub d7cda3d commit.
 
@@ -306,18 +307,25 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       ],
       "as_of": "2026-11-03",
       "source_ref": "697da352a331dbe623cb21d81704bfc892079327",
-      "verification": "PASSED_CI",
+      "verification": "VERIFIED_HOSTED",
       "gate": "REVIEW_ONLY",
       "approval": "APPROVED_SANDBOX_ONLY",
-      "approval_ref": "Owner explicitly approved sandbox-only customer registration → login → draft booking → booking retrieval goal in ChatGPT, 2026-11-03; excludes publication/production/financial actions.",
-      "evidence_scope": "Frontend sandbox-only customer adapter uses exact Xano ephemeral API group paths. 6/6 mocked unit tests passed locally; GitHub frontend CI success on exact SHA. No Xano calls through the adapter or browser sandbox writes were executed.",
+      "approval_ref": "Owner explicitly requested Execute Approved Sandbox Customer Vertical Slice on 2026-11-03: reproduce PR10 backend, execute PR12 server tests and manual synthetic HTTP probe in a fresh verified tenant, update PR11 evidence; excludes live changes, production release, merges, payments, refunds and dispatch.",
+      "evidence_scope": "OpenCode actually executed unchanged PR12 at 697da352 against exact PR10 4421892 in fresh ephemeral tenant 6/exwq-wsmx-c3e1, internal workspace 1. 45/45 definitions matched and validated, 67/67 frontend server tests passed, seven prescribed HTTP calls returned 200 with full schema/secret checks. 60 total runtime receipts include A/B isolation, foreign/missing 404 equivalence, forged-state denials, replay/no-write checks and parent-token 401 rejection. Initial supplementary 15/16 is retained: absent-vs-invalid error-body equality was over-constrained; targeted recheck passed. All 87 published and 87 draft parent files stayed byte-identical. Server-adapter sandbox acceptance only; predecessor's historical 48-case suite and formal Stage P blockers are not reclassified.",
       "evidence_refs": [
         "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12",
-        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570"
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570",
+        "docs/evidence/sandbox-customer-http-20261103/README.md",
+        "docs/evidence/sandbox-customer-http-20261103/summary.json"
       ],
-      "runtime_evidence_refs": [],
-      "blocker": "Cross-stack Xano HTTP through frontend adapter not run; real tenant and browser preview acceptance missing. Original W3-P/AB/C approvals unchanged.",
-      "next_action": "OpenCode execute manual synthetic probe on independently verified tenant, capture sanitized receipts, then implement gated protected UI."
+      "runtime_evidence_refs": [
+        "docs/evidence/sandbox-customer-http-20261103/adapter-http.json#sha256=997c7e1611b494f52095dcb9e15ded307c1286d40268e4a14108e723be8d0948",
+        "docs/evidence/sandbox-customer-http-20261103/supplement-http.json#sha256=885ae872f8c23a567817ede992954570e9d94050663dc63da592e8ae0dc202ea",
+        "docs/evidence/sandbox-customer-http-20261103/boundary-recheck.json#sha256=919d048ddab7ee03fd4da60ef910f1a0ebdd2bdd97c2386d93a1072a81622c33",
+        "docs/evidence/sandbox-customer-http-20261103/source-integrity.json#sha256=04f6880e126aa42288a356597cc37e8613da2ce3e3651258c2d4f522ccf94d57"
+      ],
+      "blocker": "No remaining failure in the approved server-adapter sandbox flow. Protected browser preview, restricted Metadata credential RBAC, physical database identity, reverse parent-token isolation and expiry/recovery remain unverified. Original W3-P/AB/C approvals and production gates unchanged.",
+      "next_action": "Review actual HTTP receipts and prepare a scoped protected sandbox UI/preview proposal. Reverify tenant lifetime/source/permissions before any additional approved execution."
     }
   ]
 }
@@ -349,3 +357,11 @@ The two additional W3-SB records describe OpenCode-reported runtime assertions o
 ## November 3 — Frontend sandbox adapter CI checkpoint
 
 [Draft PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12) has verified GitHub frontend CI success at 697da352a331dbe623cb21d81704bfc892079327 ([run](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570)). Six isolated adapter mock tests passed locally, but the local synthetic Xano HTTP probe has not been run. This evidence stage is PASSED_CI / REVIEW_ONLY, not VERIFIED_HOSTED or production approval.
+
+## November 3 — Customer cross-stack HTTP checkpoint (supersedes adapter NOT_RUN)
+
+**PASS, VERIFIED_HOSTED for the approved sandbox server-adapter flow only.** OpenCode reproduced PR #10 `4421892ff9c884e43711753cacde04efd4ddb7c6` and executed the unchanged PR #12 `697da352a331dbe623cb21d81704bfc892079327` in fresh tenant **6 / `exwq-wsmx-c3e1`**, internal workspace **1**. The owner explicitly authorized this bounded execution. The predecessor's customer API reproduction succeeded; historical full-suite claims and formal isolation/release blockers remain separate.
+
+[Report and receipt package](evidence/sandbox-customer-http-20261103/README.md): **45/45** definition validation, **67/67** server tests, all **seven** prescribed HTTP steps **200**, exact response schemas, secret exclusion, synthetic A/B isolation, immutable actor/org/state, replay/no-write checks and sandbox-token rejection at parent auth/me/metadata. **60 runtime calls** are captured. The original supplementary **15/16** result remains intact; its absent-vs-invalid-token body-equality assertion was over-constrained and the focused boundary recheck passed. Remaining sandbox-flow defects: **none**.
+
+All **87 published and 87 draft** source files were byte-identical before/after, both tested worktrees stayed clean, tasks remained disabled, environment keys and executable provider/agent resources were absent, and all 27 non-fixture tables stayed empty. Exact paths changed in this checkpoint: `docs/EXECUTION_TRACKER.md`, `docs/EVIDENCE.md`, and the new sanitized `docs/evidence/sandbox-customer-http-20261103/` receipt package. Browser preview is NOT_RUN. Formal W3-P/AB/C and production gates are unchanged; no live publication, production deployment, merge or provider/financial/dispatch execution occurred.

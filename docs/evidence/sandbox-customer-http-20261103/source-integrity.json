@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-03T07:05:32.701Z",
+  "source_workspace_id": 3,
+  "source_branch": "v1",
+  "branch_is_live": true,
+  "manifest_algorithm": "SHA-256 of UTF-8 JSON array of relative paths and byte-level SHA-256 values, sorted with localeCompare(path)",
+  "sources": {
+    "published": {
+      "files": 87,
+      "before_manifest_sha256": "1adb98815dc92334bb927b83f1a60bf1c3ed39408e5489ad563e272ec1471596",
+      "after_manifest_sha256": "1adb98815dc92334bb927b83f1a60bf1c3ed39408e5489ad563e272ec1471596",
+      "changed_files": 0,
+      "byte_identical": true
+    },
+    "drafts": {
+      "files": 87,
+      "before_manifest_sha256": "4b3d93690516fdfdba2f91c5e7c587d0b1d21030fbf67b3d4385c1ec708817eb",
+      "after_manifest_sha256": "4b3d93690516fdfdba2f91c5e7c587d0b1d21030fbf67b3d4385c1ec708817eb",
+      "changed_files": 0,
+      "byte_identical": true
+    }
+  },
+  "worktrees": [
+    {
+      "label": "backend",
+      "commit": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+      "clean": true
+    },
+    {
+      "label": "frontend",
+      "commit": "697da352a331dbe623cb21d81704bfc892079327",
+      "clean": true
+    }
+  ],
+  "passed": true,
+  "scope": "Definition snapshots only; no parent production table records read or written. Tenant creation/task configuration are scoped Tenant Center changes, not parent application definition changes."
+}

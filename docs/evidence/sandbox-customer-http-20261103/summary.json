@@ -1,0 +1,153 @@
+{
+  "at": "2026-11-03T07:06:06.799Z",
+  "verdict": "PASS",
+  "scope": "Approved sandbox-only frontend server adapter to reproduced PR10 Xano backend; synthetic records only",
+  "source": {
+    "repository": "Gopi-git-bit/Xano-Synthentic-Prototype",
+    "backend_pr": 10,
+    "backend_commit": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+    "frontend_pr": 12,
+    "frontend_commit": "697da352a331dbe623cb21d81704bfc892079327",
+    "tracker_pr": 11,
+    "tracker_base_commit": "6ad69712283ee1991ffe4870148fe620798a0a23"
+  },
+  "origin": "https://xynd-fnea-khtp.n7e.xano.io",
+  "target": {
+    "id": 6,
+    "name": "exwq-wsmx-c3e1",
+    "workspace_id": 1,
+    "type": "ephemeral",
+    "tasks": false,
+    "expires_at": "2026-11-04 06:56:09+0000"
+  },
+  "source_validation": {
+    "passed": 45,
+    "total": 45,
+    "exact_pr10_bytes": true
+  },
+  "frontend_server_tests": {
+    "passed": 67,
+    "total": 67
+  },
+  "primary_adapter": {
+    "passed": true,
+    "http_requests": 7,
+    "all_http_200": true,
+    "schemas_and_secret_exclusion_passed": true
+  },
+  "supplement": {
+    "initial_passed": 15,
+    "initial_total": 16,
+    "initial_failure_retained": true,
+    "resolution": "Targeted boundary recheck passed. Missing-token and invalid-token denial messages differ; sandbox token exactly matches invalid-token HTTP 401 denial. No product defect observed."
+  },
+  "captured_http": {
+    "total": 60,
+    "tenant": 53,
+    "parent_get_only": 7,
+    "status_counts": {
+      "200": 26,
+      "400": 5,
+      "401": 20,
+      "403": 5,
+      "404": 4
+    }
+  },
+  "source_unchanged": {
+    "published": {
+      "files": 87,
+      "before_manifest_sha256": "1adb98815dc92334bb927b83f1a60bf1c3ed39408e5489ad563e272ec1471596",
+      "after_manifest_sha256": "1adb98815dc92334bb927b83f1a60bf1c3ed39408e5489ad563e272ec1471596",
+      "changed_files": 0,
+      "byte_identical": true
+    },
+    "drafts": {
+      "files": 87,
+      "before_manifest_sha256": "4b3d93690516fdfdba2f91c5e7c587d0b1d21030fbf67b3d4385c1ec708817eb",
+      "after_manifest_sha256": "4b3d93690516fdfdba2f91c5e7c587d0b1d21030fbf67b3d4385c1ec708817eb",
+      "changed_files": 0,
+      "byte_identical": true
+    }
+  },
+  "final_counts": {
+    "active_assignment_reservations": 0,
+    "agent_decision": 0,
+    "agent_execution": 0,
+    "approval_request": 4,
+    "audit_log": 7,
+    "booking_quote": 0,
+    "cargo_detail": 0,
+    "compliance_documents": 0,
+    "customer_booking": 3,
+    "driver_profile": 0,
+    "durable_tasks": 0,
+    "event_log": 0,
+    "event_outbox": 0,
+    "idempotency_key": 3,
+    "incident_dispute": 0,
+    "order_holds": 0,
+    "organization": 4,
+    "organization_member": 4,
+    "otp_challenges": 0,
+    "payment_transaction": 0,
+    "pricing_policies": 0,
+    "proof_of_delivery": 0,
+    "refund_request": 0,
+    "route_cache": 0,
+    "settlement": 0,
+    "table_index": 0,
+    "topay_consent_attempts": 0,
+    "tracking_event": 0,
+    "trip": 0,
+    "trip_stop": 0,
+    "user": 4,
+    "vehicle": 0,
+    "vehicle_availability": 0,
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": 0
+  },
+  "remaining_sandbox_flow_failures": [],
+  "excluded_acceptance": [
+    "Browser/protected preview not exercised; adapter is server-only.",
+    "Formal W3-P/AB/C and production approvals remain blocked.",
+    "Tenant-only Metadata credential RBAC, independent physical database identity, reverse parent-token isolation and expiry/recovery are not certified by this run.",
+    "No provider/payment/refund/dispatch execution. Zero executable task/agent/tool/MCP/trigger resources and zero financial/dispatch/outbox records observed."
+  ],
+  "receipts": [
+    {
+      "file": "source-validation.json",
+      "sha256": "dc31a07e536ec7adff1e0fcce4b3628fa10fac6f970d1369461718e441dfd10b"
+    },
+    {
+      "file": "isolation-empty.json",
+      "sha256": "0edd689e9fd3dedcad3158daafe3cc629d7f8bf5398ba92bbd7c2b8562ba7f53"
+    },
+    {
+      "file": "isolation-deployed.json",
+      "sha256": "7d0436d53e5fe97cb84fdd7cd79ac072a0c75b6da8a9e88854eef066654cd04c"
+    },
+    {
+      "file": "adapter-http.json",
+      "sha256": "997c7e1611b494f52095dcb9e15ded307c1286d40268e4a14108e723be8d0948"
+    },
+    {
+      "file": "supplement-http.json",
+      "sha256": "885ae872f8c23a567817ede992954570e9d94050663dc63da592e8ae0dc202ea"
+    },
+    {
+      "file": "boundary-recheck.json",
+      "sha256": "919d048ddab7ee03fd4da60ef910f1a0ebdd2bdd97c2386d93a1072a81622c33"
+    },
+    {
+      "file": "isolation-final.json",
+      "sha256": "b7d13a7b2d4f3629973c058de0adbbe7cd1fdfde04c4286bc5926b35aefdb353"
+    },
+    {
+      "file": "source-integrity.json",
+      "sha256": "04f6880e126aa42288a356597cc37e8613da2ce3e3651258c2d4f522ccf94d57"
+    },
+    {
+      "file": "frontend-tests.json",
+      "sha256": "a003bb8d217f7acefc7b4516eddbfc67bab8989cd123aed3a159643fa35485e4"
+    }
+  ]
+}

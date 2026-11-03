@@ -77,6 +77,7 @@ Private local ancestry: ed62038f571c02f339972ad7ec5d7cd1a9cffe18 → ea543e9c467
 | INT-01 | Telnyx email/SMS, Outlook receiving/replies, Zoho CRM | **UNKNOWN end-to-end / BLOCKED live integration** | Earlier project configuration/handoffs; [frontend integration notes](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/feat/frontend-tailwind-polish/frontend/docs/API.md) | Prove test signup → notification → inbox → admin reply; Zoho auth and per-record grants, sanitized receipts |
 | INT-02 | Razorpay, refund approvals, settlement and tax/POD | **NOT VERIFIED live / execution blocked** | Project governance; sanitized gate summary | Signed provider events, ledger reconciliation, human-only finance approval, audited denial and rollback proofs |
 | OPS-01 | Production launch / release switches | **BLOCKED, not authorized** | [Release policy PR #2](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/2) | Approved published Xano contracts, tenant proofs, end-to-end tests and explicit owner release |
+| FE-SB-ADAPTER | PR #12 server adapter → reproduced PR #10 customer backend | **VERIFIED_HOSTED — sandbox-only PASS** | [Actual HTTP report/receipts](evidence/sandbox-customer-http-20261103/README.md); frontend `697da352`, backend `4421892`; fresh tenant 6 / `exwq-wsmx-c3e1` | Review evidence; protected browser preview unrun; formal Stage P/AB/C and production gates remain blocked |
 
 **Important:** historical workspace-1 51-versus-53 physical table observations and the 72 PostgreSQL reference cases are not current workspace-3 acceptance. Workspace-3 metadata **33 table declarations** is not a verified physical constraint count. Avoid reconciling by deletion or assumed equivalence.
 
@@ -86,19 +87,27 @@ OpenCode pushed source and sanitized receipts at commit 4421892ff9c884e43711753c
 
 The canonical Stage P / Stage AB predecessor chain in EVIDENCE.md still lacks separately recorded owner approval and independent full-isolation acceptance. The sandbox work is a distinct REVIEW_ONLY evidence stream; it must not be used to relabel production as ready. The older October 30 table below remains historical, not the latest execution status.
 
-### November 3 — Frontend sandbox adapter (CI-confirmed, not Xano E2E)
+### November 3 — Frontend sandbox adapter (initial CI checkpoint; superseded by HTTP checkpoint below)
 
 Owner explicitly approved this sandbox-only vertical slice in conversation on November 3. This grants no live publication, payment, dispatch, provider or formal Stage P/AB/C approval.
 
 
 [Draft PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12) implements server-only customer registration → login → membership → draft POST → booking list/detail against exact isolated Xano API canonicals. The six new mocked Node tests passed locally; [frontend GitHub CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570) passed at commit 697da352a331dbe623cb21d81704bfc892079327, including existing server/build/browser checks. Hosted Xano readonly HTTP checks remained skipped. The sandbox adapter is **not** imported by production gateway and the manual synthetic Xano-through-adapter probe was **NOT_RUN**. This is frontend-source and CI evidence, not cross-stack acceptance.
 
+### November 3 — Approved customer cross-stack HTTP execution: PASS
+
+The owner explicitly requested execution of PR #10 + PR #12 in a fresh isolated tenant, with PR #11 as tracker, synthetic registration/login/drafts only. OpenCode executed the unchanged frontend at **697da352a331dbe623cb21d81704bfc892079327** against the exact **4421892ff9c884e43711753cacde04efd4ddb7c6** backend in fresh tenant **6 / `exwq-wsmx-c3e1`**, internal workspace **1**, expiring **2026-11-04 06:56:09 UTC**.
+
+**45/45** source definitions matched/validated, **67/67** frontend server tests passed, and all **seven** prescribed real HTTP calls returned **200** with full schema and secret-exclusion checks. Additional A/B isolation, equivalent foreign/missing 404, forged-state denial, replay/no-write and parent-token denial checks passed. The initial supplementary **15/16** result is preserved: one assertion incorrectly equated absent-token and invalid-token denial bodies; a targeted recheck passed and found no product defect. **60 runtime HTTP receipts** are retained. The tenant has only synthetic records, zero configured environment keys and no executable provider/agent resources; tasks remain disabled.
+
+Both tested worktrees stayed clean. All **87 published and 87 draft** parent-workspace files are byte-identical before/after. [Report, exact commands, hashes, limitations and receipts](evidence/sandbox-customer-http-20261103/README.md). This supersedes FE-SB-ADAPTER's NOT_RUN cross-stack blocker only; browser acceptance and formal Stage P/AB/C/production gates remain blocked.
+
 ## 4. Current known defects and unresolved proof
 
 - **11 failing draft source-readiness checks** in the private reconciliation: untrusted 480-km distance fallback; booking insert before full cargo validation; second-resolution reference collisions; missing create/confirm transactions; optional idempotency key; unenforced expiry; insufficient assignment uniqueness; absent worker fencing; fixed OTP; OTP consumed before decision validation. Retain actual test failures; no draft promotion.
 - Additional unresolved controls: atomic expected-version write predicate; supported physical uniqueness/exclusion indexes; true independent vehicle/driver contention; crash/replay and non-database rollback; signed payment evidence and human-only refunds.
 - Published auth/read source has newer hardening than some older frontend handoffs. **Do not overwrite it with earlier drafts** or infer positive runtime acceptance from eight denied anonymous/malformed-token requests.
-- No evidence of approved restricted tenant, owned synthetic fixtures, native A/B test observer, successful positive auth/tenant isolation, operational agent run or live payment/notification workflow.
+- Formal Stage P still lacks restricted-credential/physical-isolation acceptance. The approved November 3 customer sandbox slice now has positive auth, owned synthetic A/B fixtures and app-token denial receipts; these do not certify the original full M1 observer/acceptance, operational agents or live payment/notification workflows.
 - Original private SHA **61d1b139...** remains distinct from public sanitized review SHA **d7cda3d0...**. Never expose raw bundle, machine paths, principal/permission inventory or original source GUIDs through public commits.
 
 ## 5. Decisions and approvals
@@ -128,18 +137,19 @@ The prior user approval to create a **sanitized public GitHub review branch** is
 | E-XANO-01 | OpenCode authenticated Metadata/API capture, private sealed receipts | Last handoff 2026-10-29 | Current direct ChatGPT Xano session **not verified**, no positive app credentials or isolated runtime acceptance |
 
 | E-GH-20261103 | [Backend draft PR #10](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10), head 4421892ff9c884e43711753cacde04efd4ddb7c6 | 2026-11-03 via Composio | GitHub commit and PR only; runtime evidence was OpenCode-reported |
+| E-HTTP-20261103 | [Customer cross-stack sandbox receipt package](evidence/sandbox-customer-http-20261103/README.md) | 2026-11-03 actual OpenCode HTTP execution | Pinned PR #10/#12, tenant 6, server adapter only; retained test-expectation failure and passing recheck; no browser or production acceptance |
 
 Refresh all branch refs and CI on every handoff; refresh Xano runtime before a change/approval. Do not silently carry a stale status forward when a dependency or SHA changes. Credential values, private identity mappings and customer data must stay out of Markdown.
 
 ## 7. Next executable task — application architecture checkpoint, November 3
 
-1. **OpenCode / Xano:** preserve the two sandbox source/test suites (now in PR #10), independently reproduce the registration → owner membership → login → draft booking POST → authorized booking GET path in a fresh verified tenant, and establish the actual API group canonicals, actor identity, response shapes, zero-side-effect/rollback evidence and physical isolation controls. Keep live workspace 3 untouched.
-2. **Frontend / GitHub:** reconcile sandbox-only Xano API contracts with [PR #8](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/8) and the agent-tool guard [PR #9](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/9); do not enable live registration or booking writes. Implement only focused sandbox adapter and mock security tests after backend schema freezes.
+1. **OpenCode / Xano:** review the completed [sandbox HTTP receipt package](evidence/sandbox-customer-http-20261103/README.md). Revalidate only when the tested source, tenant lifetime or permissions change. Separately resolve formal restricted-credential, physical database identity and expiry/recovery proof before advancing Stage P.
+2. **Frontend / GitHub:** review the PASS receipts for PR #12's pinned server adapter and prepare a scoped protected sandbox UI/preview proposal using the frozen contract. Browser acceptance remains unrun; no production registration/booking write release is authorized.
 3. **Operational backend order:** cargo/pricing and Mappls provenance → vendor/driver-scoped reads → atomic assignment and trip offers → private POD and tracking → Telnyx notification outbox → Razorpay test-mode payment/refund human approvals → Zoho CRM mapping.
 4. **Native agents:** build OMS, IMS, TMS, Verification and Finance/Compliance as least-privilege assessment-only tools after deterministic services and authorization work. No autonomous dispatch or financial approval.
 5. **Release:** require a separately approved Stage P/AB/C evidence chain, current source hashes, complete E2E denial/rollback tests and owner approval before merging to main or publishing to Xano/Vercel production.
 
-**Exact next artifact:** OpenCode delivers stable sandbox-only OpenAPI (or equivalent exact route contract) and observed authorization/transaction receipts for the customer draft flow. ChatGPT + Composio reviews frontend adapters in a separate draft PR. The existing PR #10 is for source preservation, not activation.
+**Exact next artifact:** review the published cross-stack receipts, then prepare a protected sandbox UI/preview proposal against PR #12's exact route contract. Additional execution must use a currently verified tenant and scoped approval. PR #10/#12 remain review sources, not production activation.
 
 ## 8. Reusable OpenCode/ChatGPT resume contract
 
@@ -168,6 +178,8 @@ ChatGPT should request new OpenCode status only when the tracker is stale, an ap
 | 2026-11-03 | OpenCode (reported) + ChatGPT/Composio (GitHub observed) | Seven tool-review objects and customer-draft HTTP milestone source pushed; draft PR #10 opened; 65/65 and 48/48 sandbox tests reported, not independently re-run | [PR #10](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10), commit 4421892ff9c884e43711753cacde04efd4ddb7c6; EVIDENCE.md W3-SB-TOOLS / W3-SB-CUSTOMER | Reproduce stable sandbox auth/draft API and build versioned frontend contract; Stage P and production remain blocked |
 
 | 2026-11-03 | ChatGPT + Composio (GitHub CI verified) | Sandbox-only customer adapter, synthetic manual HTTP probe and contract tests added; 6/6 mocked adapter tests and frontend GitHub CI passed; real cross-stack HTTP through adapter NOT_RUN | [PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12), commit 697da352a331dbe623cb21d81704bfc892079327, [frontend CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570); FE-SB-ADAPTER in [EVIDENCE.md](EVIDENCE.md) | OpenCode must execute manual synthetic HTTP probe on independently verified tenant; production writes stay blocked |
+
+| 2026-11-03 | OpenCode (actual HTTP observed) | Owner-approved sandbox customer slice **PASS / VERIFIED_HOSTED sandbox-only**: 45/45 definitions, 67/67 server tests, seven-step adapter 200s, 60 HTTP receipts; original supplementary 15/16 assertion retained with passing targeted recheck; parent definitions unchanged | PR #10 `review/zippy-agent-tools-20261103` at `4421892ff9c884e43711753cacde04efd4ddb7c6`; PR #12 `feat/sandbox-customer-vertical-20261103` at `697da352a331dbe623cb21d81704bfc892079327`; tenant 6 / `exwq-wsmx-c3e1`; [sanitized receipt package](evidence/sandbox-customer-http-20261103/README.md); explicit November 3 execution request | Review evidence and prepare scoped protected sandbox UI proposal; original Stage P/AB/C and production remain blocked |
 
 ### Required new checkpoint row
 
