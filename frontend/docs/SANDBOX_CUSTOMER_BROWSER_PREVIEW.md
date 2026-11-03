@@ -24,7 +24,7 @@ The Playwright tests in frontend/tests/sandbox-preview.spec.ts assert:
 
 ## Protected hosted preview is a separate gate
 
-No Vercel project settings are changed here and no preview is deployed by this PR. A protected hosted build requires separate verification of Vercel Deployment Protection and an explicit nonproduction sandbox-preview build. Standard production and CI builds retain the disabled signup and booking-write controls.
+Vercel project SSO protection was verified enabled for all previews. This PR now configures a branch-specific build command through frontend/vercel.json: only VERCEL_ENV=preview and exact branch feat/protected-synthetic-customer-preview-20261103 build in sandbox-preview mode with synthetic-only UI. Production, main, CI and other preview branches use the standard build and exclude this screen. The Git-triggered preview remains behind Vercel SSO; project-wide protection settings are not changed. This is still a purely synthetic browser rehearsal, not real Xano HTTP integration.
 
 The actual browser-to-Xano execution is NOT_RUN. It requires a separately approved protected server gateway for sandbox-only data, exact tenant identity, isolated credentials, CSRF/origin enforcement, rate limits, session expiry, revocation, real cross-tenant denials, and current isolation proof. The existing server-only adapter from PR #12 must never be imported by the browser or replaced by direct Xano Metadata, debug, MCP or internal locking calls.
 
