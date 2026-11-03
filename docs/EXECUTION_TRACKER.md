@@ -88,6 +88,9 @@ The canonical Stage P / Stage AB predecessor chain in EVIDENCE.md still lacks se
 
 ### November 3 — Frontend sandbox adapter (CI-confirmed, not Xano E2E)
 
+Owner explicitly approved this sandbox-only vertical slice in conversation on November 3. This grants no live publication, payment, dispatch, provider or formal Stage P/AB/C approval.
+
+
 [Draft PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12) implements server-only customer registration → login → membership → draft POST → booking list/detail against exact isolated Xano API canonicals. The six new mocked Node tests passed locally; [frontend GitHub CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570) passed at commit 697da352a331dbe623cb21d81704bfc892079327, including existing server/build/browser checks. Hosted Xano readonly HTTP checks remained skipped. The sandbox adapter is **not** imported by production gateway and the manual synthetic Xano-through-adapter probe was **NOT_RUN**. This is frontend-source and CI evidence, not cross-stack acceptance.
 
 ## 4. Current known defects and unresolved proof

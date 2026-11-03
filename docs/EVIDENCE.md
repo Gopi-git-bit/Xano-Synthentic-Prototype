@@ -308,8 +308,8 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "source_ref": "697da352a331dbe623cb21d81704bfc892079327",
       "verification": "PASSED_CI",
       "gate": "REVIEW_ONLY",
-      "approval": "NOT_APPROVED",
-      "approval_ref": null,
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner explicitly approved sandbox-only customer registration → login → draft booking → booking retrieval goal in ChatGPT, 2026-11-03; excludes publication/production/financial actions.",
       "evidence_scope": "Frontend sandbox-only customer adapter uses exact Xano ephemeral API group paths. 6/6 mocked unit tests passed locally; GitHub frontend CI success on exact SHA. No Xano calls through the adapter or browser sandbox writes were executed.",
       "evidence_refs": [
         "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12",
