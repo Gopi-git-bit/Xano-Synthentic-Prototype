@@ -1,5 +1,5 @@
 import { useRef, useState, type FormEvent } from 'react';
-import { ArrowRight, Box, Clock3, LockKeyhole, LogOut, MapPin, Plus, ShieldCheck, Truck } from 'lucide-react';
+import { ArrowRight, Clock3, LockKeyhole, LogOut, MapPin, Plus, ShieldCheck, Truck } from 'lucide-react';
 import { Badge, Card, Field, Notice } from '../components';
 
 type Screen = 'register' | 'login' | 'home' | 'draft' | 'orders' | 'detail';
