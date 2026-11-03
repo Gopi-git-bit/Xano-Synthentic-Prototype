@@ -354,6 +354,30 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "runtime_evidence_refs": [],
       "blocker": "Actual hosted browser acceptance NOT_RUN: no shared Redis resource/credentials, preview session key/exact origin, or separately authorized preview automation access. MCP OAuth and Upstash terms remained pending in tool checks. Original Stage P/AB/C and production approvals unchanged.",
       "next_action": "Finish required browser consent, configure only the dedicated protected preview, verify tenant lifetime/deployed SHA, and run npm run test:sandbox:browser. Report CUSTOMER_SANDBOX_BROWSER_E2E_PASS only after actual workflow and security assertions pass."
+    },
+    {
+      "id": "FE-SB-GH-VERCEL",
+      "previous": "FE-SB-BROWSER",
+      "related": [
+        "FE-QA",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "1f4953c10d420d78522c7b7561df789556e2eb58",
+      "verification": "PASSED_CI",
+      "gate": "BLOCKED_HOSTED_BROWSER_RUNTIME",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner Nov 3 instruction to finish GitHub and Vercel setup and track EVIDENCE.md, within prior approved sandbox-only scope; no production/financial/project-wide bypass approval.",
+      "evidence_scope": "Verified Composio-created draft PR #14 with exact OpenCode branch source, successful GitHub frontend and contracts/schema CI, skipped Xano HTTP job, Vercel exact-SHA protected preview READY. Seven of seven previously committed sanitized OpenCode receipt hashes verified. Created preview-only, exact-branch environment metadata for HTTPS web origin, 32-byte sensitive session key, and 900-second TTL; release flag intentionally absent. No hosted Xano browser calls or new production deployment.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41608148770",
+        "https://zippy-frontend-preview-grsvluv3a-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/11"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "Upstash marketplace terms and shared Redis resource/credentials not configured; OpenCode Vercel OAuth and SSO automation not approved; gateway disabled; hosted browser E2E NOT_RUN. Full Stage P/AB/C and production gates remain unapproved.",
+      "next_action": "Owner accepts Upstash terms and completes OpenCode Vercel MCP OAuth; approve narrowly scoped preview automation, configure only this preview branch with Redis credentials, verify current tenant and redeploy preview; then run actual hosted Playwright safely."
     }
   ]
 }
@@ -403,3 +427,7 @@ PR #13 and the green frontend CI prove the browser rehearsal builds and Playwrig
 The same FE-SB-BROWSER milestone now has implemented source at `1f4953c10d420d78522c7b7561df789556e2eb58`, branch `feat/protected-customer-xano-20261103`, based on exact PR #13 head. [Report and sanitized receipts](evidence/customer-browser-gateway-20261103/README.md) preserve 89/89 mock server checks, 57/57 local Playwright, overlapping enhanced 7/7 rerun, passed source/build/security scans, read-only tenant/source checks and original failures. A genuine browser harness exists but stopped before calls/writes because hosted configuration is incomplete. The historical PR #13 rehearsal and prior server-adapter HTTP PASS remain intact.
 
 Vercel CLI/guidance setup succeeded; shared MCP is configured but authentication remained pending. Free sandbox Redis provisioning requires human terms acceptance; authorized preview automation access and session configuration are missing. Git produced READY preview `dpl_FjVaaPYPpVqcs1ddFJrEn3ssv4Wy` for the exact new SHA. Production inventory, environment metadata and SSO were compared read-only and remained unchanged. Current verdict **BLOCKED**; formal W3-P/AB/C/RELEASE transitions are unchanged. This checkpoint changes `docs/EXECUTION_TRACKER.md`, `docs/EVIDENCE.md` and `docs/evidence/customer-browser-gateway-20261103/` only.
+
+## November 3 — GitHub PR14 / Vercel preview configuration checkpoint
+
+PR #14 was created from the pushed implementation branch; exact-SHA frontend and contract GitHub CI passed. Vercel confirms deployment dpl_FjVaaPYPpVqcs1ddFJrEn3ssv4Wy READY, SSO enabled. ChatGPT verified 7/7 sanitized evidence receipt hashes and populated only branch-scoped preview origin/session-key/TTL metadata (key value never published). Gateway release flag, Redis and preview automation remain unavailable, so no actual browser Xano requests executed. Upstash marketplace terms and local OpenCode Vercel MCP OAuth require user action. The FE-SB-BROWSER runtime blocker is preserved; historical Stage P/AB/C and production gates remain NOT_APPROVED.
