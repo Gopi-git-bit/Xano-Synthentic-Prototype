@@ -2,10 +2,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createGateway } from './gateway.mjs';
 
-// The ephemeral Xano tool-debug interface is not an approved browser API.
-// Never infer a public route from a tool name or an unrelated release flag.
+// A passing Xano tool-debug test is not authorization to expose its route to browsers.
+// Verify both anonymous denial and the fall-through for a synthetic authenticated user.
 test('sandbox agent tools remain inaccessible through the frontend gateway', async () => {
-  let upstreamCalls = 0;
+  const upstreamUrls = [];
+  const authMe = 'https://isolated.invalid/api:auth/auth/me';
   const handle = createGateway({
     env: {
       XANO_AUTH_BASE_URL: 'https://isolated.invalid/api:auth',
@@ -16,11 +17,20 @@ test('sandbox agent tools remain inaccessible through the frontend gateway', asy
       XANO_ASSESSMENTS_RELEASE: 'verified',
       ZOHO_READ_RELEASE: 'verified',
     },
-    fetchImpl: async () => {
-      upstreamCalls++;
-      throw new Error('Unexpected upstream request from a sandbox-only route');
+    fetchImpl: async (url) => {
+      upstreamUrls.push(String(url));
+      if (String(url) !== authMe) throw new Error('Unapproved tool/API forwarding');
+      return new Response(JSON.stringify({
+        id: 17,
+        name: 'Synthetic Customer',
+        email: 'synthetic@example.invalid',
+        system_role: 'customer_member',
+        status: 'active',
+        active_organization_id: 42,
+      }), { status: 200, headers: { 'content-type': 'application/json' } });
     },
   });
+  const headers = new Headers({ Authorization: 'Bearer synthetic-test-token' });
 
   const sandboxTools = [
     'zippy_get_booking',
@@ -32,8 +42,12 @@ test('sandbox agent tools remain inaccessible through the frontend gateway', asy
     'zippy_prescreen_refund',
   ];
   for (const toolName of sandboxTools) {
+    const anonymous = await handle({ url: `/api/agents/${toolName}` });
+    assert.equal(anonymous.status, 401, `anonymous ${toolName} must be denied`);
+    assert.equal(anonymous.data.error.code, 'AUTH_REQUIRED');
+
     for (const method of ['GET', 'POST']) {
-      const response = await handle({ method, url: `/api/agents/${toolName}` });
+      const response = await handle({ method, url: `/api/agents/${toolName}`, headers });
       assert.equal(response.status, 404, `${method} ${toolName} must not be routed`);
       assert.equal(response.data.error.code, 'ENDPOINT_UNAVAILABLE');
     }
@@ -44,7 +58,7 @@ test('sandbox agent tools remain inaccessible through the frontend gateway', asy
     '/api/tools/zippy_get_booking',
     '/api/status?route=tools/zippy_prescreen_refund',
   ]) {
-    const response = await handle({ method: 'POST', url });
+    const response = await handle({ method: 'POST', url, headers });
     assert.equal(response.status, 404, url);
     assert.equal(response.data.error.code, 'ENDPOINT_UNAVAILABLE');
   }
@@ -55,5 +69,6 @@ test('sandbox agent tools remain inaccessible through the frontend gateway', asy
   assert.equal(status.data.assessmentReviewAvailable, false);
   assert.equal(status.data.bookingWritesAvailable, false);
   assert.equal(status.data.deliveryAvailable, false);
-  assert.equal(upstreamCalls, 0);
+  assert.ok(upstreamUrls.length > 0);
+  assert.ok(upstreamUrls.every(url => url === authMe), 'Only synthetic auth/me may be requested');
 });
