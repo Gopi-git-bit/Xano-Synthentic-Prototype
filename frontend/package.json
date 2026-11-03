@@ -7,10 +7,12 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b",
-    "lint": "eslint src tests server api scripts vite.config.ts playwright.config.ts",
+    "lint": "eslint src tests sandbox-e2e server api scripts vite.config.ts playwright.config.ts playwright.sandbox.config.ts",
     "preview": "vite preview --host 127.0.0.1",
     "test": "playwright test",
     "test:server": "node --test server/*.test.mjs",
+    "test:sandbox:browser": "playwright test --config playwright.sandbox.config.ts",
+    "scan:sandbox:browser": "node scripts/scan-sandbox-browser.mjs",
     "verify:crm": "node --env-file-if-exists=.env.local scripts/verify-crm.mjs",
     "api:dev": "node --env-file-if-exists=.env.local server/dev.mjs",
     "verify:sandbox-customer": "node scripts/run-sandbox-customer-flow.mjs"

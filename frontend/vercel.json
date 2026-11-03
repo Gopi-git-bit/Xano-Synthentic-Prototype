@@ -5,6 +5,10 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/api/sandbox/:path*",
+      "destination": "/api/sandbox?path=:path*"
+    },
+    {
       "source": "/api/:path*",
       "destination": "/api/gateway?route=:path*"
     },

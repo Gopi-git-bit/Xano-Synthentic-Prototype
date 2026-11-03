@@ -7,7 +7,7 @@ import './styles.css';
 
 // Explicitly opt-in synthetic UI only. Standard production builds do not ship it.
 const allowSandbox = import.meta.env.DEV
-  || (import.meta.env.MODE === 'sandbox-preview' && import.meta.env.VITE_ZIPPY_SANDBOX_UI === 'synthetic-only');
+  || (import.meta.env.MODE === 'sandbox-preview' && ['synthetic-only', 'xano-gateway'].includes(import.meta.env.VITE_ZIPPY_SANDBOX_UI));
 const Demo = import.meta.env.DEV ? lazy(() => import('./demo/App')) : null;
 const Sandbox = allowSandbox ? lazy(() => import('./sandbox/CustomerPreview')) : null;
 const params = new URLSearchParams(location.search);
@@ -17,7 +17,7 @@ const fallback = <div role="status" className="p-8 text-muted">Opening your prev
 
 createRoot(document.getElementById('root')!).render(<StrictMode>
   {Sandbox && explicitSandbox
-    ? <Suspense fallback={fallback}><Sandbox /></Suspense>
+    ? <Suspense fallback={fallback}><Sandbox connected={import.meta.env.VITE_ZIPPY_SANDBOX_UI === 'xano-gateway' || (import.meta.env.DEV && params.get('sandboxBackend') === 'gateway')} /></Suspense>
     : Demo && explicitDemo
       ? <Suspense fallback={fallback}><Demo /></Suspense>
       : <Access />}
