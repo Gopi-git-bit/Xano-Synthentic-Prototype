@@ -402,6 +402,29 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "runtime_evidence_refs": [],
       "blocker": "Genuine authenticated protected browser → Redis session → Xano sandbox HTTP E2E NOT_RUN. Automation/SSO authorization missing in ChatGPT client. User-reported OpenCode Vercel OAuth connected is not independently verified. Original W3-P/AB/C and production gates remain unchanged.",
       "next_action": "OpenCode run protected same-origin browser Playwright using newly configured Upstash Redis and stable preview alias, verify active isolated tenant and session/authorization paths; retain strict query rejection, sanitize actual receipts, do not merge/publish production."
+    },
+    {
+      "id": "FE-SB-TEST-RUNTIME-READY",
+      "previous": "FE-SB-UPSTASH",
+      "related": [
+        "FE-SB-BROWSER",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "da5db4e0cd997694b6c90d09adea793a7325f393",
+      "verification": "PASSED_CI",
+      "gate": "BLOCKED_HOSTED_BROWSER_RUNTIME",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Prior owner November 3 sandbox-only browser integration approval and Upstash terms acceptance; excludes production release or broad SSO bypass.",
+      "evidence_scope": "Vercel preview branch session TTL updated from 900 to 120 seconds to satisfy real browser expiry tests; re-deployed exact CI-passing source da5db4e to SSO-protected preview dpl_4LtS2NqWS48kFH2shgs7TXC7aGYV which is READY. Free Upstash remains attached only to this branch preview, gateway synthetic-only flag restricted to same branch. No browser E2E or Xano writes occurred from this step.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41611434258",
+        "https://zippy-frontend-preview-git-feat-p-d61403-gopi-nathan-s-projects.vercel.app/?sandbox=1"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "Hosted browser test still NOT_RUN; Playwright requires authorized protection access plus local Redis credential/key for revocation and expiry. User reports local OpenCode Vercel OAuth connected; direct desktop access offline. Original W3-P/AB/C/RELEASE gates unchanged.",
+      "next_action": "Operator with authorized protected-preview access and the matching nonproduction Redis key/REST credentials executes npm run test:sandbox:browser before tenant expiry, records sanitized checks and no production mutations."
     }
   ]
 }
@@ -459,3 +482,7 @@ PR #14 was created from the pushed implementation branch; exact-SHA frontend and
 ## November 3 — Upstash and refreshed preview, hosted browser acceptance pending
 
 User authorized Upstash terms. Vercel confirmed a free Mumbai Redis resource, auto-upgrade disabled, connected to preview only with all credential variables restricted to one branch. The source at da5db4e0cd997694b6c90d09adea793a7325f393 gained a safe complete-pair fallback for Vercel-managed `KV_REST_API_*` variables; frontend and schema CI passed and new SSO-protected preview is READY. Branch-scoped WEB_ORIGIN, a CSPRNG-generated sensitive session key, 900-second TTL and synthetic-only release flag are configured. No production release or project-wide protection bypass occurred. The Vercel share-link GET returned a 400 query rejection, so it is not a Redis/Xano integration pass. OpenCode OAuth connection is user-reported; direct desktop verification unavailable. The exact next proof is real protected browser-to-Xano execution. Historical Stage P/AB/C/RELEASE approvals remain blocked.
+
+## November 3 — Preview session TTL reduced for real browser testing
+
+The prior free Upstash and preview configuration remains in place. Only the branch-scoped session TTL changed from 900s to 120s to satisfy real expiry checks; forced Git preview dpl_4LtS2NqWS48kFH2shgs7TXC7aGYV is READY for unchanged source da5db4e0cd997694b6c90d09adea793a7325f393. No browser-to-Xano pass is claimed. Real Playwright needs authorized SSO automation access and the corresponding sandbox Redis test credentials; neither credential is published here. Original W3-P/AB/C/RELEASE restrictions remain unchanged.
