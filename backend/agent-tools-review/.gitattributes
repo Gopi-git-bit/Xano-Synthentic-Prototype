@@ -1,0 +1,2 @@
+* text eol=lf
+candidate/**/*.xs whitespace=-blank-at-eol

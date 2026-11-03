@@ -1,0 +1,838 @@
+{
+  "at": "2026-11-03T05:49:45.809Z",
+  "isolation": {
+    "id": 4,
+    "name": "ewkq-c4ck-894a",
+    "workspace_id": 1,
+    "type": "ephemeral",
+    "tasks": false,
+    "expires_at": "2026-11-04 05:02:41+0000"
+  },
+  "passed": 65,
+  "total": 65,
+  "tests": [
+    {
+      "label": "owned booking",
+      "tool": "zippy_get_booking",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "owned booking via quote UUID",
+      "tool": "zippy_get_booking",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "quote pair mismatch",
+      "tool": "zippy_get_booking",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_INPUT_ERROR",
+      "passed": true
+    },
+    {
+      "label": "missing booking identifier",
+      "tool": "zippy_get_booking",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_INPUT_ERROR",
+      "passed": true
+    },
+    {
+      "label": "valid stored order",
+      "tool": "zippy_validate_order",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "invalid order and active hold",
+      "tool": "zippy_validate_order",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "eligible fleet candidate",
+      "tool": "zippy_check_vehicle_eligibility",
+      "actor": "operator",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "non-binding assignment proposal",
+      "tool": "zippy_propose_assignment",
+      "actor": "operator",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "capacity compliance and reservation conflicts",
+      "tool": "zippy_check_vehicle_eligibility",
+      "actor": "operator",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "cross-carrier driver assignment rejected",
+      "tool": "zippy_propose_assignment",
+      "actor": "operator",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "complete POD evidence",
+      "tool": "zippy_review_pod",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "invalid POD relationships and missing evidence",
+      "tool": "zippy_review_pod",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "payment minor-unit summary",
+      "tool": "zippy_get_payment_summary",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "bounded refund prescreen",
+      "tool": "zippy_prescreen_refund",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "refund exceeds unclaimed captured amount",
+      "tool": "zippy_prescreen_refund",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "uncaptured payment refund rejected",
+      "tool": "zippy_prescreen_refund",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "refund reason inconsistent with booking",
+      "tool": "zippy_prescreen_refund",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "ok",
+      "passed": true
+    },
+    {
+      "label": "negative refund input",
+      "tool": "zippy_prescreen_refund",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_INPUT_ERROR",
+      "passed": true
+    },
+    {
+      "label": "unsupported currency input",
+      "tool": "zippy_prescreen_refund",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_INPUT_ERROR",
+      "passed": true
+    },
+    {
+      "label": "corrupt payment ownership",
+      "tool": "zippy_get_payment_summary",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "corrupt refund payment ownership",
+      "tool": "zippy_prescreen_refund",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "anonymous zippy_get_booking",
+      "tool": "zippy_get_booking",
+      "actor": "anonymous",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "tampered token zippy_get_booking",
+      "tool": "zippy_get_booking",
+      "actor": "tampered",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "suspended account zippy_get_booking",
+      "tool": "zippy_get_booking",
+      "actor": "suspended",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "anonymous zippy_validate_order",
+      "tool": "zippy_validate_order",
+      "actor": "anonymous",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "tampered token zippy_validate_order",
+      "tool": "zippy_validate_order",
+      "actor": "tampered",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "suspended account zippy_validate_order",
+      "tool": "zippy_validate_order",
+      "actor": "suspended",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "anonymous zippy_check_vehicle_eligibility",
+      "tool": "zippy_check_vehicle_eligibility",
+      "actor": "anonymous",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "tampered token zippy_check_vehicle_eligibility",
+      "tool": "zippy_check_vehicle_eligibility",
+      "actor": "tampered",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "suspended account zippy_check_vehicle_eligibility",
+      "tool": "zippy_check_vehicle_eligibility",
+      "actor": "suspended",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "anonymous zippy_propose_assignment",
+      "tool": "zippy_propose_assignment",
+      "actor": "anonymous",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "tampered token zippy_propose_assignment",
+      "tool": "zippy_propose_assignment",
+      "actor": "tampered",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "suspended account zippy_propose_assignment",
+      "tool": "zippy_propose_assignment",
+      "actor": "suspended",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "anonymous zippy_review_pod",
+      "tool": "zippy_review_pod",
+      "actor": "anonymous",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "tampered token zippy_review_pod",
+      "tool": "zippy_review_pod",
+      "actor": "tampered",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "suspended account zippy_review_pod",
+      "tool": "zippy_review_pod",
+      "actor": "suspended",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "anonymous zippy_get_payment_summary",
+      "tool": "zippy_get_payment_summary",
+      "actor": "anonymous",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "tampered token zippy_get_payment_summary",
+      "tool": "zippy_get_payment_summary",
+      "actor": "tampered",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "suspended account zippy_get_payment_summary",
+      "tool": "zippy_get_payment_summary",
+      "actor": "suspended",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "anonymous zippy_prescreen_refund",
+      "tool": "zippy_prescreen_refund",
+      "actor": "anonymous",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "tampered token zippy_prescreen_refund",
+      "tool": "zippy_prescreen_refund",
+      "actor": "tampered",
+      "http_status": 401,
+      "error_code": "ERROR_CODE_UNAUTHORIZED",
+      "passed": true
+    },
+    {
+      "label": "suspended account zippy_prescreen_refund",
+      "tool": "zippy_prescreen_refund",
+      "actor": "suspended",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "cross-customer ownership zippy_get_booking",
+      "tool": "zippy_get_booking",
+      "actor": "bob",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "driver role zippy_get_booking",
+      "tool": "zippy_get_booking",
+      "actor": "driver",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "cross-customer ownership zippy_validate_order",
+      "tool": "zippy_validate_order",
+      "actor": "bob",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "driver role zippy_validate_order",
+      "tool": "zippy_validate_order",
+      "actor": "driver",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "cross-customer ownership zippy_review_pod",
+      "tool": "zippy_review_pod",
+      "actor": "bob",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "driver role zippy_review_pod",
+      "tool": "zippy_review_pod",
+      "actor": "driver",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "cross-customer ownership zippy_get_payment_summary",
+      "tool": "zippy_get_payment_summary",
+      "actor": "bob",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "driver role zippy_get_payment_summary",
+      "tool": "zippy_get_payment_summary",
+      "actor": "driver",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "cross-customer ownership zippy_prescreen_refund",
+      "tool": "zippy_prescreen_refund",
+      "actor": "bob",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "driver role zippy_prescreen_refund",
+      "tool": "zippy_prescreen_refund",
+      "actor": "driver",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "customer cannot dispatch zippy_check_vehicle_eligibility",
+      "tool": "zippy_check_vehicle_eligibility",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "vendor cannot inspect unassigned customer freight zippy_check_vehicle_eligibility",
+      "tool": "zippy_check_vehicle_eligibility",
+      "actor": "vendor",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "customer cannot dispatch zippy_propose_assignment",
+      "tool": "zippy_propose_assignment",
+      "actor": "alice",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "vendor cannot inspect unassigned customer freight zippy_propose_assignment",
+      "tool": "zippy_propose_assignment",
+      "actor": "vendor",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "member lacks privileged role zippy_get_payment_summary",
+      "tool": "zippy_get_payment_summary",
+      "actor": "member",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "member lacks privileged role zippy_prescreen_refund",
+      "tool": "zippy_prescreen_refund",
+      "actor": "member",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "member lacks privileged role zippy_review_pod",
+      "tool": "zippy_review_pod",
+      "actor": "member",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "inactive membership",
+      "tool": "zippy_get_booking",
+      "actor": "inactive_member",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "pending verification account",
+      "tool": "zippy_get_booking",
+      "actor": "unverified",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "forged role input does not elevate member",
+      "tool": "zippy_get_payment_summary",
+      "actor": "member",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "operator does not bypass customer read contract",
+      "tool": "zippy_get_booking",
+      "actor": "operator",
+      "http_status": 200,
+      "execution_status": "exception",
+      "error_code": "ERROR_CODE_ACCESS_DENIED",
+      "passed": true
+    },
+    {
+      "label": "all 34 domain tables unchanged by tool calls",
+      "passed": true
+    },
+    {
+      "label": "no external-message or approval outbox records",
+      "passed": true
+    }
+  ],
+  "before": {
+    "active_assignment_reservations": {
+      "count": 1,
+      "sha256": "42e4f1e7a06d4a3d45b817efe5669447755dc40c4d58216d1d6ecadf9d3588fd"
+    },
+    "agent_decision": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "agent_execution": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "approval_request": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "audit_log": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "booking_quote": {
+      "count": 5,
+      "sha256": "92f12f1c6c54dff38f5ed39e75ecd6b477a1a9bfc2f6e4cfefd139a49e91c4cf"
+    },
+    "cargo_detail": {
+      "count": 4,
+      "sha256": "0daec303faf409ded9ab479ea15a4ee2f47e601445cacc93e0795b46d1965652"
+    },
+    "compliance_documents": {
+      "count": 6,
+      "sha256": "982b101c07b8fa896c4cbd5a62f2081896a2bb997c0e99b7bf21a8b062ca5c9c"
+    },
+    "customer_booking": {
+      "count": 5,
+      "sha256": "fd11006e69e42356627971e748f05641696adafd51dadf25c7e3afa1c8e62408"
+    },
+    "driver_profile": {
+      "count": 3,
+      "sha256": "02ec2b0e270041d918f757e83c2c069eaaedc1999fafe765136996441de8b862"
+    },
+    "durable_tasks": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "event_log": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "event_outbox": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "idempotency_key": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "incident_dispute": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "order_holds": {
+      "count": 1,
+      "sha256": "8b06a4d2de280e72845de36a188d1fcfdea8a69139744b65b26735889f8d5cec"
+    },
+    "organization": {
+      "count": 4,
+      "sha256": "85624edaa1b990d58cd11848613e395c38e8ff32b26623d90841f5d5623fd5f4"
+    },
+    "organization_member": {
+      "count": 10,
+      "sha256": "545220e07d33047ada360a4af1807345877241badc7ea07308bfee78307cb476"
+    },
+    "otp_challenges": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "payment_transaction": {
+      "count": 4,
+      "sha256": "a74a98cf2fc8fc028b0a7affe82c4c014df8d97511af6180b9329826cd03ccd6"
+    },
+    "pricing_policies": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "proof_of_delivery": {
+      "count": 2,
+      "sha256": "70051cf8d744176664996c316dececde5390417c6a51cfe4c5a56df8b35d21be"
+    },
+    "refund_request": {
+      "count": 1,
+      "sha256": "0ee8eee676cfc72856ff268e72639547a683be1adad2a33cd0e33c0abc55b1a1"
+    },
+    "route_cache": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "settlement": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "table_index": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "topay_consent_attempts": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "tracking_event": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "trip": {
+      "count": 1,
+      "sha256": "eed82788c15ac0c1a1bd81408bc64cb06efc539064184116c9274a83c516aa66"
+    },
+    "trip_stop": {
+      "count": 1,
+      "sha256": "aa6bb98bc88f328b540abb1b332a7cbe79f870e5e2dfcfe5f90d3e6f04a1d85e"
+    },
+    "user": {
+      "count": 11,
+      "sha256": "3fa63f6d8379211bb4e7288770d7906716083974a23faf9168a2368942409d01"
+    },
+    "vehicle": {
+      "count": 3,
+      "sha256": "a603d817bc4ce67a766a416ed82f8d11c2b86bab89257bc67e31e1d765366275"
+    },
+    "vehicle_availability": {
+      "count": 2,
+      "sha256": "445b418d903a15291cddb2764949b9ff8fded048e5ae08f000c7442ae6acbdec"
+    },
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "after": {
+    "active_assignment_reservations": {
+      "count": 1,
+      "sha256": "42e4f1e7a06d4a3d45b817efe5669447755dc40c4d58216d1d6ecadf9d3588fd"
+    },
+    "agent_decision": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "agent_execution": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "approval_request": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "audit_log": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "booking_quote": {
+      "count": 5,
+      "sha256": "92f12f1c6c54dff38f5ed39e75ecd6b477a1a9bfc2f6e4cfefd139a49e91c4cf"
+    },
+    "cargo_detail": {
+      "count": 4,
+      "sha256": "0daec303faf409ded9ab479ea15a4ee2f47e601445cacc93e0795b46d1965652"
+    },
+    "compliance_documents": {
+      "count": 6,
+      "sha256": "982b101c07b8fa896c4cbd5a62f2081896a2bb997c0e99b7bf21a8b062ca5c9c"
+    },
+    "customer_booking": {
+      "count": 5,
+      "sha256": "fd11006e69e42356627971e748f05641696adafd51dadf25c7e3afa1c8e62408"
+    },
+    "driver_profile": {
+      "count": 3,
+      "sha256": "02ec2b0e270041d918f757e83c2c069eaaedc1999fafe765136996441de8b862"
+    },
+    "durable_tasks": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "event_log": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "event_outbox": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "idempotency_key": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "incident_dispute": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "order_holds": {
+      "count": 1,
+      "sha256": "8b06a4d2de280e72845de36a188d1fcfdea8a69139744b65b26735889f8d5cec"
+    },
+    "organization": {
+      "count": 4,
+      "sha256": "85624edaa1b990d58cd11848613e395c38e8ff32b26623d90841f5d5623fd5f4"
+    },
+    "organization_member": {
+      "count": 10,
+      "sha256": "545220e07d33047ada360a4af1807345877241badc7ea07308bfee78307cb476"
+    },
+    "otp_challenges": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "payment_transaction": {
+      "count": 4,
+      "sha256": "a74a98cf2fc8fc028b0a7affe82c4c014df8d97511af6180b9329826cd03ccd6"
+    },
+    "pricing_policies": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "proof_of_delivery": {
+      "count": 2,
+      "sha256": "70051cf8d744176664996c316dececde5390417c6a51cfe4c5a56df8b35d21be"
+    },
+    "refund_request": {
+      "count": 1,
+      "sha256": "0ee8eee676cfc72856ff268e72639547a683be1adad2a33cd0e33c0abc55b1a1"
+    },
+    "route_cache": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "settlement": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "table_index": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "topay_consent_attempts": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "tracking_event": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "trip": {
+      "count": 1,
+      "sha256": "eed82788c15ac0c1a1bd81408bc64cb06efc539064184116c9274a83c516aa66"
+    },
+    "trip_stop": {
+      "count": 1,
+      "sha256": "aa6bb98bc88f328b540abb1b332a7cbe79f870e5e2dfcfe5f90d3e6f04a1d85e"
+    },
+    "user": {
+      "count": 11,
+      "sha256": "3fa63f6d8379211bb4e7288770d7906716083974a23faf9168a2368942409d01"
+    },
+    "vehicle": {
+      "count": 3,
+      "sha256": "a603d817bc4ce67a766a416ed82f8d11c2b86bab89257bc67e31e1d765366275"
+    },
+    "vehicle_availability": {
+      "count": 2,
+      "sha256": "445b418d903a15291cddb2764949b9ff8fded048e5ae08f000c7442ae6acbdec"
+    },
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  }
+}
