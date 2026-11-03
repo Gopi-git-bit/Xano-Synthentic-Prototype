@@ -105,6 +105,15 @@ test('production, wrong branch, missing configuration and expired tenant fail cl
   assert.equal((await handler({ url: '/api/sandbox/csrf' })).status, 503);
 });
 
+test('Vercel rewrite path is permitted only when identical to visible route', async () => {
+  const h = harness(), b = h.browser();
+  assert.equal((await b.call('csrf?path=csrf')).status, 200);
+  for (const route of ['csrf?path=bookings','csrf?path=auth/login','csrf?path=csrf&path=csrf','csrf?path=csrf&scope=admin','bookings?path=auth/login']) {
+    assert.equal((await b.call(route)).status, 400, route);
+  }
+  assert.equal(h.calls.length, 0);
+});
+
 test('Vercel Marketplace Upstash uses paired branch-scoped REST credentials', () => {
   assert.deepEqual(sandboxRedisCredentials({ KV_REST_API_URL: 'https://synthetic.upstash.io', KV_REST_API_TOKEN: 'synthetic-marketplace-token' }),
     { url: 'https://synthetic.upstash.io', token: 'synthetic-marketplace-token' });

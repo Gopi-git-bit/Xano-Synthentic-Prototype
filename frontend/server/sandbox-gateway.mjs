@@ -105,9 +105,16 @@ export function createSandboxGateway({ env = process.env, fetchImpl = fetch, sto
     try {
       config = configuration();
       const parsed = new URL(url, config.origin);
-      const route = parsed.pathname === '/api/sandbox' ? parsed.searchParams.get('path') : parsed.pathname.replace(/^\/api\/sandbox\//, '');
-      if ([...parsed.searchParams.keys()].some(k => k !== 'path') || parsed.searchParams.getAll('path').length > 1
-        || (parsed.pathname !== '/api/sandbox' && parsed.searchParams.has('path'))) fail(400, 'INVALID_QUERY', 'Caller-selected scope and queries are not allowed.');
+      const injectedPath = parsed.searchParams.getAll('path');
+      const visibleRoute = parsed.pathname.startsWith('/api/sandbox/')
+        ? parsed.pathname.slice('/api/sandbox/'.length) : null;
+      const route = parsed.pathname === '/api/sandbox' ? injectedPath[0] : visibleRoute;
+      // The platform rewrite injects ?path=route; it must match the visible URL
+      // exactly so an external caller cannot select a different operation.
+      if ([...parsed.searchParams.keys()].some(k => k !== 'path') || injectedPath.length > 1
+        || (visibleRoute !== null && injectedPath.length === 1 && injectedPath[0] !== visibleRoute)
+        || (visibleRoute === null && parsed.pathname !== '/api/sandbox'))
+        fail(400, 'INVALID_QUERY', 'Caller-selected scope and queries are not allowed.');
       const allowed = { csrf: 'GET', 'auth/register': 'POST', 'auth/login': 'POST', 'auth/logout': 'POST', 'auth/me': 'GET', 'organization/membership': 'GET', bookings: ['GET', 'POST'] };
       const detail = /^bookings\/[1-9]\d{0,14}$/.test(route || '');
       if (!Object.hasOwn(allowed, route || '') && !detail) fail(404, 'ENDPOINT_DISABLED', 'This sandbox operation is unavailable.');
