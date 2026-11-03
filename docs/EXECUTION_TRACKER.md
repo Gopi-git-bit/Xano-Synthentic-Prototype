@@ -6,7 +6,7 @@
 
 **Mandatory stage evidence:** [EVIDENCE.md](EVIDENCE.md) stores the machine-readable predecessor chain, proof scope, approval gate and evidence receipt. A completed stage requires updating BOTH documents together; the evidence-chain CI only checks structure, not Xano runtime.
 
-**Snapshot:** 2026-10-30 (Asia/Kolkata)  
+**Snapshot:** 2026-11-03 (Asia/Kolkata); historical October 30 entries retained  
 **Repository:** [Gopi-git-bit/Xano-Synthentic-Prototype](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype) — active project. **New-logistic- is historical reference only.**  
 **Default branch:** main, last inspected at 223bae3a1b63218f050ebe48cef7903595926db7; currently Xano-exported source, **not** the deployed React frontend.  
 **Scope:** Read-only status reporting. This tracker does not authorize Xano publication, GitHub merges, Vercel production deployment, credential changes, synthetic tenant provisioning, notifications or payments.  
@@ -80,6 +80,12 @@ Private local ancestry: ed62038f571c02f339972ad7ec5d7cd1a9cffe18 → ea543e9c467
 
 **Important:** historical workspace-1 51-versus-53 physical table observations and the 72 PostgreSQL reference cases are not current workspace-3 acceptance. Workspace-3 metadata **33 table declarations** is not a verified physical constraint count. Avoid reconciling by deletion or assumed equivalence.
 
+### November 3 sandbox checkpoint — updated evidence scope
+
+OpenCode pushed source and sanitized receipts at commit 4421892ff9c884e43711753cacde04efd4ddb7c6. ChatGPT independently verified the GitHub branch and created draft [PR #10](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10). OpenCode reports seven read-only tools (48/48 syntax and 65/65 synthetic tool-debug tests) and an independent customer onboarding/draft milestone (45/45 syntax and 48/48 synthetic HTTP tests). Those runtime claims were **not re-executed by ChatGPT**. Both tenants are temporary and expire on November 4.
+
+The canonical Stage P / Stage AB predecessor chain in EVIDENCE.md still lacks separately recorded owner approval and independent full-isolation acceptance. The sandbox work is a distinct REVIEW_ONLY evidence stream; it must not be used to relabel production as ready. The older October 30 table below remains historical, not the latest execution status.
+
 ## 4. Current known defects and unresolved proof
 
 - **11 failing draft source-readiness checks** in the private reconciliation: untrusted 480-km distance fallback; booking insert before full cargo validation; second-resolution reference collisions; missing create/confirm transactions; optional idempotency key; unenforced expiry; insufficient assignment uniqueness; absent worker fencing; fixed OTP; OTP consumed before decision validation. Retain actual test failures; no draft promotion.
@@ -114,19 +120,19 @@ The prior user approval to create a **sanitized public GitHub review branch** is
 | E-PRIVATE-01 | Original private branch 61d1b139... and verified ZIP/bundle, kept only on authorized Windows device | 2026-10-30 prior verified inspection | Not accessible as a GitHub source; recheck device before relying on new local changes |
 | E-XANO-01 | OpenCode authenticated Metadata/API capture, private sealed receipts | Last handoff 2026-10-29 | Current direct ChatGPT Xano session **not verified**, no positive app credentials or isolated runtime acceptance |
 
+| E-GH-20261103 | [Backend draft PR #10](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10), head 4421892ff9c884e43711753cacde04efd4ddb7c6 | 2026-11-03 via Composio | GitHub commit and PR only; runtime evidence was OpenCode-reported |
+
 Refresh all branch refs and CI on every handoff; refresh Xano runtime before a change/approval. Do not silently carry a stale status forward when a dependency or SHA changes. Credential values, private identity mappings and customer data must stay out of Markdown.
 
-## 7. Next executable task — exact handoff
+## 7. Next executable task — application architecture checkpoint, November 3
 
-**Priority: Owner-reviewed Xano vendor capability clarification, NOT provisioning.** Stage P1 is completed for the limited read-only public-document investigation and verified private evidence chain at commit 215d4e600bd4c7454d31c5581971e058fe6147dd. **W3-P1-PLATFORM gate BLOCKED_PENDING_XANO_CONFIRMATION. Stage P NOT_RUN / NOT_APPROVED.**
+1. **OpenCode / Xano:** preserve the two sandbox source/test suites (now in PR #10), independently reproduce the registration → owner membership → login → draft booking POST → authorized booking GET path in a fresh verified tenant, and establish the actual API group canonicals, actor identity, response shapes, zero-side-effect/rollback evidence and physical isolation controls. Keep live workspace 3 untouched.
+2. **Frontend / GitHub:** reconcile sandbox-only Xano API contracts with [PR #8](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/8) and the agent-tool guard [PR #9](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/9); do not enable live registration or booking writes. Implement only focused sandbox adapter and mock security tests after backend schema freezes.
+3. **Operational backend order:** cargo/pricing and Mappls provenance → vendor/driver-scoped reads → atomic assignment and trip offers → private POD and tracking → Telnyx notification outbox → Razorpay test-mode payment/refund human approvals → Zoho CRM mapping.
+4. **Native agents:** build OMS, IMS, TMS, Verification and Finance/Compliance as least-privilege assessment-only tools after deterministic services and authorization work. No autonomous dispatch or financial approval.
+5. **Release:** require a separately approved Stage P/AB/C evidence chain, current source hashes, complete E2E denial/rollback tests and owner approval before merging to main or publishing to Xano/Vercel production.
 
-1. Review existing Xano support correspondence for an answer to ephemeral entitlement, tenant-only permissions with parent-live denial, independent DB identity, no-copy/no-secret bootstrap, provider/agent egress blocking, application JWT isolation and expiry/recovery. Do not claim support has not replied without checking the available account.
-2. Review the private prepared support draft. Ask the owner before sending it, avoid duplicate requests, and never disclose secrets or private administrative receipts.
-3. Evaluate Essential ephemeral, Essential alternative, isolated separate instance and plan/add-on only against supported platform evidence. Pro RBAC availability alone does not establish a complete tenant isolation solution.
-4. Only after vendor-supported controls and safe independent proof methods are known, prepare separately scoped Stage P authorization. Tenant creation, credentials, preview/import, fixture creation, hosted testing, messaging and payment execution remain prohibited.
-5. Update the predecessor-linked tracker and evidence with authoritative responses and new approval decisions. Preserve all prior failures, zero hosted M1 acceptance and future stages NOT_RUN.
-
-**Next actor:** Owner and Xano support. OpenCode can prepare further read-only evidence. No frontend rebuild required.
+**Exact next artifact:** OpenCode delivers stable sandbox-only OpenAPI (or equivalent exact route contract) and observed authorization/transaction receipts for the customer draft flow. ChatGPT + Composio reviews frontend adapters in a separate draft PR. The existing PR #10 is for source preservation, not activation.
 
 ## 8. Reusable OpenCode/ChatGPT resume contract
 
@@ -151,6 +157,8 @@ ChatGPT should request new OpenCode status only when the tracker is stale, an ap
 | 2026-10-30 | ChatGPT + Remote Desktop Commander | Independently verified private P0 handoff ZIP SHA-256 da33dc5e6cdb2702246653603ecddf6ee3c5ed601cc165e5bef24fd808cc3130, 7 archive entries, private Git HEAD/parent/clean state, 12/12 Git object receipt hashes and source/test summary | Private commit 55d4dd278602c5a81706db70d91b53ca363f4d9c; [EVIDENCE.md](EVIDENCE.md) | Stage P platform capability review only; do not create tenant |
 
 | 2026-10-30 | OpenCode / ChatGPT (remote Git audit) | P1 documentation-only review completed; private ZIP and 9/9 original Git evidence object hashes confirmed, seven capability outcomes unresolved | P1 commit 215d4e600bd4c7454d31c5581971e058fe6147dd; [EVIDENCE.md](EVIDENCE.md); handoff SHA-256 15336d59c6f04efb40272bf418d5a430b430f1aa77d88218ba33e3ff7394e752 | Owner reviews Xano support draft; no Stage P permission |
+
+| 2026-11-03 | OpenCode (reported) + ChatGPT/Composio (GitHub observed) | Seven tool-review objects and customer-draft HTTP milestone source pushed; draft PR #10 opened; 65/65 and 48/48 sandbox tests reported, not independently re-run | [PR #10](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10), commit 4421892ff9c884e43711753cacde04efd4ddb7c6; EVIDENCE.md W3-SB-TOOLS / W3-SB-CUSTOMER | Reproduce stable sandbox auth/draft API and build versioned frontend contract; Stage P and production remain blocked |
 
 ### Required new checkpoint row
 

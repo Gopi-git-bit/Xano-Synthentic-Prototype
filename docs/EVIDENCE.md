@@ -1,6 +1,6 @@
 # Zippy Logistics — Milestone Evidence and Predecessor Chain
 
-**Evidence snapshot:** 2026-10-30 (IST). **Current Xano status:** Stage P0 **VERIFIED_READ_ONLY against preserved private receipts (not a new Xano GET run)**; Stage P **NOT_RUN / NOT_APPROVED**.
+**Evidence snapshot:** 2026-11-03 (IST); the October 30 formal stage approvals remain historical and unchanged. **Current Xano status:** Stage P0 **VERIFIED_READ_ONLY against preserved private receipts (not a new Xano GET run)**; Stage P **NOT_RUN / NOT_APPROVED**.
 
 This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXECUTION_TRACKER.md). Review [DECISION.md](../DECISION.md) for scoped owner approvals and [SOUL.md](../SOUL.md) for durable engineering guardrails; use [AGENTS.md](../AGENTS.md) as the coding-agent entry point. Use both at the start and end of every ChatGPT/OpenCode milestone. The tracker describes *current work*; this ledger records *which prior stage it depends on, what was actually verified, and which gate still blocks progress*. **A passing Markdown check is not proof of live Xano authorization, tenant isolation, or production readiness.**
 
@@ -39,7 +39,7 @@ Maintain unique IDs and complete the current stage in order. This structured reg
 {
   "schema_version": 1,
   "repository": "Gopi-git-bit/Xano-Synthentic-Prototype",
-  "snapshot_ist": "2026-10-30",
+  "snapshot_ist": "2026-11-03",
   "records": [
     {
       "id": "B-HIST",
@@ -255,6 +255,48 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "runtime_evidence_refs": [],
       "blocker": "Production, provider/finance and autonomous agent release prohibited pending separate approval",
       "next_action": "Require explicit production release approval"
+    },
+    {
+      "id": "W3-SB-TOOLS",
+      "previous": "W3-P1-PLATFORM",
+      "related": [
+        "W3-P"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+      "verification": "REPORTED",
+      "gate": "REVIEW_ONLY",
+      "approval": "NOT_APPROVED",
+      "approval_ref": null,
+      "evidence_scope": "GitHub sources verified; OpenCode reports seven isolated read-only tools, 48/48 syntax and 65/65 authenticated synthetic tool-debug checks. This is separate from the original Stage P approval chain.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/4421892ff9c884e43711753cacde04efd4ddb7c6/backend/agent-tools-review/README.md"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "No independent ChatGPT re-execution, durable public API/MCP transport acceptance or canonical Stage P approval.",
+      "next_action": "Reproduce in a verified fresh isolated tenant; preserve current live state."
+    },
+    {
+      "id": "W3-SB-CUSTOMER",
+      "previous": "W3-SB-TOOLS",
+      "related": [
+        "W3-AB"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+      "verification": "REPORTED",
+      "gate": "REVIEW_ONLY",
+      "approval": "NOT_APPROVED",
+      "approval_ref": null,
+      "evidence_scope": "OpenCode reports distinct ephemeral-tenant customer onboarding/booking milestone: 45/45 definitions and 48/48 actual synthetic HTTP assertions; GitHub source and audit reports preserved at pinned SHA. Stage P1 blocker remains unresolved for formal Stage P.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/4421892ff9c884e43711753cacde04efd4ddb7c6/backend/customer-draft-milestone/README.md"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "No durable frontend integration, independent replay, original AB approval or production signoff.",
+      "next_action": "Freeze isolated register/login/me/booking POST and GET contract and independently test A/B isolation."
     }
   ]
 }
@@ -278,3 +320,7 @@ The next transition W3-P must include a distinct owner Stage P approval, evidenc
 `id`, `previous`, `related`, `as_of`, `source_ref`, `verification`, `gate`, `approval`, `approval_ref`, `evidence_scope`, `evidence_refs`, `runtime_evidence_refs`, `blocker`, `next_action`.
 
 **Do not add a new stage without naming its previous milestone and whether the predecessor's blocker was resolved.** If `NOT_RUN` or `BLOCKED`, document the next permitted action rather than claiming completion.
+
+## November 3 — review-only sandbox evidence
+
+The two additional W3-SB records describe OpenCode-reported runtime assertions on temporary isolated tenants with GitHub source preserved in PR #10. ChatGPT independently verified the GitHub branch/PR, not the live Xano runtime. They therefore remain REPORTED and REVIEW_ONLY, with no independent runtime_evidence_refs. The formal W3-P, W3-AB, W3-C and W3-RELEASE gates remain NOT_APPROVED/NOT_RUN; no owner signoff can be inferred from a temporary tenant or a draft PR.
