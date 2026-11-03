@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createSandboxGateway } from './sandbox-gateway.mjs';
+import { createSandboxGateway, sandboxRedisCredentials } from './sandbox-gateway.mjs';
 import { harness, registration, draft } from './test-fixtures/sandbox.mjs';
 
 test('mocked gateway registers, authenticates, scopes membership, drafts, reads and logs out without browser tokens', async () => {
@@ -104,3 +104,18 @@ test('production, wrong branch, missing configuration and expired tenant fail cl
   const handler = createSandboxGateway({ env: harness().env, fetchImpl: async () => { throw Error('Unexpected fetch'); } });
   assert.equal((await handler({ url: '/api/sandbox/csrf' })).status, 503);
 });
+
+test('Vercel Marketplace Upstash uses paired branch-scoped REST credentials', () => {
+  assert.deepEqual(sandboxRedisCredentials({ KV_REST_API_URL: 'https://synthetic.upstash.io', KV_REST_API_TOKEN: 'synthetic-marketplace-token' }),
+    { url: 'https://synthetic.upstash.io', token: 'synthetic-marketplace-token' });
+  assert.deepEqual(sandboxRedisCredentials({
+    KV_REST_API_URL: 'https://marketplace.upstash.io', KV_REST_API_TOKEN: 'marketplace-token',
+    ZIPPY_SANDBOX_REDIS_URL: 'https://explicit.upstash.io', ZIPPY_SANDBOX_REDIS_TOKEN: 'explicit-token',
+  }), { url: 'https://explicit.upstash.io', token: 'explicit-token' });
+  // Partial explicit secrets must not silently mix with Marketplace secrets.
+  assert.deepEqual(sandboxRedisCredentials({
+    ZIPPY_SANDBOX_REDIS_URL: 'https://explicit.upstash.io',
+    KV_REST_API_URL: 'https://marketplace.upstash.io', KV_REST_API_TOKEN: 'marketplace-token',
+  }), { url: 'https://explicit.upstash.io', token: undefined });
+});
+

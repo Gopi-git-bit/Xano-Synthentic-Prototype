@@ -3,6 +3,15 @@ import { createSandboxCustomerClient } from './sandbox-customer-flow.mjs';
 import { createSandboxStore } from './sandbox-store.mjs';
 import { sandboxBranch, sandboxTarget } from './sandbox-target.mjs';
 
+// Vercel Marketplace Upstash exposes branch-scoped KV_REST_API_* secrets at runtime.
+// Prefer an explicitly configured pair, never mix half-configured credential pairs.
+export function sandboxRedisCredentials(env) {
+  const explicit = Boolean(env.ZIPPY_SANDBOX_REDIS_URL || env.ZIPPY_SANDBOX_REDIS_TOKEN);
+  return explicit
+    ? { url: env.ZIPPY_SANDBOX_REDIS_URL, token: env.ZIPPY_SANDBOX_REDIS_TOKEN }
+    : { url: env.KV_REST_API_URL, token: env.KV_REST_API_TOKEN };
+}
+
 export const SESSION_COOKIE = '__Host-zippy-sandbox';
 export const CSRF_COOKIE = '__Host-zippy-sandbox-csrf';
 const object = v => v !== null && typeof v === 'object' && !Array.isArray(v);
@@ -46,7 +55,7 @@ export function createSandboxGateway({ env = process.env, fetchImpl = fetch, sto
       fail(503, 'SANDBOX_NOT_CONFIGURED', 'Protected sandbox configuration is incomplete.');
     const ttl = Number(env.ZIPPY_SANDBOX_SESSION_TTL_SECONDS || 900);
     if (!Number.isInteger(ttl) || ttl < 60 || ttl > 1800) fail(503, 'SANDBOX_NOT_CONFIGURED', 'Session lifetime configuration is invalid.');
-    if (!sharedStore) sharedStore = suppliedStore || createSandboxStore({ url: env.ZIPPY_SANDBOX_REDIS_URL, token: env.ZIPPY_SANDBOX_REDIS_TOKEN, key, namespace: sandboxTarget.tenant, fetchImpl });
+    if (!sharedStore) sharedStore = suppliedStore || createSandboxStore({ ...sandboxRedisCredentials(env), key, namespace: sandboxTarget.tenant, fetchImpl });
     return { origin: origin.origin, key, ttl, store: sharedStore };
   }
   const client = createSandboxCustomerClient({ expectedOrigin: sandboxTarget.origin, expectedTenant: sandboxTarget.tenant,
