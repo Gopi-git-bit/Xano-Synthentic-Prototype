@@ -102,6 +102,10 @@ The owner explicitly requested execution of PR #10 + PR #12 in a fresh isolated 
 
 Both tested worktrees stayed clean. All **87 published and 87 draft** parent-workspace files are byte-identical before/after. [Report, exact commands, hashes, limitations and receipts](evidence/sandbox-customer-http-20261103/README.md). This supersedes FE-SB-ADAPTER's NOT_RUN cross-stack blocker only; browser acceptance and formal Stage P/AB/C/production gates remain blocked.
 
+### November 3 — Protected synthetic browser preview, CI and Vercel build accepted
+
+[PR #13](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/13) at 4fd844b66901a387898e2c35e83714b96c999ba9 added an explicit synthetic-only customer UI to the Vite frontend. It implements registration, login, local draft booking and order detail, session expiry and disabled quote/payment/dispatch controls. Frontend CI [success](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41597929982), including Playwright browser tests; backend schema-contract CI success. Vercel preview [READY](https://zippy-frontend-preview-gxai1q2gd-gopi-nathan-s-projects.vercel.app/?sandbox=1), deployment dpl_5NqdHNGjbeq6z5CcUzZevnniuecc; project SSO protection verified for all previews and build log confirms vite --mode sandbox-preview and compiled CustomerPreview chunk. Standard production builds still exclude this UI. The hosted page was **not** interactively exercised here due to SSO, and the preview is entirely in-memory synthetic: real browser → Xano HTTP is **NOT_RUN**.
+
 ## 4. Current known defects and unresolved proof
 
 - **11 failing draft source-readiness checks** in the private reconciliation: untrusted 480-km distance fallback; booking insert before full cargo validation; second-resolution reference collisions; missing create/confirm transactions; optional idempotency key; unenforced expiry; insufficient assignment uniqueness; absent worker fencing; fixed OTP; OTP consumed before decision validation. Retain actual test failures; no draft promotion.
@@ -149,7 +153,7 @@ Refresh all branch refs and CI on every handoff; refresh Xano runtime before a c
 4. **Native agents:** build OMS, IMS, TMS, Verification and Finance/Compliance as least-privilege assessment-only tools after deterministic services and authorization work. No autonomous dispatch or financial approval.
 5. **Release:** require a separately approved Stage P/AB/C evidence chain, current source hashes, complete E2E denial/rollback tests and owner approval before merging to main or publishing to Xano/Vercel production.
 
-**Exact next artifact:** review the published cross-stack receipts, then prepare a protected sandbox UI/preview proposal against PR #12's exact route contract. Additional execution must use a currently verified tenant and scoped approval. PR #10/#12 remain review sources, not production activation.
+**Exact next artifact:** Review the protected synthetic UI in PR #13 and its SSO-protected Vercel preview. The remaining operational milestone is a separate, authenticated server-mediated browser → Xano tenant test using an independently verified active sandbox; existing mock UI must not be confused with that test. Additional execution must use a currently verified tenant and scoped approval. PR #10/#12 remain review sources, not production activation.
 
 ## 8. Reusable OpenCode/ChatGPT resume contract
 
@@ -180,6 +184,8 @@ ChatGPT should request new OpenCode status only when the tracker is stale, an ap
 | 2026-11-03 | ChatGPT + Composio (GitHub CI verified) | Sandbox-only customer adapter, synthetic manual HTTP probe and contract tests added; 6/6 mocked adapter tests and frontend GitHub CI passed; real cross-stack HTTP through adapter NOT_RUN | [PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12), commit 697da352a331dbe623cb21d81704bfc892079327, [frontend CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570); FE-SB-ADAPTER in [EVIDENCE.md](EVIDENCE.md) | OpenCode must execute manual synthetic HTTP probe on independently verified tenant; production writes stay blocked |
 
 | 2026-11-03 | OpenCode (actual HTTP observed) | Owner-approved sandbox customer slice **PASS / VERIFIED_HOSTED sandbox-only**: 45/45 definitions, 67/67 server tests, seven-step adapter 200s, 60 HTTP receipts; original supplementary 15/16 assertion retained with passing targeted recheck; parent definitions unchanged | PR #10 `review/zippy-agent-tools-20261103` at `4421892ff9c884e43711753cacde04efd4ddb7c6`; PR #12 `feat/sandbox-customer-vertical-20261103` at `697da352a331dbe623cb21d81704bfc892079327`; tenant 6 / `exwq-wsmx-c3e1`; [sanitized receipt package](evidence/sandbox-customer-http-20261103/README.md); explicit November 3 execution request | Review evidence and prepare scoped protected sandbox UI proposal; original Stage P/AB/C and production remain blocked |
+
+| 2026-11-03 | ChatGPT + Composio / Vercel | Protected synthetic browser UI implemented and preview deployed: customer registration/login/draft/list/detail, sign-out and expiry. Frontend+contract CI PASS, Vercel preview READY with SSO. No real browser-to-Xano API | [PR #13](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/13), 4fd844b66901a387898e2c35e83714b96c999ba9, [frontend CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41597929982), [protected preview](https://zippy-frontend-preview-gxai1q2gd-gopi-nathan-s-projects.vercel.app/?sandbox=1) | Authorize and implement separate preview-only sandbox HTTP gateway; do not activate production routes |
 
 ### Required new checkpoint row
 

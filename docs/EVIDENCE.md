@@ -326,6 +326,29 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       ],
       "blocker": "No remaining failure in the approved server-adapter sandbox flow. Protected browser preview, restricted Metadata credential RBAC, physical database identity, reverse parent-token isolation and expiry/recovery remain unverified. Original W3-P/AB/C approvals and production gates unchanged.",
       "next_action": "Review actual HTTP receipts and prepare a scoped protected sandbox UI/preview proposal. Reverify tenant lifetime/source/permissions before any additional approved execution."
+    },
+    {
+      "id": "FE-SB-BROWSER",
+      "previous": "FE-SB-ADAPTER",
+      "related": [
+        "FE-QA",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "4fd844b66901a387898e2c35e83714b96c999ba9",
+      "verification": "PASSED_CI",
+      "gate": "REVIEW_ONLY",
+      "approval": "NOT_APPROVED",
+      "approval_ref": null,
+      "evidence_scope": "GitHub frontend CI pass for gated synthetic browser customer registration/login/draft/order UI; Vercel Git preview READY with SSO and sandbox-preview build. Browser UI is in-memory synthetic only and does not invoke Xano API.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/13",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41597929982",
+        "https://zippy-frontend-preview-gxai1q2gd-gopi-nathan-s-projects.vercel.app/?sandbox=1"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "Hosted UI not independently exercised behind SSO; real browser-to-Xano HTTP gateway not implemented or executed. Stage P/AB/C and production approvals unchanged.",
+      "next_action": "Review protected synthetic preview; implement separate server-mediated sandbox gateway with verified tenant, authentication, CSRF, rate limiting, and browser denial tests after approval."
     }
   ]
 }
@@ -365,3 +388,7 @@ The two additional W3-SB records describe OpenCode-reported runtime assertions o
 [Report and receipt package](evidence/sandbox-customer-http-20261103/README.md): **45/45** definition validation, **67/67** server tests, all **seven** prescribed HTTP steps **200**, exact response schemas, secret exclusion, synthetic A/B isolation, immutable actor/org/state, replay/no-write checks and sandbox-token rejection at parent auth/me/metadata. **60 runtime calls** are captured. The original supplementary **15/16** result remains intact; its absent-vs-invalid-token body-equality assertion was over-constrained and the focused boundary recheck passed. Remaining sandbox-flow defects: **none**.
 
 All **87 published and 87 draft** source files were byte-identical before/after, both tested worktrees stayed clean, tasks remained disabled, environment keys and executable provider/agent resources were absent, and all 27 non-fixture tables stayed empty. Exact paths changed in this checkpoint: `docs/EXECUTION_TRACKER.md`, `docs/EVIDENCE.md`, and the new sanitized `docs/evidence/sandbox-customer-http-20261103/` receipt package. Browser preview is NOT_RUN. Formal W3-P/AB/C and production gates are unchanged; no live publication, production deployment, merge or provider/financial/dispatch execution occurred.
+
+## November 3 — SSO-protected synthetic browser preview
+
+PR #13 and the green frontend CI prove the browser rehearsal builds and Playwright tests pass. Vercel deployment dpl_5NqdHNGjbeq6z5CcUzZevnniuecc is READY with SSO protection enabled; compiled CustomerPreview is present in the sandbox-preview build. This is PASSED_CI / REVIEW_ONLY, not actual Xano browser E2E or production acceptance.

@@ -47,3 +47,7 @@ The October 30 Stage P and AB gates in the formal predecessor evidence chain rem
 ## November 3 frontend implementation update
 
 [PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12) adds a server-only sandbox customer adapter, 6/6 local mocked tests, and a separate manual synthetic HTTP probe. [GitHub Actions](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570) completed with frontend success for 697da352a331dbe623cb21d81704bfc892079327. The adapter is not routed into Vercel and cannot enable production booking writes. The remaining acceptance step is a real sandbox run through that adapter and subsequently a protected preview UI/browser flow.
+
+## November 3 protected browser UI delivery
+
+PR #13 at 4fd844b66901a387898e2c35e83714b96c999ba9 delivers synthetic registration → login → draft create → order list/detail with session expiry and disabled operational controls. [Frontend GitHub Actions](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41597929982) passed and [SSO-protected Vercel preview](https://zippy-frontend-preview-gxai1q2gd-gopi-nathan-s-projects.vercel.app/?sandbox=1) is READY. The browser UI is synthetic and in memory; a server-side Xano test adapter was separately accepted in PR #11, but is not exposed to this browser UI. Next acceptance requires a separately gated, protected preview HTTP proxy and true browser-to-sandbox authorization/revocation tests.
