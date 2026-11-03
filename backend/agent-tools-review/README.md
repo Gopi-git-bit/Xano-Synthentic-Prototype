@@ -35,7 +35,6 @@ From this directory:
 npm ci --ignore-scripts
 npm run validate
 xano ephemeral create "Zippy synthetic tool review" -p <profile> -w <parent-workspace> --expires-hours 24
-xano tenant edit <tenant-name> -p <profile> -w <parent-workspace> --no-tasks
 Copy-Item target.example.json target.local.json
 ```
 
@@ -45,7 +44,7 @@ no working environment. Scripts read the token at runtime from `XANO_CONFIG` or
 `~/.xano/credentials.yaml`; they never accept a token in the target JSON.
 
 ```powershell
-npm run verify-target
+node scripts/verify-target.cjs --prepare-empty
 xano ephemeral push <tenant-name> -p <profile> -w <parent-workspace> -d candidate --dry-run
 # Review: exactly 34 tables, four functions, seven tools, one MCP server, one API group/endpoint.
 xano ephemeral push <tenant-name> -p <profile> -w <parent-workspace> -d candidate --force
@@ -62,6 +61,10 @@ and booking tables and refuses a second manifest. If interrupted during setup, u
 a fresh tenant. Tests can be rerun against completed fixtures; passwords/tokens are
 generated in memory for each run. Fixture times are relative to setup time; rerun
 with a fresh tenant after their windows expire.
+
+`--prepare-empty` disables tasks only on a verified empty ephemeral tenant. It
+preserves null domain settings; CLI 1.3.4's `tenant edit --no-tasks` returned a
+duplicate-record error for the second tenant because it serialized null as empty text.
 
 All local results go to ignored `.sandbox/`. To use a different target/evidence
 directory, set `ZIPPY_TARGET` and `ZIPPY_EVIDENCE_DIR` explicitly. Never commit that

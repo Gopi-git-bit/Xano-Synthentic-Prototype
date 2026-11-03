@@ -1,0 +1,2 @@
+* text eol=lf
+*.xs whitespace=-blank-at-eol

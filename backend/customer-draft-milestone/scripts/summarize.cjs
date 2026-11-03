@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const base=path.resolve(__dirname,'..');
+const report=JSON.parse(fs.readFileSync(path.join(base,'.sandbox/runtime.json'),'utf8'));
+const validation=JSON.parse(fs.readFileSync(path.join(base,'.sandbox/validation.json'),'utf8'));
+assert.equal(report.passed,report.total);assert.ok(validation.results.every(r=>r.valid));
+const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
+const root=path.join(base,'candidate');
+const evidence={...report,validation:{passed:validation.results.length,total:validation.results.length,validator:'@xano/developer-mcp 2.2.6'},candidate:walk(root).sort().map(file=>({file:path.relative(root,file).replaceAll('\\','/'),sha256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')}))};
+fs.mkdirSync(path.join(base,'evidence'),{recursive:true});
+fs.writeFileSync(path.join(base,'evidence/runtime-20261103.json'),JSON.stringify(evidence,null,2)+'\n');
+console.log(JSON.stringify({runtime:evidence.passed,definitions:validation.results.length}));

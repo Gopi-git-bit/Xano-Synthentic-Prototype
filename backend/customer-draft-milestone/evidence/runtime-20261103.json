@@ -1,0 +1,531 @@
+{
+  "at": "2026-11-03T06:09:06.402Z",
+  "target": {
+    "id": 5,
+    "name": "ev0h-65a7-56ce",
+    "workspace_id": 1,
+    "type": "ephemeral",
+    "tasks": false,
+    "expires_at": "2026-11-04 05:51:27+0000"
+  },
+  "method": "Real tenant HTTP endpoints with application Bearer tokens; metadata only for inspection/negative fixtures",
+  "passed": 48,
+  "total": 48,
+  "tests": [
+    {
+      "label": "readback: 34 schemas, two groups, seven concrete HTTP endpoints, two guards",
+      "passed": true
+    },
+    {
+      "label": "registration: exact contract, no token, new customer org and owner membership",
+      "passed": true
+    },
+    {
+      "label": "duplicate normalized email rolls back previously inserted organization",
+      "passed": true
+    },
+    {
+      "label": "concurrent registration: exactly one identity/org/membership/review/audit",
+      "passed": true
+    },
+    {
+      "label": "registration rejects requested platform role",
+      "passed": true
+    },
+    {
+      "label": "registration rejects forged organization membership",
+      "passed": true
+    },
+    {
+      "label": "registration rejects forged system role",
+      "passed": true
+    },
+    {
+      "label": "registration rejects blank name",
+      "passed": true
+    },
+    {
+      "label": "registration rejects invalid email",
+      "passed": true
+    },
+    {
+      "label": "registration rejects short password",
+      "passed": true
+    },
+    {
+      "label": "registration rejects missing organization name",
+      "passed": true
+    },
+    {
+      "label": "database password policy failure rolls back organization",
+      "passed": true
+    },
+    {
+      "label": "login wrong password and unknown account use equivalent denial",
+      "passed": true
+    },
+    {
+      "label": "auth/me has gateway identity fields and no private profile data",
+      "passed": true
+    },
+    {
+      "label": "membership is server-owned and review pending does not grant KYB",
+      "passed": true
+    },
+    {
+      "label": "foreign organization selector denied on membership and booking list",
+      "passed": true
+    },
+    {
+      "label": "draft creation: immutable server identity, draft state, zero amounts, no active quote",
+      "passed": true
+    },
+    {
+      "label": "idempotent replay returns exact stored result with no writes",
+      "passed": true
+    },
+    {
+      "label": "changed payload with reused request_id rejected without writes",
+      "passed": true
+    },
+    {
+      "label": "concurrent draft retries produce one booking, one audit and one completed claim",
+      "passed": true
+    },
+    {
+      "label": "same request UUID in another organization creates its own draft",
+      "passed": true
+    },
+    {
+      "label": "draft rejects foreign owner",
+      "passed": true
+    },
+    {
+      "label": "draft rejects forged actor",
+      "passed": true
+    },
+    {
+      "label": "draft rejects confirmed state",
+      "passed": true
+    },
+    {
+      "label": "draft rejects financial state",
+      "passed": true
+    },
+    {
+      "label": "draft rejects active quote",
+      "passed": true
+    },
+    {
+      "label": "draft rejects invalid windows",
+      "passed": true
+    },
+    {
+      "label": "draft rejects past pickup",
+      "passed": true
+    },
+    {
+      "label": "draft rejects invalid request UUID",
+      "passed": true
+    },
+    {
+      "label": "draft rejects blank city",
+      "passed": true
+    },
+    {
+      "label": "paginated reads: stable ordering and tenant isolation",
+      "passed": true
+    },
+    {
+      "label": "detail has PR8 envelope and only nine booking fields",
+      "passed": true
+    },
+    {
+      "label": "missing and foreign detail IDs have identical 404 bodies",
+      "passed": true
+    },
+    {
+      "label": "bad pagination and unknown state rejected",
+      "passed": true
+    },
+    {
+      "label": "anonymous cannot access identity, membership or booking APIs",
+      "passed": true
+    },
+    {
+      "label": "tampered cannot access identity, membership or booking APIs",
+      "passed": true
+    },
+    {
+      "label": "read and rejected-call phase leaves all 34 domain tables unchanged",
+      "passed": true
+    },
+    {
+      "label": "revoked membership invalidates existing token and idempotent replay",
+      "passed": true
+    },
+    {
+      "label": "suspended organization denied with existing token",
+      "passed": true
+    },
+    {
+      "label": "suspended account rejected on login, read and creation",
+      "passed": true
+    },
+    {
+      "label": "pending_verification account rejected on login, read and creation",
+      "passed": true
+    },
+    {
+      "label": "vendor_admin cannot read customer bookings or create drafts",
+      "passed": true
+    },
+    {
+      "label": "driver cannot read customer bookings or create drafts",
+      "passed": true
+    },
+    {
+      "label": "autonomous_agent cannot read customer bookings or create drafts",
+      "passed": true
+    },
+    {
+      "label": "operations_admin cannot read customer bookings or create drafts",
+      "passed": true
+    },
+    {
+      "label": "super_admin cannot read customer bookings or create drafts",
+      "passed": true
+    },
+    {
+      "label": "billing membership can read but cannot create drafts",
+      "passed": true
+    },
+    {
+      "label": "no operational routes, models or financial/messaging records created",
+      "passed": true
+    }
+  ],
+  "created": {
+    "groups": [
+      {
+        "id": 1,
+        "name": "Customer Draft Authentication",
+        "canonical": "zippy-customer-draft-auth"
+      },
+      {
+        "id": 2,
+        "name": "Customer Draft Bookings",
+        "canonical": "zippy-customer-drafts"
+      }
+    ],
+    "endpoints": [
+      {
+        "id": 2,
+        "group_id": 1,
+        "name": "auth/me",
+        "verb": "GET"
+      },
+      {
+        "id": 1,
+        "group_id": 1,
+        "name": "auth/login",
+        "verb": "POST"
+      },
+      {
+        "id": 3,
+        "group_id": 1,
+        "name": "organization/membership",
+        "verb": "GET"
+      },
+      {
+        "id": 4,
+        "group_id": 1,
+        "name": "auth/register",
+        "verb": "POST"
+      },
+      {
+        "id": 5,
+        "group_id": 2,
+        "name": "bookings/{booking_id}",
+        "verb": "GET"
+      },
+      {
+        "id": 6,
+        "group_id": 2,
+        "name": "bookings",
+        "verb": "GET"
+      },
+      {
+        "id": 7,
+        "group_id": 2,
+        "name": "bookings",
+        "verb": "POST"
+      }
+    ],
+    "synthetic_registration": {
+      "user_id": 1,
+      "organization_id": 1,
+      "approval_request_id": 1
+    },
+    "draft_booking_id": 1
+  },
+  "baseline_counts": {
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": 0,
+    "active_assignment_reservations": 0,
+    "agent_decision": 0,
+    "agent_execution": 0,
+    "approval_request": 0,
+    "audit_log": 0,
+    "booking_quote": 0,
+    "cargo_detail": 0,
+    "compliance_documents": 0,
+    "customer_booking": 0,
+    "driver_profile": 0,
+    "durable_tasks": 0,
+    "event_log": 0,
+    "event_outbox": 0,
+    "idempotency_key": 0,
+    "incident_dispute": 0,
+    "order_holds": 0,
+    "organization": 0,
+    "organization_member": 0,
+    "otp_challenges": 0,
+    "payment_transaction": 0,
+    "pricing_policies": 0,
+    "proof_of_delivery": 0,
+    "refund_request": 0,
+    "route_cache": 0,
+    "settlement": 0,
+    "table_index": 0,
+    "topay_consent_attempts": 0,
+    "tracking_event": 0,
+    "trip": 0,
+    "trip_stop": 0,
+    "user": 0,
+    "vehicle": 0,
+    "vehicle_availability": 0
+  },
+  "final_counts": {
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": 0,
+    "active_assignment_reservations": 0,
+    "agent_decision": 0,
+    "agent_execution": 0,
+    "approval_request": 3,
+    "audit_log": 7,
+    "booking_quote": 0,
+    "cargo_detail": 0,
+    "compliance_documents": 0,
+    "customer_booking": 4,
+    "driver_profile": 0,
+    "durable_tasks": 0,
+    "event_log": 0,
+    "event_outbox": 0,
+    "idempotency_key": 4,
+    "incident_dispute": 0,
+    "order_holds": 0,
+    "organization": 3,
+    "organization_member": 3,
+    "otp_challenges": 0,
+    "payment_transaction": 0,
+    "pricing_policies": 0,
+    "proof_of_delivery": 0,
+    "refund_request": 0,
+    "route_cache": 0,
+    "settlement": 0,
+    "table_index": 0,
+    "topay_consent_attempts": 0,
+    "tracking_event": 0,
+    "trip": 0,
+    "trip_stop": 0,
+    "user": 3,
+    "vehicle": 0,
+    "vehicle_availability": 0
+  },
+  "validation": {
+    "passed": 45,
+    "total": 45,
+    "validator": "@xano/developer-mcp 2.2.6"
+  },
+  "candidate": [
+    {
+      "file": "api/customer_auth/customer_auth.xs",
+      "sha256": "594d913c0e977ed5318c142c54e58823ae23eb78587c38c333871b617b27146c"
+    },
+    {
+      "file": "api/customer_auth/login_POST.xs",
+      "sha256": "665e2d89a11374db52ac70647091cfaf31304e33a4030c3ac19c592be04877ac"
+    },
+    {
+      "file": "api/customer_auth/me_GET.xs",
+      "sha256": "9dce379f697bd7ec772730f0e31c427a30fbb59c8bcae68f106c07169ef10570"
+    },
+    {
+      "file": "api/customer_auth/membership_GET.xs",
+      "sha256": "3cc8062e91a8acdf660c54053f6eb0b3c2dcfa2bbbbf8dd107d2130820f566f0"
+    },
+    {
+      "file": "api/customer_auth/register_POST.xs",
+      "sha256": "c54e935f9278285d23848ca44fccaaacb12df01128722bdea141b75a287eca51"
+    },
+    {
+      "file": "api/customer_bookings/booking_id_GET.xs",
+      "sha256": "d45542fe3a1a4d77a67a8ee06ab49ca78d4b0dd4ca03b33a81b669e285c4742f"
+    },
+    {
+      "file": "api/customer_bookings/bookings_GET.xs",
+      "sha256": "20529c2038b2b3d1278b2a4743bc3d7c86b0684592c3f33a547e8e79887c8b92"
+    },
+    {
+      "file": "api/customer_bookings/bookings_POST.xs",
+      "sha256": "39e735c8b39e800be3712205067e6493fd66a62e9585b21cbb834a1fb41a1f8f"
+    },
+    {
+      "file": "api/customer_bookings/customer_bookings.xs",
+      "sha256": "072da0475bc779c9056b93948c38653231937eec65763096b6de4f859b533773"
+    },
+    {
+      "file": "function/security/authorize_resource.xs",
+      "sha256": "6036cb130fd6af8d845a5f2ac22400bf809cc992ecfcbd4ad7a9fff6a5c7a33b"
+    },
+    {
+      "file": "function/security/resolve_context.xs",
+      "sha256": "9ff084010788012fced416399a1b429a11d0a842a58df454c4e09c31e79443b4"
+    },
+    {
+      "file": "table/active_assignment_reservations.xs",
+      "sha256": "c0ec7ed74cc7fbd17ab498d8531f19781a37cfd3a2f044da8c9195994d04371c"
+    },
+    {
+      "file": "table/agent_decision.xs",
+      "sha256": "3ebc4a2f2691fbe70a5716a982017b0459dede137d4df2a8723a1d0849ba87bb"
+    },
+    {
+      "file": "table/agent_execution.xs",
+      "sha256": "d54235f0e0ca3a9eff8eed9e2d7d10aae39c95cbd66dd00ad6ff303a1f9daa9f"
+    },
+    {
+      "file": "table/approval_request.xs",
+      "sha256": "1624084a026407c6b03cfe0cc71c5d959eefa215a5315d9cd93aa832ebe9aa47"
+    },
+    {
+      "file": "table/audit_log.xs",
+      "sha256": "a1b33133ca8fcbd302558004d698f2390d4398d6c063cb59baf3eab76ca8b736"
+    },
+    {
+      "file": "table/booking_quote.xs",
+      "sha256": "6a83e33dace5792cc6a9bd7160ed4a124ddf28fd7aad7582df9d202600cc05f7"
+    },
+    {
+      "file": "table/cargo_detail.xs",
+      "sha256": "4b9a9c2a4fd7d7310d1f46b8b46cd85196d1d764dbc257452d227cfb5c18ebe7"
+    },
+    {
+      "file": "table/compliance_documents.xs",
+      "sha256": "95d211d5193efa60ea87064660352d587cc1f73403016f04cf51cfea11d40218"
+    },
+    {
+      "file": "table/customer_booking.xs",
+      "sha256": "28460bcee5ab57bbe6818630e7a6c0589180014360fb3e11a281d51848d79daf"
+    },
+    {
+      "file": "table/driver_profile.xs",
+      "sha256": "da36ebf979aa5f460b5289c7f9364208c6e786a742b5bc85aaee94d1bfc557ca"
+    },
+    {
+      "file": "table/durable_tasks.xs",
+      "sha256": "1e62b5d49f5e33fbd57600fe6c542c37fa3766b67746d94d325ffa8aca9d2656"
+    },
+    {
+      "file": "table/event_log.xs",
+      "sha256": "e063661ec70b8912626c7ca360c7caaaa8e4f2ba30a2640b7913e5c1d70d29f4"
+    },
+    {
+      "file": "table/event_outbox.xs",
+      "sha256": "9c526147a34316338b43b45b75cb395ea0f0bc769e99583b27345d8720fca1fa"
+    },
+    {
+      "file": "table/idempotency_key.xs",
+      "sha256": "0b00ed2ceb19edf60f2b41fcb636c87403f652ceb048ae2c8686ef93e92dfc37"
+    },
+    {
+      "file": "table/incident_dispute.xs",
+      "sha256": "102718e28765e551a41b532c8d352e71fa5c558590a8b8ec674e348752688f26"
+    },
+    {
+      "file": "table/order_holds.xs",
+      "sha256": "3154b01d720ce5d56562658eca79c5e4e45f8f4c1a9b7cd53696250015e5c381"
+    },
+    {
+      "file": "table/organization.xs",
+      "sha256": "f1c48e82bba001c9db26fe11db0766afcaf491fd7c39e1990763b5cef4283c33"
+    },
+    {
+      "file": "table/organization_member.xs",
+      "sha256": "a39aaec69b9346b94eeb90b8dd466de673c87b110dc3e003c46838cedbcca03b"
+    },
+    {
+      "file": "table/otp_challenges.xs",
+      "sha256": "8c7c6e58eaa19196cefaebc1ad6c6dfe52f488d3c0777a89bccaf23bbf3ceb83"
+    },
+    {
+      "file": "table/payment_transaction.xs",
+      "sha256": "d3765ccabe37314693e173c40b49948b321d94df44a912cffbe36c85b8c910bf"
+    },
+    {
+      "file": "table/pricing_policies.xs",
+      "sha256": "e49fe740673ecbc4832a90b73da454237862e7df2e8d21769b1f8ed8f69e813c"
+    },
+    {
+      "file": "table/proof_of_delivery.xs",
+      "sha256": "b74bc56ea08e7f93a1097791fd0698f12f3b671cef2b63941ecae29349399539"
+    },
+    {
+      "file": "table/refund_request.xs",
+      "sha256": "5b3eb0920f84520d32769f9b09f7c5b84aa0f4e89494cdd4a369866937d256bb"
+    },
+    {
+      "file": "table/route_cache.xs",
+      "sha256": "33fb9647e4c9662364a069f8f7bebcf6cfb005e039b79e1e8be0bc38849493f2"
+    },
+    {
+      "file": "table/settlement.xs",
+      "sha256": "ec6268259057b162bd22fe044a1a6d427365056f8c66adc32b50465415db50e5"
+    },
+    {
+      "file": "table/table_index.xs",
+      "sha256": "5df4a0268d9a0f1aa4901ed129a8843f87aaf9d8b7ae0d66395149b6c6bb2310"
+    },
+    {
+      "file": "table/topay_consent_attempts.xs",
+      "sha256": "f1921c590db0a6561057b332e4a3ba70efd03b27d424a59abe2fff531b07c983"
+    },
+    {
+      "file": "table/tracking_event.xs",
+      "sha256": "5f223a46f56f9209c8c454ef595364da13e60f1bd1526d0e38cb1a7f02d6abff"
+    },
+    {
+      "file": "table/trip.xs",
+      "sha256": "680044d5d3d7ddbfbd8f49daf159b403f5a3020a2d90522dc66bc57a4debe95e"
+    },
+    {
+      "file": "table/trip_stop.xs",
+      "sha256": "9440af2c8f05c1e97886b1820fe27374b185d4651ba47a7021f6f320954fac5a"
+    },
+    {
+      "file": "table/user.xs",
+      "sha256": "506037cf4dc4ab9d0e906e13507ae82ead232ec677263129f95dbf87fd87c858"
+    },
+    {
+      "file": "table/vehicle.xs",
+      "sha256": "1dca5c4cbb343408aa462f985bdc3d76147cd7c929e46729d0a03e7863218d8f"
+    },
+    {
+      "file": "table/vehicle_availability.xs",
+      "sha256": "3891cf2aac1bd351662bac020b88217891cde2e5014787a61f8c60fdf6fae594"
+    },
+    {
+      "file": "table/zippy_db_crosswalk_49_to_xano_33.xs",
+      "sha256": "b8acf1a35197f933d4f8c20cda919344b6c49943d9c1bff25fa1f6036592b892"
+    }
+  ]
+}

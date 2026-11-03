@@ -27,14 +27,14 @@ async function fetchJSON(url, method, body, headers) {
   let data; try { data = await r.json(); } catch { data = null; }
   return {status: r.status, data};
 }
-async function verify() {
+async function verify({prepare=false}={}) {
   verifiedUntil = 0;
   const headers = {Authorization: 'Bearer ' + profile.access_token};
   const r = await fetchJSON(origin + '/api:meta/workspace/' + sourceId + '/tenant/' + tenant, 'GET', undefined, headers);
   assert.equal(r.status, 200, 'Cannot verify target tenant');
   const t = r.data;
   assert.equal(t.id, config.tenant_id); assert.equal(t.name, tenant);
-  assert.equal(t.type, 'ephemeral'); assert.equal(t.tasks, false);
+  assert.equal(t.type, 'ephemeral');
   assert.equal(t.state, 'ok');
   if (t.workspace) assert.equal(t.workspace.id, sourceId);
   const expiry = new Date(t.ephemeral_expires_at).getTime();
@@ -43,6 +43,17 @@ async function verify() {
   assert.equal(ws.status, 200);
   const workspaces = Array.isArray(ws.data) ? ws.data : ws.data.items;
   assert.ok(workspaces.some(w => w.id === workspaceId && w.name === tenant), 'Internal workspace mismatch');
+  if (prepare && t.tasks) {
+    const tables=await fetchJSON(metaBase+'/table', 'GET', undefined, headers);
+    assert.equal(tables.status,200);
+    assert.equal((Array.isArray(tables.data)?tables.data:tables.data.items).length,0,'Task configuration requires a fresh empty tenant');
+    // CLI 1.3.4 converts null domains to empty strings, which can collide across tenants.
+    const body={description:t.description,display:t.display,domain:t.domain??null,proxy:t.proxy??null,ingress:t.ingress,rbac:t.rbac,tag:t.tag,tasks:false};
+    const updated=await fetchJSON(origin+'/api:meta/workspace/'+sourceId+'/tenant/'+tenant,'PUT',body,{...headers,'Content-Type':'application/json'});
+    assert.equal(updated.status,200,'Cannot disable fresh-tenant tasks');
+    return verify();
+  }
+  assert.equal(t.tasks,false);
   verifiedUntil = expiry;
   return {id:t.id, name:t.name, workspace_id:workspaceId, type:t.type, tasks:t.tasks, expires_at:t.ephemeral_expires_at};
 }
