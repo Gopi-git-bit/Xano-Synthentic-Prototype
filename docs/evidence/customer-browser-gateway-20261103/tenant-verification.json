@@ -1,0 +1,286 @@
+{
+  "at": "2026-11-03T08:39:25.576Z",
+  "target": {
+    "id": 6,
+    "name": "exwq-wsmx-c3e1",
+    "workspace_id": 1,
+    "type": "ephemeral",
+    "tasks": false,
+    "expires_at": "2026-11-04 06:56:09+0000"
+  },
+  "source_workspace": 3,
+  "source_branch": "v1",
+  "backend_commit": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+  "tables": 34,
+  "groups": 2,
+  "functions": 2,
+  "endpoints": [
+    {
+      "name": "auth/login",
+      "verb": "POST",
+      "group_id": 1
+    },
+    {
+      "name": "auth/me",
+      "verb": "GET",
+      "group_id": 1
+    },
+    {
+      "name": "organization/membership",
+      "verb": "GET",
+      "group_id": 1
+    },
+    {
+      "name": "auth/register",
+      "verb": "POST",
+      "group_id": 1
+    },
+    {
+      "name": "bookings/{booking_id}",
+      "verb": "GET",
+      "group_id": 2
+    },
+    {
+      "name": "bookings",
+      "verb": "GET",
+      "group_id": 2
+    },
+    {
+      "name": "bookings",
+      "verb": "POST",
+      "group_id": 2
+    }
+  ],
+  "resource_counts": {
+    "task": 0,
+    "agent": 0,
+    "tool": 0,
+    "mcp_server": 0,
+    "trigger": 0,
+    "table/trigger": 0,
+    "agent/trigger": 0
+  },
+  "environment_key_count": 0,
+  "synthetic_records_only": true,
+  "counts_unchanged_since_previous_http_run": true,
+  "final_counts": {
+    "active_assignment_reservations": 0,
+    "agent_decision": 0,
+    "agent_execution": 0,
+    "approval_request": 4,
+    "audit_log": 7,
+    "booking_quote": 0,
+    "cargo_detail": 0,
+    "compliance_documents": 0,
+    "customer_booking": 3,
+    "driver_profile": 0,
+    "durable_tasks": 0,
+    "event_log": 0,
+    "event_outbox": 0,
+    "idempotency_key": 3,
+    "incident_dispute": 0,
+    "order_holds": 0,
+    "organization": 4,
+    "organization_member": 4,
+    "otp_challenges": 0,
+    "payment_transaction": 0,
+    "pricing_policies": 0,
+    "proof_of_delivery": 0,
+    "refund_request": 0,
+    "route_cache": 0,
+    "settlement": 0,
+    "table_index": 0,
+    "topay_consent_attempts": 0,
+    "tracking_event": 0,
+    "trip": 0,
+    "trip_stop": 0,
+    "user": 4,
+    "vehicle": 0,
+    "vehicle_availability": 0,
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": 0
+  },
+  "source_token_comparisons": [
+    {
+      "file": "api/customer_auth/customer_auth.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "api/customer_auth/login_POST.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "api/customer_auth/membership_GET.xs",
+      "token_equivalent": false
+    },
+    {
+      "file": "api/customer_auth/me_GET.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "api/customer_auth/register_POST.xs",
+      "token_equivalent": false
+    },
+    {
+      "file": "api/customer_bookings/bookings_GET.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "api/customer_bookings/bookings_POST.xs",
+      "token_equivalent": false
+    },
+    {
+      "file": "api/customer_bookings/booking_id_GET.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "api/customer_bookings/customer_bookings.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "function/security/authorize_resource.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "function/security/resolve_context.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/active_assignment_reservations.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/agent_decision.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/agent_execution.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/approval_request.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/audit_log.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/booking_quote.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/cargo_detail.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/compliance_documents.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/customer_booking.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/driver_profile.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/durable_tasks.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/event_log.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/event_outbox.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/idempotency_key.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/incident_dispute.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/order_holds.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/organization.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/organization_member.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/otp_challenges.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/payment_transaction.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/pricing_policies.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/proof_of_delivery.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/refund_request.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/route_cache.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/settlement.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/table_index.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/topay_consent_attempts.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/tracking_event.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/trip.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/trip_stop.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/user.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/vehicle.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/vehicle_availability.xs",
+      "token_equivalent": true
+    },
+    {
+      "file": "table/zippy_db_crosswalk_49_to_xano_33.xs",
+      "token_equivalent": true
+    }
+  ],
+  "all_definition_tokens_match": false,
+  "runtime_writes_in_this_stage": 0
+}

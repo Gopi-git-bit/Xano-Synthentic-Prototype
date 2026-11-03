@@ -1,0 +1,9 @@
+{
+  "algorithm": "sha256",
+  "files": [
+    {
+      "file": "remote-preflight-20261103.json",
+      "sha256": "d66c6d23ab27a13b43cfc153114a4e9ca9c4ad27d330a303c9f732189f1ee80e"
+    }
+  ]
+}

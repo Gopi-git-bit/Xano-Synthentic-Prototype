@@ -1,0 +1,90 @@
+{
+  "started": "2026-11-03T07:00:35.327Z",
+  "completed": "2026-11-03T07:00:38.693Z",
+  "frontend_commit": "697da352a331dbe623cb21d81704bfc892079327",
+  "backend_commit": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+  "tenant": "exwq-wsmx-c3e1",
+  "command": "npm run verify:sandbox-customer",
+  "runner_source_unchanged": true,
+  "instrumentation": "External Node preload observes real fetch; no simulated responses; stores no bodies or credentials",
+  "exit_code": 0,
+  "result": {
+    "tenant": "exwq-wsmx-c3e1",
+    "outcome": "SANDBOX_CUSTOMER_FLOW_VERIFIED",
+    "userId": 1,
+    "organizationId": 1,
+    "reviewId": 1,
+    "bookingId": 1,
+    "bookingStatus": "draft",
+    "bookingScope": "draft_only",
+    "verifiedFinancialActions": false,
+    "environment": "isolated_sandbox_only"
+  },
+  "adapter_output_secret_free": true,
+  "receipts": [
+    {
+      "at": "2026-11-03T07:00:35.337Z",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/register",
+      "status": 200,
+      "json_content_type": true,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:00:36.459Z",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/login",
+      "status": 200,
+      "json_content_type": true,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:00:36.937Z",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/auth/me",
+      "status": 200,
+      "json_content_type": true,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:00:37.219Z",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/organization/membership",
+      "status": 200,
+      "json_content_type": true,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:00:37.520Z",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 200,
+      "json_content_type": true,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:00:37.914Z",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings?page=1&per_page=100&status=draft",
+      "status": 200,
+      "json_content_type": true,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:00:38.223Z",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/1",
+      "status": 200,
+      "json_content_type": true,
+      "schema_passed": true,
+      "secret_exclusion_passed": true
+    }
+  ],
+  "passed": true
+}

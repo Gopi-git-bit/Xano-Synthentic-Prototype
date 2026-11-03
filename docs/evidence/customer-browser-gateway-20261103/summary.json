@@ -1,0 +1,83 @@
+{
+  "at": "2026-11-03T08:56:22.008Z",
+  "verdict": "BLOCKED",
+  "source_commit": "1f4953c10d420d78522c7b7561df789556e2eb58",
+  "branch": "feat/protected-customer-xano-20261103",
+  "pushed": true,
+  "api_version": "0.3.0-sandbox-browser",
+  "backend_version": "0.2.0-sandbox-customer",
+  "tests": {
+    "typecheck": "PASS",
+    "eslint": "PASS",
+    "production_build": "PASS",
+    "connected_build": "PASS",
+    "mocked_server": {
+      "passed": 89,
+      "total": 89
+    },
+    "local_playwright": {
+      "passed": 57,
+      "total": 57
+    },
+    "enhanced_mock_browser_rerun": {
+      "passed": 7,
+      "total": 7,
+      "overlaps_full_suite": true
+    },
+    "static_browser_scan": {
+      "passed": true,
+      "chunk": "CustomerPreview-BYAUwp8k.js",
+      "sha256": "8d27127ee2ac5f22a90f3c2668f675becae1b9f4ca40ca23851f4720273ebfc3"
+    },
+    "production_dependency_vulnerabilities": 0,
+    "actual_browser": {
+      "status": "BLOCKED_BEFORE_EXECUTION",
+      "tests_run": 0,
+      "xano_calls": 0,
+      "xano_writes": 0,
+      "guard_error": "BLOCKED: protected preview origin, authorized SSO automation access, shared-store credentials, session key and explicit synthetic-browser approval are required."
+    }
+  },
+  "preview": {
+    "deployment": "dpl_FjVaaPYPpVqcs1ddFJrEn3ssv4Wy",
+    "origin": "https://zippy-frontend-preview-grsvluv3a-gopi-nathan-s-projects.vercel.app",
+    "status": "READY",
+    "source_commit": "1f4953c10d420d78522c7b7561df789556e2eb58",
+    "triggered_by": "Git push; no production promotion"
+  },
+  "vercel_setup": {
+    "cli": "65.10.0",
+    "cli_authenticated": true,
+    "guidance": "global OpenCode standalone skills",
+    "guidance_source": "vercel-labs/agent-skills",
+    "guidance_commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+    "mcp_endpoint": "https://mcp.vercel.com",
+    "mcp_scope": "global shared endpoint",
+    "mcp_status": "OAUTH_PENDING",
+    "mcp_mutation_confirmation": true,
+    "mcp_search_and_list_teams": "NOT_RUN",
+    "upstash": "BLOCKED_HUMAN_TERMS_ACCEPTANCE",
+    "resources_created": 0,
+    "requested_plan": "free",
+    "auto_upgrade_requested": false,
+    "automation_secret_created": false
+  },
+  "preserved_failures": [
+    "Initial missing CSRF-condition closing parenthesis; fixed before passing checks",
+    "Two initial React Hooks lint findings; fixed before passing lint",
+    "Initial npm ci timeout; subsequent install completed",
+    "Original 42/45 source-token comparison preserved; reviewed formatting supplement matches 45/45",
+    "Original actual-browser configuration guard failure preserved",
+    "Previous HTTP milestone 15/16 supplementary assertion and boundary recheck retained in prior package",
+    "Two plugin install Git errors; standalone guidance fallback installed via official pinned SSH clone",
+    "HTTPS skill clone connection reset; subsequent pinned SSH clone succeeded"
+  ],
+  "remaining_dependencies": [
+    "MCP OAuth for requested agent setup verification",
+    "Human Upstash marketplace terms and isolated shared store credentials",
+    "Preview-scoped session key, exact origin and release configuration",
+    "Separately authorized protected-preview automation access",
+    "Actual protected browser workflow and security acceptance before tenant expiry"
+  ],
+  "production_release_authorized": false
+}

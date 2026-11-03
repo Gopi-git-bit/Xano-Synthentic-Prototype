@@ -1,0 +1,547 @@
+{
+  "at": "2026-11-03T07:03:08.971Z",
+  "target": {
+    "id": 6,
+    "name": "exwq-wsmx-c3e1",
+    "workspace_id": 1,
+    "type": "ephemeral",
+    "tasks": false,
+    "expires_at": "2026-11-04 06:56:09+0000"
+  },
+  "frontend_commit": "697da352a331dbe623cb21d81704bfc892079327",
+  "backend_commit": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+  "passed": 15,
+  "total": 16,
+  "tests": [
+    {
+      "label": "A/B complete real adapter flows have exact schemas and secret-free outputs",
+      "passed": true
+    },
+    {
+      "label": "Registration creates distinct active customer/owner/pending-review records; passwords stored hashed",
+      "passed": true
+    },
+    {
+      "label": "Drafts retain server actor/org, draft/version, zero finances, no active quote; exactly one audit and completed claim each",
+      "passed": true
+    },
+    {
+      "label": "A/B booking lists include only the caller organization and its single draft",
+      "passed": true
+    },
+    {
+      "label": "A/B foreign and missing booking IDs return identical HTTP 404",
+      "passed": true
+    },
+    {
+      "label": "A/B foreign organization selectors denied on membership and list with HTTP 403",
+      "passed": true
+    },
+    {
+      "label": "Idempotent adapter replay returns the same draft; altered payload rejected HTTP 400",
+      "passed": true
+    },
+    {
+      "label": "Backend rejects forged draft owner, actor, operational and financial states HTTP 400",
+      "passed": true
+    },
+    {
+      "label": "Registration rejects caller-selected privileged role HTTP 403",
+      "passed": true
+    },
+    {
+      "label": "Wrong-password and unknown-account login return equivalent HTTP 401",
+      "passed": true
+    },
+    {
+      "label": "anonymous identity, membership, list/detail and draft POST return HTTP 401",
+      "passed": true
+    },
+    {
+      "label": "tampered identity, membership, list/detail and draft POST return HTTP 401",
+      "passed": true
+    },
+    {
+      "label": "Sandbox app token is rejected by actual parent auth/me just like absent/tampered tokens (GET only)",
+      "passed": false,
+      "assertion": "ERR_ASSERTION"
+    },
+    {
+      "label": "Sandbox app token has no tenant or parent Metadata API access (GET only)",
+      "passed": true
+    },
+    {
+      "label": "All reads, rejected calls and idempotent replay leave all 34 tenant tables byte-equivalent",
+      "passed": true
+    },
+    {
+      "label": "Only expected synthetic records exist; financial, messaging, dispatch and agent tables stay empty",
+      "passed": true
+    }
+  ],
+  "synthetic_results": [
+    {
+      "outcome": "SANDBOX_CUSTOMER_FLOW_VERIFIED",
+      "userId": 2,
+      "organizationId": 2,
+      "reviewId": 2,
+      "bookingId": 2,
+      "bookingStatus": "draft",
+      "bookingScope": "draft_only",
+      "verifiedFinancialActions": false
+    },
+    {
+      "outcome": "SANDBOX_CUSTOMER_FLOW_VERIFIED",
+      "userId": 3,
+      "organizationId": 3,
+      "reviewId": 3,
+      "bookingId": 3,
+      "bookingStatus": "draft",
+      "bookingScope": "draft_only",
+      "verifiedFinancialActions": false
+    }
+  ],
+  "final_counts": {
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": 0,
+    "active_assignment_reservations": 0,
+    "agent_decision": 0,
+    "agent_execution": 0,
+    "approval_request": 3,
+    "audit_log": 6,
+    "booking_quote": 0,
+    "cargo_detail": 0,
+    "compliance_documents": 0,
+    "customer_booking": 3,
+    "driver_profile": 0,
+    "durable_tasks": 0,
+    "event_log": 0,
+    "event_outbox": 0,
+    "idempotency_key": 3,
+    "incident_dispute": 0,
+    "order_holds": 0,
+    "organization": 3,
+    "organization_member": 3,
+    "otp_challenges": 0,
+    "payment_transaction": 0,
+    "pricing_policies": 0,
+    "proof_of_delivery": 0,
+    "refund_request": 0,
+    "route_cache": 0,
+    "settlement": 0,
+    "table_index": 0,
+    "topay_consent_attempts": 0,
+    "tracking_event": 0,
+    "trip": 0,
+    "trip_stop": 0,
+    "user": 3,
+    "vehicle": 0,
+    "vehicle_availability": 0
+  },
+  "receipts": [
+    {
+      "at": "2026-11-03T07:02:22.739Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/register",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:23.122Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/login",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:23.507Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/auth/me",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:23.796Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/organization/membership",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:24.174Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:24.598Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings?page=1&per_page=100&status=draft",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:24.908Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/2",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:25.387Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/register",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:25.685Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/login",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:26.003Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/auth/me",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:26.284Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/organization/membership",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:26.569Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:26.915Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings?page=1&per_page=100&status=draft",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:27.265Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/3",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:39.700Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings?page=1&per_page=100&status=draft",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:40.288Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings?page=1&per_page=100&status=draft",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:40.577Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/3",
+      "status": 404,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:40.873Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/2147483647",
+      "status": 404,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:41.162Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/2",
+      "status": 404,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:41.454Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/2147483647",
+      "status": 404,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:41.735Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/organization/membership?requested_org_id=3",
+      "status": 403,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:42.008Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings?requested_org_id=3",
+      "status": 403,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:42.298Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/organization/membership?requested_org_id=2",
+      "status": 403,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:42.580Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings?requested_org_id=2",
+      "status": 403,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:42.858Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 200,
+      "secret_exclusion_passed": true,
+      "schema_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:43.181Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 400,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:43.473Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 400,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:43.755Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 400,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:44.040Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 400,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:44.361Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 400,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:44.650Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/register",
+      "status": 403,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:44.917Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/login",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:45.188Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-draft-auth/auth/login",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:45.514Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/auth/me",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:45.771Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/organization/membership",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:46.035Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:46.297Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/2",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:46.561Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:46.845Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/auth/me",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:47.101Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-draft-auth/organization/membership",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:47.364Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:47.622Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:zippy-customer-drafts/bookings/2",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:47.882Z",
+      "target": "isolated-tenant",
+      "method": "POST",
+      "route": "/api:zippy-customer-drafts/bookings",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:48.140Z",
+      "target": "parent-read-only",
+      "method": "GET",
+      "route": "/api:pofBqnrY/auth/me",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:48.417Z",
+      "target": "parent-read-only",
+      "method": "GET",
+      "route": "/api:pofBqnrY/auth/me",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:48.674Z",
+      "target": "parent-read-only",
+      "method": "GET",
+      "route": "/api:pofBqnrY/auth/me",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:48.937Z",
+      "target": "isolated-tenant",
+      "method": "GET",
+      "route": "/api:meta/workspace",
+      "status": 401,
+      "secret_exclusion_passed": true
+    },
+    {
+      "at": "2026-11-03T07:02:49.201Z",
+      "target": "parent-read-only",
+      "method": "GET",
+      "route": "/api:meta/workspace",
+      "status": 401,
+      "secret_exclusion_passed": true
+    }
+  ],
+  "limitations": [
+    "Parent boundary evidence is sandbox-app-token rejection on auth/me and Metadata GET, not restricted Metadata credential RBAC or physical database identity proof.",
+    "No reverse parent-token probe, credential expiry/recovery test, browser flow, provider execution or production acceptance."
+  ]
+}

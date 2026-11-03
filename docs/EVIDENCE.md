@@ -1,6 +1,6 @@
 # Zippy Logistics — Milestone Evidence and Predecessor Chain
 
-**Evidence snapshot:** 2026-10-30 (IST). **Current Xano status:** Stage P0 **VERIFIED_READ_ONLY against preserved private receipts (not a new Xano GET run)**; Stage P **NOT_RUN / NOT_APPROVED**.
+**Evidence snapshot:** 2026-11-03 (IST); the October 30 formal stage approvals remain historical and unchanged. **Current Xano status:** Stage P0 **VERIFIED_READ_ONLY against preserved private receipts (not a new Xano GET run)**; Stage P **NOT_RUN / NOT_APPROVED**.
 
 This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXECUTION_TRACKER.md). Review [DECISION.md](../DECISION.md) for scoped owner approvals and [SOUL.md](../SOUL.md) for durable engineering guardrails; use [AGENTS.md](../AGENTS.md) as the coding-agent entry point. Use both at the start and end of every ChatGPT/OpenCode milestone. The tracker describes *current work*; this ledger records *which prior stage it depends on, what was actually verified, and which gate still blocks progress*. **A passing Markdown check is not proof of live Xano authorization, tenant isolation, or production readiness.**
 
@@ -18,6 +18,8 @@ This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXEC
 | W3-AB | W3-P (+ FE-QA) | **NOT RUN:** synthetic fixtures, native adapter and tenant-access tests | Separate fixture/test approval |
 | W3-C | W3-AB | **NOT RUN:** rollback, idempotency, uniqueness, fencing, OTP and finance | Deterministic implementation + tests |
 | W3-RELEASE | W3-C (+ FE-QA) | **NOT RUN:** live release and external provider integrations | Explicit production approval |
+| FE-SB-ADAPTER | W3-SB-CUSTOMER (+ FE-QA), separate sandbox stream | **VERIFIED_HOSTED, sandbox-only PASS:** exact PR #10/#12, 45/45 definitions, 67/67 server tests, seven-step HTTP 200s and A/B denial receipts | REVIEW_ONLY; protected browser preview and formal Stage P/AB/C/production gates remain blocked |
+| FE-SB-BROWSER | FE-SB-ADAPTER (+ FE-QA, W3-SB-CUSTOMER) | Original 89/89 mock server, 57/57 local browser and overlapping 7/7 rerun at `1f4953c`; latest `da5db4e` repair has 20/20 focused mocks, Redis PING and protected preview READY; see FE-SB-TEST-RUNTIME-READY | **BLOCKED hosted acceptance**: automation secret MISSING; six of seven local variables PRESENT. Runtime key-match and actual browser-to-Xano acceptance NOT_RUN |
 
 OpenCode's workspace-1 historical physical table discrepancy and source tests are **not** workspace-3 physical or runtime evidence. The original private 61d1b139 is **not** the sanitized GitHub d7cda3d commit.
 
@@ -39,7 +41,7 @@ Maintain unique IDs and complete the current stage in order. This structured reg
 {
   "schema_version": 1,
   "repository": "Gopi-git-bit/Xano-Synthentic-Prototype",
-  "snapshot_ist": "2026-10-30",
+  "snapshot_ist": "2026-11-03",
   "records": [
     {
       "id": "B-HIST",
@@ -255,6 +257,198 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "runtime_evidence_refs": [],
       "blocker": "Production, provider/finance and autonomous agent release prohibited pending separate approval",
       "next_action": "Require explicit production release approval"
+    },
+    {
+      "id": "W3-SB-TOOLS",
+      "previous": "W3-P1-PLATFORM",
+      "related": [
+        "W3-P"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+      "verification": "REPORTED",
+      "gate": "REVIEW_ONLY",
+      "approval": "NOT_APPROVED",
+      "approval_ref": null,
+      "evidence_scope": "GitHub sources verified; OpenCode reports seven isolated read-only tools, 48/48 syntax and 65/65 authenticated synthetic tool-debug checks. This is separate from the original Stage P approval chain.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/4421892ff9c884e43711753cacde04efd4ddb7c6/backend/agent-tools-review/README.md"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "No independent ChatGPT re-execution, durable public API/MCP transport acceptance or canonical Stage P approval.",
+      "next_action": "Reproduce in a verified fresh isolated tenant; preserve current live state."
+    },
+    {
+      "id": "W3-SB-CUSTOMER",
+      "previous": "W3-SB-TOOLS",
+      "related": [
+        "W3-AB"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+      "verification": "REPORTED",
+      "gate": "REVIEW_ONLY",
+      "approval": "NOT_APPROVED",
+      "approval_ref": null,
+      "evidence_scope": "OpenCode reports distinct ephemeral-tenant customer onboarding/booking milestone: 45/45 definitions and 48/48 actual synthetic HTTP assertions; GitHub source and audit reports preserved at pinned SHA. Stage P1 blocker remains unresolved for formal Stage P.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/blob/4421892ff9c884e43711753cacde04efd4ddb7c6/backend/customer-draft-milestone/README.md"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "No durable frontend integration, independent replay, original AB approval or production signoff.",
+      "next_action": "Freeze isolated register/login/me/booking POST and GET contract and independently test A/B isolation."
+    },
+    {
+      "id": "FE-SB-ADAPTER",
+      "previous": "W3-SB-CUSTOMER",
+      "related": [
+        "FE-QA"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "697da352a331dbe623cb21d81704bfc892079327",
+      "verification": "VERIFIED_HOSTED",
+      "gate": "REVIEW_ONLY",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner explicitly requested Execute Approved Sandbox Customer Vertical Slice on 2026-11-03: reproduce PR10 backend, execute PR12 server tests and manual synthetic HTTP probe in a fresh verified tenant, update PR11 evidence; excludes live changes, production release, merges, payments, refunds and dispatch.",
+      "evidence_scope": "OpenCode actually executed unchanged PR12 at 697da352 against exact PR10 4421892 in fresh ephemeral tenant 6/exwq-wsmx-c3e1, internal workspace 1. 45/45 definitions matched and validated, 67/67 frontend server tests passed, seven prescribed HTTP calls returned 200 with full schema/secret checks. 60 total runtime receipts include A/B isolation, foreign/missing 404 equivalence, forged-state denials, replay/no-write checks and parent-token 401 rejection. Initial supplementary 15/16 is retained: absent-vs-invalid error-body equality was over-constrained; targeted recheck passed. All 87 published and 87 draft parent files stayed byte-identical. Server-adapter sandbox acceptance only; predecessor's historical 48-case suite and formal Stage P blockers are not reclassified.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570",
+        "docs/evidence/sandbox-customer-http-20261103/README.md",
+        "docs/evidence/sandbox-customer-http-20261103/summary.json"
+      ],
+      "runtime_evidence_refs": [
+        "docs/evidence/sandbox-customer-http-20261103/adapter-http.json#sha256=997c7e1611b494f52095dcb9e15ded307c1286d40268e4a14108e723be8d0948",
+        "docs/evidence/sandbox-customer-http-20261103/supplement-http.json#sha256=885ae872f8c23a567817ede992954570e9d94050663dc63da592e8ae0dc202ea",
+        "docs/evidence/sandbox-customer-http-20261103/boundary-recheck.json#sha256=919d048ddab7ee03fd4da60ef910f1a0ebdd2bdd97c2386d93a1072a81622c33",
+        "docs/evidence/sandbox-customer-http-20261103/source-integrity.json#sha256=04f6880e126aa42288a356597cc37e8613da2ce3e3651258c2d4f522ccf94d57"
+      ],
+      "blocker": "No remaining failure in the approved server-adapter sandbox flow. Protected browser preview, restricted Metadata credential RBAC, physical database identity, reverse parent-token isolation and expiry/recovery remain unverified. Original W3-P/AB/C approvals and production gates unchanged.",
+      "next_action": "Review actual HTTP receipts and prepare a scoped protected sandbox UI/preview proposal. Reverify tenant lifetime/source/permissions before any additional approved execution."
+    },
+    {
+      "id": "FE-SB-BROWSER",
+      "previous": "FE-SB-ADAPTER",
+      "related": [
+        "FE-QA",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "1f4953c10d420d78522c7b7561df789556e2eb58",
+      "verification": "BLOCKED",
+      "gate": "BLOCKED_PROTECTED_BROWSER_CONFIGURATION",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner November 3 Execute Protected Browser-to-Xano Integration request: dedicated branch based on PR13, synthetic-only verified tenant, protected server gateway and actual browser acceptance, push and update PR11; followed by Vercel agent setup request. Excludes production publication/promotion, merges, payments, refunds, notifications, dispatch and operational AI. Project-wide automation-secret authorization remains unresolved.",
+      "evidence_scope": "Connected gateway and reused Customer UI implemented/pushed on dedicated PR13-based branch. 89/89 mock server, 57/57 local Playwright and overlapping enhanced 7/7 browser-security rerun passed; TypeScript, ESLint, production/connected builds, static browser/CSP scan passed, production dependency audit zero vulnerabilities. Tenant 6 reverified read-only; unchanged synthetic counts and 87+87 parent definitions; 45/45 source matches after reviewed formatting normalization with original 42/45 receipt preserved. Actual browser command blocked at configuration validation; zero browser-Xano calls/writes. Vercel CLI authenticated and global guidance installed; shared MCP configured but OAuth pending. Free Redis setup requires human terms; protected Git preview READY at exact implementation commit. Prior PR13 CI/rehearsal evidence retained, not transferred to new hosted acceptance.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/13",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41597929982",
+        "https://zippy-frontend-preview-gxai1q2gd-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/commit/1f4953c10d420d78522c7b7561df789556e2eb58",
+        "docs/evidence/customer-browser-gateway-20261103/README.md",
+        "docs/evidence/customer-browser-gateway-20261103/summary.json",
+        "https://zippy-frontend-preview-grsvluv3a-gopi-nathan-s-projects.vercel.app/?sandbox=1"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "Actual hosted browser acceptance NOT_RUN: no shared Redis resource/credentials, preview session key/exact origin, or separately authorized preview automation access. MCP OAuth and Upstash terms remained pending in tool checks. Original Stage P/AB/C and production approvals unchanged.",
+      "next_action": "Finish required browser consent, configure only the dedicated protected preview, verify tenant lifetime/deployed SHA, and run npm run test:sandbox:browser. Report CUSTOMER_SANDBOX_BROWSER_E2E_PASS only after actual workflow and security assertions pass."
+    },
+    {
+      "id": "FE-SB-GH-VERCEL",
+      "previous": "FE-SB-BROWSER",
+      "related": [
+        "FE-QA",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "1f4953c10d420d78522c7b7561df789556e2eb58",
+      "verification": "PASSED_CI",
+      "gate": "BLOCKED_HOSTED_BROWSER_RUNTIME",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner Nov 3 instruction to finish GitHub and Vercel setup and track EVIDENCE.md, within prior approved sandbox-only scope; no production/financial/project-wide bypass approval.",
+      "evidence_scope": "Verified Composio-created draft PR #14 with exact OpenCode branch source, successful GitHub frontend and contracts/schema CI, skipped Xano HTTP job, Vercel exact-SHA protected preview READY. Seven of seven previously committed sanitized OpenCode receipt hashes verified. Created preview-only, exact-branch environment metadata for HTTPS web origin, 32-byte sensitive session key, and 900-second TTL; release flag intentionally absent. No hosted Xano browser calls or new production deployment.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41608148770",
+        "https://zippy-frontend-preview-grsvluv3a-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/11"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "Upstash marketplace terms and shared Redis resource/credentials not configured; OpenCode Vercel OAuth and SSO automation not approved; gateway disabled; hosted browser E2E NOT_RUN. Full Stage P/AB/C and production gates remain unapproved.",
+      "next_action": "Owner accepts Upstash terms and completes OpenCode Vercel MCP OAuth; approve narrowly scoped preview automation, configure only this preview branch with Redis credentials, verify current tenant and redeploy preview; then run actual hosted Playwright safely."
+    },
+    {
+      "id": "FE-SB-UPSTASH",
+      "previous": "FE-SB-GH-VERCEL",
+      "related": [
+        "FE-SB-BROWSER",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "da5db4e0cd997694b6c90d09adea793a7325f393",
+      "verification": "PASSED_CI",
+      "gate": "BLOCKED_HOSTED_BROWSER_RUNTIME",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner Nov 3 sandbox-only execution approval and follow-up confirmation of Upstash terms/OAuth; excludes production release, financial services and project-wide automation bypass.",
+      "evidence_scope": "Vercel Upstash free Redis resource created with no auto-upgrade/paid pack and Mumbai primary region; connected to preview project with all auto-injected sensitive KV/Redis environment variables restricted to one branch. Branch-only CSPRNG AES session key, stable SSO preview origin, 900s TTL and synthetic-only gateway release configured. Server gateway supports Vercel Marketplace REST credentials as a complete pair at pinned source SHA; exact SHA frontend and schema CI passed, Xano HTTP CI skipped; refreshed protected preview READY. Authorized Vercel share-link GET to /api/sandbox/csrf returned 400 INVALID_QUERY due injected share query parameter, so it did NOT verify Redis session initialization or Xano browser execution.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41611434258",
+        "https://zippy-frontend-preview-git-feat-p-d61403-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/11"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "Genuine authenticated protected browser → Redis session → Xano sandbox HTTP E2E NOT_RUN. Automation/SSO authorization missing in ChatGPT client. User-reported OpenCode Vercel OAuth connected is not independently verified. Original W3-P/AB/C and production gates remain unchanged.",
+      "next_action": "OpenCode run protected same-origin browser Playwright using newly configured Upstash Redis and stable preview alias, verify active isolated tenant and session/authorization paths; retain strict query rejection, sanitize actual receipts, do not merge/publish production."
+    },
+    {
+      "id": "FE-SB-TEST-RUNTIME-READY",
+      "previous": "FE-SB-UPSTASH",
+      "related": [
+        "FE-SB-BROWSER",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "da5db4e0cd997694b6c90d09adea793a7325f393",
+      "verification": "BLOCKED",
+      "gate": "BLOCKED_HOSTED_BROWSER_RUNTIME",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Prior owner November 3 sandbox-only browser integration approval and Upstash terms acceptance, followed by Repair Local Environment and Execute Protected Browser Test request explicitly authorizing secure preview session-key synchronization. Excludes production release, broad SSO bypass and fabrication of a missing protection credential.",
+      "evidence_scope": "Historical 120-second preview setup and source CI remain valid. OpenCode repaired local Git discovery, fast-forwarded the clean worktree to da5db4e, imported named Notepad Redis settings into an ACL-restricted private environment file, and verified Redis REST PING, exact stable preview/commit, preview-only variable scope and 120-second TTL. Local session key was missing; owner-authorized synchronization updated only the branch-preview sensitive key using the same privately held value, then redeployed unchanged source to READY dpl_2X1UArWggQkobx5HbKTcQkX2WE7M. Six of seven required local variables are PRESENT; the automation credential remains MISSING. MCP identity/documentation calls passed but team/project scope was unavailable; scoped Vercel CLI reads succeeded. 20/20 focused mocked gateway/store tests passed. Tenant 6 is active with zero environment keys or executable operational resources. Production variables and deployment inventory are unchanged; no browser tests or Xano writes executed.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41611434258",
+        "https://zippy-frontend-preview-git-feat-p-d61403-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+        "docs/evidence/customer-browser-gateway-20261103/environment-repair.json"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "ZIPPY_PREVIEW_AUTOMATION_SECRET is MISSING in the private environment file and no project automation secret was found. Runtime key-match verification and actual protected browser acceptance cannot start. No credential was fabricated or protection weakened. Original W3-P/AB/C/RELEASE gates unchanged.",
+      "next_action": "Supply an authorized automation credential through the private environment file, verify protected access and runtime key match, then run Playwright via Node --env-file against the exact da5db4e preview before tenant expiry."
+    },
+    {
+      "id": "FE-SB-REMOTE-PREFLIGHT-20261103",
+      "previous": "FE-SB-TEST-RUNTIME-READY",
+      "related": [
+        "FE-SB-BROWSER",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "da5db4e0cd997694b6c90d09adea793a7325f393",
+      "verification": "BLOCKED",
+      "gate": "BLOCKED_PROTECTED_BROWSER_ACCESS",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner November 3 request to use reconnected Remote Desktop Commander to execute the previously approved synthetic-only sandbox browser test; no authorization to generate project-wide SSO bypass.",
+      "evidence_scope": "Remote Desktop Commander device SYMCHNDT-ACCOUNT confirmed ONLINE. Read-only local repo checkout exact branch feat/protected-customer-xano-20261103 at sha da5db4e; 6/7 required private env variables PRESENT and ZIPPY_PREVIEW_AUTOMATION_SECRET MISSING. Existing local private-preflight.cjs executed using Node --env-file: Upstash Redis REST connectivity PRESENT, sensitive session key metadata PRESENT but runtime MAC match MISSING (unverifiable without SSO access), exact Vercel deployment dpl_2X1UArWggQkobx5HbKTcQkX2WE7M READY for same SHA, SSO 302 and production inventory unchanged; preflight reported zero cloud mutations and synthetic account creation. Playwright CLI invoked with same private env file; configuration denied execution at line 10 due to missing protected preview automation access; zero browser tests or Xano writes. No private values were printed or published.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/11",
+        "docs/evidence/customer-browser-gateway-20261103/remote-preflight-20261103.json"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "ZIPPY_PREVIEW_AUTOMATION_SECRET still absent from the private env. No authorized protection automation bypass or browser session available; runtime key MAC equality and browser-Xano flow NOT_RUN. Formal W3-P/AB/C/RELEASE unchanged.",
+      "next_action": "Obtain owner-approved least-privilege protection access privately without reducing Vercel SSO; re-run private-preflight and genuine Playwright browser E2E with the same live isolated Xano tenant before 2026-11-04T06:56:09Z; report PASS only after actual receipts."
     }
   ]
 }
@@ -278,3 +472,51 @@ The next transition W3-P must include a distinct owner Stage P approval, evidenc
 `id`, `previous`, `related`, `as_of`, `source_ref`, `verification`, `gate`, `approval`, `approval_ref`, `evidence_scope`, `evidence_refs`, `runtime_evidence_refs`, `blocker`, `next_action`.
 
 **Do not add a new stage without naming its previous milestone and whether the predecessor's blocker was resolved.** If `NOT_RUN` or `BLOCKED`, document the next permitted action rather than claiming completion.
+
+## November 3 — review-only sandbox evidence
+
+The two additional W3-SB records describe OpenCode-reported runtime assertions on temporary isolated tenants with GitHub source preserved in PR #10. ChatGPT independently verified the GitHub branch/PR, not the live Xano runtime. They therefore remain REPORTED and REVIEW_ONLY, with no independent runtime_evidence_refs. The formal W3-P, W3-AB, W3-C and W3-RELEASE gates remain NOT_APPROVED/NOT_RUN; no owner signoff can be inferred from a temporary tenant or a draft PR.
+
+## November 3 — Frontend sandbox adapter CI checkpoint
+
+[Draft PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12) has verified GitHub frontend CI success at 697da352a331dbe623cb21d81704bfc892079327 ([run](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570)). Six isolated adapter mock tests passed locally, but the local synthetic Xano HTTP probe has not been run. This evidence stage is PASSED_CI / REVIEW_ONLY, not VERIFIED_HOSTED or production approval.
+
+## November 3 — Customer cross-stack HTTP checkpoint (supersedes adapter NOT_RUN)
+
+**PASS, VERIFIED_HOSTED for the approved sandbox server-adapter flow only.** OpenCode reproduced PR #10 `4421892ff9c884e43711753cacde04efd4ddb7c6` and executed the unchanged PR #12 `697da352a331dbe623cb21d81704bfc892079327` in fresh tenant **6 / `exwq-wsmx-c3e1`**, internal workspace **1**. The owner explicitly authorized this bounded execution. The predecessor's customer API reproduction succeeded; historical full-suite claims and formal isolation/release blockers remain separate.
+
+[Report and receipt package](evidence/sandbox-customer-http-20261103/README.md): **45/45** definition validation, **67/67** server tests, all **seven** prescribed HTTP steps **200**, exact response schemas, secret exclusion, synthetic A/B isolation, immutable actor/org/state, replay/no-write checks and sandbox-token rejection at parent auth/me/metadata. **60 runtime calls** are captured. The original supplementary **15/16** result remains intact; its absent-vs-invalid-token body-equality assertion was over-constrained and the focused boundary recheck passed. Remaining sandbox-flow defects: **none**.
+
+All **87 published and 87 draft** source files were byte-identical before/after, both tested worktrees stayed clean, tasks remained disabled, environment keys and executable provider/agent resources were absent, and all 27 non-fixture tables stayed empty. Exact paths changed in this checkpoint: `docs/EXECUTION_TRACKER.md`, `docs/EVIDENCE.md`, and the new sanitized `docs/evidence/sandbox-customer-http-20261103/` receipt package. Browser preview is NOT_RUN. Formal W3-P/AB/C and production gates are unchanged; no live publication, production deployment, merge or provider/financial/dispatch execution occurred.
+
+## November 3 — SSO-protected synthetic browser preview
+
+PR #13 and the green frontend CI prove the browser rehearsal builds and Playwright tests pass. Vercel deployment dpl_5NqdHNGjbeq6z5CcUzZevnniuecc is READY with SSO protection enabled; compiled CustomerPreview is present in the sandbox-preview build. This is PASSED_CI / REVIEW_ONLY, not actual Xano browser E2E or production acceptance.
+
+## November 3 — Protected browser gateway implementation, hosted BLOCKED
+
+The same FE-SB-BROWSER milestone now has implemented source at `1f4953c10d420d78522c7b7561df789556e2eb58`, branch `feat/protected-customer-xano-20261103`, based on exact PR #13 head. [Report and sanitized receipts](evidence/customer-browser-gateway-20261103/README.md) preserve 89/89 mock server checks, 57/57 local Playwright, overlapping enhanced 7/7 rerun, passed source/build/security scans, read-only tenant/source checks and original failures. A genuine browser harness exists but stopped before calls/writes because hosted configuration is incomplete. The historical PR #13 rehearsal and prior server-adapter HTTP PASS remain intact.
+
+Vercel CLI/guidance setup succeeded; shared MCP is configured but authentication remained pending. Free sandbox Redis provisioning requires human terms acceptance; authorized preview automation access and session configuration are missing. Git produced READY preview `dpl_FjVaaPYPpVqcs1ddFJrEn3ssv4Wy` for the exact new SHA. Production inventory, environment metadata and SSO were compared read-only and remained unchanged. Current verdict **BLOCKED**; formal W3-P/AB/C/RELEASE transitions are unchanged. This checkpoint changes `docs/EXECUTION_TRACKER.md`, `docs/EVIDENCE.md` and `docs/evidence/customer-browser-gateway-20261103/` only.
+
+## November 3 — GitHub PR14 / Vercel preview configuration checkpoint
+
+PR #14 was created from the pushed implementation branch; exact-SHA frontend and contract GitHub CI passed. Vercel confirms deployment dpl_FjVaaPYPpVqcs1ddFJrEn3ssv4Wy READY, SSO enabled. ChatGPT verified 7/7 sanitized evidence receipt hashes and populated only branch-scoped preview origin/session-key/TTL metadata (key value never published). Gateway release flag, Redis and preview automation remain unavailable, so no actual browser Xano requests executed. Upstash marketplace terms and local OpenCode Vercel MCP OAuth require user action. The FE-SB-BROWSER runtime blocker is preserved; historical Stage P/AB/C and production gates remain NOT_APPROVED.
+
+## November 3 — Upstash and refreshed preview, hosted browser acceptance pending
+
+User authorized Upstash terms. Vercel confirmed a free Mumbai Redis resource, auto-upgrade disabled, connected to preview only with all credential variables restricted to one branch. The source at da5db4e0cd997694b6c90d09adea793a7325f393 gained a safe complete-pair fallback for Vercel-managed `KV_REST_API_*` variables; frontend and schema CI passed and new SSO-protected preview is READY. Branch-scoped WEB_ORIGIN, a CSPRNG-generated sensitive session key, 900-second TTL and synthetic-only release flag are configured. No production release or project-wide protection bypass occurred. The Vercel share-link GET returned a 400 query rejection, so it is not a Redis/Xano integration pass. OpenCode OAuth connection is user-reported; direct desktop verification unavailable. The exact next proof is real protected browser-to-Xano execution. Historical Stage P/AB/C/RELEASE approvals remain blocked.
+
+## November 3 — Preview session TTL reduced for real browser testing
+
+The prior free Upstash and preview configuration remains in place. Only the branch-scoped session TTL changed from 900s to 120s to satisfy real expiry checks; forced Git preview dpl_4LtS2NqWS48kFH2shgs7TXC7aGYV is READY for unchanged source da5db4e0cd997694b6c90d09adea793a7325f393. No browser-to-Xano pass is claimed. Real Playwright needs authorized SSO automation access and the corresponding sandbox Redis test credentials; neither credential is published here. Original W3-P/AB/C/RELEASE restrictions remain unchanged.
+
+## November 3 — Local environment repair and exact remaining browser gate
+
+OpenCode located the saved Notepad Redis settings and imported the REST URL/write token into a private ACL-restricted environment file; values were never printed or committed. Bundled Git was discovered dynamically and the clean worktree fast-forwarded to the user's exact `da5db4e0cd997694b6c90d09adea793a7325f393`. MCP authentication and documentation search succeeded; its team list was empty and project reads failed, so authenticated scope-specific CLI access was verified instead. Redis REST PING passed. Preview scope, stable origin, synthetic release and **120-second** lifetime matched; tenant **6 / exwq-wsmx-c3e1** was active with expiry **2026-11-04 06:56:09 UTC**, tasks disabled and no environment keys/executable operational resources.
+
+The missing local session key was securely synchronized to the existing preview-branch sensitive variable under the owner's explicit instruction, and unchanged source rebuilt to READY preview **dpl_2X1UArWggQkobx5HbKTcQkX2WE7M**. Production environment values and deployment inventory compared unchanged; SSO still returns **302** without credentials. **20/20** focused mock gateway/store tests passed. The private environment has **six PRESENT variables and one MISSING variable: ZIPPY_PREVIEW_AUTOMATION_SECRET**. No new protection credential was created, and no protected browser test or Xano write executed. [Sanitized repair receipt](evidence/customer-browser-gateway-20261103/environment-repair.json) and [hash](evidence/customer-browser-gateway-20261103/environment-repair-manifest.json). Verdict remains **BLOCKED**.
+
+## November 3 — Remote Desktop recovered; actual browser command denied before execution
+
+Remote Desktop Commander connected to Windows device SYMCHNDT-ACCOUNT. Verified frontend checkout branch `feat/protected-customer-xano-20261103` at `da5db4e0cd997694b6c90d09adea793a7325f393`. The guarded preflight and Playwright command ran with the existing private Node `--env-file`. Preflight independently confirmed 6/7 required configuration values and Redis REST reachability, stable SSO-protected preview deployment `dpl_2X1UArWggQkobx5HbKTcQkX2WE7M` READY for exact source, and production unchanged. `ZIPPY_PREVIEW_AUTOMATION_SECRET` remains MISSING; the frontend Playwright configuration rejected execution before any browser requests, Xano registration or draft write. Runtime session-key MAC match remains unverified behind SSO. See [sanitized receipt](evidence/customer-browser-gateway-20261103/remote-preflight-20261103.json). Existing historical approvals and FAIL/BLOCKED receipts remain unchanged.

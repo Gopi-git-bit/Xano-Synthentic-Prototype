@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-03",
+  "frontend_commit": "697da352a331dbe623cb21d81704bfc892079327",
+  "command": "npm run test:server",
+  "cwd": "frontend",
+  "node": "v24.22.1",
+  "passed": 67,
+  "failed": 0,
+  "total": 67,
+  "sandbox_adapter_tests": 6,
+  "evidence": "Observed foreground npm command exit 0 in this execution before tenant provisioning; results retained in session tool transcript. This file records that completed run, not a rerun.",
+  "simulated_upstreams": true
+}

@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-03T06:58:54.127Z",
+  "target": {
+    "id": 6,
+    "name": "exwq-wsmx-c3e1",
+    "workspace_id": 1,
+    "type": "ephemeral",
+    "tasks": false,
+    "expires_at": "2026-11-04 06:56:09+0000"
+  },
+  "tables": 0,
+  "table_counts": {},
+  "environment_key_count": 0,
+  "disabled_resources": {
+    "task": 0,
+    "agent": 0,
+    "tool": 0,
+    "mcp_server": 0,
+    "trigger": 0,
+    "table/trigger": 0,
+    "agent/trigger": 0
+  },
+  "groups": [],
+  "endpoints": [],
+  "functions": [],
+  "passed": true
+}

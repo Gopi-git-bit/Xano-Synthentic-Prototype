@@ -1,0 +1,416 @@
+{
+  "at": "2026-11-03T08:50:44.508Z",
+  "backend_commit": "4421892ff9c884e43711753cacde04efd4ddb7c6",
+  "compared": 45,
+  "original_token_matches": 42,
+  "formatting_normalized_matches": 45,
+  "method": "Match definitions by GUID; retain quoted strings, token order, fields and operators; remove comments, whitespace and comma separators outside strings. Manually reviewed the three full diffs: Xano expanded inline objects/arrays and omitted their separators; no other token differences. This is source review, not new runtime acceptance.",
+  "original_receipt_preserved": "tenant-verification.json",
+  "comparisons": [
+    {
+      "file": "api/customer_auth/customer_auth.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "594d913c0e977ed5318c142c54e58823ae23eb78587c38c333871b617b27146c",
+      "export_sha256": "247adea20bdc016c4eb8fe37a58b8c139cd4669b392f8e4a834f54bd3d44789c",
+      "source_comma_separators": 0,
+      "export_comma_separators": 0
+    },
+    {
+      "file": "api/customer_auth/login_POST.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "665e2d89a11374db52ac70647091cfaf31304e33a4030c3ac19c592be04877ac",
+      "export_sha256": "b1a9ba2ed1c7eaf9f34ea2fa19cef903c535b5c0ea118fbd3391f6c2a00a29ad",
+      "source_comma_separators": 3,
+      "export_comma_separators": 3
+    },
+    {
+      "file": "api/customer_auth/membership_GET.xs",
+      "original_token_match": false,
+      "formatting_normalized_match": true,
+      "source_sha256": "3cc8062e91a8acdf660c54053f6eb0b3c2dcfa2bbbbf8dd107d2130820f566f0",
+      "export_sha256": "e322e5564c466c0968fe6b18a68680d792765d8576a13d31c72681b07de2ca0f",
+      "source_comma_separators": 12,
+      "export_comma_separators": 4
+    },
+    {
+      "file": "api/customer_auth/me_GET.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "9dce379f697bd7ec772730f0e31c427a30fbb59c8bcae68f106c07169ef10570",
+      "export_sha256": "e21208cb88b0403d67bb2514a9f8881191f83312dd995315027f8deca7d5d65d",
+      "source_comma_separators": 0,
+      "export_comma_separators": 0
+    },
+    {
+      "file": "api/customer_auth/register_POST.xs",
+      "original_token_match": false,
+      "formatting_normalized_match": true,
+      "source_sha256": "c54e935f9278285d23848ca44fccaaacb12df01128722bdea141b75a287eca51",
+      "export_sha256": "8b5c7375b856807185876bae57b2df37bb134cbd9bd4e15819ce0fc932101c6a",
+      "source_comma_separators": 40,
+      "export_comma_separators": 1
+    },
+    {
+      "file": "api/customer_bookings/bookings_GET.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "20529c2038b2b3d1278b2a4743bc3d7c86b0684592c3f33a547e8e79887c8b92",
+      "export_sha256": "d1f4fd993491a8c7bdd7c43d44022f2a000f4a747d25798e5d83ba4bbca375e0",
+      "source_comma_separators": 1,
+      "export_comma_separators": 1
+    },
+    {
+      "file": "api/customer_bookings/bookings_POST.xs",
+      "original_token_match": false,
+      "formatting_normalized_match": true,
+      "source_sha256": "39e735c8b39e800be3712205067e6493fd66a62e9585b21cbb834a1fb41a1f8f",
+      "export_sha256": "5ee7d203332730ca1f6b6b0ec87225d5c442226cb08d80ad634473954014be09",
+      "source_comma_separators": 39,
+      "export_comma_separators": 8
+    },
+    {
+      "file": "api/customer_bookings/booking_id_GET.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "d45542fe3a1a4d77a67a8ee06ab49ca78d4b0dd4ca03b33a81b669e285c4742f",
+      "export_sha256": "18c1a734d8348304b91c04e6945a58910606ff757b77e2c65e019a80e6833c67",
+      "source_comma_separators": 0,
+      "export_comma_separators": 0
+    },
+    {
+      "file": "api/customer_bookings/customer_bookings.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "072da0475bc779c9056b93948c38653231937eec65763096b6de4f859b533773",
+      "export_sha256": "d2b2a91f32469cbf5dda7f7c7997838b75ee299995f04e579bc4542a25bb5696",
+      "source_comma_separators": 0,
+      "export_comma_separators": 0
+    },
+    {
+      "file": "function/security/authorize_resource.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "6036cb130fd6af8d845a5f2ac22400bf809cc992ecfcbd4ad7a9fff6a5c7a33b",
+      "export_sha256": "a2c334e54cc0f67131a9d4317c2475fe8149775831ec6f23e57f6845a2988c5f",
+      "source_comma_separators": 0,
+      "export_comma_separators": 0
+    },
+    {
+      "file": "function/security/resolve_context.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "9ff084010788012fced416399a1b429a11d0a842a58df454c4e09c31e79443b4",
+      "export_sha256": "7aab2928332d8edefd2cf689366f51d8e86c3a440753a68286446c8493bc7bce",
+      "source_comma_separators": 4,
+      "export_comma_separators": 4
+    },
+    {
+      "file": "table/active_assignment_reservations.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "c0ec7ed74cc7fbd17ab498d8531f19781a37cfd3a2f044da8c9195994d04371c",
+      "export_sha256": "6e9c405dadadebe6ed52726e111d5683856b1bc972a801ea35f0490f23f85dae",
+      "source_comma_separators": 10,
+      "export_comma_separators": 10
+    },
+    {
+      "file": "table/agent_decision.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "3ebc4a2f2691fbe70a5716a982017b0459dede137d4df2a8723a1d0849ba87bb",
+      "export_sha256": "fbe480bb2f8bac9be9a00fe77b36bc578e488c599db1a8bd9e4deb09e1508269",
+      "source_comma_separators": 6,
+      "export_comma_separators": 6
+    },
+    {
+      "file": "table/agent_execution.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "d54235f0e0ca3a9eff8eed9e2d7d10aae39c95cbd66dd00ad6ff303a1f9daa9f",
+      "export_sha256": "c3a90a616fa28b7bc584b803ad3d8f7a1cedfcff625e7f964a19670bfd321f09",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/approval_request.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "1624084a026407c6b03cfe0cc71c5d959eefa215a5315d9cd93aa832ebe9aa47",
+      "export_sha256": "bb81b755b65b715756dc48d2b81e92fb50aa1bb03c132c20ed6fec9537ec2e8c",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/audit_log.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "a1b33133ca8fcbd302558004d698f2390d4398d6c063cb59baf3eab76ca8b736",
+      "export_sha256": "95decf63954aa2b243b05ecf19655126b1c3fd7908e14d058e0bc0674ad066fc",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/booking_quote.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "6a83e33dace5792cc6a9bd7160ed4a124ddf28fd7aad7582df9d202600cc05f7",
+      "export_sha256": "e3cfacf60fbe4c7afc214643160ab6c5d8e56dae1f4118ce2bc4c87320ff08a0",
+      "source_comma_separators": 5,
+      "export_comma_separators": 5
+    },
+    {
+      "file": "table/cargo_detail.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "4b9a9c2a4fd7d7310d1f46b8b46cd85196d1d764dbc257452d227cfb5c18ebe7",
+      "export_sha256": "bbd062012b212c264e380ba774acde52f2ec1935f9105e11546e92fd3ca8a25c",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/compliance_documents.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "95d211d5193efa60ea87064660352d587cc1f73403016f04cf51cfea11d40218",
+      "export_sha256": "0d41aa1c7e6689810257a58176a47fa19fe305e13aa7fff693c79b2e1a4a93c2",
+      "source_comma_separators": 11,
+      "export_comma_separators": 11
+    },
+    {
+      "file": "table/customer_booking.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "28460bcee5ab57bbe6818630e7a6c0589180014360fb3e11a281d51848d79daf",
+      "export_sha256": "d6d573e99f98d4acdf2a76b1dd34bb069b8b3ef91e35a14383b0b943f1bf2a6a",
+      "source_comma_separators": 16,
+      "export_comma_separators": 16
+    },
+    {
+      "file": "table/driver_profile.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "da36ebf979aa5f460b5289c7f9364208c6e786a742b5bc85aaee94d1bfc557ca",
+      "export_sha256": "cf47ad5cf22a9bcbd2fe03b542a4305a8c02d3dc42cc2292f098ba885594ba1c",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/durable_tasks.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "1e62b5d49f5e33fbd57600fe6c542c37fa3766b67746d94d325ffa8aca9d2656",
+      "export_sha256": "3c077f5b4c5bea5d9031dcb0929028619fe76dcf4ed1b79699d1b2e7d284e2c3",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/event_log.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "e063661ec70b8912626c7ca360c7caaaa8e4f2ba30a2640b7913e5c1d70d29f4",
+      "export_sha256": "09d4946d85925fb6bf631ff8ecd246af1f8fe325d4f5dfa52afcca5b3e6301bd",
+      "source_comma_separators": 3,
+      "export_comma_separators": 3
+    },
+    {
+      "file": "table/event_outbox.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "9c526147a34316338b43b45b75cb395ea0f0bc769e99583b27345d8720fca1fa",
+      "export_sha256": "fd31419b391174f1db07ead0dbfe7f274ae6ad185069674d0dcc2474cc63ac18",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/idempotency_key.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "0b00ed2ceb19edf60f2b41fcb636c87403f652ceb048ae2c8686ef93e92dfc37",
+      "export_sha256": "d2a4d0ab3a90115d0a6be33526ecf66e4c39c579148c94e8cb51fd93f8c1e7a3",
+      "source_comma_separators": 6,
+      "export_comma_separators": 6
+    },
+    {
+      "file": "table/incident_dispute.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "102718e28765e551a41b532c8d352e71fa5c558590a8b8ec674e348752688f26",
+      "export_sha256": "ee588b485c9383f2b2965be6ed70c74040b9e87f780c026bae9e112e93b62d74",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/order_holds.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "3154b01d720ce5d56562658eca79c5e4e45f8f4c1a9b7cd53696250015e5c381",
+      "export_sha256": "3d00a8cafab028d5545938bbab5b8c4133f3075d0bc5ef2f7ee0766be1daa33b",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/organization.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "f1c48e82bba001c9db26fe11db0766afcaf491fd7c39e1990763b5cef4283c33",
+      "export_sha256": "6c1d47de7aacecbc3173f77428a9bcb6665bd188514e5475ff1992248ae8e8b1",
+      "source_comma_separators": 10,
+      "export_comma_separators": 10
+    },
+    {
+      "file": "table/organization_member.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "a39aaec69b9346b94eeb90b8dd466de673c87b110dc3e003c46838cedbcca03b",
+      "export_sha256": "24b23f966f28569c18f4e058bbcf00fa2492cfc722b2992f790cf997675e7981",
+      "source_comma_separators": 9,
+      "export_comma_separators": 9
+    },
+    {
+      "file": "table/otp_challenges.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "8c7c6e58eaa19196cefaebc1ad6c6dfe52f488d3c0777a89bccaf23bbf3ceb83",
+      "export_sha256": "9087a17394c34f714beac5b34e1336abaa7e48a61de4ba160c0e425011be4b42",
+      "source_comma_separators": 6,
+      "export_comma_separators": 6
+    },
+    {
+      "file": "table/payment_transaction.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "d3765ccabe37314693e173c40b49948b321d94df44a912cffbe36c85b8c910bf",
+      "export_sha256": "f7b3a1614dd5b1f3368f48d9c9d6cf06106319dfde7fbfc7bec9894b965b1b10",
+      "source_comma_separators": 10,
+      "export_comma_separators": 10
+    },
+    {
+      "file": "table/pricing_policies.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "e49fe740673ecbc4832a90b73da454237862e7df2e8d21769b1f8ed8f69e813c",
+      "export_sha256": "8f291a291360d074b2199edc37b4f8f6b89c59ce4e494e946fcf9a0d06385559",
+      "source_comma_separators": 6,
+      "export_comma_separators": 6
+    },
+    {
+      "file": "table/proof_of_delivery.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "b74bc56ea08e7f93a1097791fd0698f12f3b671cef2b63941ecae29349399539",
+      "export_sha256": "602ff3ff4506025bcbc3a4d5b7655b62842cd864937fb2ee8d191f3845b9b1f4",
+      "source_comma_separators": 10,
+      "export_comma_separators": 10
+    },
+    {
+      "file": "table/refund_request.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "5b3eb0920f84520d32769f9b09f7c5b84aa0f4e89494cdd4a369866937d256bb",
+      "export_sha256": "4a304ec4be50056a3e66a7c4ae8e0e3c3b5f32a3f6b10dc985a91920fa9df1e7",
+      "source_comma_separators": 8,
+      "export_comma_separators": 8
+    },
+    {
+      "file": "table/route_cache.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "33fb9647e4c9662364a069f8f7bebcf6cfb005e039b79e1e8be0bc38849493f2",
+      "export_sha256": "e52b98f90ed2fa4505cda903385a9291e15b44d8982267203df426611c363068",
+      "source_comma_separators": 3,
+      "export_comma_separators": 3
+    },
+    {
+      "file": "table/settlement.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "ec6268259057b162bd22fe044a1a6d427365056f8c66adc32b50465415db50e5",
+      "export_sha256": "42ac548b88d001daa4d981d04d815c73a53c64247690c6a8865fb3bcc97143b4",
+      "source_comma_separators": 4,
+      "export_comma_separators": 4
+    },
+    {
+      "file": "table/table_index.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "5df4a0268d9a0f1aa4901ed129a8843f87aaf9d8b7ae0d66395149b6c6bb2310",
+      "export_sha256": "a9c6ec7c4492340bd7bf1e3fff9b194a73107fc57700f09e33e6c03401268705",
+      "source_comma_separators": 4,
+      "export_comma_separators": 4
+    },
+    {
+      "file": "table/topay_consent_attempts.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "f1921c590db0a6561057b332e4a3ba70efd03b27d424a59abe2fff531b07c983",
+      "export_sha256": "29feaa2787685994090f386883e4e0e6e1b330645605f6378c7651e82c48d040",
+      "source_comma_separators": 8,
+      "export_comma_separators": 8
+    },
+    {
+      "file": "table/tracking_event.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "5f223a46f56f9209c8c454ef595364da13e60f1bd1526d0e38cb1a7f02d6abff",
+      "export_sha256": "09c65db2287a7bf304e9f5dba2c75c70e82847f4488d37d205c60301f5efa4fc",
+      "source_comma_separators": 6,
+      "export_comma_separators": 6
+    },
+    {
+      "file": "table/trip.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "680044d5d3d7ddbfbd8f49daf159b403f5a3020a2d90522dc66bc57a4debe95e",
+      "export_sha256": "4562e58490c3933302b78e3a9870f3b8e2830ce793605504672f6703f95e138f",
+      "source_comma_separators": 7,
+      "export_comma_separators": 7
+    },
+    {
+      "file": "table/trip_stop.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "9440af2c8f05c1e97886b1820fe27374b185d4651ba47a7021f6f320954fac5a",
+      "export_sha256": "7f62440bd3830d7934997a0b39ef58e685099a08a82909d6ca16854f23100869",
+      "source_comma_separators": 13,
+      "export_comma_separators": 13
+    },
+    {
+      "file": "table/user.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "506037cf4dc4ab9d0e906e13507ae82ead232ec677263129f95dbf87fd87c858",
+      "export_sha256": "aad55be18f10ed7f0ca02cea248f3952af5cbd7e918dee7ecca4c1f1d1af76a7",
+      "source_comma_separators": 10,
+      "export_comma_separators": 10
+    },
+    {
+      "file": "table/vehicle.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "1dca5c4cbb343408aa462f985bdc3d76147cd7c929e46729d0a03e7863218d8f",
+      "export_sha256": "919fe15438d22ed0cd374fa69669c3cc815c367378242ff7017bc37548173cc5",
+      "source_comma_separators": 14,
+      "export_comma_separators": 14
+    },
+    {
+      "file": "table/vehicle_availability.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "3891cf2aac1bd351662bac020b88217891cde2e5014787a61f8c60fdf6fae594",
+      "export_sha256": "d667c833b245b9765b1fb6f15ba1c9d48a131d27aabbf90b5544e4699c914799",
+      "source_comma_separators": 6,
+      "export_comma_separators": 6
+    },
+    {
+      "file": "table/zippy_db_crosswalk_49_to_xano_33.xs",
+      "original_token_match": true,
+      "formatting_normalized_match": true,
+      "source_sha256": "b8acf1a35197f933d4f8c20cda919344b6c49943d9c1bff25fa1f6036592b892",
+      "export_sha256": "235a49bd494c7a8be2fb3f0fe6d7f5a2d8cc087f6feb0c5af8f845e58e99f97d",
+      "source_comma_separators": 1,
+      "export_comma_separators": 1
+    }
+  ]
+}

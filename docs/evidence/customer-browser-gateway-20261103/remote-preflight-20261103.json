@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-03",
+  "source": "ChatGPT authorized Remote Desktop Commander CLI output and local private-preflight",
+  "source_commit": "da5db4e0cd997694b6c90d09adea793a7325f393",
+  "branch": "feat/protected-customer-xano-20261103",
+  "device": "SYMCHNDT-ACCOUNT",
+  "device_status": "ONLINE",
+  "local_variables": {
+    "ZIPPY_SANDBOX_BROWSER_APPROVAL": "PRESENT",
+    "ZIPPY_SANDBOX_BROWSER_ORIGIN": "PRESENT",
+    "ZIPPY_PREVIEW_AUTOMATION_SECRET": "MISSING",
+    "ZIPPY_SANDBOX_REDIS_URL": "PRESENT",
+    "ZIPPY_SANDBOX_REDIS_TOKEN": "PRESENT",
+    "ZIPPY_SANDBOX_SESSION_KEY": "PRESENT",
+    "ZIPPY_SANDBOX_EXPECTED_COMMIT": "PRESENT"
+  },
+  "redis_rest_connection": "PRESENT",
+  "deployed_sensitive_session_key_metadata": "PRESENT",
+  "runtime_session_key_mac_match": "NOT_VERIFIED",
+  "deployment": {
+    "id": "dpl_2X1UArWggQkobx5HbKTcQkX2WE7M",
+    "sha": "da5db4e0cd997694b6c90d09adea793a7325f393",
+    "state": "READY",
+    "target": "preview"
+  },
+  "sso_protection": "PRESENT",
+  "unauthenticated_status": 302,
+  "production_inventory_complete": true,
+  "production_unchanged_since_prior_preflight": true,
+  "preflight_cloud_mutations": 0,
+  "synthetic_accounts_created": 0,
+  "actual_browser_command": "node --env-file=<PRIVATE_ENV_FILE> node_modules/@playwright/test/cli.js test --config playwright.sandbox.config.ts",
+  "actual_browser_tests_executed": 0,
+  "browser_xano_calls_executed": 0,
+  "playwright_result": "BLOCKED_BEFORE_TEST_LOADING",
+  "blocker": "Missing authorized ZIPPY_PREVIEW_AUTOMATION_SECRET in local private env; no SSO bypass generated",
+  "owner_production_release_authorized": false
+}

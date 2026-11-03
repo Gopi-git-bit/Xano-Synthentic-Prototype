@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-03T08:39:26.213Z",
+  "workspace": 3,
+  "branch": "v1",
+  "sources": {
+    "published": {
+      "files": 87,
+      "before_sha256": "1adb98815dc92334bb927b83f1a60bf1c3ed39408e5489ad563e272ec1471596",
+      "after_sha256": "1adb98815dc92334bb927b83f1a60bf1c3ed39408e5489ad563e272ec1471596",
+      "changed_files": 0
+    },
+    "drafts": {
+      "files": 87,
+      "before_sha256": "4b3d93690516fdfdba2f91c5e7c587d0b1d21030fbf67b3d4385c1ec708817eb",
+      "after_sha256": "4b3d93690516fdfdba2f91c5e7c587d0b1d21030fbf67b3d4385c1ec708817eb",
+      "changed_files": 0
+    }
+  },
+  "passed": true,
+  "scope": "Read-only definition snapshots, without environment values or production records; no source or record writes issued."
+}

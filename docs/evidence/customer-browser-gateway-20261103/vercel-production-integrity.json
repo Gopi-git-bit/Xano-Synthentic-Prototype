@@ -1,0 +1,28 @@
+{
+  "before_at": "2026-11-03T08:46:15.7074356Z",
+  "after_at": "2026-11-03T08:53:49.1725770Z",
+  "project": "zippy-frontend-preview",
+  "sso": {
+    "deploymentType": "prod_deployment_urls_and_all_previews"
+  },
+  "production_deployments": [
+    {
+      "commit": "8eeef1e0cdca218f8bdf17f792f3b2cb6b68937b",
+      "created": 1793188297366,
+      "url": "zippy-frontend-preview-1p3cch0sw-gopi-nathan-s-projects.vercel.app",
+      "id": "dpl_BCeJ4MiyWhhkaxCXCttNSbnAwqxH",
+      "state": "READY"
+    }
+  ],
+  "production_inventory_complete": true,
+  "unchanged": [
+    "production deployment inventory",
+    "production target",
+    "SSO settings",
+    "environment metadata",
+    "automation secret count"
+  ],
+  "deployment_promotions_issued": 0,
+  "production_mutations_issued": 0,
+  "limits": "Comparison began after CLI login; no production mutation was issued earlier in this task. Environment values and customer records are not published."
+}

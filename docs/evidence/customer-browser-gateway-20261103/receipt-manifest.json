@@ -1,0 +1,33 @@
+{
+  "algorithm": "sha256",
+  "files": [
+    {
+      "file": "preview-access.json",
+      "sha256": "723ab1d8b56f3cf13627688c5c61eeb72d492ec6c083b45cb476ea5b933771a2"
+    },
+    {
+      "file": "preview-deployment.json",
+      "sha256": "b7d886dc585d038ce49e1b62d8118b7df8a53aeaebec585f0ab4655176cc3213"
+    },
+    {
+      "file": "source-comparison-supplement.json",
+      "sha256": "ec054b1c005df6b736998e0b499876ea4f0822a75a5dbf6fdd8ec49c238c3988"
+    },
+    {
+      "file": "source-integrity.json",
+      "sha256": "493cef387c161b7a06413355736fbf00af9ed7933bd94cadcc76433f93bd0a32"
+    },
+    {
+      "file": "summary.json",
+      "sha256": "cbad7f52c23e728535dd45e13b4d29c23abf5eaa901867aa710a67d9dfaf2055"
+    },
+    {
+      "file": "tenant-verification.json",
+      "sha256": "193630739ebe0299f33e01cc7f3e4027de9645bddd0c7c5fed4cf4e2f40f9a1a"
+    },
+    {
+      "file": "vercel-production-integrity.json",
+      "sha256": "da7720918aadc2acd8565eeab66f84cc080acf00e119e80cebc2e715ee028d4b"
+    }
+  ]
+}

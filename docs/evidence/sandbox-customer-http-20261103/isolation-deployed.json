@@ -1,0 +1,125 @@
+{
+  "at": "2026-11-03T06:59:48.567Z",
+  "target": {
+    "id": 6,
+    "name": "exwq-wsmx-c3e1",
+    "workspace_id": 1,
+    "type": "ephemeral",
+    "tasks": false,
+    "expires_at": "2026-11-04 06:56:09+0000"
+  },
+  "tables": 34,
+  "table_counts": {
+    "active_assignment_reservations": 0,
+    "agent_decision": 0,
+    "agent_execution": 0,
+    "approval_request": 0,
+    "audit_log": 0,
+    "booking_quote": 0,
+    "cargo_detail": 0,
+    "compliance_documents": 0,
+    "customer_booking": 0,
+    "driver_profile": 0,
+    "durable_tasks": 0,
+    "event_log": 0,
+    "event_outbox": 0,
+    "idempotency_key": 0,
+    "incident_dispute": 0,
+    "order_holds": 0,
+    "organization": 0,
+    "organization_member": 0,
+    "otp_challenges": 0,
+    "payment_transaction": 0,
+    "pricing_policies": 0,
+    "proof_of_delivery": 0,
+    "refund_request": 0,
+    "route_cache": 0,
+    "settlement": 0,
+    "table_index": 0,
+    "topay_consent_attempts": 0,
+    "tracking_event": 0,
+    "trip": 0,
+    "trip_stop": 0,
+    "user": 0,
+    "vehicle": 0,
+    "vehicle_availability": 0,
+    "ZIPPY_DB_CROSSWALK_49_TO_XANO33": 0
+  },
+  "environment_key_count": 0,
+  "disabled_resources": {
+    "task": 0,
+    "agent": 0,
+    "tool": 0,
+    "mcp_server": 0,
+    "trigger": 0,
+    "table/trigger": 0,
+    "agent/trigger": 0
+  },
+  "groups": [
+    {
+      "id": 1,
+      "name": "Customer Draft Authentication",
+      "canonical": "zippy-customer-draft-auth"
+    },
+    {
+      "id": 2,
+      "name": "Customer Draft Bookings",
+      "canonical": "zippy-customer-drafts"
+    }
+  ],
+  "endpoints": [
+    {
+      "id": 1,
+      "group_id": 1,
+      "name": "auth/login",
+      "verb": "POST"
+    },
+    {
+      "id": 2,
+      "group_id": 1,
+      "name": "auth/me",
+      "verb": "GET"
+    },
+    {
+      "id": 3,
+      "group_id": 1,
+      "name": "organization/membership",
+      "verb": "GET"
+    },
+    {
+      "id": 4,
+      "group_id": 1,
+      "name": "auth/register",
+      "verb": "POST"
+    },
+    {
+      "id": 5,
+      "group_id": 2,
+      "name": "bookings/{booking_id}",
+      "verb": "GET"
+    },
+    {
+      "id": 6,
+      "group_id": 2,
+      "name": "bookings",
+      "verb": "GET"
+    },
+    {
+      "id": 7,
+      "group_id": 2,
+      "name": "bookings",
+      "verb": "POST"
+    }
+  ],
+  "functions": [
+    {
+      "id": 1,
+      "name": "security/authorize_resource"
+    },
+    {
+      "id": 2,
+      "name": "security/resolve_context"
+    }
+  ],
+  "passed": true
+}
