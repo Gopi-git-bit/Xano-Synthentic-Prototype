@@ -378,6 +378,30 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "runtime_evidence_refs": [],
       "blocker": "Upstash marketplace terms and shared Redis resource/credentials not configured; OpenCode Vercel OAuth and SSO automation not approved; gateway disabled; hosted browser E2E NOT_RUN. Full Stage P/AB/C and production gates remain unapproved.",
       "next_action": "Owner accepts Upstash terms and completes OpenCode Vercel MCP OAuth; approve narrowly scoped preview automation, configure only this preview branch with Redis credentials, verify current tenant and redeploy preview; then run actual hosted Playwright safely."
+    },
+    {
+      "id": "FE-SB-UPSTASH",
+      "previous": "FE-SB-GH-VERCEL",
+      "related": [
+        "FE-SB-BROWSER",
+        "W3-SB-CUSTOMER"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "da5db4e0cd997694b6c90d09adea793a7325f393",
+      "verification": "PASSED_CI",
+      "gate": "BLOCKED_HOSTED_BROWSER_RUNTIME",
+      "approval": "APPROVED_SANDBOX_ONLY",
+      "approval_ref": "Owner Nov 3 sandbox-only execution approval and follow-up confirmation of Upstash terms/OAuth; excludes production release, financial services and project-wide automation bypass.",
+      "evidence_scope": "Vercel Upstash free Redis resource created with no auto-upgrade/paid pack and Mumbai primary region; connected to preview project with all auto-injected sensitive KV/Redis environment variables restricted to one branch. Branch-only CSPRNG AES session key, stable SSO preview origin, 900s TTL and synthetic-only gateway release configured. Server gateway supports Vercel Marketplace REST credentials as a complete pair at pinned source SHA; exact SHA frontend and schema CI passed, Xano HTTP CI skipped; refreshed protected preview READY. Authorized Vercel share-link GET to /api/sandbox/csrf returned 400 INVALID_QUERY due injected share query parameter, so it did NOT verify Redis session initialization or Xano browser execution.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41611434258",
+        "https://zippy-frontend-preview-git-feat-p-d61403-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/11"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "Genuine authenticated protected browser → Redis session → Xano sandbox HTTP E2E NOT_RUN. Automation/SSO authorization missing in ChatGPT client. User-reported OpenCode Vercel OAuth connected is not independently verified. Original W3-P/AB/C and production gates remain unchanged.",
+      "next_action": "OpenCode run protected same-origin browser Playwright using newly configured Upstash Redis and stable preview alias, verify active isolated tenant and session/authorization paths; retain strict query rejection, sanitize actual receipts, do not merge/publish production."
     }
   ]
 }
@@ -431,3 +455,7 @@ Vercel CLI/guidance setup succeeded; shared MCP is configured but authentication
 ## November 3 — GitHub PR14 / Vercel preview configuration checkpoint
 
 PR #14 was created from the pushed implementation branch; exact-SHA frontend and contract GitHub CI passed. Vercel confirms deployment dpl_FjVaaPYPpVqcs1ddFJrEn3ssv4Wy READY, SSO enabled. ChatGPT verified 7/7 sanitized evidence receipt hashes and populated only branch-scoped preview origin/session-key/TTL metadata (key value never published). Gateway release flag, Redis and preview automation remain unavailable, so no actual browser Xano requests executed. Upstash marketplace terms and local OpenCode Vercel MCP OAuth require user action. The FE-SB-BROWSER runtime blocker is preserved; historical Stage P/AB/C and production gates remain NOT_APPROVED.
+
+## November 3 — Upstash and refreshed preview, hosted browser acceptance pending
+
+User authorized Upstash terms. Vercel confirmed a free Mumbai Redis resource, auto-upgrade disabled, connected to preview only with all credential variables restricted to one branch. The source at da5db4e0cd997694b6c90d09adea793a7325f393 gained a safe complete-pair fallback for Vercel-managed `KV_REST_API_*` variables; frontend and schema CI passed and new SSO-protected preview is READY. Branch-scoped WEB_ORIGIN, a CSPRNG-generated sensitive session key, 900-second TTL and synthetic-only release flag are configured. No production release or project-wide protection bypass occurred. The Vercel share-link GET returned a 400 query rejection, so it is not a Redis/Xano integration pass. OpenCode OAuth connection is user-reported; direct desktop verification unavailable. The exact next proof is real protected browser-to-Xano execution. Historical Stage P/AB/C/RELEASE approvals remain blocked.
