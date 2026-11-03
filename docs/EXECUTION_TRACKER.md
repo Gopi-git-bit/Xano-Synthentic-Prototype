@@ -86,6 +86,10 @@ OpenCode pushed source and sanitized receipts at commit 4421892ff9c884e43711753c
 
 The canonical Stage P / Stage AB predecessor chain in EVIDENCE.md still lacks separately recorded owner approval and independent full-isolation acceptance. The sandbox work is a distinct REVIEW_ONLY evidence stream; it must not be used to relabel production as ready. The older October 30 table below remains historical, not the latest execution status.
 
+### November 3 — Frontend sandbox adapter (CI-confirmed, not Xano E2E)
+
+[Draft PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12) implements server-only customer registration → login → membership → draft POST → booking list/detail against exact isolated Xano API canonicals. The six new mocked Node tests passed locally; [frontend GitHub CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570) passed at commit 697da352a331dbe623cb21d81704bfc892079327, including existing server/build/browser checks. Hosted Xano readonly HTTP checks remained skipped. The sandbox adapter is **not** imported by production gateway and the manual synthetic Xano-through-adapter probe was **NOT_RUN**. This is frontend-source and CI evidence, not cross-stack acceptance.
+
 ## 4. Current known defects and unresolved proof
 
 - **11 failing draft source-readiness checks** in the private reconciliation: untrusted 480-km distance fallback; booking insert before full cargo validation; second-resolution reference collisions; missing create/confirm transactions; optional idempotency key; unenforced expiry; insufficient assignment uniqueness; absent worker fencing; fixed OTP; OTP consumed before decision validation. Retain actual test failures; no draft promotion.
@@ -159,6 +163,8 @@ ChatGPT should request new OpenCode status only when the tracker is stale, an ap
 | 2026-10-30 | OpenCode / ChatGPT (remote Git audit) | P1 documentation-only review completed; private ZIP and 9/9 original Git evidence object hashes confirmed, seven capability outcomes unresolved | P1 commit 215d4e600bd4c7454d31c5581971e058fe6147dd; [EVIDENCE.md](EVIDENCE.md); handoff SHA-256 15336d59c6f04efb40272bf418d5a430b430f1aa77d88218ba33e3ff7394e752 | Owner reviews Xano support draft; no Stage P permission |
 
 | 2026-11-03 | OpenCode (reported) + ChatGPT/Composio (GitHub observed) | Seven tool-review objects and customer-draft HTTP milestone source pushed; draft PR #10 opened; 65/65 and 48/48 sandbox tests reported, not independently re-run | [PR #10](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/10), commit 4421892ff9c884e43711753cacde04efd4ddb7c6; EVIDENCE.md W3-SB-TOOLS / W3-SB-CUSTOMER | Reproduce stable sandbox auth/draft API and build versioned frontend contract; Stage P and production remain blocked |
+
+| 2026-11-03 | ChatGPT + Composio (GitHub CI verified) | Sandbox-only customer adapter, synthetic manual HTTP probe and contract tests added; 6/6 mocked adapter tests and frontend GitHub CI passed; real cross-stack HTTP through adapter NOT_RUN | [PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12), commit 697da352a331dbe623cb21d81704bfc892079327, [frontend CI](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570); FE-SB-ADAPTER in [EVIDENCE.md](EVIDENCE.md) | OpenCode must execute manual synthetic HTTP probe on independently verified tenant; production writes stay blocked |
 
 ### Required new checkpoint row
 

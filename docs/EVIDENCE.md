@@ -297,6 +297,27 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       "runtime_evidence_refs": [],
       "blocker": "No durable frontend integration, independent replay, original AB approval or production signoff.",
       "next_action": "Freeze isolated register/login/me/booking POST and GET contract and independently test A/B isolation."
+    },
+    {
+      "id": "FE-SB-ADAPTER",
+      "previous": "W3-SB-CUSTOMER",
+      "related": [
+        "FE-QA"
+      ],
+      "as_of": "2026-11-03",
+      "source_ref": "697da352a331dbe623cb21d81704bfc892079327",
+      "verification": "PASSED_CI",
+      "gate": "REVIEW_ONLY",
+      "approval": "NOT_APPROVED",
+      "approval_ref": null,
+      "evidence_scope": "Frontend sandbox-only customer adapter uses exact Xano ephemeral API group paths. 6/6 mocked unit tests passed locally; GitHub frontend CI success on exact SHA. No Xano calls through the adapter or browser sandbox writes were executed.",
+      "evidence_refs": [
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12",
+        "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570"
+      ],
+      "runtime_evidence_refs": [],
+      "blocker": "Cross-stack Xano HTTP through frontend adapter not run; real tenant and browser preview acceptance missing. Original W3-P/AB/C approvals unchanged.",
+      "next_action": "OpenCode execute manual synthetic probe on independently verified tenant, capture sanitized receipts, then implement gated protected UI."
     }
   ]
 }
@@ -324,3 +345,7 @@ The next transition W3-P must include a distinct owner Stage P approval, evidenc
 ## November 3 — review-only sandbox evidence
 
 The two additional W3-SB records describe OpenCode-reported runtime assertions on temporary isolated tenants with GitHub source preserved in PR #10. ChatGPT independently verified the GitHub branch/PR, not the live Xano runtime. They therefore remain REPORTED and REVIEW_ONLY, with no independent runtime_evidence_refs. The formal W3-P, W3-AB, W3-C and W3-RELEASE gates remain NOT_APPROVED/NOT_RUN; no owner signoff can be inferred from a temporary tenant or a draft PR.
+
+## November 3 — Frontend sandbox adapter CI checkpoint
+
+[Draft PR #12](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/12) has verified GitHub frontend CI success at 697da352a331dbe623cb21d81704bfc892079327 ([run](https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41592096570)). Six isolated adapter mock tests passed locally, but the local synthetic Xano HTTP probe has not been run. This evidence stage is PASSED_CI / REVIEW_ONLY, not VERIFIED_HOSTED or production approval.
