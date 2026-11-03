@@ -12,7 +12,8 @@
     "test": "playwright test",
     "test:server": "node --test server/*.test.mjs",
     "verify:crm": "node --env-file-if-exists=.env.local scripts/verify-crm.mjs",
-    "api:dev": "node --env-file-if-exists=.env.local server/dev.mjs"
+    "api:dev": "node --env-file-if-exists=.env.local server/dev.mjs",
+    "verify:sandbox-customer": "node scripts/run-sandbox-customer-flow.mjs"
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",
