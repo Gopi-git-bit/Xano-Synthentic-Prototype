@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-03T11:39:58.454Z",
+  "verdict": "BLOCKED",
+  "source_commit": "da5db4e0cd997694b6c90d09adea793a7325f393",
+  "branch": "feat/protected-customer-xano-20261103",
+  "credential_values_disclosed": false,
+  "private_env_loaded_with_node_env_file": true,
+  "private_acl": "current Windows account and SYSTEM only",
+  "local_variables": {
+    "ZIPPY_SANDBOX_BROWSER_APPROVAL": "PRESENT",
+    "ZIPPY_SANDBOX_BROWSER_ORIGIN": "PRESENT",
+    "ZIPPY_PREVIEW_AUTOMATION_SECRET": "MISSING",
+    "ZIPPY_SANDBOX_REDIS_URL": "PRESENT",
+    "ZIPPY_SANDBOX_REDIS_TOKEN": "PRESENT",
+    "ZIPPY_SANDBOX_SESSION_KEY": "PRESENT",
+    "ZIPPY_SANDBOX_EXPECTED_COMMIT": "PRESENT"
+  },
+  "branch_variables_preview_only": true,
+  "required_server_values": {
+    "ZIPPY_SANDBOX_GATEWAY_RELEASE": "PRESENT",
+    "ZIPPY_SANDBOX_WEB_ORIGIN": "PRESENT",
+    "ZIPPY_SANDBOX_SESSION_TTL_SECONDS": "PRESENT"
+  },
+  "session_ttl_seconds": 120,
+  "redis_rest_connection": "PRESENT",
+  "session_key_sync": "PRESENT",
+  "runtime_key_match_check": "NOT_RUN_WITHOUT_PROTECTION_CREDENTIAL",
+  "configured_automation_secret": "MISSING",
+  "authorized_preview_access": "MISSING",
+  "deployment": {
+    "id": "dpl_2X1UArWggQkobx5HbKTcQkX2WE7M",
+    "state": "READY",
+    "url": "https://zippy-frontend-preview-oqq0ml4rv-gopi-nathan-s-projects.vercel.app",
+    "commit": "da5db4e0cd997694b6c90d09adea793a7325f393",
+    "target": "preview"
+  },
+  "stable_origin": "https://zippy-frontend-preview-git-feat-p-d61403-gopi-nathan-s-projects.vercel.app",
+  "unauthenticated_status": 302,
+  "sso": {
+    "deploymentType": "prod_deployment_urls_and_all_previews"
+  },
+  "mcp": {
+    "authentication": "PRESENT",
+    "documentation_search": "PRESENT",
+    "list_teams_call": "PRESENT",
+    "teams_returned": 0,
+    "project_scope_access": "INVALID",
+    "scoped_cli_fallback": "PRESENT"
+  },
+  "xano": {
+    "verified_at": "2026-11-03",
+    "tenant_id": 6,
+    "tenant": "exwq-wsmx-c3e1",
+    "workspace_id": 1,
+    "parent_workspace": 3,
+    "branch": "v1",
+    "expires_at": "2026-11-04T06:56:09Z",
+    "tasks": false,
+    "tables": 34,
+    "environment_keys": 0,
+    "executable_operational_resources": 0
+  },
+  "targeted_mock_tests": {
+    "command": "node --test server/sandbox-gateway.test.mjs server/sandbox-store.test.mjs",
+    "passed": 20,
+    "total": 20
+  },
+  "actual_browser_tests": "NOT_RUN_PREREQUISITE_MISSING",
+  "browser_xano_calls": 0,
+  "synthetic_accounts_created": 0,
+  "scoped_mutations": [
+    "Updated only the existing branch-preview sensitive session key from the same locally held value",
+    "Redeployed exact unchanged commit to preview"
+  ],
+  "production_variables_unchanged": true,
+  "production_deployments_unchanged": true,
+  "host_firewall_vpn_ssh_configuration_changed": false,
+  "blocker": "ZIPPY_PREVIEW_AUTOMATION_SECRET is MISSING in the private environment file and no project automation credential was found. No substitute, share-link bypass or new protection credential was fabricated.",
+  "next_action": "Supply the authorized automation credential privately; repeat access/key preflight and execute the pinned Playwright configuration with Node --env-file before tenant expiry."
+}

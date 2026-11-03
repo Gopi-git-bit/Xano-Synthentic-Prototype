@@ -19,7 +19,7 @@ This document is the mandatory evidence companion to [EXECUTION_TRACKER.md](EXEC
 | W3-C | W3-AB | **NOT RUN:** rollback, idempotency, uniqueness, fencing, OTP and finance | Deterministic implementation + tests |
 | W3-RELEASE | W3-C (+ FE-QA) | **NOT RUN:** live release and external provider integrations | Explicit production approval |
 | FE-SB-ADAPTER | W3-SB-CUSTOMER (+ FE-QA), separate sandbox stream | **VERIFIED_HOSTED, sandbox-only PASS:** exact PR #10/#12, 45/45 definitions, 67/67 server tests, seven-step HTTP 200s and A/B denial receipts | REVIEW_ONLY; protected browser preview and formal Stage P/AB/C/production gates remain blocked |
-| FE-SB-BROWSER | FE-SB-ADAPTER (+ FE-QA, W3-SB-CUSTOMER) | Implemented at `1f4953c`; 89/89 mock server, 57/57 local browser, overlapping 7/7 enhanced rerun; read-only tenant/source verification; protected Git preview READY | **BLOCKED hosted acceptance**: preview automation access and shared session-store/key/origin configuration; no actual browser-to-Xano calls |
+| FE-SB-BROWSER | FE-SB-ADAPTER (+ FE-QA, W3-SB-CUSTOMER) | Original 89/89 mock server, 57/57 local browser and overlapping 7/7 rerun at `1f4953c`; latest `da5db4e` repair has 20/20 focused mocks, Redis PING and protected preview READY; see FE-SB-TEST-RUNTIME-READY | **BLOCKED hosted acceptance**: automation secret MISSING; six of seven local variables PRESENT. Runtime key-match and actual browser-to-Xano acceptance NOT_RUN |
 
 OpenCode's workspace-1 historical physical table discrepancy and source tests are **not** workspace-3 physical or runtime evidence. The original private 61d1b139 is **not** the sanitized GitHub d7cda3d commit.
 
@@ -412,19 +412,20 @@ Maintain unique IDs and complete the current stage in order. This structured reg
       ],
       "as_of": "2026-11-03",
       "source_ref": "da5db4e0cd997694b6c90d09adea793a7325f393",
-      "verification": "PASSED_CI",
+      "verification": "BLOCKED",
       "gate": "BLOCKED_HOSTED_BROWSER_RUNTIME",
       "approval": "APPROVED_SANDBOX_ONLY",
-      "approval_ref": "Prior owner November 3 sandbox-only browser integration approval and Upstash terms acceptance; excludes production release or broad SSO bypass.",
-      "evidence_scope": "Vercel preview branch session TTL updated from 900 to 120 seconds to satisfy real browser expiry tests; re-deployed exact CI-passing source da5db4e to SSO-protected preview dpl_4LtS2NqWS48kFH2shgs7TXC7aGYV which is READY. Free Upstash remains attached only to this branch preview, gateway synthetic-only flag restricted to same branch. No browser E2E or Xano writes occurred from this step.",
+      "approval_ref": "Prior owner November 3 sandbox-only browser integration approval and Upstash terms acceptance, followed by Repair Local Environment and Execute Protected Browser Test request explicitly authorizing secure preview session-key synchronization. Excludes production release, broad SSO bypass and fabrication of a missing protection credential.",
+      "evidence_scope": "Historical 120-second preview setup and source CI remain valid. OpenCode repaired local Git discovery, fast-forwarded the clean worktree to da5db4e, imported named Notepad Redis settings into an ACL-restricted private environment file, and verified Redis REST PING, exact stable preview/commit, preview-only variable scope and 120-second TTL. Local session key was missing; owner-authorized synchronization updated only the branch-preview sensitive key using the same privately held value, then redeployed unchanged source to READY dpl_2X1UArWggQkobx5HbKTcQkX2WE7M. Six of seven required local variables are PRESENT; the automation credential remains MISSING. MCP identity/documentation calls passed but team/project scope was unavailable; scoped Vercel CLI reads succeeded. 20/20 focused mocked gateway/store tests passed. Tenant 6 is active with zero environment keys or executable operational resources. Production variables and deployment inventory are unchanged; no browser tests or Xano writes executed.",
       "evidence_refs": [
         "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/pull/14",
         "https://github.com/Gopi-git-bit/Xano-Synthentic-Prototype/actions/runs/41611434258",
-        "https://zippy-frontend-preview-git-feat-p-d61403-gopi-nathan-s-projects.vercel.app/?sandbox=1"
+        "https://zippy-frontend-preview-git-feat-p-d61403-gopi-nathan-s-projects.vercel.app/?sandbox=1",
+        "docs/evidence/customer-browser-gateway-20261103/environment-repair.json"
       ],
       "runtime_evidence_refs": [],
-      "blocker": "Hosted browser test still NOT_RUN; Playwright requires authorized protection access plus local Redis credential/key for revocation and expiry. User reports local OpenCode Vercel OAuth connected; direct desktop access offline. Original W3-P/AB/C/RELEASE gates unchanged.",
-      "next_action": "Operator with authorized protected-preview access and the matching nonproduction Redis key/REST credentials executes npm run test:sandbox:browser before tenant expiry, records sanitized checks and no production mutations."
+      "blocker": "ZIPPY_PREVIEW_AUTOMATION_SECRET is MISSING in the private environment file and no project automation secret was found. Runtime key-match verification and actual protected browser acceptance cannot start. No credential was fabricated or protection weakened. Original W3-P/AB/C/RELEASE gates unchanged.",
+      "next_action": "Supply an authorized automation credential through the private environment file, verify protected access and runtime key match, then run Playwright via Node --env-file against the exact da5db4e preview before tenant expiry."
     }
   ]
 }
@@ -486,3 +487,9 @@ User authorized Upstash terms. Vercel confirmed a free Mumbai Redis resource, au
 ## November 3 — Preview session TTL reduced for real browser testing
 
 The prior free Upstash and preview configuration remains in place. Only the branch-scoped session TTL changed from 900s to 120s to satisfy real expiry checks; forced Git preview dpl_4LtS2NqWS48kFH2shgs7TXC7aGYV is READY for unchanged source da5db4e0cd997694b6c90d09adea793a7325f393. No browser-to-Xano pass is claimed. Real Playwright needs authorized SSO automation access and the corresponding sandbox Redis test credentials; neither credential is published here. Original W3-P/AB/C/RELEASE restrictions remain unchanged.
+
+## November 3 — Local environment repair and exact remaining browser gate
+
+OpenCode located the saved Notepad Redis settings and imported the REST URL/write token into a private ACL-restricted environment file; values were never printed or committed. Bundled Git was discovered dynamically and the clean worktree fast-forwarded to the user's exact `da5db4e0cd997694b6c90d09adea793a7325f393`. MCP authentication and documentation search succeeded; its team list was empty and project reads failed, so authenticated scope-specific CLI access was verified instead. Redis REST PING passed. Preview scope, stable origin, synthetic release and **120-second** lifetime matched; tenant **6 / exwq-wsmx-c3e1** was active with expiry **2026-11-04 06:56:09 UTC**, tasks disabled and no environment keys/executable operational resources.
+
+The missing local session key was securely synchronized to the existing preview-branch sensitive variable under the owner's explicit instruction, and unchanged source rebuilt to READY preview **dpl_2X1UArWggQkobx5HbKTcQkX2WE7M**. Production environment values and deployment inventory compared unchanged; SSO still returns **302** without credentials. **20/20** focused mock gateway/store tests passed. The private environment has **six PRESENT variables and one MISSING variable: ZIPPY_PREVIEW_AUTOMATION_SECRET**. No new protection credential was created, and no protected browser test or Xano write executed. [Sanitized repair receipt](evidence/customer-browser-gateway-20261103/environment-repair.json) and [hash](evidence/customer-browser-gateway-20261103/environment-repair-manifest.json). Verdict remains **BLOCKED**.
