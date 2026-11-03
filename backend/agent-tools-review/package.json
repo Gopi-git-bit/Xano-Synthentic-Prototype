@@ -1,0 +1,17 @@
+{
+  "name": "zippy-isolated-agent-tools-review",
+  "version": "0.1.0",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "verify-target": "node scripts/verify-target.cjs",
+    "readback": "node scripts/readback.cjs",
+    "seed": "node scripts/seed.cjs",
+    "test:runtime": "node scripts/test.cjs"
+  },
+  "devDependencies": {
+    "@xano/developer-mcp": "2.2.6",
+    "js-yaml": "4.1.1"
+  }
+}

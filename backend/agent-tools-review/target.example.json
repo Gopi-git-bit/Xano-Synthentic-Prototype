@@ -1,0 +1,8 @@
+{
+  "origin": "https://your-isolated-instance.example.invalid",
+  "profile": "default",
+  "source_workspace_id": 3,
+  "tenant": "REPLACE-WITH-EPHEMERAL-NAME",
+  "tenant_id": 0,
+  "workspace_id": 1
+}

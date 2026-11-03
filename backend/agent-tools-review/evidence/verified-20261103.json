@@ -1,0 +1,807 @@
+{
+  "at": "2026-11-03T05:18:19.294Z",
+  "evidence_kind": "historical actual isolated execution",
+  "tenant": {
+    "id": 4,
+    "name": "ewkq-c4ck-894a",
+    "workspace_id": 1,
+    "expires_at": "2026-11-04T05:02:41Z"
+  },
+  "tools": [
+    {
+      "name": "zippy_check_vehicle_eligibility",
+      "id": 1,
+      "guid": "e1X3HCo-kQUKQgS6r3JVQD9KbF8",
+      "metadata_verified": true
+    },
+    {
+      "name": "zippy_get_booking",
+      "id": 2,
+      "guid": "d16IrCkMLSLrMcLmrozc18mnr1o",
+      "metadata_verified": true
+    },
+    {
+      "name": "zippy_get_payment_summary",
+      "id": 3,
+      "guid": "CUplMO3yDU6gPEPTfr10O-ozjH4",
+      "metadata_verified": true
+    },
+    {
+      "name": "zippy_prescreen_refund",
+      "id": 4,
+      "guid": "4DN1WxaR4nzjQ963HMRyrYo5o1M",
+      "metadata_verified": true
+    },
+    {
+      "name": "zippy_propose_assignment",
+      "id": 5,
+      "guid": "w2_XxST4KTAABkdmn0S1swJR-2U",
+      "metadata_verified": true
+    },
+    {
+      "name": "zippy_review_pod",
+      "id": 6,
+      "guid": "Qbzf-Fmt25KHrocE4izWNiCX9Ks",
+      "metadata_verified": true
+    },
+    {
+      "name": "zippy_validate_order",
+      "id": 7,
+      "guid": "EFNXx2LyVrewTcqQNx48LzYg-BU",
+      "metadata_verified": true
+    }
+  ],
+  "helpers": [
+    {
+      "name": "security/authorize_resource",
+      "id": 1,
+      "guid": "2LbK9uCTM0nMFZPMy_om6EDR0Gs"
+    },
+    {
+      "name": "security/resolve_context",
+      "id": 2,
+      "guid": "wZwblzdLzpQhs7Dm4uTsNjuVq7Y"
+    },
+    {
+      "name": "zippy_agent/order_snapshot",
+      "id": 3,
+      "guid": "3FLz9Qu-UEMW7RuQUP_toXN3HKM"
+    },
+    {
+      "name": "zippy_agent/vehicle_snapshot",
+      "id": 4,
+      "guid": "Yc6LCSElszo0Hhox2uZqMt3ZG5E"
+    }
+  ],
+  "validation": {
+    "version": "2.2.6",
+    "passed": 48,
+    "total": 48
+  },
+  "runtime": {
+    "passed": 65,
+    "total": 65,
+    "method": "Xano tenant tool-debug API with actual synthetic user authentication tokens and MCP toolset binding",
+    "tests": [
+      {
+        "label": "owned booking",
+        "tool": "zippy_get_booking",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "owned booking via quote UUID",
+        "tool": "zippy_get_booking",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "quote pair mismatch",
+        "tool": "zippy_get_booking",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "missing booking identifier",
+        "tool": "zippy_get_booking",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "valid stored order",
+        "tool": "zippy_validate_order",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "invalid order and active hold",
+        "tool": "zippy_validate_order",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "eligible fleet candidate",
+        "tool": "zippy_check_vehicle_eligibility",
+        "actor": "operator",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "non-binding assignment proposal",
+        "tool": "zippy_propose_assignment",
+        "actor": "operator",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "capacity compliance and reservation conflicts",
+        "tool": "zippy_check_vehicle_eligibility",
+        "actor": "operator",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "cross-carrier driver assignment rejected",
+        "tool": "zippy_propose_assignment",
+        "actor": "operator",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "complete POD evidence",
+        "tool": "zippy_review_pod",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "invalid POD relationships and missing evidence",
+        "tool": "zippy_review_pod",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "payment minor-unit summary",
+        "tool": "zippy_get_payment_summary",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "bounded refund prescreen",
+        "tool": "zippy_prescreen_refund",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "refund exceeds unclaimed captured amount",
+        "tool": "zippy_prescreen_refund",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "uncaptured payment refund rejected",
+        "tool": "zippy_prescreen_refund",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "refund reason inconsistent with booking",
+        "tool": "zippy_prescreen_refund",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "ok",
+        "passed": true
+      },
+      {
+        "label": "negative refund input",
+        "tool": "zippy_prescreen_refund",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "unsupported currency input",
+        "tool": "zippy_prescreen_refund",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "corrupt payment ownership",
+        "tool": "zippy_get_payment_summary",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "corrupt refund payment ownership",
+        "tool": "zippy_prescreen_refund",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "anonymous zippy_get_booking",
+        "tool": "zippy_get_booking",
+        "actor": "anonymous",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "tampered token zippy_get_booking",
+        "tool": "zippy_get_booking",
+        "actor": "tampered",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "suspended account zippy_get_booking",
+        "tool": "zippy_get_booking",
+        "actor": "suspended",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "anonymous zippy_validate_order",
+        "tool": "zippy_validate_order",
+        "actor": "anonymous",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "tampered token zippy_validate_order",
+        "tool": "zippy_validate_order",
+        "actor": "tampered",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "suspended account zippy_validate_order",
+        "tool": "zippy_validate_order",
+        "actor": "suspended",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "anonymous zippy_check_vehicle_eligibility",
+        "tool": "zippy_check_vehicle_eligibility",
+        "actor": "anonymous",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "tampered token zippy_check_vehicle_eligibility",
+        "tool": "zippy_check_vehicle_eligibility",
+        "actor": "tampered",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "suspended account zippy_check_vehicle_eligibility",
+        "tool": "zippy_check_vehicle_eligibility",
+        "actor": "suspended",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "anonymous zippy_propose_assignment",
+        "tool": "zippy_propose_assignment",
+        "actor": "anonymous",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "tampered token zippy_propose_assignment",
+        "tool": "zippy_propose_assignment",
+        "actor": "tampered",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "suspended account zippy_propose_assignment",
+        "tool": "zippy_propose_assignment",
+        "actor": "suspended",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "anonymous zippy_review_pod",
+        "tool": "zippy_review_pod",
+        "actor": "anonymous",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "tampered token zippy_review_pod",
+        "tool": "zippy_review_pod",
+        "actor": "tampered",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "suspended account zippy_review_pod",
+        "tool": "zippy_review_pod",
+        "actor": "suspended",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "anonymous zippy_get_payment_summary",
+        "tool": "zippy_get_payment_summary",
+        "actor": "anonymous",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "tampered token zippy_get_payment_summary",
+        "tool": "zippy_get_payment_summary",
+        "actor": "tampered",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "suspended account zippy_get_payment_summary",
+        "tool": "zippy_get_payment_summary",
+        "actor": "suspended",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "anonymous zippy_prescreen_refund",
+        "tool": "zippy_prescreen_refund",
+        "actor": "anonymous",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "tampered token zippy_prescreen_refund",
+        "tool": "zippy_prescreen_refund",
+        "actor": "tampered",
+        "http_status": 401,
+        "passed": true
+      },
+      {
+        "label": "suspended account zippy_prescreen_refund",
+        "tool": "zippy_prescreen_refund",
+        "actor": "suspended",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "cross-customer ownership zippy_get_booking",
+        "tool": "zippy_get_booking",
+        "actor": "bob",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "driver role zippy_get_booking",
+        "tool": "zippy_get_booking",
+        "actor": "driver",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "cross-customer ownership zippy_validate_order",
+        "tool": "zippy_validate_order",
+        "actor": "bob",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "driver role zippy_validate_order",
+        "tool": "zippy_validate_order",
+        "actor": "driver",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "cross-customer ownership zippy_review_pod",
+        "tool": "zippy_review_pod",
+        "actor": "bob",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "driver role zippy_review_pod",
+        "tool": "zippy_review_pod",
+        "actor": "driver",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "cross-customer ownership zippy_get_payment_summary",
+        "tool": "zippy_get_payment_summary",
+        "actor": "bob",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "driver role zippy_get_payment_summary",
+        "tool": "zippy_get_payment_summary",
+        "actor": "driver",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "cross-customer ownership zippy_prescreen_refund",
+        "tool": "zippy_prescreen_refund",
+        "actor": "bob",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "driver role zippy_prescreen_refund",
+        "tool": "zippy_prescreen_refund",
+        "actor": "driver",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "customer cannot dispatch zippy_check_vehicle_eligibility",
+        "tool": "zippy_check_vehicle_eligibility",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "vendor cannot inspect unassigned customer freight zippy_check_vehicle_eligibility",
+        "tool": "zippy_check_vehicle_eligibility",
+        "actor": "vendor",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "customer cannot dispatch zippy_propose_assignment",
+        "tool": "zippy_propose_assignment",
+        "actor": "alice",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "vendor cannot inspect unassigned customer freight zippy_propose_assignment",
+        "tool": "zippy_propose_assignment",
+        "actor": "vendor",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "member lacks privileged role zippy_get_payment_summary",
+        "tool": "zippy_get_payment_summary",
+        "actor": "member",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "member lacks privileged role zippy_prescreen_refund",
+        "tool": "zippy_prescreen_refund",
+        "actor": "member",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "member lacks privileged role zippy_review_pod",
+        "tool": "zippy_review_pod",
+        "actor": "member",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "inactive membership",
+        "tool": "zippy_get_booking",
+        "actor": "inactive_member",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "pending verification account",
+        "tool": "zippy_get_booking",
+        "actor": "unverified",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "forged role input does not elevate member",
+        "tool": "zippy_get_payment_summary",
+        "actor": "member",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "operator does not bypass customer read contract",
+        "tool": "zippy_get_booking",
+        "actor": "operator",
+        "http_status": 200,
+        "execution_status": "exception",
+        "passed": true
+      },
+      {
+        "label": "all 34 domain tables unchanged by tool calls",
+        "passed": true
+      },
+      {
+        "label": "no external-message or approval outbox records",
+        "passed": true
+      }
+    ]
+  },
+  "domain_tables_unchanged": true,
+  "table_count": 34,
+  "source_preservation": [
+    {
+      "kind": "drafts",
+      "unchanged": true,
+      "files": 87,
+      "sha256": "bda50c22ecc75002d329f230140cecc2ccdb2042557d4223d9859f0bff62530c"
+    },
+    {
+      "kind": "published",
+      "unchanged": true,
+      "files": 87,
+      "sha256": "7c68d83352ea8d6f7b34c24e690bccd8e4d7915c658aa55c12da8f78b6c0e81a"
+    }
+  ],
+  "mcp_transport": {
+    "verified": false,
+    "attempt_status": 404
+  },
+  "candidate_sha256": [
+    {
+      "file": "ai/mcp_server/zippy_agent_tools_review.xs",
+      "sha256": "98c771125e6d9a6fcd2b46e294c4d24b35aa1f33d748f7f7e228e4b90163e8ab"
+    },
+    {
+      "file": "ai/tool/zippy_check_vehicle_eligibility.xs",
+      "sha256": "180502d1e4efc2468e40070f49a3741d58009accca4482ea14526c7017995d1c"
+    },
+    {
+      "file": "ai/tool/zippy_get_booking.xs",
+      "sha256": "6b6467ea73deb0f0c26af2842a85ebb288366ff48eabd262491374cc07139adc"
+    },
+    {
+      "file": "ai/tool/zippy_get_payment_summary.xs",
+      "sha256": "44d601d7faa0dab66c8832b66e4505ff34ed8fbbbf86afea051c1a34e0548163"
+    },
+    {
+      "file": "ai/tool/zippy_prescreen_refund.xs",
+      "sha256": "b523d34b8be6881b41b873db194782e4f67d4b0569f971032fdca608f9270ad4"
+    },
+    {
+      "file": "ai/tool/zippy_propose_assignment.xs",
+      "sha256": "e79f397dff939c1605e62436a3ad64bdb9abf00a9dd1a0e05f13315c21e8846e"
+    },
+    {
+      "file": "ai/tool/zippy_review_pod.xs",
+      "sha256": "cc4aa9771779d4e713fbc8e599ab74e36f0be16fb944e0ec43320b7e381e61e9"
+    },
+    {
+      "file": "ai/tool/zippy_validate_order.xs",
+      "sha256": "c468cb33fe78a7c03b85839a3811b78d85c2f516d1b4ce99440a687fce5b754a"
+    },
+    {
+      "file": "api/review_auth/login_POST.xs",
+      "sha256": "0a434d5f3a4f91b6708eb4852583db6bebaac9b361fbe0a14d9f2ff7ab9240bd"
+    },
+    {
+      "file": "api/review_auth/review_auth.xs",
+      "sha256": "00051559caf0a31fe3e7ab53feb4f3b9d0513d83b32705b04ab099f9a159d14f"
+    },
+    {
+      "file": "function/security/authorize_resource.xs",
+      "sha256": "6036cb130fd6af8d845a5f2ac22400bf809cc992ecfcbd4ad7a9fff6a5c7a33b"
+    },
+    {
+      "file": "function/security/resolve_context.xs",
+      "sha256": "9ff084010788012fced416399a1b429a11d0a842a58df454c4e09c31e79443b4"
+    },
+    {
+      "file": "function/zippy_agent/order_snapshot.xs",
+      "sha256": "0337eba1db10563661d7fcdd8cdb651ef363e8bb989e3ab9bbafbe2d694022a1"
+    },
+    {
+      "file": "function/zippy_agent/vehicle_snapshot.xs",
+      "sha256": "acbca85bf52f0d7891ae2eaea9d1c21f1a6e5aaae5a58d050470ea8372be0e11"
+    },
+    {
+      "file": "table/active_assignment_reservations.xs",
+      "sha256": "c0ec7ed74cc7fbd17ab498d8531f19781a37cfd3a2f044da8c9195994d04371c"
+    },
+    {
+      "file": "table/agent_decision.xs",
+      "sha256": "3ebc4a2f2691fbe70a5716a982017b0459dede137d4df2a8723a1d0849ba87bb"
+    },
+    {
+      "file": "table/agent_execution.xs",
+      "sha256": "d54235f0e0ca3a9eff8eed9e2d7d10aae39c95cbd66dd00ad6ff303a1f9daa9f"
+    },
+    {
+      "file": "table/approval_request.xs",
+      "sha256": "5eaad9c6f5cefe0880aed394f98bf65b797fe2b15ef2131d507c65482e04a8c7"
+    },
+    {
+      "file": "table/audit_log.xs",
+      "sha256": "a1b33133ca8fcbd302558004d698f2390d4398d6c063cb59baf3eab76ca8b736"
+    },
+    {
+      "file": "table/booking_quote.xs",
+      "sha256": "6a83e33dace5792cc6a9bd7160ed4a124ddf28fd7aad7582df9d202600cc05f7"
+    },
+    {
+      "file": "table/cargo_detail.xs",
+      "sha256": "4b9a9c2a4fd7d7310d1f46b8b46cd85196d1d764dbc257452d227cfb5c18ebe7"
+    },
+    {
+      "file": "table/compliance_documents.xs",
+      "sha256": "95d211d5193efa60ea87064660352d587cc1f73403016f04cf51cfea11d40218"
+    },
+    {
+      "file": "table/customer_booking.xs",
+      "sha256": "28460bcee5ab57bbe6818630e7a6c0589180014360fb3e11a281d51848d79daf"
+    },
+    {
+      "file": "table/driver_profile.xs",
+      "sha256": "da36ebf979aa5f460b5289c7f9364208c6e786a742b5bc85aaee94d1bfc557ca"
+    },
+    {
+      "file": "table/durable_tasks.xs",
+      "sha256": "1e62b5d49f5e33fbd57600fe6c542c37fa3766b67746d94d325ffa8aca9d2656"
+    },
+    {
+      "file": "table/event_log.xs",
+      "sha256": "e063661ec70b8912626c7ca360c7caaaa8e4f2ba30a2640b7913e5c1d70d29f4"
+    },
+    {
+      "file": "table/event_outbox.xs",
+      "sha256": "9c526147a34316338b43b45b75cb395ea0f0bc769e99583b27345d8720fca1fa"
+    },
+    {
+      "file": "table/idempotency_key.xs",
+      "sha256": "0b00ed2ceb19edf60f2b41fcb636c87403f652ceb048ae2c8686ef93e92dfc37"
+    },
+    {
+      "file": "table/incident_dispute.xs",
+      "sha256": "102718e28765e551a41b532c8d352e71fa5c558590a8b8ec674e348752688f26"
+    },
+    {
+      "file": "table/order_holds.xs",
+      "sha256": "3154b01d720ce5d56562658eca79c5e4e45f8f4c1a9b7cd53696250015e5c381"
+    },
+    {
+      "file": "table/organization.xs",
+      "sha256": "f1c48e82bba001c9db26fe11db0766afcaf491fd7c39e1990763b5cef4283c33"
+    },
+    {
+      "file": "table/organization_member.xs",
+      "sha256": "a39aaec69b9346b94eeb90b8dd466de673c87b110dc3e003c46838cedbcca03b"
+    },
+    {
+      "file": "table/otp_challenges.xs",
+      "sha256": "8c7c6e58eaa19196cefaebc1ad6c6dfe52f488d3c0777a89bccaf23bbf3ceb83"
+    },
+    {
+      "file": "table/payment_transaction.xs",
+      "sha256": "d3765ccabe37314693e173c40b49948b321d94df44a912cffbe36c85b8c910bf"
+    },
+    {
+      "file": "table/pricing_policies.xs",
+      "sha256": "e49fe740673ecbc4832a90b73da454237862e7df2e8d21769b1f8ed8f69e813c"
+    },
+    {
+      "file": "table/proof_of_delivery.xs",
+      "sha256": "b74bc56ea08e7f93a1097791fd0698f12f3b671cef2b63941ecae29349399539"
+    },
+    {
+      "file": "table/refund_request.xs",
+      "sha256": "5b3eb0920f84520d32769f9b09f7c5b84aa0f4e89494cdd4a369866937d256bb"
+    },
+    {
+      "file": "table/route_cache.xs",
+      "sha256": "33fb9647e4c9662364a069f8f7bebcf6cfb005e039b79e1e8be0bc38849493f2"
+    },
+    {
+      "file": "table/settlement.xs",
+      "sha256": "ec6268259057b162bd22fe044a1a6d427365056f8c66adc32b50465415db50e5"
+    },
+    {
+      "file": "table/table_index.xs",
+      "sha256": "5df4a0268d9a0f1aa4901ed129a8843f87aaf9d8b7ae0d66395149b6c6bb2310"
+    },
+    {
+      "file": "table/topay_consent_attempts.xs",
+      "sha256": "f1921c590db0a6561057b332e4a3ba70efd03b27d424a59abe2fff531b07c983"
+    },
+    {
+      "file": "table/tracking_event.xs",
+      "sha256": "5f223a46f56f9209c8c454ef595364da13e60f1bd1526d0e38cb1a7f02d6abff"
+    },
+    {
+      "file": "table/trip.xs",
+      "sha256": "680044d5d3d7ddbfbd8f49daf159b403f5a3020a2d90522dc66bc57a4debe95e"
+    },
+    {
+      "file": "table/trip_stop.xs",
+      "sha256": "9440af2c8f05c1e97886b1820fe27374b185d4651ba47a7021f6f320954fac5a"
+    },
+    {
+      "file": "table/user.xs",
+      "sha256": "506037cf4dc4ab9d0e906e13507ae82ead232ec677263129f95dbf87fd87c858"
+    },
+    {
+      "file": "table/vehicle.xs",
+      "sha256": "1dca5c4cbb343408aa462f985bdc3d76147cd7c929e46729d0a03e7863218d8f"
+    },
+    {
+      "file": "table/vehicle_availability.xs",
+      "sha256": "3891cf2aac1bd351662bac020b88217891cde2e5014787a61f8c60fdf6fae594"
+    },
+    {
+      "file": "table/zippy_db_crosswalk_49_to_xano_33.xs",
+      "sha256": "b8acf1a35197f933d4f8c20cda919344b6c49943d9c1bff25fa1f6036592b892"
+    }
+  ],
+  "limitations": [
+    "Currency minor-unit calculations are INR-only.",
+    "ToPay and credit readiness require manual review.",
+    "Temperature-control and hazardous-material capabilities require manual verification because the existing vehicle schema lacks the necessary capability evidence.",
+    "POD review checks evidence presence and relationships, not image authenticity.",
+    "The live schema has eight lowercase booking states; workspace knowledge describes a fifteen-state lifecycle. Existing schema was preserved."
+  ]
+}
