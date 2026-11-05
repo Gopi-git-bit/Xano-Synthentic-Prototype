@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createSandboxGateway, sandboxRedisCredentials } from './sandbox-gateway.mjs';
 import { harness, registration, draft } from './test-fixtures/sandbox.mjs';
+import { sandboxTarget } from './sandbox-target.mjs';
 
 test('mocked gateway registers, authenticates, scopes membership, drafts, reads and logs out without browser tokens', async () => {
   const h = harness(), b = h.browser(), login = await b.signIn();
@@ -100,8 +101,8 @@ test('production, wrong branch, missing configuration and expired tenant fail cl
   for (const changes of [{ VERCEL_ENV: 'production' }, { VERCEL_GIT_COMMIT_REF: 'main' }, { ZIPPY_SANDBOX_GATEWAY_RELEASE: '' }, { ZIPPY_SANDBOX_SESSION_KEY: '' }, { ZIPPY_SANDBOX_WEB_ORIGIN: 'http://localhost' }]) {
     const h = harness(changes); assert.equal((await h.browser().call('csrf')).status, 503); assert.equal(h.calls.length, 0);
   }
-  const h = harness(); h.advance(86400000); assert.equal((await h.browser().call('csrf')).status, 503);
-  const handler = createSandboxGateway({ env: harness().env, fetchImpl: async () => { throw Error('Unexpected fetch'); } });
+  const h = harness(); h.advance(sandboxTarget.expiresAt - h.now() + 1); assert.equal((await h.browser().call('csrf')).status, 503);
+  const handler = createSandboxGateway({ env: harness().env, now: () => sandboxTarget.expiresAt + 1, fetchImpl: async () => { throw Error('Unexpected fetch'); } });
   assert.equal((await handler({ url: '/api/sandbox/csrf' })).status, 503);
 });
 
@@ -127,4 +128,3 @@ test('Vercel Marketplace Upstash uses paired branch-scoped REST credentials', ()
     KV_REST_API_URL: 'https://marketplace.upstash.io', KV_REST_API_TOKEN: 'marketplace-token',
   }), { url: 'https://explicit.upstash.io', token: undefined });
 });
-

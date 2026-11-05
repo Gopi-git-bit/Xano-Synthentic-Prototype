@@ -1,7 +1,8 @@
 import { defineConfig } from '@playwright/test';
+import { requireAuthorizedPreviewOrigin } from './sandbox-e2e/protected-preview-route';
 
 // Explicit manual protected-preview run. No credentials or synthetic writes in ordinary CI.
-const origin = process.env.ZIPPY_SANDBOX_BROWSER_ORIGIN;
+const origin = requireAuthorizedPreviewOrigin(process.env.ZIPPY_SANDBOX_BROWSER_ORIGIN);
 if (process.env.CI || process.env.ZIPPY_SANDBOX_BROWSER_APPROVAL !== 'protected-synthetic-browser-only'
   || !origin || !/^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(origin)
   || !process.env.ZIPPY_PREVIEW_AUTOMATION_SECRET

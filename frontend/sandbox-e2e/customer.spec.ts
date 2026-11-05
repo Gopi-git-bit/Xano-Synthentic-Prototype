@@ -5,6 +5,7 @@ import path from 'node:path';
 import AxeBuilder from '@axe-core/playwright';
 import { createSandboxStore } from '../server/sandbox-store.mjs';
 import { sandboxTarget } from '../server/sandbox-target.mjs';
+import { installProtectedPreviewRouting } from './protected-preview-route';
 
 test('actual protected browser customer flow and security acceptance', async ({ browser }) => {
   const origin = process.env.ZIPPY_SANDBOX_BROWSER_ORIGIN!;
@@ -23,13 +24,8 @@ test('actual protected browser customer flow and security acceptance', async ({ 
   };
   async function context() {
     const c = await browser.newContext({ baseURL: origin, viewport: { width: 1440, height: 1000 }, serviceWorkers: 'block' }); contexts.push(c);
-    // Continue genuine frontend requests; only add authorized protection access on this exact origin.
-    // No responses are fulfilled or mocked. Direct Xano/provider/browser egress is forbidden.
-    await c.route('**/*', async route => {
-      const url = new URL(route.request().url());
-      if (url.origin !== origin) { logs.push('FORBIDDEN_BROWSER_EGRESS'); await route.abort(); return; }
-      await route.continue({ headers: { ...route.request().headers(), 'x-vercel-protection-bypass': automation } });
-    });
+    // Forward genuine upstream responses without following redirects or synthesizing results.
+    await installProtectedPreviewRouting(c, { origin, automation, onBlocked: reason => logs.push(reason) });
     const page = await c.newPage();
     page.on('console', event => logs.push(event.text()));
     page.on('pageerror', error => logs.push(error.message));
@@ -156,6 +152,8 @@ test('actual protected browser customer flow and security acceptance', async ({ 
         expect(secrets.every(s => !c.page.url().includes(s))).toBe(true);
       }
       expect(logs.includes('FORBIDDEN_BROWSER_EGRESS')).toBe(false);
+      expect(logs.includes('FORBIDDEN_BROWSER_REDIRECT')).toBe(false);
+      expect(logs.includes('PROTECTED_REQUEST_FAILED')).toBe(false);
       expect(secrets.every(s => !JSON.stringify(logs).includes(s) && !JSON.stringify(bodies).includes(s))).toBe(true);
       checks.push('secret_exclusion');
     });
@@ -163,7 +161,7 @@ test('actual protected browser customer flow and security acceptance', async ({ 
     await Promise.all(pending);
     fs.writeFileSync(path.join(evidenceDir, 'browser-http.json'), JSON.stringify({ at: new Date().toISOString(), origin, frontendCommit: process.env.ZIPPY_SANDBOX_EXPECTED_COMMIT,
       backendCommit: sandboxTarget.backendCommit, tenant: sandboxTarget.tenant, tenantId: sandboxTarget.tenantId, checks, receipts,
-      backend_responses_simulated: false, scope: 'Actual remote browser requests; protection header injected only on exact preview origin; no response fulfillment' }, null, 2) + '\n');
+      backend_responses_simulated: false, scope: 'Actual upstream requests forwarded to browser unchanged; protection header sent only to exact preview origin; all redirects blocked before delivery' }, null, 2) + '\n');
     await Promise.all(contexts.map(c => c.close()));
   }
 });

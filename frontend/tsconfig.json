@@ -12,5 +12,5 @@
     "allowImportingTsExtensions": true,
     "types": ["vite/client", "node"]
   },
-  "include": ["src", "vite.config.ts", "playwright.config.ts", "playwright.sandbox.config.ts", "tests", "sandbox-e2e"]
+  "include": ["src", "vite.config.ts", "playwright.config.ts", "playwright.sandbox.config.ts", "playwright.security.config.ts", "tests", "sandbox-e2e", "sandbox-security"]
 }
