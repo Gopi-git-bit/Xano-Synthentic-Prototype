@@ -1,0 +1,45 @@
+{
+  "name": "zippy-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "lint": "eslint src tests sandbox-e2e sandbox-security server api scripts vite.config.ts playwright.config.ts playwright.sandbox.config.ts playwright.security.config.ts",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "playwright test",
+    "test:server": "node --test server/*.test.mjs",
+    "test:sandbox:browser": "playwright test --config playwright.sandbox.config.ts",
+    "test:sandbox:security": "playwright test --config playwright.security.config.ts",
+    "scan:sandbox:browser": "node scripts/scan-sandbox-browser.mjs",
+    "verify:crm": "node --env-file-if-exists=.env.local scripts/verify-crm.mjs",
+    "api:dev": "node --env-file-if-exists=.env.local server/dev.mjs",
+    "verify:sandbox-customer": "node scripts/run-sandbox-customer-flow.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "lucide-react": "^1.62.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.5"
+  }
+}

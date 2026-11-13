@@ -1,0 +1,86 @@
+{
+  "status": "BLOCKED",
+  "scope": "PREPARATION_ONLY",
+  "mutation_routes": [
+    {
+      "method": "POST",
+      "path": "bookings"
+    },
+    {
+      "method": "PATCH",
+      "path": "bookings/{booking_id}"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/cancel"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/confirm"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/consent-attempts"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/holds"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/holds/{hold_id}/release"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/payment-selection"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/quotes"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/quotes/{quote_id}/accept"
+    },
+    {
+      "method": "POST",
+      "path": "bookings/{booking_id}/resume"
+    },
+    {
+      "method": "POST",
+      "path": "consent-attempts/{attempt_id}/decision"
+    }
+  ],
+  "stageA": {
+    "modes": [
+      "anonymous",
+      "malformed",
+      "A",
+      "driver"
+    ],
+    "variants": [
+      "own",
+      "foreign",
+      "malformed_path"
+    ],
+    "requests": 144,
+    "no_effects": "Full 33-table row/count hashes and provider/agent counters before and after EVERY request, including errors"
+  },
+  "stageB": [
+    "approved login + audit",
+    "pending/wrong/absent login",
+    "current auth/me",
+    "own A/B list/detail",
+    "foreign/missing equality",
+    "status/pagination",
+    "driver/operator denial",
+    "suspend saved token",
+    "revoke membership saved token",
+    "deactivate organization saved token"
+  ],
+  "stageC": {
+    "status": "BLOCKED",
+    "cases": 16
+  },
+  "native_adapter": "NOT_IMPLEMENTED"
+}

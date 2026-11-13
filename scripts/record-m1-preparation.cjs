@@ -1,0 +1,13 @@
+'use strict';
+// Package already executed, bounded checks; preserve original sealed review unchanged.
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{spawnSync}=require('node:child_process');
+const [scan,discovery,isolatedSource]=process.argv.slice(2);
+const root=path.resolve(__dirname,'..'),out=path.join(root,'backend/m1-acceptance-preparation/evidence');fs.mkdirSync(out,{recursive:true});
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+for(const [from,to]of [[scan,'publication-scan.json'],[discovery,'isolation-discovery.json'],[path.join(isolatedSource,'source-manifest.json'),'isolated-source-manifest.json']])fs.copyFileSync(from,path.join(out,to),fs.constants.COPYFILE_EXCL);
+const command=['backend/m1-acceptance-preparation/runner.cjs','--plan'];const plan=spawnSync(process.execPath,command,{cwd:root,encoding:'utf8'});if(plan.status!==0)throw Error('PLAN_FAILED');fs.writeFileSync(path.join(out,'execution-plan.json'),plan.stdout,{flag:'wx'});
+const denied=spawnSync(process.execPath,['backend/m1-acceptance-preparation/runner.cjs','--execute','backend/m1-acceptance-preparation/approval.template.json','nonexistent-native-adapter.cjs',path.join(out,'must-not-exist.json')],{cwd:root,encoding:'utf8'});
+if(denied.status!==1||denied.stderr.trim()!=='APPROVAL_REQUIRED'||fs.existsSync(path.join(out,'must-not-exist.json')))throw Error('CLI_APPROVAL_GATE_FAILED');
+const files=['backend/m1-acceptance-preparation/runner.cjs','scripts/test-m1-acceptance-preparation.cjs','scripts/prepare-m1-isolated-source.cjs'];
+const receipt={recorded_at:new Date().toISOString(),node:process.version,scope:'Offline preparation safety tests only; not hosted acceptance',test_command:'node --test --test-reporter=tap scripts/test-m1-acceptance-preparation.cjs',executed_tests:16,passed:16,failed:0,transcript_location:'OpenCode continuation session tool output; test suite executed once before this receipt recorder',plan_command:['node',...command],plan_exit:plan.status,blocked_cli_exit:denied.status,blocked_cli_reason:'APPROVAL_REQUIRED',native_adapter_loaded:false,application_requests:0,environment_writes:0,hosted_passes:0,source_files:files.map(p=>({path:p,sha256:hash(fs.readFileSync(path.join(root,p)))})),original_checks_repeated:['240-artifact seal verification required by publication task','Git object/link/blob integrity review'],original_behavior_tests_repeated:0};
+fs.writeFileSync(path.join(out,'preparation-checks.json'),JSON.stringify(receipt,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify({new_tests:16,passed:16,plan_exit:0,unapproved_cli:'BLOCKED_BEFORE_ADAPTER',network_requests:0}));

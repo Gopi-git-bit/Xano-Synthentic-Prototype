@@ -1,0 +1,698 @@
+{
+  "schema_version": 1,
+  "prepared_at": "2026-10-23T17:23:39.984656+00:00",
+  "scope": "Concrete case/fixture/asset execution plan; not an implemented full-suite runner and not execution evidence",
+  "existing_cases_file": "backend/milestone1/cases.json",
+  "preserved_occupied_assets": {
+    "a": [
+      0,
+      1
+    ]
+  },
+  "asset_allocation_is_tentative_until_fresh_occupancy_reads": true,
+  "run_order": [
+    "19 identity/eligibility negatives",
+    "positive-a",
+    "positive-b",
+    "same-key-race",
+    "changed-payload",
+    "expired-key",
+    "same-vehicle-race",
+    "same-driver-race",
+    "four rollback workflows sequentially",
+    "discarded-result"
+  ],
+  "limits": {
+    "max_concurrency": 4,
+    "no_automatic_write_retries": true,
+    "no_existing_fixture_updates_or_releases": true,
+    "no_cleanup_deletes": true
+  },
+  "implementation_dependency": "Full executor and negative fixture generation must be completed against the approved uniqueness design and verified access/inventory. Current native adapter covers bounded races only.",
+  "cases": [
+    {
+      "id": "identity-missing_account",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New synthetic user with no accounts.external_subject binding.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-duplicate_account",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "One new user subject bound to two new accounts across fixture platforms A and B; do not violate per-platform uniqueness.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-blocked_account",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New account status blocked; otherwise valid run-owned bindings.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-suspended_account",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New account status suspended; otherwise valid run-owned bindings.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-no_membership",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New active account with no operational memberships.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-expired_membership",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New account with both customer/admin memberships expired before native now.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-future_membership",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New account with both memberships beginning after native now.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-starter_admin_only",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New starter user role admin without operational customer/admin membership authorization.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-missing_customer_profile",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New dual-role active account with no customer profile.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-duplicate_customer_profile",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "Attempt a second profile for the same platform/account. Preserve the unique index. Report database-layer fixture rejection separately; do not claim the identity ambiguity branch ran.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-foreign_tenant_claim",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "Valid tenant-A actor with expected_platform_id set to tenant B.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-foreign_resource",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "Valid tenant-A actor with tenant-B vehicle/driver IDs.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-foreign_owner",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New tenant-A actor with dual roles; only a profile owned by another account exists.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-overweight",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "Use a valid vehicle model and cargo_weight_kg equal to its freshly read capacity_kg plus one; retain the actual native rejection provenance.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-wrong_body",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "Use a valid alternative body type (open for a closed model), keeping other eligibility inputs valid.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-unverified_document",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New copied vehicle/driver/provider fixture with one required insurance document unverified; existing documents untouched.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-expired_document",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New copied eligible fixture with a required insurance document valid_until before native today.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-inactive_vendor",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New copied eligible fixture with its vendor account blocked; existing vendor untouched.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "identity-inactive_driver",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-04"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Slice1/create_and_assign with additive namespaced fixture, except duplicate-profile insertion qualification",
+      "fixture_condition": "New copied eligible fixture with its driver account blocked; existing driver untouched.",
+      "expected": "Actual native rejection; all 15 business tables unchanged. Capture exact native code/message and distinguish fixture failure from command rejection."
+    },
+    {
+      "id": "positive-a",
+      "status": "NOT_RUN",
+      "assertion": "complete",
+      "acceptance_criteria": [
+        "M1-AC-04",
+        "M1-AC-05"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "asset": 2
+      },
+      "operation": "Bounded shared-state function/run",
+      "expected": "Trusted positive fixture a"
+    },
+    {
+      "id": "positive-b",
+      "status": "NOT_RUN",
+      "assertion": "complete",
+      "acceptance_criteria": [
+        "M1-AC-04",
+        "M1-AC-05"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "b",
+        "asset": 0
+      },
+      "operation": "Bounded shared-state function/run",
+      "expected": "Trusted positive fixture b"
+    },
+    {
+      "id": "same-key-race",
+      "status": "NOT_RUN",
+      "assertion": "race",
+      "acceptance_criteria": [
+        "M1-AC-06"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "asset": 3,
+        "requests": 4
+      },
+      "operation": "Bounded shared-state function/run",
+      "expected": "One create and three stable replays",
+      "required_race_proof": [
+        "overlapping requests on shared persisted fixtures",
+        "at least two database sessions",
+        "concurrency at most four",
+        "one winner and required busy/replay responses",
+        "independent driver selection where specified",
+        "no losing/half-claim rows",
+        "before/after live hash equality"
+      ]
+    },
+    {
+      "id": "changed-payload",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-06"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "Replay the same-key-race winner key with a valid changed cargo description",
+      "depends_on": [
+        "same-key-race"
+      ],
+      "expected": "IDEMPOTENCY_CONFLICT, HTTP-style status 409, unchanged 15 tables and reservations."
+    },
+    {
+      "id": "expired-key",
+      "status": "NOT_RUN",
+      "assertion": "rejected",
+      "acceptance_criteria": [
+        "M1-AC-06"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "operation": "After retaining positive-a result, update only that run-owned idempotency row expires_at to a past timestamp and replay original request",
+      "depends_on": [
+        "positive-a"
+      ],
+      "expected": "Original unavailable/expired native rejection; no new booking or additional rows. Capture the intentional expiry update separately from the no-residue comparison."
+    },
+    {
+      "id": "same-vehicle-race",
+      "status": "NOT_RUN",
+      "assertion": "race",
+      "acceptance_criteria": [
+        "M1-AC-07"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "asset": 4,
+        "requests": 4
+      },
+      "operation": "Bounded shared-state function/run",
+      "expected": "One winner and three busy; no loser records",
+      "required_race_proof": [
+        "overlapping requests on shared persisted fixtures",
+        "at least two database sessions",
+        "concurrency at most four",
+        "one winner and required busy/replay responses",
+        "independent driver selection where specified",
+        "no losing/half-claim rows",
+        "before/after live hash equality"
+      ]
+    },
+    {
+      "id": "same-driver-race",
+      "status": "NOT_RUN",
+      "assertion": "race",
+      "acceptance_criteria": [
+        "M1-AC-07"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "assets": [
+          5,
+          10
+        ],
+        "driver_asset": 5,
+        "requests": 2
+      },
+      "operation": "Bounded shared-state function/run",
+      "expected": "Two distinct vehicles, one driver, one winner",
+      "required_race_proof": [
+        "overlapping requests on shared persisted fixtures",
+        "at least two database sessions",
+        "concurrency at most four",
+        "one winner and required busy/replay responses",
+        "independent driver selection where specified",
+        "no losing/half-claim rows",
+        "before/after live hash equality"
+      ]
+    },
+    {
+      "id": "database-after_order",
+      "status": "NOT_RUN",
+      "assertion": "fault",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "asset": 6,
+        "workflow": "Milestone1 database after_order"
+      },
+      "operation": "Native workflow test",
+      "expected": "Fault provenance, all-table rollback, create/replay recovery",
+      "required_fault_proof": [
+        "expected injection stage reached",
+        "database division-by-zero or exact application throw provenance",
+        "all original 15 tables equal before/after",
+        "reservation content/counts equal before/after if approved",
+        "retry creates exactly one complete transaction",
+        "repeat returns stable order/trip/workflow/correlation IDs"
+      ]
+    },
+    {
+      "id": "database-after_assignment",
+      "status": "NOT_RUN",
+      "assertion": "fault",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "asset": 7,
+        "workflow": "Milestone1 database after_assignment"
+      },
+      "operation": "Native workflow test",
+      "expected": "Fault provenance, all-table rollback, create/replay recovery",
+      "required_fault_proof": [
+        "expected injection stage reached",
+        "database division-by-zero or exact application throw provenance",
+        "all original 15 tables equal before/after",
+        "reservation content/counts equal before/after if approved",
+        "retry creates exactly one complete transaction",
+        "repeat returns stable order/trip/workflow/correlation IDs"
+      ]
+    },
+    {
+      "id": "application-after_order",
+      "status": "NOT_RUN",
+      "assertion": "fault",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "asset": 8,
+        "workflow": "Milestone1 application after_order"
+      },
+      "operation": "Native workflow test",
+      "expected": "Fault provenance, all-table rollback, create/replay recovery",
+      "required_fault_proof": [
+        "expected injection stage reached",
+        "database division-by-zero or exact application throw provenance",
+        "all original 15 tables equal before/after",
+        "reservation content/counts equal before/after if approved",
+        "retry creates exactly one complete transaction",
+        "repeat returns stable order/trip/workflow/correlation IDs"
+      ]
+    },
+    {
+      "id": "application-after_assignment",
+      "status": "NOT_RUN",
+      "assertion": "fault",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "asset": 9,
+        "workflow": "Milestone1 application after_assignment"
+      },
+      "operation": "Native workflow test",
+      "expected": "Fault provenance, all-table rollback, create/replay recovery",
+      "required_fault_proof": [
+        "expected injection stage reached",
+        "database division-by-zero or exact application throw provenance",
+        "all original 15 tables equal before/after",
+        "reservation content/counts equal before/after if approved",
+        "retry creates exactly one complete transaction",
+        "repeat returns stable order/trip/workflow/correlation IDs"
+      ]
+    },
+    {
+      "id": "discarded-result",
+      "status": "NOT_RUN",
+      "assertion": "replay",
+      "acceptance_criteria": [
+        "M1-AC-08"
+      ],
+      "shared_prerequisites": [
+        "restricted_access_verified",
+        "supported_inventory_reconciliation",
+        "supported_unique_assignment_design",
+        "reviewed_import_and_source_readback"
+      ],
+      "before_after": "Original 15 write tables across both fixture tenants; additionally reservations if approved. Capture row identity/content evidence, not just aggregate counts.",
+      "allocation": {
+        "site": "a",
+        "asset": 11
+      },
+      "operation": "Bounded shared-state function/run",
+      "expected": "Inspect committed state then replay same result"
+    }
+  ]
+}

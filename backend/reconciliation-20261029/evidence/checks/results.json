@@ -1,0 +1,159 @@
+{
+  "node": "v24.22.1",
+  "platform": "win32",
+  "scope": "Offline only. Known-gap assertions deliberately fail; models and schema checks are not Xano passes.",
+  "results": [
+    {
+      "name": "mutation-refusal-green",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "--test",
+        "--test-reporter=tap",
+        "scripts/test-workspace3-mutation-refusal.cjs"
+      ],
+      "cwd": "C:\\Users\\ashok\\Documents\\GitHub\\zippy-backend-m1-review",
+      "start": "2026-10-29T08:39:27.792Z",
+      "finished_at": "2026-10-29T08:39:27.998Z",
+      "exit": 0,
+      "expected_exit": 0,
+      "expected_result": true,
+      "output_sha256": "9458aa258412a27da41c5f0207ed2e7ea145f543c83a17f34666919807eed74d",
+      "inputs": [
+        {
+          "file": "scripts/test-workspace3-mutation-refusal.cjs",
+          "sha256": "e67d927401b87f0cb2b14ce489667a4b4e9f3ac96e8ea62c0e12291139da2ed5"
+        }
+      ],
+      "summary": [
+        "# tests 13",
+        "# pass 13",
+        "# fail 0",
+        "# skipped 0"
+      ]
+    },
+    {
+      "name": "known-gaps-red",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/check-workspace3-known-gaps.cjs"
+      ],
+      "cwd": "C:\\Users\\ashok\\Documents\\GitHub\\zippy-backend-m1-review",
+      "start": "2026-10-29T08:39:28.000Z",
+      "finished_at": "2026-10-29T08:39:28.107Z",
+      "exit": 1,
+      "expected_exit": 1,
+      "expected_result": true,
+      "output_sha256": "8840b63f67b458ea90b152295933fbbc8079be242e5a594c9a1ab8d3af3fec8a",
+      "inputs": [
+        {
+          "file": "scripts/check-workspace3-known-gaps.cjs",
+          "sha256": "74e7df799b7c548cca7983a9056eec43ff4f287d89d79d0cd87d36559c03a189"
+        }
+      ],
+      "summary": []
+    },
+    {
+      "name": "frontend-contracts",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "--test",
+        "--test-reporter=tap",
+        "server/gateway.test.mjs",
+        "server/xano.test.mjs"
+      ],
+      "cwd": "C:\\Users\\ashok\\Documents\\GitHub\\zippy-frontend-polish\\frontend",
+      "start": "2026-10-29T08:39:28.108Z",
+      "finished_at": "2026-10-29T08:39:28.380Z",
+      "exit": 0,
+      "expected_exit": 0,
+      "expected_result": true,
+      "output_sha256": "bd923747302c8663c7f8602280e3d94adf6638443e8eaaeef0d3b8f1ab11c46a",
+      "inputs": [
+        {
+          "file": "server/gateway.test.mjs",
+          "sha256": "8c24635ed2741777e8528ab34269a6304c098b755027cdaccb46765d0a742a40"
+        },
+        {
+          "file": "server/xano.test.mjs",
+          "sha256": "bd8bf54c67ab3f961e807656cfdf169d5fc69508bb93ea0c04ceab35d7677ae4"
+        }
+      ],
+      "summary": [
+        "# tests 17",
+        "# pass 17",
+        "# fail 0",
+        "# skipped 0"
+      ]
+    },
+    {
+      "name": "five-agent-config",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/validate-five-agent-config.cjs"
+      ],
+      "cwd": "C:\\Users\\ashok\\Documents\\GitHub\\zippy-backend-m1-review",
+      "start": "2026-10-29T08:39:28.381Z",
+      "finished_at": "2026-10-29T08:39:28.473Z",
+      "exit": 1,
+      "expected_exit": 0,
+      "expected_result": false,
+      "output_sha256": "7595e299a1e6d79ca343dda0a3c76bcd5157981da1f44a6be30e50131e803317",
+      "inputs": [
+        {
+          "file": "scripts/validate-five-agent-config.cjs",
+          "sha256": "2f0202c52a472f363f11fc64cc19bd7ebf127677cd1b90bd4795b8e90f635f38"
+        }
+      ],
+      "summary": []
+    },
+    {
+      "name": "five-agent-schema",
+      "command": "python",
+      "args": [
+        "scripts/validate-five-agent-schema.py"
+      ],
+      "cwd": "C:\\Users\\ashok\\Documents\\GitHub\\zippy-backend-m1-review",
+      "start": "2026-10-29T08:39:28.474Z",
+      "finished_at": "2026-10-29T08:39:31.666Z",
+      "exit": 1,
+      "expected_exit": 0,
+      "expected_result": false,
+      "output_sha256": "a1dff626a6ad6c41dcbb481bf1171677528adce5d0f54e9ee0baa76db87053b6",
+      "inputs": [
+        {
+          "file": "scripts/validate-five-agent-schema.py",
+          "sha256": "583417a0e4ac654069af7dc4d5df4e1930bbb17062c5cc2638eb192843cab051"
+        }
+      ],
+      "summary": []
+    },
+    {
+      "name": "m1-execution-model",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "--test",
+        "--test-reporter=tap",
+        "scripts/test-m1-execution.cjs"
+      ],
+      "cwd": "C:\\Users\\ashok\\Documents\\GitHub\\zippy-backend-m1-review",
+      "start": "2026-10-29T08:39:31.666Z",
+      "finished_at": "2026-10-29T08:39:33.164Z",
+      "exit": 0,
+      "expected_exit": 0,
+      "expected_result": true,
+      "output_sha256": "c1b6707536dcf7165bdb610cecbdefc0edc5accc85cbef7dc14d1b28d0a891a1",
+      "inputs": [
+        {
+          "file": "scripts/test-m1-execution.cjs",
+          "sha256": "a13802d98acd884ec5d8c9c2ab18047031adc35dbc9424a629cd128490429208"
+        }
+      ],
+      "summary": [
+        "# tests 23",
+        "# pass 23",
+        "# fail 0",
+        "# skipped 0"
+      ]
+    }
+  ]
+}

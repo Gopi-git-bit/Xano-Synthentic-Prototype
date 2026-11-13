@@ -1,0 +1,27 @@
+{
+  "scope": "OFFLINE_ONLY",
+  "hosted_passes": 0,
+  "plan": {
+    "started_at": "2026-10-30T12:10:25.738Z",
+    "exit_code": 0,
+    "output": "{\n  \"status\": \"BLOCKED\",\n  \"scope\": \"PREPARATION_ONLY\",\n  \"mutation_routes\": [\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings\"\n    },\n    {\n      \"method\": \"PATCH\",\n      \"path\": \"bookings/{booking_id}\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/cancel\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/confirm\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/consent-attempts\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/holds\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/holds/{hold_id}/release\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/payment-selection\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/quotes\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/quotes/{quote_id}/accept\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"bookings/{booking_id}/resume\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"consent-attempts/{attempt_id}/decision\"\n    }\n  ],\n  \"stageA\": {\n    \"modes\": [\n      \"anonymous\",\n      \"malformed\",\n      \"A\",\n      \"driver\"\n    ],\n    \"variants\": [\n      \"own\",\n      \"foreign\",\n      \"malformed_path\"\n    ],\n    \"requests\": 144,\n    \"no_effects\": \"Full 33-table row/count hashes and provider/agent counters before and after EVERY request, including errors\"\n  },\n  \"stageB\": [\n    \"approved login + audit\",\n    \"pending/wrong/absent login\",\n    \"current auth/me\",\n    \"own A/B list/detail\",\n    \"foreign/missing equality\",\n    \"status/pagination\",\n    \"driver/operator denial\",\n    \"suspend saved token\",\n    \"revoke membership saved token\",\n    \"deactivate organization saved token\"\n  ],\n  \"stageC\": {\n    \"status\": \"BLOCKED\",\n    \"cases\": 16\n  },\n  \"native_adapter\": \"NOT_IMPLEMENTED\"\n}\n",
+    "output_sha256": "f1ff18874e43454704b9dfadce8b8fd847d07a9b91b449078886cf225e5c4ea4"
+  },
+  "template_rejection": {
+    "status": "VERIFIED",
+    "code": "APPROVAL_REQUIRED",
+    "adapter_accesses": 0
+  },
+  "additional_readiness_assertions": [
+    {
+      "assertion": "gate rejects credential with two hours remaining",
+      "status": "FAILED"
+    },
+    {
+      "assertion": "gate rejects source hash other than reviewed allowlist",
+      "status": "FAILED"
+    }
+  ],
+  "runner_sha256": "e0f768e59d429de7a7a034e1593fe798a491c0e67066052ce399f32a2b23abf7",
+  "note": "Gate-only counterexamples; no approved readiness file, adapter, login or test records created."
+}

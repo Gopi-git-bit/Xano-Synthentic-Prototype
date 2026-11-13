@@ -1,0 +1,139 @@
+{
+  "label": "group-6-openapi",
+  "method": "GET",
+  "url": "https://xynd-fnea-khtp.n7e.xano.io/api:meta/workspace/3/apigroup/6/openapi",
+  "status": 200,
+  "started_at": "2026-10-29T08:28:30.872Z",
+  "finished_at": "2026-10-29T08:28:31.213Z",
+  "raw_sha256": "9a16870a4767f4dac496fff266db968e01c061113daa273873d1a656ecbbb043",
+  "body": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Event Logs",
+      "description": "Contains API Endpoints for reports of event logs",
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "https://xynd-fnea-khtp.n7e.xano.io/api:h1FBhliB"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "schemas": {}
+    },
+    "paths": {
+      "/logs/user/my_events": {
+        "get": {
+          "operationId": "Event Logs/logs/user/my_events|GET",
+          "summary": "Current active identity required. Never return historical metadata or arbitrary event names.",
+          "description": "Current active identity required. Never return historical metadata or arbitrary event names.\n<br /><br />\n<b>Authentication:</b> required",
+          "tags": [
+            "logs"
+          ],
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": "1"
+              }
+            },
+            {
+              "name": "per_page",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64",
+                "default": "25"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "curPage": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": ""
+                      },
+                      "nextPage": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "",
+                        "nullable": true
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "format": "int64",
+                              "description": ""
+                            },
+                            "created_at": {
+                              "type": "number",
+                              "format": "timestamptz",
+                              "description": "",
+                              "default": "now"
+                            },
+                            "action": {
+                              "type": "string",
+                              "description": "A description of the action performed by the user (e.g., 'login', 'created_invoice', 'updated_profile')."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Input Error. Check the request payload for issues."
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Access denied. Additional privileges are needed access the requested resource."
+            },
+            "404": {
+              "description": "Not Found. The requested resource does not exist."
+            },
+            "429": {
+              "description": "Rate Limited. Too many requests."
+            },
+            "500": {
+              "description": "Unexpected error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

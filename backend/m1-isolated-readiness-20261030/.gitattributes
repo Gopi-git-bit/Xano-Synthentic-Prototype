@@ -1,0 +1,2 @@
+# Preserve exact bytes referenced by the unsealed continuation hash index.
+* -text

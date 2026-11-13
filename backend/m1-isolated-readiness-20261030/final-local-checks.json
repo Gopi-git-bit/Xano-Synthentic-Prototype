@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-30T12:15:43.596Z",
+  "scope": "LOCAL_ONLY",
+  "status": "VERIFIED",
+  "head": "61d1b139d27646187f7d4a52bcc6546e11b70a4c",
+  "changed_tracked_files": [
+    "backend/m1-acceptance-preparation/approval.template.json",
+    "backend/m1-acceptance-preparation/runner.cjs",
+    "scripts/test-m1-acceptance-preparation.cjs"
+  ],
+  "historical_evidence_changed": false,
+  "frontend": {
+    "head": "35461bd62bfd90b6f7e901791aa3d097b6649ead",
+    "clean": true
+  },
+  "diff_check_exit_code": 0,
+  "configured_metadata_credential_matches": 0,
+  "jwt_pattern_matches": 0,
+  "report_hash_anchors_verified": 6,
+  "approval_status": "NOT_APPROVED",
+  "hosted_acceptance_requests": 0
+}

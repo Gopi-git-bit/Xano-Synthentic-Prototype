@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "report_date_local": "2026-10-24",
+  "timezone": "Asia/Calcutta",
+  "recorded_at_utc": "2026-10-23 22:23:11 UTC",
+  "review_base_commit": "2e2ef14989480548c7ae4b0247ecbc37f253a585",
+  "target": {
+    "workspace_id": 1,
+    "instance": "https://xynd-fnea-khtp.n7e.xano.io",
+    "source_branch": "v1",
+    "previously_confirmed_sandbox": "sn9m-aat6-200c",
+    "sandbox_identity_reverified": false
+  },
+  "authorization": {
+    "targeted_revocation_explicitly_approved": true,
+    "only_failed_token_keyid": "0e6a46f9-9ec3-45d6-a7a9-b9240dd584c8",
+    "revoke_all_prohibited": true,
+    "existing_account_and_roles_preserved": true,
+    "backend_and_database_writes_disabled": true
+  },
+  "revocation": {
+    "status": "FAILED_INDEPENDENT_READBACK",
+    "token_name": "zippy-m1-sandbox",
+    "keyid": "0e6a46f9-9ec3-45d6-a7a9-b9240dd584c8",
+    "targeted_control_found": "Danger trash/X icon adjacent to NAME in the exact token's Access Token Details",
+    "targeted_confirmation": "Type zippy-m1-sandbox, then Confirm Delete; exact key ID checked in token details first.",
+    "mutation_attempt": {
+      "keyid_verified": true,
+      "reported_success": true,
+      "reported_success_text": "Data was successfully removed.",
+      "reported_target_absent": true,
+      "reported_blocker": "Re-save/commit action blocked by anti-bot protection (403/451). No API keys generated. Browser session unchanged from initial load.",
+      "before_count": 10,
+      "reported_after_count": 8,
+      "revoke_all_used": false,
+      "other_mutation_reported": false
+    },
+    "independent_readback": {
+      "complete_list_observed": true,
+      "target_present": true,
+      "target_keyid_matched": true,
+      "total_count": 10,
+      "other_tokens_observed": 9,
+      "all_other_before_names_present": true,
+      "extra_cli_entry_present": true,
+      "restriction_encountered": false,
+      "mutation_performed": false
+    },
+    "interpretation": "The success report and short post-action list are rejected as completion evidence. Fresh read-only inspection found the exact failed token and all nine other token rows. No revocation or unrelated token loss is established.",
+    "next_action": "Owner to use the supported, precisely targeted UI control directly or request Xano support to revoke this exact key ID. Existing authorization is sufficient; no duplicate approval requested. Do not bypass the reported automation restriction or use Revoke All.",
+    "further_revocation_attempted_after_failed_readback": false
+  },
+  "creation_process": {
+    "replacement_created": false,
+    "read_only_preset_probe": {
+      "front_end_weweb_two_read_baseline_reported": true,
+      "expected_baseline_grants": [
+        "workspace:content R",
+        "workspace:api R"
+      ],
+      "all_other_controls_reported_off": true,
+      "source": "Read-only browser report; no saved token or API validation",
+      "reported_read_only_preset_anomaly": "Browser reported zero granted scopes for Read Only, which was not independently established and is not used as a reliable baseline."
+    },
+    "three_additional_read_controls_required": [
+      "workspace:database R",
+      "workspace:function R",
+      "workspace:workflow_test R"
+    ],
+    "final_unsaved_probe": {
+      "baseline_verified": true,
+      "complete_matrix_returned": false,
+      "raw_control_evidence_returned": false,
+      "exactly_five_read_grants_verified": false,
+      "new_token_created": false,
+      "explicit_form_cancellation_confirmed": false
+    },
+    "secure_capture_tested": false,
+    "new_bearer_captured": false,
+    "github_secret_changed": false,
+    "authenticated_identity_verified_for_replacement": false,
+    "effective_scopes_verified": false,
+    "actual_live_read_denial_verified": false,
+    "status": "NOT_READY_TO_RETRY",
+    "required_acceptance": "Independently confirm full matrix and capture path before Create. After creation, saved scopes, authenticated identity, seven-day expiry and actual bounded live-read denial must all pass. UI intention, 401 from a placeholder, 404 or an unverified browser success message cannot pass."
+  },
+  "support": {
+    "existing_submission_acknowledged": true,
+    "stated_response_window": "2\u20133 business days",
+    "in_app_history_available": false,
+    "matching_request_found": false,
+    "vendor_decision_found": false,
+    "blocker": "Adblock extension modal blocked the Xano in-app Intercom support messenger from opening. The task required using Xano's in-app Help/Support or messenger history only, but could not access it due to this persistent modal. No email inbox or external channels were used. Public form support page (www.xano.com/support/) was visited but no matching conversation is accessible there without logging into the in-app messenger.",
+    "new_message_sent": false,
+    "mailbox_connected_for_this_read": false,
+    "inventory_reconciliation_verified": false,
+    "qualification": "No vendor decision was obtained. The inaccessible in-app history does not establish whether a reply exists in the user's email. The owner was asked to provide a response or ticket link."
+  },
+  "execution": {
+    "enabled": false,
+    "original_offline_passes": 121,
+    "followup_offline_passes": 5,
+    "reservation_v2_offline_passes": 35,
+    "execution_v3_offline_passes": 23,
+    "total_retained_offline_passes": 184,
+    "new_offline_passes": 0,
+    "original_native_preview_candidates": 8,
+    "reservation_v2_native_preview": "8 candidates plus schema, separate prior evidence",
+    "execution_v3_native_preview": "NOT_RUN",
+    "execution_v3_import": "NOT_IMPORTED",
+    "reservation_schema_backfill": "NOT_APPLIED",
+    "physical_indexes_and_writer_restrictions": "UNVERIFIED",
+    "hosted_cases_executed": 0,
+    "hosted_cases_total": 31,
+    "native_contention": "NOT_RUN",
+    "native_16_table_failure_rollback": "NOT_RUN"
+  },
+  "preservation": {
+    "backend_exports": 109,
+    "agent_drafts": 5,
+    "diagnostics_retained": true,
+    "existing_assignments_unmodified": true,
+    "historical_evidence_preserved": true,
+    "release_reuse": "NOT_IMPLEMENTED_OR_PROVEN",
+    "no_live_database_or_backend_change": true,
+    "no_payment_execution": true,
+    "no_xano_agent_run": true,
+    "no_merge_or_deployment": true
+  },
+  "confidentiality": {
+    "passwords_and_bearer_credentials_in_report": false,
+    "other_active_token_keyids_in_report": false,
+    "browser_runs_containing_secrets_linked": false
+  },
+  "references": [
+    "https://docs.xano.com/xano-features/metadata-api",
+    "https://docs.xano.com/xano-features/metadata-api/token-scopes-reference"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "captured_at": "2026-10-22T09:09:29.657Z",
+  "sandbox_before": "1de5c5dcdc60dd4f397dfcafaae40b2691d87af0c49eae400d35a15e7329be64",
+  "sandbox_after": "43bf8d2a7f5975b4c0fe662d0948d5fb45cc78d5c38225daaa3d7d06a556a5bb",
+  "live_before": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
+  "live_after": "216c1f6cd12c75183924e06d09da261882a9581aa9ab8e6d0017400f944084eb",
+  "live_unchanged": true,
+  "changed_objects": [
+    "gmCBaijRGqMkfs5BvfmTo0hc1CQ"
+  ],
+  "schema_changes": 0,
+  "records_imported": 0
+}

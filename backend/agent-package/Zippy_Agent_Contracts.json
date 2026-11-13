@@ -1,0 +1,2029 @@
+{
+  "metadata": {
+    "document_id": "ZIPPY-FIVE-AGENT-PRD",
+    "version": "1.0.0-review",
+    "created_at": "2026-10-22",
+    "language": "en",
+    "purpose": "Business-first specification and Codex Xano implementation handoff",
+    "approval_status": "owner_review_required",
+    "production_deployment_authorized": false,
+    "live_mutations_authorized_by_this_document": false,
+    "source_repository": "Gopi-git-bit/obsidian",
+    "source_commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5",
+    "source_inventory_markdown_files": 449,
+    "source_inventory_blobs": 521,
+    "all_repository_content_reviewed": false,
+    "agent_topology_status": "user_confirmed_2026-10-22",
+    "confirmed_agent_ids": [
+      "OMS",
+      "IMS",
+      "TMS",
+      "VERIFICATION",
+      "FINANCE_COMPLIANCE"
+    ],
+    "implementation_backend_target": "Xano",
+    "current_runtime_verified": false
+  },
+  "source_registry": [
+    {
+      "id": "SRC-TRUTH",
+      "path": "00_System/Current Architecture Source of Truth.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Current%20Architecture%20Source%20of%20Truth.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-STATUS",
+      "path": "00_System/Note Status Policy for Current Project.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Note%20Status%20Policy%20for%20Current%20Project.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-ROLES",
+      "path": "00_System/Role and Permission Matrix for Current Project.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Role%20and%20Permission%20Matrix%20for%20Current%20Project.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-LIFECYCLE",
+      "path": "04_Concepts/Operations/Order Lifecycle.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Order%20Lifecycle.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-STATE",
+      "path": "04_AI_Agents/07_State_Machine.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/07_State_Machine.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-GOV",
+      "path": "04_AI_Agents/Agent Governance and Operating Model for Current Project.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Agent%20Governance%20and%20Operating%20Model%20for%20Current%20Project.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-INTEGRATION",
+      "path": "04_AI_Agents/Autonomous Agent Integration Blueprint.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Autonomous%20Agent%20Integration%20Blueprint.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-API",
+      "path": "00_System/API and Event Contract for Current Project.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/API%20and%20Event%20Contract%20for%20Current%20Project.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-SOP",
+      "path": "00_System/Zippy Logistics SOP Operating System.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Zippy%20Logistics%20SOP%20Operating%20System.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-AGENT",
+      "path": "agent.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/agent.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-ACCOUNTING",
+      "path": "04_AI_Agents/Accounting Policy Engine for Broker Model.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Accounting%20Policy%20Engine%20for%20Broker%20Model.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-FINANCE",
+      "path": "04_AI_Agents/Finance and Invoice Event Layer for Logistics Platform.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Finance%20and%20Invoice%20Event%20Layer%20for%20Logistics%20Platform.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-PAYMENT",
+      "path": "04_AI_Agents/Payment Invoice and Accounting Agent Architecture for Logistics Platform.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/Payment%20Invoice%20and%20Accounting%20Agent%20Architecture%20for%20Logistics%20Platform.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-HUB",
+      "path": "03_Hubs/AI Agents Hub.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/03_Hubs/AI%20Agents%20Hub.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-LEGACY",
+      "path": "04_AI_Agents/02_Agentic_AI_Application.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_AI_Agents/02_Agentic_AI_Application.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-RUNTIME",
+      "path": "dsh/core/orchestrator.ts",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/core/orchestrator.ts",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-RUNTIME-CONFIG",
+      "path": "dsh/config/dsh.config.yml",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/config/dsh.config.yml",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-TRAJECTORY",
+      "path": "dsh/core/trajectory.ts",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/dsh/core/trajectory.ts",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-RETURN",
+      "path": "04_Concepts/Operations/Reverse Logistics and Return Policy Framework.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/04_Concepts/Operations/Reverse%20Logistics%20and%20Return%20Policy%20Framework.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-PARTNER",
+      "path": "08_Business_Models/Transport Company Network Model.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/08_Business_Models/Transport%20Company%20Network%20Model.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-REVENUE",
+      "path": "08_Business_Models/Revenue Model Decision Framework.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/08_Business_Models/Revenue%20Model%20Decision%20Framework.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-PRICE",
+      "path": "05_Algorithms/Pricing/Dynamic Pricing Logic.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Pricing/Dynamic%20Pricing%20Logic.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-MATCH",
+      "path": "05_Algorithms/Matching/IMS Matching Engine.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/05_Algorithms/Matching/IMS%20Matching%20Engine.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-TEST",
+      "path": "00_System/Testing and Verification Strategy for Current Project.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/00_System/Testing%20and%20Verification%20Strategy%20for%20Current%20Project.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-BI",
+      "path": "09_Market_Intelligence/11_BI_Insights/BI_Agent_System_Architecture.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/09_Market_Intelligence/11_BI_Insights/BI_Agent_System_Architecture.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    },
+    {
+      "id": "SRC-DECISIONS",
+      "path": "DECISIONS.md",
+      "url": "https://github.com/Gopi-git-bit/obsidian/blob/4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5/DECISIONS.md",
+      "commit": "4d4c5eef6d7bf0d8c20469417d6d29b8a4a4e5e5"
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "title": "Arranger business model",
+      "requirement": "For the documented standard marketplace model, Zippy coordinates transport performed by an independent provider. Separate arranging obligations from carriage obligations. Contractual principal/agent classification requires transaction-specific professional review; do not infer it solely from truck ownership.",
+      "source_refs": [
+        "SRC-ACCOUNTING",
+        "SRC-TRUTH"
+      ],
+      "status": "documented_baseline_with_legal_review"
+    },
+    {
+      "id": "BR-02",
+      "title": "Per-order actor roles",
+      "requirement": "Identify customer/booker, consignor, consignee, payer, provider, driver and vehicle separately. A transport company can be customer on one order and provider on another; enforce the active role and related-order scope, not a universal customer/vendor identity.",
+      "source_refs": [
+        "SRC-ROLES",
+        "SRC-LIFECYCLE"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-03",
+      "title": "Corridor-first serviceability",
+      "requirement": "Treat A-to-B and B-to-A as different directed lanes with separate capacity, rates, pickup windows and service promises. A return load is an opportunity, never a guaranteed offset to the current obligation.",
+      "source_refs": [
+        "SRC-TRUTH",
+        "SRC-GOV"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-04",
+      "title": "Booking completeness",
+      "requirement": "Require identity/authorization, contacts, geocoded pickup and delivery, time windows, cargo type/weight/dimensions, handling constraints, requested vehicle class, payer and payment mode. Missing safety-critical facts keep a draft or hold; AI must not invent them.",
+      "source_refs": [
+        "SRC-LIFECYCLE",
+        "SRC-API"
+      ],
+      "status": "documented_baseline_plus_data_contract"
+    },
+    {
+      "id": "BR-05",
+      "title": "Eligibility before commitment",
+      "requirement": "Validate lane coverage, cargo legality/handling capability, capacity and vehicle suitability, provider/driver/vehicle eligibility and payment/consent readiness before committing an executable order. A low price cannot override a hard eligibility failure. Tanker is not a generic substitute for closed-body cargo; tolerance or scoring cannot approve a physically non-fitting load.",
+      "source_refs": [
+        "SRC-LIFECYCLE",
+        "SRC-GOV",
+        "SRC-MATCH"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-06",
+      "title": "Deterministic commercial quote",
+      "requirement": "A versioned pricing service calculates and snapshots the customer quote, provider payable basis, Zippy fee, applicable tax policy reference, expiry and SLA. An LLM explains or requests recalculation but cannot set rates, tax rules or discounts. A changed quote requires applicable consent before execution.",
+      "source_refs": [
+        "SRC-TRUTH",
+        "SRC-GOV",
+        "SRC-PRICE"
+      ],
+      "status": "documented_baseline_plus_versioning_control"
+    },
+    {
+      "id": "BR-07",
+      "title": "Independent payment truth",
+      "requirement": "Separate order state, consent, payment intent/attempt, verified collection, invoice, payable, refund and settlement. A screenshot, client callback, chat promise or agent conclusion is not proof of collection. Verify provider evidence and reconcile.",
+      "source_refs": [
+        "SRC-API",
+        "SRC-FINANCE",
+        "SRC-ACCOUNTING"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-08",
+      "title": "Explicit ToPay responsibility",
+      "requirement": "Record authenticated consignee payer consent, amount/quote binding and attempt history. Denial redirects responsibility to consignor: pay, cancel through allowed path, or hold. Consent alone never proves payment; approved-credit timing remains an owner decision.",
+      "source_refs": [
+        "SRC-STATE",
+        "SRC-API",
+        "SRC-SOP"
+      ],
+      "status": "conflicted_policy_requires_DEC_03"
+    },
+    {
+      "id": "BR-09",
+      "title": "Atomic allocation",
+      "requirement": "Eligible candidate ranking is advisory. The reservation/assignment service must recheck availability and compatibility at commit and atomically enforce one active assignment per order and nonoverlapping vehicle/driver capacity. Timeout, rejection and expiry must not leave multiple winners.",
+      "source_refs": [
+        "SRC-GOV",
+        "SRC-INTEGRATION",
+        "SRC-MATCH"
+      ],
+      "status": "documented_baseline_plus_strengthened_concurrency_control"
+    },
+    {
+      "id": "BR-10",
+      "title": "Pickup and transit evidence",
+      "requirement": "Do not substitute agent inference for authenticated arrival, loading inspection, required documents and movement evidence. Detect stale GPS, delays, deviation and breakdown; preserve last-known timestamps and confidence without fabricating live tracking.",
+      "source_refs": [
+        "SRC-LIFECYCLE",
+        "SRC-SOP"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-11",
+      "title": "Delivery is not just an upload",
+      "requirement": "POD upload, POD verification, recipient OTP (any alternate evidence path is proposed, default disabled, and requires DEC-11 approval), physical delivery and settlement eligibility are separate facts. Low-quality, mismatched or missing evidence blocks relevant completion/revenue/payout gates.",
+      "source_refs": [
+        "SRC-STATE",
+        "SRC-API",
+        "SRC-ACCOUNTING",
+        "SRC-FINANCE"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-12",
+      "title": "Order-level money and evidence",
+      "requirement": "Keep order-level commission, liabilities, claims and settlement even when transport legs form return or triangle loops. Never net unrelated obligations or let route-loop metadata skip lifecycle gates.",
+      "source_refs": [
+        "SRC-GOV",
+        "SRC-RETURN",
+        "SRC-ACCOUNTING"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-13",
+      "title": "Net fee economics",
+      "requirement": "Documented broker revenue is earned commission plus platform/service fee, excluding tax and carrier pass-through. Cash collected is not automatically revenue. Every balance must reconcile; the source example allocating 50,900 from 50,000 must not become a fixture.",
+      "source_refs": [
+        "SRC-ACCOUNTING"
+      ],
+      "status": "documented_baseline_with_accounting_approval"
+    },
+    {
+      "id": "BR-14",
+      "title": "Hold release requires resolving evidence",
+      "requirement": "A hold has reason, owner, allowed remediation, opened time and explicit release evidence. A timeout, confidence score or generic supervisor approval cannot erase an unresolved fraud, payment, document, dispute or custody problem.",
+      "source_refs": [
+        "SRC-STATE",
+        "SRC-INTEGRATION",
+        "SRC-FINANCE"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-15",
+      "title": "Refund recommendation is not execution",
+      "requirement": "Agents assemble evidence and calculate policy-based recommendations. Human approval is required for refunds under the requested project safety baseline; the execution service verifies approved amount, beneficiary, original transaction and remaining refundable balance. Unknown provider outcomes require reconciliation before retry.",
+      "source_refs": [
+        "SRC-GOV",
+        "SRC-SOP"
+      ],
+      "status": "conservative_proposed_release_control"
+    },
+    {
+      "id": "BR-16",
+      "title": "Cancellation and return are distinct",
+      "requirement": "Cancellation eligibility and charges depend on lifecycle stage and approved policy; no invented fee. Once cargo is in custody, use incident/return/reattempt handling, not a silent reverse transition. A reverse movement has its own linked order, responsible party and evidence.",
+      "source_refs": [
+        "SRC-STATE",
+        "SRC-RETURN",
+        "SRC-SOP"
+      ],
+      "status": "documented_baseline_with_state_conflict"
+    },
+    {
+      "id": "BR-17",
+      "title": "Minimal data exposure",
+      "requirement": "All records and tools are tenant/order/role-scoped. Reveal contacts only at required execution stages. Do not place passwords, tokens, OTP values, full identity documents or unnecessary customer data in model context or ordinary audit logs.",
+      "source_refs": [
+        "SRC-ROLES",
+        "SRC-GOV"
+      ],
+      "status": "documented_scope_plus_security_design"
+    },
+    {
+      "id": "BR-18",
+      "title": "Backend truth before notification",
+      "requirement": "Persist a verified domain result and its audit/outbox record before publishing status. Notifications communicate facts and next steps; delivery receipts do not mutate order or payment truth.",
+      "source_refs": [
+        "SRC-API",
+        "SRC-INTEGRATION"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-19",
+      "title": "Human exceptions without hidden superusers",
+      "requirement": "Ops may execute bounded approved recovery; admin reviews exceptional overrides and finance/dispute decisions. Every override is scoped, reasoned, time-bounded and audited; no direct DB editing or bypass of non-overridable safety rules.",
+      "source_refs": [
+        "SRC-ROLES",
+        "SRC-GOV",
+        "SRC-SOP"
+      ],
+      "status": "documented_baseline"
+    },
+    {
+      "id": "BR-20",
+      "title": "Measured improvement, controlled policy release",
+      "requirement": "Feed completed-trip outcomes into lane reliability, carrier scoring, ETA and quote calibration. Agents may propose changes; owner-reviewed versioned policy release, backtesting and rollback prevent silent production self-modification.",
+      "source_refs": [
+        "SRC-TRUTH",
+        "SRC-GOV",
+        "SRC-TEST"
+      ],
+      "status": "documented_baseline_plus_release_design"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-01",
+      "title": "Order state vocabulary",
+      "conflict": "Locked DRAFT/VEHICLE_SEARCH/CLOSED; API MATCHING/ON_HOLD/RESUMED; SOP CREATED/RINGING/COMPLETED/SUSPENDED disagree.",
+      "recommended_resolution": "Adopt one approved versioned graph. Proposed PRD uses the locked graph for design only, with hold overlays and explicit adapters; never auto-translate existing data.",
+      "decision_owner": "Owner + operations architect",
+      "source_refs": [
+        "SRC-STATE",
+        "SRC-API",
+        "SRC-SOP"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-02",
+      "title": "Commercial and launch scope",
+      "conflict": "Broker/agent default coexists with own-fleet/managed-service and PTL/multimodal expansion notes.",
+      "recommended_resolution": "Start standard road freight, one validated corridor/cargo/vehicle segment; approve service area, permitted cargo, principal/agent contracts, tariffs and launch phase explicitly. Explicitly reject tanker/closed-body substitution and dimensional tolerances that permit physical non-fit; approve supported equipment taxonomy and handling requirements.",
+      "decision_owner": "Owner + legal/accounting advisers",
+      "source_refs": [
+        "SRC-TRUTH",
+        "SRC-ACCOUNTING",
+        "SRC-PARTNER",
+        "SRC-REVENUE"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-03",
+      "title": "Full/advance/ToPay/credit gates",
+      "conflict": "SOP direct confirmation and customer consent differ from locked graph consignee payer consent plus collection/policy gate.",
+      "recommended_resolution": "Approve a per-mode matrix for booking, pickup, movement, delivery and settlement; unsupported or unresolved modes stay disabled.",
+      "decision_owner": "Owner + finance/ops",
+      "source_refs": [
+        "SRC-STATE",
+        "SRC-API",
+        "SRC-SOP"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-04",
+      "title": "Payout and refund authority",
+      "conflict": "SOP human finance approval conflicts with an auto-payout matrix; amount/cap/approval semantics are incomplete.",
+      "recommended_resolution": "Initial proposed profile requires human approval for disbursements and all refunds; any bounded automatic payout requires separately approved policy, controls and evidence tests.",
+      "decision_owner": "Owner + finance",
+      "source_refs": [
+        "SRC-SOP",
+        "SRC-FINANCE",
+        "SRC-GOV"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-05",
+      "title": "Pricing, cancellation, detention and tax basis",
+      "conflict": "Historical fixed fees/rates/tax claims and source arithmetic are not a coherent approved tariff.",
+      "recommended_resolution": "Approve currency/minor-unit rounding, tax-inclusive/exclusive basis, commission incidence, detention, cancellation, quote TTL and credit terms; seek qualified tax review. No tax rate is asserted by this report.",
+      "decision_owner": "Owner + finance/tax adviser",
+      "source_refs": [
+        "SRC-ACCOUNTING",
+        "SRC-DECISIONS",
+        "SRC-PRICE"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-06",
+      "title": "Mandatory document outage handling",
+      "conflict": "SOP says missing mandatory E-Way Bill is non-overridable yet other SOPs describe post-dispatch outage override.",
+      "recommended_resolution": "Block dispatch when a legally required valid document is absent; use a documented lawful exception only after qualified compliance review and explicit policy approval.",
+      "decision_owner": "Owner + compliance adviser",
+      "source_refs": [
+        "SRC-SOP"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-07",
+      "title": "Recovery and cancellation edges",
+      "conflict": "Locked graph lacks cancellation from VEHICLE_SEARCH and direct reassignment after DRIVER_ASSIGNED; later SOPs imply broader recovery.",
+      "recommended_resolution": "Approve child assignment-attempt recovery and allowed hold resolution without backwards order moves; legal terminals retain financial/return case cleanup separately.",
+      "decision_owner": "Owner + ops architect",
+      "source_refs": [
+        "SRC-STATE",
+        "SRC-SOP",
+        "SRC-INTEGRATION"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-08",
+      "title": "Operational thresholds",
+      "conflict": "Reservation TTL, offer timeout, movement timeout, escalation and confidence thresholds differ or lack deployment calibration.",
+      "recommended_resolution": "Keep numeric values null/unconfigured until approved; define per-lane/service severity, escalation owner and fallback rather than copying examples.",
+      "decision_owner": "Owner + ops",
+      "source_refs": [
+        "SRC-SOP",
+        "SRC-INTEGRATION"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-09",
+      "title": "Xano target and isolation",
+      "conflict": "A named live v1 branch or successful login does not establish synthetic-data isolation or transaction safety.",
+      "recommended_resolution": "Verify exact instance/workspace/branch/data source, repo binding, backup/recovery and sandbox separation before any Xano mutation.",
+      "decision_owner": "Implementation lead + owner",
+      "source_refs": [
+        "SRC-INTEGRATION",
+        "SRC-TEST"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-10",
+      "title": "Production accountability and privacy",
+      "conflict": "Retention, lawful identity data collection, duty roster and support obligations are not fully settled.",
+      "recommended_resolution": "Approve minimal verification data, retention/deletion schedule, emergency operator, complaint route and service commitments; a sole founder still needs escalation coverage.",
+      "decision_owner": "Owner + privacy/compliance advisers",
+      "source_refs": [
+        "SRC-ROLES",
+        "SRC-GOV",
+        "SRC-LIFECYCLE"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-11",
+      "title": "POD/OTP exception and evidence independence",
+      "conflict": "Sources alternate strict OTP/dual verification with manual overrides.",
+      "recommended_resolution": "Approve alternate recipient evidence, verifier independence and named human exception role. No generic OTP bypass or model-generated verification result.",
+      "decision_owner": "Owner + ops/compliance",
+      "source_refs": [
+        "SRC-SOP",
+        "SRC-API"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-12",
+      "title": "Funds custody, credit and payout cycle",
+      "conflict": "Collection-liability accounting does not authorize custody or transfers; source credit/payout cycle examples differ.",
+      "recommended_resolution": "Approve actual funds holder/provider arrangement, customer credit eligibility and due dates, carrier payout SLA and reconciliation ownership separately. Unsupported custody/credit flows stay disabled.",
+      "decision_owner": "Owner + finance/legal",
+      "source_refs": [
+        "SRC-ACCOUNTING",
+        "SRC-FINANCE",
+        "SRC-PAYMENT"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-13",
+      "title": "Transport-company launch and role switching",
+      "conflict": "Role matrix defers broad transport-company self-service while later SOPs require provider console acceptance.",
+      "recommended_resolution": "Approve provider-side and customer-side launch capabilities and acceptance route. Preserve per-order role/party scope, separate financial views and explicit user intent.",
+      "decision_owner": "Owner + ops/product",
+      "source_refs": [
+        "SRC-ROLES",
+        "SRC-SOP",
+        "SRC-PARTNER"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-14",
+      "title": "Risk policy and maker-checker coverage",
+      "conflict": "Confidence/fraud/override thresholds and human-versus-model supervisor terms vary; sole-founder operating coverage is unresolved.",
+      "recommended_resolution": "Define risk categories, independent approver requirements, permitted self-review limitations, duty coverage and calibrated thresholds. If separation is mandatory and no independent reviewer exists, hold the action.",
+      "decision_owner": "Owner + finance/compliance",
+      "source_refs": [
+        "SRC-GOV",
+        "SRC-SOP"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    },
+    {
+      "id": "DEC-15",
+      "title": "Failed-delivery, SLA and cost schedule",
+      "conflict": "Wait times, reattempt counts, detention, claim windows, breach consequences and return-cost ownership are not one approved contract.",
+      "recommended_resolution": "Approve lane/service-specific windows and tariffs, custody-safe failed-delivery route, cost owner and legally reviewed commitments. No force-majeure invocation, guaranteed return load or automatic credit merely from research copy.",
+      "decision_owner": "Owner + ops/legal/finance",
+      "source_refs": [
+        "SRC-LIFECYCLE",
+        "SRC-RETURN",
+        "SRC-SOP"
+      ],
+      "status": "open",
+      "blocks_production": true,
+      "approved_value": null
+    }
+  ],
+  "agents": [
+    {
+      "id": "OMS",
+      "name": "Order Management Agent",
+      "mission": "Maintain a complete, coherent order case and coordinate the next legal workflow action.",
+      "owns": [
+        "booking completeness and clarification",
+        "order lifecycle coordination",
+        "quote/payment/consent/matching handoff",
+        "customer-visible blocker explanation",
+        "cancellation and reverse-order coordination"
+      ],
+      "triggers": [
+        "booking_submitted",
+        "quote_generated",
+        "payment_gate_changed",
+        "assignment_committed",
+        "trip_milestone_verified",
+        "evidence_gate_changed",
+        "hold_changed",
+        "settlement_completed"
+      ],
+      "inputs": [
+        "authenticated actor and tenant/order scope",
+        "versioned order snapshot and expected_version",
+        "quote and service-level snapshot",
+        "payment/consent gate projection",
+        "verification/assignment/trip/finance facts",
+        "policy and state-machine versions"
+      ],
+      "outputs": [
+        "missing_field_request",
+        "order_validation_recommendation",
+        "quote_request",
+        "matching_request",
+        "transition_request",
+        "hold_or_review_recommendation",
+        "notification_intent"
+      ],
+      "tools": [
+        "read_scoped_order_context",
+        "request_quote",
+        "submit_order_recommendation",
+        "request_guarded_transition",
+        "request_matching",
+        "request_notification"
+      ],
+      "forbidden": [
+        "direct state or ledger writes",
+        "inventing cargo facts or customer consent",
+        "confirming on unverified payment",
+        "assigning vehicles itself",
+        "issuing refunds or changing tax/fees"
+      ],
+      "handoffs": [
+        "Verification checks identity/cargo/document evidence; returns pass/hold/reject with evidence, not state mutation.",
+        "Finance/Compliance supplies current consent/collection/commercial gate; OMS cannot replace it.",
+        "IMS returns a committed assignment result or exhaustion; a candidate recommendation is not assignment.",
+        "TMS returns verified trip milestones. OMS requests only legal state transitions.",
+        "Finance/Compliance confirms reconciliation/settlement status before closure."
+      ],
+      "failure": "Keep the last persisted truth. Deduplicate unchanged clarification requests; ask again when corrected or new information creates a different requirement, classify ambiguity, and open an owned review/hold rather than looping or promising a vehicle.",
+      "fallback": "Deterministic validation and workflow services remain usable with AI disabled; ops handles semantic ambiguity.",
+      "kpis": [
+        "complete-and-correct booking rate",
+        "time from complete booking to confirmed result",
+        "illegal-transition requests rejected",
+        "unowned/aged holds"
+      ],
+      "sources": [
+        "SRC-LIFECYCLE",
+        "SRC-GOV",
+        "SRC-API"
+      ],
+      "xano_bindings": {
+        "agent_record_id": null,
+        "workspace_id": null,
+        "branch_id": null,
+        "tool_bindings": {},
+        "verified": false
+      },
+      "activation_status": "disabled_pending_policy_and_target_verification",
+      "human_accountability": "operations owner",
+      "shared_contract_schema": "Zippy_Agent_Output.schema.json"
+    },
+    {
+      "id": "IMS",
+      "name": "Inventory and Matching Agent",
+      "mission": "Find suitable, available transport capacity without double-booking or compromising hard constraints.",
+      "owns": [
+        "vehicle/driver/provider capacity interpretation",
+        "hard-constraint eligibility filtering",
+        "candidate scoring and explainable alternatives",
+        "offer/reservation orchestration requests",
+        "backup/partner/return-load suggestions"
+      ],
+      "triggers": [
+        "matching_requested",
+        "capacity_snapshot_updated",
+        "offer_rejected",
+        "offer_expired",
+        "reservation_conflict",
+        "reassignment_requested"
+      ],
+      "inputs": [
+        "order cargo/route/time/vehicle requirements",
+        "fresh availability windows and snapshot age",
+        "verified provider/vehicle/driver eligibility",
+        "approved rate/offer conditions",
+        "existing reservations and assignment version",
+        "matching policy version"
+      ],
+      "outputs": [
+        "ranked_candidate_set",
+        "ineligibility_reason_codes",
+        "reservation_request",
+        "next_candidate_request",
+        "capacity_exhausted",
+        "return_load_opportunity"
+      ],
+      "tools": [
+        "read_scoped_capacity",
+        "read_verification_status",
+        "rank_eligible_candidates",
+        "request_reservation",
+        "request_offer",
+        "request_guarded_assignment_commit"
+      ],
+      "forbidden": [
+        "LLM-only allocation",
+        "overriding capacity or restricted cargo",
+        "accepting on behalf of an unconsenting provider",
+        "double-booking driver or vehicle",
+        "silently raising price or cross-order netting"
+      ],
+      "handoffs": [
+        "Verification supplies current eligibility evidence.",
+        "OMS supplies a confirmed actionable order, not raw unvalidated intake.",
+        "Reservation service owns leases, fences and atomic commit; provider acceptance is separately authenticated.",
+        "TMS receives only committed assignments with a version and reservation proof.",
+        "Finance/Compliance validates provider payout/rate compatibility without changing the accepted customer quote."
+      ],
+      "failure": "Use bounded candidate retries; stale availability triggers refresh. Reservation conflict means re-evaluate next candidate, not blind replay or hidden capacity override.",
+      "fallback": "Deterministic hard filters and approved ranking rules; exhausted pool goes to ops with candidates rejected and reasons.",
+      "kpis": [
+        "eligible assignment rate",
+        "time to committed assignment",
+        "reservation conflict rate",
+        "double-bookings (target zero)",
+        "provider acceptance and no-show rates"
+      ],
+      "sources": [
+        "SRC-GOV",
+        "SRC-MATCH",
+        "SRC-INTEGRATION"
+      ],
+      "xano_bindings": {
+        "agent_record_id": null,
+        "workspace_id": null,
+        "branch_id": null,
+        "tool_bindings": {},
+        "verified": false
+      },
+      "activation_status": "disabled_pending_policy_and_target_verification",
+      "human_accountability": "dispatch/operations owner",
+      "shared_contract_schema": "Zippy_Agent_Output.schema.json"
+    },
+    {
+      "id": "TMS",
+      "name": "Transportation Management Agent",
+      "mission": "Monitor and coordinate safe physical execution against the accepted shipment promise.",
+      "owns": [
+        "route/ETA recommendations",
+        "pickup/loading/transit/delivery milestone interpretation",
+        "GPS freshness and route deviation",
+        "delay/breakdown/failed-delivery incident classification",
+        "backup route and linked reverse/reattempt proposals"
+      ],
+      "triggers": [
+        "assignment_committed",
+        "driver_arrival_reported",
+        "loading_reported",
+        "telemetry_received",
+        "heartbeat_missing",
+        "incident_reported",
+        "delivery_reported"
+      ],
+      "inputs": [
+        "committed assignment and allowed actor",
+        "planned route and service promise",
+        "timestamped location/evidence and telemetry freshness",
+        "document/handling gates",
+        "driver milestone commands",
+        "open incident/hold state"
+      ],
+      "outputs": [
+        "eta_assessment",
+        "milestone_transition_request",
+        "sla_risk_flag",
+        "incident_case",
+        "backup_route_proposal",
+        "reassignment_or_return_request"
+      ],
+      "tools": [
+        "read_assigned_trip_context",
+        "request_route_calculation",
+        "submit_milestone_evidence",
+        "raise_incident",
+        "request_guarded_trip_action",
+        "request_notification"
+      ],
+      "forbidden": [
+        "claiming GPS is live when stale",
+        "changing promised windows to hide breach",
+        "reassigning without IMS reservation workflow",
+        "deciding payout or tax",
+        "declaring delivery from geofence alone",
+        "giving unsafe instructions to meet SLA"
+      ],
+      "handoffs": [
+        "IMS supplies committed resource binding; later replacements need new fenced assignment through services.",
+        "Verification evaluates documents and POD/recipient evidence.",
+        "OMS controls canonical order progression and reverse-order creation.",
+        "Finance/Compliance receives verified trip/custody/milestone evidence and incident holds.",
+        "Human ops handles danger, cargo custody exceptions and unresolved recovery."
+      ],
+      "failure": "Mark telemetry stale; do not fabricate ETA. Open a severity-scoped incident; separate operational safety from commercial compensation and escalate immediately where required.",
+      "fallback": "Driver/ops authenticated milestone reporting and deterministic SLA timers; manual tracking is labeled as such.",
+      "kpis": [
+        "on-time pickup/delivery against original promise",
+        "ETA error on fresh observations",
+        "stale-telemetry exposure",
+        "incident acknowledgement/recovery time",
+        "POD capture delay"
+      ],
+      "sources": [
+        "SRC-LIFECYCLE",
+        "SRC-GOV",
+        "SRC-SOP"
+      ],
+      "xano_bindings": {
+        "agent_record_id": null,
+        "workspace_id": null,
+        "branch_id": null,
+        "tool_bindings": {},
+        "verified": false
+      },
+      "activation_status": "disabled_pending_policy_and_target_verification",
+      "human_accountability": "duty operations/safety owner",
+      "shared_contract_schema": "Zippy_Agent_Output.schema.json"
+    },
+    {
+      "id": "VERIFICATION",
+      "name": "Verification Agent",
+      "mission": "Produce traceable evidence assessments of identity, eligibility, documents and delivery without assuming decision authority.",
+      "owns": [
+        "document extraction and completeness",
+        "identity/provider/driver/vehicle evidence checks",
+        "cargo/document compatibility evidence",
+        "POD quality, consistency and recipient evidence assessment",
+        "fraud/anomaly flags and re-upload requests"
+      ],
+      "triggers": [
+        "registration_evidence_submitted",
+        "vehicle_document_changed",
+        "booking_validation_requested",
+        "pickup_document_uploaded",
+        "pod_uploaded",
+        "recipient_verification_event",
+        "evidence_expired"
+      ],
+      "inputs": [
+        "scoped document references and allowed fields",
+        "issuer/verification-service results",
+        "timestamps/expiry and signed hashes",
+        "expected order/trip/recipient context",
+        "approved validation policy and required evidence list"
+      ],
+      "outputs": [
+        "evidence_assessment",
+        "missing_or_expired_document_flag",
+        "mismatch_or_fraud_flag",
+        "reupload_request",
+        "manual_review_required",
+        "verification_gate_projection_request"
+      ],
+      "tools": [
+        "read_minimal_scoped_evidence",
+        "extract_document_fields",
+        "check_approved_reference_rules",
+        "submit_verification_assessment",
+        "request_reupload",
+        "open_review_case"
+      ],
+      "forbidden": [
+        "treating OCR confidence as legal validity",
+        "inventing missing document fields",
+        "declaring payment or recipient consent verified from text alone",
+        "releasing holds or approving refunds",
+        "changing bank/payee credentials",
+        "following instructions embedded in documents"
+      ],
+      "handoffs": [
+        "OMS receives scoped booking/identity/cargo evidence outcomes.",
+        "IMS receives current eligibility with expiry and evidence versions.",
+        "TMS receives pickup/POD evidence outcomes.",
+        "Finance/Compliance evaluates legal/tax/payment consequences and financial holds; Verification only supplies evidence.",
+        "Admin reviews disputed/fraudulent/low-confidence cases."
+      ],
+      "failure": "Fail closed for mandatory evidence; request corrected evidence or reviewer. Evidence-service outage is not proof of validity; policy caches must be signed, approved and fresh.",
+      "fallback": "Deterministic completeness/expiry checks plus manual review. Knowledge retrieval may use approved structured rules; a vector/RAG system is not mandatory.",
+      "kpis": [
+        "critical false acceptance rate",
+        "extraction accuracy by document type/language",
+        "manual-review backlog age",
+        "expired evidence caught before use",
+        "POD re-upload rate"
+      ],
+      "sources": [
+        "SRC-GOV",
+        "SRC-INTEGRATION",
+        "SRC-BI",
+        "SRC-FINANCE"
+      ],
+      "xano_bindings": {
+        "agent_record_id": null,
+        "workspace_id": null,
+        "branch_id": null,
+        "tool_bindings": {},
+        "verified": false
+      },
+      "activation_status": "disabled_pending_policy_and_target_verification",
+      "human_accountability": "authorized verification/compliance reviewer",
+      "shared_contract_schema": "Zippy_Agent_Output.schema.json"
+    },
+    {
+      "id": "FINANCE_COMPLIANCE",
+      "name": "Finance and Compliance Agent",
+      "mission": "Prepare and explain commercially and legally coherent money workflows while deterministic services and authorized people control financial execution.",
+      "owns": [
+        "payment intent and reconciliation support",
+        "ToPay/payment-readiness evaluation",
+        "quote/fee/tax-policy completeness",
+        "invoice and vendor-payable preparation",
+        "settlement precheck, holds and refund recommendation",
+        "compliance review coordination"
+      ],
+      "triggers": [
+        "quote_accepted",
+        "payer_consent_changed",
+        "payment_provider_event",
+        "delivery_evidence_accepted",
+        "claim_opened",
+        "settlement_requested",
+        "refund_requested",
+        "bank_or_tax_evidence_changed"
+      ],
+      "inputs": [
+        "approved commercial/contract/tax policy versions",
+        "quote/payer/consent snapshot",
+        "verified provider attempt ledger",
+        "POD/OTP/delivery/claim/hold evidence",
+        "approved beneficiary reference",
+        "human approval artifact where required",
+        "verified collector identity, actual funds custodian, partner-versus-platform executor, approved custody-path ID and policy version"
+      ],
+      "outputs": [
+        "payment_gate_assessment",
+        "reconciliation_exception",
+        "invoice_draft_request",
+        "settlement_precheck",
+        "settlement_hold_recommendation",
+        "refund_recommendation",
+        "compliance_review_required"
+      ],
+      "tools": [
+        "read_scoped_finance_context",
+        "request_payment_intent",
+        "request_reconciliation",
+        "prepare_invoice",
+        "submit_settlement_precheck",
+        "request_guarded_finance_action",
+        "open_finance_review"
+      ],
+      "forbidden": [
+        "inventing tax or refund percentages",
+        "treating gross freight as earned fee",
+        "executing payment solely on LLM approval",
+        "changing beneficiary accounts",
+        "closing disputes unilaterally",
+        "releasing payout on POD/OCR alone",
+        "marking timed-out transfer successful"
+      ],
+      "handoffs": [
+        "Verification supplies evidence validity; qualified policy and human review decide consequential exceptions.",
+        "OMS consumes payment/consent readiness and financial-closure status.",
+        "TMS/Verification jointly supply trip/POD/recipient facts; unresolved incidents prevent eligible settlement.",
+        "Deterministic Finance API validates approval, balance, beneficiary, locks and idempotency before provider action.",
+        "Admin/finance reviewer approves required disbursement/refund; provider callback reconciles final outcome."
+      ],
+      "failure": "Hold inconsistent amounts, missing approval or disputed evidence. Provider timeout enters unknown/reconcile state; never use another payment route until duplicate risk is resolved.",
+      "fallback": "Deterministic reconciliation and reviewer queue. Disable autonomous disbursement until authority matrix, legal policy and runtime proofs pass.",
+      "kpis": [
+        "unreconciled value/count/age",
+        "duplicate disbursements (target zero)",
+        "settlement hold age by reason",
+        "invoice arithmetic accuracy",
+        "approved refund completion time"
+      ],
+      "sources": [
+        "SRC-ACCOUNTING",
+        "SRC-FINANCE",
+        "SRC-PAYMENT",
+        "SRC-GOV",
+        "SRC-SOP"
+      ],
+      "xano_bindings": {
+        "agent_record_id": null,
+        "workspace_id": null,
+        "branch_id": null,
+        "tool_bindings": {},
+        "verified": false
+      },
+      "activation_status": "disabled_pending_policy_and_target_verification",
+      "human_accountability": "authorized finance/compliance reviewer",
+      "shared_contract_schema": "Zippy_Agent_Output.schema.json"
+    }
+  ],
+  "state_model": {
+    "status": "proposed_design_pending_owner_approval",
+    "source_refs": [
+      "SRC-STATE",
+      "SRC-API",
+      "SRC-SOP"
+    ],
+    "states": [
+      "DRAFT",
+      "PAYMENT_PENDING",
+      "CONFIRMED",
+      "VEHICLE_SEARCH",
+      "DRIVER_ASSIGNED",
+      "ARRIVED_PICKUP",
+      "LOADING",
+      "ENROUTE",
+      "ARRIVED_DELIVERY",
+      "POD_UPLOADED",
+      "DELIVERY_COMPLETED",
+      "SETTLEMENT_PREPROCESS",
+      "SETTLEMENT_READY",
+      "SETTLEMENT_RELEASED",
+      "CLOSED",
+      "CANCELLED",
+      "FAILED"
+    ],
+    "terminal_states": [
+      "CANCELLED",
+      "FAILED",
+      "CLOSED"
+    ],
+    "holds_are_overlays": true,
+    "transitions": [
+      {
+        "id": "TR-01",
+        "from_state": "DRAFT",
+        "to_state": "PAYMENT_PENDING",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Complete booking, accepted valid quote, payer identity and policy-defined consent/OTP checks.",
+        "evidence": [
+          "booking_complete",
+          "quote_accepted",
+          "policy_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-02",
+        "from_state": "PAYMENT_PENDING",
+        "to_state": "CONFIRMED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Finance/Compliance payment-mode gate satisfied with verified evidence; no blocking hold.",
+        "evidence": [
+          "payment_or_approved_credit_gate",
+          "consent_version"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-03",
+        "from_state": "CONFIRMED",
+        "to_state": "VEHICLE_SEARCH",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Order remains feasible and accepted commercial terms valid.",
+        "evidence": [
+          "matching_request",
+          "expected_order_version"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-04",
+        "from_state": "VEHICLE_SEARCH",
+        "to_state": "DRIVER_ASSIGNED",
+        "recommending_agent": "IMS",
+        "executor": "guarded_domain_service",
+        "guard": "Fresh eligibility, authenticated provider acceptance and fenced atomic resource reservation committed.",
+        "evidence": [
+          "assignment_id",
+          "reservation_version",
+          "eligibility_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-05",
+        "from_state": "DRIVER_ASSIGNED",
+        "to_state": "ARRIVED_PICKUP",
+        "recommending_agent": "TMS",
+        "executor": "guarded_domain_service",
+        "guard": "Authenticated assigned driver/ops reports arrival with required location/time evidence.",
+        "evidence": [
+          "arrival_evidence"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-06",
+        "from_state": "ARRIVED_PICKUP",
+        "to_state": "LOADING",
+        "recommending_agent": "TMS",
+        "executor": "guarded_domain_service",
+        "guard": "Goods inspection, vehicle/cargo fit and legally required valid documents confirmed.",
+        "evidence": [
+          "inspection",
+          "document_assessments"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-07",
+        "from_state": "LOADING",
+        "to_state": "ENROUTE",
+        "recommending_agent": "TMS",
+        "executor": "guarded_domain_service",
+        "guard": "Loading and custody recorded; movement payment/compliance gates clear.",
+        "evidence": [
+          "loading_evidence",
+          "movement_gate"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-08",
+        "from_state": "ENROUTE",
+        "to_state": "ARRIVED_DELIVERY",
+        "recommending_agent": "TMS",
+        "executor": "guarded_domain_service",
+        "guard": "Arrival evidence tied to current trip; no fabricated geofence inference.",
+        "evidence": [
+          "arrival_evidence",
+          "trip_version"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-09",
+        "from_state": "ARRIVED_DELIVERY",
+        "to_state": "POD_UPLOADED",
+        "recommending_agent": "TMS",
+        "executor": "guarded_domain_service",
+        "guard": "POD artifact safely stored, scoped and hash-bound. This is not verification.",
+        "evidence": [
+          "pod_ref",
+          "artifact_hash"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-10",
+        "from_state": "POD_UPLOADED",
+        "to_state": "DELIVERY_COMPLETED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Verification accepts required POD/recipient evidence; consignee OTP validated; alternate evidence is disabled unless a separately approved DEC-11 exception policy and required evidence apply; no completion-blocking hold.",
+        "evidence": [
+          "verification_assessment",
+          "recipient_evidence"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-11",
+        "from_state": "DELIVERY_COMPLETED",
+        "to_state": "SETTLEMENT_PREPROCESS",
+        "recommending_agent": "FINANCE_COMPLIANCE",
+        "executor": "guarded_domain_service",
+        "guard": "Compute finance precheck using immutable quote and delivery facts.",
+        "evidence": [
+          "invoice_basis",
+          "provider_payable_basis"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-12",
+        "from_state": "SETTLEMENT_PREPROCESS",
+        "to_state": "SETTLEMENT_READY",
+        "recommending_agent": "FINANCE_COMPLIANCE",
+        "executor": "guarded_domain_service",
+        "guard": "Reconciliation, policy-required collection, verified beneficiary, all relevant holds and approval prerequisites satisfied. Approved funds-custody and payout path must identify collector, current custodian and partner/platform executor; unresolved custody blocks release.",
+        "evidence": [
+          "reconciliation",
+          "hold_release_refs",
+          "approval_scope",
+          "approved_custody_path_id",
+          "funds_custodian_and_executor_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-13",
+        "from_state": "SETTLEMENT_READY",
+        "to_state": "SETTLEMENT_RELEASED",
+        "recommending_agent": "FINANCE_COMPLIANCE",
+        "executor": "guarded_domain_service",
+        "guard": "Authorized execution service receives verified final provider outcome, not merely request acceptance. Approved funds-custody and payout path must identify collector, current custodian and partner/platform executor; unresolved custody blocks release.",
+        "evidence": [
+          "provider_transaction_id",
+          "reconciled_success",
+          "approved_custody_path_id",
+          "funds_custodian_and_executor_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-14",
+        "from_state": "SETTLEMENT_RELEASED",
+        "to_state": "CLOSED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Operational and financial closure checks satisfied and audit/outbox consistency verified.",
+        "evidence": [
+          "closure_checklist",
+          "financial_completion"
+        ],
+        "status": "proposed_adoption_pending_DEC_01",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-GOV"
+        ]
+      },
+      {
+        "id": "TR-15",
+        "from_state": "DRAFT",
+        "to_state": "CANCELLED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      },
+      {
+        "id": "TR-16",
+        "from_state": "PAYMENT_PENDING",
+        "to_state": "FAILED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      },
+      {
+        "id": "TR-17",
+        "from_state": "PAYMENT_PENDING",
+        "to_state": "CANCELLED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      },
+      {
+        "id": "TR-18",
+        "from_state": "CONFIRMED",
+        "to_state": "CANCELLED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      },
+      {
+        "id": "TR-19",
+        "from_state": "VEHICLE_SEARCH",
+        "to_state": "FAILED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      },
+      {
+        "id": "TR-20",
+        "from_state": "DRIVER_ASSIGNED",
+        "to_state": "CANCELLED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      },
+      {
+        "id": "TR-21",
+        "from_state": "ARRIVED_PICKUP",
+        "to_state": "CANCELLED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      },
+      {
+        "id": "TR-22",
+        "from_state": "LOADING",
+        "to_state": "CANCELLED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      },
+      {
+        "id": "TR-23",
+        "from_state": "ENROUTE",
+        "to_state": "FAILED",
+        "recommending_agent": "OMS",
+        "executor": "guarded_domain_service",
+        "guard": "Approved stage-specific cancellation/failure rule, cargo-custody protection and linked finance/return cleanup case; preserve audit. Terminal operational state does not authorize refund or extinguish liabilities.",
+        "evidence": [
+          "reason_code",
+          "policy_version",
+          "actor_authorization",
+          "cleanup_case_refs"
+        ],
+        "status": "proposed_adoption_pending_DEC_01_DEC_07",
+        "source_refs": [
+          "SRC-STATE",
+          "SRC-RETURN"
+        ]
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "PRD-01",
+      "title": "Five scoped agents",
+      "requirement": "Implement exactly the user-confirmed five capability owners. IAM, policy evaluation, transition, reservation, messaging, audit and durable worker services are not additional autonomous AI business agents.",
+      "business_rule_refs": [
+        "BR-02",
+        "BR-19"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-52",
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-02",
+      "title": "Typed intake and immutable commercial snapshot",
+      "requirement": "Validate typed quantities/units, timezones/windows, contacts, cargo restrictions, parties and quote versions. Unknown facts remain unknown; corrections version the record.",
+      "business_rule_refs": [
+        "BR-04",
+        "BR-06"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-01",
+        "ZSC-02",
+        "ZSC-03",
+        "ZSC-04",
+        "ZSC-05",
+        "ZSC-06",
+        "ZSC-08",
+        "ZSC-23",
+        "ZSC-29",
+        "ZSC-52",
+        "ZSC-53",
+        "ZSC-57",
+        "ZSC-58",
+        "ZSC-59",
+        "ZSC-60",
+        "ZSC-61",
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-03",
+      "title": "Single transition authority",
+      "requirement": "All order transitions require authenticated identity, scoped role, expected aggregate version, approved graph/guard, matching policy/evidence versions and atomic persistence. No generic model SQL or arbitrary patch endpoint.",
+      "business_rule_refs": [
+        "BR-05",
+        "BR-14",
+        "BR-19"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-01",
+        "ZSC-02",
+        "ZSC-03",
+        "ZSC-04",
+        "ZSC-16",
+        "ZSC-17",
+        "ZSC-21",
+        "ZSC-22",
+        "ZSC-47",
+        "ZSC-52",
+        "ZSC-60",
+        "ZSC-63",
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-04",
+      "title": "Transactional assignment",
+      "requirement": "One transaction or proven equivalent must commit lease/reservation, assignment, state version, audit and outbox; enforce uniqueness for active order assignment and overlapping resource intervals. Use fencing tokens for stale workers.",
+      "business_rule_refs": [
+        "BR-09"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-07",
+        "ZSC-15",
+        "ZSC-16",
+        "ZSC-17",
+        "ZSC-22",
+        "ZSC-29",
+        "ZSC-42",
+        "ZSC-52",
+        "ZSC-54",
+        "ZSC-55",
+        "ZSC-57",
+        "ZSC-61",
+        "ZSC-64",
+        "ZSC-66"
+      ]
+    },
+    {
+      "id": "PRD-05",
+      "title": "Durable idempotency",
+      "requirement": "Scope keys by tenant+actor+command+entity; bind canonical payload hash. Same key/hash returns original result, different hash conflicts. Use durable command inbox, consumer inbox and provider-attempt identifiers.",
+      "business_rule_refs": [
+        "BR-07",
+        "BR-09",
+        "BR-18"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-16",
+        "ZSC-17",
+        "ZSC-19",
+        "ZSC-22",
+        "ZSC-33",
+        "ZSC-43",
+        "ZSC-65",
+        "ZSC-66"
+      ]
+    },
+    {
+      "id": "PRD-06",
+      "title": "Outbox and replay",
+      "requirement": "Commit state and outbox together. Consumers deduplicate, reject malformed/unsupported versions, detect stale order versions and route poison events to owned DLQ. Do not promise network-level exactly-once delivery.",
+      "business_rule_refs": [
+        "BR-18",
+        "BR-19"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-19",
+        "ZSC-33",
+        "ZSC-42",
+        "ZSC-43",
+        "ZSC-50",
+        "ZSC-66",
+        "ZSC-69"
+      ]
+    },
+    {
+      "id": "PRD-07",
+      "title": "Evidence and document security",
+      "requirement": "Store immutable references with tenant/order/issuer/time/expiry/hash. Treat documents and messages as untrusted data; quarantine unsafe files and reject embedded instructions. Never log secrets or raw OTPs.",
+      "business_rule_refs": [
+        "BR-11",
+        "BR-17"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-05",
+        "ZSC-06",
+        "ZSC-24",
+        "ZSC-25",
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-49",
+        "ZSC-52",
+        "ZSC-57",
+        "ZSC-58",
+        "ZSC-59",
+        "ZSC-60",
+        "ZSC-61",
+        "ZSC-63",
+        "ZSC-69"
+      ]
+    },
+    {
+      "id": "PRD-08",
+      "title": "Deterministic financial execution",
+      "requirement": "Provider webhooks require authentic source verification, account/order/amount/currency matching and replay protection. Ledger changes and disbursement commands use scoped services and persisted approvals. Enforce the approved funds-custody/payout path with collector, actual custodian and execution-party identity.",
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13",
+        "BR-15"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-09",
+        "ZSC-10",
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-34",
+        "ZSC-35",
+        "ZSC-36",
+        "ZSC-38",
+        "ZSC-39",
+        "ZSC-41",
+        "ZSC-42",
+        "ZSC-56",
+        "ZSC-62",
+        "ZSC-64",
+        "ZSC-66"
+      ]
+    },
+    {
+      "id": "PRD-09",
+      "title": "Consent and mode gates",
+      "requirement": "Implement only approved payment-mode matrix. Consent binds payer, amount/quote, channel, timestamp and expiry; denial/history persist; resume creates new attempt, not erased evidence.",
+      "business_rule_refs": [
+        "BR-08"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-09",
+        "ZSC-10",
+        "ZSC-11",
+        "ZSC-12",
+        "ZSC-13",
+        "ZSC-14",
+        "ZSC-35"
+      ]
+    },
+    {
+      "id": "PRD-10",
+      "title": "Finance separation",
+      "requirement": "Keep payment attempts, reconciled receipts, liabilities, invoices, credits, refunds, provider payables and settlements separate. Store money as integer minor units, explicit currency, rounding and approved tax-policy reference.",
+      "business_rule_refs": [
+        "BR-07",
+        "BR-13"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-08",
+        "ZSC-09",
+        "ZSC-10",
+        "ZSC-14",
+        "ZSC-35",
+        "ZSC-36",
+        "ZSC-39",
+        "ZSC-40",
+        "ZSC-56",
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-11",
+      "title": "Holds and manual review",
+      "requirement": "Each hold has owner, reason, release condition/evidence, due time and permitted remediation actions. Review approval binds exact entity/action/amount/beneficiary/version and expires; changed inputs invalidate it.",
+      "business_rule_refs": [
+        "BR-14",
+        "BR-15",
+        "BR-19"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-11",
+        "ZSC-12",
+        "ZSC-13",
+        "ZSC-18",
+        "ZSC-20",
+        "ZSC-21",
+        "ZSC-24",
+        "ZSC-27",
+        "ZSC-28",
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-34",
+        "ZSC-36",
+        "ZSC-37",
+        "ZSC-38",
+        "ZSC-41",
+        "ZSC-46",
+        "ZSC-47",
+        "ZSC-51",
+        "ZSC-53",
+        "ZSC-54",
+        "ZSC-56",
+        "ZSC-60",
+        "ZSC-62",
+        "ZSC-63",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-12",
+      "title": "Trip observability",
+      "requirement": "Record observation and receipt timestamps, source and freshness; preserve original promise alongside current ETA. Route unsafe/critical incidents to human ops; no automatic penalty or refund from GPS signal alone.",
+      "business_rule_refs": [
+        "BR-10"
+      ],
+      "status": "proposed_specification",
+      "priority": "P1",
+      "acceptance_test_ids": [
+        "ZSC-19",
+        "ZSC-23",
+        "ZSC-25",
+        "ZSC-26",
+        "ZSC-27",
+        "ZSC-33",
+        "ZSC-50",
+        "ZSC-53",
+        "ZSC-59",
+        "ZSC-63"
+      ]
+    },
+    {
+      "id": "PRD-13",
+      "title": "Notification semantics",
+      "requirement": "Use versioned approved templates, stage-aware recipients and authorized channels. Record send intent, attempt and delivery receipt; retries cannot create false state or duplicate financial actions. Critical internal alerts require a named acknowledgement owner and approved deadline; unacknowledged alerts escalate through the duty policy independently of customer-channel delivery receipts.",
+      "business_rule_refs": [
+        "BR-17",
+        "BR-18"
+      ],
+      "status": "proposed_specification",
+      "priority": "P1",
+      "acceptance_test_ids": [
+        "ZSC-64"
+      ]
+    },
+    {
+      "id": "PRD-14",
+      "title": "Tenant and role isolation",
+      "requirement": "Derive identity/scopes from trusted session/service identity, not model payload. Enforce entity relationships in every tool and data access. Do not disclose unrelated parties or full finance records to drivers.",
+      "business_rule_refs": [
+        "BR-02",
+        "BR-17"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-44",
+        "ZSC-45",
+        "ZSC-46",
+        "ZSC-55",
+        "ZSC-58",
+        "ZSC-67",
+        "ZSC-68",
+        "ZSC-69"
+      ]
+    },
+    {
+      "id": "PRD-15",
+      "title": "Bounded failure handling",
+      "requirement": "Retry only classified transient failures with durable attempt budgets/backoff. Unknown external financial outcome reconciles first; policy denials do not auto-retry; exhaustion creates an owned review case.",
+      "business_rule_refs": [
+        "BR-09",
+        "BR-14",
+        "BR-15"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-07",
+        "ZSC-15",
+        "ZSC-18",
+        "ZSC-20",
+        "ZSC-28",
+        "ZSC-48",
+        "ZSC-54",
+        "ZSC-56",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-16",
+      "title": "Model output contract",
+      "requirement": "Require schema-valid assessment with evidence refs, confidence where appropriate, model/prompt/policy versions and explicit unknowns. Confidence never overrides a hard rule. Tool names and arguments checked server-side.",
+      "business_rule_refs": [
+        "BR-04",
+        "BR-05",
+        "BR-19"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-49",
+        "ZSC-67",
+        "ZSC-68"
+      ]
+    },
+    {
+      "id": "PRD-17",
+      "title": "Controlled deployment and rollback",
+      "requirement": "Start offline/synthetic and shadow mode; pass isolation/concurrency/retry/finance proofs on the actual target before gated canary. Kill switches disable agent writes/disbursements without deleting evidence or corrupting queued commands.",
+      "business_rule_refs": [
+        "BR-19",
+        "BR-20"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-48",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-18",
+      "title": "Operational completeness",
+      "requirement": "Provide human review queues, actionable alerts, approved duty ownership, recovery runbooks and case SLA clocks. Every hold and exception must have a responsible operator.",
+      "business_rule_refs": [
+        "BR-14",
+        "BR-19"
+      ],
+      "status": "proposed_specification",
+      "priority": "P1",
+      "acceptance_test_ids": [
+        "ZSC-27",
+        "ZSC-51",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-19",
+      "title": "Return and multi-leg linkage",
+      "requirement": "Create linked reverse/reattempt orders and assignment attempts. Preserve original order settlement and custody evidence; no cross-order state or financial merging.",
+      "business_rule_refs": [
+        "BR-12",
+        "BR-16"
+      ],
+      "status": "proposed_specification",
+      "priority": "P1",
+      "acceptance_test_ids": [
+        "ZSC-20",
+        "ZSC-21",
+        "ZSC-28",
+        "ZSC-29",
+        "ZSC-50",
+        "ZSC-56",
+        "ZSC-70"
+      ]
+    },
+    {
+      "id": "PRD-20",
+      "title": "Acceptance evidence registry",
+      "requirement": "Record test version, source SHA, target workspace/branch/data source, policy/prompt/model versions, fixtures, expected/actual outputs, audit refs and cleanup. Definitions, offline unit tests and CI badges are not actual Xano runtime proof.",
+      "business_rule_refs": [
+        "BR-20"
+      ],
+      "status": "proposed_specification",
+      "priority": "P0",
+      "acceptance_test_ids": [
+        "ZSC-01",
+        "ZSC-02",
+        "ZSC-03",
+        "ZSC-04",
+        "ZSC-05",
+        "ZSC-06",
+        "ZSC-07",
+        "ZSC-08",
+        "ZSC-09",
+        "ZSC-10",
+        "ZSC-11",
+        "ZSC-12",
+        "ZSC-13",
+        "ZSC-14",
+        "ZSC-15",
+        "ZSC-16",
+        "ZSC-17",
+        "ZSC-18",
+        "ZSC-19",
+        "ZSC-20",
+        "ZSC-21",
+        "ZSC-22",
+        "ZSC-23",
+        "ZSC-24",
+        "ZSC-25",
+        "ZSC-26",
+        "ZSC-27",
+        "ZSC-28",
+        "ZSC-29",
+        "ZSC-30",
+        "ZSC-31",
+        "ZSC-32",
+        "ZSC-33",
+        "ZSC-34",
+        "ZSC-35",
+        "ZSC-36",
+        "ZSC-37",
+        "ZSC-38",
+        "ZSC-39",
+        "ZSC-40",
+        "ZSC-41",
+        "ZSC-42",
+        "ZSC-43",
+        "ZSC-44",
+        "ZSC-45",
+        "ZSC-46",
+        "ZSC-47",
+        "ZSC-48",
+        "ZSC-49",
+        "ZSC-50",
+        "ZSC-51",
+        "ZSC-52",
+        "ZSC-53",
+        "ZSC-54",
+        "ZSC-55",
+        "ZSC-56",
+        "ZSC-57",
+        "ZSC-58",
+        "ZSC-59",
+        "ZSC-60",
+        "ZSC-61",
+        "ZSC-62",
+        "ZSC-63",
+        "ZSC-64",
+        "ZSC-65",
+        "ZSC-66",
+        "ZSC-67",
+        "ZSC-68",
+        "ZSC-69",
+        "ZSC-70"
+      ]
+    }
+  ],
+  "configuration": {
+    "approved_tariff_version": null,
+    "tax_policy_version": null,
+    "payment_mode_gate_matrix": null,
+    "reservation_ttl_seconds": null,
+    "offer_timeout_seconds": null,
+    "telemetry_stale_seconds": null,
+    "notification_retry_budget": null,
+    "agent_retry_budget": null,
+    "confidence_thresholds": null,
+    "retention_policy_version": null,
+    "production_enabled": false,
+    "recipient_otp_alternative_enabled": false,
+    "approved_funds_custody_path_id": null,
+    "critical_alert_ack_deadline_seconds": null
+  },
+  "acceptance_test_file": "Zippy_Acceptance_Tests.json"
+}

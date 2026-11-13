@@ -1,0 +1,46 @@
+{
+  "status": "VERIFIED",
+  "results": [
+    {
+      "command": "xano --version",
+      "started_at": "2026-10-30T12:10:18.969Z",
+      "exit_code": 0,
+      "output": "@xano/cli/1.3.4 win32-x64 node-v24.22.1\n",
+      "output_sha256": "d95d805ed4fbc6a25052daf72adb29889df5ddc1844df65c4f140934b0d87d32"
+    },
+    {
+      "command": "xano ephemeral create --help -p default -w 3 -c <existing-private-credentials.yaml>",
+      "started_at": "2026-10-30T12:10:19.735Z",
+      "exit_code": 0,
+      "output": "Create a new ephemeral (short-lived, auto-expiring) tenant in a workspace\n\nUSAGE\n  $ xano ephemeral create DISPLAY [-c <value>] [-p <value>] [-v] [-d <value>]\n    [--expires-hours <value>] [-o summary|json] [-w <value>]\n\nARGUMENTS\n  DISPLAY  Display name for the ephemeral tenant\n\nFLAGS\n  -c, --config=<value>  [env: XANO_CONFIG]    [env: XANO_CONFIG] Path to\n                                              credentials file (default:\n                                              ~/.xano/credentials.yaml)\n  -d, --description=<value>                   Ephemeral tenant description\n  -o, --output=<option>                       [default: summary] Output format\n                                              <options: summary|json>\n  -p, --profile=<value>  [env: XANO_PROFILE]  [env: XANO_PROFILE] Profile to use\n                                              (uses default profile if not\n                                              specified)\n  -v, --verbose  [env: XANO_VERBOSE]          [env: XANO_VERBOSE] Show detailed\n                                              request/response information\n  -w, --workspace=<value>                     Workspace ID (uses profile\n                                              workspace if not provided)\n      --expires-hours=<value>                 [default: 1] Hours until the\n                                              tenant auto-expires (1-24)\n\nDESCRIPTION\n  Create a new ephemeral (short-lived, auto-expiring) tenant in a workspace\n\nEXAMPLES\n  $ xano ephemeral create \"PR preview\"\n  Created ephemeral tenant: PR preview (e4f2-9ab1-...) - ID: 42\n    Expires: in 1 hour\n\n  $ xano ephemeral create \"Demo\" --expires-hours 24 -w 114\n\n  $ xano ephemeral create \"Load test\" --description \"overnight soak\" --expires-hours 24 -o json\n\n",
+      "output_sha256": "e3a9dd55a4bbc566ed9becc253483076d9fecf48cca193ce972d1093913e9f42"
+    },
+    {
+      "command": "xano ephemeral push --help -p default -w 3 -c <existing-private-credentials.yaml>",
+      "started_at": "2026-10-30T12:10:20.523Z",
+      "exit_code": 0,
+      "output": "[IMPORTANT] ALWAYS run --dry-run first and show the user the output before pushing. Push local documents to an ephemeral tenant via multidoc import. By default, only changed files are pushed (partial mode). Use --sync to push all files. Shows a preview of changes before pushing unless --force is specified. Use --dry-run to preview only.\n\nUSAGE\n  $ xano ephemeral push TENANT_NAME [-c <value>] [-p <value>] [-v]\n    [--delete] [-d <value>] [--dry-run] [--env] [--force] [--guids] [--records]\n    [--sync] [--transaction] [--truncate] [--wait] [--wait-timeout <value>] [-w\n    <value>]\n\nARGUMENTS\n  TENANT_NAME  Ephemeral tenant name to push to\n\nFLAGS\n  -c, --config=<value>  [env: XANO_CONFIG]\n      [env: XANO_CONFIG] Path to credentials file (default:\n      ~/.xano/credentials.yaml)\n\n  -d, --directory=<value>\n      [default: .] Directory containing documents to push (defaults to current\n      directory)\n\n  -p, --profile=<value>  [env: XANO_PROFILE]\n      [env: XANO_PROFILE] Profile to use (uses default profile if not specified)\n\n  -v, --verbose  [env: XANO_VERBOSE]\n      [env: XANO_VERBOSE] Show detailed request/response information\n\n  -w, --workspace=<value>\n      Workspace ID (uses profile workspace if not provided)\n\n  --delete\n      Delete remote objects not included in the push (requires --sync)\n\n  --dry-run\n      Show preview of changes without pushing (exit after preview)\n\n  --env\n      Include environment variables in import\n\n  --force\n      Skip preview and confirmation prompt (for CI/CD pipelines)\n\n  --[no-]guids\n      Write server-assigned GUIDs back to local files (use --no-guids to skip)\n\n  --records\n      Include records in import\n\n  --sync\n      Full push — send all files, not just changed ones. Required for --delete.\n\n  --[no-]transaction\n      [CRITICAL] DO NOT run with --no-transaction without explicit user\n      confirmation; this disables rollback. Wraps import in a database transaction\n      (use --no-transaction for debugging purposes).\n\n  --truncate\n      [CRITICAL] STOP and confirm with the user; this truncates live tables before\n      importing.\n\n  --wait\n      After pushing, wait for auto-deployed microservices (tenant_deploy=\"auto\")\n      to become ready. Exits non-zero if any fails to deploy or the wait times\n      out. Ignored with --dry-run.\n\n  --wait-timeout=<value>\n      [default: 300] Seconds to wait for microservices to become ready when --wait\n      is set (default 300).\n\nDESCRIPTION\n  [IMPORTANT] ALWAYS run --dry-run first and show the user the output before\n  pushing. Push local documents to an ephemeral tenant via multidoc import. By\n  default, only changed files are pushed (partial mode). Use --sync to push all\n  files. Shows a preview of changes before pushing unless --force is specified.\n  Use --dry-run to preview only.\n\nEXAMPLES\n  $ xano ephemeral push e4f2-9ab1-xyz1\n  Push from current directory (default partial mode)\n\n  $ xano ephemeral push e4f2-9ab1-xyz1 -d ./my-workspace\n  Push from a specific directory\n\n  $ xano ephemeral push e4f2-9ab1-xyz1 --sync\n  Push all files to the ephemeral tenant\n\n  $ xano ephemeral push e4f2-9ab1-xyz1 --sync --delete\n  Push all files and delete remote objects not included\n\n  $ xano ephemeral push e4f2-9ab1-xyz1 --dry-run\n  Preview changes without pushing\n\n  $ xano ephemeral push e4f2-9ab1-xyz1 --force\n  Skip preview and push immediately\n\n  $ xano ephemeral push e4f2-9ab1-xyz1 --records --env\n\n  $ xano ephemeral push e4f2-9ab1-xyz1 --truncate\n\n",
+      "output_sha256": "30863c585b0df55ed6814181ab4463a6947725dff03235719406bc372f8a0f31"
+    },
+    {
+      "command": "xano ephemeral list -p default -w 3 -c <existing-private-credentials.yaml> -o json",
+      "started_at": "2026-10-30T12:10:21.297Z",
+      "exit_code": 0,
+      "output": "{\n  \"items\": []\n}\n",
+      "output_sha256": "0343639fac1511a32a4c9a92c7655a6e9f9ad3a600fc6f30b5bdad6806160a97"
+    }
+  ],
+  "implementation_hashes": {
+    "package.json": "a0c2a4a14b5b46d9da29ecf23f5c15bcc5987834678699770abedc4adb0fbc75",
+    "dist/base-command.js": "2c8ca33007e026c933ca62ae80351dd841e51e8c182437ff518e37bc83717657",
+    "dist/commands/ephemeral/create/index.js": "55cd80b600e2e82cb2c666acbd2600156f61f3e5daf52ba3c8232ce59d3b1272",
+    "dist/commands/ephemeral/push/index.js": "fd0d577cdcda1aac1e9fa0b440e96facfc408aa8553193151fbd420f0fe88289",
+    "dist/commands/ephemeral/list/index.js": "1e35fad271c10b0f71ced1429cb3d242e773a6006dff4d561000b458b556acb8",
+    "dist/utils/multidoc-push.js": "8ff2e8091c96a07e005bc02be566d834d12b8218effb46a78e9834fc613d87bc"
+  },
+  "credential_file_unchanged": true,
+  "repository_profile_unchanged": true,
+  "metadata_gets": 1,
+  "metadata_writes": 0,
+  "note": "Version/help are local; ephemeral list is the only authenticated CLI network operation. No --verbose. CLI may refresh its version-check cache."
+}

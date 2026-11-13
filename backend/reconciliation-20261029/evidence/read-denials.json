@@ -1,0 +1,136 @@
+{
+  "at": "2026-10-29T08:36:11.518Z",
+  "workspace": 3,
+  "branch": "v1",
+  "data_source": "live",
+  "scope": "Unauthenticated read denial only; no synthetic account or hosted acceptance",
+  "sources": [
+    {
+      "key": "query:auth/me:GET:Authentication",
+      "sha256": "8e1705c9ea6d34e25414479bca8c23cb39aecc280601dd537f67864bb067266a"
+    },
+    {
+      "key": "query:bookings:GET:Zippy_V1",
+      "sha256": "2afa288cd47e66f31fd67922c0e2e2024da29ab434a06d9e94abbf1e4461557e"
+    },
+    {
+      "key": "query:bookings/{booking_id}:GET:Zippy_V1",
+      "sha256": "a0a73dd9ac6ade2cf656817473a8f3d7bcea92a8fa51db2f4a7d153a3ae8fbb9"
+    }
+  ],
+  "requests": [
+    {
+      "route": "/api:pofBqnrY/auth/me",
+      "mode": "anonymous",
+      "status": 401,
+      "shape": "object",
+      "keys": [
+        "code",
+        "message"
+      ],
+      "code": "ERROR_CODE_UNAUTHORIZED",
+      "message_type": "string",
+      "at": "2026-10-29T08:36:13.704Z",
+      "passed": true
+    },
+    {
+      "route": "/api:pofBqnrY/auth/me",
+      "mode": "malformed_bearer",
+      "status": 401,
+      "shape": "object",
+      "keys": [
+        "code",
+        "message"
+      ],
+      "code": "ERROR_CODE_UNAUTHORIZED",
+      "message_type": "string",
+      "at": "2026-10-29T08:36:13.964Z",
+      "passed": true
+    },
+    {
+      "route": "/api:zippy-v1/bookings",
+      "mode": "anonymous",
+      "status": 401,
+      "shape": "object",
+      "keys": [
+        "code",
+        "message"
+      ],
+      "code": "ERROR_CODE_UNAUTHORIZED",
+      "message_type": "string",
+      "at": "2026-10-29T08:36:14.235Z",
+      "passed": true
+    },
+    {
+      "route": "/api:zippy-v1/bookings",
+      "mode": "malformed_bearer",
+      "status": 401,
+      "shape": "object",
+      "keys": [
+        "code",
+        "message"
+      ],
+      "code": "ERROR_CODE_UNAUTHORIZED",
+      "message_type": "string",
+      "at": "2026-10-29T08:36:14.488Z",
+      "passed": true
+    },
+    {
+      "route": "/api:zippy-v1/bookings/1",
+      "mode": "anonymous",
+      "status": 401,
+      "shape": "object",
+      "keys": [
+        "code",
+        "message"
+      ],
+      "code": "ERROR_CODE_UNAUTHORIZED",
+      "message_type": "string",
+      "at": "2026-10-29T08:36:14.753Z",
+      "passed": true
+    },
+    {
+      "route": "/api:zippy-v1/bookings/1",
+      "mode": "malformed_bearer",
+      "status": 401,
+      "shape": "object",
+      "keys": [
+        "code",
+        "message"
+      ],
+      "code": "ERROR_CODE_UNAUTHORIZED",
+      "message_type": "string",
+      "at": "2026-10-29T08:36:15.067Z",
+      "passed": true
+    },
+    {
+      "route": "/api:zippy-v1/bookings?page=2&per_page=1&status=draft",
+      "mode": "anonymous",
+      "status": 401,
+      "shape": "object",
+      "keys": [
+        "code",
+        "message"
+      ],
+      "code": "ERROR_CODE_UNAUTHORIZED",
+      "message_type": "string",
+      "at": "2026-10-29T08:36:15.323Z",
+      "passed": true
+    },
+    {
+      "route": "/api:zippy-v1/bookings?page=2&per_page=1&status=draft",
+      "mode": "malformed_bearer",
+      "status": 401,
+      "shape": "object",
+      "keys": [
+        "code",
+        "message"
+      ],
+      "code": "ERROR_CODE_UNAUTHORIZED",
+      "message_type": "string",
+      "at": "2026-10-29T08:36:15.597Z",
+      "passed": true
+    }
+  ],
+  "result": "VERIFIED"
+}

@@ -1,0 +1,108 @@
+@import "tailwindcss" source("./");
+
+@theme inline {
+  --font-sans: 'DM Sans Variable', 'Noto Sans Tamil', system-ui, sans-serif;
+  --font-display: 'Manrope Variable', 'Noto Sans Tamil', system-ui, sans-serif;
+  --color-canvas: var(--z-canvas);
+  --color-surface: #fff;
+  --color-ink: var(--z-ink);
+  --color-muted: var(--z-muted);
+  --color-line: var(--z-line);
+  --color-brand: var(--z-brand);
+  --color-brand-ink: var(--z-brand-label);
+  --color-action: var(--z-primary-fill);
+  --color-brand-hover: var(--z-brand-hover);
+  --color-brand-soft: var(--z-soft);
+  --color-nav: var(--z-nav);
+  --color-success: #286347;
+  --color-warning: #87520d;
+  --color-danger: #a63838;
+}
+
+:root, [data-role="customer"] {
+  --z-canvas: #fbf6ee; --z-nav: #27352d; --z-brand: #cd5128; --z-brand-hover: #ac3c18;
+  --z-soft: #fbece0; --z-ink: #263b32; --z-muted: #637065; --z-line: #e5e5dc;
+  --z-brand-label: #a53d1b; --z-primary-fill: #ba4822;
+}
+[data-role="owner"] {
+  --z-canvas: #edf4fc; --z-nav: #152e4f; --z-brand: #2563b8; --z-brand-hover: #184d96;
+  --z-soft: #e2edfc; --z-ink: #203951; --z-muted: #516379; --z-line: #dce5f0;
+  --z-brand-label: #2563b8; --z-primary-fill: #2563b8;
+}
+[data-role="admin"] {
+  --z-canvas: #f3effa; --z-nav: #302142; --z-brand: #7950ae; --z-brand-hover: #603890;
+  --z-soft: #eee4f7; --z-ink: #392f49; --z-muted: #71627e; --z-line: #e4dced;
+  --z-brand-label: #7950ae; --z-primary-fill: #7950ae;
+}
+
+@layer base {
+  body { margin: 0; font-family: var(--font-sans); color: var(--z-ink); }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; }
+  button, a, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
+  button, a, input, select, textarea { transition: background-color 180ms, border-color 180ms, color 180ms, box-shadow 180ms, transform 180ms; }
+  button:not(:disabled), summary, select { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--z-brand); outline-offset: 4px; }
+  :disabled { cursor: not-allowed; opacity: .6; }
+  input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+    width: 100%; min-width: 0; min-height: 46px; border: 1px solid var(--z-line); border-radius: 9px;
+    background: white; padding: 10px 12px; color: var(--z-ink); font-size: 14px;
+  }
+  input::placeholder, textarea::placeholder { color: #737b78; }
+  textarea { min-height: 100px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { border-color: var(--z-brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--z-brand) 12%, transparent); }
+  [aria-invalid="true"] { border-color: #a63838 !important; }
+  svg { flex-shrink: 0; }
+  dialog { margin: auto; }
+  dialog::backdrop { background: #12231c80; backdrop-filter: blur(5px); }
+}
+
+@layer components {
+  .card { @apply min-w-0 overflow-hidden rounded-2xl border border-line bg-surface; box-shadow: 0 4px 24px #24352b04; }
+  .card-head { @apply flex flex-wrap items-center justify-between gap-3 px-5 py-5 sm:px-6; }
+  .card-title { @apply text-[15px] font-bold tracking-tight; }
+  .eyebrow { @apply mb-3 text-[10px] font-bold tracking-[.18em] text-muted uppercase; }
+  .btn { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-line bg-surface px-4 py-2.5 text-[13px] leading-normal font-semibold text-ink; }
+  .btn:hover:not(:disabled) { @apply border-brand bg-brand-soft; transform: translateY(-1px); }
+  .btn:active:not(:disabled) { transform: translateY(1px); }
+  .btn.primary { @apply border-brand bg-action text-white; box-shadow: 0 3px 9px color-mix(in srgb, var(--z-brand) 18%, transparent); }
+  .btn.primary:hover:not(:disabled) { @apply border-brand-hover bg-brand-hover; }
+  .btn.soft { @apply border-transparent bg-brand-soft text-brand-ink; }
+  .icon-btn { @apply inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-muted hover:bg-brand-soft hover:text-brand; }
+  .text-btn { @apply inline-flex min-h-11 items-center gap-2 text-xs font-bold text-brand-ink hover:underline; }
+  .notice { @apply rounded-xl border border-line bg-brand-soft p-4 text-xs leading-relaxed text-ink; }
+  .field { @apply flex min-w-0 flex-col gap-2 text-[13px] font-semibold; }
+  .brand { @apply flex items-center gap-3; }
+  .brand-mark { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-[#ee7147] text-3xl font-extrabold text-white italic; }
+  .status { @apply inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-[11px] leading-normal font-semibold; }
+  .status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+  .status-success { @apply bg-[#eaf3ec] text-success; }
+  .status-warning { @apply bg-[#fff1db] text-warning; }
+  .status-danger { @apply bg-[#fcebed] text-danger; }
+  .status-info { @apply bg-[#e9effb] text-[#315d98]; }
+  .status-neutral { @apply bg-[#edf0ed] text-[#566158]; }
+  .stat-card { @apply p-5 transition-shadow duration-200 hover:shadow-md; }
+  .sidebar-link { @apply flex min-h-11 w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-[13px] font-medium text-[#d0d9d2] hover:bg-white/10 hover:text-white; }
+  .sidebar-link[aria-current="page"] { @apply bg-white/12 text-white; }
+  .sidebar-link[aria-current="page"] svg { color: #ffc39f; }
+  .route-tile { @apply min-w-0 rounded-xl border border-line bg-canvas p-4 text-left transition duration-200 hover:-translate-y-0.5 hover:border-brand; }
+  .fade-in { animation: enter 220ms ease-out; }
+  .data-row { @apply grid min-w-0 gap-3 border-t border-line px-5 py-4 text-[13px] sm:px-6; }
+  .skip { @apply fixed -top-20 left-4 z-[100] rounded-lg bg-surface p-3 font-semibold text-brand focus:top-3; }
+}
+
+@keyframes enter { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+.map-surface { background: #eff2e9; }
+.map-road { fill: none; stroke: #fff; stroke-width: 7; }
+.map-label { font: 12px var(--font-sans); fill: #52634d; }
+.hero-art { filter: drop-shadow(0 10px 8px #27352d0c); }
+/* Brand accents retain the reference hex values; small foreground labels need more contrast. */
+.text-brand { color: var(--z-brand-label); }
+.sidebar-scroll { scrollbar-width: thin; scrollbar-color: #ffffff40 transparent; }
+.app-content { overflow-wrap: anywhere; }
+.app-content header + div .field { min-width: 148px; }
+.modal { max-height: min(86dvh, 780px); width: min(600px, calc(100% - 32px)); overflow-y: auto; color: var(--z-ink); }
+.modal h2:focus, #main:focus { outline: none; }
+.motion-line { stroke-dasharray: 5 5; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

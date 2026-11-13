@@ -1,0 +1,84 @@
+name: Xano backend offline validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      run_http:
+        description: Run bounded read-only Xano metadata checks
+        required: true
+        type: boolean
+        default: false
+      expected_sha:
+        description: Exact reviewed commit SHA
+        required: false
+        type: string
+      application_base_url:
+        description: Optional isolated synthetic Xano application base URL
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: xano-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contracts-and-schema:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate offline contracts and exported schema
+        run: node scripts/validate-backend.cjs
+
+      - name: Validate synthetic safeguards and reference-case inventory
+        run: node scripts/validate-xano-safeguards.cjs
+
+      - name: Validate bounded HTTP checker
+        run: node scripts/test-xano-http.cjs
+
+      - name: Validate M1 source candidates and evidence assertions offline
+        run: |
+          node scripts/test-milestone1.cjs
+          node scripts/test-milestone1-native.cjs
+          node --test scripts/test-milestone1-reservations.cjs
+          node --test scripts/test-m1-execution.cjs
+          node scripts/evaluate-milestone1.cjs
+          node scripts/evaluate-historical-slice1.cjs
+
+  xano-readonly-http:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_http && github.actor_id == '200721521' && github.ref == 'refs/heads/codex/xano-backend-review'
+    needs: contracts-and-schema
+    environment: Xano-Production
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Check Xano HTTP connection without mutations
+        env:
+          XANO_METADATA_API: ${{ secrets.XANO_METADATA_API }}
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          XANO_TEST_BASE_URL: ${{ inputs.application_base_url }}
+        run: node scripts/check-xano-http.cjs
+      - name: Retain sanitized HTTP report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: xano-readonly-http-report
+          path: reports/xano-http-connection.json
+          if-no-files-found: warn
+          retention-days: 7

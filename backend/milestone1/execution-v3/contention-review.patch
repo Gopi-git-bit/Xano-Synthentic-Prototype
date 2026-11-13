@@ -1,0 +1,81 @@
+--- reservation-v2/create_and_assign.xs
+
++++ execution-v3/contention_command.xs
+
+@@ -1,6 +1,7 @@
+
+-// RESERVATION V2: preview candidate only; not imported. No release/reuse support.
++// EXECUTION V3: separate contention experiment. Not previewed/imported/executed.
++// No advisory lock. Same transactional claims/business writes. No release/reuse support.
+ // Bounded synthetic acceptance slice; not a production API.
+-function "Slice1/create_and_assign" {
++function "M1Execution/contention_command" {
+   input {
+     int user_id
+     uuid expected_platform_id
+@@ -179,21 +180,10 @@
+
+     db.transaction {
+       stack {
+         db.direct_query {
+-          sql = "SELECT 1 AS locked FROM pg_advisory_xact_lock(hashtextextended(CAST(? AS text), 0))"
+-          response_type = "single"
+-          arg = "slice1:61aa324d:" ~ $identity.platform_id
+-        } as $locked
+-
+-        db.direct_query {
+           sql = "SELECT (extract(epoch FROM clock_timestamp()) * 1000)::bigint AS ms, pg_backend_pid() AS pid"
+           response_type = "single"
+         } as $lock_acquired
+ 
+-        db.direct_query {
+-          sql = "SELECT 1 AS held FROM pg_sleep(CAST(? AS double precision))"
+-          response_type = "single"
+-          arg = $input.hold_seconds
+-        } as $held
+ 
+         db.query idempotency_records {
+           where = $db.idempotency_records.platform_id == $identity.platform_id && $db.idempotency_records.operation_scope == $scope && $db.idempotency_records.idempotency_key == $input.idempotency_key
+@@ -329,6 +319,12 @@
+
+               }
+ 
+               else {
++                db.direct_query {
++                  sql = "SELECT pg_backend_pid() AS pid, (extract(epoch FROM clock_timestamp()) * 1000)::bigint AS ms"
++                  response_type = "single"
++                } as $claim_entry
++                debug.log { value = {marker: "M1_RESERVATION_CLAIM_ENTRY", key: $input.idempotency_key, pid: $claim_entry.pid, ms: $claim_entry.ms} }
++                db.direct_query { sql = "SELECT 1 AS barrier FROM pg_sleep(2)" response_type = "single" } as $barrier
+                 // Both unique claims belong to the SAME database transaction.
+                 // Native uniqueness errors propagate; no catch can commit a half-claim.
+                 db.add active_assignment_reservations {
+@@ -351,6 +347,10 @@
+
+                   }
+                 } as $driver_reservation
+ 
++                db.direct_query { sql = "SELECT pg_backend_pid() AS pid, (extract(epoch FROM clock_timestamp()) * 1000)::bigint AS ms" response_type = "single" } as $claimed
++                debug.log { value = {marker: "M1_RESERVATION_CLAIMS_ACQUIRED", key: $input.idempotency_key, pid: $claimed.pid, ms: $claimed.ms} }
++                // Hold the actual unique tuple locks while contenders attempt both claims.
++                db.direct_query { sql = "SELECT 1 AS held FROM pg_sleep(2)" response_type = "single" } as $claim_held
+                 db.add idempotency_records {
+                   data = {
+                     platform_id          : $identity.platform_id
+@@ -739,13 +739,14 @@
+
+         }
+       }
+     }
++    db.direct_query { sql = "SELECT (extract(epoch FROM clock_timestamp()) * 1000)::bigint AS ms" response_type = "single" } as $proof_finished
+   }
+ 
+   response = $result
++    |set:"transaction_finished_ms":$proof_finished.ms
+     |set:"lock_wait_ms":$lock_acquired.ms - $lock_started.ms
+     |set:"db_pid":$lock_acquired.pid
+     |set:"lock_started_ms":$lock_started.ms
+     |set:"lock_acquired_ms":$lock_acquired.ms
+   tags = ["synthetic:slice1", "reference:new-logistic"]
+-  guid = "UeauMIZG4Sku7EdUiD4qURaK8fs"
+ }

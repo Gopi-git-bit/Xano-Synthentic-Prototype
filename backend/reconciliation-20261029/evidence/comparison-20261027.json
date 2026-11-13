@@ -1,0 +1,839 @@
+{
+  "historical_root": "C:\\Users\\ashok\\AppData\\Local\\Temp\\opencode\\zippy-xano-discovery-20261027",
+  "scope": "Offline normalized source comparison by GUID; no new remote reads",
+  "documents": [
+    {
+      "key": "addon:user",
+      "guid": "sicrxVNikAGX7qIf6NAmJJgYVWI",
+      "current_sha256": "6757c72e2b3830074d7b22c4682961a74bcbd0b9dd00550d57fa7a633702ab97",
+      "historical": {
+        "file": "addon/user.xs",
+        "sha256": "6757c72e2b3830074d7b22c4682961a74bcbd0b9dd00550d57fa7a633702ab97"
+      },
+      "changed": false
+    },
+    {
+      "key": "agent:Xano Example Agent",
+      "guid": "kxCGZ92Ujmzhz6NjmHN_4bfRYNY",
+      "current_sha256": "34e7e42a01c736762bcb94ec63fbd02c0d5746960697d3636d6f9ba1a54cf381",
+      "historical": {
+        "file": "ai/agent/xano_example_agent.xs",
+        "sha256": "34e7e42a01c736762bcb94ec63fbd02c0d5746960697d3636d6f9ba1a54cf381"
+      },
+      "changed": false
+    },
+    {
+      "key": "api_group:Authentication",
+      "guid": "OyTxHleLinzGESW_6Rwkz0YCLdE",
+      "current_sha256": "af9ae73e48d4523808d064c566482a5ff9a867cd7414b7a5a21cc3c67d443a66",
+      "historical": {
+        "file": "api/authentication/authentication.xs",
+        "sha256": "83ea6ecd28dd1fde93be89c000c24ec09f177c7c7e084256608e0dddad52d984"
+      },
+      "changed": true
+    },
+    {
+      "key": "api_group:Event Logs",
+      "guid": "QZfkATtPZw504U9j33Fg79m8YyA",
+      "current_sha256": "ffa841dfe3ed96e5e0063523d02d8ea756629b5d76018b3ff0adfad163d2477a",
+      "historical": {
+        "file": "api/event_logs/event_logs.xs",
+        "sha256": "fc22cbb1b18b4f6ad723c146067e832e7fd1e89c80c6d9d439fa8cc673f01f9a"
+      },
+      "changed": true
+    },
+    {
+      "key": "api_group:Zippy_V1",
+      "guid": "ql11o9xqTkMJSL196fBOBg6oGD0",
+      "current_sha256": "0d5fa96f8a9d82b452b7344ce50f712903d3b2cd0db7ec7fed1cae5357df4890",
+      "historical": {
+        "file": "api/zippy_v_1/zippy_v_1.xs",
+        "sha256": "6d36bdbf7febf8a8abdbdc6b8b294ed6c57edbfe9e53372c46bf4ea59e01a098"
+      },
+      "changed": true
+    },
+    {
+      "key": "function:booking/accept_quote",
+      "guid": "Kw-jyLRhP2gRoSLK_BT8N8S7z48",
+      "current_sha256": "d01d1a54dfcad0db8f525c4984ed87075493819f708a1aa62b3a9a5959b90c94",
+      "historical": {
+        "file": "function/booking/accept_quote.xs",
+        "sha256": "d01d1a54dfcad0db8f525c4984ed87075493819f708a1aa62b3a9a5959b90c94"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/cancel_booking",
+      "guid": "NsEpCNIuHsJO1ufuEl5zZV6jSmw",
+      "current_sha256": "7eb63b7c78a848b84267f026a1f04f25f9bc56b3946f365a747e7bb8f3e364df",
+      "historical": {
+        "file": "function/booking/cancel_booking.xs",
+        "sha256": "7eb63b7c78a848b84267f026a1f04f25f9bc56b3946f365a747e7bb8f3e364df"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/confirm_booking",
+      "guid": "P9PG7pf127fKSqeDZpVmLT_hdLs",
+      "current_sha256": "7a5d945d3d4a0d7bcbdac3dbbf57e8c4d4637a86435f765171cb1df39e115760",
+      "historical": {
+        "file": "function/booking/confirm_booking.xs",
+        "sha256": "7a5d945d3d4a0d7bcbdac3dbbf57e8c4d4637a86435f765171cb1df39e115760"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/create_consent_attempt",
+      "guid": "qpOJRSjf9gKpqqMy4j5hXDSO1eA",
+      "current_sha256": "3e5087428091a116abb9cb4d120a5ea3696bdfa4d970fa18cde37ca6fd7fa692",
+      "historical": {
+        "file": "function/booking/create_consent_attempt.xs",
+        "sha256": "3e5087428091a116abb9cb4d120a5ea3696bdfa4d970fa18cde37ca6fd7fa692"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/create_draft",
+      "guid": "EpwQ_xNrTvFefJL0qKTz7HO62wM",
+      "current_sha256": "5816aa5b0ef198f6e8bd750621ce7fdf5d17947837f0cd3be2a71a8e86b48a5c",
+      "historical": {
+        "file": "function/booking/create_draft.xs",
+        "sha256": "5816aa5b0ef198f6e8bd750621ce7fdf5d17947837f0cd3be2a71a8e86b48a5c"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/invalidate_quotes",
+      "guid": "cDyv2Os7uHvKFcfXxgCwql7_eaA",
+      "current_sha256": "a16838da8c887523c517357eb1d6e6d63723f8c1cf04fa80b13b33a76a8b6c29",
+      "historical": {
+        "file": "function/booking/invalidate_quotes.xs",
+        "sha256": "a16838da8c887523c517357eb1d6e6d63723f8c1cf04fa80b13b33a76a8b6c29"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/manage_hold",
+      "guid": "K6khcEjMraeTCOuc_boKeXAzpbc",
+      "current_sha256": "c38f9f20433032f7e3aed84b287ad4fb7ee09900d2e7af78fba31e8470747ede",
+      "historical": {
+        "file": "function/booking/manage_hold.xs",
+        "sha256": "c38f9f20433032f7e3aed84b287ad4fb7ee09900d2e7af78fba31e8470747ede"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/record_consent_decision",
+      "guid": "ap1057RIDD2gZxZ3dUtutCH-ki8",
+      "current_sha256": "1a9a77510e943bb864e6d1c9591a2c19bfb8bbee2435ed94e1353fe1eefc44f3",
+      "historical": {
+        "file": "function/booking/record_consent_decision.xs",
+        "sha256": "1a9a77510e943bb864e6d1c9591a2c19bfb8bbee2435ed94e1353fe1eefc44f3"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/resume_booking",
+      "guid": "1sQLCnIOiOTv0RequwCOOZDqPcE",
+      "current_sha256": "d8bbc25026758e3bef235b38c67373e1f31dade4848efbace225ba8bd3d001ce",
+      "historical": {
+        "file": "function/booking/resume_booking.xs",
+        "sha256": "d8bbc25026758e3bef235b38c67373e1f31dade4848efbace225ba8bd3d001ce"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:booking/select_payment",
+      "guid": "RfBtv_2R547Af0Lf2Px27LEgqZ8",
+      "current_sha256": "017825e37f9fc6f3ab7aac87a122647830dba27c9bc35f161bbf0d335a214e58",
+      "historical": {
+        "file": "function/booking/select_payment.xs",
+        "sha256": "017825e37f9fc6f3ab7aac87a122647830dba27c9bc35f161bbf0d335a214e58"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:pricing/calculate_quote",
+      "guid": "gdL49OitRIU9iGumfA6SMsghKV8",
+      "current_sha256": "e511cd4b2a1be9452f8125dcd491f319cb3d0fa5ce3817cbb61ec02e5bcee156",
+      "historical": {
+        "file": "function/pricing/calculate_quote.xs",
+        "sha256": "e511cd4b2a1be9452f8125dcd491f319cb3d0fa5ce3817cbb61ec02e5bcee156"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:Quick Start/enforce_role",
+      "guid": "wLUicquNUSWqTUQkbOLH-D6NG28",
+      "current_sha256": "037d41108573b8db179190fe0ce80b9fa218cac4064735c5b7a568a980a62960",
+      "historical": {
+        "file": "function/quick_start/enforce_role.xs",
+        "sha256": "037d41108573b8db179190fe0ce80b9fa218cac4064735c5b7a568a980a62960"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:Quick Start/generate_magic_link",
+      "guid": "aSN69WB_2P6HmOpeaPtZhxFWyeo",
+      "current_sha256": "6333aa888b100c6ff29c613a09e9992496f2a3f40a0933d820f8ce94b71149d6",
+      "historical": {
+        "file": "function/quick_start/generate_magic_link.xs",
+        "sha256": "6333aa888b100c6ff29c613a09e9992496f2a3f40a0933d820f8ce94b71149d6"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:Quick Start/log_event",
+      "guid": "KcbNfC-kH9IWL9sKX1YYDBIaz9k",
+      "current_sha256": "457707e681eee41060ec51a4b6f1e2ac60b56fc959711ee8cf3d92ccb25cfdef",
+      "historical": {
+        "file": "function/quick_start/log_event.xs",
+        "sha256": "d48faed100c6dc14e030871a669740dee5adce61d96ba14983ab0ca0b58f5b01"
+      },
+      "changed": true
+    },
+    {
+      "key": "function:security/authorize_resource",
+      "guid": "2LbK9uCTM0nMFZPMy_om6EDR0Gs",
+      "current_sha256": "a2c334e54cc0f67131a9d4317c2475fe8149775831ec6f23e57f6845a2988c5f",
+      "historical": {
+        "file": "function/security/authorize_resource.xs",
+        "sha256": "d9b8069f709905e2680192244af109f7fea20e5df78e9631ab4bebf75deb7bf1"
+      },
+      "changed": true
+    },
+    {
+      "key": "function:security/complete_idempotency",
+      "guid": "hthO2TYH9smLTd0iPJmpmnrFUSs",
+      "current_sha256": "b513d80ddf36d73fef547e6752ab46b08ff69ba02f3b7ad4c326fbc620dc12b5",
+      "historical": {
+        "file": "function/security/complete_idempotency.xs",
+        "sha256": "b513d80ddf36d73fef547e6752ab46b08ff69ba02f3b7ad4c326fbc620dc12b5"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:security/resolve_context",
+      "guid": "wZwblzdLzpQhs7Dm4uTsNjuVq7Y",
+      "current_sha256": "7aab2928332d8edefd2cf689366f51d8e86c3a440753a68286446c8493bc7bce",
+      "historical": {
+        "file": "function/security/resolve_context.xs",
+        "sha256": "d4e5098af503ac37688d470dc9fa7db71a53617bfcd9a6e3e99957bafc6ca756"
+      },
+      "changed": true
+    },
+    {
+      "key": "function:security/validate_command",
+      "guid": "RDOa_zKGK5GP5tq9gaVfRf4A-_M",
+      "current_sha256": "86bc98dbefe018ec3b9c932ba5fd67f77556076ed25804ac1d4580b12d192d03",
+      "historical": {
+        "file": "function/security/validate_command.xs",
+        "sha256": "86bc98dbefe018ec3b9c932ba5fd67f77556076ed25804ac1d4580b12d192d03"
+      },
+      "changed": false
+    },
+    {
+      "key": "function:tests/run_p2_suite",
+      "guid": "AlTbpjQ0SbwLk_-cN4QFPYLcSwk",
+      "current_sha256": "057b71674a5369bb0fcbdf666a387ef72fbddce45fa6285acab4fdb5ce97ddb8",
+      "historical": {
+        "file": "function/tests/run_p_2_suite.xs",
+        "sha256": "057b71674a5369bb0fcbdf666a387ef72fbddce45fa6285acab4fdb5ce97ddb8"
+      },
+      "changed": false
+    },
+    {
+      "key": "mcp_server:Xano-Synthetic-Prototype",
+      "guid": "O4-EdEahkSCI6RkO5jhYjXNt3vI",
+      "current_sha256": "d917378ef94531835e3dccb2f06fd1ca7724009fa58ecd705109c6ef7b07795a",
+      "historical": {
+        "file": "ai/mcp_server/xano_synthetic_prototype.xs",
+        "sha256": "d917378ef94531835e3dccb2f06fd1ca7724009fa58ecd705109c6ef7b07795a"
+      },
+      "changed": false
+    },
+    {
+      "key": "middleware:Zippy_request_guard",
+      "guid": "sHFyufeK8wOzf70_Fo0ISGd-9xM",
+      "current_sha256": "469e827ba4e2a8325f8886a5ef6f71904e4e86bd6f676021cd48e1f6580f92fa",
+      "historical": {
+        "file": "middleware/zippy_request_guard.xs",
+        "sha256": "469e827ba4e2a8325f8886a5ef6f71904e4e86bd6f676021cd48e1f6580f92fa"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:auth/login:POST:Authentication",
+      "guid": "aX_q_Dc3znjBWbI9fI6uRwX9rUw",
+      "current_sha256": "6dfcf963bfb3229375a67ee172343508613a6fed8239d525fe2bbfea7346662c",
+      "historical": {
+        "file": "api/authentication/auth/login_POST.xs",
+        "sha256": "ddabd15cba505302057236c9e91f02efb77bfcfadeacadcab213b35513cf7fd0"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:auth/me:GET:Authentication",
+      "guid": "dhAy6uzAP6VInZUo3NUpseXZVUk",
+      "current_sha256": "8e1705c9ea6d34e25414479bca8c23cb39aecc280601dd537f67864bb067266a",
+      "historical": {
+        "file": "api/authentication/auth/me_GET.xs",
+        "sha256": "1b85164965675b8b9335b0e6f65613442fabccf1eb9aefd7c825e4ff71b140f3"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:auth/signup:POST:Authentication",
+      "guid": "uzsWxrwZyIQ2P4VGhcKoUujQOVw",
+      "current_sha256": "cd86683376a4c9d59caa9d0a4ddeeaaf9b451816f9bb2c203c5ce18aa07f612e",
+      "historical": {
+        "file": "api/authentication/auth/signup_POST.xs",
+        "sha256": "aea1a0a44f2644dd1100a8b6e27bab316753c27a40d4554d5d37384b716ea384"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:bookings:GET:Zippy_V1",
+      "guid": "6GSLqxIQiJCrqkSCjCvpgWtlp74",
+      "current_sha256": "2afa288cd47e66f31fd67922c0e2e2024da29ab434a06d9e94abbf1e4461557e",
+      "historical": {
+        "file": "api/zippy_v_1/bookings_GET.xs",
+        "sha256": "3853d8898e231bd4417865effeca3f9e6363b960756ad2c1a23e4244e3b7b95e"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:bookings:POST:Zippy_V1",
+      "guid": "YBEzcApCI-ywnoCzLNNmFhnaDGU",
+      "current_sha256": "aca1f93fee6b4814367664787bdeb6ac051431d1eb036c295b870cbc18b68948",
+      "historical": {
+        "file": "api/zippy_v_1/bookings_POST.xs",
+        "sha256": "aca1f93fee6b4814367664787bdeb6ac051431d1eb036c295b870cbc18b68948"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}:GET:Zippy_V1",
+      "guid": "TIM8wNAjymPpkdQFVbENQWCVzcQ",
+      "current_sha256": "a0a73dd9ac6ade2cf656817473a8f3d7bcea92a8fa51db2f4a7d153a3ae8fbb9",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id_GET.xs",
+        "sha256": "3cf7c867ae08bc66fc35fe38417b5f10c7262e58702bf54ba37f48e3c0341f2f"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:bookings/{booking_id}:PATCH:Zippy_V1",
+      "guid": "eZJf-oxiWY24O97XjWNAAJ51m9s",
+      "current_sha256": "fc5300ade2f603f35720f0da1d31a1014b22daca0f4d9e0f9a33921bea0ecc80",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id_PATCH.xs",
+        "sha256": "fc5300ade2f603f35720f0da1d31a1014b22daca0f4d9e0f9a33921bea0ecc80"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/cancel:POST:Zippy_V1",
+      "guid": "amImulgOuHcVz2mXWEP4WW-ajYA",
+      "current_sha256": "5212881e83a404b193ab42f97505c6f16627214ba0dceb30e02d6e83c3e42113",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/cancel_POST.xs",
+        "sha256": "5212881e83a404b193ab42f97505c6f16627214ba0dceb30e02d6e83c3e42113"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/confirm:POST:Zippy_V1",
+      "guid": "xuw6qoRLQSeXoAJ23Byz5sDWzis",
+      "current_sha256": "5d9d7cb88a6ce7f37505d28ece6e4123c11a0cb8dd8a90bd091713634b84a6f9",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/confirm_POST.xs",
+        "sha256": "5d9d7cb88a6ce7f37505d28ece6e4123c11a0cb8dd8a90bd091713634b84a6f9"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/consent-attempts:POST:Zippy_V1",
+      "guid": "-raPARoSzPQN1Eju67GxKXMjY68",
+      "current_sha256": "2ccecde8bf8491bfb186d2473292a2f6abdda076d910565bea1d16cad6113bec",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/consent_attempts_POST.xs",
+        "sha256": "2ccecde8bf8491bfb186d2473292a2f6abdda076d910565bea1d16cad6113bec"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/holds:POST:Zippy_V1",
+      "guid": "ExxOI7aHk30DdUsNzYPgWhQbkog",
+      "current_sha256": "de70a6fe421632cffaa297b23b734555f697927b802a8ede5886ba2cb273abd5",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/holds_POST.xs",
+        "sha256": "de70a6fe421632cffaa297b23b734555f697927b802a8ede5886ba2cb273abd5"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/holds/{hold_id}/release:POST:Zippy_V1",
+      "guid": "bNqFkRnsiEgmCKPa4I3BoRtLpL8",
+      "current_sha256": "6e25675ac505e9388765c1d992c439481c0d9d985f1500aeb7c3b0d0c69dff58",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/holds/hold_id/release_POST.xs",
+        "sha256": "6e25675ac505e9388765c1d992c439481c0d9d985f1500aeb7c3b0d0c69dff58"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/payment-selection:POST:Zippy_V1",
+      "guid": "PFhS_T9CwrY1YTAfEYAMC515ow8",
+      "current_sha256": "a6b6baf5dfaba6776c0a95d7d7af7b046649b8eadbdc128ea6b71fb00c2a274f",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/payment_selection_POST.xs",
+        "sha256": "a6b6baf5dfaba6776c0a95d7d7af7b046649b8eadbdc128ea6b71fb00c2a274f"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes:POST:Zippy_V1",
+      "guid": "gmvLx0cis9Y9-SHdhdReeLEoPsU",
+      "current_sha256": "329e081e07b15b3ae428817ffb435bb63e0a0bb8d05032e2de3ee478db1f30d4",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/quotes_POST.xs",
+        "sha256": "329e081e07b15b3ae428817ffb435bb63e0a0bb8d05032e2de3ee478db1f30d4"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/quotes/{quote_id}/accept:POST:Zippy_V1",
+      "guid": "VmrJkp73XerYTSIYvnpY5rotaMs",
+      "current_sha256": "998d77a590517110daf5ecc42cd9e78688bde60a947ba93d42e7ff11fc58b076",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/quotes/quote_id/accept_POST.xs",
+        "sha256": "998d77a590517110daf5ecc42cd9e78688bde60a947ba93d42e7ff11fc58b076"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:bookings/{booking_id}/resume:POST:Zippy_V1",
+      "guid": "iINhgTaUOWgnOGkcECxAK6jPrls",
+      "current_sha256": "384ce77a844033a342bf47bf1948e1be5862e333d0fe64db8ae5cfcd85e46e44",
+      "historical": {
+        "file": "api/zippy_v_1/bookings/booking_id/resume_POST.xs",
+        "sha256": "384ce77a844033a342bf47bf1948e1be5862e333d0fe64db8ae5cfcd85e46e44"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:chatgpt:POST:Authentication",
+      "guid": "CVYDEFmwe1moAZLpXlOHOaBsAgo",
+      "current_sha256": "757b35e26bc71e0e6af63a5096a014e97f0f5b18f88d778262229fcc5c6078dc",
+      "historical": null,
+      "changed": null
+    },
+    {
+      "key": "query:consent-attempts/{attempt_id}/decision:POST:Zippy_V1",
+      "guid": "KW_lQ0G930yx0BYgu5p3AAhT34E",
+      "current_sha256": "8b04721b5a0654613604b899eef21450a105dfcd4211f690d189ce392b918f1a",
+      "historical": {
+        "file": "api/zippy_v_1/consent_attempts/attempt_id/decision_POST.xs",
+        "sha256": "8b04721b5a0654613604b899eef21450a105dfcd4211f690d189ce392b918f1a"
+      },
+      "changed": false
+    },
+    {
+      "key": "query:logs/user/my_events:GET:Event Logs",
+      "guid": "CcBtnd_m1N_eGR5EGBNVc-_16bg",
+      "current_sha256": "3f2902d05fbf71f07ec3c063f8edd0cc0d927bcb18dc73d76c2756ab5843407d",
+      "historical": {
+        "file": "api/event_logs/logs/user/my_events_GET.xs",
+        "sha256": "270a6cfc3338480e3eac5d72ee834d71ae92cf67c3820c1873ac5051d4dd0438"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:message/send_welcome_email:POST:Authentication",
+      "guid": "olPklXlkadDR393PX2WElLYb72A",
+      "current_sha256": "6514282d414253dc16316f5ad2e523b5a5d012d105e2a09eaf1433ebe41eb423",
+      "historical": {
+        "file": "api/authentication/message/send_welcome_email_POST.xs",
+        "sha256": "22ca89f5a63dfad4971b3f5049926025e09587d824f7394e26dce1feb872abd5"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:reset/magic-link-login:POST:Authentication",
+      "guid": "LUqjgYQsN5-IAoQS3U2LC1C5WXQ",
+      "current_sha256": "b45b6f41b1efb901119a656f8ce993d63a1bc378496aac1e02b46c3e9a09b547",
+      "historical": {
+        "file": "api/authentication/reset/magic_link_login_POST.xs",
+        "sha256": "dcab86343c972bfb70a0e8a0872d63be33178b257de68d855c028f7104aacd17"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:reset/request-reset-link:GET:Authentication",
+      "guid": "bYr4JVjrEejdcUEIsYdGAlUrVR0",
+      "current_sha256": "0b797b7b6a5bcebe15fa7e0052ee7b97f071221a83afb24c0fbcf66adbbdae05",
+      "historical": {
+        "file": "api/authentication/reset/request_reset_link_GET.xs",
+        "sha256": "97dfc7c7dbb3546bb060dc3c866def501e740e4825c7bb44ed94528b043c110c"
+      },
+      "changed": true
+    },
+    {
+      "key": "query:reset/update_password:POST:Authentication",
+      "guid": "uLSQq0yQAcWE0FXguLV-LXqLtk4",
+      "current_sha256": "9f2a3a19f2ed8e9117f73f86f7544ae66580d757f3e3a8c7a24e75262b1613ec",
+      "historical": {
+        "file": "api/authentication/reset/update_password_POST.xs",
+        "sha256": "245f5167bf47edbd4a6d3c74f0075d46bfc7ca307cd6fb38be79c7c53d3d88b9"
+      },
+      "changed": true
+    },
+    {
+      "key": "table:active_assignment_reservations",
+      "guid": "AZ158Fo2BpTszdZ1LGX59PPF7r8",
+      "current_sha256": "6e9c405dadadebe6ed52726e111d5683856b1bc972a801ea35f0490f23f85dae",
+      "historical": {
+        "file": "table/active_assignment_reservations.xs",
+        "sha256": "6e9c405dadadebe6ed52726e111d5683856b1bc972a801ea35f0490f23f85dae"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:agent_decision",
+      "guid": "9Igxj4T8-_vOqrieONIJYIHjuLU",
+      "current_sha256": "fbe480bb2f8bac9be9a00fe77b36bc578e488c599db1a8bd9e4deb09e1508269",
+      "historical": {
+        "file": "table/agent_decision.xs",
+        "sha256": "fbe480bb2f8bac9be9a00fe77b36bc578e488c599db1a8bd9e4deb09e1508269"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:agent_execution",
+      "guid": "K99-MMr1vz3txlBdgzAhoP8fxCE",
+      "current_sha256": "c3a90a616fa28b7bc584b803ad3d8f7a1cedfcff625e7f964a19670bfd321f09",
+      "historical": {
+        "file": "table/agent_execution.xs",
+        "sha256": "c3a90a616fa28b7bc584b803ad3d8f7a1cedfcff625e7f964a19670bfd321f09"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:approval_request",
+      "guid": "OhPns22vsqvm9WRkLWMNc0Psvn0",
+      "current_sha256": "6a650e4ef8102ea8fe9058a5441530e937804a5d180a1eefde74c275e834cfba",
+      "historical": {
+        "file": "table/approval_request.xs",
+        "sha256": "6a650e4ef8102ea8fe9058a5441530e937804a5d180a1eefde74c275e834cfba"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:audit_log",
+      "guid": "1U2ioedvljORPrfArMQPgW6ytB4",
+      "current_sha256": "95decf63954aa2b243b05ecf19655126b1c3fd7908e14d058e0bc0674ad066fc",
+      "historical": {
+        "file": "table/audit_log.xs",
+        "sha256": "95decf63954aa2b243b05ecf19655126b1c3fd7908e14d058e0bc0674ad066fc"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:booking_quote",
+      "guid": "CyOM1DPNdMHUvltp4n3Ld7LeWhs",
+      "current_sha256": "e3cfacf60fbe4c7afc214643160ab6c5d8e56dae1f4118ce2bc4c87320ff08a0",
+      "historical": {
+        "file": "table/booking_quote.xs",
+        "sha256": "e3cfacf60fbe4c7afc214643160ab6c5d8e56dae1f4118ce2bc4c87320ff08a0"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:cargo_detail",
+      "guid": "lRnsiRDlAjK89gV9AnFGpeiPTSE",
+      "current_sha256": "bbd062012b212c264e380ba774acde52f2ec1935f9105e11546e92fd3ca8a25c",
+      "historical": {
+        "file": "table/cargo_detail.xs",
+        "sha256": "bbd062012b212c264e380ba774acde52f2ec1935f9105e11546e92fd3ca8a25c"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:compliance_documents",
+      "guid": "i9Lix-ircSPEBGZDh77ppKrDgtA",
+      "current_sha256": "0d41aa1c7e6689810257a58176a47fa19fe305e13aa7fff693c79b2e1a4a93c2",
+      "historical": {
+        "file": "table/compliance_documents.xs",
+        "sha256": "0d41aa1c7e6689810257a58176a47fa19fe305e13aa7fff693c79b2e1a4a93c2"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:customer_booking",
+      "guid": "uDlEjr1xlp2p9_CVdrJLfdgS9D0",
+      "current_sha256": "d6d573e99f98d4acdf2a76b1dd34bb069b8b3ef91e35a14383b0b943f1bf2a6a",
+      "historical": {
+        "file": "table/customer_booking.xs",
+        "sha256": "d6d573e99f98d4acdf2a76b1dd34bb069b8b3ef91e35a14383b0b943f1bf2a6a"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:driver_profile",
+      "guid": "GYW4a5nhCS6CWkyHfoVo2_O-2yg",
+      "current_sha256": "cf47ad5cf22a9bcbd2fe03b542a4305a8c02d3dc42cc2292f098ba885594ba1c",
+      "historical": {
+        "file": "table/driver_profile.xs",
+        "sha256": "cf47ad5cf22a9bcbd2fe03b542a4305a8c02d3dc42cc2292f098ba885594ba1c"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:durable_tasks",
+      "guid": "6hRBZMFhfDrvonnahl2J5C8TKjA",
+      "current_sha256": "3c077f5b4c5bea5d9031dcb0929028619fe76dcf4ed1b79699d1b2e7d284e2c3",
+      "historical": {
+        "file": "table/durable_tasks.xs",
+        "sha256": "3c077f5b4c5bea5d9031dcb0929028619fe76dcf4ed1b79699d1b2e7d284e2c3"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:event_log",
+      "guid": "1TVI0UZUEBKqEeaj1sqcQfOzHjc",
+      "current_sha256": "09d4946d85925fb6bf631ff8ecd246af1f8fe325d4f5dfa52afcca5b3e6301bd",
+      "historical": {
+        "file": "table/event_log.xs",
+        "sha256": "09d4946d85925fb6bf631ff8ecd246af1f8fe325d4f5dfa52afcca5b3e6301bd"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:event_outbox",
+      "guid": "OSt4uREt2QDWmE1p4NeX04YUTq0",
+      "current_sha256": "fd31419b391174f1db07ead0dbfe7f274ae6ad185069674d0dcc2474cc63ac18",
+      "historical": {
+        "file": "table/event_outbox.xs",
+        "sha256": "fd31419b391174f1db07ead0dbfe7f274ae6ad185069674d0dcc2474cc63ac18"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:idempotency_key",
+      "guid": "pti1yaXaLxrcRcU1my9K1dzvZT0",
+      "current_sha256": "d2a4d0ab3a90115d0a6be33526ecf66e4c39c579148c94e8cb51fd93f8c1e7a3",
+      "historical": {
+        "file": "table/idempotency_key.xs",
+        "sha256": "d2a4d0ab3a90115d0a6be33526ecf66e4c39c579148c94e8cb51fd93f8c1e7a3"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:incident_dispute",
+      "guid": "GH6sqmzdcbKHlvWcPbdZ7rYxCD4",
+      "current_sha256": "ee588b485c9383f2b2965be6ed70c74040b9e87f780c026bae9e112e93b62d74",
+      "historical": {
+        "file": "table/incident_dispute.xs",
+        "sha256": "ee588b485c9383f2b2965be6ed70c74040b9e87f780c026bae9e112e93b62d74"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:order_holds",
+      "guid": "1RyofPd40KbIkVVl3BKjRm1Q80k",
+      "current_sha256": "3d00a8cafab028d5545938bbab5b8c4133f3075d0bc5ef2f7ee0766be1daa33b",
+      "historical": {
+        "file": "table/order_holds.xs",
+        "sha256": "3d00a8cafab028d5545938bbab5b8c4133f3075d0bc5ef2f7ee0766be1daa33b"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:organization",
+      "guid": "aUUAzTNAD9bTwpTtB2WxTozxVB0",
+      "current_sha256": "6c1d47de7aacecbc3173f77428a9bcb6665bd188514e5475ff1992248ae8e8b1",
+      "historical": {
+        "file": "table/organization.xs",
+        "sha256": "6c1d47de7aacecbc3173f77428a9bcb6665bd188514e5475ff1992248ae8e8b1"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:organization_member",
+      "guid": "i3feB0lhXFnQ72k7yfjpHtcyY6Q",
+      "current_sha256": "24b23f966f28569c18f4e058bbcf00fa2492cfc722b2992f790cf997675e7981",
+      "historical": {
+        "file": "table/organization_member.xs",
+        "sha256": "24b23f966f28569c18f4e058bbcf00fa2492cfc722b2992f790cf997675e7981"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:otp_challenges",
+      "guid": "BoLiiFvGq5-2gyzd-isoY-sup0E",
+      "current_sha256": "9087a17394c34f714beac5b34e1336abaa7e48a61de4ba160c0e425011be4b42",
+      "historical": {
+        "file": "table/otp_challenges.xs",
+        "sha256": "9087a17394c34f714beac5b34e1336abaa7e48a61de4ba160c0e425011be4b42"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:payment_transaction",
+      "guid": "XYqPw1tXZyqSLVprpdfo93X8eRw",
+      "current_sha256": "f7b3a1614dd5b1f3368f48d9c9d6cf06106319dfde7fbfc7bec9894b965b1b10",
+      "historical": {
+        "file": "table/payment_transaction.xs",
+        "sha256": "f7b3a1614dd5b1f3368f48d9c9d6cf06106319dfde7fbfc7bec9894b965b1b10"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:pricing_policies",
+      "guid": "ZEXezqyQZGzDxBLN8N0tLmUBsPA",
+      "current_sha256": "8f291a291360d074b2199edc37b4f8f6b89c59ce4e494e946fcf9a0d06385559",
+      "historical": {
+        "file": "table/pricing_policies.xs",
+        "sha256": "8f291a291360d074b2199edc37b4f8f6b89c59ce4e494e946fcf9a0d06385559"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:proof_of_delivery",
+      "guid": "vCm4J72gGd0NgE0dOb4II9KMFWg",
+      "current_sha256": "602ff3ff4506025bcbc3a4d5b7655b62842cd864937fb2ee8d191f3845b9b1f4",
+      "historical": {
+        "file": "table/proof_of_delivery.xs",
+        "sha256": "602ff3ff4506025bcbc3a4d5b7655b62842cd864937fb2ee8d191f3845b9b1f4"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:refund_request",
+      "guid": "os7QpjrtEAuD9mpk3T3e3ZpAInQ",
+      "current_sha256": "4a304ec4be50056a3e66a7c4ae8e0e3c3b5f32a3f6b10dc985a91920fa9df1e7",
+      "historical": {
+        "file": "table/refund_request.xs",
+        "sha256": "4a304ec4be50056a3e66a7c4ae8e0e3c3b5f32a3f6b10dc985a91920fa9df1e7"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:route_cache",
+      "guid": "bxYtPke4FRJZ4zp1wXfCdKn-GDM",
+      "current_sha256": "e52b98f90ed2fa4505cda903385a9291e15b44d8982267203df426611c363068",
+      "historical": {
+        "file": "table/route_cache.xs",
+        "sha256": "e52b98f90ed2fa4505cda903385a9291e15b44d8982267203df426611c363068"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:settlement",
+      "guid": "U6aetTkkDRNx1frAIpTIbNLiXHI",
+      "current_sha256": "42ac548b88d001daa4d981d04d815c73a53c64247690c6a8865fb3bcc97143b4",
+      "historical": {
+        "file": "table/settlement.xs",
+        "sha256": "42ac548b88d001daa4d981d04d815c73a53c64247690c6a8865fb3bcc97143b4"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:table_index",
+      "guid": "oYas5-2mxXMyMgMgrzYJE7LMlak",
+      "current_sha256": "a9c6ec7c4492340bd7bf1e3fff9b194a73107fc57700f09e33e6c03401268705",
+      "historical": {
+        "file": "table/table_index.xs",
+        "sha256": "a9c6ec7c4492340bd7bf1e3fff9b194a73107fc57700f09e33e6c03401268705"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:topay_consent_attempts",
+      "guid": "aL2dGQ2TwUB2IvL9zPPRNh44CJ0",
+      "current_sha256": "29feaa2787685994090f386883e4e0e6e1b330645605f6378c7651e82c48d040",
+      "historical": {
+        "file": "table/topay_consent_attempts.xs",
+        "sha256": "29feaa2787685994090f386883e4e0e6e1b330645605f6378c7651e82c48d040"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:tracking_event",
+      "guid": "X0PmT00LrEAXqSlNYulQRODOUCs",
+      "current_sha256": "09c65db2287a7bf304e9f5dba2c75c70e82847f4488d37d205c60301f5efa4fc",
+      "historical": {
+        "file": "table/tracking_event.xs",
+        "sha256": "09c65db2287a7bf304e9f5dba2c75c70e82847f4488d37d205c60301f5efa4fc"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:trip",
+      "guid": "CmwzYaR0YlIJSB8OZI2rlxDtfaE",
+      "current_sha256": "4562e58490c3933302b78e3a9870f3b8e2830ce793605504672f6703f95e138f",
+      "historical": {
+        "file": "table/trip.xs",
+        "sha256": "4562e58490c3933302b78e3a9870f3b8e2830ce793605504672f6703f95e138f"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:trip_stop",
+      "guid": "Rd1bI6BdyuEn2s2gEhOjFq3AnuE",
+      "current_sha256": "7f62440bd3830d7934997a0b39ef58e685099a08a82909d6ca16854f23100869",
+      "historical": {
+        "file": "table/trip_stop.xs",
+        "sha256": "7f62440bd3830d7934997a0b39ef58e685099a08a82909d6ca16854f23100869"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:user",
+      "guid": "hqdzoIV_nlTN8xTQwQMkOZ4kJ0Q",
+      "current_sha256": "aad55be18f10ed7f0ca02cea248f3952af5cbd7e918dee7ecca4c1f1d1af76a7",
+      "historical": {
+        "file": "table/user.xs",
+        "sha256": "aad55be18f10ed7f0ca02cea248f3952af5cbd7e918dee7ecca4c1f1d1af76a7"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:vehicle",
+      "guid": "1HYTz6CP3KkGf4bzbJVAQVz23HA",
+      "current_sha256": "919fe15438d22ed0cd374fa69669c3cc815c367378242ff7017bc37548173cc5",
+      "historical": {
+        "file": "table/vehicle.xs",
+        "sha256": "919fe15438d22ed0cd374fa69669c3cc815c367378242ff7017bc37548173cc5"
+      },
+      "changed": false
+    },
+    {
+      "key": "table:vehicle_availability",
+      "guid": "br93n-NiOtf_voL1dXKoSVjK6TE",
+      "current_sha256": "d667c833b245b9765b1fb6f15ba1c9d48a131d27aabbf90b5544e4699c914799",
+      "historical": {
+        "file": "table/vehicle_availability.xs",
+        "sha256": "d667c833b245b9765b1fb6f15ba1c9d48a131d27aabbf90b5544e4699c914799"
+      },
+      "changed": false
+    },
+    {
+      "key": "tool:search_xano_docs",
+      "guid": "arBFYKEKEf2E79dk1D-2RVbb31M",
+      "current_sha256": "4a96b07ce2a5e6fe64bafbbca681623f715720d47f1094750c1c2ed8f838d70b",
+      "historical": {
+        "file": "ai/tool/search_xano_docs.xs",
+        "sha256": "4a96b07ce2a5e6fe64bafbbca681623f715720d47f1094750c1c2ed8f838d70b"
+      },
+      "changed": false
+    },
+    {
+      "key": "workspace:Zippy Synthetic Prototype_1",
+      "current_sha256": "d42264526f385839c2294bb038dccbd93552c901b8de949bde5f81e51bb4eec1",
+      "historical": null,
+      "changed": null
+    }
+  ]
+}

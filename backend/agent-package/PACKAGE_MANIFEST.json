@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "name": "CODEX_HANDOFF.md",
+      "sha256": "844cdd32e97a72222a7569c3c90f5de88bf44696f52f678b2be9aed42a919630",
+      "size_bytes": 2714
+    },
+    {
+      "name": "Documentation_Validation.json",
+      "sha256": "9869f2fbf6342041abe8b4a35c896a8322944afda972ccda44390214003f8174",
+      "size_bytes": 686
+    },
+    {
+      "name": "README.md",
+      "sha256": "39c2f8b33672a0cc031d0d6d1d02d6fe6fe4d451a280cfedbc197c1112dd70f8",
+      "size_bytes": 1679
+    },
+    {
+      "name": "Zippy_Acceptance_Tests.json",
+      "sha256": "7e18a561b3e548cc76de26bcf48ace0ecc4ac5f1e1fba1a31d72b940aa857540",
+      "size_bytes": 159614
+    },
+    {
+      "name": "Zippy_Agent_Contracts.json",
+      "sha256": "868a7e40b07abdfded6c9633b503d0dab9fc48727b4dcf78e93dc864189824ac",
+      "size_bytes": 77399
+    },
+    {
+      "name": "Zippy_Agent_Output.schema.json",
+      "sha256": "6166c2bf34d6b9088245ba6b3dc90301fc6714faf2316ab58fd5e1df04078ed0",
+      "size_bytes": 3895
+    },
+    {
+      "name": "Zippy_Business_Operations_Report.md",
+      "sha256": "c77ea23f32eee34ca4bc5c581b7203969513f8bb471bd5f04ff54f40b3874c78",
+      "size_bytes": 62041
+    },
+    {
+      "name": "Zippy_Five_Agent_Xano_PRD.md",
+      "sha256": "7afc1df5db779d2027a7fabfa0d2d380c681b27073b3875ee9f00434c93bdc60",
+      "size_bytes": 63001
+    },
+    {
+      "name": "Zippy_Source_and_Coverage_Manifest.json",
+      "sha256": "8e2608ad15ab06f41b98cbed9a2767179b736dbae91260df0517f71b1d996a1f",
+      "size_bytes": 42258
+    }
+  ]
+}

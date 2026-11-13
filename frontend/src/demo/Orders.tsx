@@ -1,0 +1,35 @@
+import { useState } from 'react';
+import { ArrowRight, ChevronRight, Download, Search } from 'lucide-react';
+import { Badge, Card, DetailRows, EmptyState, Field, Notice } from '../components';
+import { money, type Order, type Tone } from '../types';
+
+export const orderTone = (status: string): Tone => ['Delivered', 'Succeeded', 'Available'].includes(status) ? 'success' : ['In transit', 'Pending', 'Unknown — reconcile', 'On hold', 'Awaiting review', 'Review required'].includes(status) ? 'warning' : ['Cancelled', 'Failed'].includes(status) ? 'danger' : status === 'Confirmed' ? 'info' : 'neutral';
+export function exportOrders(orders: Order[], financial: boolean) {
+  const rows = [['Order', 'Pickup', 'Delivery', 'Order status', ...(financial ? ['Payment attempt', 'Quoted amount', 'Verified collection', 'Provider settlement'] : [])], ...orders.map(o => [o.id, o.from, o.to, o.status, ...(financial ? [o.payment, o.amount ?? '', o.paid, o.settlement] : [])])];
+  const text = rows.map(row => row.map(value => `"${String(value).replace(/^[=+@\-\t\r]/, "'$&").replaceAll('"', '""')}"`).join(',')).join('\r\n');
+  const url = URL.createObjectURL(new Blob(['\ufeff' + text], { type: 'text/csv;charset=utf-8' }));
+  const a = document.createElement('a'); a.href = url; a.download = 'zippy-preview-orders.csv'; a.click(); URL.revokeObjectURL(url);
+}
+export function OrderList({ orders, onDetail, compact = false, onViewAll, financial = true }: { orders: Order[]; onDetail: (order: Order) => void; compact?: boolean; onViewAll?: () => void; financial?: boolean }) {
+  const [query, setQuery] = useState('');
+  const [filter, setFilter] = useState('All orders');
+  const filtered = orders.filter(o => `${o.id} ${o.from} ${o.to} ${o.vehicle}`.toLowerCase().includes(query.toLowerCase()) && (filter === 'All orders' || (filter === 'Active' ? ['In transit', 'Confirmed'].includes(o.status) : o.status === filter)));
+  const list = compact ? filtered.slice(0, 4) : filtered;
+  return <Card title={compact ? 'Recent orders' : 'Your orders at a glance'} subtitle="A clear view of every shipment." action={compact ? <button className="text-btn" onClick={onViewAll}>View all orders <ArrowRight size={15}/></button> : <button className="btn" onClick={() => exportOrders(filtered, financial)}><Download size={15}/> Export preview CSV</button>}>
+    <div className="flex flex-wrap gap-2 px-5 pb-4"><div className="flex flex-wrap gap-1" aria-label="Filter orders">{['All orders', 'Active', 'Delivered', 'Cancelled', 'Draft'].map(f => <button key={f} onClick={() => setFilter(f)} aria-pressed={f === filter} className={`min-h-11 rounded-lg px-3 text-xs ${f === filter ? 'bg-brand-soft font-semibold text-brand' : 'text-muted hover:bg-canvas'}`}>{f}</button>)}</div><label className="relative min-w-0 flex-1 basis-44"><span className="sr-only">Search orders</span><Search className="pointer-events-none absolute top-3.5 left-3 text-muted" size={16}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search order or route…" style={{ paddingLeft: 36 }}/></label></div>
+    {list.length ? <ul>{list.map(o => <li key={o.id} className="data-row items-center hover:bg-canvas/50 xl:grid-cols-[1fr_1.7fr_1fr_1fr_auto]"><div><button className="min-h-11 text-left font-bold hover:text-brand" onClick={() => onDetail(o)}>{o.id}</button><p className="text-[11px] text-muted">{o.date}</p></div><div><p className="font-medium">{o.from} → {o.to}</p><p className="mt-1 text-[11px] text-muted">{o.vehicle}</p></div><div><Badge tone={orderTone(o.status)}>{o.status}</Badge></div><div>{financial ? <><span className="text-[10px] text-muted">Payment attempt</span><p className="my-1"><Badge tone={orderTone(o.payment)}>{o.payment}</Badge></p><span className="font-semibold">{money(o.amount)}</span></> : <span className="text-xs text-muted">Assigned work</span>}</div><button className="btn justify-self-start" aria-label={`View order ${o.id}`} onClick={() => onDetail(o)}><span className="xl:hidden">View details</span><ChevronRight size={17}/></button></li>)}</ul> : <EmptyState title="No orders found" action={<button className="btn" onClick={() => { setQuery(''); setFilter('All orders'); }}>Clear filters</button>}>Try another route or status.</EmptyState>}
+    <div className="flex flex-wrap justify-between gap-2 border-t border-line px-5 py-4 text-[11px] text-muted"><span role="status">Showing {list.length} of {filtered.length} matching orders</span><span>All times in IST · preview data</span></div>
+  </Card>;
+}
+export function OrderDetail({ order: o, onTrack, financial = true, onCancelDraft }: { order: Order; onTrack?: () => void; financial?: boolean; onCancelDraft?: () => void }) {
+  const [reason, setReason] = useState('');
+  const [prepared, setPrepared] = useState(false);
+  return <><div className="flex flex-wrap justify-between gap-2"><h3 className="text-lg font-bold">{o.from} → {o.to}</h3><Badge tone={orderTone(o.status)}>{o.status}</Badge></div><DetailRows rows={[
+    ['Vehicle', o.vehicle], ['Cargo', `${o.cargo} · ${o.weight} t`], ['Assigned driver', o.driver], ['Registration', o.plate], ['Order status', o.status],
+    ['POD status', o.pod || 'Not submitted'], ['Recipient confirmation', o.recipientConfirmation || 'Not recorded'],
+    ...(financial ? [['Payment attempt', o.payment], ['Verified collection · sample', money(o.paid)], ['Quoted amount', money(o.amount)], ['Remaining balance', o.amount === null ? 'Awaiting quote' : money(Math.max(0, o.amount - o.paid))], ['ToPay consent', o.consent || 'Not requested'], ['Refund status', o.refund], ['Provider settlement', o.settlement], ['Invoice', o.invoice || 'Not issued']] as [string, string][] : []),
+  ]}/><Notice>ToPay consent is not collection. A payment timeout means unknown / reconciliation pending. Submitted POD does not verify delivery evidence or release settlement.</Notice>
+    <div className="flex flex-wrap gap-2">{o.id === 'ZP-2048' && onTrack && <button className="btn primary" onClick={onTrack}>View illustrative tracking <ArrowRight size={15}/></button>}{financial && <button className="btn" disabled>Invoice service unavailable</button>}</div>
+    {o.status === 'Draft' && onCancelDraft ? <button className="btn" onClick={onCancelDraft}>Discard local draft</button> : o.status !== 'Cancelled' && <details className="rounded-xl border border-line p-4"><summary className="min-h-11 text-sm font-bold">Cancellation eligibility</summary><p className="mb-4 text-xs text-muted">Eligibility and applicable fees require a server decision. An active trip continues while a request is reviewed.</p><form className="space-y-3" onSubmit={e => { e.preventDefault(); if (reason.trim()) setPrepared(true); }}><Field label="Reason for cancellation request"><textarea required value={reason} onChange={e => { setReason(e.target.value); setPrepared(false); }} maxLength={1000}/></Field><button className="btn">Prepare request draft</button><button className="btn" disabled>Submit cancellation unavailable</button>{prepared && <p role="status" className="text-xs text-success">Request prepared locally. The order has not been cancelled.</p>}</form></details>}
+  </>;
+}

@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-23T18:40:25.915597+00:00",
+  "base_review_commit": "f276295b90c5ecd1b444e4ccb312d6188eb3addd",
+  "base_blob_count": 254,
+  "unchanged_existing_blobs": 249,
+  "intentional_updates": [
+    ".github/workflows/backend-validation.yml",
+    "README.md",
+    "docs/STAGING_STATUS.md",
+    "docs/XANO_ADMIN_REMEDIATION_PLAN.md",
+    "docs/XANO_ADMIN_SUPPORT_REQUEST.md"
+  ],
+  "missing_blobs": [],
+  "original_backend_exports_unchanged": 109,
+  "original_candidate_hashes_unchanged": true,
+  "historical_evidence_unchanged": true,
+  "old_review_archive_unchanged": true,
+  "all_other_original_blobs_unchanged": true
+}

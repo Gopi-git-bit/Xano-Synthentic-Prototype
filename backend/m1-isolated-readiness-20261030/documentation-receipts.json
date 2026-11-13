@@ -1,0 +1,40 @@
+{
+  "scope": "PUBLIC_DOCUMENTATION_ONLY",
+  "results": [
+    {
+      "url": "https://docs.xano.com/xano-cli/ephemeral.md",
+      "at": "2026-10-30T12:10:59.885Z",
+      "http": 200,
+      "bytes": 11041,
+      "sha256": "304384126c8585a8055a19fdcf784d12aef2f7142bb3f5747481d459f094d4d4"
+    },
+    {
+      "url": "https://docs.xano.com/team-collaboration/role-based-access-control-rbac.md",
+      "at": "2026-10-30T12:10:59.864Z",
+      "http": 200,
+      "bytes": 8221,
+      "sha256": "3bad8823bb5205270869a628938a3ebbd4849ff33a00e7a7cef3a003eac092e8"
+    },
+    {
+      "url": "https://docs.xano.com/xano-features/metadata-api.md",
+      "at": "2026-10-30T12:10:59.860Z",
+      "http": 200,
+      "bytes": 8648,
+      "sha256": "19e9868a93746bfcd41115516f756f73d386402262dba3b327ff03e05b5fbbcb"
+    },
+    {
+      "url": "https://docs.xano.com/xano-features/metadata-api/token-scopes-reference",
+      "at": "2026-10-30T12:10:59.870Z",
+      "http": 200,
+      "bytes": 340347,
+      "sha256": "a7422a15886678295de64201563cc71ede08df8a3dd7f849d8b89720521e3daf"
+    },
+    {
+      "url": "https://docs.xano.com/enterprise/enterprise-features/tenant-center.md",
+      "at": "2026-10-30T12:10:59.866Z",
+      "http": 200,
+      "bytes": 42747,
+      "sha256": "e72edf04be0ed4d7e3cd6d9454d318be933edd661322bdbc4890314fb55501dc"
+    }
+  ]
+}

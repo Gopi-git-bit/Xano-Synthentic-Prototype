@@ -1,0 +1,47 @@
+{
+  "at": "2026-10-30T14:13:36.202Z",
+  "status": "PASS_NEW_P1_DOCUMENT_AND_PRESERVATION_CHECKS",
+  "baseline": "55d4dd278602c5a81706db70d91b53ca363f4d9c",
+  "branch": "codex/xano-m1-reconciliation-20261029",
+  "new_index_files": 36,
+  "index_sha256": "da29a17ff4f8a19df36a4629357d14988990f6822cfb77c982faf3c20d2e78a5",
+  "checks": {
+    "public_document_hashes": 18,
+    "retained_input_worktree_hashes": 10,
+    "retained_inputs_byte_identical_to_git": 8,
+    "legacy_support_inputs_crlf_only": {
+      "docs/XANO_ADMIN_SUPPORT_REQUEST.md": {
+        "worktree": "9d978e792f0afc02260f74ab073c06704f18d978734302461eb822fcd5ebe43e",
+        "git": "77c170367a590a66bcadcf3abae31718be8911961e8f13874fcc440ba69d535a"
+      },
+      "backend/evidence/xano-support-submission-2026-10-24.json": {
+        "worktree": "7b41b4092c05840cdcf32e070dda93c15a9d5233bfca1efcd9775c6cf98c1a90",
+        "git": "567cc11fe7cab29dd4ab406c4618f586c8ff5149c8949feb6c6cacf02b29e6eb"
+      }
+    },
+    "seven_question_coverage": true,
+    "official_source_ids_and_local_links": true,
+    "classification_vocabulary": true,
+    "pricing_exclusions_verified": true,
+    "authored_docs_credential_pattern_matches": 0,
+    "authored_docs_machine_path_matches": 0,
+    "tracked_changes_allowlisted": true,
+    "historical_tracked_files_changed": 0,
+    "historical_seals_changed": 0,
+    "diff_check": "PASS"
+  },
+  "prior_local_validation": "Initial overstrict byte comparison failed on two existing CRLF support files; both Git and worktree hashes pinned, only LF normalization differs. See local-validation-attempts.json. Historical files unchanged.",
+  "p0_tests_reexecuted": false,
+  "canonical_validator": "NOT_RUN_FILES_UNAVAILABLE",
+  "canonical_source_retrieval": "BLOCKED_TRANSPORT_ERROR",
+  "support_owner_review": "PENDING",
+  "support_submitted": false,
+  "authenticated_xano_requests": 0,
+  "application_requests": 0,
+  "xano_mutations": 0,
+  "stage_p": {
+    "verification": "NOT_RUN",
+    "approval": "NOT_APPROVED"
+  },
+  "qualification": "Local document/hash/reference and Git-diff preservation checks only. No canonical chain pass, runtime isolation proof or vendor entitlement attestation."
+}

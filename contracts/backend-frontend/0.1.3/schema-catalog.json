@@ -1,0 +1,3258 @@
+{
+  "version": "0.1.3",
+  "sourceDate": "2026-10-29",
+  "currentLiveSchemaVerified": false,
+  "scope": "Retained published Xano declarations; references and indexes are not proof of physical constraints. Question marks are preserved verbatim, not interpreted as API nullability.",
+  "tables": {
+    "active_assignment_reservations": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/active_assignment_reservations.xs",
+      "sha256LF": "c0ec7ed74cc7fbd17ab498d8531f19781a37cfd3a2f044da8c9195994d04371c",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "claim_id": {
+          "type": "uuid",
+          "declaration": "uuid claim_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "order_id": {
+          "type": "int",
+          "declaration": "int order_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "vehicle_id": {
+          "type": "int",
+          "declaration": "int vehicle_id {",
+          "referenceTable": "vehicle",
+          "enum": null
+        },
+        "driver_id": {
+          "type": "int",
+          "declaration": "int driver_id {",
+          "referenceTable": "driver_profile",
+          "enum": null
+        },
+        "claim_token": {
+          "type": "text",
+          "declaration": "text claim_token filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=active {",
+          "referenceTable": null,
+          "enum": [
+            "active",
+            "confirmed",
+            "expired",
+            "released"
+          ]
+        },
+        "expires_at": {
+          "type": "timestamp",
+          "declaration": "timestamp expires_at",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "agent_decision": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/agent_decision.xs",
+      "sha256LF": "3ebc4a2f2691fbe70a5716a982017b0459dede137d4df2a8723a1d0849ba87bb",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "execution_id": {
+          "type": "int",
+          "declaration": "int execution_id {",
+          "referenceTable": "agent_execution",
+          "enum": null
+        },
+        "agent_name": {
+          "type": "enum",
+          "declaration": "enum agent_name {",
+          "referenceTable": null,
+          "enum": [
+            "booking_ingestion_agent",
+            "matching_dispatch_agent",
+            "tracking_telemetry_agent",
+            "exception_incident_agent",
+            "settlement_reconciliation_agent"
+          ]
+        },
+        "decision_type": {
+          "type": "text",
+          "declaration": "text decision_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "entity_type": {
+          "type": "text?",
+          "declaration": "text? entity_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "entity_id": {
+          "type": "int?",
+          "declaration": "int? entity_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "confidence_score": {
+          "type": "decimal?",
+          "declaration": "decimal? confidence_score",
+          "referenceTable": null,
+          "enum": null
+        },
+        "decision_rationale": {
+          "type": "text",
+          "declaration": "text decision_rationale filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "candidate_options": {
+          "type": "json?",
+          "declaration": "json? candidate_options",
+          "referenceTable": null,
+          "enum": null
+        },
+        "selected_option": {
+          "type": "json?",
+          "declaration": "json? selected_option",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "agent_execution": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/agent_execution.xs",
+      "sha256LF": "d54235f0e0ca3a9eff8eed9e2d7d10aae39c95cbd66dd00ad6ff303a1f9daa9f",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "agent_name": {
+          "type": "enum",
+          "declaration": "enum agent_name {",
+          "referenceTable": null,
+          "enum": [
+            "booking_ingestion_agent",
+            "matching_dispatch_agent",
+            "tracking_telemetry_agent",
+            "exception_incident_agent",
+            "settlement_reconciliation_agent"
+          ]
+        },
+        "trigger_source": {
+          "type": "text",
+          "declaration": "text trigger_source filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "correlation_id": {
+          "type": "text?",
+          "declaration": "text? correlation_id filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=running {",
+          "referenceTable": null,
+          "enum": [
+            "running",
+            "completed",
+            "failed",
+            "requires_approval"
+          ]
+        },
+        "execution_duration_ms": {
+          "type": "int",
+          "declaration": "int execution_duration_ms? filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "input_context": {
+          "type": "json?",
+          "declaration": "json? input_context",
+          "referenceTable": null,
+          "enum": null
+        },
+        "output_result": {
+          "type": "json?",
+          "declaration": "json? output_result",
+          "referenceTable": null,
+          "enum": null
+        },
+        "error_message": {
+          "type": "text?",
+          "declaration": "text? error_message filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "approval_request": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/approval_request.xs",
+      "sha256LF": "5eaad9c6f5cefe0880aed394f98bf65b797fe2b15ef2131d507c65482e04a8c7",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "execution_id": {
+          "type": "int?",
+          "declaration": "int? execution_id {",
+          "referenceTable": "agent_execution",
+          "enum": null
+        },
+        "request_type": {
+          "type": "enum",
+          "declaration": "enum request_type {",
+          "referenceTable": null,
+          "enum": [
+            "refund_approval",
+            "carrier_dispatch_override",
+            "dispute_settlement",
+            "kyb_compliance_override",
+            "rate_exception"
+          ]
+        },
+        "entity_type": {
+          "type": "text",
+          "declaration": "text entity_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "entity_id": {
+          "type": "int",
+          "declaration": "int entity_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "description": {
+          "type": "text",
+          "declaration": "text description filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "context_data": {
+          "type": "json?",
+          "declaration": "json? context_data",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=pending {",
+          "referenceTable": null,
+          "enum": [
+            "pending",
+            "approved",
+            "rejected",
+            "expired"
+          ]
+        },
+        "reviewed_by_user_id": {
+          "type": "int?",
+          "declaration": "int? reviewed_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "reviewed_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? reviewed_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "reviewer_comment": {
+          "type": "text?",
+          "declaration": "text? reviewer_comment filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "audit_log": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/audit_log.xs",
+      "sha256LF": "a1b33133ca8fcbd302558004d698f2390d4398d6c063cb59baf3eab76ca8b736",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "entity_type": {
+          "type": "text",
+          "declaration": "text entity_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "entity_id": {
+          "type": "int",
+          "declaration": "int entity_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "action": {
+          "type": "text",
+          "declaration": "text action filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "actor_type": {
+          "type": "enum",
+          "declaration": "enum actor_type?=system {",
+          "referenceTable": null,
+          "enum": [
+            "user",
+            "driver",
+            "system",
+            "autonomous_agent"
+          ]
+        },
+        "actor_id": {
+          "type": "int?",
+          "declaration": "int? actor_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "ip_address": {
+          "type": "text?",
+          "declaration": "text? ip_address filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "previous_state": {
+          "type": "json?",
+          "declaration": "json? previous_state",
+          "referenceTable": null,
+          "enum": null
+        },
+        "new_state": {
+          "type": "json?",
+          "declaration": "json? new_state",
+          "referenceTable": null,
+          "enum": null
+        },
+        "reason": {
+          "type": "text?",
+          "declaration": "text? reason filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "booking_quote": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/booking_quote.xs",
+      "sha256LF": "6a83e33dace5792cc6a9bd7160ed4a124ddf28fd7aad7582df9d202600cc05f7",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "quote_id": {
+          "type": "uuid",
+          "declaration": "uuid quote_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "booking_id": {
+          "type": "int",
+          "declaration": "int booking_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "booking_version": {
+          "type": "int",
+          "declaration": "int booking_version?=1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "input_hash": {
+          "type": "text",
+          "declaration": "text input_hash filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "policy_version": {
+          "type": "text",
+          "declaration": "text policy_version filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "corridor_code": {
+          "type": "text",
+          "declaration": "text corridor_code filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "vehicle_type": {
+          "type": "text",
+          "declaration": "text vehicle_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "actual_weight_kg": {
+          "type": "decimal",
+          "declaration": "decimal actual_weight_kg filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "volumetric_weight_kg": {
+          "type": "decimal",
+          "declaration": "decimal volumetric_weight_kg filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "chargeable_weight_kg": {
+          "type": "decimal",
+          "declaration": "decimal chargeable_weight_kg filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "distance_km": {
+          "type": "decimal",
+          "declaration": "decimal distance_km filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "base_rate_minor": {
+          "type": "decimal",
+          "declaration": "decimal base_rate_minor filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "distance_rate_minor": {
+          "type": "decimal",
+          "declaration": "decimal distance_rate_minor filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "gross_amount_minor": {
+          "type": "decimal",
+          "declaration": "decimal gross_amount_minor filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "discount_minor": {
+          "type": "decimal",
+          "declaration": "decimal discount_minor? filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "net_amount_minor": {
+          "type": "decimal",
+          "declaration": "decimal net_amount_minor filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "total_amount": {
+          "type": "decimal",
+          "declaration": "decimal total_amount filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "currency": {
+          "type": "text",
+          "declaration": "text currency?=INR filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "breakdown": {
+          "type": "json",
+          "declaration": "json breakdown",
+          "referenceTable": null,
+          "enum": null
+        },
+        "route_evidence": {
+          "type": "json",
+          "declaration": "json route_evidence",
+          "referenceTable": null,
+          "enum": null
+        },
+        "expires_at": {
+          "type": "timestamp",
+          "declaration": "timestamp expires_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "is_accepted": {
+          "type": "bool",
+          "declaration": "bool is_accepted?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "accepted_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? accepted_at",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "cargo_detail": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/cargo_detail.xs",
+      "sha256LF": "4b9a9c2a4fd7d7310d1f46b8b46cd85196d1d764dbc257452d227cfb5c18ebe7",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "booking_id": {
+          "type": "int",
+          "declaration": "int booking_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "cargo_description": {
+          "type": "text",
+          "declaration": "text cargo_description filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "commodity_type": {
+          "type": "enum",
+          "declaration": "enum commodity_type {",
+          "referenceTable": null,
+          "enum": [
+            "general_merchandise",
+            "perishable",
+            "hazardous",
+            "fragile",
+            "heavy_machinery",
+            "automotive",
+            "electronics",
+            "pharmaceutical"
+          ]
+        },
+        "weight_kg": {
+          "type": "decimal",
+          "declaration": "decimal weight_kg filters=min:0.1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "volume_cbm": {
+          "type": "decimal?",
+          "declaration": "decimal? volume_cbm filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "package_count": {
+          "type": "int",
+          "declaration": "int package_count filters=min:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "packaging_type": {
+          "type": "enum",
+          "declaration": "enum packaging_type?=pallet {",
+          "referenceTable": null,
+          "enum": [
+            "pallet",
+            "box",
+            "crate",
+            "drum",
+            "bundle",
+            "loose"
+          ]
+        },
+        "is_hazardous": {
+          "type": "bool",
+          "declaration": "bool is_hazardous?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "un_number": {
+          "type": "text?",
+          "declaration": "text? un_number filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "requires_temperature_control": {
+          "type": "bool",
+          "declaration": "bool requires_temperature_control?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "min_temperature_c": {
+          "type": "decimal?",
+          "declaration": "decimal? min_temperature_c",
+          "referenceTable": null,
+          "enum": null
+        },
+        "max_temperature_c": {
+          "type": "decimal?",
+          "declaration": "decimal? max_temperature_c",
+          "referenceTable": null,
+          "enum": null
+        },
+        "declared_value": {
+          "type": "decimal?",
+          "declaration": "decimal? declared_value filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "insurance_opted": {
+          "type": "bool",
+          "declaration": "bool insurance_opted?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "length_cm": {
+          "type": "decimal?",
+          "declaration": "decimal? length_cm filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "width_cm": {
+          "type": "decimal?",
+          "declaration": "decimal? width_cm filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "height_cm": {
+          "type": "decimal?",
+          "declaration": "decimal? height_cm filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "compliance_documents": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/compliance_documents.xs",
+      "sha256LF": "95d211d5193efa60ea87064660352d587cc1f73403016f04cf51cfea11d40218",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "document_id": {
+          "type": "uuid",
+          "declaration": "uuid document_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "owner_type": {
+          "type": "enum",
+          "declaration": "enum owner_type {",
+          "referenceTable": null,
+          "enum": [
+            "driver",
+            "organization",
+            "vehicle"
+          ]
+        },
+        "owner_id": {
+          "type": "int",
+          "declaration": "int owner_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "document_type": {
+          "type": "text",
+          "declaration": "text document_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "document_reference_number": {
+          "type": "text?",
+          "declaration": "text? document_reference_number filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "private_storage_key": {
+          "type": "text",
+          "declaration": "text private_storage_key filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "checksum_sha256": {
+          "type": "text",
+          "declaration": "text checksum_sha256 filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "valid_from": {
+          "type": "date?",
+          "declaration": "date? valid_from",
+          "referenceTable": null,
+          "enum": null
+        },
+        "valid_until": {
+          "type": "date",
+          "declaration": "date valid_until",
+          "referenceTable": null,
+          "enum": null
+        },
+        "verification_status": {
+          "type": "enum",
+          "declaration": "enum verification_status?=pending {",
+          "referenceTable": null,
+          "enum": [
+            "pending",
+            "verified",
+            "rejected",
+            "expired"
+          ]
+        },
+        "verified_by_user_id": {
+          "type": "int?",
+          "declaration": "int? verified_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "verified_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? verified_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "rejection_reason": {
+          "type": "text?",
+          "declaration": "text? rejection_reason filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "customer_booking": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/customer_booking.xs",
+      "sha256LF": "28460bcee5ab57bbe6818630e7a6c0589180014360fb3e11a281d51848d79daf",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "booking_reference": {
+          "type": "text",
+          "declaration": "text booking_reference filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "customer_organization_id": {
+          "type": "int",
+          "declaration": "int customer_organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        },
+        "booked_by_user_id": {
+          "type": "int",
+          "declaration": "int booked_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=draft {",
+          "referenceTable": null,
+          "enum": [
+            "draft",
+            "quoted",
+            "booked",
+            "assigned",
+            "in_transit",
+            "delivered",
+            "completed",
+            "cancelled"
+          ]
+        },
+        "pickup_city": {
+          "type": "text",
+          "declaration": "text pickup_city filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "pickup_address": {
+          "type": "json",
+          "declaration": "json pickup_address",
+          "referenceTable": null,
+          "enum": null
+        },
+        "pickup_window_start": {
+          "type": "timestamp",
+          "declaration": "timestamp pickup_window_start",
+          "referenceTable": null,
+          "enum": null
+        },
+        "pickup_window_end": {
+          "type": "timestamp",
+          "declaration": "timestamp pickup_window_end",
+          "referenceTable": null,
+          "enum": null
+        },
+        "delivery_city": {
+          "type": "text",
+          "declaration": "text delivery_city filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "delivery_address": {
+          "type": "json",
+          "declaration": "json delivery_address",
+          "referenceTable": null,
+          "enum": null
+        },
+        "delivery_window_start": {
+          "type": "timestamp",
+          "declaration": "timestamp delivery_window_start",
+          "referenceTable": null,
+          "enum": null
+        },
+        "delivery_window_end": {
+          "type": "timestamp",
+          "declaration": "timestamp delivery_window_end",
+          "referenceTable": null,
+          "enum": null
+        },
+        "estimated_distance_km": {
+          "type": "decimal",
+          "declaration": "decimal estimated_distance_km filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "quote_amount": {
+          "type": "decimal",
+          "declaration": "decimal quote_amount filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "total_amount": {
+          "type": "decimal",
+          "declaration": "decimal total_amount filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "currency": {
+          "type": "text",
+          "declaration": "text currency?=INR filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "payment_status": {
+          "type": "enum",
+          "declaration": "enum payment_status?=pending {",
+          "referenceTable": null,
+          "enum": [
+            "pending",
+            "authorized",
+            "paid_escrow",
+            "settled",
+            "refunded",
+            "failed"
+          ]
+        },
+        "matching_status": {
+          "type": "enum",
+          "declaration": "enum matching_status?=unmatched {",
+          "referenceTable": null,
+          "enum": [
+            "unmatched",
+            "searching",
+            "matched",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "special_instructions": {
+          "type": "text?",
+          "declaration": "text? special_instructions filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "version": {
+          "type": "int",
+          "declaration": "int version?=1 filters=min:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "payment_mode": {
+          "type": "enum",
+          "declaration": "enum payment_mode?=prepaid {",
+          "referenceTable": null,
+          "enum": [
+            "prepaid",
+            "topay",
+            "credit"
+          ]
+        },
+        "active_quote_id": {
+          "type": "uuid?",
+          "declaration": "uuid? active_quote_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "consignee_details": {
+          "type": "json?",
+          "declaration": "json? consignee_details",
+          "referenceTable": null,
+          "enum": null
+        },
+        "cancellation_reason": {
+          "type": "text?",
+          "declaration": "text? cancellation_reason filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "driver_profile": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/driver_profile.xs",
+      "sha256LF": "da36ebf979aa5f460b5289c7f9364208c6e786a742b5bc85aaee94d1bfc557ca",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "user_id": {
+          "type": "int",
+          "declaration": "int user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "organization_id": {
+          "type": "int",
+          "declaration": "int organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        },
+        "license_number": {
+          "type": "text",
+          "declaration": "text license_number filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "license_expiry": {
+          "type": "date",
+          "declaration": "date license_expiry",
+          "referenceTable": null,
+          "enum": null
+        },
+        "duty_status": {
+          "type": "enum",
+          "declaration": "enum duty_status?=off_duty {",
+          "referenceTable": null,
+          "enum": [
+            "off_duty",
+            "on_duty",
+            "driving",
+            "resting"
+          ]
+        },
+        "kyc_verified": {
+          "type": "bool",
+          "declaration": "bool kyc_verified?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "phone": {
+          "type": "text?",
+          "declaration": "text? phone filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "emergency_contact": {
+          "type": "text?",
+          "declaration": "text? emergency_contact filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "current_location": {
+          "type": "json?",
+          "declaration": "json? current_location",
+          "referenceTable": null,
+          "enum": null
+        },
+        "is_available": {
+          "type": "bool",
+          "declaration": "bool is_available?=true",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "durable_tasks": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/durable_tasks.xs",
+      "sha256LF": "1e62b5d49f5e33fbd57600fe6c542c37fa3766b67746d94d325ffa8aca9d2656",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "task_id": {
+          "type": "uuid",
+          "declaration": "uuid task_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "task_type": {
+          "type": "text",
+          "declaration": "text task_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "aggregate_type": {
+          "type": "text?",
+          "declaration": "text? aggregate_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "aggregate_id": {
+          "type": "int?",
+          "declaration": "int? aggregate_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "payload": {
+          "type": "json?",
+          "declaration": "json? payload",
+          "referenceTable": null,
+          "enum": null
+        },
+        "idempotency_key": {
+          "type": "text?",
+          "declaration": "text? idempotency_key filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=pending {",
+          "referenceTable": null,
+          "enum": [
+            "pending",
+            "leased",
+            "completed",
+            "failed",
+            "dead_letter"
+          ]
+        },
+        "attempt_count": {
+          "type": "int",
+          "declaration": "int attempt_count? filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "max_attempts": {
+          "type": "int",
+          "declaration": "int max_attempts?=5 filters=min:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "next_attempt_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? next_attempt_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "lease_owner": {
+          "type": "text?",
+          "declaration": "text? lease_owner filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "lease_expires_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? lease_expires_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "last_error": {
+          "type": "text?",
+          "declaration": "text? last_error filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "event_log": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/event_log.xs",
+      "sha256LF": "e063661ec70b8912626c7ca360c7caaaa8e4f2ba30a2640b7913e5c1d70d29f4",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "user_id": {
+          "type": "int",
+          "declaration": "int user_id? {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "action": {
+          "type": "text",
+          "declaration": "text action? filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "metadata": {
+          "type": "json",
+          "declaration": "json metadata?",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "event_outbox": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/event_outbox.xs",
+      "sha256LF": "9c526147a34316338b43b45b75cb395ea0f0bc769e99583b27345d8720fca1fa",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "outbox_event_id": {
+          "type": "uuid",
+          "declaration": "uuid outbox_event_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "aggregate_type": {
+          "type": "text",
+          "declaration": "text aggregate_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "aggregate_id": {
+          "type": "int",
+          "declaration": "int aggregate_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "aggregate_version": {
+          "type": "int",
+          "declaration": "int aggregate_version?=1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "event_type": {
+          "type": "text",
+          "declaration": "text event_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "destination": {
+          "type": "text",
+          "declaration": "text destination filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "payload": {
+          "type": "json",
+          "declaration": "json payload",
+          "referenceTable": null,
+          "enum": null
+        },
+        "idempotency_key": {
+          "type": "text?",
+          "declaration": "text? idempotency_key filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=queued {",
+          "referenceTable": null,
+          "enum": [
+            "queued",
+            "leased",
+            "published",
+            "failed"
+          ]
+        },
+        "attempt_count": {
+          "type": "int",
+          "declaration": "int attempt_count? filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "max_attempts": {
+          "type": "int",
+          "declaration": "int max_attempts?=5 filters=min:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "next_attempt_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? next_attempt_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "lease_owner": {
+          "type": "text?",
+          "declaration": "text? lease_owner filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "lease_expires_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? lease_expires_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "published_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? published_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "last_error": {
+          "type": "text?",
+          "declaration": "text? last_error filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "idempotency_key": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/idempotency_key.xs",
+      "sha256LF": "0b00ed2ceb19edf60f2b41fcb636c87403f652ceb048ae2c8686ef93e92dfc37",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "key": {
+          "type": "text",
+          "declaration": "text key filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "target_resource": {
+          "type": "text",
+          "declaration": "text target_resource filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "request_hash": {
+          "type": "text",
+          "declaration": "text request_hash filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=processing {",
+          "referenceTable": null,
+          "enum": [
+            "processing",
+            "completed",
+            "failed"
+          ]
+        },
+        "cached_response": {
+          "type": "json?",
+          "declaration": "json? cached_response",
+          "referenceTable": null,
+          "enum": null
+        },
+        "expires_at": {
+          "type": "timestamp",
+          "declaration": "timestamp expires_at",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "incident_dispute": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/incident_dispute.xs",
+      "sha256LF": "102718e28765e551a41b532c8d352e71fa5c558590a8b8ec674e348752688f26",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "trip_id": {
+          "type": "int",
+          "declaration": "int trip_id {",
+          "referenceTable": "trip",
+          "enum": null
+        },
+        "booking_id": {
+          "type": "int?",
+          "declaration": "int? booking_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "reported_by_user_id": {
+          "type": "int",
+          "declaration": "int reported_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "incident_type": {
+          "type": "enum",
+          "declaration": "enum incident_type {",
+          "referenceTable": null,
+          "enum": [
+            "vehicle_breakdown",
+            "route_delay",
+            "cargo_damage",
+            "accident",
+            "theft_pilferage",
+            "wrong_destination",
+            "consignee_refusal",
+            "other"
+          ]
+        },
+        "severity": {
+          "type": "enum",
+          "declaration": "enum severity?=medium {",
+          "referenceTable": null,
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=reported {",
+          "referenceTable": null,
+          "enum": [
+            "reported",
+            "investigating",
+            "resolution_proposed",
+            "resolved",
+            "closed"
+          ]
+        },
+        "description": {
+          "type": "text",
+          "declaration": "text description filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "evidence_photos": {
+          "type": "json?",
+          "declaration": "json? evidence_photos",
+          "referenceTable": null,
+          "enum": null
+        },
+        "claim_amount": {
+          "type": "decimal?",
+          "declaration": "decimal? claim_amount filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "resolution_notes": {
+          "type": "text?",
+          "declaration": "text? resolution_notes filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "resolved_by_user_id": {
+          "type": "int?",
+          "declaration": "int? resolved_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "resolved_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? resolved_at",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "order_holds": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/order_holds.xs",
+      "sha256LF": "3154b01d720ce5d56562658eca79c5e4e45f8f4c1a9b7cd53696250015e5c381",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "hold_id": {
+          "type": "uuid",
+          "declaration": "uuid hold_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "order_id": {
+          "type": "int",
+          "declaration": "int order_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "scope": {
+          "type": "enum",
+          "declaration": "enum scope {",
+          "referenceTable": null,
+          "enum": [
+            "operational",
+            "payment",
+            "settlement",
+            "compliance",
+            "customs"
+          ]
+        },
+        "reason_code": {
+          "type": "text",
+          "declaration": "text reason_code filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "description": {
+          "type": "text?",
+          "declaration": "text? description filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "opened_by_user_id": {
+          "type": "int",
+          "declaration": "int opened_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "opened_at": {
+          "type": "timestamp",
+          "declaration": "timestamp opened_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "released_by_user_id": {
+          "type": "int?",
+          "declaration": "int? released_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "released_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? released_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "release_evidence": {
+          "type": "text?",
+          "declaration": "text? release_evidence filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "prior_state": {
+          "type": "text",
+          "declaration": "text prior_state filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "is_active": {
+          "type": "bool",
+          "declaration": "bool is_active?=true",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "organization": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/organization.xs",
+      "sha256LF": "f1c48e82bba001c9db26fe11db0766afcaf491fd7c39e1990763b5cef4283c33",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "name": {
+          "type": "text",
+          "declaration": "text name filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "type": {
+          "type": "enum",
+          "declaration": "enum type {",
+          "referenceTable": null,
+          "enum": [
+            "customer",
+            "vendor",
+            "both",
+            "operator"
+          ]
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=active {",
+          "referenceTable": null,
+          "enum": [
+            "pending_verification",
+            "active",
+            "suspended",
+            "inactive"
+          ]
+        },
+        "tax_id": {
+          "type": "text?",
+          "declaration": "text? tax_id filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "phone": {
+          "type": "text?",
+          "declaration": "text? phone filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "contact_email": {
+          "type": "email?",
+          "declaration": "email? contact_email filters=trim|lower",
+          "referenceTable": null,
+          "enum": null
+        },
+        "address": {
+          "type": "json?",
+          "declaration": "json? address",
+          "referenceTable": null,
+          "enum": null
+        },
+        "kyb_verified": {
+          "type": "bool",
+          "declaration": "bool kyb_verified?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "billing_details": {
+          "type": "json?",
+          "declaration": "json? billing_details",
+          "referenceTable": null,
+          "enum": null
+        },
+        "metadata": {
+          "type": "json?",
+          "declaration": "json? metadata",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "organization_member": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/organization_member.xs",
+      "sha256LF": "a39aaec69b9346b94eeb90b8dd466de673c87b110dc3e003c46838cedbcca03b",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "organization_id": {
+          "type": "int",
+          "declaration": "int organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        },
+        "user_id": {
+          "type": "int",
+          "declaration": "int user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "member_role": {
+          "type": "enum",
+          "declaration": "enum member_role?=member {",
+          "referenceTable": null,
+          "enum": [
+            "owner",
+            "admin",
+            "dispatcher",
+            "billing",
+            "driver",
+            "member"
+          ]
+        },
+        "is_primary": {
+          "type": "bool",
+          "declaration": "bool is_primary?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "is_active": {
+          "type": "bool",
+          "declaration": "bool is_active?=true",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "otp_challenges": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/otp_challenges.xs",
+      "sha256LF": "8c7c6e58eaa19196cefaebc1ad6c6dfe52f488d3c0777a89bccaf23bbf3ceb83",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "challenge_id": {
+          "type": "uuid",
+          "declaration": "uuid challenge_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "purpose": {
+          "type": "enum",
+          "declaration": "enum purpose {",
+          "referenceTable": null,
+          "enum": [
+            "phone_login",
+            "topay_consent",
+            "pod_verification",
+            "driver_onboarding",
+            "payout_authorization"
+          ]
+        },
+        "subject_type": {
+          "type": "text",
+          "declaration": "text subject_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "subject_id": {
+          "type": "int",
+          "declaration": "int subject_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "recipient_hash": {
+          "type": "text",
+          "declaration": "text recipient_hash filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "code_hash": {
+          "type": "text",
+          "declaration": "text code_hash filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "attempts": {
+          "type": "int",
+          "declaration": "int attempts? filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "max_attempts": {
+          "type": "int",
+          "declaration": "int max_attempts?=5 filters=min:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "expires_at": {
+          "type": "timestamp",
+          "declaration": "timestamp expires_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "consumed_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? consumed_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "is_consumed": {
+          "type": "bool",
+          "declaration": "bool is_consumed?",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "payment_transaction": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/payment_transaction.xs",
+      "sha256LF": "d3765ccabe37314693e173c40b49948b321d94df44a912cffbe36c85b8c910bf",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "transaction_reference": {
+          "type": "text",
+          "declaration": "text transaction_reference filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "booking_id": {
+          "type": "int",
+          "declaration": "int booking_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "customer_organization_id": {
+          "type": "int",
+          "declaration": "int customer_organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        },
+        "amount": {
+          "type": "decimal",
+          "declaration": "decimal amount filters=min:0.01",
+          "referenceTable": null,
+          "enum": null
+        },
+        "currency": {
+          "type": "text",
+          "declaration": "text currency?=INR filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=initiated {",
+          "referenceTable": null,
+          "enum": [
+            "initiated",
+            "authorized",
+            "captured",
+            "failed",
+            "refunded"
+          ]
+        },
+        "payment_method": {
+          "type": "enum",
+          "declaration": "enum payment_method?=gateway {",
+          "referenceTable": null,
+          "enum": [
+            "gateway",
+            "net_banking",
+            "upi",
+            "card",
+            "bank_transfer",
+            "credit_line"
+          ]
+        },
+        "gateway_order_id": {
+          "type": "text?",
+          "declaration": "text? gateway_order_id filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "gateway_payment_id": {
+          "type": "text?",
+          "declaration": "text? gateway_payment_id filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "gateway_signature": {
+          "type": "text?",
+          "declaration": "text? gateway_signature filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "gateway_response": {
+          "type": "json?",
+          "declaration": "json? gateway_response",
+          "referenceTable": null,
+          "enum": null
+        },
+        "captured_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? captured_at",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "pricing_policies": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/pricing_policies.xs",
+      "sha256LF": "e49fe740673ecbc4832a90b73da454237862e7df2e8d21769b1f8ed8f69e813c",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "policy_id": {
+          "type": "uuid",
+          "declaration": "uuid policy_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "version": {
+          "type": "text",
+          "declaration": "text version filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "corridor_code": {
+          "type": "text",
+          "declaration": "text corridor_code filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "vehicle_type": {
+          "type": "text",
+          "declaration": "text vehicle_type filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "base_rate_minor": {
+          "type": "decimal",
+          "declaration": "decimal base_rate_minor filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "per_km_rate_minor": {
+          "type": "decimal",
+          "declaration": "decimal per_km_rate_minor filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "volumetric_divisor": {
+          "type": "decimal",
+          "declaration": "decimal volumetric_divisor?=5000 filters=min:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "cost_floor_minor": {
+          "type": "decimal",
+          "declaration": "decimal cost_floor_minor filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "max_discount_pct": {
+          "type": "decimal",
+          "declaration": "decimal max_discount_pct? filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "effective_from": {
+          "type": "timestamp",
+          "declaration": "timestamp effective_from",
+          "referenceTable": null,
+          "enum": null
+        },
+        "effective_until": {
+          "type": "timestamp",
+          "declaration": "timestamp effective_until",
+          "referenceTable": null,
+          "enum": null
+        },
+        "approved_by_user_id": {
+          "type": "int",
+          "declaration": "int approved_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "is_active": {
+          "type": "bool",
+          "declaration": "bool is_active?=true",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "proof_of_delivery": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/proof_of_delivery.xs",
+      "sha256LF": "b74bc56ea08e7f93a1097791fd0698f12f3b671cef2b63941ecae29349399539",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "trip_id": {
+          "type": "int",
+          "declaration": "int trip_id {",
+          "referenceTable": "trip",
+          "enum": null
+        },
+        "stop_id": {
+          "type": "int",
+          "declaration": "int stop_id {",
+          "referenceTable": "trip_stop",
+          "enum": null
+        },
+        "driver_id": {
+          "type": "int",
+          "declaration": "int driver_id {",
+          "referenceTable": "driver_profile",
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=submitted {",
+          "referenceTable": null,
+          "enum": [
+            "pending",
+            "submitted",
+            "under_review",
+            "approved",
+            "rejected"
+          ]
+        },
+        "consignee_name": {
+          "type": "text?",
+          "declaration": "text? consignee_name filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "consignee_phone": {
+          "type": "text?",
+          "declaration": "text? consignee_phone filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "signature_image_url": {
+          "type": "text?",
+          "declaration": "text? signature_image_url filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "document_image_url": {
+          "type": "text?",
+          "declaration": "text? document_image_url filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "otp_code": {
+          "type": "text?",
+          "declaration": "text? otp_code filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "otp_verified": {
+          "type": "bool",
+          "declaration": "bool otp_verified?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "verified_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? verified_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "reviewed_by_user_id": {
+          "type": "int?",
+          "declaration": "int? reviewed_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "rejection_reason": {
+          "type": "text?",
+          "declaration": "text? rejection_reason filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "delivery_geostamp": {
+          "type": "json?",
+          "declaration": "json? delivery_geostamp",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "refund_request": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/refund_request.xs",
+      "sha256LF": "5b3eb0920f84520d32769f9b09f7c5b84aa0f4e89494cdd4a369866937d256bb",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "refund_reference": {
+          "type": "text",
+          "declaration": "text refund_reference filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "payment_transaction_id": {
+          "type": "int",
+          "declaration": "int payment_transaction_id {",
+          "referenceTable": "payment_transaction",
+          "enum": null
+        },
+        "booking_id": {
+          "type": "int",
+          "declaration": "int booking_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "refund_amount": {
+          "type": "decimal",
+          "declaration": "decimal refund_amount filters=min:0.01",
+          "referenceTable": null,
+          "enum": null
+        },
+        "currency": {
+          "type": "text",
+          "declaration": "text currency?=INR filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "reason": {
+          "type": "text",
+          "declaration": "text reason filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=pending_approval {",
+          "referenceTable": null,
+          "enum": [
+            "pending_approval",
+            "approved",
+            "rejected",
+            "processing",
+            "completed",
+            "failed"
+          ]
+        },
+        "requested_by_actor_type": {
+          "type": "enum",
+          "declaration": "enum requested_by_actor_type?=customer {",
+          "referenceTable": null,
+          "enum": [
+            "customer",
+            "agent",
+            "support_admin"
+          ]
+        },
+        "requested_by_user_id": {
+          "type": "int?",
+          "declaration": "int? requested_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "approved_by_user_id": {
+          "type": "int?",
+          "declaration": "int? approved_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        },
+        "approved_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? approved_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "approval_notes": {
+          "type": "text?",
+          "declaration": "text? approval_notes filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "gateway_refund_id": {
+          "type": "text?",
+          "declaration": "text? gateway_refund_id filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "completed_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? completed_at",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "route_cache": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/route_cache.xs",
+      "sha256LF": "33fb9647e4c9662364a069f8f7bebcf6cfb005e039b79e1e8be0bc38849493f2",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "request_hash": {
+          "type": "text",
+          "declaration": "text request_hash filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "origin_lat": {
+          "type": "decimal",
+          "declaration": "decimal origin_lat",
+          "referenceTable": null,
+          "enum": null
+        },
+        "origin_lng": {
+          "type": "decimal",
+          "declaration": "decimal origin_lng",
+          "referenceTable": null,
+          "enum": null
+        },
+        "dest_lat": {
+          "type": "decimal",
+          "declaration": "decimal dest_lat",
+          "referenceTable": null,
+          "enum": null
+        },
+        "dest_lng": {
+          "type": "decimal",
+          "declaration": "decimal dest_lng",
+          "referenceTable": null,
+          "enum": null
+        },
+        "distance_km": {
+          "type": "decimal",
+          "declaration": "decimal distance_km filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "duration_minutes": {
+          "type": "int",
+          "declaration": "int duration_minutes filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "provider": {
+          "type": "text",
+          "declaration": "text provider?=mappls filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "route_summary": {
+          "type": "json?",
+          "declaration": "json? route_summary",
+          "referenceTable": null,
+          "enum": null
+        },
+        "expires_at": {
+          "type": "timestamp",
+          "declaration": "timestamp expires_at",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "settlement": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/settlement.xs",
+      "sha256LF": "ec6268259057b162bd22fe044a1a6d427365056f8c66adc32b50465415db50e5",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "settlement_reference": {
+          "type": "text",
+          "declaration": "text settlement_reference filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "trip_id": {
+          "type": "int",
+          "declaration": "int trip_id {",
+          "referenceTable": "trip",
+          "enum": null
+        },
+        "vendor_organization_id": {
+          "type": "int",
+          "declaration": "int vendor_organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        },
+        "gross_carrier_amount": {
+          "type": "decimal",
+          "declaration": "decimal gross_carrier_amount filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "platform_fee": {
+          "type": "decimal",
+          "declaration": "decimal platform_fee filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "tax_tds": {
+          "type": "decimal",
+          "declaration": "decimal tax_tds filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "net_payout_amount": {
+          "type": "decimal",
+          "declaration": "decimal net_payout_amount filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "currency": {
+          "type": "text",
+          "declaration": "text currency?=INR filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=pending {",
+          "referenceTable": null,
+          "enum": [
+            "pending",
+            "pod_verified",
+            "processing",
+            "paid",
+            "on_hold",
+            "failed"
+          ]
+        },
+        "bank_account_mask": {
+          "type": "text?",
+          "declaration": "text? bank_account_mask filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "payout_batch_reference": {
+          "type": "text?",
+          "declaration": "text? payout_batch_reference filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "paid_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? paid_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "approved_by_user_id": {
+          "type": "int?",
+          "declaration": "int? approved_by_user_id {",
+          "referenceTable": "user",
+          "enum": null
+        }
+      }
+    },
+    "table_index": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/table_index.xs",
+      "sha256LF": "5df4a0268d9a0f1aa4901ed129a8843f87aaf9d8b7ae0d66395149b6c6bb2310",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "import_order": {
+          "type": "int",
+          "declaration": "int import_order?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "table_name": {
+          "type": "text",
+          "declaration": "text table_name? filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "csv_file": {
+          "type": "text",
+          "declaration": "text csv_file? filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "origin": {
+          "type": "text",
+          "declaration": "text origin? filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "spec_sql_section": {
+          "type": "text",
+          "declaration": "text spec_sql_section? filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "relationship_columns": {
+          "type": "text",
+          "declaration": "text relationship_columns? filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "reconciliation_status": {
+          "type": "text",
+          "declaration": "text reconciliation_status? filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "notes": {
+          "type": "text",
+          "declaration": "text notes? filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "topay_consent_attempts": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/topay_consent_attempts.xs",
+      "sha256LF": "f1921c590db0a6561057b332e4a3ba70efd03b27d424a59abe2fff531b07c983",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "consent_attempt_id": {
+          "type": "uuid",
+          "declaration": "uuid consent_attempt_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "order_id": {
+          "type": "int",
+          "declaration": "int order_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "payer_identifier_hash": {
+          "type": "text",
+          "declaration": "text payer_identifier_hash filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "amount_minor": {
+          "type": "decimal",
+          "declaration": "decimal amount_minor filters=min:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "currency": {
+          "type": "text",
+          "declaration": "text currency?=INR filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "quote_hash": {
+          "type": "text",
+          "declaration": "text quote_hash filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "decision": {
+          "type": "enum",
+          "declaration": "enum decision?=pending {",
+          "referenceTable": null,
+          "enum": [
+            "pending",
+            "accepted",
+            "denied",
+            "expired"
+          ]
+        },
+        "decided_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? decided_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "denial_reason": {
+          "type": "text?",
+          "declaration": "text? denial_reason filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "supersedes_id": {
+          "type": "uuid?",
+          "declaration": "uuid? supersedes_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "expires_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? expires_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "challenge_id": {
+          "type": "uuid?",
+          "declaration": "uuid? challenge_id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "capability_token": {
+          "type": "text?",
+          "declaration": "text? capability_token filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "evidence": {
+          "type": "json?",
+          "declaration": "json? evidence",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "tracking_event": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/tracking_event.xs",
+      "sha256LF": "5f223a46f56f9209c8c454ef595364da13e60f1bd1526d0e38cb1a7f02d6abff",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "trip_id": {
+          "type": "int",
+          "declaration": "int trip_id {",
+          "referenceTable": "trip",
+          "enum": null
+        },
+        "vehicle_id": {
+          "type": "int",
+          "declaration": "int vehicle_id {",
+          "referenceTable": "vehicle",
+          "enum": null
+        },
+        "driver_id": {
+          "type": "int?",
+          "declaration": "int? driver_id {",
+          "referenceTable": "driver_profile",
+          "enum": null
+        },
+        "latitude": {
+          "type": "decimal",
+          "declaration": "decimal latitude",
+          "referenceTable": null,
+          "enum": null
+        },
+        "longitude": {
+          "type": "decimal",
+          "declaration": "decimal longitude",
+          "referenceTable": null,
+          "enum": null
+        },
+        "speed_kmh": {
+          "type": "decimal?",
+          "declaration": "decimal? speed_kmh filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "heading_degrees": {
+          "type": "decimal?",
+          "declaration": "decimal? heading_degrees",
+          "referenceTable": null,
+          "enum": null
+        },
+        "battery_level": {
+          "type": "decimal?",
+          "declaration": "decimal? battery_level",
+          "referenceTable": null,
+          "enum": null
+        },
+        "event_type": {
+          "type": "enum",
+          "declaration": "enum event_type?=periodic_ping {",
+          "referenceTable": null,
+          "enum": [
+            "periodic_ping",
+            "geofence_entry",
+            "geofence_exit",
+            "speeding_alert",
+            "harsh_braking",
+            "engine_idle",
+            "sos_alert",
+            "manual_checkin"
+          ]
+        },
+        "raw_payload": {
+          "type": "json?",
+          "declaration": "json? raw_payload",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "trip": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/trip.xs",
+      "sha256LF": "680044d5d3d7ddbfbd8f49daf159b403f5a3020a2d90522dc66bc57a4debe95e",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "trip_code": {
+          "type": "text",
+          "declaration": "text trip_code filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "booking_id": {
+          "type": "int",
+          "declaration": "int booking_id {",
+          "referenceTable": "customer_booking",
+          "enum": null
+        },
+        "vendor_organization_id": {
+          "type": "int",
+          "declaration": "int vendor_organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        },
+        "vehicle_id": {
+          "type": "int",
+          "declaration": "int vehicle_id {",
+          "referenceTable": "vehicle",
+          "enum": null
+        },
+        "driver_id": {
+          "type": "int",
+          "declaration": "int driver_id {",
+          "referenceTable": "driver_profile",
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=assigned {",
+          "referenceTable": null,
+          "enum": [
+            "assigned",
+            "driver_en_route_pickup",
+            "arrived_pickup",
+            "loading",
+            "in_transit",
+            "arrived_delivery",
+            "unloading",
+            "pod_pending",
+            "completed",
+            "cancelled"
+          ]
+        },
+        "started_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? started_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "completed_at": {
+          "type": "timestamp?",
+          "declaration": "timestamp? completed_at",
+          "referenceTable": null,
+          "enum": null
+        },
+        "carrier_payout_amount": {
+          "type": "decimal",
+          "declaration": "decimal carrier_payout_amount filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "start_odometer_km": {
+          "type": "decimal?",
+          "declaration": "decimal? start_odometer_km",
+          "referenceTable": null,
+          "enum": null
+        },
+        "end_odometer_km": {
+          "type": "decimal?",
+          "declaration": "decimal? end_odometer_km",
+          "referenceTable": null,
+          "enum": null
+        },
+        "route_geometry": {
+          "type": "json?",
+          "declaration": "json? route_geometry",
+          "referenceTable": null,
+          "enum": null
+        },
+        "cancellation_reason": {
+          "type": "text?",
+          "declaration": "text? cancellation_reason filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "trip_stop": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/trip_stop.xs",
+      "sha256LF": "9440af2c8f05c1e97886b1820fe27374b185d4651ba47a7021f6f320954fac5a",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "trip_id": {
+          "type": "int",
+          "declaration": "int trip_id {",
+          "referenceTable": "trip",
+          "enum": null
+        },
+        "stop_sequence": {
+          "type": "int",
+          "declaration": "int stop_sequence filters=min:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "stop_type": {
+          "type": "enum",
+          "declaration": "enum stop_type {",
+          "referenceTable": null,
+          "enum": [
+            "pickup",
+            "waypoint",
+            "fuel",
+            "customs_checkpoint",
+            "delivery"
+          ]
+        },
+        "facility_name": {
+          "type": "text",
+          "declaration": "text facility_name filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "address": {
+          "type": "json",
+          "declaration": "json address",
+          "referenceTable": null,
+          "enum": null
+        },
+        "scheduled_arrival": {
+          "type": "timestamp",
+          "declaration": "timestamp scheduled_arrival",
+          "referenceTable": null,
+          "enum": null
+        },
+        "actual_arrival": {
+          "type": "timestamp?",
+          "declaration": "timestamp? actual_arrival",
+          "referenceTable": null,
+          "enum": null
+        },
+        "actual_departure": {
+          "type": "timestamp?",
+          "declaration": "timestamp? actual_departure",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=pending {",
+          "referenceTable": null,
+          "enum": [
+            "pending",
+            "arrived",
+            "in_progress",
+            "completed",
+            "skipped"
+          ]
+        },
+        "contact_person": {
+          "type": "text?",
+          "declaration": "text? contact_person filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "contact_phone": {
+          "type": "text?",
+          "declaration": "text? contact_phone filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "notes": {
+          "type": "text?",
+          "declaration": "text? notes filters=trim",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "user": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/user.xs",
+      "sha256LF": "506037cf4dc4ab9d0e906e13507ae82ead232ec677263129f95dbf87fd87c858",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "name": {
+          "type": "text",
+          "declaration": "text name filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "email": {
+          "type": "email?",
+          "declaration": "email? email filters=trim|lower",
+          "referenceTable": null,
+          "enum": null
+        },
+        "password": {
+          "type": "password?",
+          "declaration": "password? password filters=min:8|minAlpha:1|minDigit:1",
+          "referenceTable": null,
+          "enum": null
+        },
+        "role": {
+          "type": "enum",
+          "declaration": "enum role? {",
+          "referenceTable": null,
+          "enum": [
+            "admin",
+            "member"
+          ]
+        },
+        "password_reset": {
+          "type": "object",
+          "declaration": "object password_reset? {",
+          "referenceTable": null,
+          "enum": null
+        },
+        "phone": {
+          "type": "text?",
+          "declaration": "text? phone filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "system_role": {
+          "type": "enum?",
+          "declaration": "enum? system_role?=customer_member {",
+          "referenceTable": null,
+          "enum": [
+            "super_admin",
+            "operations_admin",
+            "support_agent",
+            "customer_admin",
+            "customer_member",
+            "vendor_admin",
+            "fleet_manager",
+            "driver",
+            "autonomous_agent"
+          ]
+        },
+        "status": {
+          "type": "enum?",
+          "declaration": "enum? status?=active {",
+          "referenceTable": null,
+          "enum": [
+            "active",
+            "suspended",
+            "pending_verification"
+          ]
+        },
+        "active_organization_id": {
+          "type": "int?",
+          "declaration": "int? active_organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        }
+      }
+    },
+    "vehicle": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/vehicle.xs",
+      "sha256LF": "1dca5c4cbb343408aa462f985bdc3d76147cd7c929e46729d0a03e7863218d8f",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "organization_id": {
+          "type": "int",
+          "declaration": "int organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        },
+        "assigned_driver_id": {
+          "type": "int?",
+          "declaration": "int? assigned_driver_id {",
+          "referenceTable": "driver_profile",
+          "enum": null
+        },
+        "registration_number": {
+          "type": "text",
+          "declaration": "text registration_number filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "vin": {
+          "type": "text?",
+          "declaration": "text? vin filters=trim|upper",
+          "referenceTable": null,
+          "enum": null
+        },
+        "make": {
+          "type": "text",
+          "declaration": "text make filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "model": {
+          "type": "text",
+          "declaration": "text model filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "year": {
+          "type": "int?",
+          "declaration": "int? year",
+          "referenceTable": null,
+          "enum": null
+        },
+        "vehicle_type": {
+          "type": "enum",
+          "declaration": "enum vehicle_type {",
+          "referenceTable": null,
+          "enum": [
+            "flatbed",
+            "reefer",
+            "dry_van",
+            "container",
+            "box_truck",
+            "tanker"
+          ]
+        },
+        "max_payload_kg": {
+          "type": "decimal",
+          "declaration": "decimal max_payload_kg filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "max_volume_cbm": {
+          "type": "decimal?",
+          "declaration": "decimal? max_volume_cbm filters=min:0",
+          "referenceTable": null,
+          "enum": null
+        },
+        "status": {
+          "type": "enum",
+          "declaration": "enum status?=available {",
+          "referenceTable": null,
+          "enum": [
+            "available",
+            "assigned",
+            "in_transit",
+            "maintenance",
+            "offline"
+          ]
+        },
+        "gps_enabled": {
+          "type": "bool",
+          "declaration": "bool gps_enabled?=true",
+          "referenceTable": null,
+          "enum": null
+        },
+        "tracker_device_id": {
+          "type": "text?",
+          "declaration": "text? tracker_device_id filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "insurance_details": {
+          "type": "json?",
+          "declaration": "json? insurance_details",
+          "referenceTable": null,
+          "enum": null
+        },
+        "fitness_certificate": {
+          "type": "json?",
+          "declaration": "json? fitness_certificate",
+          "referenceTable": null,
+          "enum": null
+        },
+        "current_location": {
+          "type": "json?",
+          "declaration": "json? current_location",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    },
+    "vehicle_availability": {
+      "source": "backend/reconciliation-20261029/evidence/published/table/vehicle_availability.xs",
+      "sha256LF": "3891cf2aac1bd351662bac020b88217891cde2e5014787a61f8c60fdf6fae594",
+      "fields": {
+        "id": {
+          "type": "int",
+          "declaration": "int id",
+          "referenceTable": null,
+          "enum": null
+        },
+        "created_at": {
+          "type": "timestamp",
+          "declaration": "timestamp created_at?=now",
+          "referenceTable": null,
+          "enum": null
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "declaration": "timestamp updated_at?",
+          "referenceTable": null,
+          "enum": null
+        },
+        "vehicle_id": {
+          "type": "int",
+          "declaration": "int vehicle_id {",
+          "referenceTable": "vehicle",
+          "enum": null
+        },
+        "organization_id": {
+          "type": "int",
+          "declaration": "int organization_id {",
+          "referenceTable": "organization",
+          "enum": null
+        },
+        "available_from": {
+          "type": "timestamp",
+          "declaration": "timestamp available_from",
+          "referenceTable": null,
+          "enum": null
+        },
+        "available_until": {
+          "type": "timestamp",
+          "declaration": "timestamp available_until",
+          "referenceTable": null,
+          "enum": null
+        },
+        "current_city": {
+          "type": "text?",
+          "declaration": "text? current_city filters=trim",
+          "referenceTable": null,
+          "enum": null
+        },
+        "current_geo_point": {
+          "type": "json?",
+          "declaration": "json? current_geo_point",
+          "referenceTable": null,
+          "enum": null
+        },
+        "preferred_radius_km": {
+          "type": "decimal?",
+          "declaration": "decimal? preferred_radius_km",
+          "referenceTable": null,
+          "enum": null
+        },
+        "destination_preferences": {
+          "type": "json?",
+          "declaration": "json? destination_preferences",
+          "referenceTable": null,
+          "enum": null
+        },
+        "is_active": {
+          "type": "bool",
+          "declaration": "bool is_active?=true",
+          "referenceTable": null,
+          "enum": null
+        }
+      }
+    }
+  }
+}

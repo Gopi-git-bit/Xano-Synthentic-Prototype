@@ -1,0 +1,58 @@
+{
+  "validator": "@xano/developer-mcp",
+  "version": "2.2.6",
+  "count": 4,
+  "syntaxPassed": 4,
+  "staticGuardsPassed": true,
+  "mode": "OFFLINE_PROPOSAL_ONLY",
+  "checks": [
+    {
+      "file": "admin_booking_id_GET.xs",
+      "sha256": "5cf687924a3e8eb8797ef637a008d4180819cd4040065eef8dd9ffbb692918d8",
+      "valid": true,
+      "diagnostics": [],
+      "message": "✓ admin_booking_id_GET.xs: Valid",
+      "method_get": true,
+      "authenticated": true,
+      "binds_auth_id": true,
+      "no_financial_projection": true,
+      "no_mutations": true
+    },
+    {
+      "file": "admin_bookings_GET.xs",
+      "sha256": "0737c3bc6461d6139e4d6d6ffa2920e59751e4bfdc585fa43f4fa3239e8baff6",
+      "valid": true,
+      "diagnostics": [],
+      "message": "✓ admin_bookings_GET.xs: Valid",
+      "method_get": true,
+      "authenticated": true,
+      "binds_auth_id": true,
+      "no_financial_projection": true,
+      "no_mutations": true
+    },
+    {
+      "file": "owner_trip_id_GET.xs",
+      "sha256": "7e1fad4bd14e93c702281fe0555e75d09fe2fd0c7bfacdab68bbd4bb35a175a3",
+      "valid": true,
+      "diagnostics": [],
+      "message": "✓ owner_trip_id_GET.xs: Valid",
+      "method_get": true,
+      "authenticated": true,
+      "binds_auth_id": true,
+      "no_financial_projection": true,
+      "no_mutations": true
+    },
+    {
+      "file": "owner_trips_GET.xs",
+      "sha256": "986e7e14bf712f6df4a7256558ca4ca5279acc58037afdba371f0b9fa668aa7a",
+      "valid": true,
+      "diagnostics": [],
+      "message": "✓ owner_trips_GET.xs: Valid",
+      "method_get": true,
+      "authenticated": true,
+      "binds_auth_id": true,
+      "no_financial_projection": true,
+      "no_mutations": true
+    }
+  ]
+}

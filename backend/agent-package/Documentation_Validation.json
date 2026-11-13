@@ -1,0 +1,18 @@
+{
+  "validation_scope": "Document, JSON Schema, source-path and cross-reference checks only; no application or Xano runtime tests",
+  "checks": {
+    "five_confirmed_agents": true,
+    "json_parses": true,
+    "schema_meta_validation": true,
+    "synthetic_schema_valid_sample": true,
+    "synthetic_schema_invalid_agent_rejected": true,
+    "synthetic_schema_extra_action_rejected": true,
+    "requirements_have_test_refs": true,
+    "test_count": 70,
+    "all_test_status_not_run": true,
+    "operational_scenario_files_covered": 23,
+    "source_paths_in_pinned_tree": true,
+    "open_decision_count": 15
+  },
+  "release_status": "blocked_pending_policy_and_actual_target_evidence"
+}

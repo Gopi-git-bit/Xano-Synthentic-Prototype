@@ -1,0 +1,33 @@
+{
+  "checkedDate": "2026-10-31",
+  "MCP_VERIFIED": true,
+  "FRONTEND_MOCK_VERIFIED": true,
+  "REST_API_VERIFIED": false,
+  "AUTHORIZED_RECORD_READ_VERIFIED": false,
+  "PRODUCTION_RELEASE_BLOCKED": true,
+  "mcp": {
+    "connection": "OpenCode ZohoMCP: connected; npx mcp-remote with http-only transport",
+    "availableToolCount": 15,
+    "organization": { "name": "Zippy Logitech", "id": "1484941000000020813" },
+    "successfulOperations": ["getOrganization", "getModules", "getFields:Accounts", "getFields:Contacts", "getFields:Leads", "getFields:Deals", "getFields:Tasks"],
+    "relevantVisibleApiModules": ["Accounts", "Contacts", "Leads", "Deals", "Tasks", "Events", "Calls"],
+    "otherVisibleApiModules": ["Products", "Quotes", "Sales_Orders", "Purchase_Orders", "Invoices", "Campaigns", "Vendors", "Price_Books", "Cases", "Solutions", "Visits", "Quoted_Items", "Ordered_Items", "Purchase_Items", "Invoiced_Items", "Functions__s", "Approvals"],
+    "classification": "Provider metadata visibility only; no Zippy per-admin record grants or REST OAuth scopes inferred",
+    "fieldMetadataCounts": { "Accounts": 50, "Contacts": 60, "Leads": 55, "Deals": 28, "Tasks": 21 },
+    "recordReads": 0,
+    "mutations": 0,
+    "scopeStrings": "not exposed by this MCP metadata audit"
+  },
+  "rest": {
+    "source": "PowerShell Process/User/Machine environment and current checkout; no .env.local present; user selected Continue with mocks",
+    "absentVariables": ["ZOHO_CLIENT_ID", "ZOHO_CLIENT_SECRET", "ZOHO_REFRESH_TOKEN", "ZOHO_ACCOUNTS_URL", "ZOHO_READ_RELEASE", "CRM_READ_GRANTS_JSON", "XANO_AUTH_RELEASE"],
+    "oauthRefresh": "blocked_missing_credentials",
+    "refreshTokenValidity": "unknown",
+    "regionalApiVerification": "blocked_missing_region_and_credentials",
+    "indiaHostContract": { "accounts": "https://accounts.zoho.in", "crm": "https://www.zohoapis.in/crm/v8" },
+    "scopes": "unverified; no deployed REST token available",
+    "gatewayProbe": "npm run verify:crm; all availability/release booleans false, zero upstream calls",
+    "recordReads": 0,
+    "mutations": 0
+  }
+}

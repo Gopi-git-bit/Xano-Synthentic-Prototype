@@ -1,0 +1,5 @@
+PASS: 49 shared cases; 49 exported cases; 49 tables; 476 fields.
+Scope: offline snapshot checks only; no Xano deployment, HTTP, isolation, or transaction proof.
+PASS: tested export hashes and 16 recorded Xano payment results.
+PASS: 84 coordinate regressions against shared and exported code.
+PASS: five unbound agent exports, supplied package hashes and references, preserved source, 20 readiness mappings. Scope: offline configuration only; 70 acceptance scenarios remain NOT_RUN.
