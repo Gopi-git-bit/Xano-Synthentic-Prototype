@@ -1,5 +1,7 @@
 # Xano discovery and release handoff — 2026-10-27
 
+> Historical discovery snapshot. The November 2 [checked alignment 0.1.0](../../contracts/backend-frontend/0.1.0/README.md) and October 29 [published-source handoff](../../docs/XANO_FRONTEND_INTEGRATION_HANDOFF.md) supersede the placeholder, unsafe-logger and signup statements below. Hardened auth/customer readers exist in retained published source; positive runtime acceptance remains blocked. Registration is unavailable independently of login; recovery endpoints are NOT_DEPLOYED. Do not execute this historical publication sequence as authorization.
+
 ## Located deployment
 
 - Configured instance: `https://xynd-fnea-khtp.n7e.xano.io`.

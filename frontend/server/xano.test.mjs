@@ -24,7 +24,7 @@ test('release gates reject credentials and tokens before upstream; URL configura
     const { handle, calls } = setup({ env: { XANO_AUTH_RELEASE: release } });
     const status = (await handle({ url: '/api/status' })).data;
     assert.equal(status.authenticationConfigured, true); assert.equal(status.authenticationAvailable, false); assert.equal(status.bookingReadsAvailable, false);
-    for (const route of ['auth/login', 'auth/signup', 'auth/me', 'bookings']) {
+    for (const route of ['auth/login', 'auth/me', 'bookings']) {
       const result = await handle({ url: `/api/${route}`, method: route === 'auth/login' || route === 'auth/signup' ? 'POST' : 'GET', headers, body: { email: 'test@example.com', password: 'Password123' } });
       assert.equal(result.status, 503); assert.equal(result.data.error.code, 'AUTH_RELEASE_PENDING');
     }

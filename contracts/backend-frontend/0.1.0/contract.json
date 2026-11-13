@@ -1,0 +1,330 @@
+{
+  "version": "0.1.0",
+  "reviewedOn": "2026-11-02",
+  "baseCommit": "96619a8974c0b3bb90accfdd03036c52aea92011",
+  "runtimeVerified": false,
+  "recoveryDeployment": "NOT_DEPLOYED",
+  "isolatedRuntime": "NOT_VERIFIED",
+  "bookingStatuses": [
+    "draft",
+    "quoted",
+    "booked",
+    "assigned",
+    "in_transit",
+    "delivered",
+    "completed",
+    "cancelled"
+  ],
+  "customerListSource": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings_GET.xs",
+  "sources": [
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/auth/login_POST.xs",
+      "sha256": "e8909a4c322a01f8b65689f60b745fce3a14f8a39746712abe99e13e8576f958"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/auth/me_GET.xs",
+      "sha256": "38c539bcad746bc27a8b73b54dfe373481172497ad52295871b3bfd1036dd3d8"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Authentication/auth/signup_POST.xs",
+      "sha256": "e4046787ca481f2ec53d975192684a0cecf3e2106d8c823edfd940ef90ee4722"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings_GET.xs",
+      "sha256": "c33f5a323b2c22c20b44373bf25132f50cbdc75dd9fdb8b43c8955a19703ae1f"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published/query/Zippy_V1/bookings/_booking_id__GET.xs",
+      "sha256": "0f6af78a06a5e15f981c849f9631959064831245813fa79e5d768dd8c065ecb0"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published-inventory.json",
+      "sha256": "11587d65ae89fc981ace26acf22a09e17fc6a0da1d1202e15b37f0d654fddfdb"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/draft-inventory.json",
+      "sha256": "7c5213b484a1ecc5303cadb6ce989205aef926338aafb2f63e80c2dac08a0012"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/published-draft-diff.json",
+      "sha256": "ecb2c41cb79c9b9c54a53ec1a043b4e7333773b9fd609cb813791657cd615bc6"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/workspaces.json",
+      "sha256": "53bf2b186e238003aaf4c820d803f799adc1bcbc93e15a3237a31c413a926bc6"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/ephemerals.json",
+      "sha256": "5a701cacf57e7fd2e4d665f3e1e39bf3994758bda59216ca71e58a6f7eba0ae5"
+    },
+    {
+      "path": "backend/reconciliation-20261029/evidence/tenants.json",
+      "sha256": "b0bc0dce6e9f793a5122256544829225a7a2b55af0ab20814c07e004d1e7d986"
+    },
+    {
+      "path": "docs/xano-read-contracts/20261031/owner_trips_GET.xs",
+      "sha256": "986e7e14bf712f6df4a7256558ca4ca5279acc58037afdba371f0b9fa668aa7a"
+    },
+    {
+      "path": "docs/xano-read-contracts/20261031/owner_trip_id_GET.xs",
+      "sha256": "7e1fad4bd14e93c702281fe0555e75d09fe2fd0c7bfacdab68bbd4bb35a175a3"
+    },
+    {
+      "path": "docs/xano-read-contracts/20261031/admin_bookings_GET.xs",
+      "sha256": "0737c3bc6461d6139e4d6d6ffa2920e59751e4bfdc585fa43f4fa3239e8baff6"
+    },
+    {
+      "path": "docs/xano-read-contracts/20261031/admin_booking_id_GET.xs",
+      "sha256": "5cf687924a3e8eb8797ef637a008d4180819cd4040065eef8dd9ffbb692918d8"
+    }
+  ],
+  "blockedRequests": [
+    {
+      "route": "auth/signup",
+      "method": "POST",
+      "status": 503,
+      "code": "REGISTRATION_PENDING"
+    },
+    {
+      "route": "auth/register",
+      "method": "POST",
+      "status": 503,
+      "code": "REGISTRATION_PENDING"
+    },
+    {
+      "route": "bookings",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31",
+      "method": "PATCH",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/cancel",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/confirm",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/consent-attempts",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/holds",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/holds/1/release",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/payment-selection",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/quotes",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/quotes/1/accept",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/resume",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "consent-attempts/1/decision",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "bookings/31/transitions",
+      "method": "POST",
+      "status": 503,
+      "code": "BOOKING_WRITES_PENDING"
+    },
+    {
+      "route": "owner/trips",
+      "method": "GET",
+      "status": 404,
+      "code": "ENDPOINT_UNAVAILABLE"
+    },
+    {
+      "route": "owner/trips/1",
+      "method": "GET",
+      "status": 404,
+      "code": "ENDPOINT_UNAVAILABLE"
+    },
+    {
+      "route": "admin/bookings",
+      "method": "GET",
+      "status": 404,
+      "code": "ENDPOINT_UNAVAILABLE"
+    },
+    {
+      "route": "admin/bookings/1",
+      "method": "GET",
+      "status": 404,
+      "code": "ENDPOINT_UNAVAILABLE"
+    },
+    {
+      "route": "logs/user/my_events",
+      "method": "GET",
+      "status": 404,
+      "code": "ENDPOINT_UNAVAILABLE"
+    },
+    {
+      "route": "internal/dispatch/reservations",
+      "method": "POST",
+      "status": 404,
+      "code": "ENDPOINT_UNAVAILABLE"
+    }
+  ],
+  "matrix": [
+    {
+      "surface": "POST auth/login",
+      "backendEvidence": "Retained published source; positive runtime NOT_RUN",
+      "frontendContract": "Email/password; authToken then revalidate auth/me",
+      "gate": "XANO_AUTH_RELEASE blocked",
+      "dependency": "Approved active/suspended identities, revocation and persisted-log tests"
+    },
+    {
+      "surface": "GET auth/me",
+      "backendEvidence": "Retained published source; historical anonymous/malformed 401 only",
+      "frontendContract": "id/name/email/system_role/status/active_organization_id; legacy role ignored",
+      "gate": "XANO_AUTH_RELEASE blocked",
+      "dependency": "Current membership and tenant-denial runtime assertions"
+    },
+    {
+      "surface": "POST auth/signup",
+      "backendEvidence": "Published unconditional refusal",
+      "frontendContract": "Old frontend expected a session; now rejects locally with REGISTRATION_PENDING",
+      "gate": "No release switch; no upstream call",
+      "dependency": "Separate reviewed onboarding contract"
+    },
+    {
+      "surface": "POST auth/register (P1/P1b)",
+      "backendEvidence": "NOT_DEPLOYED; receipt syntax-only",
+      "frontendContract": "Requires organization_name; returns user/org/review IDs, draft_only, no authToken",
+      "gate": "No registration UI or route forwarding",
+      "dependency": "Server route/group binding, verification semantics, transactional audit and isolated tests"
+    },
+    {
+      "surface": "GET bookings",
+      "backendEvidence": "Retained published customer source; positive runtime NOT_RUN",
+      "frontendContract": "page/per_page/status; server-derived requested_org_id; curPage/nextPage/items -> page/nextPage/items",
+      "gate": "XANO_BOOKING_READS_RELEASE and auth blocked",
+      "dependency": "Real serialization, A/B tenant filtering, pagination, inactive membership"
+    },
+    {
+      "surface": "GET bookings/{booking_id}",
+      "backendEvidence": "Retained published customer source; positive runtime NOT_RUN",
+      "frontendContract": "Tenant-filtered nine-field booking; cargo/holds -> counts; no action grants",
+      "gate": "Same independent read gates",
+      "dependency": "Missing/foreign equivalence and private-field exclusion"
+    },
+    {
+      "surface": "Booking lifecycle / P3",
+      "backendEvidence": "Eight persisted states; proposed 15 workflow states NOT_DEPLOYED",
+      "frontendContract": "Eight-state filter only; payment/POD/consent tracked separately",
+      "gate": "No workflow-state remapping",
+      "dependency": "Reviewed derived workflow mapping and versioned schema; do not send display labels as status"
+    },
+    {
+      "surface": "GET owner/trips and owner/trips/{trip_id}",
+      "backendEvidence": "Four-endpoint pack: owner candidates NOT_DEPLOYED",
+      "frontendContract": "Active vendor + membership; driver DB-link assignment restriction",
+      "gate": "Gateway ENDPOINT_UNAVAILABLE; mock/restricted UI",
+      "dependency": "Salaried-driver membership compatibility; isolated assignment and tenant tests"
+    },
+    {
+      "surface": "GET admin/bookings and admin/bookings/{booking_id}",
+      "backendEvidence": "October 31 conservative candidates NOT_DEPLOYED",
+      "frontendContract": "Explicit active target-org owner/admin membership; minimal projection with no finance",
+      "gate": "Gateway ENDPOINT_UNAVAILABLE",
+      "dependency": "Do not substitute broader recovery P4 policy"
+    },
+    {
+      "surface": "GET admin/bookings (recovery P4)",
+      "backendEvidence": "NOT_DEPLOYED; conflicts with October 31 candidate",
+      "frontendContract": "bookings envelope + financial_view/access_tier; support_agent absent current role enum; super_admin policy differs",
+      "gate": "No finance or role adapter added",
+      "dependency": "Reconcile role enum, super-admin scope exception, explicit grants, redaction and envelope"
+    },
+    {
+      "surface": "POST/PATCH booking commands (12 published routes)",
+      "backendEvidence": "Published empty null stubs; draft logic and refusal candidates not released",
+      "frontendContract": "Null/HTTP success never establishes command success; frontend returns BOOKING_WRITES_PENDING",
+      "gate": "No write release switch",
+      "dependency": "Atomicity/rollback, validation, pricing, unique references, idempotency and provider denial"
+    },
+    {
+      "surface": "POST bookings/{booking_id}/transitions (P6)",
+      "backendEvidence": "NOT_DEPLOYED",
+      "frontendContract": "action + prior-read expected_version; no client-derived version or actor grants",
+      "gate": "No forwarding; BOOKING_WRITES_PENDING",
+      "dependency": "Atomic compare-and-swap, legal transitions, exactly-one audit and concurrent tests"
+    },
+    {
+      "surface": "P2 claim/release/complete; internal dispatch reservations P5",
+      "backendEvidence": "NOT_DEPLOYED; internal helpers are not public APIs",
+      "frontendContract": "Fences remain server-internal; no browser locking/retry business logic",
+      "gate": "No forwarding; ENDPOINT_UNAVAILABLE",
+      "dependency": "Atomic reclaim/stale fencing, lock expiry, uniqueness and rollback proofs"
+    },
+    {
+      "surface": "POD/tracking/settlement/payment/refund",
+      "backendEvidence": "No accepted callable integration contract",
+      "frontendContract": "No inferred payment success from booking state",
+      "gate": "Mock/restricted views only; no live writes",
+      "dependency": "Least-privilege contracts, isolated synthetic tests, provider test-mode approval"
+    },
+    {
+      "surface": "Zoho CRM",
+      "backendEvidence": "Metadata connection does not establish REST OAuth or record grants",
+      "frontendContract": "Independent OAuth + exact per-user module/record/field grants",
+      "gate": "ZOHO_READ_RELEASE blocked",
+      "dependency": "Authorized REST scopes and isolated record-grant verification"
+    },
+    {
+      "surface": "Five operational agents",
+      "backendEvidence": "Not implemented in workspace-3 published inventory; documentation example only",
+      "frontendContract": "No business tool execution or autonomy",
+      "gate": "No gateway route",
+      "dependency": "Verified deterministic services, least-privilege tools and recommendation-only tests"
+    },
+    {
+      "surface": "Event log GET /logs/user/my_events",
+      "backendEvidence": "Retained catalog/source; not wired to frontend",
+      "frontendContract": "No guessed gateway forwarding",
+      "gate": "ENDPOINT_UNAVAILABLE",
+      "dependency": "Explicit UI contract and approved read scope if needed"
+    }
+  ]
+}

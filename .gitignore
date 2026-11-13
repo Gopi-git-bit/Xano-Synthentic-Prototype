@@ -7,3 +7,5 @@ auth.json
 .credentials*
 .xano/
 reports/
+.vercel
+.env*

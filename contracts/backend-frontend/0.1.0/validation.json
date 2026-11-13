@@ -1,0 +1,26 @@
+{
+  "contractVersion": "0.1.0",
+  "date": "2026-11-02",
+  "baseCommit": "96619a8974c0b3bb90accfdd03036c52aea92011",
+  "environment": { "os": "Windows", "node": "24.22.1", "npm": "11.19.1", "browser": "Microsoft Edge (local)" },
+  "checks": [
+    { "command": "npm ci --ignore-scripts --no-audit --no-fund --fetch-retries=0 --fetch-timeout=20000", "result": "PASS", "note": "179 locked packages installed; no dependency version changes" },
+    { "command": "npm run typecheck", "result": "PASS" },
+    { "command": "npm run lint", "result": "PASS" },
+    { "command": "npm run build", "result": "PASS" },
+    { "command": "node scripts/scan-browser.mjs", "result": "PASS", "privateValuesChecked": 0, "note": "Static bundle scan only; no private configuration file supplied" },
+    { "command": "npm run test:server", "result": "PASS", "passed": 50, "failed": 0, "scope": "Injected synthetic upstreams, including 5 alignment tests" },
+    { "command": "npm test", "result": "PASS", "passed": 46, "failed": 0, "durationSeconds": 54.5, "scope": "Local servers and synthetic/mock browser flows; includes registration gate", "note": "Initial restricted startup interrupted; permitted rerun completed" },
+    { "command": "git diff --check", "result": "PASS" }
+  ],
+  "githubActions": "Report separately for the final PR commit; local checks do not attest runner execution",
+  "isolatedXanoRuntime": "NOT_VERIFIED",
+  "hostedXanoAcceptanceTests": 0,
+  "xanoApplicationRequests": 0,
+  "xanoMetadataRequests": 0,
+  "xanoMutations": 0,
+  "providerBusinessCalls": 0,
+  "recoveryEndpoints": "NOT_DEPLOYED",
+  "releaseFlagsChanged": false,
+  "productionDeploymentRequested": false
+}

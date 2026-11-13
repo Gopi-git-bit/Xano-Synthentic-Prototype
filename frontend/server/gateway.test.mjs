@@ -95,9 +95,10 @@ test('OAuth missing or malicious API domain fails closed without credentials lea
   assert.equal((await malicious.handle({ url: '/api/crm/modules', headers })).status, 503);
   assert.ok(malicious.calls.every(c => !c.url.includes('evil.example')));
 });
-test('signup forwards only verified input fields, never browser role grants', async () => {
+test('signup remains blocked independently of login release and never contacts Xano', async () => {
   const { handle, calls } = setup({ override: url => String(url).endsWith('/auth/signup') ? reply({ authToken: 'new-test-token', user_id: 99 }) : null });
   const result = await handle({ method: 'POST', url: '/api/auth/signup', headers: new Headers({ 'Content-Type': 'application/json' }), body: { name: 'Example', email: 'test@example.com', password: 'Password123', role: 'admin', assignments: ['all'] } });
-  assert.equal(result.status, 200);
-  assert.deepEqual(Object.keys(JSON.parse(calls[0].init.body)).sort(), ['email', 'name', 'password']);
+  assert.equal(result.status, 503);
+  assert.equal(result.data.error.code, 'REGISTRATION_PENDING');
+  assert.equal(calls.length, 0);
 });
