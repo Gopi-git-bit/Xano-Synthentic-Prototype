@@ -29,10 +29,12 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
   const [session, setSession] = useState(false);
   const [route, setRoute] = useState(emptyRoute);
   const [drafts, setDrafts] = useState<Draft[]>([]);
+  const [partialList, setPartialList] = useState(false);
+  const [listFailed, setListFailed] = useState(false);
   const [selected, setSelected] = useState<Draft | null>(null);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState(connected);
   const [expiresAt, setExpiresAt] = useState<number | null>(null);
   const [api] = useState(createCustomerApi);
   const [pendingDraft, setPendingDraft] = useState<{ signature: string; input: DraftInput } | null>(null);
@@ -44,15 +46,17 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
   useEffect(() => {
     if (!connected) return;
     let stopped = false;
-    void api.identity().then(value => {
-      if (!stopped) { applySession(value); setScreen('home'); }
-    }).catch(error => { if (!stopped && (!(error instanceof SandboxApiError) || error.status !== 401)) setError('Protected sandbox is unavailable. Check preview access and configuration.'); });
+    void api.identity().then(async value => {
+      const page = await api.list();
+      if (!stopped) { applySession(value); setDrafts(page.items); setPartialList(page.nextPage !== null); setScreen('home'); }
+    }).catch(error => { if (!stopped && (!(error instanceof SandboxApiError) || error.status !== 401)) setError('Protected sandbox is unavailable. Check preview access and configuration.'); })
+      .finally(() => { if (!stopped) setBusy(false); });
     return () => { stopped = true; };
   }, [api, connected]);
   useEffect(() => {
     if (!connected || !expiresAt) return;
     const timer = window.setTimeout(() => {
-      setSession(false); setAccount(null); setDrafts([]); setSelected(null); setScreen('login');
+      setSession(false); setAccount(null); setDrafts([]); setPartialList(false); setListFailed(false); setSelected(null); setScreen('login');
       setPassword(''); setLoginPassword(''); setRoute(emptyRoute()); setPendingDraft(null);
       setNotice('Sandbox session expired. Sign in again.'); setExpiresAt(null);
     }, Math.max(0, expiresAt - Date.now()));
@@ -61,7 +65,7 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
   function failure(error: unknown) {
     setError(error instanceof SandboxApiError ? error.message : 'The sandbox request could not be completed.');
     if (error instanceof SandboxApiError && [401, 403].includes(error.status)) {
-      setSession(false); setAccount(null); setDrafts([]); setSelected(null); setScreen('login');
+      setSession(false); setAccount(null); setDrafts([]); setPartialList(false); setListFailed(false); setSelected(null); setScreen('login');
       setExpiresAt(null); setPendingDraft(null); setRoute(emptyRoute());
     }
   }
@@ -69,19 +73,22 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
   const navigate = (next: Screen) => {
     setError(''); setNotice(''); setScreen(next);
     if (connected && next === 'orders') {
-      setBusy(true); void api.list().then(page => setDrafts(page.items)).catch(failure).finally(() => setBusy(false));
+      setDrafts([]); setPartialList(false); setListFailed(false); setBusy(true);
+      void api.list().then(page => { setDrafts(page.items); setPartialList(page.nextPage !== null); })
+        .catch(error => { setListFailed(true); failure(error); }).finally(() => setBusy(false));
     }
   };
   function reset(expired = false) {
     credential.current = null;
-    setSession(false); setAccount(null); setDrafts([]); setSelected(null);
+    setSession(false); setAccount(null); setDrafts([]); setPartialList(false); setListFailed(false); setSelected(null);
     setName(''); setOrganization(''); setEmail(''); setPassword(''); setLoginPassword('');
     setRoute(emptyRoute()); setError(''); setScreen('register'); setExpiresAt(null); setPendingDraft(null);
     setNotice(expired ? 'Synthetic session expired; all in-memory data was cleared.' : 'Synthetic session cleared.');
   }
   async function register(e: FormEvent<HTMLFormElement>) {
     e.preventDefault(); setError('');
-    if (!/^SYNTHETIC\s+\S/i.test(name.trim()) || !/^SYNTHETIC\s+\S/i.test(organization.trim())
+    if (!/^SYNTHETIC \S/.test(name.trim()) || !/^SYNTHETIC \S/.test(organization.trim())
+      || name.trim().length > 100 || organization.trim().length > 100
       || !/^[\w.+-]+@example\.invalid$/i.test(email.trim()) || password.length < 12) {
       setError('Use SYNTHETIC names, an @example.invalid email and a test password of at least 12 characters.');
       return;
@@ -107,8 +114,10 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
       try {
         await api.login(email.trim().toLowerCase(), loginPassword);
         const identity = await api.identity(), membership = await api.membership();
-        if (identity.organization.id !== membership.organization.id) throw new SandboxApiError(403, 'Organization access changed. Sign in again.');
-        applySession(membership); setDrafts((await api.list()).items); setScreen('home');
+        if (identity.organization.id !== membership.organization.id || identity.user.id !== membership.user.id)
+          throw new SandboxApiError(403, 'Organization access changed. Sign in again.');
+        const page = await api.list();
+        applySession(membership); setDrafts(page.items); setPartialList(page.nextPage !== null); setListFailed(false); setScreen('home');
         setNotice('Authenticated sandbox login successful. Active customer organization and owner membership verified.');
       } catch (error) { failure(error); } finally { setLoginPassword(''); setBusy(false); }
       return;
@@ -143,7 +152,8 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
       setPendingDraft(attempt);
       try {
         await api.createDraft(attempt.input);
-        setDrafts((await api.list()).items); setPendingDraft(null); setRoute(emptyRoute()); setScreen('orders');
+        const page = await api.list();
+        setDrafts(page.items); setPartialList(page.nextPage !== null); setListFailed(false); setPendingDraft(null); setRoute(emptyRoute()); setScreen('orders');
         setNotice('Draft saved and retrieved from isolated Xano. No quote, payment or dispatch was created.');
       } catch (error) { failure(error); } finally { setBusy(false); }
       return;
@@ -168,7 +178,7 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
     catch (error) { failure(error); } finally { setBusy(false); }
   }
   const field = (label: string, key: keyof ReturnType<typeof emptyRoute>, type = 'text') => (
-    <Field label={label}><input type={type} required disabled={busy} maxLength={200} value={route[key]} onChange={e => { setError(''); setRoute(old => ({ ...old, [key]: e.target.value })); }}/></Field>
+    <Field label={label}><input type={type} required disabled={busy} maxLength={key.endsWith('City') ? 100 : 200} value={route[key]} onChange={e => { setError(''); setRoute(old => ({ ...old, [key]: e.target.value })); }}/></Field>
   );
 
   return <main data-role="customer" data-sandbox-preview={connected ? 'xano-gateway' : 'synthetic-only'} aria-busy={busy} className="min-h-dvh bg-canvas text-ink">
@@ -197,7 +207,7 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
         {screen === 'register' && <div className="grid gap-5 xl:grid-cols-[minmax(0,1.5fr)_minmax(220px,.8fr)]">
           <Card><form aria-label="Synthetic customer registration" className="space-y-5 p-5 sm:p-7" onSubmit={register}><h2 className="font-bold">Prepare a synthetic customer</h2><div className="grid gap-5 sm:grid-cols-2">
             <Field label="Full name"><input required maxLength={100} placeholder="SYNTHETIC Customer" value={name} onChange={e=>setName(e.target.value)}/></Field>
-            <Field label="Organization name"><input required maxLength={200} placeholder="SYNTHETIC Freight Ltd" value={organization} onChange={e=>setOrganization(e.target.value)}/></Field>
+            <Field label="Organization name"><input required maxLength={100} placeholder="SYNTHETIC Freight Ltd" value={organization} onChange={e=>setOrganization(e.target.value)}/></Field>
             <Field label="Test email"><input required type="email" autoComplete="off" placeholder="synthetic@example.invalid" value={email} onChange={e=>setEmail(e.target.value)}/></Field>
             <Field label="Test password"><input required type="password" autoComplete="new-password" minLength={12} maxLength={256} value={password} onChange={e=>setPassword(e.target.value)} /></Field>
           </div><p className="text-xs text-muted">Only SYNTHETIC names and @example.invalid addresses are accepted.</p><button className="btn primary" type="submit" disabled={busy}>Continue to sign in <ArrowRight size={16}/></button>{connected && <button type="button" className="text-btn ml-3" disabled={busy} onClick={() => navigate('login')}>Existing sandbox account</button>}</form></Card>
@@ -211,7 +221,7 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
         </form></Card>}
 
         {active && screen === 'home' && <><div className="grid gap-4 sm:grid-cols-3">
-          <Card><div className="p-5"><p className="text-xs text-muted">Draft bookings</p><p className="mt-2 text-3xl font-extrabold">{String(drafts.length).padStart(2, '0')}</p></div></Card>
+          <Card><div className="p-5"><p className="text-xs text-muted">{partialList ? 'Drafts on first page' : 'Draft bookings'}</p><p className="mt-2 text-3xl font-extrabold">{String(drafts.length).padStart(2, '0')}</p></div></Card>
           <Card><div className="p-5"><p className="text-xs text-muted">Organization verification</p><div className="mt-4"><Badge tone="warning">Pending review</Badge></div></div></Card>
           <Card><div className="p-5"><p className="text-xs text-muted">Payment status</p><div className="mt-4"><Badge tone="neutral">Unavailable</Badge></div></div></Card>
         </div><Card className="mt-5"><div className="flex flex-wrap items-center justify-between gap-5 p-6"><div><h2 className="text-xl font-bold">Prepare a freight draft</h2><p className="mt-2 text-sm text-muted">Add pickup, delivery and scheduling details. {connected ? 'Only an isolated Xano draft is submitted.' : 'No real booking is submitted.'}</p></div><button className="btn primary" disabled={busy} onClick={()=>navigate('draft')}><Plus size={17}/> Create draft</button></div></Card></>}
@@ -224,10 +234,13 @@ export default function CustomerPreview({ connected = false }: { connected?: boo
         </div>}
 
         {active && screen === 'orders' && <Card><div className="card-head"><div><h2 className="card-title">Synthetic drafts</h2><p className="mt-1 text-xs text-muted">{connected ? 'Retrieved from your authenticated Xano organization.' : 'Stored only while this test session remains active.'}</p></div><button className="btn primary" disabled={busy} onClick={()=>navigate('draft')}><Plus size={15}/> New draft</button></div>
-          {drafts.length ? <ul className="divide-y divide-line">{drafts.map(d => <li key={d.id} className="flex flex-wrap items-center justify-between gap-3 p-5"><div><p className="font-bold">{d.reference}</p><p className="mt-1 text-xs text-muted">{d.pickupCity} → {d.deliveryCity}</p><div className="mt-2"><Badge tone="neutral">Draft</Badge></div></div><button className="btn" disabled={busy} aria-label={'View draft '+d.reference} onClick={()=>void detail(d)}>View details <ArrowRight size={16}/></button></li>)}</ul> : <div className="px-6 py-12 text-center text-sm text-muted">No drafts yet. Create your first synthetic draft.</div>}
+          {busy && <p role="status" className="p-5">Retrieving synthetic drafts…</p>}
+          {listFailed && <div className="p-5"><Notice>Draft retrieval failed. No current list is confirmed.</Notice><button className="btn" disabled={busy} onClick={() => navigate('orders')}>Retry draft retrieval</button></div>}
+          {partialList && <div className="p-5"><Notice>Only the first page is shown. More drafts exist; further pages are unavailable through this isolated adapter.</Notice></div>}
+          {drafts.length ? <ul className="divide-y divide-line">{drafts.map(d => <li key={d.id} className="flex flex-wrap items-center justify-between gap-3 p-5"><div><p className="font-bold">{d.reference}</p><p className="mt-1 text-xs text-muted">{d.pickupCity} → {d.deliveryCity}</p><div className="mt-2"><Badge tone="neutral">Draft</Badge></div></div><button className="btn" disabled={busy} aria-label={'View draft '+d.reference} onClick={()=>void detail(d)}>View details <ArrowRight size={16}/></button></li>)}</ul> : !busy && !listFailed && <div className="px-6 py-12 text-center text-sm text-muted">No drafts yet. Create your first synthetic draft.</div>}
         </Card>}
 
-        {active && screen === 'detail' && selected && <Card><div className="space-y-5 p-6"><div className="flex flex-wrap justify-between gap-3"><h2 className="text-xl font-bold">{selected.reference}</h2><Badge tone="neutral">Draft</Badge></div><dl className="grid gap-5 text-sm sm:grid-cols-2"><div><dt className="text-muted">Pickup</dt><dd className="font-semibold">{selected.pickupCity}, {selected.pickupStreet}</dd></div><div><dt className="text-muted">Delivery</dt><dd className="font-semibold">{selected.deliveryCity}, {selected.deliveryStreet}</dd></div><div><dt className="text-muted">Booking state</dt><dd className="font-semibold">Draft · version {selected.version}</dd></div><div><dt className="text-muted">Payment</dt><dd className="font-semibold">Pending · not collected</dd></div></dl><Notice>No confirmed booking, payment, vehicle assignment or POD exists.</Notice><div className="flex flex-wrap gap-2"><button className="btn" onClick={()=>navigate('orders')}>Back to my drafts</button><button className="btn" disabled>Confirm unavailable</button></div></div></Card>}
+        {active && screen === 'detail' && selected && <Card><div className="space-y-5 p-6"><div className="flex flex-wrap justify-between gap-3"><h2 className="text-xl font-bold">{selected.reference}</h2><Badge tone="neutral">Draft</Badge></div><dl className="grid gap-5 text-sm sm:grid-cols-2"><div><dt className="text-muted">Pickup</dt><dd className="font-semibold">{[selected.pickupCity, selected.pickupStreet].filter(Boolean).join(', ')}</dd></div><div><dt className="text-muted">Delivery</dt><dd className="font-semibold">{[selected.deliveryCity, selected.deliveryStreet].filter(Boolean).join(', ')}</dd></div><div><dt className="text-muted">Booking state</dt><dd className="font-semibold">Draft · version {selected.version}</dd></div><div><dt className="text-muted">Payment</dt><dd className="font-semibold">Pending · not collected</dd></div></dl>{connected && <Notice>Street addresses and schedule are not returned by this draft retrieval contract.</Notice>}<Notice>No confirmed booking, payment, vehicle assignment or POD exists.</Notice><div className="flex flex-wrap gap-2"><button className="btn" onClick={()=>navigate('orders')}>Back to my drafts</button><button className="btn" disabled>Confirm unavailable</button></div></div></Card>}
         <footer className="mt-10 border-t border-line pt-5 text-xs leading-relaxed text-muted">Zippy Logistics · Synthetic customer preview. {connected ? 'Isolated sandbox records only.' : 'No real records.'} No provider calls or operational actions.</footer>
       </div>
     </div>

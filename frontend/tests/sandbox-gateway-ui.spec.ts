@@ -2,9 +2,10 @@ import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 // Explicit UI mocks. These tests are not browser-to-Xano acceptance.
-async function mockedGateway(page: Page, options: { uncertainDraft?: boolean; unavailable?: boolean } = {}) {
-  let loggedIn = false, failDraft = Boolean(options.uncertainDraft);
-  const requestIds: string[] = [], drafts: object[] = [];
+async function mockedGateway(page: Page, options: { uncertainDraft?: boolean; unavailable?: boolean; partial?: boolean; malformedLogin?: boolean; failedInitialList?: boolean; invalidDetail?: boolean; unsafeDraft?: boolean; existingSession?: boolean; changedIdentity?: boolean } = {}) {
+  let loggedIn = Boolean(options.existingSession), failDraft = Boolean(options.uncertainDraft);
+  const requestIds: string[] = [], drafts: object[] = options.existingSession
+    ? [{ id: 1, reference: 'DRAFT-UI-MOCK', pickupCity: 'Synthetic Chennai', deliveryCity: 'Synthetic Hosur', version: 1, status: 'draft' }] : [];
   const session = () => ({ user: { id: 1, name: 'SYNTHETIC Customer', email: 'mock-ui@example.invalid' }, organization: { id: 1, name: 'SYNTHETIC Textiles', verification: 'pending_human_review' }, membership: { role: 'owner', active: true }, bookingScope: 'draft_only', expiresAt: Date.now() + 60000 });
   await page.route('**/api/sandbox/**', async route => {
     const path = new URL(route.request().url()).pathname.replace('/api/sandbox/', ''), method = route.request().method();
@@ -12,21 +13,22 @@ async function mockedGateway(page: Page, options: { uncertainDraft?: boolean; un
     const reply = (status: number, data: object) => route.fulfill({ status, contentType: 'application/json', body: JSON.stringify(data) });
     if (options.unavailable) return reply(503, { error: { code: 'SANDBOX_DISABLED' } });
     if (path === 'csrf') return reply(200, { csrf: 'mock-csrf' });
-    if (path === 'auth/register') return reply(201, { verification: 'pending_human_review' });
-    if (path === 'auth/login') { loggedIn = true; return reply(200, { ...session(), csrf: 'mock-login-csrf' }); }
+    if (path === 'auth/register') return reply(201, { verification: 'pending_human_review', bookingScope: 'draft_only' });
+    if (path === 'auth/login') { loggedIn = true; return reply(200, { ...session(), bookingScope: options.malformedLogin ? 'operational' : 'draft_only', csrf: 'mock-login-csrf' }); }
     if (path === 'auth/logout') { loggedIn = false; return reply(200, { loggedOut: true }); }
     if (!loggedIn) return reply(401, { error: { code: 'SESSION_REQUIRED' } });
-    if (path === 'auth/me' || path === 'organization/membership') return reply(200, session());
+    if (path === 'auth/me' || path === 'organization/membership') return reply(200, options.changedIdentity && path === 'organization/membership'
+      ? { ...session(), user: { ...session().user, id: 2 } } : session());
     if (path === 'bookings' && method === 'POST') {
       requestIds.push(String(input?.request_id));
       expect(Object.keys(input || {}).sort()).toEqual(['request_id', 'pickup_city', 'pickup_street', 'delivery_city', 'delivery_street', 'pickup_window_start', 'pickup_window_end', 'delivery_window_start', 'delivery_window_end'].sort());
       const booking = { id: 1, reference: 'DRAFT-UI-MOCK', pickupCity: 'Synthetic Chennai', deliveryCity: 'Synthetic Hosur', version: 1, status: 'draft' };
       if (!drafts.length) drafts.push(booking);
       if (failDraft) { failDraft = false; return reply(502, { error: { code: 'UNCONFIRMED' } }); }
-      return reply(200, { booking });
+      return reply(200, { booking, draftOnly: true, executionEnabled: Boolean(options.unsafeDraft) });
     }
-    if (path === 'bookings') return reply(200, { items: drafts, nextPage: null });
-    if (path === 'bookings/1') return reply(200, { booking: drafts[0] });
+    if (path === 'bookings') return options.failedInitialList ? reply(503, {}) : reply(200, { items: drafts, nextPage: options.partial ? 2 : null });
+    if (path === 'bookings/1') return reply(200, { booking: drafts[0], allowedActions: options.invalidDetail ? ['confirm'] : [] });
     return reply(404, { error: { code: 'DISABLED' } });
   });
   return { requestIds, revoke: () => { loggedIn = false; } };
@@ -91,4 +93,64 @@ test('unavailable gateway is explicit and never falls back to an in-memory succe
   await mockedGateway(page, { unavailable: true }); await page.goto('/?sandbox=1&sandboxBackend=gateway');
   await expect(page.getByRole('alert')).toContainText('Protected sandbox is unavailable');
   await expect(page.getByRole('heading', { name: 'Your next move, made simple.' })).toHaveCount(0);
+});
+
+test('partial list and limited detail projection are explicit', async ({ page }) => {
+  await mockedGateway(page, { partial: true }); await login(page); await fillDraft(page);
+  await expect(page.getByLabel('Pickup city')).toHaveAttribute('maxlength', '100');
+  await page.getByRole('button', { name: 'Save synthetic draft' }).click();
+  await expect(page.getByText('Only the first page is shown.', { exact: false })).toBeVisible();
+  await page.getByRole('button', { name: 'View draft DRAFT-UI-MOCK' }).click();
+  await expect(page.getByText('Street addresses and schedule are not returned', { exact: false })).toBeVisible();
+});
+
+for (const option of ['malformedLogin', 'failedInitialList', 'changedIdentity'] as const) test(`login remains closed for ${option}`, async ({ page }) => {
+  await mockedGateway(page, { [option]: true });
+  await page.goto('/?sandbox=1&sandboxBackend=gateway');
+  await page.getByRole('button', { name: 'Existing sandbox account' }).click();
+  await page.getByLabel('Test email').fill('mock-ui@example.invalid');
+  await page.getByLabel('Test password').fill('MockUiPassword123!');
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await expect(page.getByRole('alert')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'My drafts' })).toHaveCount(0);
+  await expect(page.getByLabel('Test password')).toHaveValue('');
+});
+
+test('failed refresh clears stale rows and permits manual retrieval retry', async ({ page }) => {
+  await mockedGateway(page); await login(page); await fillDraft(page);
+  await page.getByRole('button', { name: 'Save synthetic draft' }).click();
+  await expect(page.getByRole('button', { name: 'View draft DRAFT-UI-MOCK' })).toBeVisible();
+  await page.route('**/api/sandbox/bookings', route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ items: [{ id: 99, status: 'confirmed' }], nextPage: null }) }));
+  await page.getByRole('button', { name: 'My drafts' }).click();
+  await expect(page.getByRole('alert')).toContainText('could not be verified');
+  await expect(page.getByRole('button', { name: 'View draft DRAFT-UI-MOCK' })).toHaveCount(0);
+  await expect(page.getByText('No drafts yet.', { exact: false })).toHaveCount(0);
+  await page.unroute('**/api/sandbox/bookings');
+  await page.getByRole('button', { name: 'Retry draft retrieval' }).click();
+  await expect(page.getByRole('button', { name: 'View draft DRAFT-UI-MOCK' })).toBeVisible();
+});
+
+test('operational actions in a successful detail response are rejected', async ({ page }) => {
+  await mockedGateway(page, { invalidDetail: true }); await login(page); await fillDraft(page);
+  await page.getByRole('button', { name: 'Save synthetic draft' }).click();
+  await page.getByRole('button', { name: 'View draft DRAFT-UI-MOCK' }).click();
+  await expect(page.getByRole('alert')).toContainText('could not be verified');
+  await expect(page.getByRole('heading', { name: 'Draft booking details.' })).toHaveCount(0);
+});
+
+test('execution-enabled create response never confirms a saved draft', async ({ page }) => {
+  await mockedGateway(page, { unsafeDraft: true }); await login(page); await fillDraft(page);
+  await page.getByRole('button', { name: 'Save synthetic draft' }).click();
+  await expect(page.getByRole('alert')).toContainText('could not be verified');
+  await expect(page.getByRole('heading', { name: 'Your saved drafts.' })).toHaveCount(0);
+});
+
+test('restoring a session retrieves existing drafts before showing the overview', async ({ page }) => {
+  await mockedGateway(page, { existingSession: true, partial: true });
+  await page.goto('/?sandbox=1&sandboxBackend=gateway');
+  await expect(page.getByTestId('active-organization')).toContainText('SYNTHETIC Textiles');
+  await expect(page.getByText('Drafts on first page', { exact: true })).toBeVisible();
+  await expect(page.getByText('01', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'My drafts' }).click();
+  await expect(page.getByRole('button', { name: 'View draft DRAFT-UI-MOCK' })).toBeVisible();
 });

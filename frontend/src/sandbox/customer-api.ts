@@ -12,6 +12,33 @@ export class SandboxApiError extends Error {
   constructor(public status: number, message: string) { super(message); }
 }
 
+const object = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
+const id = (value: unknown) => Number.isSafeInteger(value) && Number(value) > 0;
+const text = (value: unknown) => typeof value === 'string' && value.trim().length > 0 && value.length <= 500;
+const booking = (value: unknown): value is SandboxBooking => object(value) && id(value.id) && text(value.reference)
+  && text(value.pickupCity) && text(value.deliveryCity) && value.version === 1 && value.status === 'draft';
+const session = (value: unknown): value is SandboxSession => object(value) && object(value.user) && object(value.organization)
+  && object(value.membership) && id(value.user.id) && text(value.user.name) && text(value.user.email)
+  && id(value.organization.id) && text(value.organization.name) && value.organization.verification === 'pending_human_review'
+  && value.membership.role === 'owner' && value.membership.active === true && value.bookingScope === 'draft_only'
+  && typeof value.expiresAt === 'number' && Number.isSafeInteger(value.expiresAt) && value.expiresAt > Date.now();
+
+// A 2xx response is not proof of the draft-only contract. Never substitute mock success.
+function verified(path: string, value: unknown, write: boolean) {
+  if (!object(value)) return false;
+  if (path === 'csrf') return text(value.csrf);
+  if (path === 'auth/register') return value.verification === 'pending_human_review' && value.bookingScope === 'draft_only';
+  if (path === 'auth/login') return text(value.csrf) && session(value);
+  if (path === 'auth/me' || path === 'organization/membership') return session(value);
+  if (path === 'auth/logout') return value.loggedOut === true;
+  if (path === 'bookings') return write
+    ? booking(value.booking) && value.draftOnly === true && value.executionEnabled === false
+    : Array.isArray(value.items) && value.items.length <= 100 && value.items.every(booking)
+      && new Set(value.items.map(row => row.id)).size === value.items.length && (value.nextPage === null || value.nextPage === 2);
+  return /^bookings\/[1-9]\d*$/.test(path) && booking(value.booking) && value.booking.id === Number(path.split('/')[1])
+    && Array.isArray(value.allowedActions) && value.allowedActions.length === 0;
+}
+
 // No browser token, password persistence, external URL or arbitrary endpoint passthrough.
 export function createCustomerApi() {
   let csrf = '';
@@ -31,7 +58,10 @@ export function createCustomerApi() {
         429: 'Too many attempts. Please wait before trying again.', 503: 'Verified protected sandbox is unavailable or expired.' };
       throw new SandboxApiError(response.status, messages[response.status] || 'Sandbox response could not be verified. No successful outcome is confirmed.');
     }
-    try { return await response.json() as T; } catch { throw new SandboxApiError(502, 'Sandbox response could not be read.'); }
+    let data: unknown;
+    try { data = await response.json(); } catch { throw new SandboxApiError(502, 'Sandbox response could not be read.'); }
+    if (!verified(path, data, payload !== undefined)) throw new SandboxApiError(502, 'Sandbox response could not be verified. No successful outcome is confirmed.');
+    return data as T;
   }
   async function initialize() {
     challenge ??= request<{ csrf: string }>('csrf').then(data => { csrf = data.csrf; }).catch(error => { challenge = undefined; throw error; });
