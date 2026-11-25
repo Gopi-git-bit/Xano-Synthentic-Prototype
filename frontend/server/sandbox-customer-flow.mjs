@@ -1,15 +1,26 @@
 // Server-only sandbox test adapter. Never import from the browser or production gateway.
 const validId = value => Number.isSafeInteger(value) && value > 0;
 const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const exact = (value, fields) => isObject(value) && Object.keys(value).length === fields.length && fields.every(k => Object.hasOwn(value, k));
 const fail = message => { throw new Error('SANDBOX_CONTRACT: ' + message); };
+
+// Server-only configuration, never caller-selected headers. W4 requires at least 32 characters.
+export function assertSandboxIngress({ datasource, gatewayKey }) {
+  if (datasource !== 'test' || typeof gatewayKey !== 'string' || !/^[A-Za-z0-9_-]{32,256}$/.test(gatewayKey))
+    fail('Verified test datasource and server gateway ingress configuration are required');
+  return true;
+}
 
 export function createSandboxCustomerClient({
   authBase,
   bookingsBase,
   expectedOrigin,
   expectedTenant,
+  datasource,
+  gatewayKey,
   fetchImpl = fetch,
 }) {
+  assertSandboxIngress({ datasource, gatewayKey });
   if (typeof expectedOrigin !== 'string' || typeof expectedTenant !== 'string'
       || !/^[a-z0-9][a-z0-9-]{2,63}$/.test(expectedTenant)
       || ['live', 'production', 'main'].includes(expectedTenant)) fail('Explicit tenant identity required');
@@ -33,7 +44,8 @@ export function createSandboxCustomerClient({
   const bookings = verifiedBase(bookingsBase, 'zippy-customer-drafts');
 
   async function request(base, path, { method = 'GET', payload, token } = {}) {
-    const headers = { Accept: 'application/json' };
+    assertSandboxIngress({ datasource, gatewayKey });
+    const headers = { Accept: 'application/json', 'X-Data-Source': 'test', 'X-Zippy-Gateway-Key': gatewayKey };
     if (payload !== undefined) headers['Content-Type'] = 'application/json';
     if (token !== undefined) {
       if (typeof token !== 'string' || !/^[^\s]{1,4096}$/.test(token)) fail('Invalid test bearer token');
@@ -65,18 +77,14 @@ export function createSandboxCustomerClient({
           || Object.keys(input).some(k => !['name', 'email', 'password', 'organization_name', 'phone'].includes(k)))
         fail('Synthetic customer registration required');
       const data = await request(auth, 'auth/register', { method: 'POST', payload: input });
-      if (!validId(data.user_id) || !validId(data.organization_id)
-          || data.system_role !== 'customer_admin' || data.status !== 'active'
-          || data.booking_scope !== 'draft_only'
-          || data.verification_state !== 'pending_human_review'
-          || !validId(data.approval_request_id) || Object.hasOwn(data, 'authToken'))
-        fail('Registration response violates draft-only contract');
-      return { userId: data.user_id, organizationId: data.organization_id,
-        pendingReviewId: data.approval_request_id };
+      if (!exact(data, ['status', 'next_step']) || data.status !== 'submitted' || data.next_step !== 'pending_platform_review')
+        fail('Registration submission response could not be verified');
+      // Same acknowledgement for a new submission and a duplicate. No IDs or activation inference.
+      return { status: 'submitted', next_step: 'pending_platform_review' };
     },
     async login(email, password) {
       const data = await request(auth, 'auth/login', { method: 'POST', payload: { email, password } });
-      if (!validId(data.user_id) || typeof data.authToken !== 'string'
+      if (!exact(data, ['authToken', 'user_id']) || !validId(data.user_id) || typeof data.authToken !== 'string'
           || !/^[^\s]{1,4096}$/.test(data.authToken)) fail('Invalid login response');
       return { userId: data.user_id, token: data.authToken };
     },
@@ -92,8 +100,10 @@ export function createSandboxCustomerClient({
       const data = await request(auth, 'organization/membership', { token });
       if (!isObject(data.organization) || !isObject(data.membership)
           || !validId(data.organization.id) || !validId(data.membership.user_id)
+          || !validId(data.membership.id) || data.membership.organization_id !== data.organization.id
           || data.booking_scope !== 'draft_only'
-          || data.organization.kyb_verified !== false
+          || data.organization.kyb_verified !== false || data.organization.type !== 'customer' || data.organization.status !== 'active'
+          || data.membership.is_active !== true || data.membership.is_primary !== true
           || data.membership.member_role !== 'owner') fail('Invalid membership projection');
       return data;
     },
@@ -104,14 +114,14 @@ export function createSandboxCustomerClient({
       if (!isObject(input) || Object.keys(input).length !== expected.length
           || expected.some(key => !Object.hasOwn(input, key))
           || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input.request_id)
-          || expected.slice(1, 5).some(key => typeof input[key] !== 'string' || !input[key].trim())
+          || expected.slice(1, 5).some(key => typeof input[key] !== 'string' || !input[key].trim() || input[key].length > (key.endsWith('_city') ? 100 : 200))
           || expected.slice(5).some(key => !Number.isSafeInteger(input[key]) || input[key] <= 0)
           || !(input.pickup_window_start < input.pickup_window_end
             && input.pickup_window_end <= input.delivery_window_start
             && input.delivery_window_start < input.delivery_window_end))
         fail('Invalid synthetic draft request');
       const result = await request(bookings, 'bookings', { method: 'POST', payload: input, token });
-      if (!isObject(result.booking) || !validId(result.booking.id)
+      if (!exact(result, ['booking', 'draft_only', 'execution_enabled']) || !isObject(result.booking) || !validId(result.booking.id)
           || result.booking.status !== 'draft' || result.booking.payment_status !== 'pending'
           || result.booking.version !== 1 || result.draft_only !== true
           || result.execution_enabled !== false) fail('Draft response is not a disabled operational draft');
@@ -138,32 +148,32 @@ export function createSandboxCustomerClient({
   });
 }
 
-export async function runSandboxCustomerFlow(client, fixture) {
-  const registration = await client.register(fixture.registration);
+// Explicitly separate submission from post-approval verification. No approval callback or endpoint exists here.
+// Only an independent operator action in the backend can make the subsequent login succeed.
+export async function runSandboxCustomerFlow(client, fixture, { phase } = {}) {
+  if (phase === 'registration') return client.register(fixture.registration);
+  if (phase !== 'after-approval') fail('Explicit registration or after-approval phase required');
   const login = await client.login(fixture.registration.email, fixture.registration.password);
-  if (login.userId !== registration.userId) fail('Login does not match registration');
   const identity = await client.identity(login.token);
-  if (identity.id !== registration.userId
-      || identity.active_organization_id !== registration.organizationId)
-    fail('Identity does not match created organization');
+  if (identity.id !== login.userId) fail('Identity does not match authenticated login');
   const membership = await client.membership(login.token);
-  if (membership.organization.id !== registration.organizationId
-      || membership.membership.user_id !== registration.userId) fail('Membership does not match identity');
+  const organizationId = identity.active_organization_id;
+  if (membership.organization.id !== organizationId || membership.membership.organization_id !== organizationId
+      || membership.membership.user_id !== identity.id) fail('Membership does not match identity');
   const created = await client.createDraft(login.token, fixture.draft);
-  if (created.booking.customer_organization_id !== registration.organizationId)
+  if (created.booking.customer_organization_id !== organizationId)
     fail('Draft belongs to a different organization');
   const page = await client.listDrafts(login.token);
   if (!page.items.some(row => row.id === created.booking.id
-      && row.customer_organization_id === registration.organizationId))
+      && row.customer_organization_id === organizationId))
     fail('Draft is absent from the customer page');
   const detail = await client.detail(login.token, created.booking.id);
-  if (detail.booking.customer_organization_id !== registration.organizationId
+  if (detail.booking.customer_organization_id !== organizationId
       || detail.booking.status !== 'draft') fail('Draft detail does not match owner');
   return Object.freeze({
     outcome: 'SANDBOX_CUSTOMER_FLOW_VERIFIED',
-    userId: registration.userId,
-    organizationId: registration.organizationId,
-    reviewId: registration.pendingReviewId,
+    userId: identity.id,
+    organizationId,
     bookingId: created.booking.id,
     bookingStatus: detail.booking.status,
     bookingScope: 'draft_only',

@@ -4,8 +4,16 @@ import { createSandboxGateway, sandboxRedisCredentials } from './sandbox-gateway
 import { harness, registration, draft } from './test-fixtures/sandbox.mjs';
 import { sandboxTarget } from './sandbox-target.mjs';
 
+// Explicit privileged arrangement of an approved synthetic fixture; not a customer endpoint.
+async function signInApproved(h, browser, input = registration) {
+  await browser.call('csrf');
+  assert.equal((await browser.call('auth/register', input)).status, 201);
+  h.operatorApprove(input.email);
+  return browser.signIn(input);
+}
+
 test('mocked gateway registers, authenticates, scopes membership, drafts, reads and logs out without browser tokens', async () => {
-  const h = harness(), b = h.browser(), login = await b.signIn();
+  const h = harness(), b = h.browser(), login = await signInApproved(h, b);
   for (const c of login.cookies) assert.match(c, /Path=\/; Secure; HttpOnly; SameSite=Strict; Max-Age=/);
   assert.ok(!JSON.stringify(login).includes('mock-xano-token')); assert.ok(!JSON.stringify(login).includes(registration.password));
   assert.equal((await b.call('auth/me')).data.user.id, 1); assert.equal((await b.call('organization/membership')).data.organization.id, 1);
@@ -14,28 +22,28 @@ test('mocked gateway registers, authenticates, scopes membership, drafts, reads 
   assert.equal((await b.call('auth/logout', {})).status, 200); assert.equal((await b.call('auth/me')).status, 401);
 });
 test('session state is shared across gateway instances; logged-out cookie replay is denied', async () => {
-  const h = harness(), a = h.browser(); await a.signIn(); const copied = [...a.cookies];
+  const h = harness(), a = h.browser(); await signInApproved(h, a); const copied = [...a.cookies];
   const b = h.browser(h.gateway()); for (const [k, v] of copied) b.cookies.set(k, v);
   assert.equal((await b.call('bookings')).status, 200); await a.call('auth/logout', {});
   assert.equal((await b.call('bookings')).status, 401); assert.equal(h.state.size, 0);
 });
 test('server expiry denies stale cookies even when the client clock does not expire them', async () => {
-  const h = harness(), b = h.browser(); await b.signIn(); h.advance(901000);
+  const h = harness(), b = h.browser(); await signInApproved(h, b); h.advance(901000);
   assert.equal((await b.call('bookings')).status, 401); assert.equal(h.state.size, 0);
 });
 test('revoked Xano membership invalidates and deletes the frontend session on the next read', async () => {
-  const h = harness(), b = h.browser(); await b.signIn(); h.flags.revoked = true;
+  const h = harness(), b = h.browser(); await signInApproved(h, b); h.flags.revoked = true;
   assert.equal((await b.call('bookings')).status, 403); assert.equal(h.state.size, 0);
 });
 test('two organizations cannot read each other; foreign and missing IDs are equivalent', async () => {
-  const h = harness(), a = h.browser(), b = h.browser(); await a.signIn(); await b.signIn({ ...registration, email: 'mock-b@example.invalid' });
+  const h = harness(), a = h.browser(), b = h.browser(); await signInApproved(h, a); await signInApproved(h, b, { ...registration, email: 'mock-b@example.invalid' });
   await a.call('bookings', draft); await b.call('bookings', draft);
   assert.equal((await a.call('bookings')).data.items.length, 1);
   const foreign = await a.call('bookings/2'), missing = await a.call('bookings/999'); assert.equal(foreign.status, 404); assert.deepEqual(foreign, missing);
   assert.equal((await b.call('bookings/1')).status, 404);
 });
 test('idempotent replay carries the unchanged UUID to Xano and changed payload is denied', async () => {
-  const h = harness(), b = h.browser(); await b.signIn(); const first = await b.call('bookings', draft);
+  const h = harness(), b = h.browser(); await signInApproved(h, b); const first = await b.call('bookings', draft);
   assert.deepEqual(await b.call('bookings', draft), first); assert.equal(h.bookings.length, 1);
   assert.equal((await b.call('bookings', { ...draft, pickup_city: 'Changed city' })).status, 400);
 });
@@ -59,7 +67,7 @@ test('caller-selected roles, tenant IDs and real identities cannot register', as
   assert.equal(h.calls.length, 0);
 });
 test('draft identity/state/financial injection and scope queries are denied before booking POST', async () => {
-  const h = harness(), b = h.browser(); await b.signIn();
+  const h = harness(), b = h.browser(); await signInApproved(h, b);
   for (const change of [{ customer_organization_id: 2 }, { status: 'booked' }, { total_amount: 1 }, { booked_by_user_id: 2 }, { request_id: 'invalid' }]) assert.equal((await b.call('bookings', { ...draft, ...change })).status, 400);
   assert.equal((await b.call('bookings?requested_org_id=2')).status, 400); assert.equal(h.bookings.length, 0);
 });
@@ -81,7 +89,7 @@ test('invalid credentials and upstream failures expose only sanitized errors', a
   assert.equal(failed.status, 502); assert.ok(!JSON.stringify([bad, failed]).includes('PRIVATE_UPSTREAM'));
 });
 test('unexpected private schema fields and foreign organization projections fail closed', async () => {
-  const h = harness(), b = h.browser(); await b.signIn(); await b.call('bookings', draft);
+  const h = harness(), b = h.browser(); await signInApproved(h, b); await b.call('bookings', draft);
   h.flags.extraField = true; assert.equal((await b.call('auth/me')).status, 502);
   h.flags.extraField = false; h.flags.foreignProjection = true; assert.equal((await b.call('bookings')).status, 502);
 });
@@ -92,7 +100,7 @@ test('durable auth limits apply across fresh gateway instances', async () => {
   assert.equal((await other.call('auth/register', { ...registration, email: 'mock-four@example.invalid' })).status, 429);
 });
 test('shared store failure cannot silently create a memory session or confirm logout', async () => {
-  const h = harness(), b = h.browser(); await b.signIn(); h.store.delete = async () => { throw Error('storage credential'); };
+  const h = harness(), b = h.browser(); await signInApproved(h, b); h.store.delete = async () => { throw Error('storage credential'); };
   assert.equal((await b.call('auth/logout', {})).status, 503);
   h.store.consume = async () => { throw Error('storage credential'); };
   const failed = await b.call('auth/me'); assert.equal(failed.status, 503); assert.ok(!JSON.stringify(failed).includes('credential'));

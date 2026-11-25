@@ -34,15 +34,17 @@ const ok = data => new Response(JSON.stringify(data), {
   status: 200, headers: { 'content-type': 'application/json' },
 });
 const config = fetchImpl => ({
-  authBase, bookingsBase, expectedOrigin: origin, expectedTenant: tenant, fetchImpl,
+  authBase, bookingsBase, expectedOrigin: origin, expectedTenant: tenant, datasource: 'test', gatewayKey: 'synthetic-adapter-gateway-key-00000000', fetchImpl,
 });
 function simulatedBackend(calls) {
-  let registered = false;
-  return async (url, options) => {
+  let registered = false, approved = false;
+  const fetchImpl = async (url, options) => {
     const u = new URL(url);
     calls.push({ url: u.pathname + u.search, method: options.method, redirect: options.redirect,
       tokenPresent: Boolean(options.headers.Authorization) });
     assert.equal(options.redirect, 'error');
+    assert.equal(options.headers['X-Data-Source'], 'test');
+    assert.equal(options.headers['X-Zippy-Gateway-Key'], config(null).gatewayKey);
     const path = u.pathname.slice(('/tenant/' + tenant).length);
     if (path === '/api:zippy-customer-draft-auth/auth/register' && options.method === 'POST') {
       const input = JSON.parse(options.body);
@@ -50,12 +52,10 @@ function simulatedBackend(calls) {
       assert.equal(input.organization_name, fixture.registration.organization_name);
       assert.equal(input.requested_system_role, undefined);
       registered = true;
-      return ok({ user_id: 12, organization_id: 22, system_role: 'customer_admin',
-        status: 'active', booking_scope: 'draft_only',
-        approval_request_id: 44, verification_state: 'pending_human_review' });
+      return ok({ status: 'submitted', next_step: 'pending_platform_review' });
     }
-    if (path === '/api:zippy-customer-draft-auth/auth/login' && registered) {
-      return ok({ authToken: 'synthetic-opaque-token', user_id: 12 });
+    if (path === '/api:zippy-customer-draft-auth/auth/login') {
+      return registered && approved ? ok({ authToken: 'synthetic-opaque-token', user_id: 12 }) : new Response('{}', { status: 401 });
     }
     assert.equal(options.headers.Authorization, 'Bearer synthetic-opaque-token');
     if (path === '/api:zippy-customer-draft-auth/auth/me') {
@@ -63,8 +63,8 @@ function simulatedBackend(calls) {
         system_role: 'customer_admin', status: 'active', active_organization_id: 22 });
     }
     if (path === '/api:zippy-customer-draft-auth/organization/membership') {
-      return ok({ organization: { id: 22, kyb_verified: false, status: 'active' },
-        membership: { user_id: 12, member_role: 'owner', is_active: true }, booking_scope: 'draft_only' });
+      return ok({ organization: { id: 22, name: fixture.registration.organization_name, type: 'customer', kyb_verified: false, status: 'active' },
+        membership: { id: 8, organization_id: 22, user_id: 12, member_role: 'owner', is_active: true, is_primary: true }, booking_scope: 'draft_only' });
     }
     if (path === '/api:zippy-customer-drafts/bookings' && options.method === 'POST') {
       const input = JSON.parse(options.body);
@@ -83,18 +83,24 @@ function simulatedBackend(calls) {
     }
     throw new Error('Unexpected unapproved endpoint: ' + path);
   };
+  return { fetchImpl, operatorApprove() { assert.equal(registered, true); approved = true; } };
 }
 
-test('sandbox customer flow registers, authenticates and creates/reads a draft without tokens in output', async () => {
+test('two-phase flow submits generically, denies pending login, then authenticates only after explicit operator simulation', async () => {
   const calls = [];
-  const client = createSandboxCustomerClient(config(simulatedBackend(calls)));
-  const result = await runSandboxCustomerFlow(client, fixture);
+  const backend = simulatedBackend(calls), client = createSandboxCustomerClient(config(backend.fetchImpl));
+  const submitted = await runSandboxCustomerFlow(client, fixture, { phase: 'registration' });
+  assert.deepEqual(submitted, { status: 'submitted', next_step: 'pending_platform_review' });
+  assert.equal(calls.length, 1, 'submission must not automatically log in or approve');
+  await assert.rejects(runSandboxCustomerFlow(client, fixture, { phase: 'after-approval' }), /Sandbox HTTP 401/);
+  backend.operatorApprove(); // Out-of-band test fixture action, not invoked by the flow or customer.
+  const result = await runSandboxCustomerFlow(client, fixture, { phase: 'after-approval' });
   assert.deepEqual(result, {
     outcome: 'SANDBOX_CUSTOMER_FLOW_VERIFIED',
-    userId: 12, organizationId: 22, reviewId: 44, bookingId: 33,
+    userId: 12, organizationId: 22, bookingId: 33,
     bookingStatus: 'draft', bookingScope: 'draft_only', verifiedFinancialActions: false,
   });
-  assert.deepEqual(calls.map(x => x.method), ['POST', 'POST', 'GET', 'GET', 'POST', 'GET', 'GET']);
+  assert.deepEqual(calls.map(x => x.method), ['POST', 'POST', 'POST', 'GET', 'GET', 'POST', 'GET', 'GET']);
   assert.ok(calls.every(x => x.redirect === 'error'));
   assert.equal(calls.filter(x => x.tokenPresent).length, 5);
   assert.ok(!JSON.stringify(result).includes('synthetic-opaque-token'));
@@ -149,20 +155,65 @@ test('backend 403 is fail-closed and never includes sensitive upstream content',
 test('bookings that belong to a foreign organization are rejected after creation', async () => {
   const client = createSandboxCustomerClient(config(async (url, options) => {
     const path = new URL(url).pathname;
-    if (path.endsWith('/auth/register')) return ok({ user_id: 12, organization_id: 22,
-      system_role: 'customer_admin', status: 'active', booking_scope: 'draft_only',
-      approval_request_id: 44, verification_state: 'pending_human_review' });
     if (path.endsWith('/auth/login')) return ok({ authToken: 'synthetic-opaque-token', user_id: 12 });
     if (path.endsWith('/auth/me')) return ok({ id: 12, name: 'SYNTHETIC Customer',
       email: fixture.registration.email, status: 'active',
       active_organization_id: 22, system_role: 'customer_admin' });
-    if (path.endsWith('/organization/membership')) return ok({ organization: { id: 22, kyb_verified: false },
-      membership: { user_id: 12, member_role: 'owner' }, booking_scope: 'draft_only' });
+    if (path.endsWith('/organization/membership')) return ok({ organization: { id: 22, type: 'customer', status: 'active', kyb_verified: false },
+      membership: { id: 8, organization_id: 22, user_id: 12, member_role: 'owner', is_active: true, is_primary: true }, booking_scope: 'draft_only' });
     if (options.method === 'POST' && path.endsWith('/bookings')) return ok({
       booking: { ...booking, customer_organization_id: 99 },
       draft_only: true, execution_enabled: false,
     });
     throw Error('Unexpected call');
   }));
-  await assert.rejects(runSandboxCustomerFlow(client, fixture), /different organization/);
+  await assert.rejects(runSandboxCustomerFlow(client, fixture, { phase: 'after-approval' }), /different organization/);
+});
+
+test('a missing or caller-invented flow phase cannot trigger a single-pass register/login flow', async () => {
+  let calls = 0;
+  const client = createSandboxCustomerClient(config(async () => { calls++; throw Error('unexpected'); }));
+  await assert.rejects(runSandboxCustomerFlow(client, fixture), /Explicit registration or after-approval phase/);
+  await assert.rejects(runSandboxCustomerFlow(client, fixture, { phase: 'approve' }), /Explicit registration or after-approval phase/);
+  assert.equal(calls, 0);
+});
+
+test('new and duplicate submissions return only the identical generic acknowledgement', async () => {
+  const calls = [], backend = simulatedBackend(calls), client = createSandboxCustomerClient(config(backend.fetchImpl));
+  const a = await client.register(fixture.registration), b = await client.register(fixture.registration);
+  assert.deepEqual(a, b); assert.deepEqual(Object.keys(a).sort(), ['next_step', 'status']);
+  assert.equal(calls.length, 2); assert.ok(!JSON.stringify([a, b]).includes('synthetic-opaque-token'));
+});
+
+for (const bad of [{ status: 'active', next_step: 'pending_platform_review' }, { status: 'submitted', next_step: 'approved' },
+  { status: 'submitted', next_step: 'pending_platform_review', user_id: 12 }, { status: 'submitted', next_step: 'pending_platform_review', authToken: 'PRIVATE_SENTINEL' },
+  { status: 'submitted', next_step: 'pending_platform_review', duplicate: true }, { user_id: 12, organization_id: 22, approval_request_id: 44 }]) {
+  test(`registration refuses an unapproved acknowledgement shape ${Object.keys(bad).join('/')}:${bad.status || 'legacy'}`, async () => {
+    const client = createSandboxCustomerClient(config(async () => ok(bad)));
+    await assert.rejects(client.register(fixture.registration), e => /submission response could not be verified/.test(e.message) && !e.message.includes('PRIVATE_SENTINEL'));
+  });
+}
+
+test('test datasource and bounded server-only gateway key are mandatory before transport', () => {
+  let calls = 0;
+  for (const override of [{ datasource: undefined }, { datasource: 'live' }, { datasource: '' }, { gatewayKey: undefined }, { gatewayKey: '' },
+    { gatewayKey: 'x'.repeat(31) }, { gatewayKey: 'x'.repeat(257) }, { gatewayKey: 42 }, { gatewayKey: 'x'.repeat(32) + '\r\n' }, { gatewayKey: ' '.repeat(32) }]) {
+    assert.throws(() => createSandboxCustomerClient({ ...config(async () => { calls++; }), ...override }), /test datasource and server gateway ingress/);
+  }
+  assert.equal(calls, 0);
+});
+
+test('post-approval identity and membership must agree before draft creation', async () => {
+  for (const changed of ['identity-user', 'membership-user', 'membership-org']) {
+    let draftCalls = 0;
+    const client = createSandboxCustomerClient(config(async url => {
+      const endpoint = new URL(url).pathname;
+      if (endpoint.endsWith('/auth/login')) return ok({ user_id: 12, authToken: 'synthetic-token' });
+      if (endpoint.endsWith('/auth/me')) return ok({ id: changed === 'identity-user' ? 99 : 12, name: fixture.registration.name, email: fixture.registration.email, system_role: 'customer_admin', status: 'active', active_organization_id: 22 });
+      if (endpoint.endsWith('/organization/membership')) return ok({ organization: { id: changed === 'membership-org' ? 99 : 22, type: 'customer', status: 'active', kyb_verified: false }, membership: { id: 8, organization_id: changed === 'membership-org' ? 99 : 22, user_id: changed === 'membership-user' ? 99 : 12, member_role: 'owner', is_active: true, is_primary: true }, booking_scope: 'draft_only' });
+      draftCalls++; throw Error('draft must not be reached');
+    }));
+    await assert.rejects(runSandboxCustomerFlow(client, fixture, { phase: 'after-approval' }), /match/);
+    assert.equal(draftCalls, 0);
+  }
 });

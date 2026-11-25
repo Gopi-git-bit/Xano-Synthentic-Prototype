@@ -1,5 +1,5 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
-import { createSandboxCustomerClient } from './sandbox-customer-flow.mjs';
+import { createSandboxCustomerClient, assertSandboxIngress } from './sandbox-customer-flow.mjs';
 import { createSandboxStore } from './sandbox-store.mjs';
 import { sandboxBranch, sandboxTarget } from './sandbox-target.mjs';
 
@@ -46,6 +46,8 @@ export function createSandboxGateway({ env = process.env, fetchImpl = fetch, sto
     if (env.VERCEL_ENV !== 'preview' || env.VERCEL_GIT_COMMIT_REF !== sandboxBranch
       || env.ZIPPY_SANDBOX_GATEWAY_RELEASE !== 'synthetic-only' || now() >= sandboxTarget.expiresAt)
       fail(503, 'SANDBOX_DISABLED', 'Verified sandbox preview is unavailable or expired.');
+    try { assertSandboxIngress({ datasource: env.ZIPPY_SANDBOX_DATASOURCE, gatewayKey: env.ZIPPY_SANDBOX_GATEWAY_KEY }); }
+    catch { fail(503, 'SANDBOX_NOT_CONFIGURED', 'Protected sandbox configuration is incomplete.'); }
     let origin, key;
     try {
       origin = new URL(env.ZIPPY_SANDBOX_WEB_ORIGIN);
@@ -58,9 +60,10 @@ export function createSandboxGateway({ env = process.env, fetchImpl = fetch, sto
     if (!sharedStore) sharedStore = suppliedStore || createSandboxStore({ ...sandboxRedisCredentials(env), key, namespace: sandboxTarget.tenant, fetchImpl });
     return { origin: origin.origin, key, ttl, store: sharedStore };
   }
-  const client = createSandboxCustomerClient({ expectedOrigin: sandboxTarget.origin, expectedTenant: sandboxTarget.tenant,
+  const customerClient = () => createSandboxCustomerClient({ expectedOrigin: sandboxTarget.origin, expectedTenant: sandboxTarget.tenant,
     authBase: `${sandboxTarget.origin}/tenant/${sandboxTarget.tenant}/api:${sandboxTarget.authGroup}`,
-    bookingsBase: `${sandboxTarget.origin}/tenant/${sandboxTarget.tenant}/api:${sandboxTarget.bookingsGroup}`, fetchImpl });
+    bookingsBase: `${sandboxTarget.origin}/tenant/${sandboxTarget.tenant}/api:${sandboxTarget.bookingsGroup}`,
+    datasource: env.ZIPPY_SANDBOX_DATASOURCE, gatewayKey: env.ZIPPY_SANDBOX_GATEWAY_KEY, fetchImpl });
   async function upstream(fn) {
     try { return await fn(); } catch (error) {
       const status = Number(/SANDBOX_CONTRACT: Sandbox HTTP (\d{3})$/.exec(error?.message)?.[1]);
@@ -72,6 +75,7 @@ export function createSandboxGateway({ env = process.env, fetchImpl = fetch, sto
     }
   }
   async function context(token, expected) {
+    const client = customerClient();
     const identity = await upstream(() => client.identity(token));
     const membership = await upstream(() => client.membership(token));
     contract(exact(identity, ['id', 'name', 'email', 'system_role', 'status', 'active_organization_id'])
@@ -104,6 +108,7 @@ export function createSandboxGateway({ env = process.env, fetchImpl = fetch, sto
     let activeId, config;
     try {
       config = configuration();
+      const client = customerClient();
       const parsed = new URL(url, config.origin);
       const injectedPath = parsed.searchParams.getAll('path');
       const visibleRoute = parsed.pathname.startsWith('/api/sandbox/')
@@ -144,7 +149,9 @@ export function createSandboxGateway({ env = process.env, fetchImpl = fetch, sto
           || !await config.store.consume('account:' + body.email.toLowerCase(), 5, 300)) fail(429, 'RATE_LIMITED', 'Too many account attempts. Try again later.');
         if (register) {
           const result = await upstream(() => client.register(body));
-          return { status: 201, data: { ...result, verification: 'pending_human_review', bookingScope: 'draft_only' } };
+          contract(exact(result, ['status', 'next_step']) && result.status === 'submitted' && result.next_step === 'pending_platform_review');
+          // Constant browser compatibility labels describe pending review, not approval or an active session.
+          return { status: 201, data: { status: 'submitted', next_step: 'pending_platform_review', verification: 'pending_human_review', bookingScope: 'draft_only' } };
         }
         const result = await upstream(() => client.login(body.email, body.password));
         const current = await context(result.token);
@@ -176,12 +183,12 @@ export function createSandboxGateway({ env = process.env, fetchImpl = fetch, sto
       if (route === 'bookings' && method === 'POST') {
         const fields = ['request_id', 'pickup_city', 'pickup_street', 'delivery_city', 'delivery_street', 'pickup_window_start', 'pickup_window_end', 'delivery_window_start', 'delivery_window_end'];
         if (!exact(body, fields) || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body.request_id)
-          || fields.slice(1, 5).some(k => typeof body[k] !== 'string' || body[k].trim().length < 2 || body[k].length > 200)
+          || fields.slice(1, 5).some(k => typeof body[k] !== 'string' || body[k].trim().length < 2 || body[k].length > (k.endsWith('_city') ? 100 : 200))
           || fields.slice(5).some(k => !Number.isSafeInteger(body[k]) || body[k] <= 0)
           || !(body.pickup_window_start < body.pickup_window_end && body.pickup_window_end <= body.delivery_window_start && body.delivery_window_start < body.delivery_window_end))
           fail(400, 'INVALID_DRAFT', 'Provide a request ID, bounded route fields and ordered time windows.');
         const data = await upstream(() => client.createDraft(session.token, body));
-        contract(exact(data, ['booking', 'draft_only', 'execution_enabled']));
+        contract(exact(data, ['booking', 'draft_only', 'execution_enabled']) && data.draft_only === true && data.execution_enabled === false);
         return { status: 200, data: { booking: booking(data.booking, current.organization.id), draftOnly: true, executionEnabled: false } };
       }
       if (route === 'bookings') {

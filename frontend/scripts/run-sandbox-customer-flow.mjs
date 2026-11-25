@@ -10,6 +10,13 @@ if (env.ZIPPY_SANDBOX_TEST_APPROVAL !== 'synthetic-write-test-only')
   throw new Error('Explicit sandbox synthetic-write approval flag is required');
 if (!env.ZIPPY_SANDBOX_TENANT || !env.ZIPPY_SANDBOX_EXPECTED_ORIGIN)
   throw new Error('A verified tenant name and exact HTTPS origin are required');
+// Server-only ingress configuration. The gateway key never reaches browser code or output.
+if (env.ZIPPY_SANDBOX_DATASOURCE !== 'test' || !env.ZIPPY_SANDBOX_GATEWAY_KEY)
+  throw new Error('Verified test datasource and server-only gateway ingress configuration are required');
+// Only the registration phase is reachable from this local probe. The after-approval phase requires an
+// independent operator approval that this script must never perform or simulate.
+if (env.ZIPPY_SANDBOX_PHASE !== 'registration')
+  throw new Error('This probe performs the registration submission phase only');
 
 const tenant = env.ZIPPY_SANDBOX_TENANT;
 const origin = env.ZIPPY_SANDBOX_EXPECTED_ORIGIN;
@@ -18,6 +25,8 @@ const client = createSandboxCustomerClient({
   bookingsBase: origin + '/tenant/' + tenant + '/api:zippy-customer-drafts',
   expectedOrigin: origin,
   expectedTenant: tenant,
+  datasource: env.ZIPPY_SANDBOX_DATASOURCE,
+  gatewayKey: env.ZIPPY_SANDBOX_GATEWAY_KEY,
 });
 
 const id = randomUUID();
@@ -42,7 +51,7 @@ const fixture = {
   },
 };
 try {
-  const result = await runSandboxCustomerFlow(client, fixture);
+  const result = await runSandboxCustomerFlow(client, fixture, { phase: 'registration' });
   console.log(JSON.stringify({ tenant, ...result, environment: 'isolated_sandbox_only' }, null, 2));
 } catch (error) {
   console.error('Sandbox customer probe failed:', String(error.message || 'unknown').slice(0, 180));
