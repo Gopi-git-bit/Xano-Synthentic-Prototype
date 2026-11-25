@@ -40,14 +40,25 @@ export function createGateway({ env = process.env, fetchImpl = fetch, now = Date
     if (base.protocol !== 'https:' || base.username || base.password || base.search || base.hash) fail(503, 'XANO_NOT_CONFIGURED', 'Xano configuration needs review.');
     return `${base.href.replace(/\/$/, '')}/${path}`;
   }
-  function configured(key) { try { xanoUrl('', key); return true; } catch { return false; } }
+  // Optional ingress for a gated Xano workspace (e.g. the W4 test workspace), which only answers requests that name its
+  // "test" data source and present the shared gateway key. Both settings are required together; a partial or malformed
+  // pair fails closed. The key is only ever sent upstream as a request header: never logged or returned.
+  function xanoIngressHeaders() {
+    const source = env.XANO_DATA_SOURCE, gatewayKey = env.XANO_GATEWAY_KEY;
+    if (!source && !gatewayKey) return null;
+    if (!/^[a-z][a-z0-9_-]{0,31}$/.test(source || '') || !/^[A-Za-z0-9_-]{32,256}$/.test(gatewayKey || '')) fail(503, 'XANO_NOT_CONFIGURED', 'Xano configuration needs review.');
+    return { 'X-Data-Source': source, 'x-zippy-gateway-key': gatewayKey };
+  }
+  function configured(key) { try { xanoUrl('', key); xanoIngressHeaders(); return true; } catch { return false; } }
   const authAvailable = () => configured('XANO_AUTH_BASE_URL') && env.XANO_AUTH_RELEASE === 'verified';
   const bookingReadsAvailable = () => authAvailable() && configured('XANO_LOGISTICS_BASE_URL') && env.XANO_BOOKING_READS_RELEASE === 'verified';
   function requireAuthRelease() {
     if (!authAvailable()) fail(503, 'AUTH_RELEASE_PENDING', 'Account access is unavailable pending Xano authentication security and permission verification.');
   }
-  async function xano(path, options, key) {
-    const response = await request(xanoUrl(path, key), options);
+  async function xano(path, options = {}, key) {
+    const url = xanoUrl(path, key);
+    const ingress = xanoIngressHeaders();
+    const response = await request(url, ingress ? { ...options, headers: { ...(options.headers || {}), ...ingress } } : options);
     if (response.status === 401) fail(401, 'AUTH_REQUIRED', 'Sign in with a valid account.');
     if (response.status === 403) fail(403, 'ACCESS_DENIED', 'This account is not authorized for the request.');
     if (response.status === 404) fail(404, 'RECORD_UNAVAILABLE', 'The requested record is unavailable.');
